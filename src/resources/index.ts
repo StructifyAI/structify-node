@@ -2,8 +2,8 @@
 
 export { Admin } from './admin/admin';
 export {
+  Dataset,
   DatasetDescriptor,
-  DatasetNode,
   KgEntity,
   DatasetListResponse,
   DatasetViewResponse,
@@ -14,9 +14,17 @@ export {
   Datasets,
 } from './datasets';
 export { DocumentListResponse, DocumentDownloadResponse, DocumentUploadParams, Documents } from './documents';
+export {
+  IsComplete,
+  StructureJobStatusResponse,
+  StructureRunAsyncResponse,
+  StructureIsCompleteParams,
+  StructureJobStatusParams,
+  StructureRunAsyncParams,
+  Structure,
+} from './structure';
 export { NewToken, UserInfo, User } from './user';
 export { RunListResponse, Runs } from './runs';
 export { ServerInformation, Server } from './server';
 export { Source, SourceListParams, Sources } from './sources';
-export { Structure } from './structure/structure';
 export { Usage } from './usage/usage';

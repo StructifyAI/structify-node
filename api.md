@@ -16,7 +16,7 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/admin/users.ts">UserNode</a></code>
+- <code><a href="./src/resources/admin/users.ts">User</a></code>
 - <code><a href="./src/resources/admin/users.ts">UserListResponse</a></code>
 
 Methods:
@@ -27,8 +27,8 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/datasets.ts">Dataset</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetDescriptor</a></code>
-- <code><a href="./src/resources/datasets.ts">DatasetNode</a></code>
 - <code><a href="./src/resources/datasets.ts">KgEntity</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetListResponse</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetViewResponse</a></code>
@@ -87,45 +87,17 @@ Methods:
 
 # Structure
 
-## IsComplete
-
 Types:
 
-- <code><a href="./src/resources/structure/is-complete.ts">IsComplete</a></code>
+- <code><a href="./src/resources/structure.ts">IsComplete</a></code>
+- <code><a href="./src/resources/structure.ts">StructureJobStatusResponse</a></code>
+- <code><a href="./src/resources/structure.ts">StructureRunAsyncResponse</a></code>
 
 Methods:
 
-- <code title="post /structure/is_complete">client.structure.isComplete.<a href="./src/resources/structure/is-complete.ts">create</a>([ ...body ]) -> IsComplete</code>
-
-## JobStatus
-
-Types:
-
-- <code><a href="./src/resources/structure/job-status.ts">JobStatusCreateResponse</a></code>
-
-Methods:
-
-- <code title="post /structure/job_status">client.structure.jobStatus.<a href="./src/resources/structure/job-status.ts">create</a>([ ...body ]) -> unknown</code>
-
-## Run
-
-Types:
-
-- <code><a href="./src/resources/structure/run.ts">RunCreateResponse</a></code>
-
-Methods:
-
-- <code title="post /structure/run">client.structure.run.<a href="./src/resources/structure/run.ts">create</a>({ ...params }) -> unknown</code>
-
-## RunAsync
-
-Types:
-
-- <code><a href="./src/resources/structure/run-async.ts">RunAsyncCreateResponse</a></code>
-
-Methods:
-
-- <code title="post /structure/run_async">client.structure.runAsync.<a href="./src/resources/structure/run-async.ts">create</a>({ ...params }) -> unknown</code>
+- <code title="post /structure/is_complete">client.structure.<a href="./src/resources/structure.ts">isComplete</a>([ ...body ]) -> IsComplete</code>
+- <code title="post /structure/job_status">client.structure.<a href="./src/resources/structure.ts">jobStatus</a>([ ...body ]) -> unknown</code>
+- <code title="post /structure/run_async">client.structure.<a href="./src/resources/structure.ts">runAsync</a>({ ...params }) -> unknown</code>
 
 # Usage
 
