@@ -12,7 +12,6 @@ describe('resource runAsync', () => {
   test('create: only required params', async () => {
     const responsePromise = structify.structure.runAsync.create({
       dataset_name: 'string',
-      llm: 'Gpt4V',
       Text: { text_content: 'string' },
     });
     const rawResponse = await responsePromise.asResponse();
@@ -27,7 +26,6 @@ describe('resource runAsync', () => {
   test('create: required and optional params', async () => {
     const response = await structify.structure.runAsync.create({
       dataset_name: 'string',
-      llm: 'Gpt4V',
       Text: { text_content: 'string' },
       custom_instruction: 'string',
     });

@@ -2,8 +2,8 @@
 
 export { Admin } from './admin/admin';
 export {
-  Dataset,
   DatasetDescriptor,
+  DatasetNode,
   KgEntity,
   DatasetListResponse,
   DatasetViewResponse,
@@ -16,7 +16,7 @@ export {
 export { DocumentListResponse, DocumentDownloadResponse, DocumentUploadParams, Documents } from './documents';
 export { NewToken, UserInfo, User } from './user';
 export { RunListResponse, Runs } from './runs';
-export { Server } from './server/server';
+export { ServerInformation, Server } from './server';
 export { Source, SourceListParams, Sources } from './sources';
 export { Structure } from './structure/structure';
 export { Usage } from './usage/usage';
