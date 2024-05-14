@@ -6,12 +6,15 @@ import * as RunAsyncAPI from './run-async';
 
 export class RunAsync extends APIResource {
   /**
+   * Structure an unstructured data source into the given dataset in an async
+   * fashion.
+   *
    * Returns a token that can be waited on until the request is finished.
    */
   create(params: RunAsyncCreateParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
-    const { dataset_name, custom_instruction, ...body } = params;
+    const { dataset_name, custom_instruction, llm, ...body } = params;
     return this._client.post('/structure/run_async', {
-      query: { dataset_name, custom_instruction },
+      query: { dataset_name, custom_instruction, llm },
       body,
       ...options,
     });
@@ -42,6 +45,11 @@ export namespace RunAsyncCreateParams {
      * Query param:
      */
     custom_instruction?: string | null;
+
+    /**
+     * Query param:
+     */
+    llm?: unknown | null;
   }
 
   export namespace Variant0 {
@@ -65,6 +73,11 @@ export namespace RunAsyncCreateParams {
      * Query param:
      */
     custom_instruction?: string | null;
+
+    /**
+     * Query param:
+     */
+    llm?: unknown | null;
   }
 
   export namespace Variant1 {
@@ -88,6 +101,11 @@ export namespace RunAsyncCreateParams {
      * Query param:
      */
     custom_instruction?: string | null;
+
+    /**
+     * Query param:
+     */
+    llm?: unknown | null;
   }
 
   export namespace Variant2 {
@@ -113,6 +131,11 @@ export namespace RunAsyncCreateParams {
      * Query param:
      */
     custom_instruction?: string | null;
+
+    /**
+     * Query param:
+     */
+    llm?: unknown | null;
   }
 
   export namespace Variant3 {

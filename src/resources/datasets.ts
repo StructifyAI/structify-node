@@ -6,6 +6,8 @@ import * as DatasetsAPI from './datasets';
 
 export class Datasets extends APIResource {
   /**
+   * Create a Dataset
+   *
    * Creates a dataset.
    */
   create(body: DatasetCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
@@ -27,6 +29,8 @@ export class Datasets extends APIResource {
   }
 
   /**
+   * List datasets
+   *
    * Gets all datasets owned by the current user
    */
   list(options?: Core.RequestOptions): Core.APIPromise<DatasetListResponse> {

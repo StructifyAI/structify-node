@@ -6,14 +6,16 @@ import * as RunAPI from './run';
 
 export class Run extends APIResource {
   /**
+   * Structure an unstructured data source into the given dataset.
+   *
    * There's a couple of different types of sources. Right now, you can either add a
    * file path or the internet as a whole. In the future, we'll allow you to pare
    * down the internet to a specific domain or criterium.
    */
   create(params: RunCreateParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
-    const { dataset_name, custom_instruction, ...body } = params;
+    const { dataset_name, custom_instruction, llm, ...body } = params;
     return this._client.post('/structure/run', {
-      query: { dataset_name, custom_instruction },
+      query: { dataset_name, custom_instruction, llm },
       body,
       ...options,
     });
@@ -44,6 +46,11 @@ export namespace RunCreateParams {
      * Query param:
      */
     custom_instruction?: string | null;
+
+    /**
+     * Query param:
+     */
+    llm?: unknown | null;
   }
 
   export namespace Variant0 {
@@ -67,6 +74,11 @@ export namespace RunCreateParams {
      * Query param:
      */
     custom_instruction?: string | null;
+
+    /**
+     * Query param:
+     */
+    llm?: unknown | null;
   }
 
   export namespace Variant1 {
@@ -90,6 +102,11 @@ export namespace RunCreateParams {
      * Query param:
      */
     custom_instruction?: string | null;
+
+    /**
+     * Query param:
+     */
+    llm?: unknown | null;
   }
 
   export namespace Variant2 {
@@ -115,6 +132,11 @@ export namespace RunCreateParams {
      * Query param:
      */
     custom_instruction?: string | null;
+
+    /**
+     * Query param:
+     */
+    llm?: unknown | null;
   }
 
   export namespace Variant3 {
