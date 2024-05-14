@@ -53,6 +53,12 @@ export class Datasets extends APIResource {
   }
 }
 
+export interface Dataset {
+  description: string;
+
+  name: string;
+}
+
 /**
  * A dataset is where you put multiple referential schemas.
  *
@@ -102,12 +108,6 @@ export namespace DatasetDescriptor {
   }
 }
 
-export interface DatasetNode {
-  description: string;
-
-  name: string;
-}
-
 export interface KgEntity {
   id: number;
 
@@ -120,7 +120,7 @@ export interface KgEntity {
   properties: Record<string, string | null | boolean | null | number | null>;
 }
 
-export type DatasetListResponse = Array<DatasetNode>;
+export type DatasetListResponse = Array<Dataset>;
 
 export type DatasetViewResponse = Array<KgEntity>;
 
@@ -192,8 +192,8 @@ export interface DatasetViewParams {
 }
 
 export namespace Datasets {
+  export import Dataset = DatasetsAPI.Dataset;
   export import DatasetDescriptor = DatasetsAPI.DatasetDescriptor;
-  export import DatasetNode = DatasetsAPI.DatasetNode;
   export import KgEntity = DatasetsAPI.KgEntity;
   export import DatasetListResponse = DatasetsAPI.DatasetListResponse;
   export import DatasetViewResponse = DatasetsAPI.DatasetViewResponse;
