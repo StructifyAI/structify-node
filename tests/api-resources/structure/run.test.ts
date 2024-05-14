@@ -28,6 +28,7 @@ describe('resource run', () => {
       dataset_name: 'string',
       Text: { text_content: 'string' },
       custom_instruction: 'string',
+      llm: {},
     });
   });
 });
