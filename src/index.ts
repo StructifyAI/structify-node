@@ -239,6 +239,12 @@ export namespace Structify {
   export import SourceListParams = API.SourceListParams;
 
   export import Structure = API.Structure;
+  export import IsComplete = API.IsComplete;
+  export import StructureJobStatusResponse = API.StructureJobStatusResponse;
+  export import StructureRunAsyncResponse = API.StructureRunAsyncResponse;
+  export import StructureIsCompleteParams = API.StructureIsCompleteParams;
+  export import StructureJobStatusParams = API.StructureJobStatusParams;
+  export import StructureRunAsyncParams = API.StructureRunAsyncParams;
 
   export import Usage = API.Usage;
 }
