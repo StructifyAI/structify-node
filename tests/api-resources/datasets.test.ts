@@ -118,6 +118,21 @@ describe('resource datasets', () => {
     });
   });
 
+  test('retrieve: only required params', async () => {
+    const responsePromise = structify.datasets.retrieve({ name: 'string' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('retrieve: required and optional params', async () => {
+    const response = await structify.datasets.retrieve({ name: 'string' });
+  });
+
   test('list', async () => {
     const responsePromise = structify.datasets.list();
     const rawResponse = await responsePromise.asResponse();
@@ -149,21 +164,6 @@ describe('resource datasets', () => {
 
   test('delete: required and optional params', async () => {
     const response = await structify.datasets.delete({ name: 'string' });
-  });
-
-  test('get: only required params', async () => {
-    const responsePromise = structify.datasets.get({ name: 'string' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('get: required and optional params', async () => {
-    const response = await structify.datasets.get({ name: 'string' });
   });
 
   test('view: only required params', async () => {
