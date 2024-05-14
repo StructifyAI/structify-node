@@ -15,15 +15,15 @@ export class Users extends APIResource {
   }
 }
 
-export interface UserNode {
+export interface User {
   email: string;
 
   user_type?: 'Admin' | 'Public' | 'EndUser';
 }
 
-export type UserListResponse = Array<UserNode>;
+export type UserListResponse = Array<User>;
 
 export namespace Users {
-  export import UserNode = UsersAPI.UserNode;
+  export import User = UsersAPI.User;
   export import UserListResponse = UsersAPI.UserListResponse;
 }
