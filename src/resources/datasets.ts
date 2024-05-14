@@ -17,16 +17,6 @@ export class Datasets extends APIResource {
   }
 
   /**
-   * Grab a dataset by its name.
-   */
-  retrieve(
-    query: DatasetRetrieveParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<DatasetDescriptor | null> {
-    return this._client.get('/dataset/info', { query, ...options });
-  }
-
-  /**
    * Gets all datasets owned by the current user
    */
   list(options?: Core.RequestOptions): Core.APIPromise<DatasetListResponse> {
@@ -43,6 +33,13 @@ export class Datasets extends APIResource {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
+  }
+
+  /**
+   * Grab a dataset by its name.
+   */
+  get(query: DatasetGetParams, options?: Core.RequestOptions): Core.APIPromise<DatasetDescriptor | null> {
+    return this._client.get('/dataset/info', { query, ...options });
   }
 
   /**
@@ -108,7 +105,7 @@ export namespace DatasetDescriptor {
   }
 }
 
-export interface KgEntity {
+export interface Entity {
   id: number;
 
   /**
@@ -122,7 +119,7 @@ export interface KgEntity {
 
 export type DatasetListResponse = Array<Dataset>;
 
-export type DatasetViewResponse = Array<KgEntity>;
+export type DatasetViewResponse = Array<Entity>;
 
 export interface DatasetCreateParams {
   description: string;
@@ -167,16 +164,16 @@ export namespace DatasetCreateParams {
   }
 }
 
-export interface DatasetRetrieveParams {
+export interface DatasetDeleteParams {
   /**
-   * Information about the dataset
+   * The name of the dataset
    */
   name: string;
 }
 
-export interface DatasetDeleteParams {
+export interface DatasetGetParams {
   /**
-   * The name of the dataset
+   * Information about the dataset
    */
   name: string;
 }
@@ -194,11 +191,11 @@ export interface DatasetViewParams {
 export namespace Datasets {
   export import Dataset = DatasetsAPI.Dataset;
   export import DatasetDescriptor = DatasetsAPI.DatasetDescriptor;
-  export import KgEntity = DatasetsAPI.KgEntity;
+  export import Entity = DatasetsAPI.Entity;
   export import DatasetListResponse = DatasetsAPI.DatasetListResponse;
   export import DatasetViewResponse = DatasetsAPI.DatasetViewResponse;
   export import DatasetCreateParams = DatasetsAPI.DatasetCreateParams;
-  export import DatasetRetrieveParams = DatasetsAPI.DatasetRetrieveParams;
   export import DatasetDeleteParams = DatasetsAPI.DatasetDeleteParams;
+  export import DatasetGetParams = DatasetsAPI.DatasetGetParams;
   export import DatasetViewParams = DatasetsAPI.DatasetViewParams;
 }
