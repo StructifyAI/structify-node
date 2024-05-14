@@ -13,14 +13,16 @@ export class Run extends APIResource {
    * down the internet to a specific domain or criterium.
    */
   create(params: RunCreateParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
-    const { dataset_name, custom_instruction, llm, ...body } = params;
+    const { dataset_name, llm, custom_instruction, ...body } = params;
     return this._client.post('/structure/run', {
-      query: { dataset_name, custom_instruction, llm },
+      query: { dataset_name, llm, custom_instruction },
       body,
       ...options,
     });
   }
 }
+
+export type Llm = 'Gpt4V' | 'Structify' | 'Human';
 
 export type RunCreateResponse = unknown;
 
@@ -38,6 +40,11 @@ export namespace RunCreateParams {
     dataset_name: string;
 
     /**
+     * Query param:
+     */
+    llm: Llm;
+
+    /**
      * Body param:
      */
     Text: RunCreateParams.Variant0.Text;
@@ -46,11 +53,6 @@ export namespace RunCreateParams {
      * Query param:
      */
     custom_instruction?: string | null;
-
-    /**
-     * Query param:
-     */
-    llm?: unknown | null;
   }
 
   export namespace Variant0 {
@@ -66,6 +68,11 @@ export namespace RunCreateParams {
     dataset_name: string;
 
     /**
+     * Query param:
+     */
+    llm: Llm;
+
+    /**
      * Body param:
      */
     Document: RunCreateParams.Variant1.Document;
@@ -74,11 +81,6 @@ export namespace RunCreateParams {
      * Query param:
      */
     custom_instruction?: string | null;
-
-    /**
-     * Query param:
-     */
-    llm?: unknown | null;
   }
 
   export namespace Variant1 {
@@ -94,6 +96,11 @@ export namespace RunCreateParams {
     dataset_name: string;
 
     /**
+     * Query param:
+     */
+    llm: Llm;
+
+    /**
      * Body param:
      */
     Web: RunCreateParams.Variant2.Web;
@@ -102,11 +109,6 @@ export namespace RunCreateParams {
      * Query param:
      */
     custom_instruction?: string | null;
-
-    /**
-     * Query param:
-     */
-    llm?: unknown | null;
   }
 
   export namespace Variant2 {
@@ -124,6 +126,11 @@ export namespace RunCreateParams {
     dataset_name: string;
 
     /**
+     * Query param:
+     */
+    llm: Llm;
+
+    /**
      * Body param:
      */
     SECFiling: RunCreateParams.Variant3.SecFiling;
@@ -132,11 +139,6 @@ export namespace RunCreateParams {
      * Query param:
      */
     custom_instruction?: string | null;
-
-    /**
-     * Query param:
-     */
-    llm?: unknown | null;
   }
 
   export namespace Variant3 {
@@ -151,6 +153,7 @@ export namespace RunCreateParams {
 }
 
 export namespace Run {
+  export import Llm = RunAPI.Llm;
   export import RunCreateResponse = RunAPI.RunCreateResponse;
   export import RunCreateParams = RunAPI.RunCreateParams;
 }
