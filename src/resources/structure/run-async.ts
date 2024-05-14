@@ -3,6 +3,7 @@
 import * as Core from '../../core';
 import { APIResource } from '../../resource';
 import * as RunAsyncAPI from './run-async';
+import { type RunAsync, RunAsyncCreateParams, RunAsyncCreateResponse } from './run-async';
 
 export class RunAsync extends APIResource {
   /**
@@ -11,23 +12,25 @@ export class RunAsync extends APIResource {
    *
    * Returns a token that can be waited on until the request is finished.
    */
-  create(params: RunAsyncCreateParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
-    const { dataset_name, custom_instruction, llm, ...body } = params;
+  create(params: RunAsyncAPI.RunAsyncCreateParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+    const { dataset_name, llm, custom_instruction, ...body } = params;
     return this._client.post('/structure/run_async', {
-      query: { dataset_name, custom_instruction, llm },
+      query: { dataset_name, llm, custom_instruction },
       body,
       ...options,
     });
   }
 }
 
+export type Llm = 'Gpt4V' | 'Structify' | 'Human';
+
 export type RunAsyncCreateResponse = unknown;
 
 export type RunAsyncCreateParams =
-  | RunAsyncCreateParams.Variant0
-  | RunAsyncCreateParams.Variant1
-  | RunAsyncCreateParams.Variant2
-  | RunAsyncCreateParams.Variant3;
+  | RunAsyncAPI.RunAsyncCreateParams.Variant0
+  | RunAsyncAPI.RunAsyncCreateParams.Variant1
+  | RunAsyncAPI.RunAsyncCreateParams.Variant2
+  | RunAsyncAPI.RunAsyncCreateParams.Variant3;
 
 export namespace RunAsyncCreateParams {
   export interface Variant0 {
@@ -37,19 +40,19 @@ export namespace RunAsyncCreateParams {
     dataset_name: string;
 
     /**
+     * Query param:
+     */
+    llm: Llm;
+
+    /**
      * Body param:
      */
-    Text: RunAsyncCreateParams.Variant0.Text;
+    Text: RunAsyncAPI.RunAsyncCreateParams.Variant0.Text;
 
     /**
      * Query param:
      */
     custom_instruction?: string | null;
-
-    /**
-     * Query param:
-     */
-    llm?: unknown | null;
   }
 
   export namespace Variant0 {
@@ -65,19 +68,19 @@ export namespace RunAsyncCreateParams {
     dataset_name: string;
 
     /**
+     * Query param:
+     */
+    llm: Llm;
+
+    /**
      * Body param:
      */
-    Document: RunAsyncCreateParams.Variant1.Document;
+    Document: RunAsyncAPI.RunAsyncCreateParams.Variant1.Document;
 
     /**
      * Query param:
      */
     custom_instruction?: string | null;
-
-    /**
-     * Query param:
-     */
-    llm?: unknown | null;
   }
 
   export namespace Variant1 {
@@ -93,19 +96,19 @@ export namespace RunAsyncCreateParams {
     dataset_name: string;
 
     /**
+     * Query param:
+     */
+    llm: Llm;
+
+    /**
      * Body param:
      */
-    Web: RunAsyncCreateParams.Variant2.Web;
+    Web: RunAsyncAPI.RunAsyncCreateParams.Variant2.Web;
 
     /**
      * Query param:
      */
     custom_instruction?: string | null;
-
-    /**
-     * Query param:
-     */
-    llm?: unknown | null;
   }
 
   export namespace Variant2 {
@@ -123,19 +126,19 @@ export namespace RunAsyncCreateParams {
     dataset_name: string;
 
     /**
+     * Query param:
+     */
+    llm: Llm;
+
+    /**
      * Body param:
      */
-    SECFiling: RunAsyncCreateParams.Variant3.SecFiling;
+    SECFiling: RunAsyncAPI.RunAsyncCreateParams.Variant3.SecFiling;
 
     /**
      * Query param:
      */
     custom_instruction?: string | null;
-
-    /**
-     * Query param:
-     */
-    llm?: unknown | null;
   }
 
   export namespace Variant3 {
@@ -150,6 +153,7 @@ export namespace RunAsyncCreateParams {
 }
 
 export namespace RunAsync {
+  export import Llm = RunAsyncAPI.Llm;
   export import RunAsyncCreateResponse = RunAsyncAPI.RunAsyncCreateResponse;
   export import RunAsyncCreateParams = RunAsyncAPI.RunAsyncCreateParams;
 }
