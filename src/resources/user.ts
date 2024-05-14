@@ -6,7 +6,7 @@ import * as UserAPI from './user';
 
 export class User extends APIResource {
   /**
-   * TODO: Move to admin. Creates a test token.
+   * Creates a test token.
    */
   createTestToken(options?: Core.RequestOptions): Core.APIPromise<NewToken> {
     return this._client.post('/user/create_test_token', options);

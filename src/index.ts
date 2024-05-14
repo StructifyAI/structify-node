@@ -213,8 +213,8 @@ export namespace Structify {
   export import Admin = API.Admin;
 
   export import Datasets = API.Datasets;
-  export import Dataset = API.Dataset;
   export import DatasetDescriptor = API.DatasetDescriptor;
+  export import DatasetNode = API.DatasetNode;
   export import KgEntity = API.KgEntity;
   export import DatasetListResponse = API.DatasetListResponse;
   export import DatasetViewResponse = API.DatasetViewResponse;
@@ -232,6 +232,7 @@ export namespace Structify {
   export import RunListResponse = API.RunListResponse;
 
   export import Server = API.Server;
+  export import ServerInformation = API.ServerInformation;
 
   export import Sources = API.Sources;
   export import Source = API.Source;

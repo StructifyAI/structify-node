@@ -2,6 +2,6 @@
 
 export { IsComplete, IsCompleteCreateParams } from './is-complete';
 export { JobStatusCreateResponse, JobStatusCreateParams, JobStatus } from './job-status';
-export { Llm, RunAsyncCreateResponse, RunAsyncCreateParams, RunAsync } from './run-async';
-export { Llm, RunCreateResponse, RunCreateParams, Run } from './run';
+export { RunAsyncCreateResponse, RunAsyncCreateParams, RunAsync } from './run-async';
+export { RunCreateResponse, RunCreateParams, Run } from './run';
 export { Structure } from './structure';
