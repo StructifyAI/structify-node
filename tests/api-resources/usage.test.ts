@@ -8,9 +8,9 @@ const structify = new Structify({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource getJobInfo', () => {
-  test('create: only required params', async () => {
-    const responsePromise = structify.usage.getJobInfo.create({ job_id: 'string' });
+describe('resource usage', () => {
+  test('getJobInfo: only required params', async () => {
+    const responsePromise = structify.usage.getJobInfo({ job_id: 'string' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -20,7 +20,7 @@ describe('resource getJobInfo', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('create: required and optional params', async () => {
-    const response = await structify.usage.getJobInfo.create({ job_id: 'string' });
+  test('getJobInfo: required and optional params', async () => {
+    const response = await structify.usage.getJobInfo({ job_id: 'string' });
   });
 });

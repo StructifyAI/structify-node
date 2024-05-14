@@ -67,13 +67,15 @@ Methods:
 
 # Server
 
+## Version
+
 Types:
 
-- <code><a href="./src/resources/server.ts">ServerInformation</a></code>
+- <code><a href="./src/resources/server/version.ts">ServerInformation</a></code>
 
 Methods:
 
-- <code title="get /server/version">client.server.<a href="./src/resources/server.ts">version</a>() -> ServerInformation</code>
+- <code title="get /server/version">client.server.version.<a href="./src/resources/server/version.ts">retrieve</a>() -> ServerInformation</code>
 
 # Sources
 
@@ -99,14 +101,25 @@ Methods:
 - <code title="post /structure/job_status">client.structure.<a href="./src/resources/structure.ts">jobStatus</a>([ ...body ]) -> unknown</code>
 - <code title="post /structure/run_async">client.structure.<a href="./src/resources/structure.ts">runAsync</a>({ ...params }) -> unknown</code>
 
-# Usage
-
-## GetJobInfo
+# Label
 
 Types:
 
-- <code><a href="./src/resources/usage/get-job-info.ts">GetJobInfoCreateResponse</a></code>
+- <code><a href="./src/resources/label.ts">LabelGetMessagesResponse</a></code>
+- <code><a href="./src/resources/label.ts">LabelSubmitResponse</a></code>
 
 Methods:
 
-- <code title="post /usage/get_job_info">client.usage.getJobInfo.<a href="./src/resources/usage/get-job-info.ts">create</a>({ ...params }) -> unknown</code>
+- <code title="get /label/refresh">client.label.<a href="./src/resources/label.ts">getMessages</a>() -> LabelGetMessagesResponse | null</code>
+- <code title="post /label/run_async">client.label.<a href="./src/resources/label.ts">run</a>({ ...params }) -> void</code>
+- <code title="post /label/submit">client.label.<a href="./src/resources/label.ts">submit</a>({ ...params }) -> string</code>
+
+# Usage
+
+Types:
+
+- <code><a href="./src/resources/usage.ts">UsageGetJobInfoResponse</a></code>
+
+Methods:
+
+- <code title="post /usage/get_job_info">client.usage.<a href="./src/resources/usage.ts">getJobInfo</a>({ ...params }) -> unknown</code>

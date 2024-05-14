@@ -147,6 +147,7 @@ export class Structify extends Core.APIClient {
   server: API.Server = new API.Server(this);
   sources: API.Sources = new API.Sources(this);
   structure: API.Structure = new API.Structure(this);
+  label: API.Label = new API.Label(this);
   usage: API.Usage = new API.Usage(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
@@ -232,7 +233,6 @@ export namespace Structify {
   export import RunListResponse = API.RunListResponse;
 
   export import Server = API.Server;
-  export import ServerInformation = API.ServerInformation;
 
   export import Sources = API.Sources;
   export import Source = API.Source;
@@ -246,7 +246,15 @@ export namespace Structify {
   export import StructureJobStatusParams = API.StructureJobStatusParams;
   export import StructureRunAsyncParams = API.StructureRunAsyncParams;
 
+  export import Label = API.Label;
+  export import LabelGetMessagesResponse = API.LabelGetMessagesResponse;
+  export import LabelSubmitResponse = API.LabelSubmitResponse;
+  export import LabelRunParams = API.LabelRunParams;
+  export import LabelSubmitParams = API.LabelSubmitParams;
+
   export import Usage = API.Usage;
+  export import UsageGetJobInfoResponse = API.UsageGetJobInfoResponse;
+  export import UsageGetJobInfoParams = API.UsageGetJobInfoParams;
 }
 
 export default Structify;
