@@ -6,23 +6,19 @@ import * as RunAPI from './run';
 
 export class Run extends APIResource {
   /**
-   * Structure an unstructured data source into the given dataset.
-   *
    * There's a couple of different types of sources. Right now, you can either add a
    * file path or the internet as a whole. In the future, we'll allow you to pare
    * down the internet to a specific domain or criterium.
    */
   create(params: RunCreateParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
-    const { dataset_name, llm, custom_instruction, ...body } = params;
+    const { dataset_name, custom_instruction, ...body } = params;
     return this._client.post('/structure/run', {
-      query: { dataset_name, llm, custom_instruction },
+      query: { dataset_name, custom_instruction },
       body,
       ...options,
     });
   }
 }
-
-export type Llm = 'Gpt4V' | 'Structify' | 'Human';
 
 export type RunCreateResponse = unknown;
 
@@ -38,11 +34,6 @@ export namespace RunCreateParams {
      * Query param:
      */
     dataset_name: string;
-
-    /**
-     * Query param:
-     */
-    llm: Llm;
 
     /**
      * Body param:
@@ -68,11 +59,6 @@ export namespace RunCreateParams {
     dataset_name: string;
 
     /**
-     * Query param:
-     */
-    llm: Llm;
-
-    /**
      * Body param:
      */
     Document: RunCreateParams.Variant1.Document;
@@ -94,11 +80,6 @@ export namespace RunCreateParams {
      * Query param:
      */
     dataset_name: string;
-
-    /**
-     * Query param:
-     */
-    llm: Llm;
 
     /**
      * Body param:
@@ -126,11 +107,6 @@ export namespace RunCreateParams {
     dataset_name: string;
 
     /**
-     * Query param:
-     */
-    llm: Llm;
-
-    /**
      * Body param:
      */
     SECFiling: RunCreateParams.Variant3.SecFiling;
@@ -153,7 +129,6 @@ export namespace RunCreateParams {
 }
 
 export namespace Run {
-  export import Llm = RunAPI.Llm;
   export import RunCreateResponse = RunAPI.RunCreateResponse;
   export import RunCreateParams = RunAPI.RunCreateParams;
 }

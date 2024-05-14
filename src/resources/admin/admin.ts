@@ -9,6 +9,6 @@ export class Admin extends APIResource {
 
 export namespace Admin {
   export import Users = UsersAPI.Users;
-  export import User = UsersAPI.User;
+  export import UserNode = UsersAPI.UserNode;
   export import UserListResponse = UsersAPI.UserListResponse;
 }
