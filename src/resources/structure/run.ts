@@ -50,7 +50,7 @@ export namespace RunCreateParams {
     /**
      * Query param:
      */
-    llm?: unknown | null;
+    llm?: 'Gpt4V' | 'Structify' | 'Human' | null;
   }
 
   export namespace Variant0 {
@@ -78,7 +78,7 @@ export namespace RunCreateParams {
     /**
      * Query param:
      */
-    llm?: unknown | null;
+    llm?: 'Gpt4V' | 'Structify' | 'Human' | null;
   }
 
   export namespace Variant1 {
@@ -106,7 +106,7 @@ export namespace RunCreateParams {
     /**
      * Query param:
      */
-    llm?: unknown | null;
+    llm?: 'Gpt4V' | 'Structify' | 'Human' | null;
   }
 
   export namespace Variant2 {
@@ -136,7 +136,7 @@ export namespace RunCreateParams {
     /**
      * Query param:
      */
-    llm?: unknown | null;
+    llm?: 'Gpt4V' | 'Structify' | 'Human' | null;
   }
 
   export namespace Variant3 {
