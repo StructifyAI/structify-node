@@ -6,6 +6,8 @@ import * as VersionAPI from './version';
 
 export class Version extends APIResource {
   /**
+   * Version
+   *
    * Gets the version of the API server.
    */
   retrieve(options?: Core.RequestOptions): Core.APIPromise<ServerInformation> {

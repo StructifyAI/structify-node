@@ -6,6 +6,8 @@ import * as DatasetsAPI from './datasets';
 
 export class Datasets extends APIResource {
   /**
+   * Create a Dataset
+   *
    * Creates a dataset.
    */
   create(body: DatasetCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
@@ -27,6 +29,8 @@ export class Datasets extends APIResource {
   }
 
   /**
+   * List datasets
+   *
    * Gets all datasets owned by the current user
    */
   list(options?: Core.RequestOptions): Core.APIPromise<DatasetListResponse> {
@@ -51,6 +55,12 @@ export class Datasets extends APIResource {
   view(query: DatasetViewParams, options?: Core.RequestOptions): Core.APIPromise<DatasetViewResponse> {
     return this._client.get('/dataset/view', { query, ...options });
   }
+}
+
+export interface Dataset {
+  description: string;
+
+  name: string;
 }
 
 /**
@@ -102,12 +112,6 @@ export namespace DatasetDescriptor {
   }
 }
 
-export interface DatasetNode {
-  description: string;
-
-  name: string;
-}
-
 export interface KgEntity {
   id: number;
 
@@ -120,7 +124,7 @@ export interface KgEntity {
   properties: Record<string, string | null | boolean | null | number | null>;
 }
 
-export type DatasetListResponse = Array<DatasetNode>;
+export type DatasetListResponse = Array<Dataset>;
 
 export type DatasetViewResponse = Array<KgEntity>;
 
@@ -192,8 +196,8 @@ export interface DatasetViewParams {
 }
 
 export namespace Datasets {
+  export import Dataset = DatasetsAPI.Dataset;
   export import DatasetDescriptor = DatasetsAPI.DatasetDescriptor;
-  export import DatasetNode = DatasetsAPI.DatasetNode;
   export import KgEntity = DatasetsAPI.KgEntity;
   export import DatasetListResponse = DatasetsAPI.DatasetListResponse;
   export import DatasetViewResponse = DatasetsAPI.DatasetViewResponse;
