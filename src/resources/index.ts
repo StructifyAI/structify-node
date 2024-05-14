@@ -4,12 +4,12 @@ export { Admin } from './admin/admin';
 export {
   Dataset,
   DatasetDescriptor,
-  Entity,
+  KgEntity,
   DatasetListResponse,
   DatasetViewResponse,
   DatasetCreateParams,
+  DatasetRetrieveParams,
   DatasetDeleteParams,
-  DatasetGetParams,
   DatasetViewParams,
   Datasets,
 } from './datasets';
