@@ -113,6 +113,7 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/structure/run.ts">Llm</a></code>
 - <code><a href="./src/resources/structure/run.ts">RunCreateResponse</a></code>
 
 Methods:
@@ -123,6 +124,7 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/structure/run-async.ts">Llm</a></code>
 - <code><a href="./src/resources/structure/run-async.ts">RunAsyncCreateResponse</a></code>
 
 Methods:

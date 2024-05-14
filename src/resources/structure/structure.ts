@@ -20,6 +20,7 @@ export namespace Structure {
   export import JobStatusCreateResponse = JobStatusAPI.JobStatusCreateResponse;
   export import JobStatusCreateParams = JobStatusAPI.JobStatusCreateParams;
   export import Run = RunAPI.Run;
+  export import Llm = RunAPI.Llm;
   export import RunCreateResponse = RunAPI.RunCreateResponse;
   export import RunCreateParams = RunAPI.RunCreateParams;
   export import RunAsync = RunAsyncAPI.RunAsync;
