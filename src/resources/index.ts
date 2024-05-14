@@ -2,8 +2,8 @@
 
 export { Admin } from './admin/admin';
 export {
+  Dataset,
   DatasetDescriptor,
-  DatasetNode,
   KgEntity,
   DatasetListResponse,
   DatasetViewResponse,
