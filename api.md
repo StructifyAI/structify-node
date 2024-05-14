@@ -16,7 +16,7 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/admin/users.ts">User</a></code>
+- <code><a href="./src/resources/admin/users.ts">UserNode</a></code>
 - <code><a href="./src/resources/admin/users.ts">UserListResponse</a></code>
 
 Methods:
@@ -27,8 +27,8 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/datasets.ts">Dataset</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetDescriptor</a></code>
+- <code><a href="./src/resources/datasets.ts">DatasetNode</a></code>
 - <code><a href="./src/resources/datasets.ts">KgEntity</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetListResponse</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetViewResponse</a></code>
@@ -67,15 +67,13 @@ Methods:
 
 # Server
 
-## Version
-
 Types:
 
-- <code><a href="./src/resources/server/version.ts">ServerInformation</a></code>
+- <code><a href="./src/resources/server.ts">ServerInformation</a></code>
 
 Methods:
 
-- <code title="get /server/version">client.server.version.<a href="./src/resources/server/version.ts">retrieve</a>() -> ServerInformation</code>
+- <code title="get /server/version">client.server.<a href="./src/resources/server.ts">version</a>() -> ServerInformation</code>
 
 # Sources
 
@@ -113,7 +111,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/structure/run.ts">Llm</a></code>
 - <code><a href="./src/resources/structure/run.ts">RunCreateResponse</a></code>
 
 Methods:
@@ -124,7 +121,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/structure/run-async.ts">Llm</a></code>
 - <code><a href="./src/resources/structure/run-async.ts">RunAsyncCreateResponse</a></code>
 
 Methods:

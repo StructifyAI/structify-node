@@ -6,9 +6,6 @@ import * as GetJobInfoAPI from './get-job-info';
 
 export class GetJobInfo extends APIResource {
   /**
-   * Structure an unstructured data source into the given dataset in an async
-   * fashion.
-   *
    * Returns a token that can be waited on until the request is finished.
    */
   create(params: GetJobInfoCreateParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
