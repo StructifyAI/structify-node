@@ -29,16 +29,16 @@ Types:
 
 - <code><a href="./src/resources/datasets.ts">Dataset</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetDescriptor</a></code>
-- <code><a href="./src/resources/datasets.ts">KgEntity</a></code>
+- <code><a href="./src/resources/datasets.ts">Entity</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetListResponse</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetViewResponse</a></code>
 
 Methods:
 
 - <code title="post /dataset/create">client.datasets.<a href="./src/resources/datasets.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets.ts">retrieve</a>({ ...params }) -> DatasetDescriptor | null</code>
 - <code title="get /dataset/list">client.datasets.<a href="./src/resources/datasets.ts">list</a>() -> DatasetListResponse</code>
 - <code title="delete /dataset/delete">client.datasets.<a href="./src/resources/datasets.ts">delete</a>({ ...params }) -> void</code>
+- <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets.ts">get</a>({ ...params }) -> DatasetDescriptor | null</code>
 - <code title="get /dataset/view">client.datasets.<a href="./src/resources/datasets.ts">view</a>({ ...params }) -> DatasetViewResponse</code>
 
 # Documents
