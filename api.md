@@ -110,7 +110,7 @@ Methods:
 
 - <code title="get /label/refresh">client.label.<a href="./src/resources/label.ts">getMessages</a>({ ...params }) -> LabelGetMessagesResponse | null</code>
 - <code title="post /label/run_async">client.label.<a href="./src/resources/label.ts">run</a>({ ...params }) -> void</code>
-- <code title="post /label/submit/{uuid}">client.label.<a href="./src/resources/label.ts">submit</a>(uuid, { ...params }) -> string</code>
+- <code title="post /label/submit/{uuid}">client.label.<a href="./src/resources/label.ts">submit</a>(uuid, [ ...body ]) -> string</code>
 
 # Usage
 
