@@ -8,8 +8,8 @@ export {
   DatasetListResponse,
   DatasetViewResponse,
   DatasetCreateParams,
-  DatasetRetrieveParams,
   DatasetDeleteParams,
+  DatasetGetParams,
   DatasetViewParams,
   Datasets,
 } from './datasets';
@@ -23,9 +23,16 @@ export {
   StructureRunAsyncParams,
   Structure,
 } from './structure';
-export { LabelGetMessagesResponse, LabelGetMessagesParams, LabelRunParams, Label } from './label';
+export {
+  LabelGetMessagesResponse,
+  LabelSubmitResponse,
+  LabelGetMessagesParams,
+  LabelRunParams,
+  LabelSubmitParams,
+  Label,
+} from './label';
 export { NewToken, UserInfo, User } from './user';
 export { RunListResponse, Runs } from './runs';
-export { Server } from './server/server';
+export { ServerInformation, Server } from './server';
 export { Source, SourceListParams, Sources } from './sources';
 export { UsageGetJobInfoResponse, UsageGetJobInfoParams, Usage } from './usage';

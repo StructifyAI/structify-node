@@ -28,7 +28,7 @@ const structify = new Structify({
 });
 
 async function main() {
-  const serverInformation = await structify.server.version.retrieve();
+  const serverInformation = await structify.server.version();
 
   console.log(serverInformation.version);
 }
@@ -50,7 +50,7 @@ const structify = new Structify({
 });
 
 async function main() {
-  const serverInformation: Structify.Server.ServerInformation = await structify.server.version.retrieve();
+  const serverInformation: Structify.ServerInformation = await structify.server.version();
 }
 
 main();
@@ -67,7 +67,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const serverInformation = await structify.server.version.retrieve().catch(async (err) => {
+  const serverInformation = await structify.server.version().catch(async (err) => {
     if (err instanceof Structify.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
@@ -110,7 +110,7 @@ const structify = new Structify({
 });
 
 // Or, configure per-request:
-await structify.server.version.retrieve({
+await structify.server.version({
   maxRetries: 5,
 });
 ```
@@ -127,7 +127,7 @@ const structify = new Structify({
 });
 
 // Override per-request:
-await structify.server.version.retrieve({
+await structify.server.version({
   timeout: 5 * 1000,
 });
 ```
@@ -148,11 +148,11 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 ```ts
 const structify = new Structify();
 
-const response = await structify.server.version.retrieve().asResponse();
+const response = await structify.server.version().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: serverInformation, response: raw } = await structify.server.version.retrieve().withResponse();
+const { data: serverInformation, response: raw } = await structify.server.version().withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(serverInformation.version);
 ```
@@ -258,7 +258,7 @@ const structify = new Structify({
 });
 
 // Override per-request:
-await structify.server.version.retrieve({
+await structify.server.version({
   httpAgent: new http.Agent({ keepAlive: false }),
 });
 ```
