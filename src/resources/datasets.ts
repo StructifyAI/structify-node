@@ -105,7 +105,7 @@ export namespace DatasetDescriptor {
   }
 }
 
-export interface KgEntity {
+export interface Entity {
   id: number;
 
   /**
@@ -119,7 +119,7 @@ export interface KgEntity {
 
 export type DatasetListResponse = Array<Dataset>;
 
-export type DatasetViewResponse = Array<KgEntity>;
+export type DatasetViewResponse = Array<Entity>;
 
 export interface DatasetCreateParams {
   description: string;
@@ -191,7 +191,7 @@ export interface DatasetViewParams {
 export namespace Datasets {
   export import Dataset = DatasetsAPI.Dataset;
   export import DatasetDescriptor = DatasetsAPI.DatasetDescriptor;
-  export import KgEntity = DatasetsAPI.KgEntity;
+  export import Entity = DatasetsAPI.Entity;
   export import DatasetListResponse = DatasetsAPI.DatasetListResponse;
   export import DatasetViewResponse = DatasetsAPI.DatasetViewResponse;
   export import DatasetCreateParams = DatasetsAPI.DatasetCreateParams;
