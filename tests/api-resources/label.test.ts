@@ -57,7 +57,7 @@ describe('resource label', () => {
   });
 
   test('submit: only required params', async () => {
-    const responsePromise = structify.label.submit('string', {});
+    const responsePromise = structify.label.submit('string', [{ Save: {} }, { Save: {} }, { Save: {} }]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -68,6 +68,49 @@ describe('resource label', () => {
   });
 
   test('submit: required and optional params', async () => {
-    const response = await structify.label.submit('string', {});
+    const response = await structify.label.submit('string', [
+      {
+        Save: {
+          entities: [
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+          ],
+          relationships: [
+            { source: 0, target: 0, type: 'string' },
+            { source: 0, target: 0, type: 'string' },
+            { source: 0, target: 0, type: 'string' },
+          ],
+        },
+      },
+      {
+        Save: {
+          entities: [
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+          ],
+          relationships: [
+            { source: 0, target: 0, type: 'string' },
+            { source: 0, target: 0, type: 'string' },
+            { source: 0, target: 0, type: 'string' },
+          ],
+        },
+      },
+      {
+        Save: {
+          entities: [
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+          ],
+          relationships: [
+            { source: 0, target: 0, type: 'string' },
+            { source: 0, target: 0, type: 'string' },
+            { source: 0, target: 0, type: 'string' },
+          ],
+        },
+      },
+    ]);
   });
 });
