@@ -216,7 +216,7 @@ export namespace Structify {
   export import Datasets = API.Datasets;
   export import Dataset = API.Dataset;
   export import DatasetDescriptor = API.DatasetDescriptor;
-  export import KgEntity = API.KgEntity;
+  export import Entity = API.Entity;
   export import DatasetListResponse = API.DatasetListResponse;
   export import DatasetViewResponse = API.DatasetViewResponse;
   export import DatasetCreateParams = API.DatasetCreateParams;

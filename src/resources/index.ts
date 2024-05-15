@@ -4,7 +4,7 @@ export { Admin } from './admin/admin';
 export {
   Dataset,
   DatasetDescriptor,
-  KgEntity,
+  Entity,
   DatasetListResponse,
   DatasetViewResponse,
   DatasetCreateParams,
