@@ -2,6 +2,7 @@
 
 import * as Core from '../core';
 import { APIResource } from '../resource';
+import { isRequestOptions } from '../core';
 import * as LabelAPI from './label';
 import { type Uploadable } from '../core';
 
@@ -9,8 +10,19 @@ export class Label extends APIResource {
   /**
    * web requests that would be cancelled by cloudflare in prod.
    */
-  getMessages(options?: Core.RequestOptions): Core.APIPromise<LabelGetMessagesResponse | null> {
-    return this._client.get('/label/refresh', options);
+  getMessages(
+    query?: LabelGetMessagesParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<LabelGetMessagesResponse | null>;
+  getMessages(options?: Core.RequestOptions): Core.APIPromise<LabelGetMessagesResponse | null>;
+  getMessages(
+    query: LabelGetMessagesParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<LabelGetMessagesResponse | null> {
+    if (isRequestOptions(query)) {
+      return this.getMessages({}, query);
+    }
+    return this._client.get('/label/refresh', { query, ...options });
   }
 
   /**
@@ -25,28 +37,37 @@ export class Label extends APIResource {
       headers: { Accept: '*/*', ...options?.headers },
     });
   }
+}
 
+/**
+ * Our generic definition of a message to a chat agent.
+ */
+export interface LabelGetMessagesResponse {
   /**
-   * Submit a label as part of the human LLM.
+   * We want this to be a vec of contents so we can accurately capture an
+   * interleaving of images and text.
+   *
+   * This is meant to be a completely raw, unprocessed representation of the text.
+   * Don't take stuff out.
    */
-  submit(body: LabelSubmitParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    return this._client.post('/label/submit', {
-      body,
-      ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
-    });
+  content: Array<LabelGetMessagesResponse.Text | LabelGetMessagesResponse.Image>;
+
+  role: 'user' | 'system' | 'assistant';
+}
+
+export namespace LabelGetMessagesResponse {
+  export interface Text {
+    Text: string;
+  }
+
+  export interface Image {
+    Image: Uploadable;
   }
 }
 
-export interface LabelGetMessagesResponse {
-  img: Uploadable;
-
-  text: string;
-
-  uuid: string;
+export interface LabelGetMessagesParams {
+  uuid?: string | null;
 }
-
-export type LabelSubmitResponse = string;
 
 export type LabelRunParams =
   | LabelRunParams.Variant0
@@ -154,15 +175,8 @@ export namespace LabelRunParams {
   }
 }
 
-export interface LabelSubmitParams {
-  _text: string;
-
-  uuid: string;
-}
-
 export namespace Label {
   export import LabelGetMessagesResponse = LabelAPI.LabelGetMessagesResponse;
-  export import LabelSubmitResponse = LabelAPI.LabelSubmitResponse;
+  export import LabelGetMessagesParams = LabelAPI.LabelGetMessagesParams;
   export import LabelRunParams = LabelAPI.LabelRunParams;
-  export import LabelSubmitParams = LabelAPI.LabelSubmitParams;
 }
