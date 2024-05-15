@@ -220,8 +220,8 @@ export namespace Structify {
   export import DatasetListResponse = API.DatasetListResponse;
   export import DatasetViewResponse = API.DatasetViewResponse;
   export import DatasetCreateParams = API.DatasetCreateParams;
-  export import DatasetRetrieveParams = API.DatasetRetrieveParams;
   export import DatasetDeleteParams = API.DatasetDeleteParams;
+  export import DatasetGetParams = API.DatasetGetParams;
   export import DatasetViewParams = API.DatasetViewParams;
 
   export import Documents = API.Documents;
@@ -233,6 +233,7 @@ export namespace Structify {
   export import RunListResponse = API.RunListResponse;
 
   export import Server = API.Server;
+  export import ServerInformation = API.ServerInformation;
 
   export import Sources = API.Sources;
   export import Source = API.Source;
@@ -248,8 +249,10 @@ export namespace Structify {
 
   export import Label = API.Label;
   export import LabelGetMessagesResponse = API.LabelGetMessagesResponse;
+  export import LabelSubmitResponse = API.LabelSubmitResponse;
   export import LabelGetMessagesParams = API.LabelGetMessagesParams;
   export import LabelRunParams = API.LabelRunParams;
+  export import LabelSubmitParams = API.LabelSubmitParams;
 
   export import Usage = API.Usage;
   export import UsageGetJobInfoResponse = API.UsageGetJobInfoResponse;
