@@ -23,13 +23,7 @@ export {
   StructureRunAsyncParams,
   Structure,
 } from './structure';
-export {
-  LabelGetMessagesResponse,
-  LabelSubmitResponse,
-  LabelRunParams,
-  LabelSubmitParams,
-  Label,
-} from './label';
+export { LabelGetMessagesResponse, LabelGetMessagesParams, LabelRunParams, Label } from './label';
 export { NewToken, UserInfo, User } from './user';
 export { RunListResponse, Runs } from './runs';
 export { Server } from './server/server';
