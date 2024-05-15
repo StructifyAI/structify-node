@@ -4,6 +4,7 @@ import * as Core from '../core';
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as LabelAPI from './label';
+import * as DatasetsAPI from './datasets';
 import { type Uploadable } from '../core';
 
 export class Label extends APIResource {
@@ -37,33 +38,188 @@ export class Label extends APIResource {
       headers: { Accept: '*/*', ...options?.headers },
     });
   }
+
+  /**
+   * Submit a label as part of the human LLM.
+   */
+  submit(uuid: string, body: LabelSubmitParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.post(`/label/submit/${uuid}`, {
+      body,
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
 }
 
-/**
- * Our generic definition of a message to a chat agent.
- */
 export interface LabelGetMessagesResponse {
-  /**
-   * We want this to be a vec of contents so we can accurately capture an
-   * interleaving of images and text.
-   *
-   * This is meant to be a completely raw, unprocessed representation of the text.
-   * Don't take stuff out.
-   */
-  content: Array<LabelGetMessagesResponse.Text | LabelGetMessagesResponse.Image>;
+  decoding_params: LabelGetMessagesResponse.DecodingParams;
 
-  role: 'user' | 'system' | 'assistant';
+  messages: Array<LabelGetMessagesResponse.Message>;
+
+  metadata?: LabelGetMessagesResponse.Metadata | null;
 }
 
 export namespace LabelGetMessagesResponse {
-  export interface Text {
-    Text: string;
+  export interface DecodingParams {
+    parameters: Array<
+      | DecodingParams.MaxTokens
+      | DecodingParams.TopP
+      | DecodingParams.RepeatWindow
+      | DecodingParams.RepeatPenalty
+      | DecodingParams.Temperature
+      | DecodingParams.StopTokens
+      | DecodingParams.Functions
+      | DecodingParams.JsonValidator
+      | DecodingParams.RegexValidator
+      | DecodingParams.ContextFreeeGrammar
+      | DecodingParams.Crop
+    >;
   }
 
-  export interface Image {
-    Image: Uploadable;
+  export namespace DecodingParams {
+    export interface MaxTokens {
+      MaxTokens: number;
+    }
+
+    export interface TopP {
+      TopP: number;
+    }
+
+    export interface RepeatWindow {
+      RepeatWindow: number;
+    }
+
+    export interface RepeatPenalty {
+      RepeatPenalty: number;
+    }
+
+    export interface Temperature {
+      Temperature: number;
+    }
+
+    export interface StopTokens {
+      StopTokens: Array<string>;
+    }
+
+    export interface Functions {
+      Functions: Array<unknown>;
+    }
+
+    export interface JsonValidator {
+      JsonValidator: unknown;
+    }
+
+    export interface RegexValidator {
+      RegexValidator: string;
+    }
+
+    export interface ContextFreeeGrammar {
+      ContextFreeeGrammar: string;
+    }
+
+    export interface Crop {
+      Crop: boolean;
+    }
+  }
+
+  /**
+   * Our generic definition of a message to a chat agent.
+   */
+  export interface Message {
+    /**
+     * We want this to be a vec of contents so we can accurately capture an
+     * interleaving of images and text.
+     *
+     * This is meant to be a completely raw, unprocessed representation of the text.
+     * Don't take stuff out.
+     */
+    content: Array<Message.Text | Message.Image>;
+
+    role: 'user' | 'system' | 'assistant';
+  }
+
+  export namespace Message {
+    export interface Text {
+      Text: string;
+    }
+
+    export interface Image {
+      Image: Uploadable;
+    }
+  }
+
+  export interface Metadata {
+    conditioning_prompt: string;
+
+    /**
+     * A dataset is where you put multiple referential schemas.
+     *
+     * A dataset is a complete namespace where all references between schemas are held
+     * within the dataset.
+     */
+    dataset_descriptor: DatasetsAPI.DatasetDescriptor;
+
+    extracted_entities: Array<Metadata.ExtractedEntity>;
+
+    tool_metadata: Array<Metadata.ToolMetadata>;
+
+    web_flags?: Array<Metadata.WebFlag> | null;
+  }
+
+  export namespace Metadata {
+    /**
+     * Knowledge graph info structured to deserialize and display in the same format
+     * that the LLM outputs.
+     */
+    export interface ExtractedEntity {
+      entities?: Array<ExtractedEntity.Entity>;
+
+      relationships?: Array<ExtractedEntity.Relationship>;
+    }
+
+    export namespace ExtractedEntity {
+      export interface Entity {
+        id: number;
+
+        properties: Record<string, string>;
+
+        type: string;
+      }
+
+      export interface Relationship {
+        source: number;
+
+        target: number;
+
+        type: string;
+      }
+    }
+
+    export interface ToolMetadata {
+      description: string;
+
+      name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
+
+      regex_validator: string;
+
+      tool_validator: unknown;
+    }
+
+    export interface WebFlag {
+      ariaLabel: string;
+
+      text: string;
+
+      type: string;
+
+      x: number;
+
+      y: number;
+    }
   }
 }
+
+export type LabelSubmitResponse = string;
 
 export interface LabelGetMessagesParams {
   uuid?: string | null;
@@ -175,8 +331,12 @@ export namespace LabelRunParams {
   }
 }
 
+export type LabelSubmitParams = unknown;
+
 export namespace Label {
   export import LabelGetMessagesResponse = LabelAPI.LabelGetMessagesResponse;
+  export import LabelSubmitResponse = LabelAPI.LabelSubmitResponse;
   export import LabelGetMessagesParams = LabelAPI.LabelGetMessagesParams;
   export import LabelRunParams = LabelAPI.LabelRunParams;
+  export import LabelSubmitParams = LabelAPI.LabelSubmitParams;
 }
