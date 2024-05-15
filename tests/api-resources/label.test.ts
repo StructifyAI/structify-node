@@ -55,4 +55,19 @@ describe('resource label', () => {
       custom_instruction: 'string',
     });
   });
+
+  test('submit: only required params', async () => {
+    const responsePromise = structify.label.submit('string', {});
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('submit: required and optional params', async () => {
+    const response = await structify.label.submit('string', {});
+  });
 });

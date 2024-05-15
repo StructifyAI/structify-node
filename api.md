@@ -36,9 +36,9 @@ Types:
 Methods:
 
 - <code title="post /dataset/create">client.datasets.<a href="./src/resources/datasets.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets.ts">retrieve</a>({ ...params }) -> DatasetDescriptor | null</code>
 - <code title="get /dataset/list">client.datasets.<a href="./src/resources/datasets.ts">list</a>() -> DatasetListResponse</code>
 - <code title="delete /dataset/delete">client.datasets.<a href="./src/resources/datasets.ts">delete</a>({ ...params }) -> void</code>
+- <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets.ts">get</a>({ ...params }) -> DatasetDescriptor | null</code>
 - <code title="get /dataset/view">client.datasets.<a href="./src/resources/datasets.ts">view</a>({ ...params }) -> DatasetViewResponse</code>
 
 # Documents
@@ -67,15 +67,13 @@ Methods:
 
 # Server
 
-## Version
-
 Types:
 
-- <code><a href="./src/resources/server/version.ts">ServerInformation</a></code>
+- <code><a href="./src/resources/server.ts">ServerInformation</a></code>
 
 Methods:
 
-- <code title="get /server/version">client.server.version.<a href="./src/resources/server/version.ts">retrieve</a>() -> ServerInformation</code>
+- <code title="get /server/version">client.server.<a href="./src/resources/server.ts">version</a>() -> ServerInformation</code>
 
 # Sources
 
@@ -106,11 +104,13 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/label.ts">LabelGetMessagesResponse</a></code>
+- <code><a href="./src/resources/label.ts">LabelSubmitResponse</a></code>
 
 Methods:
 
 - <code title="get /label/refresh">client.label.<a href="./src/resources/label.ts">getMessages</a>({ ...params }) -> LabelGetMessagesResponse | null</code>
 - <code title="post /label/run_async">client.label.<a href="./src/resources/label.ts">run</a>({ ...params }) -> void</code>
+- <code title="post /label/submit/{uuid}">client.label.<a href="./src/resources/label.ts">submit</a>(uuid, { ...params }) -> string</code>
 
 # Usage
 
