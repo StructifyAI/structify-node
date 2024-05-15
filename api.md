@@ -60,10 +60,12 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/runs.ts">RunListResponse</a></code>
+- <code><a href="./src/resources/runs.ts">RunCancelResponse</a></code>
 
 Methods:
 
 - <code title="get /runs/list">client.runs.<a href="./src/resources/runs.ts">list</a>() -> RunListResponse</code>
+- <code title="post /runs/cancel/{uuid}">client.runs.<a href="./src/resources/runs.ts">cancel</a>(uuid) -> RunCancelResponse</code>
 
 # Server
 

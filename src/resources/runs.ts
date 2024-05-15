@@ -11,6 +11,13 @@ export class Runs extends APIResource {
   list(options?: Core.RequestOptions): Core.APIPromise<RunListResponse> {
     return this._client.get('/runs/list', options);
   }
+
+  /**
+   * You successfully cancelled a run.
+   */
+  cancel(uuid: string, options?: Core.RequestOptions): Core.APIPromise<RunCancelResponse> {
+    return this._client.post(`/runs/cancel/${uuid}`, options);
+  }
 }
 
 export type RunListResponse = Array<RunListResponse.RunListResponseItem>;
@@ -23,6 +30,13 @@ export namespace RunListResponse {
   }
 }
 
+export interface RunCancelResponse {
+  id: string;
+
+  status: 'Running' | 'Completed' | 'Failed';
+}
+
 export namespace Runs {
   export import RunListResponse = RunsAPI.RunListResponse;
+  export import RunCancelResponse = RunsAPI.RunCancelResponse;
 }
