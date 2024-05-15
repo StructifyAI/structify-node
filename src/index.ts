@@ -248,9 +248,8 @@ export namespace Structify {
 
   export import Label = API.Label;
   export import LabelGetMessagesResponse = API.LabelGetMessagesResponse;
-  export import LabelSubmitResponse = API.LabelSubmitResponse;
+  export import LabelGetMessagesParams = API.LabelGetMessagesParams;
   export import LabelRunParams = API.LabelRunParams;
-  export import LabelSubmitParams = API.LabelSubmitParams;
 
   export import Usage = API.Usage;
   export import UsageGetJobInfoResponse = API.UsageGetJobInfoResponse;
