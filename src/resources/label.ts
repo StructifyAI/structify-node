@@ -27,6 +27,13 @@ export class Label extends APIResource {
   }
 
   /**
+   * web requests that would be cancelled by cloudflare in prod.
+   */
+  llmAssist(uuid: string, options?: Core.RequestOptions): Core.APIPromise<LabelLlmAssistResponse | null> {
+    return this._client.get(`/label/llm_assist/${uuid}`, options);
+  }
+
+  /**
    * Returns a token that can be waited on until the request is finished.
    */
   run(params: LabelRunParams, options?: Core.RequestOptions): Core.APIPromise<void> {
@@ -224,6 +231,32 @@ export namespace LabelGetMessagesResponse {
         y: number;
       }
     }
+  }
+}
+
+/**
+ * Our generic definition of a message to a chat agent.
+ */
+export interface LabelLlmAssistResponse {
+  /**
+   * We want this to be a vec of contents so we can accurately capture an
+   * interleaving of images and text.
+   *
+   * This is meant to be a completely raw, unprocessed representation of the text.
+   * Don't take stuff out.
+   */
+  content: Array<LabelLlmAssistResponse.Text | LabelLlmAssistResponse.Image>;
+
+  role: 'user' | 'system' | 'assistant';
+}
+
+export namespace LabelLlmAssistResponse {
+  export interface Text {
+    Text: string;
+  }
+
+  export interface Image {
+    Image: Uploadable;
   }
 }
 
@@ -496,6 +529,7 @@ export namespace LabelSubmitParams {
 
 export namespace Label {
   export import LabelGetMessagesResponse = LabelAPI.LabelGetMessagesResponse;
+  export import LabelLlmAssistResponse = LabelAPI.LabelLlmAssistResponse;
   export import LabelSubmitResponse = LabelAPI.LabelSubmitResponse;
   export import LabelGetMessagesParams = LabelAPI.LabelGetMessagesParams;
   export import LabelRunParams = LabelAPI.LabelRunParams;
