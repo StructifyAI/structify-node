@@ -37,6 +37,134 @@ describe('resource label', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
+  test('llmAssist: only required params', async () => {
+    const responsePromise = structify.label.llmAssist({
+      decoding_params: { parameters: [{ MaxTokens: 0 }, { MaxTokens: 0 }, { MaxTokens: 0 }] },
+      messages: [
+        { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
+        { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
+        { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
+      ],
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('llmAssist: required and optional params', async () => {
+    const response = await structify.label.llmAssist({
+      decoding_params: { parameters: [{ MaxTokens: 0 }, { MaxTokens: 0 }, { MaxTokens: 0 }] },
+      messages: [
+        { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
+        { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
+        { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
+      ],
+      metadata: {
+        conditioning_prompt: 'string',
+        dataset_descriptor: {
+          description: 'string',
+          name: 'string',
+          tables: [
+            {
+              description: 'string',
+              name: 'string',
+              properties: [
+                { description: 'string', name: 'string' },
+                { description: 'string', name: 'string' },
+                { description: 'string', name: 'string' },
+              ],
+              relationships: [
+                { description: 'string', name: 'string' },
+                { description: 'string', name: 'string' },
+                { description: 'string', name: 'string' },
+              ],
+            },
+            {
+              description: 'string',
+              name: 'string',
+              properties: [
+                { description: 'string', name: 'string' },
+                { description: 'string', name: 'string' },
+                { description: 'string', name: 'string' },
+              ],
+              relationships: [
+                { description: 'string', name: 'string' },
+                { description: 'string', name: 'string' },
+                { description: 'string', name: 'string' },
+              ],
+            },
+            {
+              description: 'string',
+              name: 'string',
+              properties: [
+                { description: 'string', name: 'string' },
+                { description: 'string', name: 'string' },
+                { description: 'string', name: 'string' },
+              ],
+              relationships: [
+                { description: 'string', name: 'string' },
+                { description: 'string', name: 'string' },
+                { description: 'string', name: 'string' },
+              ],
+            },
+          ],
+        },
+        extracted_entities: [
+          {
+            entities: [
+              { id: 0, properties: { foo: 'string' }, type: 'string' },
+              { id: 0, properties: { foo: 'string' }, type: 'string' },
+              { id: 0, properties: { foo: 'string' }, type: 'string' },
+            ],
+            relationships: [
+              { source: 0, target: 0, type: 'string' },
+              { source: 0, target: 0, type: 'string' },
+              { source: 0, target: 0, type: 'string' },
+            ],
+          },
+          {
+            entities: [
+              { id: 0, properties: { foo: 'string' }, type: 'string' },
+              { id: 0, properties: { foo: 'string' }, type: 'string' },
+              { id: 0, properties: { foo: 'string' }, type: 'string' },
+            ],
+            relationships: [
+              { source: 0, target: 0, type: 'string' },
+              { source: 0, target: 0, type: 'string' },
+              { source: 0, target: 0, type: 'string' },
+            ],
+          },
+          {
+            entities: [
+              { id: 0, properties: { foo: 'string' }, type: 'string' },
+              { id: 0, properties: { foo: 'string' }, type: 'string' },
+              { id: 0, properties: { foo: 'string' }, type: 'string' },
+            ],
+            relationships: [
+              { source: 0, target: 0, type: 'string' },
+              { source: 0, target: 0, type: 'string' },
+              { source: 0, target: 0, type: 'string' },
+            ],
+          },
+        ],
+        tool_metadata: [
+          { description: 'string', name: 'Save', regex_validator: 'string', tool_validator: {} },
+          { description: 'string', name: 'Save', regex_validator: 'string', tool_validator: {} },
+          { description: 'string', name: 'Save', regex_validator: 'string', tool_validator: {} },
+        ],
+        web_flags: [
+          { ariaLabel: 'string', text: 'string', type: 'string', x: 0, y: 0 },
+          { ariaLabel: 'string', text: 'string', type: 'string', x: 0, y: 0 },
+          { ariaLabel: 'string', text: 'string', type: 'string', x: 0, y: 0 },
+        ],
+      },
+    });
+  });
+
   test('run: only required params', async () => {
     const responsePromise = structify.label.run({ dataset_name: 'string', Text: { text_content: 'string' } });
     const rawResponse = await responsePromise.asResponse();
