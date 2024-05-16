@@ -25,10 +25,8 @@ export {
 } from './structure';
 export {
   LabelGetMessagesResponse,
-  LabelLlmAssistResponse,
   LabelSubmitResponse,
   LabelGetMessagesParams,
-  LabelLlmAssistParams,
   LabelRunParams,
   LabelSubmitParams,
   Label,
