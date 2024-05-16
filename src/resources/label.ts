@@ -27,6 +27,16 @@ export class Label extends APIResource {
   }
 
   /**
+   * web requests that would be cancelled by cloudflare in prod.
+   */
+  llmAssist(
+    body: LabelLlmAssistParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<LabelLlmAssistResponse | null> {
+    return this._client.post('/label/llm_assist', { body, ...options });
+  }
+
+  /**
    * Returns a token that can be waited on until the request is finished.
    */
   run(params: LabelRunParams, options?: Core.RequestOptions): Core.APIPromise<void> {
@@ -227,10 +237,204 @@ export namespace LabelGetMessagesResponse {
   }
 }
 
+/**
+ * Our generic definition of a message to a chat agent.
+ */
+export interface LabelLlmAssistResponse {
+  /**
+   * We want this to be a vec of contents so we can accurately capture an
+   * interleaving of images and text.
+   *
+   * This is meant to be a completely raw, unprocessed representation of the text.
+   * Don't take stuff out.
+   */
+  content: Array<LabelLlmAssistResponse.Text | LabelLlmAssistResponse.Image>;
+
+  role: 'user' | 'system' | 'assistant';
+}
+
+export namespace LabelLlmAssistResponse {
+  export interface Text {
+    Text: string;
+  }
+
+  export interface Image {
+    Image: Uploadable;
+  }
+}
+
 export type LabelSubmitResponse = string;
 
 export interface LabelGetMessagesParams {
   uuid?: string | null;
+}
+
+export interface LabelLlmAssistParams {
+  decoding_params: LabelLlmAssistParams.DecodingParams;
+
+  messages: Array<LabelLlmAssistParams.Message>;
+
+  metadata?: LabelLlmAssistParams.Metadata | null;
+}
+
+export namespace LabelLlmAssistParams {
+  export interface DecodingParams {
+    parameters: Array<
+      | DecodingParams.MaxTokens
+      | DecodingParams.TopP
+      | DecodingParams.RepeatWindow
+      | DecodingParams.RepeatPenalty
+      | DecodingParams.Temperature
+      | DecodingParams.StopTokens
+      | DecodingParams.Functions
+      | DecodingParams.JsonValidator
+      | DecodingParams.RegexValidator
+      | DecodingParams.ContextFreeeGrammar
+      | DecodingParams.Crop
+    >;
+  }
+
+  export namespace DecodingParams {
+    export interface MaxTokens {
+      MaxTokens: number;
+    }
+
+    export interface TopP {
+      TopP: number;
+    }
+
+    export interface RepeatWindow {
+      RepeatWindow: number;
+    }
+
+    export interface RepeatPenalty {
+      RepeatPenalty: number;
+    }
+
+    export interface Temperature {
+      Temperature: number;
+    }
+
+    export interface StopTokens {
+      StopTokens: Array<string>;
+    }
+
+    export interface Functions {
+      Functions: Array<unknown>;
+    }
+
+    export interface JsonValidator {
+      JsonValidator: unknown;
+    }
+
+    export interface RegexValidator {
+      RegexValidator: string;
+    }
+
+    export interface ContextFreeeGrammar {
+      ContextFreeeGrammar: string;
+    }
+
+    export interface Crop {
+      Crop: boolean;
+    }
+  }
+
+  /**
+   * Our generic definition of a message to a chat agent.
+   */
+  export interface Message {
+    /**
+     * We want this to be a vec of contents so we can accurately capture an
+     * interleaving of images and text.
+     *
+     * This is meant to be a completely raw, unprocessed representation of the text.
+     * Don't take stuff out.
+     */
+    content: Array<Message.Text | Message.Image>;
+
+    role: 'user' | 'system' | 'assistant';
+  }
+
+  export namespace Message {
+    export interface Text {
+      Text: string;
+    }
+
+    export interface Image {
+      Image: Uploadable;
+    }
+  }
+
+  export interface Metadata {
+    conditioning_prompt: string;
+
+    /**
+     * A dataset is where you put multiple referential schemas.
+     *
+     * A dataset is a complete namespace where all references between schemas are held
+     * within the dataset.
+     */
+    dataset_descriptor: DatasetsAPI.DatasetDescriptor;
+
+    extracted_entities: Array<Metadata.ExtractedEntity>;
+
+    tool_metadata: Array<Metadata.ToolMetadata>;
+
+    web_flags?: Array<Metadata.WebFlag> | null;
+  }
+
+  export namespace Metadata {
+    /**
+     * Knowledge graph info structured to deserialize and display in the same format
+     * that the LLM outputs.
+     */
+    export interface ExtractedEntity {
+      entities?: Array<ExtractedEntity.Entity>;
+
+      relationships?: Array<ExtractedEntity.Relationship>;
+    }
+
+    export namespace ExtractedEntity {
+      export interface Entity {
+        id: number;
+
+        properties: Record<string, string>;
+
+        type: string;
+      }
+
+      export interface Relationship {
+        source: number;
+
+        target: number;
+
+        type: string;
+      }
+    }
+
+    export interface ToolMetadata {
+      description: string;
+
+      name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
+
+      regex_validator: string;
+
+      tool_validator: unknown;
+    }
+
+    export interface WebFlag {
+      ariaLabel: string;
+
+      text: string;
+
+      type: string;
+
+      x: number;
+
+      y: number;
+    }
+  }
 }
 
 export type LabelRunParams =
@@ -496,8 +700,10 @@ export namespace LabelSubmitParams {
 
 export namespace Label {
   export import LabelGetMessagesResponse = LabelAPI.LabelGetMessagesResponse;
+  export import LabelLlmAssistResponse = LabelAPI.LabelLlmAssistResponse;
   export import LabelSubmitResponse = LabelAPI.LabelSubmitResponse;
   export import LabelGetMessagesParams = LabelAPI.LabelGetMessagesParams;
+  export import LabelLlmAssistParams = LabelAPI.LabelLlmAssistParams;
   export import LabelRunParams = LabelAPI.LabelRunParams;
   export import LabelSubmitParams = LabelAPI.LabelSubmitParams;
 }
