@@ -13,6 +13,11 @@ describe('resource datasets', () => {
     const responsePromise = structify.datasets.create({
       description: 'string',
       name: 'string',
+      relationships: [
+        { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
+        { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
+        { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
+      ],
       tables: [
         {
           description: 'string',
@@ -22,11 +27,6 @@ describe('resource datasets', () => {
             { description: 'string', name: 'string' },
             { description: 'string', name: 'string' },
           ],
-          relationships: [
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
-          ],
         },
         {
           description: 'string',
@@ -36,21 +36,11 @@ describe('resource datasets', () => {
             { description: 'string', name: 'string' },
             { description: 'string', name: 'string' },
           ],
-          relationships: [
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
-          ],
         },
         {
           description: 'string',
           name: 'string',
           properties: [
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
-          ],
-          relationships: [
             { description: 'string', name: 'string' },
             { description: 'string', name: 'string' },
             { description: 'string', name: 'string' },
@@ -71,6 +61,11 @@ describe('resource datasets', () => {
     const response = await structify.datasets.create({
       description: 'string',
       name: 'string',
+      relationships: [
+        { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
+        { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
+        { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
+      ],
       tables: [
         {
           description: 'string',
@@ -80,11 +75,6 @@ describe('resource datasets', () => {
             { description: 'string', name: 'string' },
             { description: 'string', name: 'string' },
           ],
-          relationships: [
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
-          ],
         },
         {
           description: 'string',
@@ -94,21 +84,11 @@ describe('resource datasets', () => {
             { description: 'string', name: 'string' },
             { description: 'string', name: 'string' },
           ],
-          relationships: [
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
-          ],
         },
         {
           description: 'string',
           name: 'string',
           properties: [
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
-          ],
-          relationships: [
             { description: 'string', name: 'string' },
             { description: 'string', name: 'string' },
             { description: 'string', name: 'string' },
