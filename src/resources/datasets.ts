@@ -67,10 +67,22 @@ export interface DatasetDescriptor {
 
   name: string;
 
+  relationships: Array<DatasetDescriptor.Relationship>;
+
   tables: Array<DatasetDescriptor.Table>;
 }
 
 export namespace DatasetDescriptor {
+  export interface Relationship {
+    description: string;
+
+    name: string;
+
+    source_table: string;
+
+    target_table: string;
+  }
+
   /**
    * The full definition of what a schema is - without duplicate information.
    */
@@ -86,18 +98,10 @@ export namespace DatasetDescriptor {
      * Organized in a name, description format.
      */
     properties: Array<Table.Property>;
-
-    relationships: Array<Table.Relationship>;
   }
 
   export namespace Table {
     export interface Property {
-      description: string;
-
-      name: string;
-    }
-
-    export interface Relationship {
       description: string;
 
       name: string;
@@ -126,10 +130,22 @@ export interface DatasetCreateParams {
 
   name: string;
 
+  relationships: Array<DatasetCreateParams.Relationship>;
+
   tables: Array<DatasetCreateParams.Table>;
 }
 
 export namespace DatasetCreateParams {
+  export interface Relationship {
+    description: string;
+
+    name: string;
+
+    source_table: string;
+
+    target_table: string;
+  }
+
   /**
    * The full definition of what a schema is - without duplicate information.
    */
@@ -145,18 +161,10 @@ export namespace DatasetCreateParams {
      * Organized in a name, description format.
      */
     properties: Array<Table.Property>;
-
-    relationships: Array<Table.Relationship>;
   }
 
   export namespace Table {
     export interface Property {
-      description: string;
-
-      name: string;
-    }
-
-    export interface Relationship {
       description: string;
 
       name: string;
