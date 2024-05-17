@@ -250,7 +250,6 @@ export namespace Structify {
 
   export import Label = API.Label;
   export import LabelGetMessagesResponse = API.LabelGetMessagesResponse;
-  export import LabelLlmAssistResponse = API.LabelLlmAssistResponse;
   export import LabelSubmitResponse = API.LabelSubmitResponse;
   export import LabelGetMessagesParams = API.LabelGetMessagesParams;
   export import LabelRunParams = API.LabelRunParams;
