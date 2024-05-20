@@ -70,6 +70,8 @@ export namespace LabelGetMessagesResponse {
 
     messages: Array<Chat.Message>;
 
+    user_email: string;
+
     metadata?: Chat.Metadata | null;
   }
 
