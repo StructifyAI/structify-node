@@ -231,9 +231,7 @@ export namespace Structify {
 
   export import Runs = API.Runs;
   export import RunListResponse = API.RunListResponse;
-  export import RunDeleteResponse = API.RunDeleteResponse;
   export import RunCancelResponse = API.RunCancelResponse;
-  export import RunGetResponse = API.RunGetResponse;
 
   export import Server = API.Server;
   export import ServerInformation = API.ServerInformation;
