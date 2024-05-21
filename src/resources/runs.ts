@@ -15,6 +15,16 @@ export class Runs extends APIResource {
   }
 
   /**
+   * Delete a run
+   */
+  delete(uuid: string, options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.post(`/runs/delete/${uuid}`, {
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
    * You successfully cancelled a run.
    */
   cancel(uuid: string, options?: Core.RequestOptions): Core.APIPromise<RunCancelResponse> {
@@ -38,6 +48,8 @@ export namespace RunListResponse {
     status: 'Running' | 'Completed' | 'Failed';
   }
 }
+
+export type RunDeleteResponse = string;
 
 export interface RunCancelResponse {
   id: string;
@@ -436,6 +448,7 @@ export namespace RunGetResponse {
 
 export namespace Runs {
   export import RunListResponse = RunsAPI.RunListResponse;
+  export import RunDeleteResponse = RunsAPI.RunDeleteResponse;
   export import RunCancelResponse = RunsAPI.RunCancelResponse;
   export import RunGetResponse = RunsAPI.RunGetResponse;
 }
