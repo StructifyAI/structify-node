@@ -513,7 +513,7 @@ export type LabelSubmitParams = Array<
   | LabelSubmitParams.Error
   | LabelSubmitParams.Google
   | LabelSubmitParams.Type
-> | null;
+>;
 
 export namespace LabelSubmitParams {
   export interface Save {
