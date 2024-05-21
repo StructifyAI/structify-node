@@ -58,7 +58,7 @@ export interface RunCancelResponse {
 }
 
 export interface RunGetResponse {
-  date: unknown;
+  date: string;
 
   steps: Array<RunGetResponse.Step>;
 
