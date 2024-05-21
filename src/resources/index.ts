@@ -33,7 +33,7 @@ export {
   Label,
 } from './label';
 export { NewToken, UserInfo, User } from './user';
-export { RunListResponse, RunDeleteResponse, RunCancelResponse, RunGetResponse, Runs } from './runs';
+export { RunListResponse, RunCancelResponse, Runs } from './runs';
 export { ServerInformation, Server } from './server';
 export { Source, SourceListParams, Sources } from './sources';
 export { UsageGetJobInfoResponse, UsageGetJobInfoParams, Usage } from './usage';
