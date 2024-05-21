@@ -20,7 +20,7 @@ export class Runs extends APIResource {
   }
 
   /**
-   * You successfully cancelled a run.
+   * You successfully got a run.
    */
   get(uuid: string, options?: Core.RequestOptions): Core.APIPromise<RunGetResponse> {
     return this._client.get(`/runs/get/${uuid}`, options);
