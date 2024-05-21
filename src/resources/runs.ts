@@ -8,7 +8,7 @@ import { type Uploadable } from '../core';
 
 export class Runs extends APIResource {
   /**
-   * List all the active runs
+   * List all the executions
    */
   list(options?: Core.RequestOptions): Core.APIPromise<RunListResponse> {
     return this._client.get('/runs/list', options);
@@ -39,15 +39,7 @@ export class Runs extends APIResource {
   }
 }
 
-export type RunListResponse = Array<RunListResponse.RunListResponseItem>;
-
-export namespace RunListResponse {
-  export interface RunListResponseItem {
-    id: string;
-
-    status: 'Running' | 'Completed' | 'Failed';
-  }
-}
+export type RunListResponse = Array<string>;
 
 export type RunDeleteResponse = string;
 
