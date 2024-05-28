@@ -1,6 +1,6 @@
 # Structify Node API Library
 
-[![NPM version](https://img.shields.io/npm/v/structifyai.svg)](https://npmjs.org/package/structifyai)
+[![NPM version](https://img.shields.io/npm/v/structifyai.svg)](https://npmjs.org/package/structifyai) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/structifyai)
 
 This library provides convenient access to the Structify REST API from server-side TypeScript or JavaScript.
 
