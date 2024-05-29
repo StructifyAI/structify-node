@@ -73,11 +73,11 @@ export namespace RunGetResponse {
 
       messages: Array<Prompt.Message>;
 
-      run_id: string;
-
       user_email: string;
 
       metadata?: Prompt.Metadata | null;
+
+      run_id?: string | null;
     }
 
     export namespace Prompt {
