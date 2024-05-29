@@ -183,6 +183,8 @@ export namespace LabelGetMessagesResponse {
 
       tool_metadata: Array<Metadata.ToolMetadata>;
 
+      url?: string | null;
+
       web_flags?: Array<Metadata.WebFlag> | null;
     }
 
