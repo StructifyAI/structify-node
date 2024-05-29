@@ -61,6 +61,8 @@ export class Label extends APIResource {
 export interface LabelGetMessagesResponse {
   chat: LabelGetMessagesResponse.Chat;
 
+  run_id: string;
+
   uuid: string;
 }
 
@@ -70,11 +72,11 @@ export namespace LabelGetMessagesResponse {
 
     messages: Array<Chat.Message>;
 
-    run_id: string;
-
     user_email: string;
 
     metadata?: Chat.Metadata | null;
+
+    run_id?: string | null;
   }
 
   export namespace Chat {
