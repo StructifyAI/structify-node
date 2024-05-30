@@ -72,11 +72,9 @@ export namespace LabelGetMessagesResponse {
 
     messages: Array<Chat.Message>;
 
-    user_email: string;
+    human_llm_metadata?: Chat.HumanLlmMetadata | null;
 
     metadata?: Chat.Metadata | null;
-
-    run_id?: string | null;
   }
 
   export namespace Chat {
@@ -166,6 +164,20 @@ export namespace LabelGetMessagesResponse {
       export interface Image {
         Image: Uploadable;
       }
+    }
+
+    export interface HumanLlmMetadata {
+      /**
+       * A dataset is where you put multiple referential schemas.
+       *
+       * A dataset is a complete namespace where all references between schemas are held
+       * within the dataset.
+       */
+      descriptor: DatasetsAPI.DatasetDescriptor;
+
+      run_id: string;
+
+      user_email: string;
     }
 
     export interface Metadata {

@@ -73,11 +73,9 @@ export namespace RunGetResponse {
 
       messages: Array<Prompt.Message>;
 
-      user_email: string;
+      human_llm_metadata?: Prompt.HumanLlmMetadata | null;
 
       metadata?: Prompt.Metadata | null;
-
-      run_id?: string | null;
     }
 
     export namespace Prompt {
@@ -167,6 +165,20 @@ export namespace RunGetResponse {
         export interface Image {
           Image: Uploadable;
         }
+      }
+
+      export interface HumanLlmMetadata {
+        /**
+         * A dataset is where you put multiple referential schemas.
+         *
+         * A dataset is a complete namespace where all references between schemas are held
+         * within the dataset.
+         */
+        descriptor: DatasetsAPI.DatasetDescriptor;
+
+        run_id: string;
+
+        user_email: string;
       }
 
       export interface Metadata {
