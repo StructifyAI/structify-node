@@ -64,7 +64,7 @@ describe('resource documents', () => {
   });
 
   test('upload: only required params', async () => {
-    const responsePromise = structify.documents.upload({ doctype: 'Text', path: 'string', body: {} });
+    const responsePromise = structify.documents.upload({});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -75,6 +75,6 @@ describe('resource documents', () => {
   });
 
   test('upload: required and optional params', async () => {
-    const response = await structify.documents.upload({ doctype: 'Text', path: 'string', body: {} });
+    const response = await structify.documents.upload({});
   });
 });

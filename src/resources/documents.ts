@@ -36,16 +36,10 @@ export class Documents extends APIResource {
   /**
    * Add a new file to the database
    */
-  upload(params: DocumentUploadParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { doctype, path, body } = params;
+  upload(body: DocumentUploadParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post(
       '/documents/upload',
-      multipartFormRequestOptions({
-        query: { doctype, path },
-        body: body,
-        ...options,
-        headers: { Accept: '*/*', ...options?.headers },
-      }),
+      multipartFormRequestOptions({ body, ...options, headers: { Accept: '*/*', ...options?.headers } }),
     );
   }
 }
@@ -54,22 +48,7 @@ export type DocumentListResponse = Array<string>;
 
 export type DocumentDownloadResponse = string;
 
-export interface DocumentUploadParams {
-  /**
-   * Query param:
-   */
-  doctype: 'Text' | 'Pdf' | 'SEC' | 'ExecutionHistory';
-
-  /**
-   * Query param: The path you want to upload the file to.
-   */
-  path: string;
-
-  /**
-   * Body param:
-   */
-  body: unknown;
-}
+export type DocumentUploadParams = unknown;
 
 export namespace Documents {
   export import DocumentListResponse = DocumentsAPI.DocumentListResponse;
