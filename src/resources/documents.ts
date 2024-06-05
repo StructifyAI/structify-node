@@ -61,7 +61,7 @@ export type DocumentDownloadResponse = string;
 export interface DocumentUploadParams {
   content: Uploadable;
 
-  file_type: Uploadable;
+  file_type: 'Text' | 'Pdf' | 'SEC' | 'ExecutionHistory';
 
   path: Uploadable;
 }
