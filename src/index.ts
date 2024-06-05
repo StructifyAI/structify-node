@@ -239,7 +239,7 @@ export namespace Structify {
   export import ServerInformation = API.ServerInformation;
 
   export import Sources = API.Sources;
-  export import Source = API.Source;
+  export import SourceListResponse = API.SourceListResponse;
   export import SourceListParams = API.SourceListParams;
 
   export import Structure = API.Structure;
