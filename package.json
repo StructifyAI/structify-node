@@ -1,6 +1,6 @@
 {
   "name": "structifyai",
-  "version": "0.1.0-alpha.28",
+  "version": "0.1.0-alpha.29",
   "description": "The official TypeScript library for the Structify API",
   "author": "Structify <team@structify.ai>",
   "types": "dist/index.d.ts",
