@@ -415,11 +415,7 @@ export interface LabelGetMessagesParams {
   uuid?: string | null;
 }
 
-export type LabelRunParams =
-  | LabelRunParams.Variant0
-  | LabelRunParams.Variant1
-  | LabelRunParams.Variant2
-  | LabelRunParams.Variant3;
+export type LabelRunParams = LabelRunParams.Variant0 | LabelRunParams.Variant1 | LabelRunParams.Variant2;
 
 export namespace LabelRunParams {
   export interface Variant0 {
@@ -431,7 +427,7 @@ export namespace LabelRunParams {
     /**
      * Body param:
      */
-    Text: LabelRunParams.Variant0.Text;
+    SECIngestor: LabelRunParams.Variant0.SecIngestor;
 
     /**
      * Query param:
@@ -440,8 +436,12 @@ export namespace LabelRunParams {
   }
 
   export namespace Variant0 {
-    export interface Text {
-      text_content: string;
+    export interface SecIngestor {
+      accession_number?: string | null;
+
+      quarter?: number | null;
+
+      year?: number | null;
     }
   }
 
@@ -452,20 +452,15 @@ export namespace LabelRunParams {
     dataset_name: string;
 
     /**
-     * Body param:
+     * Body param: This is currently a very simple ingestor. It converts everything to
+     * an image and processes them independently.
      */
-    Document: LabelRunParams.Variant1.Document;
+    PDFIngestor: string;
 
     /**
      * Query param:
      */
     custom_instruction?: string | null;
-  }
-
-  export namespace Variant1 {
-    export interface Document {
-      path: string;
-    }
   }
 
   export interface Variant2 {
@@ -475,9 +470,13 @@ export namespace LabelRunParams {
     dataset_name: string;
 
     /**
-     * Body param:
+     * Body param: These are all the types for which we have an agent that is directly
+     * capable of navigating. There should be a one to one mapping between them.
      */
-    Web: LabelRunParams.Variant2.Web;
+    Basic:
+      | LabelRunParams.Variant2.TextDocument
+      | LabelRunParams.Variant2.WebSearch
+      | LabelRunParams.Variant2.ImageDocument;
 
     /**
      * Query param:
@@ -486,37 +485,44 @@ export namespace LabelRunParams {
   }
 
   export namespace Variant2 {
-    export interface Web {
-      phrase: string;
-
-      starting_website?: string | null;
+    export interface TextDocument {
+      TextDocument: TextDocument.TextDocument;
     }
-  }
 
-  export interface Variant3 {
-    /**
-     * Query param:
-     */
-    dataset_name: string;
+    export namespace TextDocument {
+      export interface TextDocument {
+        content?: string | null;
 
-    /**
-     * Body param:
-     */
-    SECFiling: LabelRunParams.Variant3.SecFiling;
+        document_name?: string | null;
 
-    /**
-     * Query param:
-     */
-    custom_instruction?: string | null;
-  }
+        save?: boolean;
+      }
+    }
 
-  export namespace Variant3 {
-    export interface SecFiling {
-      accession_number?: string | null;
+    export interface WebSearch {
+      WebSearch: WebSearch.WebSearch;
+    }
 
-      quarter?: number | null;
+    export namespace WebSearch {
+      export interface WebSearch {
+        conditioning_phrase: string;
 
-      year?: number | null;
+        use_local_browser: boolean;
+
+        starting_website?: string | null;
+      }
+    }
+
+    export interface ImageDocument {
+      ImageDocument: ImageDocument.ImageDocument;
+    }
+
+    export namespace ImageDocument {
+      export interface ImageDocument {
+        content: Uploadable;
+
+        document_name: string;
+      }
     }
   }
 }
