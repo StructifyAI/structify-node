@@ -441,15 +441,7 @@ export namespace LabelRunParams {
 
   export namespace Variant0 {
     export interface TextDocument {
-      TextDocument: TextDocument.TextDocument;
-    }
-
-    export namespace TextDocument {
-      export interface TextDocument {
-        content: string;
-
-        document_name: string;
-      }
+      TextDocument: unknown;
     }
 
     export interface WebSearch {
