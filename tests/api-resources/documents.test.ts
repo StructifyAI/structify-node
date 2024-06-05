@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Structify from 'structifyai';
+import Structify, { toFile } from 'structifyai';
 import { Response } from 'node-fetch';
 
 const structify = new Structify({
@@ -63,8 +63,12 @@ describe('resource documents', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
-  test.skip('upload: only required params', async () => {
-    const responsePromise = structify.documents.upload({ doctype: 'Text', path: 'string', body: {} });
+  test('upload: only required params', async () => {
+    const responsePromise = structify.documents.upload({
+      doctype: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      file_content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      path: await toFile(Buffer.from('# my file contents'), 'README.md'),
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -74,7 +78,11 @@ describe('resource documents', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test.skip('upload: required and optional params', async () => {
-    const response = await structify.documents.upload({ doctype: 'Text', path: 'string', body: {} });
+  test('upload: required and optional params', async () => {
+    const response = await structify.documents.upload({
+      doctype: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      file_content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      path: await toFile(Buffer.from('# my file contents'), 'README.md'),
+    });
   });
 });
