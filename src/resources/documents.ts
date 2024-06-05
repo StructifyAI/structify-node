@@ -50,7 +50,27 @@ export class Documents extends APIResource {
   }
 }
 
-export type DocumentListResponse = Array<string>;
+export type DocumentListResponse = Array<DocumentListResponse.DocumentListResponseItem>;
+
+export namespace DocumentListResponse {
+  export interface DocumentListResponseItem {
+    content: DocumentListResponseItem.Remote | DocumentListResponseItem.Local;
+
+    document_type: 'Text' | 'Pdf' | 'SEC' | 'ExecutionHistory';
+
+    name: string;
+  }
+
+  export namespace DocumentListResponseItem {
+    export interface Remote {
+      Remote: string;
+    }
+
+    export interface Local {
+      Local: Uploadable;
+    }
+  }
+}
 
 export type DocumentDownloadResponse = string;
 
@@ -68,7 +88,7 @@ export interface DocumentUploadParams {
   /**
    * Body param:
    */
-  file_name: Uploadable;
+  contents: Uploadable;
 }
 
 export namespace Documents {
