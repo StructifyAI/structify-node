@@ -66,7 +66,7 @@ describe('resource documents', () => {
   test('upload: only required params', async () => {
     const responsePromise = structify.documents.upload({
       content: await toFile(Buffer.from('# my file contents'), 'README.md'),
-      file_type: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      file_type: 'Text',
       path: await toFile(Buffer.from('# my file contents'), 'README.md'),
     });
     const rawResponse = await responsePromise.asResponse();
@@ -81,7 +81,7 @@ describe('resource documents', () => {
   test('upload: required and optional params', async () => {
     const response = await structify.documents.upload({
       content: await toFile(Buffer.from('# my file contents'), 'README.md'),
-      file_type: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      file_type: 'Text',
       path: await toFile(Buffer.from('# my file contents'), 'README.md'),
     });
   });
