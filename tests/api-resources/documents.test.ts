@@ -67,7 +67,7 @@ describe('resource documents', () => {
     const responsePromise = structify.documents.upload({
       file_type: 'Text',
       path: 'string',
-      file_name: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      contents: await toFile(Buffer.from('# my file contents'), 'README.md'),
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -82,7 +82,7 @@ describe('resource documents', () => {
     const response = await structify.documents.upload({
       file_type: 'Text',
       path: 'string',
-      file_name: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      contents: await toFile(Buffer.from('# my file contents'), 'README.md'),
     });
   });
 });
