@@ -50,7 +50,17 @@ export class Documents extends APIResource {
   }
 }
 
-export type DocumentListResponse = Array<unknown>;
+export type DocumentListResponse = Array<DocumentListResponse.DocumentListResponseItem>;
+
+export namespace DocumentListResponse {
+  export interface DocumentListResponseItem {
+    content: Uploadable;
+
+    document_type: 'Text' | 'Pdf' | 'SEC' | 'ExecutionHistory';
+
+    name: string;
+  }
+}
 
 export type DocumentDownloadResponse = string;
 
