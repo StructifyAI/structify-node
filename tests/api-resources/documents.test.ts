@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Structify from 'structifyai';
+import Structify, { toFile } from 'structifyai';
 import { Response } from 'node-fetch';
 
 const structify = new Structify({
@@ -64,7 +64,9 @@ describe('resource documents', () => {
   });
 
   test('upload: only required params', async () => {
-    const responsePromise = structify.documents.upload({});
+    const responsePromise = structify.documents.upload({
+      file_name: await toFile(Buffer.from('# my file contents'), 'README.md'),
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -75,6 +77,8 @@ describe('resource documents', () => {
   });
 
   test('upload: required and optional params', async () => {
-    const response = await structify.documents.upload({});
+    const response = await structify.documents.upload({
+      file_name: await toFile(Buffer.from('# my file contents'), 'README.md'),
+    });
   });
 });
