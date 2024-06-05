@@ -24,16 +24,6 @@ export class Documents extends APIResource {
   }
 
   /**
-   * Download a file from the database
-   */
-  download(id: string, options?: Core.RequestOptions): Core.APIPromise<string> {
-    return this._client.get(`/documents/download/${id}`, {
-      ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
-    });
-  }
-
-  /**
    * Add a new file to the database
    */
   upload(body: DocumentUploadParams, options?: Core.RequestOptions): Core.APIPromise<void> {
@@ -56,8 +46,6 @@ export namespace DocumentListResponse {
   }
 }
 
-export type DocumentDownloadResponse = string;
-
 export interface DocumentUploadParams {
   content: Uploadable;
 
@@ -68,6 +56,5 @@ export interface DocumentUploadParams {
 
 export namespace Documents {
   export import DocumentListResponse = DocumentsAPI.DocumentListResponse;
-  export import DocumentDownloadResponse = DocumentsAPI.DocumentDownloadResponse;
   export import DocumentUploadParams = DocumentsAPI.DocumentUploadParams;
 }
