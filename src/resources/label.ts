@@ -429,9 +429,9 @@ export namespace LabelRunParams {
      * capable of navigating. There should be a one to one mapping between them.
      */
     Basic:
-      | LabelRunParams.Variant0.TextDocument
-      | LabelRunParams.Variant0.WebSearch
-      | LabelRunParams.Variant0.ImageDocument;
+      | LabelRunParams.Variant0.TextDataInput
+      | LabelRunParams.Variant0.WebsiteData
+      | LabelRunParams.Variant0.ImageInputData;
 
     /**
      * Query param:
@@ -440,44 +440,26 @@ export namespace LabelRunParams {
   }
 
   export namespace Variant0 {
-    export interface TextDocument {
-      TextDocument: TextDocument.TextDocument;
+    export interface TextDataInput {
+      content?: string | null;
+
+      document_name?: string | null;
+
+      save?: boolean;
     }
 
-    export namespace TextDocument {
-      export interface TextDocument {
-        content?: string | null;
+    export interface WebsiteData {
+      conditioning_phrase: string;
 
-        document_name?: string | null;
+      use_local_browser: boolean;
 
-        save?: boolean;
-      }
+      starting_website?: string | null;
     }
 
-    export interface WebSearch {
-      WebSearch: WebSearch.WebSearch;
-    }
+    export interface ImageInputData {
+      content: Uploadable;
 
-    export namespace WebSearch {
-      export interface WebSearch {
-        conditioning_phrase: string;
-
-        use_local_browser: boolean;
-
-        starting_website?: string | null;
-      }
-    }
-
-    export interface ImageDocument {
-      ImageDocument: ImageDocument.ImageDocument;
-    }
-
-    export namespace ImageDocument {
-      export interface ImageDocument {
-        content: Uploadable;
-
-        document_name: string;
-      }
+      document_name: string;
     }
   }
 
