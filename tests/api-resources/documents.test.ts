@@ -65,9 +65,9 @@ describe('resource documents', () => {
 
   test('upload: only required params', async () => {
     const responsePromise = structify.documents.upload({
-      file_type: 'Text',
-      path: 'string',
-      contents: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      file_type: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      path: await toFile(Buffer.from('# my file contents'), 'README.md'),
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -80,9 +80,9 @@ describe('resource documents', () => {
 
   test('upload: required and optional params', async () => {
     const response = await structify.documents.upload({
-      file_type: 'Text',
-      path: 'string',
-      contents: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      file_type: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      path: await toFile(Buffer.from('# my file contents'), 'README.md'),
     });
   });
 });
