@@ -3,6 +3,7 @@
 import * as Core from '../core';
 import { APIResource } from '../resource';
 import * as DocumentsAPI from './documents';
+import { multipartFormRequestOptions } from '../core';
 
 export class Documents extends APIResource {
   /**
@@ -37,12 +38,15 @@ export class Documents extends APIResource {
    */
   upload(params: DocumentUploadParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     const { doctype, path, body } = params;
-    return this._client.post('/documents/upload', {
-      query: { doctype, path },
-      body: body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
+    return this._client.post(
+      '/documents/upload',
+      multipartFormRequestOptions({
+        query: { doctype, path },
+        body: body,
+        ...options,
+        headers: { Accept: '*/*', ...options?.headers },
+      }),
+    );
   }
 }
 
