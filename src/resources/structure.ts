@@ -58,13 +58,9 @@ export namespace StructureRunAsyncParams {
     dataset_name: string;
 
     /**
-     * Body param: These are all the types for which we have an agent that is directly
-     * capable of navigating. There should be a one to one mapping between them.
+     * Body param:
      */
-    Basic:
-      | StructureRunAsyncParams.Variant0.TextDataInput
-      | StructureRunAsyncParams.Variant0.WebsiteData
-      | StructureRunAsyncParams.Variant0.ImageInputData;
+    SECIngestor: StructureRunAsyncParams.Variant0.SecIngestor;
 
     /**
      * Query param:
@@ -73,47 +69,6 @@ export namespace StructureRunAsyncParams {
   }
 
   export namespace Variant0 {
-    export interface TextDataInput {
-      content?: string | null;
-
-      document_name?: string | null;
-
-      save?: boolean;
-    }
-
-    export interface WebsiteData {
-      conditioning_phrase: string;
-
-      use_local_browser: boolean;
-
-      starting_website?: string | null;
-    }
-
-    export interface ImageInputData {
-      content: Uploadable;
-
-      document_name: string;
-    }
-  }
-
-  export interface Variant1 {
-    /**
-     * Query param:
-     */
-    dataset_name: string;
-
-    /**
-     * Body param:
-     */
-    SECIngestor: StructureRunAsyncParams.Variant1.SecIngestor;
-
-    /**
-     * Query param:
-     */
-    custom_instruction?: string | null;
-  }
-
-  export namespace Variant1 {
     export interface SecIngestor {
       accession_number?: string | null;
 
@@ -123,7 +78,7 @@ export namespace StructureRunAsyncParams {
     }
   }
 
-  export interface Variant2 {
+  export interface Variant1 {
     /**
      * Query param:
      */
@@ -139,6 +94,69 @@ export namespace StructureRunAsyncParams {
      * Query param:
      */
     custom_instruction?: string | null;
+  }
+
+  export interface Variant2 {
+    /**
+     * Query param:
+     */
+    dataset_name: string;
+
+    /**
+     * Body param: These are all the types for which we have an agent that is directly
+     * capable of navigating. There should be a one to one mapping between them.
+     */
+    Basic:
+      | StructureRunAsyncParams.Variant2.TextDocument
+      | StructureRunAsyncParams.Variant2.WebSearch
+      | StructureRunAsyncParams.Variant2.ImageDocument;
+
+    /**
+     * Query param:
+     */
+    custom_instruction?: string | null;
+  }
+
+  export namespace Variant2 {
+    export interface TextDocument {
+      TextDocument: TextDocument.TextDocument;
+    }
+
+    export namespace TextDocument {
+      export interface TextDocument {
+        content?: string | null;
+
+        document_name?: string | null;
+
+        save?: boolean;
+      }
+    }
+
+    export interface WebSearch {
+      WebSearch: WebSearch.WebSearch;
+    }
+
+    export namespace WebSearch {
+      export interface WebSearch {
+        conditioning_phrase: string;
+
+        use_local_browser: boolean;
+
+        starting_website?: string | null;
+      }
+    }
+
+    export interface ImageDocument {
+      ImageDocument: ImageDocument.ImageDocument;
+    }
+
+    export namespace ImageDocument {
+      export interface ImageDocument {
+        content: Uploadable;
+
+        document_name: string;
+      }
+    }
   }
 }
 
