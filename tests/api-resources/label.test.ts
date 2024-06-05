@@ -56,7 +56,7 @@ describe('resource label', () => {
   });
 
   test('run: only required params', async () => {
-    const responsePromise = structify.label.run({ dataset_name: 'string', Text: { text_content: 'string' } });
+    const responsePromise = structify.label.run({ dataset_name: 'string', Basic: {} });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -69,7 +69,7 @@ describe('resource label', () => {
   test('run: required and optional params', async () => {
     const response = await structify.label.run({
       dataset_name: 'string',
-      Text: { text_content: 'string' },
+      Basic: {},
       custom_instruction: 'string',
     });
   });
