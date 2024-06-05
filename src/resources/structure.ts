@@ -47,8 +47,7 @@ export type StructureJobStatusParams = Array<string>;
 export type StructureRunAsyncParams =
   | StructureRunAsyncParams.Variant0
   | StructureRunAsyncParams.Variant1
-  | StructureRunAsyncParams.Variant2
-  | StructureRunAsyncParams.Variant3;
+  | StructureRunAsyncParams.Variant2;
 
 export namespace StructureRunAsyncParams {
   export interface Variant0 {
@@ -60,18 +59,12 @@ export namespace StructureRunAsyncParams {
     /**
      * Body param:
      */
-    Text: StructureRunAsyncParams.Variant0.Text;
+    Basic: unknown;
 
     /**
      * Query param:
      */
     custom_instruction?: string | null;
-  }
-
-  export namespace Variant0 {
-    export interface Text {
-      text_content: string;
-    }
   }
 
   export interface Variant1 {
@@ -83,18 +76,12 @@ export namespace StructureRunAsyncParams {
     /**
      * Body param:
      */
-    Document: StructureRunAsyncParams.Variant1.Document;
+    SECIngestor: unknown;
 
     /**
      * Query param:
      */
     custom_instruction?: string | null;
-  }
-
-  export namespace Variant1 {
-    export interface Document {
-      path: string;
-    }
   }
 
   export interface Variant2 {
@@ -106,47 +93,12 @@ export namespace StructureRunAsyncParams {
     /**
      * Body param:
      */
-    Web: StructureRunAsyncParams.Variant2.Web;
+    PDFIngestor: unknown;
 
     /**
      * Query param:
      */
     custom_instruction?: string | null;
-  }
-
-  export namespace Variant2 {
-    export interface Web {
-      phrase: string;
-
-      starting_website?: string | null;
-    }
-  }
-
-  export interface Variant3 {
-    /**
-     * Query param:
-     */
-    dataset_name: string;
-
-    /**
-     * Body param:
-     */
-    SECFiling: StructureRunAsyncParams.Variant3.SecFiling;
-
-    /**
-     * Query param:
-     */
-    custom_instruction?: string | null;
-  }
-
-  export namespace Variant3 {
-    export interface SecFiling {
-      accession_number?: string | null;
-
-      quarter?: number | null;
-
-      year?: number | null;
-    }
   }
 }
 

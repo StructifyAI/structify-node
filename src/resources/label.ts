@@ -415,11 +415,7 @@ export interface LabelGetMessagesParams {
   uuid?: string | null;
 }
 
-export type LabelRunParams =
-  | LabelRunParams.Variant0
-  | LabelRunParams.Variant1
-  | LabelRunParams.Variant2
-  | LabelRunParams.Variant3;
+export type LabelRunParams = LabelRunParams.Variant0 | LabelRunParams.Variant1 | LabelRunParams.Variant2;
 
 export namespace LabelRunParams {
   export interface Variant0 {
@@ -431,18 +427,12 @@ export namespace LabelRunParams {
     /**
      * Body param:
      */
-    Text: LabelRunParams.Variant0.Text;
+    Basic: unknown;
 
     /**
      * Query param:
      */
     custom_instruction?: string | null;
-  }
-
-  export namespace Variant0 {
-    export interface Text {
-      text_content: string;
-    }
   }
 
   export interface Variant1 {
@@ -454,18 +444,12 @@ export namespace LabelRunParams {
     /**
      * Body param:
      */
-    Document: LabelRunParams.Variant1.Document;
+    SECIngestor: unknown;
 
     /**
      * Query param:
      */
     custom_instruction?: string | null;
-  }
-
-  export namespace Variant1 {
-    export interface Document {
-      path: string;
-    }
   }
 
   export interface Variant2 {
@@ -477,47 +461,12 @@ export namespace LabelRunParams {
     /**
      * Body param:
      */
-    Web: LabelRunParams.Variant2.Web;
+    PDFIngestor: unknown;
 
     /**
      * Query param:
      */
     custom_instruction?: string | null;
-  }
-
-  export namespace Variant2 {
-    export interface Web {
-      phrase: string;
-
-      starting_website?: string | null;
-    }
-  }
-
-  export interface Variant3 {
-    /**
-     * Query param:
-     */
-    dataset_name: string;
-
-    /**
-     * Body param:
-     */
-    SECFiling: LabelRunParams.Variant3.SecFiling;
-
-    /**
-     * Query param:
-     */
-    custom_instruction?: string | null;
-  }
-
-  export namespace Variant3 {
-    export interface SecFiling {
-      accession_number?: string | null;
-
-      quarter?: number | null;
-
-      year?: number | null;
-    }
   }
 }
 

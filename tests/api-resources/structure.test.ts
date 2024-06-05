@@ -40,10 +40,7 @@ describe('resource structure', () => {
   });
 
   test('runAsync: only required params', async () => {
-    const responsePromise = structify.structure.runAsync({
-      dataset_name: 'string',
-      Text: { text_content: 'string' },
-    });
+    const responsePromise = structify.structure.runAsync({ dataset_name: 'string', Basic: {} });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -56,7 +53,7 @@ describe('resource structure', () => {
   test('runAsync: required and optional params', async () => {
     const response = await structify.structure.runAsync({
       dataset_name: 'string',
-      Text: { text_content: 'string' },
+      Basic: {},
       custom_instruction: 'string',
     });
   });
