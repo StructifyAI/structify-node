@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.33 (2024-06-05)
+
+Full Changelog: [v0.1.0-alpha.32...v0.1.0-alpha.33](https://github.com/StructifyAI/structify-node/compare/v0.1.0-alpha.32...v0.1.0-alpha.33)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#136](https://github.com/StructifyAI/structify-node/issues/136)) ([f6cf34b](https://github.com/StructifyAI/structify-node/commit/f6cf34b38837c34cbc3d2f75e45d1c39fe2be893))
+
 ## 0.1.0-alpha.32 (2024-06-05)
 
 Full Changelog: [v0.1.0-alpha.31...v0.1.0-alpha.32](https://github.com/StructifyAI/structify-node/compare/v0.1.0-alpha.31...v0.1.0-alpha.32)
