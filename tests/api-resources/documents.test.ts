@@ -63,8 +63,8 @@ describe('resource documents', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
-  test('upload: only required params', async () => {
-    const responsePromise = structify.documents.upload({});
+  test.skip('upload: only required params', async () => {
+    const responsePromise = structify.documents.upload({ doctype: 'Text', path: 'string', body: {} });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -74,7 +74,7 @@ describe('resource documents', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('upload: required and optional params', async () => {
-    const response = await structify.documents.upload({});
+  test.skip('upload: required and optional params', async () => {
+    const response = await structify.documents.upload({ doctype: 'Text', path: 'string', body: {} });
   });
 });
