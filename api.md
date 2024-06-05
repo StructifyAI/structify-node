@@ -85,11 +85,11 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/sources.ts">Source</a></code>
+- <code><a href="./src/resources/sources.ts">SourceListResponse</a></code>
 
 Methods:
 
-- <code title="get /source/get_sources">client.sources.<a href="./src/resources/sources.ts">list</a>({ ...params }) -> Source</code>
+- <code title="get /source/get_sources">client.sources.<a href="./src/resources/sources.ts">list</a>({ ...params }) -> unknown</code>
 
 # Structure
 
