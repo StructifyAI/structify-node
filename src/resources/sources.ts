@@ -8,21 +8,27 @@ export class Sources extends APIResource {
   /**
    * Get all sources for a given entity
    */
-  list(query: SourceListParams, options?: Core.RequestOptions): Core.APIPromise<Source> {
+  list(query: SourceListParams, options?: Core.RequestOptions): Core.APIPromise<SourceListResponse> {
     return this._client.get('/source/get_sources', { query, ...options });
   }
 }
 
-export type Source = Source.Text | Source.Document | Source.Web | Source.SecFiling;
+export interface SourceListResponse {
+  extra_properties: Record<string, string | null | boolean | null | number | null>;
 
-export namespace Source {
-  export interface Text {
-    Text: Text.Text;
+  link: SourceListResponse.Web | SourceListResponse.Document | 'None';
+
+  location: SourceListResponse.Text | SourceListResponse.Visual | 'None';
+}
+
+export namespace SourceListResponse {
+  export interface Web {
+    Web: Web.Web;
   }
 
-  export namespace Text {
-    export interface Text {
-      text_content: string;
+  export namespace Web {
+    export interface Web {
+      url: string;
     }
   }
 
@@ -32,33 +38,29 @@ export namespace Source {
 
   export namespace Document {
     export interface Document {
-      path: string;
+      name: string;
     }
   }
 
-  export interface Web {
-    Web: Web.Web;
+  export interface Text {
+    Text: Text.Text;
   }
 
-  export namespace Web {
-    export interface Web {
-      phrase: string;
-
-      starting_website?: string | null;
+  export namespace Text {
+    export interface Text {
+      byte_offset: number;
     }
   }
 
-  export interface SecFiling {
-    SECFiling: SecFiling.SecFiling;
+  export interface Visual {
+    Visual: Visual.Visual;
   }
 
-  export namespace SecFiling {
-    export interface SecFiling {
-      accession_number?: string | null;
+  export namespace Visual {
+    export interface Visual {
+      x: number;
 
-      quarter?: number | null;
-
-      year?: number | null;
+      y: number;
     }
   }
 }
@@ -71,6 +73,6 @@ export interface SourceListParams {
 }
 
 export namespace Sources {
-  export import Source = SourcesAPI.Source;
+  export import SourceListResponse = SourcesAPI.SourceListResponse;
   export import SourceListParams = SourcesAPI.SourceListParams;
 }
