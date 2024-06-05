@@ -3,7 +3,6 @@
 import * as Core from '../core';
 import { APIResource } from '../resource';
 import * as StructureAPI from './structure';
-import { type Uploadable } from '../core';
 
 export class Structure extends APIResource {
   /**
@@ -48,7 +47,8 @@ export type StructureJobStatusParams = Array<string>;
 export type StructureRunAsyncParams =
   | StructureRunAsyncParams.Variant0
   | StructureRunAsyncParams.Variant1
-  | StructureRunAsyncParams.Variant2;
+  | StructureRunAsyncParams.Variant2
+  | StructureRunAsyncParams.Variant3;
 
 export namespace StructureRunAsyncParams {
   export interface Variant0 {
@@ -60,7 +60,7 @@ export namespace StructureRunAsyncParams {
     /**
      * Body param:
      */
-    SECIngestor: StructureRunAsyncParams.Variant0.SecIngestor;
+    Text: StructureRunAsyncParams.Variant0.Text;
 
     /**
      * Query param:
@@ -69,12 +69,8 @@ export namespace StructureRunAsyncParams {
   }
 
   export namespace Variant0 {
-    export interface SecIngestor {
-      accession_number?: string | null;
-
-      quarter?: number | null;
-
-      year?: number | null;
+    export interface Text {
+      text_content: string;
     }
   }
 
@@ -85,15 +81,20 @@ export namespace StructureRunAsyncParams {
     dataset_name: string;
 
     /**
-     * Body param: This is currently a very simple ingestor. It converts everything to
-     * an image and processes them independently.
+     * Body param:
      */
-    PDFIngestor: string;
+    Document: StructureRunAsyncParams.Variant1.Document;
 
     /**
      * Query param:
      */
     custom_instruction?: string | null;
+  }
+
+  export namespace Variant1 {
+    export interface Document {
+      path: string;
+    }
   }
 
   export interface Variant2 {
@@ -103,13 +104,9 @@ export namespace StructureRunAsyncParams {
     dataset_name: string;
 
     /**
-     * Body param: These are all the types for which we have an agent that is directly
-     * capable of navigating. There should be a one to one mapping between them.
+     * Body param:
      */
-    Basic:
-      | StructureRunAsyncParams.Variant2.TextDocument
-      | StructureRunAsyncParams.Variant2.WebSearch
-      | StructureRunAsyncParams.Variant2.ImageDocument;
+    Web: StructureRunAsyncParams.Variant2.Web;
 
     /**
      * Query param:
@@ -118,44 +115,37 @@ export namespace StructureRunAsyncParams {
   }
 
   export namespace Variant2 {
-    export interface TextDocument {
-      TextDocument: TextDocument.TextDocument;
+    export interface Web {
+      phrase: string;
+
+      starting_website?: string | null;
     }
+  }
 
-    export namespace TextDocument {
-      export interface TextDocument {
-        content?: string | null;
+  export interface Variant3 {
+    /**
+     * Query param:
+     */
+    dataset_name: string;
 
-        document_name?: string | null;
+    /**
+     * Body param:
+     */
+    SECFiling: StructureRunAsyncParams.Variant3.SecFiling;
 
-        save?: boolean;
-      }
-    }
+    /**
+     * Query param:
+     */
+    custom_instruction?: string | null;
+  }
 
-    export interface WebSearch {
-      WebSearch: WebSearch.WebSearch;
-    }
+  export namespace Variant3 {
+    export interface SecFiling {
+      accession_number?: string | null;
 
-    export namespace WebSearch {
-      export interface WebSearch {
-        conditioning_phrase: string;
+      quarter?: number | null;
 
-        use_local_browser: boolean;
-
-        starting_website?: string | null;
-      }
-    }
-
-    export interface ImageDocument {
-      ImageDocument: ImageDocument.ImageDocument;
-    }
-
-    export namespace ImageDocument {
-      export interface ImageDocument {
-        content: Uploadable;
-
-        document_name: string;
-      }
+      year?: number | null;
     }
   }
 }
