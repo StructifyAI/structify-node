@@ -13,7 +13,7 @@ export {
   DatasetViewParams,
   Datasets,
 } from './datasets';
-export { DocumentListResponse, DocumentDownloadResponse, DocumentUploadParams, Documents } from './documents';
+export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
 export {
   IsComplete,
   StructureJobStatusResponse,

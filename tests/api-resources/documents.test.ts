@@ -45,24 +45,6 @@ describe('resource documents', () => {
     );
   });
 
-  test('download', async () => {
-    const responsePromise = structify.documents.download('string');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('download: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      structify.documents.download('string', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Structify.NotFoundError);
-  });
-
   test('upload: only required params', async () => {
     const responsePromise = structify.documents.upload({
       content: await toFile(Buffer.from('# my file contents'), 'README.md'),

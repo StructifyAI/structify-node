@@ -46,13 +46,11 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/documents.ts">DocumentListResponse</a></code>
-- <code><a href="./src/resources/documents.ts">DocumentDownloadResponse</a></code>
 
 Methods:
 
 - <code title="get /documents/list">client.documents.<a href="./src/resources/documents.ts">list</a>() -> DocumentListResponse</code>
 - <code title="delete /documents/delete/{path}">client.documents.<a href="./src/resources/documents.ts">delete</a>(path) -> void</code>
-- <code title="get /documents/download/{id}">client.documents.<a href="./src/resources/documents.ts">download</a>(id) -> string</code>
 - <code title="post /documents/upload">client.documents.<a href="./src/resources/documents.ts">upload</a>({ ...params }) -> void</code>
 
 # Runs
