@@ -74,7 +74,17 @@ export namespace StructureRunAsyncParams {
 
   export namespace Variant0 {
     export interface TextDocument {
-      TextDocument: unknown;
+      TextDocument: TextDocument.TextDocument;
+    }
+
+    export namespace TextDocument {
+      export interface TextDocument {
+        content?: string | null;
+
+        document_name?: string | null;
+
+        save?: boolean;
+      }
     }
 
     export interface WebSearch {

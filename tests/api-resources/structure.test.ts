@@ -56,7 +56,7 @@ describe('resource structure', () => {
   test('runAsync: required and optional params', async () => {
     const response = await structify.structure.runAsync({
       dataset_name: 'string',
-      Basic: { TextDocument: {} },
+      Basic: { TextDocument: { content: 'string', document_name: 'string', save: true } },
       custom_instruction: 'string',
     });
   });
