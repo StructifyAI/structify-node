@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.32 (2024-06-05)
+
+Full Changelog: [v0.1.0-alpha.31...v0.1.0-alpha.32](https://github.com/StructifyAI/structify-node/compare/v0.1.0-alpha.31...v0.1.0-alpha.32)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#129](https://github.com/StructifyAI/structify-node/issues/129)) ([840d8f9](https://github.com/StructifyAI/structify-node/commit/840d8f9a2cb53cf8b15c9f759d03279c86813298))
+* **api:** OpenAPI spec update via Stainless API ([#131](https://github.com/StructifyAI/structify-node/issues/131)) ([89090c0](https://github.com/StructifyAI/structify-node/commit/89090c03c879c03354c1886e19c1d2bdb6e5e42e))
+* **api:** OpenAPI spec update via Stainless API ([#132](https://github.com/StructifyAI/structify-node/issues/132)) ([b31a1b2](https://github.com/StructifyAI/structify-node/commit/b31a1b2b37d4fa6b7456692a56f9fc7bcc6204c3))
+* **api:** OpenAPI spec update via Stainless API ([#133](https://github.com/StructifyAI/structify-node/issues/133)) ([7f7b056](https://github.com/StructifyAI/structify-node/commit/7f7b056f217d8618a22d57be99b48676b6ed4763))
+* **api:** OpenAPI spec update via Stainless API ([#134](https://github.com/StructifyAI/structify-node/issues/134)) ([6f48c67](https://github.com/StructifyAI/structify-node/commit/6f48c6714ea59fcdf14eab58c7a53eabcf9266fb))
+* **api:** OpenAPI spec update via Stainless API ([#135](https://github.com/StructifyAI/structify-node/issues/135)) ([6bd964b](https://github.com/StructifyAI/structify-node/commit/6bd964bf237084026aa6656168090ba9bbc414bb))
+
 ## 0.1.0-alpha.31 (2024-06-05)
 
 Full Changelog: [v0.1.0-alpha.30...v0.1.0-alpha.31](https://github.com/StructifyAI/structify-node/compare/v0.1.0-alpha.30...v0.1.0-alpha.31)
