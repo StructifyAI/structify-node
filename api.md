@@ -89,7 +89,7 @@ Types:
 
 Methods:
 
-- <code title="get /source/get_sources">client.sources.<a href="./src/resources/sources.ts">list</a>({ ...params }) -> unknown</code>
+- <code title="get /source/get_sources">client.sources.<a href="./src/resources/sources.ts">list</a>({ ...params }) -> SourceListResponse</code>
 
 # Structure
 

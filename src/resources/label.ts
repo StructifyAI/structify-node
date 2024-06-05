@@ -425,14 +425,58 @@ export namespace LabelRunParams {
     dataset_name: string;
 
     /**
-     * Body param:
+     * Body param: These are all the types for which we have an agent that is directly
+     * capable of navigating. There should be a one to one mapping between them.
      */
-    Basic: unknown;
+    Basic:
+      | LabelRunParams.Variant0.TextDocument
+      | LabelRunParams.Variant0.WebSearch
+      | LabelRunParams.Variant0.ImageDocument;
 
     /**
      * Query param:
      */
     custom_instruction?: string | null;
+  }
+
+  export namespace Variant0 {
+    export interface TextDocument {
+      TextDocument: TextDocument.TextDocument;
+    }
+
+    export namespace TextDocument {
+      export interface TextDocument {
+        content: string;
+
+        document_name: string;
+      }
+    }
+
+    export interface WebSearch {
+      WebSearch: WebSearch.WebSearch;
+    }
+
+    export namespace WebSearch {
+      export interface WebSearch {
+        conditioning_phrase: string;
+
+        use_local_browser: boolean;
+
+        starting_website?: string | null;
+      }
+    }
+
+    export interface ImageDocument {
+      ImageDocument: ImageDocument.ImageDocument;
+    }
+
+    export namespace ImageDocument {
+      export interface ImageDocument {
+        content: Uploadable;
+
+        document_name: string;
+      }
+    }
   }
 
   export interface Variant1 {
@@ -444,12 +488,22 @@ export namespace LabelRunParams {
     /**
      * Body param:
      */
-    SECIngestor: unknown;
+    SECIngestor: LabelRunParams.Variant1.SecIngestor;
 
     /**
      * Query param:
      */
     custom_instruction?: string | null;
+  }
+
+  export namespace Variant1 {
+    export interface SecIngestor {
+      accession_number?: string | null;
+
+      quarter?: number | null;
+
+      year?: number | null;
+    }
   }
 
   export interface Variant2 {
@@ -459,9 +513,10 @@ export namespace LabelRunParams {
     dataset_name: string;
 
     /**
-     * Body param:
+     * Body param: This is currently a very simple ingestor. It converts everything to
+     * an image and processes them independently.
      */
-    PDFIngestor: unknown;
+    PDFIngestor: string;
 
     /**
      * Query param:

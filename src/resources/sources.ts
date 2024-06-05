@@ -8,12 +8,62 @@ export class Sources extends APIResource {
   /**
    * Get all sources for a given entity
    */
-  list(query: SourceListParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+  list(query: SourceListParams, options?: Core.RequestOptions): Core.APIPromise<SourceListResponse> {
     return this._client.get('/source/get_sources', { query, ...options });
   }
 }
 
-export type SourceListResponse = unknown;
+export interface SourceListResponse {
+  extra_properties: Record<string, string | null | boolean | null | number | null>;
+
+  link: SourceListResponse.Web | SourceListResponse.Document | 'None';
+
+  location: SourceListResponse.Text | SourceListResponse.Visual | 'None';
+}
+
+export namespace SourceListResponse {
+  export interface Web {
+    Web: Web.Web;
+  }
+
+  export namespace Web {
+    export interface Web {
+      url: string;
+    }
+  }
+
+  export interface Document {
+    Document: Document.Document;
+  }
+
+  export namespace Document {
+    export interface Document {
+      name: string;
+    }
+  }
+
+  export interface Text {
+    Text: Text.Text;
+  }
+
+  export namespace Text {
+    export interface Text {
+      byte_offset: number;
+    }
+  }
+
+  export interface Visual {
+    Visual: Visual.Visual;
+  }
+
+  export namespace Visual {
+    export interface Visual {
+      x: number;
+
+      y: number;
+    }
+  }
+}
 
 export interface SourceListParams {
   /**
