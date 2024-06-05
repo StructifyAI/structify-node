@@ -503,7 +503,7 @@ export namespace LabelRunParams {
       export interface TextDocument {
         content?: string | null;
 
-        fp?: string | null;
+        filepath?: string | null;
 
         save?: boolean;
       }
