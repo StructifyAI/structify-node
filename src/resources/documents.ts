@@ -2,6 +2,7 @@
 
 import * as Core from '../core';
 import { APIResource } from '../resource';
+import { type Response } from '../_shims/index';
 import * as DocumentsAPI from './documents';
 import { type Uploadable, multipartFormRequestOptions } from '../core';
 
@@ -21,6 +22,13 @@ export class Documents extends APIResource {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
+  }
+
+  /**
+   * Download a file from the database
+   */
+  download(path: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
+    return this._client.get(`/documents/download/${path}`, { ...options, __binaryResponse: true });
   }
 
   /**
