@@ -3,7 +3,7 @@
 import * as Core from '../core';
 import { APIResource } from '../resource';
 import * as DocumentsAPI from './documents';
-import { type Uploadable, multipartFormRequestOptions } from '../core';
+import { multipartFormRequestOptions } from '../core';
 
 export class Documents extends APIResource {
   /**
@@ -48,13 +48,7 @@ export type DocumentListResponse = Array<string>;
 
 export type DocumentDownloadResponse = string;
 
-export interface DocumentUploadParams {
-  doctype: Uploadable;
-
-  file_content: Uploadable;
-
-  path: Uploadable;
-}
+export type DocumentUploadParams = unknown;
 
 export namespace Documents {
   export import DocumentListResponse = DocumentsAPI.DocumentListResponse;
