@@ -88,12 +88,22 @@ export namespace StructureRunAsyncParams {
      * Body param: This is currently a very simple ingestor. It converts everything to
      * an image and processes them independently.
      */
-    PDFIngestor: string;
+    PDFIngestor: StructureRunAsyncParams.Variant1.PdfIngestor;
 
     /**
      * Query param:
      */
     custom_instruction?: string | null;
+  }
+
+  export namespace Variant1 {
+    /**
+     * This is currently a very simple ingestor. It converts everything to an image and
+     * processes them independently.
+     */
+    export interface PdfIngestor {
+      path: string;
+    }
   }
 
   export interface Variant2 {
@@ -126,7 +136,7 @@ export namespace StructureRunAsyncParams {
       export interface TextDocument {
         content?: string | null;
 
-        document_name?: string | null;
+        fp?: string | null;
 
         save?: boolean;
       }
