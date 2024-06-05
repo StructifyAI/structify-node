@@ -3,7 +3,6 @@
 import * as Core from '../core';
 import { APIResource } from '../resource';
 import * as DocumentsAPI from './documents';
-import { type Uploadable, multipartFormRequestOptions } from '../core';
 
 export class Documents extends APIResource {
   /**
@@ -37,58 +36,35 @@ export class Documents extends APIResource {
    * Add a new file to the database
    */
   upload(params: DocumentUploadParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { file_type, path, ...body } = params;
-    return this._client.post(
-      '/documents/upload',
-      multipartFormRequestOptions({
-        query: { file_type, path },
-        body,
-        ...options,
-        headers: { Accept: '*/*', ...options?.headers },
-      }),
-    );
+    const { doctype, path, body } = params;
+    return this._client.post('/documents/upload', {
+      query: { doctype, path },
+      body: body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
-export type DocumentListResponse = Array<DocumentListResponse.DocumentListResponseItem>;
-
-export namespace DocumentListResponse {
-  export interface DocumentListResponseItem {
-    content: DocumentListResponseItem.Remote | DocumentListResponseItem.Local;
-
-    document_type: 'Text' | 'Pdf' | 'SEC' | 'ExecutionHistory';
-
-    name: string;
-  }
-
-  export namespace DocumentListResponseItem {
-    export interface Remote {
-      Remote: string;
-    }
-
-    export interface Local {
-      Local: Uploadable;
-    }
-  }
-}
+export type DocumentListResponse = Array<string>;
 
 export type DocumentDownloadResponse = string;
 
 export interface DocumentUploadParams {
   /**
-   * Query param: "The type of file to store"
+   * Query param:
    */
-  file_type: 'Text' | 'Pdf' | 'SEC' | 'ExecutionHistory';
+  doctype: 'Text' | 'Pdf' | 'SEC' | 'ExecutionHistory';
 
   /**
-   * Query param: The path to store the document
+   * Query param: The path you want to upload the file to.
    */
   path: string;
 
   /**
    * Body param:
    */
-  contents: Uploadable;
+  body: unknown;
 }
 
 export namespace Documents {
