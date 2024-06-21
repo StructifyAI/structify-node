@@ -196,6 +196,8 @@ export namespace RunGetResponse {
 
         tool_metadata: Array<Metadata.ToolMetadata>;
 
+        screenshot?: Uploadable | null;
+
         url?: string | null;
 
         web_flags?: Array<Metadata.WebFlag> | null;
@@ -243,9 +245,13 @@ export namespace RunGetResponse {
         export interface WebFlag {
           ariaLabel: string;
 
+          height: number;
+
           text: string;
 
           type: string;
+
+          width: number;
 
           x: number;
 
