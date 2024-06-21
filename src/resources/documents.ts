@@ -2,9 +2,9 @@
 
 import * as Core from '../core';
 import { APIResource } from '../resource';
-import { type Response } from '../_shims/index';
 import * as DocumentsAPI from './documents';
 import { type Uploadable, multipartFormRequestOptions } from '../core';
+import { type Response } from '../_shims/index';
 
 export class Documents extends APIResource {
   /**
