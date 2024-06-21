@@ -10,7 +10,7 @@ const structify = new Structify({
 
 describe('resource label', () => {
   test('update: only required params', async () => {
-    const responsePromise = structify.label.update('string', 'string', [
+    const responsePromise = structify.label.update('string', 0, [
       { input: { Save: {} }, name: 'Save' },
       { input: { Save: {} }, name: 'Save' },
       { input: { Save: {} }, name: 'Save' },
@@ -25,7 +25,7 @@ describe('resource label', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await structify.label.update('string', 'string', [
+    const response = await structify.label.update('string', 0, [
       {
         input: {
           Save: {
