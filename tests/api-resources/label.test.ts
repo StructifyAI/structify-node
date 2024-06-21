@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Structify, { toFile } from 'structifyai';
+import Structify from 'structifyai';
 import { Response } from 'node-fetch';
 
 const structify = new Structify({
@@ -10,78 +10,11 @@ const structify = new Structify({
 
 describe('resource label', () => {
   test('update: only required params', async () => {
-    const responsePromise = structify.label.update({
-      date: '2019-12-27T18:11:19.117Z',
-      steps: [
-        {
-          prompt: {
-            decoding_params: { parameters: [{ MaxTokens: 0 }, { MaxTokens: 0 }, { MaxTokens: 0 }] },
-            messages: [
-              { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
-              { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
-              { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
-            ],
-          },
-          response: {
-            completion_tokens: 0,
-            cost: 0,
-            llm: 'string',
-            prompt_tokens: 0,
-            text: 'string',
-            tool_calls: [
-              { input: { Save: {} }, name: 'Save' },
-              { input: { Save: {} }, name: 'Save' },
-              { input: { Save: {} }, name: 'Save' },
-            ],
-          },
-        },
-        {
-          prompt: {
-            decoding_params: { parameters: [{ MaxTokens: 0 }, { MaxTokens: 0 }, { MaxTokens: 0 }] },
-            messages: [
-              { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
-              { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
-              { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
-            ],
-          },
-          response: {
-            completion_tokens: 0,
-            cost: 0,
-            llm: 'string',
-            prompt_tokens: 0,
-            text: 'string',
-            tool_calls: [
-              { input: { Save: {} }, name: 'Save' },
-              { input: { Save: {} }, name: 'Save' },
-              { input: { Save: {} }, name: 'Save' },
-            ],
-          },
-        },
-        {
-          prompt: {
-            decoding_params: { parameters: [{ MaxTokens: 0 }, { MaxTokens: 0 }, { MaxTokens: 0 }] },
-            messages: [
-              { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
-              { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
-              { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
-            ],
-          },
-          response: {
-            completion_tokens: 0,
-            cost: 0,
-            llm: 'string',
-            prompt_tokens: 0,
-            text: 'string',
-            tool_calls: [
-              { input: { Save: {} }, name: 'Save' },
-              { input: { Save: {} }, name: 'Save' },
-              { input: { Save: {} }, name: 'Save' },
-            ],
-          },
-        },
-      ],
-      uuid: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
+    const responsePromise = structify.label.update('string', 'string', [
+      { input: { Save: {} }, name: 'Save' },
+      { input: { Save: {} }, name: 'Save' },
+      { input: { Save: {} }, name: 'Save' },
+    ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -92,630 +25,62 @@ describe('resource label', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await structify.label.update({
-      date: '2019-12-27T18:11:19.117Z',
-      steps: [
-        {
-          prompt: {
-            decoding_params: { parameters: [{ MaxTokens: 0 }, { MaxTokens: 0 }, { MaxTokens: 0 }] },
-            human_llm_metadata: {
-              descriptor: {
-                description: 'string',
-                name: 'string',
-                relationships: [
-                  { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-                  { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-                  { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-                ],
-                tables: [
-                  {
-                    description: 'string',
-                    name: 'string',
-                    properties: [
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                    ],
-                  },
-                  {
-                    description: 'string',
-                    name: 'string',
-                    properties: [
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                    ],
-                  },
-                  {
-                    description: 'string',
-                    name: 'string',
-                    properties: [
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                    ],
-                  },
-                ],
-              },
-              run_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-              user_email: 'string',
-            },
-            messages: [
-              { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
-              { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
-              { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
+    const response = await structify.label.update('string', 'string', [
+      {
+        input: {
+          Save: {
+            entities: [
+              { id: 0, properties: { foo: 'string' }, type: 'string' },
+              { id: 0, properties: { foo: 'string' }, type: 'string' },
+              { id: 0, properties: { foo: 'string' }, type: 'string' },
             ],
-            metadata: {
-              conditioning_prompt: 'string',
-              dataset_descriptor: {
-                description: 'string',
-                name: 'string',
-                relationships: [
-                  { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-                  { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-                  { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-                ],
-                tables: [
-                  {
-                    description: 'string',
-                    name: 'string',
-                    properties: [
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                    ],
-                  },
-                  {
-                    description: 'string',
-                    name: 'string',
-                    properties: [
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                    ],
-                  },
-                  {
-                    description: 'string',
-                    name: 'string',
-                    properties: [
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                    ],
-                  },
-                ],
-              },
-              extracted_entities: [
-                {
-                  entities: [
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                  ],
-                  relationships: [
-                    { source: 0, target: 0, type: 'string' },
-                    { source: 0, target: 0, type: 'string' },
-                    { source: 0, target: 0, type: 'string' },
-                  ],
-                },
-                {
-                  entities: [
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                  ],
-                  relationships: [
-                    { source: 0, target: 0, type: 'string' },
-                    { source: 0, target: 0, type: 'string' },
-                    { source: 0, target: 0, type: 'string' },
-                  ],
-                },
-                {
-                  entities: [
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                  ],
-                  relationships: [
-                    { source: 0, target: 0, type: 'string' },
-                    { source: 0, target: 0, type: 'string' },
-                    { source: 0, target: 0, type: 'string' },
-                  ],
-                },
-              ],
-              screenshot: await toFile(Buffer.from('# my file contents'), 'README.md'),
-              tool_metadata: [
-                { description: 'string', name: 'Save', regex_validator: 'string', tool_validator: {} },
-                { description: 'string', name: 'Save', regex_validator: 'string', tool_validator: {} },
-                { description: 'string', name: 'Save', regex_validator: 'string', tool_validator: {} },
-              ],
-              url: 'string',
-              web_flags: [
-                { ariaLabel: 'string', height: 0, text: 'string', type: 'string', width: 0, x: 0, y: 0 },
-                { ariaLabel: 'string', height: 0, text: 'string', type: 'string', width: 0, x: 0, y: 0 },
-                { ariaLabel: 'string', height: 0, text: 'string', type: 'string', width: 0, x: 0, y: 0 },
-              ],
-            },
-          },
-          response: {
-            completion_tokens: 0,
-            cost: 0,
-            llm: 'string',
-            prompt_tokens: 0,
-            text: 'string',
-            tool_calls: [
-              {
-                input: {
-                  Save: {
-                    entities: [
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    ],
-                    relationships: [
-                      { source: 0, target: 0, type: 'string' },
-                      { source: 0, target: 0, type: 'string' },
-                      { source: 0, target: 0, type: 'string' },
-                    ],
-                  },
-                },
-                name: 'Save',
-                result: { ToolQueued: 'string' },
-              },
-              {
-                input: {
-                  Save: {
-                    entities: [
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    ],
-                    relationships: [
-                      { source: 0, target: 0, type: 'string' },
-                      { source: 0, target: 0, type: 'string' },
-                      { source: 0, target: 0, type: 'string' },
-                    ],
-                  },
-                },
-                name: 'Save',
-                result: { ToolQueued: 'string' },
-              },
-              {
-                input: {
-                  Save: {
-                    entities: [
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    ],
-                    relationships: [
-                      { source: 0, target: 0, type: 'string' },
-                      { source: 0, target: 0, type: 'string' },
-                      { source: 0, target: 0, type: 'string' },
-                    ],
-                  },
-                },
-                name: 'Save',
-                result: { ToolQueued: 'string' },
-              },
+            relationships: [
+              { source: 0, target: 0, type: 'string' },
+              { source: 0, target: 0, type: 'string' },
+              { source: 0, target: 0, type: 'string' },
             ],
           },
         },
-        {
-          prompt: {
-            decoding_params: { parameters: [{ MaxTokens: 0 }, { MaxTokens: 0 }, { MaxTokens: 0 }] },
-            human_llm_metadata: {
-              descriptor: {
-                description: 'string',
-                name: 'string',
-                relationships: [
-                  { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-                  { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-                  { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-                ],
-                tables: [
-                  {
-                    description: 'string',
-                    name: 'string',
-                    properties: [
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                    ],
-                  },
-                  {
-                    description: 'string',
-                    name: 'string',
-                    properties: [
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                    ],
-                  },
-                  {
-                    description: 'string',
-                    name: 'string',
-                    properties: [
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                    ],
-                  },
-                ],
-              },
-              run_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-              user_email: 'string',
-            },
-            messages: [
-              { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
-              { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
-              { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
+        name: 'Save',
+        result: { ToolQueued: 'string' },
+      },
+      {
+        input: {
+          Save: {
+            entities: [
+              { id: 0, properties: { foo: 'string' }, type: 'string' },
+              { id: 0, properties: { foo: 'string' }, type: 'string' },
+              { id: 0, properties: { foo: 'string' }, type: 'string' },
             ],
-            metadata: {
-              conditioning_prompt: 'string',
-              dataset_descriptor: {
-                description: 'string',
-                name: 'string',
-                relationships: [
-                  { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-                  { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-                  { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-                ],
-                tables: [
-                  {
-                    description: 'string',
-                    name: 'string',
-                    properties: [
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                    ],
-                  },
-                  {
-                    description: 'string',
-                    name: 'string',
-                    properties: [
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                    ],
-                  },
-                  {
-                    description: 'string',
-                    name: 'string',
-                    properties: [
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                    ],
-                  },
-                ],
-              },
-              extracted_entities: [
-                {
-                  entities: [
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                  ],
-                  relationships: [
-                    { source: 0, target: 0, type: 'string' },
-                    { source: 0, target: 0, type: 'string' },
-                    { source: 0, target: 0, type: 'string' },
-                  ],
-                },
-                {
-                  entities: [
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                  ],
-                  relationships: [
-                    { source: 0, target: 0, type: 'string' },
-                    { source: 0, target: 0, type: 'string' },
-                    { source: 0, target: 0, type: 'string' },
-                  ],
-                },
-                {
-                  entities: [
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                  ],
-                  relationships: [
-                    { source: 0, target: 0, type: 'string' },
-                    { source: 0, target: 0, type: 'string' },
-                    { source: 0, target: 0, type: 'string' },
-                  ],
-                },
-              ],
-              screenshot: await toFile(Buffer.from('# my file contents'), 'README.md'),
-              tool_metadata: [
-                { description: 'string', name: 'Save', regex_validator: 'string', tool_validator: {} },
-                { description: 'string', name: 'Save', regex_validator: 'string', tool_validator: {} },
-                { description: 'string', name: 'Save', regex_validator: 'string', tool_validator: {} },
-              ],
-              url: 'string',
-              web_flags: [
-                { ariaLabel: 'string', height: 0, text: 'string', type: 'string', width: 0, x: 0, y: 0 },
-                { ariaLabel: 'string', height: 0, text: 'string', type: 'string', width: 0, x: 0, y: 0 },
-                { ariaLabel: 'string', height: 0, text: 'string', type: 'string', width: 0, x: 0, y: 0 },
-              ],
-            },
-          },
-          response: {
-            completion_tokens: 0,
-            cost: 0,
-            llm: 'string',
-            prompt_tokens: 0,
-            text: 'string',
-            tool_calls: [
-              {
-                input: {
-                  Save: {
-                    entities: [
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    ],
-                    relationships: [
-                      { source: 0, target: 0, type: 'string' },
-                      { source: 0, target: 0, type: 'string' },
-                      { source: 0, target: 0, type: 'string' },
-                    ],
-                  },
-                },
-                name: 'Save',
-                result: { ToolQueued: 'string' },
-              },
-              {
-                input: {
-                  Save: {
-                    entities: [
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    ],
-                    relationships: [
-                      { source: 0, target: 0, type: 'string' },
-                      { source: 0, target: 0, type: 'string' },
-                      { source: 0, target: 0, type: 'string' },
-                    ],
-                  },
-                },
-                name: 'Save',
-                result: { ToolQueued: 'string' },
-              },
-              {
-                input: {
-                  Save: {
-                    entities: [
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    ],
-                    relationships: [
-                      { source: 0, target: 0, type: 'string' },
-                      { source: 0, target: 0, type: 'string' },
-                      { source: 0, target: 0, type: 'string' },
-                    ],
-                  },
-                },
-                name: 'Save',
-                result: { ToolQueued: 'string' },
-              },
+            relationships: [
+              { source: 0, target: 0, type: 'string' },
+              { source: 0, target: 0, type: 'string' },
+              { source: 0, target: 0, type: 'string' },
             ],
           },
         },
-        {
-          prompt: {
-            decoding_params: { parameters: [{ MaxTokens: 0 }, { MaxTokens: 0 }, { MaxTokens: 0 }] },
-            human_llm_metadata: {
-              descriptor: {
-                description: 'string',
-                name: 'string',
-                relationships: [
-                  { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-                  { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-                  { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-                ],
-                tables: [
-                  {
-                    description: 'string',
-                    name: 'string',
-                    properties: [
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                    ],
-                  },
-                  {
-                    description: 'string',
-                    name: 'string',
-                    properties: [
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                    ],
-                  },
-                  {
-                    description: 'string',
-                    name: 'string',
-                    properties: [
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                    ],
-                  },
-                ],
-              },
-              run_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-              user_email: 'string',
-            },
-            messages: [
-              { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
-              { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
-              { content: [{ Text: 'string' }, { Text: 'string' }, { Text: 'string' }], role: 'user' },
+        name: 'Save',
+        result: { ToolQueued: 'string' },
+      },
+      {
+        input: {
+          Save: {
+            entities: [
+              { id: 0, properties: { foo: 'string' }, type: 'string' },
+              { id: 0, properties: { foo: 'string' }, type: 'string' },
+              { id: 0, properties: { foo: 'string' }, type: 'string' },
             ],
-            metadata: {
-              conditioning_prompt: 'string',
-              dataset_descriptor: {
-                description: 'string',
-                name: 'string',
-                relationships: [
-                  { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-                  { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-                  { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-                ],
-                tables: [
-                  {
-                    description: 'string',
-                    name: 'string',
-                    properties: [
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                    ],
-                  },
-                  {
-                    description: 'string',
-                    name: 'string',
-                    properties: [
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                    ],
-                  },
-                  {
-                    description: 'string',
-                    name: 'string',
-                    properties: [
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                      { description: 'string', name: 'string' },
-                    ],
-                  },
-                ],
-              },
-              extracted_entities: [
-                {
-                  entities: [
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                  ],
-                  relationships: [
-                    { source: 0, target: 0, type: 'string' },
-                    { source: 0, target: 0, type: 'string' },
-                    { source: 0, target: 0, type: 'string' },
-                  ],
-                },
-                {
-                  entities: [
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                  ],
-                  relationships: [
-                    { source: 0, target: 0, type: 'string' },
-                    { source: 0, target: 0, type: 'string' },
-                    { source: 0, target: 0, type: 'string' },
-                  ],
-                },
-                {
-                  entities: [
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    { id: 0, properties: { foo: 'string' }, type: 'string' },
-                  ],
-                  relationships: [
-                    { source: 0, target: 0, type: 'string' },
-                    { source: 0, target: 0, type: 'string' },
-                    { source: 0, target: 0, type: 'string' },
-                  ],
-                },
-              ],
-              screenshot: await toFile(Buffer.from('# my file contents'), 'README.md'),
-              tool_metadata: [
-                { description: 'string', name: 'Save', regex_validator: 'string', tool_validator: {} },
-                { description: 'string', name: 'Save', regex_validator: 'string', tool_validator: {} },
-                { description: 'string', name: 'Save', regex_validator: 'string', tool_validator: {} },
-              ],
-              url: 'string',
-              web_flags: [
-                { ariaLabel: 'string', height: 0, text: 'string', type: 'string', width: 0, x: 0, y: 0 },
-                { ariaLabel: 'string', height: 0, text: 'string', type: 'string', width: 0, x: 0, y: 0 },
-                { ariaLabel: 'string', height: 0, text: 'string', type: 'string', width: 0, x: 0, y: 0 },
-              ],
-            },
-          },
-          response: {
-            completion_tokens: 0,
-            cost: 0,
-            llm: 'string',
-            prompt_tokens: 0,
-            text: 'string',
-            tool_calls: [
-              {
-                input: {
-                  Save: {
-                    entities: [
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    ],
-                    relationships: [
-                      { source: 0, target: 0, type: 'string' },
-                      { source: 0, target: 0, type: 'string' },
-                      { source: 0, target: 0, type: 'string' },
-                    ],
-                  },
-                },
-                name: 'Save',
-                result: { ToolQueued: 'string' },
-              },
-              {
-                input: {
-                  Save: {
-                    entities: [
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    ],
-                    relationships: [
-                      { source: 0, target: 0, type: 'string' },
-                      { source: 0, target: 0, type: 'string' },
-                      { source: 0, target: 0, type: 'string' },
-                    ],
-                  },
-                },
-                name: 'Save',
-                result: { ToolQueued: 'string' },
-              },
-              {
-                input: {
-                  Save: {
-                    entities: [
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                      { id: 0, properties: { foo: 'string' }, type: 'string' },
-                    ],
-                    relationships: [
-                      { source: 0, target: 0, type: 'string' },
-                      { source: 0, target: 0, type: 'string' },
-                      { source: 0, target: 0, type: 'string' },
-                    ],
-                  },
-                },
-                name: 'Save',
-                result: { ToolQueued: 'string' },
-              },
+            relationships: [
+              { source: 0, target: 0, type: 'string' },
+              { source: 0, target: 0, type: 'string' },
+              { source: 0, target: 0, type: 'string' },
             ],
           },
         },
-      ],
-      uuid: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
+        name: 'Save',
+        result: { ToolQueued: 'string' },
+      },
+    ]);
   });
 
   test('getMessages', async () => {
