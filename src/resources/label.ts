@@ -13,7 +13,7 @@ export class Label extends APIResource {
    */
   update(
     runUuid: string,
-    runIdx: string,
+    runIdx: number,
     body: LabelUpdateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<string> {
