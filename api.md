@@ -108,12 +108,14 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/label.ts">LabelUpdateResponse</a></code>
 - <code><a href="./src/resources/label.ts">LabelGetMessagesResponse</a></code>
 - <code><a href="./src/resources/label.ts">LabelLlmAssistResponse</a></code>
 - <code><a href="./src/resources/label.ts">LabelSubmitResponse</a></code>
 
 Methods:
 
+- <code title="post /label/update">client.label.<a href="./src/resources/label.ts">update</a>({ ...params }) -> string</code>
 - <code title="get /label/refresh">client.label.<a href="./src/resources/label.ts">getMessages</a>({ ...params }) -> LabelGetMessagesResponse | null</code>
 - <code title="get /label/llm_assist/{uuid}">client.label.<a href="./src/resources/label.ts">llmAssist</a>(uuid) -> LabelLlmAssistResponse</code>
 - <code title="post /label/run_async">client.label.<a href="./src/resources/label.ts">run</a>({ ...params }) -> void</code>
