@@ -638,17 +638,25 @@ export namespace LabelRunParams {
     dataset_name: string;
 
     /**
-     * Query param:
-     */
-    extraction_criterium: Array<LabelRunParams.Variant0.ExtractionCriterium>;
-
-    /**
      * Body param:
      */
     SECIngestor: LabelRunParams.Variant0.SecIngestor;
+
+    /**
+     * Query param:
+     */
+    extraction_criterium?: Array<LabelRunParams.Variant0.ExtractionCriterium> | null;
   }
 
   export namespace Variant0 {
+    export interface SecIngestor {
+      accession_number?: string | null;
+
+      quarter?: number | null;
+
+      year?: number | null;
+    }
+
     /**
      * It's an OR statement across these.
      */
@@ -656,14 +664,6 @@ export namespace LabelRunParams {
       property_names: Array<string>;
 
       table_name: string;
-    }
-
-    export interface SecIngestor {
-      accession_number?: string | null;
-
-      quarter?: number | null;
-
-      year?: number | null;
     }
   }
 
@@ -674,18 +674,26 @@ export namespace LabelRunParams {
     dataset_name: string;
 
     /**
-     * Query param:
-     */
-    extraction_criterium: Array<LabelRunParams.Variant1.ExtractionCriterium>;
-
-    /**
      * Body param: This is currently a very simple ingestor. It converts everything to
      * an image and processes them independently.
      */
     PDFIngestor: LabelRunParams.Variant1.PdfIngestor;
+
+    /**
+     * Query param:
+     */
+    extraction_criterium?: Array<LabelRunParams.Variant1.ExtractionCriterium> | null;
   }
 
   export namespace Variant1 {
+    /**
+     * This is currently a very simple ingestor. It converts everything to an image and
+     * processes them independently.
+     */
+    export interface PdfIngestor {
+      path: string;
+    }
+
     /**
      * It's an OR statement across these.
      */
@@ -693,14 +701,6 @@ export namespace LabelRunParams {
       property_names: Array<string>;
 
       table_name: string;
-    }
-
-    /**
-     * This is currently a very simple ingestor. It converts everything to an image and
-     * processes them independently.
-     */
-    export interface PdfIngestor {
-      path: string;
     }
   }
 
@@ -711,11 +711,6 @@ export namespace LabelRunParams {
     dataset_name: string;
 
     /**
-     * Query param:
-     */
-    extraction_criterium: Array<LabelRunParams.Variant2.ExtractionCriterium>;
-
-    /**
      * Body param: These are all the types for which we have an agent that is directly
      * capable of navigating. There should be a one to one mapping between them.
      */
@@ -723,18 +718,14 @@ export namespace LabelRunParams {
       | LabelRunParams.Variant2.TextDocument
       | LabelRunParams.Variant2.WebSearch
       | LabelRunParams.Variant2.ImageDocument;
+
+    /**
+     * Query param:
+     */
+    extraction_criterium?: Array<LabelRunParams.Variant2.ExtractionCriterium> | null;
   }
 
   export namespace Variant2 {
-    /**
-     * It's an OR statement across these.
-     */
-    export interface ExtractionCriterium {
-      property_names: Array<string>;
-
-      table_name: string;
-    }
-
     export interface TextDocument {
       TextDocument: TextDocument.TextDocument;
     }
@@ -787,6 +778,15 @@ export namespace LabelRunParams {
 
         document_name: string;
       }
+    }
+
+    /**
+     * It's an OR statement across these.
+     */
+    export interface ExtractionCriterium {
+      property_names: Array<string>;
+
+      table_name: string;
     }
   }
 }
