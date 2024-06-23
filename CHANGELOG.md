@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.37 (2024-06-23)
+
+Full Changelog: [v0.1.0-alpha.36...v0.1.0-alpha.37](https://github.com/StructifyAI/structify-node/compare/v0.1.0-alpha.36...v0.1.0-alpha.37)
+
+### Features
+
+* **api:** update via SDK Studio ([#152](https://github.com/StructifyAI/structify-node/issues/152)) ([57b15e0](https://github.com/StructifyAI/structify-node/commit/57b15e0d174f7e4e7b0a049948551c06ccf29e6a))
+* **api:** update via SDK Studio ([#154](https://github.com/StructifyAI/structify-node/issues/154)) ([ab27a9b](https://github.com/StructifyAI/structify-node/commit/ab27a9bf09154c13aa230be86d89ecca5d2755f1))
+* **api:** update via SDK Studio ([#155](https://github.com/StructifyAI/structify-node/issues/155)) ([012dc32](https://github.com/StructifyAI/structify-node/commit/012dc32d8af357531ce9e5a665fe2f296eb3f127))
+* **api:** update via SDK Studio ([#157](https://github.com/StructifyAI/structify-node/issues/157)) ([423f1b3](https://github.com/StructifyAI/structify-node/commit/423f1b35fbe591c970f5162553e58cfe1c7afbbc))
+* **api:** update via SDK Studio ([#158](https://github.com/StructifyAI/structify-node/issues/158)) ([454813d](https://github.com/StructifyAI/structify-node/commit/454813d220a8eae765209922aed4c73d0e24cbe8))
+* **api:** update via SDK Studio ([#159](https://github.com/StructifyAI/structify-node/issues/159)) ([fa25884](https://github.com/StructifyAI/structify-node/commit/fa25884da7afe021eebe7e6f6071c3ba9b91f2e5))
+* **api:** update via SDK Studio ([#160](https://github.com/StructifyAI/structify-node/issues/160)) ([5e96f37](https://github.com/StructifyAI/structify-node/commit/5e96f3729386c8a040bcf08ae79ecc3259f05328))
+
 ## 0.1.0-alpha.36 (2024-06-21)
 
 Full Changelog: [v0.1.0-alpha.35...v0.1.0-alpha.36](https://github.com/StructifyAI/structify-node/compare/v0.1.0-alpha.35...v0.1.0-alpha.36)
