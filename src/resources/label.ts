@@ -9,22 +9,6 @@ import { type Uploadable } from '../core';
 
 export class Label extends APIResource {
   /**
-   * Submit a label as part of the human LLM.
-   */
-  update(
-    runUuid: string,
-    runIdx: number,
-    body: LabelUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
-    return this._client.post(`/label/update/${runUuid}/${runIdx}`, {
-      body,
-      ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
-    });
-  }
-
-  /**
    * web requests that would be cancelled by cloudflare in prod.
    */
   getMessages(
@@ -53,9 +37,9 @@ export class Label extends APIResource {
    * Returns a token that can be waited on until the request is finished.
    */
   run(params: LabelRunParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { dataset_name, custom_instruction, ...body } = params;
+    const { dataset_name, extraction_criterium, ...body } = params;
     return this._client.post('/label/run_async', {
-      query: { dataset_name, custom_instruction },
+      query: { dataset_name, extraction_criterium },
       body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
@@ -73,8 +57,6 @@ export class Label extends APIResource {
     });
   }
 }
-
-export type LabelUpdateResponse = string;
 
 export interface LabelGetMessagesResponse {
   chat: LabelGetMessagesResponse.Chat;
@@ -199,8 +181,6 @@ export namespace LabelGetMessagesResponse {
     }
 
     export interface Metadata {
-      conditioning_prompt: string;
-
       /**
        * A dataset is where you put multiple referential schemas.
        *
@@ -210,6 +190,8 @@ export namespace LabelGetMessagesResponse {
       dataset_descriptor: DatasetsAPI.DatasetDescriptor;
 
       extracted_entities: Array<Metadata.ExtractedEntity>;
+
+      extraction_criterium: Array<Metadata.ExtractionCriterium>;
 
       tool_metadata: Array<Metadata.ToolMetadata>;
 
@@ -247,6 +229,15 @@ export namespace LabelGetMessagesResponse {
 
           type: string;
         }
+      }
+
+      /**
+       * It's an OR statement across these.
+       */
+      export interface ExtractionCriterium {
+        property_name: Array<string>;
+
+        table_name: string;
       }
 
       export interface ToolMetadata {
@@ -435,186 +426,6 @@ export namespace LabelLlmAssistResponse {
 
 export type LabelSubmitResponse = string;
 
-export type LabelUpdateParams = Array<LabelUpdateParams.Body>;
-
-export namespace LabelUpdateParams {
-  export interface Body {
-    input:
-      | Body.Save
-      | Body.Scroll
-      | Body.Exit
-      | Body.Click
-      | Body.Hover
-      | Body.Wait
-      | Body.Error
-      | Body.Google
-      | Body.Type;
-
-    name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
-
-    result?: Body.ToolQueued | Body.ToolFail | Body.InputParseFail | Body.Success | null;
-  }
-
-  export namespace Body {
-    export interface Save {
-      /**
-       * Knowledge graph info structured to deserialize and display in the same format
-       * that the LLM outputs.
-       */
-      Save: Save.Save;
-    }
-
-    export namespace Save {
-      /**
-       * Knowledge graph info structured to deserialize and display in the same format
-       * that the LLM outputs.
-       */
-      export interface Save {
-        entities?: Array<Save.Entity>;
-
-        relationships?: Array<Save.Relationship>;
-      }
-
-      export namespace Save {
-        export interface Entity {
-          id: number;
-
-          properties: Record<string, string>;
-
-          type: string;
-        }
-
-        export interface Relationship {
-          source: number;
-
-          target: number;
-
-          type: string;
-        }
-      }
-    }
-
-    export interface Scroll {
-      /**
-       * For tools with no inputs.
-       */
-      Scroll: Scroll.Scroll;
-    }
-
-    export namespace Scroll {
-      /**
-       * For tools with no inputs.
-       */
-      export interface Scroll {
-        /**
-         * OpenAI Requires an argument, so we put a dummy one here.
-         */
-        reason: string;
-      }
-    }
-
-    export interface Exit {
-      /**
-       * For tools with no inputs.
-       */
-      Exit: Exit.Exit;
-    }
-
-    export namespace Exit {
-      /**
-       * For tools with no inputs.
-       */
-      export interface Exit {
-        /**
-         * OpenAI Requires an argument, so we put a dummy one here.
-         */
-        reason: string;
-      }
-    }
-
-    export interface Click {
-      Click: Click.Click;
-    }
-
-    export namespace Click {
-      export interface Click {
-        flag: number;
-      }
-    }
-
-    export interface Hover {
-      Hover: Hover.Hover;
-    }
-
-    export namespace Hover {
-      export interface Hover {
-        flag: number;
-      }
-    }
-
-    export interface Wait {
-      Wait: Wait.Wait;
-    }
-
-    export namespace Wait {
-      export interface Wait {
-        /**
-         * Time in seconds to wait
-         */
-        seconds: number;
-      }
-    }
-
-    export interface Error {
-      Error: Error.Error;
-    }
-
-    export namespace Error {
-      export interface Error {
-        error: string;
-      }
-    }
-
-    export interface Google {
-      Google: Google.Google;
-    }
-
-    export namespace Google {
-      export interface Google {
-        query: string;
-      }
-    }
-
-    export interface Type {
-      Type: Type.Type;
-    }
-
-    export namespace Type {
-      export interface Type {
-        flag: number;
-
-        input: string;
-      }
-    }
-
-    export interface ToolQueued {
-      ToolQueued: string;
-    }
-
-    export interface ToolFail {
-      ToolFail: string;
-    }
-
-    export interface InputParseFail {
-      InputParseFail: string;
-    }
-
-    export interface Success {
-      Success: string;
-    }
-  }
-}
-
 export interface LabelGetMessagesParams {
   uuid?: string | null;
 }
@@ -629,17 +440,26 @@ export namespace LabelRunParams {
     dataset_name: string;
 
     /**
+     * Query param:
+     */
+    extraction_criterium: Array<LabelRunParams.Variant0.ExtractionCriterium>;
+
+    /**
      * Body param:
      */
     SECIngestor: LabelRunParams.Variant0.SecIngestor;
-
-    /**
-     * Query param:
-     */
-    custom_instruction?: string | null;
   }
 
   export namespace Variant0 {
+    /**
+     * It's an OR statement across these.
+     */
+    export interface ExtractionCriterium {
+      property_name: Array<string>;
+
+      table_name: string;
+    }
+
     export interface SecIngestor {
       accession_number?: string | null;
 
@@ -656,18 +476,27 @@ export namespace LabelRunParams {
     dataset_name: string;
 
     /**
+     * Query param:
+     */
+    extraction_criterium: Array<LabelRunParams.Variant1.ExtractionCriterium>;
+
+    /**
      * Body param: This is currently a very simple ingestor. It converts everything to
      * an image and processes them independently.
      */
     PDFIngestor: LabelRunParams.Variant1.PdfIngestor;
-
-    /**
-     * Query param:
-     */
-    custom_instruction?: string | null;
   }
 
   export namespace Variant1 {
+    /**
+     * It's an OR statement across these.
+     */
+    export interface ExtractionCriterium {
+      property_name: Array<string>;
+
+      table_name: string;
+    }
+
     /**
      * This is currently a very simple ingestor. It converts everything to an image and
      * processes them independently.
@@ -684,6 +513,11 @@ export namespace LabelRunParams {
     dataset_name: string;
 
     /**
+     * Query param:
+     */
+    extraction_criterium: Array<LabelRunParams.Variant2.ExtractionCriterium>;
+
+    /**
      * Body param: These are all the types for which we have an agent that is directly
      * capable of navigating. There should be a one to one mapping between them.
      */
@@ -691,14 +525,18 @@ export namespace LabelRunParams {
       | LabelRunParams.Variant2.TextDocument
       | LabelRunParams.Variant2.WebSearch
       | LabelRunParams.Variant2.ImageDocument;
-
-    /**
-     * Query param:
-     */
-    custom_instruction?: string | null;
   }
 
   export namespace Variant2 {
+    /**
+     * It's an OR statement across these.
+     */
+    export interface ExtractionCriterium {
+      property_name: Array<string>;
+
+      table_name: string;
+    }
+
     export interface TextDocument {
       TextDocument: TextDocument.TextDocument;
     }
@@ -719,11 +557,25 @@ export namespace LabelRunParams {
 
     export namespace WebSearch {
       export interface WebSearch {
-        conditioning_phrase: string;
+        /**
+         * It's an AND between all of these.
+         */
+        extraction_criterium: Array<WebSearch.ExtractionCriterium>;
 
         use_local_browser: boolean;
 
         starting_website?: string | null;
+      }
+
+      export namespace WebSearch {
+        /**
+         * It's an OR statement across these.
+         */
+        export interface ExtractionCriterium {
+          property_name: Array<string>;
+
+          table_name: string;
+        }
       }
     }
 
@@ -897,11 +749,9 @@ export namespace LabelSubmitParams {
 }
 
 export namespace Label {
-  export import LabelUpdateResponse = LabelAPI.LabelUpdateResponse;
   export import LabelGetMessagesResponse = LabelAPI.LabelGetMessagesResponse;
   export import LabelLlmAssistResponse = LabelAPI.LabelLlmAssistResponse;
   export import LabelSubmitResponse = LabelAPI.LabelSubmitResponse;
-  export import LabelUpdateParams = LabelAPI.LabelUpdateParams;
   export import LabelGetMessagesParams = LabelAPI.LabelGetMessagesParams;
   export import LabelRunParams = LabelAPI.LabelRunParams;
   export import LabelSubmitParams = LabelAPI.LabelSubmitParams;

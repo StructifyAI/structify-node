@@ -24,9 +24,9 @@ export class Structure extends APIResource {
    * Returns a token that can be waited on until the request is finished.
    */
   runAsync(params: StructureRunAsyncParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
-    const { dataset_name, custom_instruction, ...body } = params;
+    const { dataset_name, extraction_criterium, ...body } = params;
     return this._client.post('/structure/run_async', {
-      query: { dataset_name, custom_instruction },
+      query: { dataset_name, extraction_criterium },
       body,
       ...options,
     });
@@ -58,17 +58,26 @@ export namespace StructureRunAsyncParams {
     dataset_name: string;
 
     /**
+     * Query param:
+     */
+    extraction_criterium: Array<StructureRunAsyncParams.Variant0.ExtractionCriterium>;
+
+    /**
      * Body param:
      */
     SECIngestor: StructureRunAsyncParams.Variant0.SecIngestor;
-
-    /**
-     * Query param:
-     */
-    custom_instruction?: string | null;
   }
 
   export namespace Variant0 {
+    /**
+     * It's an OR statement across these.
+     */
+    export interface ExtractionCriterium {
+      property_name: Array<string>;
+
+      table_name: string;
+    }
+
     export interface SecIngestor {
       accession_number?: string | null;
 
@@ -85,18 +94,27 @@ export namespace StructureRunAsyncParams {
     dataset_name: string;
 
     /**
+     * Query param:
+     */
+    extraction_criterium: Array<StructureRunAsyncParams.Variant1.ExtractionCriterium>;
+
+    /**
      * Body param: This is currently a very simple ingestor. It converts everything to
      * an image and processes them independently.
      */
     PDFIngestor: StructureRunAsyncParams.Variant1.PdfIngestor;
-
-    /**
-     * Query param:
-     */
-    custom_instruction?: string | null;
   }
 
   export namespace Variant1 {
+    /**
+     * It's an OR statement across these.
+     */
+    export interface ExtractionCriterium {
+      property_name: Array<string>;
+
+      table_name: string;
+    }
+
     /**
      * This is currently a very simple ingestor. It converts everything to an image and
      * processes them independently.
@@ -113,6 +131,11 @@ export namespace StructureRunAsyncParams {
     dataset_name: string;
 
     /**
+     * Query param:
+     */
+    extraction_criterium: Array<StructureRunAsyncParams.Variant2.ExtractionCriterium>;
+
+    /**
      * Body param: These are all the types for which we have an agent that is directly
      * capable of navigating. There should be a one to one mapping between them.
      */
@@ -120,14 +143,18 @@ export namespace StructureRunAsyncParams {
       | StructureRunAsyncParams.Variant2.TextDocument
       | StructureRunAsyncParams.Variant2.WebSearch
       | StructureRunAsyncParams.Variant2.ImageDocument;
-
-    /**
-     * Query param:
-     */
-    custom_instruction?: string | null;
   }
 
   export namespace Variant2 {
+    /**
+     * It's an OR statement across these.
+     */
+    export interface ExtractionCriterium {
+      property_name: Array<string>;
+
+      table_name: string;
+    }
+
     export interface TextDocument {
       TextDocument: TextDocument.TextDocument;
     }
@@ -148,11 +175,25 @@ export namespace StructureRunAsyncParams {
 
     export namespace WebSearch {
       export interface WebSearch {
-        conditioning_phrase: string;
+        /**
+         * It's an AND between all of these.
+         */
+        extraction_criterium: Array<WebSearch.ExtractionCriterium>;
 
         use_local_browser: boolean;
 
         starting_website?: string | null;
+      }
+
+      export namespace WebSearch {
+        /**
+         * It's an OR statement across these.
+         */
+        export interface ExtractionCriterium {
+          property_name: Array<string>;
+
+          table_name: string;
+        }
       }
     }
 
