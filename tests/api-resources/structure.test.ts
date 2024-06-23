@@ -43,9 +43,9 @@ describe('resource structure', () => {
     const responsePromise = structify.structure.runAsync({
       dataset_name: 'string',
       extraction_criterium: [
-        { property_name: ['string', 'string', 'string'], table_name: 'string' },
-        { property_name: ['string', 'string', 'string'], table_name: 'string' },
-        { property_name: ['string', 'string', 'string'], table_name: 'string' },
+        { property_names: ['string', 'string', 'string'], table_name: 'string' },
+        { property_names: ['string', 'string', 'string'], table_name: 'string' },
+        { property_names: ['string', 'string', 'string'], table_name: 'string' },
       ],
       SECIngestor: {},
     });
@@ -62,9 +62,9 @@ describe('resource structure', () => {
     const response = await structify.structure.runAsync({
       dataset_name: 'string',
       extraction_criterium: [
-        { property_name: ['string', 'string', 'string'], table_name: 'string' },
-        { property_name: ['string', 'string', 'string'], table_name: 'string' },
-        { property_name: ['string', 'string', 'string'], table_name: 'string' },
+        { property_names: ['string', 'string', 'string'], table_name: 'string' },
+        { property_names: ['string', 'string', 'string'], table_name: 'string' },
+        { property_names: ['string', 'string', 'string'], table_name: 'string' },
       ],
       SECIngestor: { accession_number: 'string', quarter: 0, year: 0 },
     });
