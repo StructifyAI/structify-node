@@ -52,10 +52,8 @@ export class Label extends APIResource {
   /**
    * Returns a token that can be waited on until the request is finished.
    */
-  run(params: LabelRunParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { dataset_name, extraction_criterium, ...body } = params;
+  run(body: LabelRunParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/label/run_async', {
-      query: { dataset_name, extraction_criterium },
       body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
@@ -632,20 +630,7 @@ export type LabelRunParams = LabelRunParams.Variant0 | LabelRunParams.Variant1 |
 
 export namespace LabelRunParams {
   export interface Variant0 {
-    /**
-     * Query param:
-     */
-    dataset_name: string;
-
-    /**
-     * Body param:
-     */
     SECIngestor: LabelRunParams.Variant0.SecIngestor;
-
-    /**
-     * Query param:
-     */
-    extraction_criterium?: Array<LabelRunParams.Variant0.ExtractionCriterium> | null;
   }
 
   export namespace Variant0 {
@@ -656,33 +641,14 @@ export namespace LabelRunParams {
 
       year?: number | null;
     }
-
-    /**
-     * It's an OR statement across these.
-     */
-    export interface ExtractionCriterium {
-      property_names: Array<string>;
-
-      table_name: string;
-    }
   }
 
   export interface Variant1 {
     /**
-     * Query param:
-     */
-    dataset_name: string;
-
-    /**
-     * Body param: This is currently a very simple ingestor. It converts everything to
-     * an image and processes them independently.
+     * This is currently a very simple ingestor. It converts everything to an image and
+     * processes them independently.
      */
     PDFIngestor: LabelRunParams.Variant1.PdfIngestor;
-
-    /**
-     * Query param:
-     */
-    extraction_criterium?: Array<LabelRunParams.Variant1.ExtractionCriterium> | null;
   }
 
   export namespace Variant1 {
@@ -693,36 +659,17 @@ export namespace LabelRunParams {
     export interface PdfIngestor {
       path: string;
     }
-
-    /**
-     * It's an OR statement across these.
-     */
-    export interface ExtractionCriterium {
-      property_names: Array<string>;
-
-      table_name: string;
-    }
   }
 
   export interface Variant2 {
     /**
-     * Query param:
-     */
-    dataset_name: string;
-
-    /**
-     * Body param: These are all the types for which we have an agent that is directly
-     * capable of navigating. There should be a one to one mapping between them.
+     * These are all the types for which we have an agent that is directly capable of
+     * navigating. There should be a one to one mapping between them.
      */
     Basic:
       | LabelRunParams.Variant2.TextDocument
       | LabelRunParams.Variant2.WebSearch
       | LabelRunParams.Variant2.ImageDocument;
-
-    /**
-     * Query param:
-     */
-    extraction_criterium?: Array<LabelRunParams.Variant2.ExtractionCriterium> | null;
   }
 
   export namespace Variant2 {
@@ -778,15 +725,6 @@ export namespace LabelRunParams {
 
         document_name: string;
       }
-    }
-
-    /**
-     * It's an OR statement across these.
-     */
-    export interface ExtractionCriterium {
-      property_names: Array<string>;
-
-      table_name: string;
     }
   }
 }
