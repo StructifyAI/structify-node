@@ -24,11 +24,9 @@ export {
   Structure,
 } from './structure';
 export {
-  LabelUpdateResponse,
   LabelGetMessagesResponse,
   LabelLlmAssistResponse,
   LabelSubmitResponse,
-  LabelUpdateParams,
   LabelGetMessagesParams,
   LabelRunParams,
   LabelSubmitParams,
