@@ -236,7 +236,7 @@ export namespace RunGetResponse {
          * It's an OR statement across these.
          */
         export interface ExtractionCriterium {
-          property_name: Array<string>;
+          property_names: Array<string>;
 
           table_name: string;
         }
