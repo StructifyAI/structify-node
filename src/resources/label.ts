@@ -626,14 +626,32 @@ export interface LabelGetMessagesParams {
   uuid?: string | null;
 }
 
-export type LabelRunParams = LabelRunParams.Variant0 | LabelRunParams.Variant1 | LabelRunParams.Variant2;
+export interface LabelRunParams {
+  dataset_name: string;
+
+  extraction_criterium: Array<LabelRunParams.ExtractionCriterium>;
+
+  /**
+   * These are all the types that can be converted into a BasicInputType
+   */
+  structure_input: LabelRunParams.SecIngestor | LabelRunParams.PdfIngestor | LabelRunParams.Basic;
+}
 
 export namespace LabelRunParams {
-  export interface Variant0 {
-    SECIngestor: LabelRunParams.Variant0.SecIngestor;
+  /**
+   * It's an OR statement across these.
+   */
+  export interface ExtractionCriterium {
+    property_names: Array<string>;
+
+    table_name: string;
   }
 
-  export namespace Variant0 {
+  export interface SecIngestor {
+    SECIngestor: SecIngestor.SecIngestor;
+  }
+
+  export namespace SecIngestor {
     export interface SecIngestor {
       accession_number?: string | null;
 
@@ -643,15 +661,15 @@ export namespace LabelRunParams {
     }
   }
 
-  export interface Variant1 {
+  export interface PdfIngestor {
     /**
      * This is currently a very simple ingestor. It converts everything to an image and
      * processes them independently.
      */
-    PDFIngestor: LabelRunParams.Variant1.PdfIngestor;
+    PDFIngestor: PdfIngestor.PdfIngestor;
   }
 
-  export namespace Variant1 {
+  export namespace PdfIngestor {
     /**
      * This is currently a very simple ingestor. It converts everything to an image and
      * processes them independently.
@@ -661,18 +679,15 @@ export namespace LabelRunParams {
     }
   }
 
-  export interface Variant2 {
+  export interface Basic {
     /**
      * These are all the types for which we have an agent that is directly capable of
      * navigating. There should be a one to one mapping between them.
      */
-    Basic:
-      | LabelRunParams.Variant2.TextDocument
-      | LabelRunParams.Variant2.WebSearch
-      | LabelRunParams.Variant2.ImageDocument;
+    Basic: Basic.TextDocument | Basic.WebSearch | Basic.ImageDocument;
   }
 
-  export namespace Variant2 {
+  export namespace Basic {
     export interface TextDocument {
       TextDocument: TextDocument.TextDocument;
     }
