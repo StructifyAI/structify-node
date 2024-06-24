@@ -94,8 +94,8 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/structure.ts">AgentStep</a></code>
 - <code><a href="./src/resources/structure.ts">ChatPrompt</a></code>
-- <code><a href="./src/resources/structure.ts">ExecutionStep</a></code>
 - <code><a href="./src/resources/structure.ts">IsComplete</a></code>
 - <code><a href="./src/resources/structure.ts">StructureJobStatusResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureRunAsyncResponse</a></code>
