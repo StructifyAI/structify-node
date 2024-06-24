@@ -1,4 +1,4 @@
-import { APIClient } from 'structify/core';
+import { APIClient } from 'structifyai/core';
 
 const { stringifyQuery } = APIClient.prototype as any;
 
