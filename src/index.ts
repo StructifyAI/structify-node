@@ -242,6 +242,7 @@ export namespace Structify {
   export import SourceListParams = API.SourceListParams;
 
   export import Structure = API.Structure;
+  export import ChatPrompt = API.ChatPrompt;
   export import ExecutionStep = API.ExecutionStep;
   export import IsComplete = API.IsComplete;
   export import StructureJobStatusResponse = API.StructureJobStatusResponse;
