@@ -52,10 +52,8 @@ export class Label extends APIResource {
   /**
    * Returns a token that can be waited on until the request is finished.
    */
-  run(params: LabelRunParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { dataset_name, custom_instruction, ...body } = params;
+  run(body: LabelRunParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/label/run_async', {
-      query: { dataset_name, custom_instruction },
       body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
@@ -349,8 +347,6 @@ export namespace LabelGetMessagesResponse {
             }
 
             export interface Metadata {
-              conditioning_prompt: string;
-
               /**
                * A dataset is where you put multiple referential schemas.
                *
@@ -360,6 +356,8 @@ export namespace LabelGetMessagesResponse {
               dataset_descriptor: DatasetsAPI.DatasetDescriptor;
 
               extracted_entities: Array<Metadata.ExtractedEntity>;
+
+              extraction_criteria: Array<Metadata.ExtractionCriterion>;
 
               tool_metadata: Array<Metadata.ToolMetadata>;
 
@@ -397,6 +395,18 @@ export namespace LabelGetMessagesResponse {
 
                   type: string;
                 }
+              }
+
+              /**
+               * It's an OR statement across these.
+               */
+              export interface ExtractionCriterion {
+                property_names: Array<string>;
+
+                /**
+                 * Vec<ExtractionCriteria> = it has to meet every one.
+                 */
+                table_name: string;
               }
 
               export interface ToolMetadata {
@@ -634,8 +644,6 @@ export namespace LabelGetMessagesResponse {
     }
 
     export interface Metadata {
-      conditioning_prompt: string;
-
       /**
        * A dataset is where you put multiple referential schemas.
        *
@@ -645,6 +653,8 @@ export namespace LabelGetMessagesResponse {
       dataset_descriptor: DatasetsAPI.DatasetDescriptor;
 
       extracted_entities: Array<Metadata.ExtractedEntity>;
+
+      extraction_criteria: Array<Metadata.ExtractionCriterion>;
 
       tool_metadata: Array<Metadata.ToolMetadata>;
 
@@ -682,6 +692,18 @@ export namespace LabelGetMessagesResponse {
 
           type: string;
         }
+      }
+
+      /**
+       * It's an OR statement across these.
+       */
+      export interface ExtractionCriterion {
+        property_names: Array<string>;
+
+        /**
+         * Vec<ExtractionCriteria> = it has to meet every one.
+         */
+        table_name: string;
       }
 
       export interface ToolMetadata {
@@ -1054,97 +1076,116 @@ export interface LabelGetMessagesParams {
   uuid?: string | null;
 }
 
-export type LabelRunParams = LabelRunParams.Variant0 | LabelRunParams.Variant1 | LabelRunParams.Variant2;
+export interface LabelRunParams {
+  dataset_name: string;
+
+  /**
+   * These are all the types that can be converted into a BasicInputType
+   */
+  structure_input: LabelRunParams.SecIngestor | LabelRunParams.PdfIngestor | LabelRunParams.Basic;
+}
 
 export namespace LabelRunParams {
-  export interface Variant0 {
-    /**
-     * Query param:
-     */
-    dataset_name: string;
-
-    /**
-     * Body param:
-     */
-    SECIngestor: LabelRunParams.Variant0.SecIngestor;
-
-    /**
-     * Query param:
-     */
-    custom_instruction?: string | null;
+  export interface SecIngestor {
+    SECIngestor: SecIngestor.SecIngestor;
   }
 
-  export namespace Variant0 {
+  export namespace SecIngestor {
     export interface SecIngestor {
+      extraction_criteria: Array<SecIngestor.ExtractionCriterion>;
+
       accession_number?: string | null;
 
       quarter?: number | null;
 
       year?: number | null;
     }
+
+    export namespace SecIngestor {
+      /**
+       * It's an OR statement across these.
+       */
+      export interface ExtractionCriterion {
+        property_names: Array<string>;
+
+        /**
+         * Vec<ExtractionCriteria> = it has to meet every one.
+         */
+        table_name: string;
+      }
+    }
   }
 
-  export interface Variant1 {
+  export interface PdfIngestor {
     /**
-     * Query param:
+     * This is currently a very simple ingestor. It converts everything to an image and
+     * processes them independently.
      */
-    dataset_name: string;
-
-    /**
-     * Body param: This is currently a very simple ingestor. It converts everything to
-     * an image and processes them independently.
-     */
-    PDFIngestor: LabelRunParams.Variant1.PdfIngestor;
-
-    /**
-     * Query param:
-     */
-    custom_instruction?: string | null;
+    PDFIngestor: PdfIngestor.PdfIngestor;
   }
 
-  export namespace Variant1 {
+  export namespace PdfIngestor {
     /**
      * This is currently a very simple ingestor. It converts everything to an image and
      * processes them independently.
      */
     export interface PdfIngestor {
+      extraction_criteria: Array<PdfIngestor.ExtractionCriterion>;
+
       path: string;
+    }
+
+    export namespace PdfIngestor {
+      /**
+       * It's an OR statement across these.
+       */
+      export interface ExtractionCriterion {
+        property_names: Array<string>;
+
+        /**
+         * Vec<ExtractionCriteria> = it has to meet every one.
+         */
+        table_name: string;
+      }
     }
   }
 
-  export interface Variant2 {
+  export interface Basic {
     /**
-     * Query param:
+     * These are all the types for which we have an agent that is directly capable of
+     * navigating. There should be a one to one mapping between them.
      */
-    dataset_name: string;
-
-    /**
-     * Body param: These are all the types for which we have an agent that is directly
-     * capable of navigating. There should be a one to one mapping between them.
-     */
-    Basic:
-      | LabelRunParams.Variant2.TextDocument
-      | LabelRunParams.Variant2.WebSearch
-      | LabelRunParams.Variant2.ImageDocument;
-
-    /**
-     * Query param:
-     */
-    custom_instruction?: string | null;
+    Basic: Basic.TextDocument | Basic.WebSearch | Basic.ImageDocument;
   }
 
-  export namespace Variant2 {
+  export namespace Basic {
     export interface TextDocument {
       TextDocument: TextDocument.TextDocument;
     }
 
     export namespace TextDocument {
       export interface TextDocument {
+        extraction_criteria: Array<TextDocument.ExtractionCriterion>;
+
         content?: string | null;
 
         filepath?: string | null;
 
         save?: boolean;
+      }
+
+      export namespace TextDocument {
+        /**
+         * It's an OR statement across these.
+         */
+        export interface ExtractionCriterion {
+          property_names: Array<string>;
+
+          /**
+           * Vec<ExtractionCriteria> = it has to meet every one.
+           */
+          table_name: string;
+        }
       }
     }
 
@@ -1154,11 +1195,25 @@ export namespace LabelRunParams {
 
     export namespace WebSearch {
       export interface WebSearch {
-        conditioning_phrase: string;
+        extraction_criteria: Array<WebSearch.ExtractionCriterion>;
 
         use_local_browser: boolean;
 
         starting_website?: string | null;
+      }
+
+      export namespace WebSearch {
+        /**
+         * It's an OR statement across these.
+         */
+        export interface ExtractionCriterion {
+          property_names: Array<string>;
+
+          /**
+           * Vec<ExtractionCriteria> = it has to meet every one.
+           */
+          table_name: string;
+        }
       }
     }
 
@@ -1171,6 +1226,22 @@ export namespace LabelRunParams {
         content: Uploadable;
 
         document_name: string;
+
+        extraction_criteria: Array<ImageDocument.ExtractionCriterion>;
+      }
+
+      export namespace ImageDocument {
+        /**
+         * It's an OR statement across these.
+         */
+        export interface ExtractionCriterion {
+          property_names: Array<string>;
+
+          /**
+           * Vec<ExtractionCriteria> = it has to meet every one.
+           */
+          table_name: string;
+        }
       }
     }
   }

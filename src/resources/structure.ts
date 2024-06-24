@@ -23,13 +23,8 @@ export class Structure extends APIResource {
   /**
    * Returns a token that can be waited on until the request is finished.
    */
-  runAsync(params: StructureRunAsyncParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
-    const { dataset_name, custom_instruction, ...body } = params;
-    return this._client.post('/structure/run_async', {
-      query: { dataset_name, custom_instruction },
-      body,
-      ...options,
-    });
+  runAsync(body: StructureRunAsyncParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+    return this._client.post('/structure/run_async', { body, ...options });
   }
 }
 
@@ -45,100 +40,119 @@ export type StructureIsCompleteParams = Array<string>;
 
 export type StructureJobStatusParams = Array<string>;
 
-export type StructureRunAsyncParams =
-  | StructureRunAsyncParams.Variant0
-  | StructureRunAsyncParams.Variant1
-  | StructureRunAsyncParams.Variant2;
+export interface StructureRunAsyncParams {
+  dataset_name: string;
+
+  /**
+   * These are all the types that can be converted into a BasicInputType
+   */
+  structure_input:
+    | StructureRunAsyncParams.SecIngestor
+    | StructureRunAsyncParams.PdfIngestor
+    | StructureRunAsyncParams.Basic;
+}
 
 export namespace StructureRunAsyncParams {
-  export interface Variant0 {
-    /**
-     * Query param:
-     */
-    dataset_name: string;
-
-    /**
-     * Body param:
-     */
-    SECIngestor: StructureRunAsyncParams.Variant0.SecIngestor;
-
-    /**
-     * Query param:
-     */
-    custom_instruction?: string | null;
+  export interface SecIngestor {
+    SECIngestor: SecIngestor.SecIngestor;
   }
 
-  export namespace Variant0 {
+  export namespace SecIngestor {
     export interface SecIngestor {
+      extraction_criteria: Array<SecIngestor.ExtractionCriterion>;
+
       accession_number?: string | null;
 
       quarter?: number | null;
 
       year?: number | null;
     }
+
+    export namespace SecIngestor {
+      /**
+       * It's an OR statement across these.
+       */
+      export interface ExtractionCriterion {
+        property_names: Array<string>;
+
+        /**
+         * Vec<ExtractionCriteria> = it has to meet every one.
+         */
+        table_name: string;
+      }
+    }
   }
 
-  export interface Variant1 {
+  export interface PdfIngestor {
     /**
-     * Query param:
+     * This is currently a very simple ingestor. It converts everything to an image and
+     * processes them independently.
      */
-    dataset_name: string;
-
-    /**
-     * Body param: This is currently a very simple ingestor. It converts everything to
-     * an image and processes them independently.
-     */
-    PDFIngestor: StructureRunAsyncParams.Variant1.PdfIngestor;
-
-    /**
-     * Query param:
-     */
-    custom_instruction?: string | null;
+    PDFIngestor: PdfIngestor.PdfIngestor;
   }
 
-  export namespace Variant1 {
+  export namespace PdfIngestor {
     /**
      * This is currently a very simple ingestor. It converts everything to an image and
      * processes them independently.
      */
     export interface PdfIngestor {
+      extraction_criteria: Array<PdfIngestor.ExtractionCriterion>;
+
       path: string;
+    }
+
+    export namespace PdfIngestor {
+      /**
+       * It's an OR statement across these.
+       */
+      export interface ExtractionCriterion {
+        property_names: Array<string>;
+
+        /**
+         * Vec<ExtractionCriteria> = it has to meet every one.
+         */
+        table_name: string;
+      }
     }
   }
 
-  export interface Variant2 {
+  export interface Basic {
     /**
-     * Query param:
+     * These are all the types for which we have an agent that is directly capable of
+     * navigating. There should be a one to one mapping between them.
      */
-    dataset_name: string;
-
-    /**
-     * Body param: These are all the types for which we have an agent that is directly
-     * capable of navigating. There should be a one to one mapping between them.
-     */
-    Basic:
-      | StructureRunAsyncParams.Variant2.TextDocument
-      | StructureRunAsyncParams.Variant2.WebSearch
-      | StructureRunAsyncParams.Variant2.ImageDocument;
-
-    /**
-     * Query param:
-     */
-    custom_instruction?: string | null;
+    Basic: Basic.TextDocument | Basic.WebSearch | Basic.ImageDocument;
   }
 
-  export namespace Variant2 {
+  export namespace Basic {
     export interface TextDocument {
       TextDocument: TextDocument.TextDocument;
     }
 
     export namespace TextDocument {
       export interface TextDocument {
+        extraction_criteria: Array<TextDocument.ExtractionCriterion>;
+
         content?: string | null;
 
         filepath?: string | null;
 
         save?: boolean;
+      }
+
+      export namespace TextDocument {
+        /**
+         * It's an OR statement across these.
+         */
+        export interface ExtractionCriterion {
+          property_names: Array<string>;
+
+          /**
+           * Vec<ExtractionCriteria> = it has to meet every one.
+           */
+          table_name: string;
+        }
       }
     }
 
@@ -148,11 +162,25 @@ export namespace StructureRunAsyncParams {
 
     export namespace WebSearch {
       export interface WebSearch {
-        conditioning_phrase: string;
+        extraction_criteria: Array<WebSearch.ExtractionCriterion>;
 
         use_local_browser: boolean;
 
         starting_website?: string | null;
+      }
+
+      export namespace WebSearch {
+        /**
+         * It's an OR statement across these.
+         */
+        export interface ExtractionCriterion {
+          property_names: Array<string>;
+
+          /**
+           * Vec<ExtractionCriteria> = it has to meet every one.
+           */
+          table_name: string;
+        }
       }
     }
 
@@ -165,6 +193,22 @@ export namespace StructureRunAsyncParams {
         content: Uploadable;
 
         document_name: string;
+
+        extraction_criteria: Array<ImageDocument.ExtractionCriterion>;
+      }
+
+      export namespace ImageDocument {
+        /**
+         * It's an OR statement across these.
+         */
+        export interface ExtractionCriterion {
+          property_names: Array<string>;
+
+          /**
+           * Vec<ExtractionCriteria> = it has to meet every one.
+           */
+          table_name: string;
+        }
       }
     }
   }
