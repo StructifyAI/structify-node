@@ -39,5 +39,5 @@ export {
 export { NewToken, UserInfo, User } from './user';
 export { RunListResponse, RunDeleteResponse, RunCancelResponse, RunGetResponse, Runs } from './runs';
 export { ServerInformation, Server } from './server';
-export { SourceListResponse, SourceListParams, Sources } from './sources';
+export { Source, SourceListResponse, SourceListParams, Sources } from './sources';
 export { UsageGetJobInfoResponse, UsageGetJobInfoParams, Usage } from './usage';
