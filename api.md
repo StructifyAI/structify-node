@@ -84,6 +84,7 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/sources.ts">Source</a></code>
 - <code><a href="./src/resources/sources.ts">SourceListResponse</a></code>
 
 Methods:

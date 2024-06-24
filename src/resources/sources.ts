@@ -13,15 +13,9 @@ export class Sources extends APIResource {
   }
 }
 
-export interface SourceListResponse {
-  extra_properties: Record<string, string | null | boolean | null | number | null>;
+export type Source = Source.Web | Source.Document | 'None';
 
-  link: SourceListResponse.Web | SourceListResponse.Document | 'None';
-
-  location: SourceListResponse.Text | SourceListResponse.Visual | 'None';
-}
-
-export namespace SourceListResponse {
+export namespace Source {
   export interface Web {
     Web: Web.Web;
   }
@@ -41,7 +35,17 @@ export namespace SourceListResponse {
       name: string;
     }
   }
+}
 
+export interface SourceListResponse {
+  extra_properties: Record<string, string | null | boolean | null | number | null>;
+
+  link: Source;
+
+  location: SourceListResponse.Text | SourceListResponse.Visual | 'None';
+}
+
+export namespace SourceListResponse {
   export interface Text {
     Text: Text.Text;
   }
@@ -73,6 +77,7 @@ export interface SourceListParams {
 }
 
 export namespace Sources {
+  export import Source = SourcesAPI.Source;
   export import SourceListResponse = SourcesAPI.SourceListResponse;
   export import SourceListParams = SourcesAPI.SourceListParams;
 }
