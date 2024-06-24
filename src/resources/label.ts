@@ -194,7 +194,6 @@ export namespace LabelGetMessagesResponse {
       run_id: string;
 
       user_email: string;
-
       history?: HumanLlmMetadata.History | null;
     }
 

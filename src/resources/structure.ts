@@ -110,6 +110,7 @@ export namespace StructureRunAsyncParams {
         property_names: Array<string>;
 
         /**
+
          * Vec<ExtractionCriteria> = it has to meet every one.
          */
         table_name: string;
