@@ -53,7 +53,7 @@ export interface RunCancelResponse {
 export interface RunGetResponse {
   date: string;
 
-  steps: Array<StructureAPI.ExecutionStep>;
+  steps: Array<StructureAPI.AgentStep>;
 
   /**
    * Used to identify this history
