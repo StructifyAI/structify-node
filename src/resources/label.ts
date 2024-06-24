@@ -4,7 +4,7 @@ import * as Core from '../core';
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as LabelAPI from './label';
-import * as StructureAPI from './structure';
+import * as DatasetsAPI from './datasets';
 import { type Uploadable } from '../core';
 
 export class Label extends APIResource {
@@ -52,8 +52,10 @@ export class Label extends APIResource {
   /**
    * Returns a token that can be waited on until the request is finished.
    */
-  run(body: LabelRunParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  run(params: LabelRunParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { dataset_name, custom_instruction, ...body } = params;
     return this._client.post('/label/run_async', {
+      query: { dataset_name, custom_instruction },
       body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
@@ -75,7 +77,7 @@ export class Label extends APIResource {
 export type LabelUpdateResponse = string;
 
 export interface LabelGetMessagesResponse {
-  chat: StructureAPI.ChatPrompt;
+  chat: LabelGetMessagesResponse.Chat;
 
   run_id: string;
 
@@ -194,6 +196,7 @@ export namespace LabelGetMessagesResponse {
       run_id: string;
 
       user_email: string;
+
       history?: HumanLlmMetadata.History | null;
     }
 
@@ -214,6 +217,8 @@ export namespace LabelGetMessagesResponse {
           prompt: Step.Prompt;
 
           response: Step.Response;
+
+          uuid: string;
         }
 
         export namespace Step {
@@ -357,7 +362,7 @@ export namespace LabelGetMessagesResponse {
               extracted_entities: Array<Metadata.ExtractedEntity>;
 
               extraction_criteria: Array<Metadata.ExtractionCriterion>;
-
+          
               tool_metadata: Array<Metadata.ToolMetadata>;
 
               screenshot?: Uploadable | null;
@@ -891,32 +896,27 @@ export namespace LabelLlmAssistResponse {
 
 export type LabelSubmitResponse = string;
 
-export type LabelUpdateParams = Array<LabelUpdateParams.StepUpdate>;
+export type LabelUpdateParams = Array<LabelUpdateParams.Body>;
 
 export namespace LabelUpdateParams {
-  export interface StepUpdate {
+  export interface Body {
     input:
-      | StepUpdate.Save
-      | StepUpdate.Scroll
-      | StepUpdate.Exit
-      | StepUpdate.Click
-      | StepUpdate.Hover
-      | StepUpdate.Wait
-      | StepUpdate.Error
-      | StepUpdate.Google
-      | StepUpdate.Type;
+      | Body.Save
+      | Body.Scroll
+      | Body.Exit
+      | Body.Click
+      | Body.Hover
+      | Body.Wait
+      | Body.Error
+      | Body.Google
+      | Body.Type;
 
     name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
 
-    result?:
-      | StepUpdate.ToolQueued
-      | StepUpdate.ToolFail
-      | StepUpdate.InputParseFail
-      | StepUpdate.Success
-      | null;
+    result?: Body.ToolQueued | Body.ToolFail | Body.InputParseFail | Body.Success | null;
   }
 
-  export namespace StepUpdate {
+  export namespace Body {
     export interface Save {
       /**
        * Knowledge graph info structured to deserialize and display in the same format
@@ -1080,24 +1080,28 @@ export interface LabelGetMessagesParams {
   uuid?: string | null;
 }
 
-export interface LabelRunParams {
-  dataset_name: string;
-
-  /**
-   * These are all the types that can be converted into a BasicInputType
-   */
-  structure_input: LabelRunParams.SecIngestor | LabelRunParams.PdfIngestor | LabelRunParams.Basic;
-}
+export type LabelRunParams = LabelRunParams.Variant0 | LabelRunParams.Variant1 | LabelRunParams.Variant2;
 
 export namespace LabelRunParams {
-  export interface SecIngestor {
-    SECIngestor: SecIngestor.SecIngestor;
+  export interface Variant0 {
+    /**
+     * Query param:
+     */
+    dataset_name: string;
+
+    /**
+     * Body param:
+     */
+    SECIngestor: LabelRunParams.Variant0.SecIngestor;
+
+    /**
+     * Query param:
+     */
+    custom_instruction?: string | null;
   }
 
-  export namespace SecIngestor {
+  export namespace Variant0 {
     export interface SecIngestor {
-      extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
-
       accession_number?: string | null;
 
       quarter?: number | null;
@@ -1106,43 +1110,62 @@ export namespace LabelRunParams {
     }
   }
 
-  export interface PdfIngestor {
+  export interface Variant1 {
     /**
-     * This is currently a very simple ingestor. It converts everything to an image and
-     * processes them independently.
+     * Query param:
      */
-    PDFIngestor: PdfIngestor.PdfIngestor;
+    dataset_name: string;
+
+    /**
+     * Body param: This is currently a very simple ingestor. It converts everything to
+     * an image and processes them independently.
+     */
+    PDFIngestor: LabelRunParams.Variant1.PdfIngestor;
+
+    /**
+     * Query param:
+     */
+    custom_instruction?: string | null;
   }
 
-  export namespace PdfIngestor {
+  export namespace Variant1 {
     /**
      * This is currently a very simple ingestor. It converts everything to an image and
      * processes them independently.
      */
     export interface PdfIngestor {
-      extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
-
       path: string;
     }
   }
 
-  export interface Basic {
+  export interface Variant2 {
     /**
-     * These are all the types for which we have an agent that is directly capable of
-     * navigating. There should be a one to one mapping between them.
+     * Query param:
      */
-    Basic: Basic.TextDocument | Basic.WebSearch | Basic.ImageDocument;
+    dataset_name: string;
+
+    /**
+     * Body param: These are all the types for which we have an agent that is directly
+     * capable of navigating. There should be a one to one mapping between them.
+     */
+    Basic:
+      | LabelRunParams.Variant2.TextDocument
+      | LabelRunParams.Variant2.WebSearch
+      | LabelRunParams.Variant2.ImageDocument;
+
+    /**
+     * Query param:
+     */
+    custom_instruction?: string | null;
   }
 
-  export namespace Basic {
+  export namespace Variant2 {
     export interface TextDocument {
       TextDocument: TextDocument.TextDocument;
     }
 
     export namespace TextDocument {
       export interface TextDocument {
-        extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
-
         content?: string | null;
 
         filepath?: string | null;
@@ -1157,7 +1180,7 @@ export namespace LabelRunParams {
 
     export namespace WebSearch {
       export interface WebSearch {
-        extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+        conditioning_phrase: string;
 
         use_local_browser: boolean;
 
@@ -1174,8 +1197,6 @@ export namespace LabelRunParams {
         content: Uploadable;
 
         document_name: string;
-
-        extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
       }
     }
   }

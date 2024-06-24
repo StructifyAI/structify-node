@@ -3,7 +3,10 @@
 import * as Core from '../core';
 import { APIResource } from '../resource';
 import * as RunsAPI from './runs';
+<<<<<<< generated--merge-conflict
+=======
 import * as StructureAPI from './structure';
+>>>>>>> next--merge-conflict
 import * as DatasetsAPI from './datasets';
 import { type Uploadable } from '../core';
 
@@ -38,17 +41,6 @@ export class Runs extends APIResource {
   get(uuid: string, options?: Core.RequestOptions): Core.APIPromise<RunGetResponse> {
     return this._client.get(`/runs/get/${uuid}`, options);
   }
-
-  /**
-   * One example use case is every single day check the news websites and pull them
-   * into my dataset.
-   */
-  schedule(options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/runs/schedule', {
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
 }
 
 export type RunListResponse = Array<string>;
@@ -64,7 +56,7 @@ export interface RunCancelResponse {
 export interface RunGetResponse {
   date: string;
 
-  steps: Array<StructureAPI.ExecutionStep>;
+  steps: Array<RunGetResponse.Step>;
 
   /**
    * Used to identify this history
@@ -77,6 +69,11 @@ export namespace RunGetResponse {
     prompt: Step.Prompt;
 
     response: Step.Response;
+<<<<<<< generated--merge-conflict
+
+    uuid: string;
+=======
+>>>>>>> next--merge-conflict
   }
 
   export namespace Step {
@@ -191,9 +188,32 @@ export namespace RunGetResponse {
         run_id: string;
 
         user_email: string;
+<<<<<<< generated--merge-conflict
+
+        history?: HumanLlmMetadata.History | null;
+      }
+
+      export namespace HumanLlmMetadata {
+        export interface History {
+          date: string;
+
+          steps: Array<unknown>;
+
+          /**
+           * Used to identify this history
+           */
+          uuid: string;
+        }
       }
 
       export interface Metadata {
+        conditioning_prompt: string;
+
+=======
+      }
+
+      export interface Metadata {
+>>>>>>> next--merge-conflict
         /**
          * A dataset is where you put multiple referential schemas.
          *
@@ -204,8 +224,11 @@ export namespace RunGetResponse {
 
         extracted_entities: Array<Metadata.ExtractedEntity>;
 
+<<<<<<< generated--merge-conflict
+=======
         extraction_criteria: Array<Metadata.ExtractionCriterion>;
 
+>>>>>>> next--merge-conflict
         tool_metadata: Array<Metadata.ToolMetadata>;
 
         screenshot?: Uploadable | null;
@@ -244,6 +267,8 @@ export namespace RunGetResponse {
           }
         }
 
+<<<<<<< generated--merge-conflict
+=======
         /**
          * It's an OR statement across these.
          */
@@ -256,6 +281,7 @@ export namespace RunGetResponse {
           table_name: string;
         }
 
+>>>>>>> next--merge-conflict
         export interface ToolMetadata {
           description: string;
 
