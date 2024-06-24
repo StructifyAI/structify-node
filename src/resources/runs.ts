@@ -4,6 +4,8 @@ import * as Core from '../core';
 import { APIResource } from '../resource';
 import * as RunsAPI from './runs';
 import * as StructureAPI from './structure';
+import * as DatasetsAPI from './datasets';
+import { type Uploadable } from '../core';
 
 export class Runs extends APIResource {
   /**
