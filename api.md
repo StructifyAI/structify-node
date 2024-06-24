@@ -69,6 +69,7 @@ Methods:
 - <code title="post /runs/delete/{uuid}">client.runs.<a href="./src/resources/runs.ts">delete</a>(uuid) -> string</code>
 - <code title="post /runs/cancel/{uuid}">client.runs.<a href="./src/resources/runs.ts">cancel</a>(uuid) -> RunCancelResponse</code>
 - <code title="get /runs/get/{uuid}">client.runs.<a href="./src/resources/runs.ts">get</a>(uuid) -> RunGetResponse</code>
+- <code title="post /runs/schedule">client.runs.<a href="./src/resources/runs.ts">schedule</a>() -> void</code>
 
 # Server
 
@@ -95,8 +96,9 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/structure.ts">AgentStep</a></code>
 - <code><a href="./src/resources/structure.ts">ChatPrompt</a></code>
+- <code><a href="./src/resources/structure.ts">ExecutionStep</a></code>
+- <code><a href="./src/resources/structure.ts">ExtractionCriteria</a></code>
 - <code><a href="./src/resources/structure.ts">IsComplete</a></code>
 - <code><a href="./src/resources/structure.ts">StructureJobStatusResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureRunAsyncResponse</a></code>
