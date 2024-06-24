@@ -196,7 +196,10 @@ export namespace LabelGetMessagesResponse {
       run_id: string;
 
       user_email: string;
+<<<<<<< generated--merge-conflict
 
+=======
+>>>>>>> next--merge-conflict
       history?: HumanLlmMetadata.History | null;
     }
 
@@ -204,7 +207,11 @@ export namespace LabelGetMessagesResponse {
       export interface History {
         date: string;
 
+<<<<<<< generated--merge-conflict
         steps: Array<History.Step>;
+=======
+        steps: Array<StructureAPI.ExecutionStep>;
+>>>>>>> next--merge-conflict
 
         /**
          * Used to identify this history
@@ -217,8 +224,11 @@ export namespace LabelGetMessagesResponse {
           prompt: Step.Prompt;
 
           response: Step.Response;
+<<<<<<< generated--merge-conflict
 
           uuid: string;
+=======
+>>>>>>> next--merge-conflict
         }
 
         export namespace Step {
@@ -351,8 +361,11 @@ export namespace LabelGetMessagesResponse {
             }
 
             export interface Metadata {
+<<<<<<< generated--merge-conflict
               conditioning_prompt: string;
 
+=======
+>>>>>>> next--merge-conflict
               /**
                * A dataset is where you put multiple referential schemas.
                *
@@ -363,6 +376,11 @@ export namespace LabelGetMessagesResponse {
 
               extracted_entities: Array<Metadata.ExtractedEntity>;
 
+<<<<<<< generated--merge-conflict
+=======
+              extraction_criteria: Array<Metadata.ExtractionCriterion>;
+
+>>>>>>> next--merge-conflict
               tool_metadata: Array<Metadata.ToolMetadata>;
 
               screenshot?: Uploadable | null;
@@ -401,6 +419,21 @@ export namespace LabelGetMessagesResponse {
                 }
               }
 
+<<<<<<< generated--merge-conflict
+=======
+              /**
+               * It's an OR statement across these.
+               */
+              export interface ExtractionCriterion {
+                property_names: Array<string>;
+
+                /**
+                 * Vec<ExtractionCriteria> = it has to meet every one.
+                 */
+                table_name: string;
+              }
+
+>>>>>>> next--merge-conflict
               export interface ToolMetadata {
                 description: string;
 
@@ -636,8 +669,11 @@ export namespace LabelGetMessagesResponse {
     }
 
     export interface Metadata {
+<<<<<<< generated--merge-conflict
       conditioning_prompt: string;
 
+=======
+>>>>>>> next--merge-conflict
       /**
        * A dataset is where you put multiple referential schemas.
        *
@@ -648,6 +684,11 @@ export namespace LabelGetMessagesResponse {
 
       extracted_entities: Array<Metadata.ExtractedEntity>;
 
+<<<<<<< generated--merge-conflict
+=======
+      extraction_criteria: Array<Metadata.ExtractionCriterion>;
+
+>>>>>>> next--merge-conflict
       tool_metadata: Array<Metadata.ToolMetadata>;
 
       screenshot?: Uploadable | null;
@@ -686,6 +727,21 @@ export namespace LabelGetMessagesResponse {
         }
       }
 
+<<<<<<< generated--merge-conflict
+=======
+      /**
+       * It's an OR statement across these.
+       */
+      export interface ExtractionCriterion {
+        property_names: Array<string>;
+
+        /**
+         * Vec<ExtractionCriteria> = it has to meet every one.
+         */
+        table_name: string;
+      }
+
+>>>>>>> next--merge-conflict
       export interface ToolMetadata {
         description: string;
 

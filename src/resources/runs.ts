@@ -3,6 +3,10 @@
 import * as Core from '../core';
 import { APIResource } from '../resource';
 import * as RunsAPI from './runs';
+<<<<<<< generated--merge-conflict
+=======
+import * as StructureAPI from './structure';
+>>>>>>> next--merge-conflict
 import * as DatasetsAPI from './datasets';
 import { type Uploadable } from '../core';
 
@@ -65,8 +69,11 @@ export namespace RunGetResponse {
     prompt: Step.Prompt;
 
     response: Step.Response;
+<<<<<<< generated--merge-conflict
 
     uuid: string;
+=======
+>>>>>>> next--merge-conflict
   }
 
   export namespace Step {
@@ -181,6 +188,7 @@ export namespace RunGetResponse {
         run_id: string;
 
         user_email: string;
+<<<<<<< generated--merge-conflict
 
         history?: HumanLlmMetadata.History | null;
       }
@@ -201,6 +209,11 @@ export namespace RunGetResponse {
       export interface Metadata {
         conditioning_prompt: string;
 
+=======
+      }
+
+      export interface Metadata {
+>>>>>>> next--merge-conflict
         /**
          * A dataset is where you put multiple referential schemas.
          *
@@ -211,6 +224,11 @@ export namespace RunGetResponse {
 
         extracted_entities: Array<Metadata.ExtractedEntity>;
 
+<<<<<<< generated--merge-conflict
+=======
+        extraction_criteria: Array<Metadata.ExtractionCriterion>;
+
+>>>>>>> next--merge-conflict
         tool_metadata: Array<Metadata.ToolMetadata>;
 
         screenshot?: Uploadable | null;
@@ -249,6 +267,21 @@ export namespace RunGetResponse {
           }
         }
 
+<<<<<<< generated--merge-conflict
+=======
+        /**
+         * It's an OR statement across these.
+         */
+        export interface ExtractionCriterion {
+          property_names: Array<string>;
+
+          /**
+           * Vec<ExtractionCriteria> = it has to meet every one.
+           */
+          table_name: string;
+        }
+
+>>>>>>> next--merge-conflict
         export interface ToolMetadata {
           description: string;
 
