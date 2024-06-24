@@ -9,9 +9,9 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
-      "structify/_shims/auto/*": ["src/_shims/auto/*-node"],
-      "structify/*": ["src/*"],
-      "structify": ["src/index.ts"],
+      "structifyai/_shims/auto/*": ["src/_shims/auto/*-node"],
+      "structifyai/*": ["src/*"],
+      "structifyai": ["src/index.ts"],
     },
     "noEmit": true,
 
