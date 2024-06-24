@@ -239,27 +239,32 @@ export namespace LabelLlmAssistResponse {
 
 export type LabelSubmitResponse = string;
 
-export type LabelUpdateParams = Array<LabelUpdateParams.Body>;
+export type LabelUpdateParams = Array<LabelUpdateParams.StepUpdate>;
 
 export namespace LabelUpdateParams {
-  export interface Body {
+  export interface StepUpdate {
     input:
-      | Body.Save
-      | Body.Scroll
-      | Body.Exit
-      | Body.Click
-      | Body.Hover
-      | Body.Wait
-      | Body.Error
-      | Body.Google
-      | Body.Type;
+      | StepUpdate.Save
+      | StepUpdate.Scroll
+      | StepUpdate.Exit
+      | StepUpdate.Click
+      | StepUpdate.Hover
+      | StepUpdate.Wait
+      | StepUpdate.Error
+      | StepUpdate.Google
+      | StepUpdate.Type;
 
     name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
 
-    result?: Body.ToolQueued | Body.ToolFail | Body.InputParseFail | Body.Success | null;
+    result?:
+      | StepUpdate.ToolQueued
+      | StepUpdate.ToolFail
+      | StepUpdate.InputParseFail
+      | StepUpdate.Success
+      | null;
   }
 
-  export namespace Body {
+  export namespace StepUpdate {
     export interface Save {
       /**
        * Knowledge graph info structured to deserialize and display in the same format
