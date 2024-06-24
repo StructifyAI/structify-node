@@ -29,232 +29,232 @@ export class Structure extends APIResource {
   }
 }
 
+export interface ChatPrompt {
+  decoding_params: ChatPrompt.DecodingParams;
+
+  messages: Array<ChatPrompt.Message>;
+
+  human_llm_metadata?: ChatPrompt.HumanLlmMetadata | null;
+
+  metadata?: ChatPrompt.Metadata | null;
+}
+
+export namespace ChatPrompt {
+  export interface DecodingParams {
+    parameters: Array<
+      | DecodingParams.MaxTokens
+      | DecodingParams.TopP
+      | DecodingParams.RepeatWindow
+      | DecodingParams.RepeatPenalty
+      | DecodingParams.Temperature
+      | DecodingParams.StopTokens
+      | DecodingParams.Functions
+      | DecodingParams.JsonValidator
+      | DecodingParams.RegexValidator
+      | DecodingParams.ContextFreeeGrammar
+      | DecodingParams.Crop
+    >;
+  }
+
+  export namespace DecodingParams {
+    export interface MaxTokens {
+      MaxTokens: number;
+    }
+
+    export interface TopP {
+      TopP: number;
+    }
+
+    export interface RepeatWindow {
+      RepeatWindow: number;
+    }
+
+    export interface RepeatPenalty {
+      RepeatPenalty: number;
+    }
+
+    export interface Temperature {
+      Temperature: number;
+    }
+
+    export interface StopTokens {
+      StopTokens: Array<string>;
+    }
+
+    export interface Functions {
+      Functions: Array<unknown>;
+    }
+
+    export interface JsonValidator {
+      JsonValidator: unknown;
+    }
+
+    export interface RegexValidator {
+      RegexValidator: string;
+    }
+
+    export interface ContextFreeeGrammar {
+      ContextFreeeGrammar: string;
+    }
+
+    export interface Crop {
+      Crop: boolean;
+    }
+  }
+
+  /**
+   * Our generic definition of a message to a chat agent.
+   */
+  export interface Message {
+    /**
+     * We want this to be a vec of contents so we can accurately capture an
+     * interleaving of images and text.
+     *
+     * This is meant to be a completely raw, unprocessed representation of the text.
+     * Don't take stuff out.
+     */
+    content: Array<Message.Text | Message.Image>;
+
+    role: 'user' | 'system' | 'assistant';
+  }
+
+  export namespace Message {
+    export interface Text {
+      Text: string;
+    }
+
+    export interface Image {
+      Image: Uploadable;
+    }
+  }
+
+  export interface HumanLlmMetadata {
+    /**
+     * A dataset is where you put multiple referential schemas.
+     *
+     * A dataset is a complete namespace where all references between schemas are held
+     * within the dataset.
+     */
+    descriptor: DatasetsAPI.DatasetDescriptor;
+
+    run_id: string;
+
+    user_email: string;
+
+    history?: HumanLlmMetadata.History | null;
+  }
+
+  export namespace HumanLlmMetadata {
+    export interface History {
+      date: string;
+
+      steps: Array<StructureAPI.ExecutionStep>;
+
+      /**
+       * Used to identify this history
+       */
+      uuid: string;
+    }
+  }
+
+  export interface Metadata {
+    /**
+     * A dataset is where you put multiple referential schemas.
+     *
+     * A dataset is a complete namespace where all references between schemas are held
+     * within the dataset.
+     */
+    dataset_descriptor: DatasetsAPI.DatasetDescriptor;
+
+    extracted_entities: Array<Metadata.ExtractedEntity>;
+
+    extraction_criteria: Array<Metadata.ExtractionCriterion>;
+
+    tool_metadata: Array<Metadata.ToolMetadata>;
+
+    screenshot?: Uploadable | null;
+
+    url?: string | null;
+
+    web_flags?: Array<Metadata.WebFlag> | null;
+  }
+
+  export namespace Metadata {
+    /**
+     * Knowledge graph info structured to deserialize and display in the same format
+     * that the LLM outputs.
+     */
+    export interface ExtractedEntity {
+      entities?: Array<ExtractedEntity.Entity>;
+
+      relationships?: Array<ExtractedEntity.Relationship>;
+    }
+
+    export namespace ExtractedEntity {
+      export interface Entity {
+        id: number;
+
+        properties: Record<string, string>;
+
+        type: string;
+      }
+
+      export interface Relationship {
+        source: number;
+
+        target: number;
+
+        type: string;
+      }
+    }
+
+    /**
+     * It's an OR statement across these.
+     */
+    export interface ExtractionCriterion {
+      property_names: Array<string>;
+
+      /**
+       * Vec<ExtractionCriteria> = it has to meet every one.
+       */
+      table_name: string;
+    }
+
+    export interface ToolMetadata {
+      description: string;
+
+      name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
+
+      regex_validator: string;
+
+      tool_validator: unknown;
+    }
+
+    export interface WebFlag {
+      ariaLabel: string;
+
+      height: number;
+
+      text: string;
+
+      type: string;
+
+      width: number;
+
+      x: number;
+
+      y: number;
+    }
+  }
+}
+
 export interface ExecutionStep {
-  prompt: ExecutionStep.Prompt;
+  prompt: ChatPrompt;
 
   response: ExecutionStep.Response;
 }
 
 export namespace ExecutionStep {
-  export interface Prompt {
-    decoding_params: Prompt.DecodingParams;
-
-    messages: Array<Prompt.Message>;
-
-    human_llm_metadata?: Prompt.HumanLlmMetadata | null;
-
-    metadata?: Prompt.Metadata | null;
-  }
-
-  export namespace Prompt {
-    export interface DecodingParams {
-      parameters: Array<
-        | DecodingParams.MaxTokens
-        | DecodingParams.TopP
-        | DecodingParams.RepeatWindow
-        | DecodingParams.RepeatPenalty
-        | DecodingParams.Temperature
-        | DecodingParams.StopTokens
-        | DecodingParams.Functions
-        | DecodingParams.JsonValidator
-        | DecodingParams.RegexValidator
-        | DecodingParams.ContextFreeeGrammar
-        | DecodingParams.Crop
-      >;
-    }
-
-    export namespace DecodingParams {
-      export interface MaxTokens {
-        MaxTokens: number;
-      }
-
-      export interface TopP {
-        TopP: number;
-      }
-
-      export interface RepeatWindow {
-        RepeatWindow: number;
-      }
-
-      export interface RepeatPenalty {
-        RepeatPenalty: number;
-      }
-
-      export interface Temperature {
-        Temperature: number;
-      }
-
-      export interface StopTokens {
-        StopTokens: Array<string>;
-      }
-
-      export interface Functions {
-        Functions: Array<unknown>;
-      }
-
-      export interface JsonValidator {
-        JsonValidator: unknown;
-      }
-
-      export interface RegexValidator {
-        RegexValidator: string;
-      }
-
-      export interface ContextFreeeGrammar {
-        ContextFreeeGrammar: string;
-      }
-
-      export interface Crop {
-        Crop: boolean;
-      }
-    }
-
-    /**
-     * Our generic definition of a message to a chat agent.
-     */
-    export interface Message {
-      /**
-       * We want this to be a vec of contents so we can accurately capture an
-       * interleaving of images and text.
-       *
-       * This is meant to be a completely raw, unprocessed representation of the text.
-       * Don't take stuff out.
-       */
-      content: Array<Message.Text | Message.Image>;
-
-      role: 'user' | 'system' | 'assistant';
-    }
-
-    export namespace Message {
-      export interface Text {
-        Text: string;
-      }
-
-      export interface Image {
-        Image: Uploadable;
-      }
-    }
-
-    export interface HumanLlmMetadata {
-      /**
-       * A dataset is where you put multiple referential schemas.
-       *
-       * A dataset is a complete namespace where all references between schemas are held
-       * within the dataset.
-       */
-      descriptor: DatasetsAPI.DatasetDescriptor;
-
-      run_id: string;
-
-      user_email: string;
-
-      history?: HumanLlmMetadata.History | null;
-    }
-
-    export namespace HumanLlmMetadata {
-      export interface History {
-        date: string;
-
-        steps: Array<StructureAPI.ExecutionStep>;
-
-        /**
-         * Used to identify this history
-         */
-        uuid: string;
-      }
-    }
-
-    export interface Metadata {
-      /**
-       * A dataset is where you put multiple referential schemas.
-       *
-       * A dataset is a complete namespace where all references between schemas are held
-       * within the dataset.
-       */
-      dataset_descriptor: DatasetsAPI.DatasetDescriptor;
-
-      extracted_entities: Array<Metadata.ExtractedEntity>;
-
-      extraction_criteria: Array<Metadata.ExtractionCriterion>;
-
-      tool_metadata: Array<Metadata.ToolMetadata>;
-
-      screenshot?: Uploadable | null;
-
-      url?: string | null;
-
-      web_flags?: Array<Metadata.WebFlag> | null;
-    }
-
-    export namespace Metadata {
-      /**
-       * Knowledge graph info structured to deserialize and display in the same format
-       * that the LLM outputs.
-       */
-      export interface ExtractedEntity {
-        entities?: Array<ExtractedEntity.Entity>;
-
-        relationships?: Array<ExtractedEntity.Relationship>;
-      }
-
-      export namespace ExtractedEntity {
-        export interface Entity {
-          id: number;
-
-          properties: Record<string, string>;
-
-          type: string;
-        }
-
-        export interface Relationship {
-          source: number;
-
-          target: number;
-
-          type: string;
-        }
-      }
-
-      /**
-       * It's an OR statement across these.
-       */
-      export interface ExtractionCriterion {
-        property_names: Array<string>;
-
-        /**
-         * Vec<ExtractionCriteria> = it has to meet every one.
-         */
-        table_name: string;
-      }
-
-      export interface ToolMetadata {
-        description: string;
-
-        name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
-
-        regex_validator: string;
-
-        tool_validator: unknown;
-      }
-
-      export interface WebFlag {
-        ariaLabel: string;
-
-        height: number;
-
-        text: string;
-
-        type: string;
-
-        width: number;
-
-        x: number;
-
-        y: number;
-      }
-    }
-  }
-
   export interface Response {
     completion_tokens: number;
 
@@ -642,6 +642,7 @@ export namespace StructureRunAsyncParams {
 }
 
 export namespace Structure {
+  export import ChatPrompt = StructureAPI.ChatPrompt;
   export import ExecutionStep = StructureAPI.ExecutionStep;
   export import IsComplete = StructureAPI.IsComplete;
   export import StructureJobStatusResponse = StructureAPI.StructureJobStatusResponse;
