@@ -204,7 +204,7 @@ export namespace LabelGetMessagesResponse {
       export interface History {
         date: string;
 
-        steps: Array<StructureAPI.ExecutionStep>;
+        steps: Array<History.Step>;
 
         /**
          * Used to identify this history
@@ -351,6 +351,8 @@ export namespace LabelGetMessagesResponse {
             }
 
             export interface Metadata {
+              conditioning_prompt: string;
+
               /**
                * A dataset is where you put multiple referential schemas.
                *
@@ -361,8 +363,6 @@ export namespace LabelGetMessagesResponse {
 
               extracted_entities: Array<Metadata.ExtractedEntity>;
 
-              extraction_criteria: Array<Metadata.ExtractionCriterion>;
-          
               tool_metadata: Array<Metadata.ToolMetadata>;
 
               screenshot?: Uploadable | null;
@@ -399,18 +399,6 @@ export namespace LabelGetMessagesResponse {
 
                   type: string;
                 }
-              }
-
-              /**
-               * It's an OR statement across these.
-               */
-              export interface ExtractionCriterion {
-                property_names: Array<string>;
-
-                /**
-                 * Vec<ExtractionCriteria> = it has to meet every one.
-                 */
-                table_name: string;
               }
 
               export interface ToolMetadata {
@@ -648,6 +636,8 @@ export namespace LabelGetMessagesResponse {
     }
 
     export interface Metadata {
+      conditioning_prompt: string;
+
       /**
        * A dataset is where you put multiple referential schemas.
        *
@@ -657,8 +647,6 @@ export namespace LabelGetMessagesResponse {
       dataset_descriptor: DatasetsAPI.DatasetDescriptor;
 
       extracted_entities: Array<Metadata.ExtractedEntity>;
-
-      extraction_criteria: Array<Metadata.ExtractionCriterion>;
 
       tool_metadata: Array<Metadata.ToolMetadata>;
 
@@ -696,18 +684,6 @@ export namespace LabelGetMessagesResponse {
 
           type: string;
         }
-      }
-
-      /**
-       * It's an OR statement across these.
-       */
-      export interface ExtractionCriterion {
-        property_names: Array<string>;
-
-        /**
-         * Vec<ExtractionCriteria> = it has to meet every one.
-         */
-        table_name: string;
       }
 
       export interface ToolMetadata {
