@@ -76,7 +76,7 @@ export namespace StructureRunAsyncParams {
         property_names: Array<string>;
 
         /**
-         * Vec<ExtractionCriterium> = it has to meet every one.
+         * Vec<ExtractionCriteria> = it has to meet every one.
          */
         table_name: string;
       }
@@ -110,7 +110,8 @@ export namespace StructureRunAsyncParams {
         property_names: Array<string>;
 
         /**
-         * Vec<ExtractionCriterium> = it has to meet every one.
+
+         * Vec<ExtractionCriteria> = it has to meet every one.
          */
         table_name: string;
       }
@@ -149,7 +150,7 @@ export namespace StructureRunAsyncParams {
           property_names: Array<string>;
 
           /**
-           * Vec<ExtractionCriterium> = it has to meet every one.
+           * Vec<ExtractionCriteria> = it has to meet every one.
            */
           table_name: string;
         }
@@ -177,7 +178,7 @@ export namespace StructureRunAsyncParams {
           property_names: Array<string>;
 
           /**
-           * Vec<ExtractionCriterium> = it has to meet every one.
+           * Vec<ExtractionCriteria> = it has to meet every one.
            */
           table_name: string;
         }
@@ -205,7 +206,7 @@ export namespace StructureRunAsyncParams {
           property_names: Array<string>;
 
           /**
-           * Vec<ExtractionCriterium> = it has to meet every one.
+           * Vec<ExtractionCriteria> = it has to meet every one.
            */
           table_name: string;
         }
