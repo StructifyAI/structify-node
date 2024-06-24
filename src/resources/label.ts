@@ -52,8 +52,10 @@ export class Label extends APIResource {
   /**
    * Returns a token that can be waited on until the request is finished.
    */
-  run(body: LabelRunParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  run(params: LabelRunParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { dataset_name, custom_instruction, ...body } = params;
     return this._client.post('/label/run_async', {
+      query: { dataset_name, custom_instruction },
       body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
@@ -194,9 +196,446 @@ export namespace LabelGetMessagesResponse {
       run_id: string;
 
       user_email: string;
+
+      history?: HumanLlmMetadata.History | null;
+    }
+
+    export namespace HumanLlmMetadata {
+      export interface History {
+        date: string;
+
+        steps: Array<History.Step>;
+
+        /**
+         * Used to identify this history
+         */
+        uuid: string;
+      }
+
+      export namespace History {
+        export interface Step {
+          prompt: Step.Prompt;
+
+          response: Step.Response;
+        }
+
+        export namespace Step {
+          export interface Prompt {
+            decoding_params: Prompt.DecodingParams;
+
+            messages: Array<Prompt.Message>;
+
+            human_llm_metadata?: Prompt.HumanLlmMetadata | null;
+
+            metadata?: Prompt.Metadata | null;
+          }
+
+          export namespace Prompt {
+            export interface DecodingParams {
+              parameters: Array<
+                | DecodingParams.MaxTokens
+                | DecodingParams.TopP
+                | DecodingParams.RepeatWindow
+                | DecodingParams.RepeatPenalty
+                | DecodingParams.Temperature
+                | DecodingParams.StopTokens
+                | DecodingParams.Functions
+                | DecodingParams.JsonValidator
+                | DecodingParams.RegexValidator
+                | DecodingParams.ContextFreeeGrammar
+                | DecodingParams.Crop
+              >;
+            }
+
+            export namespace DecodingParams {
+              export interface MaxTokens {
+                MaxTokens: number;
+              }
+
+              export interface TopP {
+                TopP: number;
+              }
+
+              export interface RepeatWindow {
+                RepeatWindow: number;
+              }
+
+              export interface RepeatPenalty {
+                RepeatPenalty: number;
+              }
+
+              export interface Temperature {
+                Temperature: number;
+              }
+
+              export interface StopTokens {
+                StopTokens: Array<string>;
+              }
+
+              export interface Functions {
+                Functions: Array<unknown>;
+              }
+
+              export interface JsonValidator {
+                JsonValidator: unknown;
+              }
+
+              export interface RegexValidator {
+                RegexValidator: string;
+              }
+
+              export interface ContextFreeeGrammar {
+                ContextFreeeGrammar: string;
+              }
+
+              export interface Crop {
+                Crop: boolean;
+              }
+            }
+
+            /**
+             * Our generic definition of a message to a chat agent.
+             */
+            export interface Message {
+              /**
+               * We want this to be a vec of contents so we can accurately capture an
+               * interleaving of images and text.
+               *
+               * This is meant to be a completely raw, unprocessed representation of the text.
+               * Don't take stuff out.
+               */
+              content: Array<Message.Text | Message.Image>;
+
+              role: 'user' | 'system' | 'assistant';
+            }
+
+            export namespace Message {
+              export interface Text {
+                Text: string;
+              }
+
+              export interface Image {
+                Image: Uploadable;
+              }
+            }
+
+            export interface HumanLlmMetadata {
+              /**
+               * A dataset is where you put multiple referential schemas.
+               *
+               * A dataset is a complete namespace where all references between schemas are held
+               * within the dataset.
+               */
+              descriptor: DatasetsAPI.DatasetDescriptor;
+
+              run_id: string;
+
+              user_email: string;
+
+              history?: HumanLlmMetadata.History | null;
+            }
+
+            export namespace HumanLlmMetadata {
+              export interface History {
+                date: string;
+
+                steps: Array<unknown>;
+
+                /**
+                 * Used to identify this history
+                 */
+                uuid: string;
+              }
+            }
+
+            export interface Metadata {
+              conditioning_prompt: string;
+
+              /**
+               * A dataset is where you put multiple referential schemas.
+               *
+               * A dataset is a complete namespace where all references between schemas are held
+               * within the dataset.
+               */
+              dataset_descriptor: DatasetsAPI.DatasetDescriptor;
+
+              extracted_entities: Array<Metadata.ExtractedEntity>;
+
+              tool_metadata: Array<Metadata.ToolMetadata>;
+
+              screenshot?: Uploadable | null;
+
+              url?: string | null;
+
+              web_flags?: Array<Metadata.WebFlag> | null;
+            }
+
+            export namespace Metadata {
+              /**
+               * Knowledge graph info structured to deserialize and display in the same format
+               * that the LLM outputs.
+               */
+              export interface ExtractedEntity {
+                entities?: Array<ExtractedEntity.Entity>;
+
+                relationships?: Array<ExtractedEntity.Relationship>;
+              }
+
+              export namespace ExtractedEntity {
+                export interface Entity {
+                  id: number;
+
+                  properties: Record<string, string>;
+
+                  type: string;
+                }
+
+                export interface Relationship {
+                  source: number;
+
+                  target: number;
+
+                  type: string;
+                }
+              }
+
+              export interface ToolMetadata {
+                description: string;
+
+                name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
+
+                regex_validator: string;
+
+                tool_validator: unknown;
+              }
+
+              export interface WebFlag {
+                ariaLabel: string;
+
+                height: number;
+
+                text: string;
+
+                type: string;
+
+                width: number;
+
+                x: number;
+
+                y: number;
+              }
+            }
+          }
+
+          export interface Response {
+            completion_tokens: number;
+
+            /**
+             * Cost in dollars
+             */
+            cost: number;
+
+            llm: string;
+
+            /**
+             * New tokens
+             */
+            prompt_tokens: number;
+
+            text: string;
+
+            tool_calls: Array<Response.ToolCall>;
+          }
+
+          export namespace Response {
+            export interface ToolCall {
+              input:
+                | ToolCall.Save
+                | ToolCall.Scroll
+                | ToolCall.Exit
+                | ToolCall.Click
+                | ToolCall.Hover
+                | ToolCall.Wait
+                | ToolCall.Error
+                | ToolCall.Google
+                | ToolCall.Type;
+
+              name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
+
+              result?:
+                | ToolCall.ToolQueued
+                | ToolCall.ToolFail
+                | ToolCall.InputParseFail
+                | ToolCall.Success
+                | null;
+            }
+
+            export namespace ToolCall {
+              export interface Save {
+                /**
+                 * Knowledge graph info structured to deserialize and display in the same format
+                 * that the LLM outputs.
+                 */
+                Save: Save.Save;
+              }
+
+              export namespace Save {
+                /**
+                 * Knowledge graph info structured to deserialize and display in the same format
+                 * that the LLM outputs.
+                 */
+                export interface Save {
+                  entities?: Array<Save.Entity>;
+
+                  relationships?: Array<Save.Relationship>;
+                }
+
+                export namespace Save {
+                  export interface Entity {
+                    id: number;
+
+                    properties: Record<string, string>;
+
+                    type: string;
+                  }
+
+                  export interface Relationship {
+                    source: number;
+
+                    target: number;
+
+                    type: string;
+                  }
+                }
+              }
+
+              export interface Scroll {
+                /**
+                 * For tools with no inputs.
+                 */
+                Scroll: Scroll.Scroll;
+              }
+
+              export namespace Scroll {
+                /**
+                 * For tools with no inputs.
+                 */
+                export interface Scroll {
+                  /**
+                   * OpenAI Requires an argument, so we put a dummy one here.
+                   */
+                  reason: string;
+                }
+              }
+
+              export interface Exit {
+                /**
+                 * For tools with no inputs.
+                 */
+                Exit: Exit.Exit;
+              }
+
+              export namespace Exit {
+                /**
+                 * For tools with no inputs.
+                 */
+                export interface Exit {
+                  /**
+                   * OpenAI Requires an argument, so we put a dummy one here.
+                   */
+                  reason: string;
+                }
+              }
+
+              export interface Click {
+                Click: Click.Click;
+              }
+
+              export namespace Click {
+                export interface Click {
+                  flag: number;
+                }
+              }
+
+              export interface Hover {
+                Hover: Hover.Hover;
+              }
+
+              export namespace Hover {
+                export interface Hover {
+                  flag: number;
+                }
+              }
+
+              export interface Wait {
+                Wait: Wait.Wait;
+              }
+
+              export namespace Wait {
+                export interface Wait {
+                  /**
+                   * Time in seconds to wait
+                   */
+                  seconds: number;
+                }
+              }
+
+              export interface Error {
+                Error: Error.Error;
+              }
+
+              export namespace Error {
+                export interface Error {
+                  error: string;
+                }
+              }
+
+              export interface Google {
+                Google: Google.Google;
+              }
+
+              export namespace Google {
+                export interface Google {
+                  query: string;
+                }
+              }
+
+              export interface Type {
+                Type: Type.Type;
+              }
+
+              export namespace Type {
+                export interface Type {
+                  flag: number;
+
+                  input: string;
+                }
+              }
+
+              export interface ToolQueued {
+                ToolQueued: string;
+              }
+
+              export interface ToolFail {
+                ToolFail: string;
+              }
+
+              export interface InputParseFail {
+                InputParseFail: string;
+              }
+
+              export interface Success {
+                Success: string;
+              }
+            }
+          }
+        }
+      }
     }
 
     export interface Metadata {
+      conditioning_prompt: string;
+
       /**
        * A dataset is where you put multiple referential schemas.
        *
@@ -206,8 +645,6 @@ export namespace LabelGetMessagesResponse {
       dataset_descriptor: DatasetsAPI.DatasetDescriptor;
 
       extracted_entities: Array<Metadata.ExtractedEntity>;
-
-      extraction_criteria: Array<Metadata.ExtractionCriterion>;
 
       tool_metadata: Array<Metadata.ToolMetadata>;
 
@@ -245,18 +682,6 @@ export namespace LabelGetMessagesResponse {
 
           type: string;
         }
-      }
-
-      /**
-       * It's an OR statement across these.
-       */
-      export interface ExtractionCriterion {
-        property_names: Array<string>;
-
-        /**
-         * Vec<ExtractionCriterium> = it has to meet every one.
-         */
-        table_name: string;
       }
 
       export interface ToolMetadata {
@@ -629,116 +1054,97 @@ export interface LabelGetMessagesParams {
   uuid?: string | null;
 }
 
-export interface LabelRunParams {
-  dataset_name: string;
-
-  /**
-   * These are all the types that can be converted into a BasicInputType
-   */
-  structure_input: LabelRunParams.SecIngestor | LabelRunParams.PdfIngestor | LabelRunParams.Basic;
-}
+export type LabelRunParams = LabelRunParams.Variant0 | LabelRunParams.Variant1 | LabelRunParams.Variant2;
 
 export namespace LabelRunParams {
-  export interface SecIngestor {
-    SECIngestor: SecIngestor.SecIngestor;
+  export interface Variant0 {
+    /**
+     * Query param:
+     */
+    dataset_name: string;
+
+    /**
+     * Body param:
+     */
+    SECIngestor: LabelRunParams.Variant0.SecIngestor;
+
+    /**
+     * Query param:
+     */
+    custom_instruction?: string | null;
   }
 
-  export namespace SecIngestor {
+  export namespace Variant0 {
     export interface SecIngestor {
-      extraction_criteria: Array<SecIngestor.ExtractionCriterion>;
-
       accession_number?: string | null;
 
       quarter?: number | null;
 
       year?: number | null;
     }
-
-    export namespace SecIngestor {
-      /**
-       * It's an OR statement across these.
-       */
-      export interface ExtractionCriterion {
-        property_names: Array<string>;
-
-        /**
-         * Vec<ExtractionCriterium> = it has to meet every one.
-         */
-        table_name: string;
-      }
-    }
   }
 
-  export interface PdfIngestor {
+  export interface Variant1 {
     /**
-     * This is currently a very simple ingestor. It converts everything to an image and
-     * processes them independently.
+     * Query param:
      */
-    PDFIngestor: PdfIngestor.PdfIngestor;
+    dataset_name: string;
+
+    /**
+     * Body param: This is currently a very simple ingestor. It converts everything to
+     * an image and processes them independently.
+     */
+    PDFIngestor: LabelRunParams.Variant1.PdfIngestor;
+
+    /**
+     * Query param:
+     */
+    custom_instruction?: string | null;
   }
 
-  export namespace PdfIngestor {
+  export namespace Variant1 {
     /**
      * This is currently a very simple ingestor. It converts everything to an image and
      * processes them independently.
      */
     export interface PdfIngestor {
-      extraction_criteria: Array<PdfIngestor.ExtractionCriterion>;
-
       path: string;
     }
-
-    export namespace PdfIngestor {
-      /**
-       * It's an OR statement across these.
-       */
-      export interface ExtractionCriterion {
-        property_names: Array<string>;
-
-        /**
-         * Vec<ExtractionCriterium> = it has to meet every one.
-         */
-        table_name: string;
-      }
-    }
   }
 
-  export interface Basic {
+  export interface Variant2 {
     /**
-     * These are all the types for which we have an agent that is directly capable of
-     * navigating. There should be a one to one mapping between them.
+     * Query param:
      */
-    Basic: Basic.TextDocument | Basic.WebSearch | Basic.ImageDocument;
+    dataset_name: string;
+
+    /**
+     * Body param: These are all the types for which we have an agent that is directly
+     * capable of navigating. There should be a one to one mapping between them.
+     */
+    Basic:
+      | LabelRunParams.Variant2.TextDocument
+      | LabelRunParams.Variant2.WebSearch
+      | LabelRunParams.Variant2.ImageDocument;
+
+    /**
+     * Query param:
+     */
+    custom_instruction?: string | null;
   }
 
-  export namespace Basic {
+  export namespace Variant2 {
     export interface TextDocument {
       TextDocument: TextDocument.TextDocument;
     }
 
     export namespace TextDocument {
       export interface TextDocument {
-        extraction_criteria: Array<TextDocument.ExtractionCriterion>;
-
         content?: string | null;
 
         filepath?: string | null;
 
         save?: boolean;
-      }
-
-      export namespace TextDocument {
-        /**
-         * It's an OR statement across these.
-         */
-        export interface ExtractionCriterion {
-          property_names: Array<string>;
-
-          /**
-           * Vec<ExtractionCriterium> = it has to meet every one.
-           */
-          table_name: string;
-        }
       }
     }
 
@@ -748,25 +1154,11 @@ export namespace LabelRunParams {
 
     export namespace WebSearch {
       export interface WebSearch {
-        extraction_criteria: Array<WebSearch.ExtractionCriterion>;
+        conditioning_phrase: string;
 
         use_local_browser: boolean;
 
         starting_website?: string | null;
-      }
-
-      export namespace WebSearch {
-        /**
-         * It's an OR statement across these.
-         */
-        export interface ExtractionCriterion {
-          property_names: Array<string>;
-
-          /**
-           * Vec<ExtractionCriterium> = it has to meet every one.
-           */
-          table_name: string;
-        }
       }
     }
 
@@ -779,22 +1171,6 @@ export namespace LabelRunParams {
         content: Uploadable;
 
         document_name: string;
-
-        extraction_criteria: Array<ImageDocument.ExtractionCriterion>;
-      }
-
-      export namespace ImageDocument {
-        /**
-         * It's an OR statement across these.
-         */
-        export interface ExtractionCriterion {
-          property_names: Array<string>;
-
-          /**
-           * Vec<ExtractionCriterium> = it has to meet every one.
-           */
-          table_name: string;
-        }
       }
     }
   }
