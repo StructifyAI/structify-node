@@ -5,6 +5,7 @@ import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as LabelAPI from './label';
 import * as DatasetsAPI from './datasets';
+import * as StructureAPI from './structure';
 import { type Uploadable } from '../core';
 
 export class Label extends APIResource {
@@ -201,7 +202,7 @@ export namespace LabelGetMessagesResponse {
       export interface History {
         date: string;
 
-        steps: Array<History.Step>;
+        steps: Array<StructureAPI.ExecutionStep>;
 
         /**
          * Used to identify this history

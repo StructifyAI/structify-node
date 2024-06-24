@@ -3,6 +3,7 @@
 import * as Core from '../core';
 import { APIResource } from '../resource';
 import * as RunsAPI from './runs';
+import * as StructureAPI from './structure';
 import * as DatasetsAPI from './datasets';
 import { type Uploadable } from '../core';
 
@@ -52,7 +53,7 @@ export interface RunCancelResponse {
 export interface RunGetResponse {
   date: string;
 
-  steps: Array<RunGetResponse.Step>;
+  steps: Array<StructureAPI.ExecutionStep>;
 
   /**
    * Used to identify this history

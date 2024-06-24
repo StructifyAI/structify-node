@@ -15,6 +15,7 @@ export {
 } from './datasets';
 export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
 export {
+  ExecutionStep,
   IsComplete,
   StructureJobStatusResponse,
   StructureRunAsyncResponse,
