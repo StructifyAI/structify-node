@@ -2,8 +2,8 @@
 
 export { Admin } from './admin/admin';
 export {
+  AgentStep,
   ChatPrompt,
-  ExecutionStep,
   IsComplete,
   StructureJobStatusResponse,
   StructureRunAsyncResponse,
