@@ -84,6 +84,7 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/sources.ts">Source</a></code>
 - <code><a href="./src/resources/sources.ts">SourceListResponse</a></code>
 
 Methods:
@@ -94,6 +95,8 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/structure.ts">AgentStep</a></code>
+- <code><a href="./src/resources/structure.ts">ChatPrompt</a></code>
 - <code><a href="./src/resources/structure.ts">IsComplete</a></code>
 - <code><a href="./src/resources/structure.ts">StructureJobStatusResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureRunAsyncResponse</a></code>

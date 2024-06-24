@@ -2,6 +2,17 @@
 
 export { Admin } from './admin/admin';
 export {
+  AgentStep,
+  ChatPrompt,
+  IsComplete,
+  StructureJobStatusResponse,
+  StructureRunAsyncResponse,
+  StructureIsCompleteParams,
+  StructureJobStatusParams,
+  StructureRunAsyncParams,
+  Structure,
+} from './structure';
+export {
   Dataset,
   DatasetDescriptor,
   Entity,
@@ -14,15 +25,6 @@ export {
   Datasets,
 } from './datasets';
 export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
-export {
-  IsComplete,
-  StructureJobStatusResponse,
-  StructureRunAsyncResponse,
-  StructureIsCompleteParams,
-  StructureJobStatusParams,
-  StructureRunAsyncParams,
-  Structure,
-} from './structure';
 export {
   LabelUpdateResponse,
   LabelGetMessagesResponse,
@@ -37,5 +39,5 @@ export {
 export { NewToken, UserInfo, User } from './user';
 export { RunListResponse, RunDeleteResponse, RunCancelResponse, RunGetResponse, Runs } from './runs';
 export { ServerInformation, Server } from './server';
-export { SourceListResponse, SourceListParams, Sources } from './sources';
+export { Source, SourceListResponse, SourceListParams, Sources } from './sources';
 export { UsageGetJobInfoResponse, UsageGetJobInfoParams, Usage } from './usage';
