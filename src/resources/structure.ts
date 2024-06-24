@@ -23,8 +23,13 @@ export class Structure extends APIResource {
   /**
    * Returns a token that can be waited on until the request is finished.
    */
-  runAsync(body: StructureRunAsyncParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
-    return this._client.post('/structure/run_async', { body, ...options });
+  runAsync(params: StructureRunAsyncParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+    const { dataset_name, custom_instruction, ...body } = params;
+    return this._client.post('/structure/run_async', {
+      query: { dataset_name, custom_instruction },
+      body,
+      ...options,
+    });
   }
 }
 
@@ -40,35 +45,30 @@ export type StructureIsCompleteParams = Array<string>;
 
 export type StructureJobStatusParams = Array<string>;
 
-export interface StructureRunAsyncParams {
-  dataset_name: string;
-
-  extraction_criterium: Array<StructureRunAsyncParams.ExtractionCriterium>;
-
-  /**
-   * These are all the types that can be converted into a BasicInputType
-   */
-  structure_input:
-    | StructureRunAsyncParams.SecIngestor
-    | StructureRunAsyncParams.PdfIngestor
-    | StructureRunAsyncParams.Basic;
-}
+export type StructureRunAsyncParams =
+  | StructureRunAsyncParams.Variant0
+  | StructureRunAsyncParams.Variant1
+  | StructureRunAsyncParams.Variant2;
 
 export namespace StructureRunAsyncParams {
-  /**
-   * It's an OR statement across these.
-   */
-  export interface ExtractionCriterium {
-    property_names: Array<string>;
+  export interface Variant0 {
+    /**
+     * Query param:
+     */
+    dataset_name: string;
 
-    table_name: string;
+    /**
+     * Body param:
+     */
+    SECIngestor: StructureRunAsyncParams.Variant0.SecIngestor;
+
+    /**
+     * Query param:
+     */
+    custom_instruction?: string | null;
   }
 
-  export interface SecIngestor {
-    SECIngestor: SecIngestor.SecIngestor;
-  }
-
-  export namespace SecIngestor {
+  export namespace Variant0 {
     export interface SecIngestor {
       accession_number?: string | null;
 
@@ -78,15 +78,25 @@ export namespace StructureRunAsyncParams {
     }
   }
 
-  export interface PdfIngestor {
+  export interface Variant1 {
     /**
-     * This is currently a very simple ingestor. It converts everything to an image and
-     * processes them independently.
+     * Query param:
      */
-    PDFIngestor: PdfIngestor.PdfIngestor;
+    dataset_name: string;
+
+    /**
+     * Body param: This is currently a very simple ingestor. It converts everything to
+     * an image and processes them independently.
+     */
+    PDFIngestor: StructureRunAsyncParams.Variant1.PdfIngestor;
+
+    /**
+     * Query param:
+     */
+    custom_instruction?: string | null;
   }
 
-  export namespace PdfIngestor {
+  export namespace Variant1 {
     /**
      * This is currently a very simple ingestor. It converts everything to an image and
      * processes them independently.
@@ -96,15 +106,28 @@ export namespace StructureRunAsyncParams {
     }
   }
 
-  export interface Basic {
+  export interface Variant2 {
     /**
-     * These are all the types for which we have an agent that is directly capable of
-     * navigating. There should be a one to one mapping between them.
+     * Query param:
      */
-    Basic: Basic.TextDocument | Basic.WebSearch | Basic.ImageDocument;
+    dataset_name: string;
+
+    /**
+     * Body param: These are all the types for which we have an agent that is directly
+     * capable of navigating. There should be a one to one mapping between them.
+     */
+    Basic:
+      | StructureRunAsyncParams.Variant2.TextDocument
+      | StructureRunAsyncParams.Variant2.WebSearch
+      | StructureRunAsyncParams.Variant2.ImageDocument;
+
+    /**
+     * Query param:
+     */
+    custom_instruction?: string | null;
   }
 
-  export namespace Basic {
+  export namespace Variant2 {
     export interface TextDocument {
       TextDocument: TextDocument.TextDocument;
     }
@@ -125,25 +148,11 @@ export namespace StructureRunAsyncParams {
 
     export namespace WebSearch {
       export interface WebSearch {
-        /**
-         * It's an AND between all of these.
-         */
-        extraction_criterium: Array<WebSearch.ExtractionCriterium>;
+        conditioning_phrase: string;
 
         use_local_browser: boolean;
 
         starting_website?: string | null;
-      }
-
-      export namespace WebSearch {
-        /**
-         * It's an OR statement across these.
-         */
-        export interface ExtractionCriterium {
-          property_names: Array<string>;
-
-          table_name: string;
-        }
       }
     }
 
