@@ -5,6 +5,7 @@ export {
   ChatPrompt,
   ExecutionStep,
   ExtractionCriteria,
+  ToolMetadata,
   StructureIsCompleteResponse,
   StructureJobStatusResponse,
   StructureRunAsyncResponse,
