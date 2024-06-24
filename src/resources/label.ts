@@ -1091,27 +1091,13 @@ export namespace LabelRunParams {
 
   export namespace SecIngestor {
     export interface SecIngestor {
-      extraction_criteria: Array<SecIngestor.ExtractionCriterion>;
+      extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
 
       accession_number?: string | null;
 
       quarter?: number | null;
 
       year?: number | null;
-    }
-
-    export namespace SecIngestor {
-      /**
-       * It's an OR statement across these.
-       */
-      export interface ExtractionCriterion {
-        property_names: Array<string>;
-
-        /**
-         * Vec<ExtractionCriteria> = it has to meet every one.
-         */
-        table_name: string;
-      }
     }
   }
 
@@ -1129,23 +1115,9 @@ export namespace LabelRunParams {
      * processes them independently.
      */
     export interface PdfIngestor {
-      extraction_criteria: Array<PdfIngestor.ExtractionCriterion>;
+      extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
 
       path: string;
-    }
-
-    export namespace PdfIngestor {
-      /**
-       * It's an OR statement across these.
-       */
-      export interface ExtractionCriterion {
-        property_names: Array<string>;
-
-        /**
-         * Vec<ExtractionCriteria> = it has to meet every one.
-         */
-        table_name: string;
-      }
     }
   }
 
@@ -1164,27 +1136,13 @@ export namespace LabelRunParams {
 
     export namespace TextDocument {
       export interface TextDocument {
-        extraction_criteria: Array<TextDocument.ExtractionCriterion>;
+        extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
 
         content?: string | null;
 
         filepath?: string | null;
 
         save?: boolean;
-      }
-
-      export namespace TextDocument {
-        /**
-         * It's an OR statement across these.
-         */
-        export interface ExtractionCriterion {
-          property_names: Array<string>;
-
-          /**
-           * Vec<ExtractionCriteria> = it has to meet every one.
-           */
-          table_name: string;
-        }
       }
     }
 
@@ -1194,25 +1152,11 @@ export namespace LabelRunParams {
 
     export namespace WebSearch {
       export interface WebSearch {
-        extraction_criteria: Array<WebSearch.ExtractionCriterion>;
+        extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
 
         use_local_browser: boolean;
 
         starting_website?: string | null;
-      }
-
-      export namespace WebSearch {
-        /**
-         * It's an OR statement across these.
-         */
-        export interface ExtractionCriterion {
-          property_names: Array<string>;
-
-          /**
-           * Vec<ExtractionCriteria> = it has to meet every one.
-           */
-          table_name: string;
-        }
       }
     }
 
@@ -1226,21 +1170,7 @@ export namespace LabelRunParams {
 
         document_name: string;
 
-        extraction_criteria: Array<ImageDocument.ExtractionCriterion>;
-      }
-
-      export namespace ImageDocument {
-        /**
-         * It's an OR statement across these.
-         */
-        export interface ExtractionCriterion {
-          property_names: Array<string>;
-
-          /**
-           * Vec<ExtractionCriteria> = it has to meet every one.
-           */
-          table_name: string;
-        }
+        extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
       }
     }
   }

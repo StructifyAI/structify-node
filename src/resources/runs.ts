@@ -38,6 +38,17 @@ export class Runs extends APIResource {
   get(uuid: string, options?: Core.RequestOptions): Core.APIPromise<RunGetResponse> {
     return this._client.get(`/runs/get/${uuid}`, options);
   }
+
+  /**
+   * One example use case is every single day check the news websites and pull them
+   * into my dataset.
+   */
+  schedule(options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/runs/schedule', {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
 }
 
 export type RunListResponse = Array<string>;
@@ -53,7 +64,7 @@ export interface RunCancelResponse {
 export interface RunGetResponse {
   date: string;
 
-  steps: Array<StructureAPI.AgentStep>;
+  steps: Array<StructureAPI.ExecutionStep>;
 
   /**
    * Used to identify this history
