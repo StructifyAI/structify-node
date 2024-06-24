@@ -179,9 +179,26 @@ export namespace RunGetResponse {
         run_id: string;
 
         user_email: string;
+
+        history?: HumanLlmMetadata.History | null;
+      }
+
+      export namespace HumanLlmMetadata {
+        export interface History {
+          date: string;
+
+          steps: Array<unknown>;
+
+          /**
+           * Used to identify this history
+           */
+          uuid: string;
+        }
       }
 
       export interface Metadata {
+        conditioning_prompt: string;
+
         /**
          * A dataset is where you put multiple referential schemas.
          *
@@ -191,8 +208,6 @@ export namespace RunGetResponse {
         dataset_descriptor: DatasetsAPI.DatasetDescriptor;
 
         extracted_entities: Array<Metadata.ExtractedEntity>;
-
-        extraction_criterium: Array<Metadata.ExtractionCriterium>;
 
         tool_metadata: Array<Metadata.ToolMetadata>;
 
@@ -230,15 +245,6 @@ export namespace RunGetResponse {
 
             type: string;
           }
-        }
-
-        /**
-         * It's an OR statement across these.
-         */
-        export interface ExtractionCriterium {
-          property_names: Array<string>;
-
-          table_name: string;
         }
 
         export interface ToolMetadata {
