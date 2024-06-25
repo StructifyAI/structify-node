@@ -2,12 +2,12 @@
 
 Types:
 
-- <code><a href="./src/resources/user.ts">NewToken</a></code>
 - <code><a href="./src/resources/user.ts">UserInfo</a></code>
+- <code><a href="./src/resources/user.ts">UserCreateTestTokenResponse</a></code>
 
 Methods:
 
-- <code title="post /user/create_test_token">client.user.<a href="./src/resources/user.ts">createTestToken</a>() -> NewToken</code>
+- <code title="post /user/create_test_token">client.user.<a href="./src/resources/user.ts">createTestToken</a>() -> UserCreateTestTokenResponse</code>
 - <code title="get /user/info">client.user.<a href="./src/resources/user.ts">info</a>() -> UserInfo</code>
 
 # Admin

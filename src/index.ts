@@ -208,8 +208,8 @@ export namespace Structify {
   export import RequestOptions = Core.RequestOptions;
 
   export import User = API.User;
-  export import NewToken = API.NewToken;
   export import UserInfo = API.UserInfo;
+  export import UserCreateTestTokenResponse = API.UserCreateTestTokenResponse;
 
   export import Admin = API.Admin;
 
