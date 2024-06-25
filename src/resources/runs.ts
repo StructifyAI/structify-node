@@ -1,10 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '../core';
 import { APIResource } from '../resource';
+import * as Core from '../core';
 import * as RunsAPI from './runs';
 import * as DatasetsAPI from './datasets';
-import { type Uploadable } from '../core';
 
 export class Runs extends APIResource {
   /**
@@ -37,17 +36,6 @@ export class Runs extends APIResource {
   get(uuid: string, options?: Core.RequestOptions): Core.APIPromise<RunGetResponse> {
     return this._client.get(`/runs/get/${uuid}`, options);
   }
-
-  /**
-   * One example use case is every single day check the news websites and pull them
-   * into my dataset.
-   */
-  schedule(options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/runs/schedule', {
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
 }
 
 export type RunListResponse = Array<string>;
@@ -76,6 +64,8 @@ export namespace RunGetResponse {
     prompt: Step.Prompt;
 
     response: Step.Response;
+
+    uuid: string;
   }
 
   export namespace Step {
@@ -132,11 +122,11 @@ export namespace RunGetResponse {
         }
 
         export interface Functions {
-          Functions: Array<Record<string, unknown>>;
+          Functions: Array<unknown>;
         }
 
         export interface JsonValidator {
-          JsonValidator: Record<string, unknown>;
+          JsonValidator: unknown;
         }
 
         export interface RegexValidator {
@@ -174,7 +164,7 @@ export namespace RunGetResponse {
         }
 
         export interface Image {
-          Image: Uploadable;
+          Image: Core.Uploadable;
         }
       }
 
@@ -208,6 +198,8 @@ export namespace RunGetResponse {
       }
 
       export interface Metadata {
+        conditioning_prompt: string;
+
         /**
          * A dataset is where you put multiple referential schemas.
          *
@@ -218,11 +210,9 @@ export namespace RunGetResponse {
 
         extracted_entities: Array<Metadata.ExtractedEntity>;
 
-        extraction_criteria: Array<Metadata.ExtractionCriterion>;
-
         tool_metadata: Array<Metadata.ToolMetadata>;
 
-        screenshot?: Uploadable | null;
+        screenshot?: Core.Uploadable | null;
 
         url?: string | null;
 
@@ -258,18 +248,6 @@ export namespace RunGetResponse {
           }
         }
 
-        /**
-         * It's an OR statement across these.
-         */
-        export interface ExtractionCriterion {
-          property_names: Array<string>;
-
-          /**
-           * Vec<ExtractionCriteria> = it has to meet every one.
-           */
-          table_name: string;
-        }
-
         export interface ToolMetadata {
           description: string;
 
@@ -277,7 +255,7 @@ export namespace RunGetResponse {
 
           regex_validator: string;
 
-          tool_validator: Record<string, unknown>;
+          tool_validator: unknown;
         }
 
         export interface WebFlag {

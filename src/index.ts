@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from './core';
 import * as Errors from './error';
-import { type Agent } from './_shims/index';
 import * as Uploads from './uploads';
+import { type Agent } from './_shims/index';
+import * as Core from './core';
 import * as API from './resources/index';
 
 const environments = {
@@ -84,7 +84,9 @@ export interface ClientOptions {
   defaultQuery?: Core.DefaultQuery;
 }
 
-/** API Client for interfacing with the Structify API. */
+/**
+ * API Client for interfacing with the Structify API.
+ */
 export class Structify extends Core.APIClient {
   apiKey: string;
 
@@ -134,6 +136,7 @@ export class Structify extends Core.APIClient {
       maxRetries: options.maxRetries,
       fetch: options.fetch,
     });
+
     this._options = options;
 
     this.apiKey = apiKey;
@@ -147,6 +150,7 @@ export class Structify extends Core.APIClient {
   server: API.Server = new API.Server(this);
   sources: API.Sources = new API.Sources(this);
   structure: API.Structure = new API.Structure(this);
+  label: API.Label = new API.Label(this);
   usage: API.Usage = new API.Usage(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
@@ -237,17 +241,26 @@ export namespace Structify {
   export import ServerInformation = API.ServerInformation;
 
   export import Sources = API.Sources;
-  export import Source = API.Source;
   export import SourceListResponse = API.SourceListResponse;
   export import SourceListParams = API.SourceListParams;
 
   export import Structure = API.Structure;
-  export import StructureIsCompleteResponse = API.StructureIsCompleteResponse;
+  export import IsComplete = API.IsComplete;
   export import StructureJobStatusResponse = API.StructureJobStatusResponse;
   export import StructureRunAsyncResponse = API.StructureRunAsyncResponse;
   export import StructureIsCompleteParams = API.StructureIsCompleteParams;
   export import StructureJobStatusParams = API.StructureJobStatusParams;
   export import StructureRunAsyncParams = API.StructureRunAsyncParams;
+
+  export import Label = API.Label;
+  export import LabelUpdateResponse = API.LabelUpdateResponse;
+  export import LabelGetMessagesResponse = API.LabelGetMessagesResponse;
+  export import LabelLlmAssistResponse = API.LabelLlmAssistResponse;
+  export import LabelSubmitResponse = API.LabelSubmitResponse;
+  export import LabelUpdateParams = API.LabelUpdateParams;
+  export import LabelGetMessagesParams = API.LabelGetMessagesParams;
+  export import LabelRunParams = API.LabelRunParams;
+  export import LabelSubmitParams = API.LabelSubmitParams;
 
   export import Usage = API.Usage;
   export import UsageGetJobInfoResponse = API.UsageGetJobInfoResponse;

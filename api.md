@@ -69,7 +69,6 @@ Methods:
 - <code title="post /runs/delete/{uuid}">client.runs.<a href="./src/resources/runs.ts">delete</a>(uuid) -> string</code>
 - <code title="post /runs/cancel/{uuid}">client.runs.<a href="./src/resources/runs.ts">cancel</a>(uuid) -> RunCancelResponse</code>
 - <code title="get /runs/get/{uuid}">client.runs.<a href="./src/resources/runs.ts">get</a>(uuid) -> RunGetResponse</code>
-- <code title="post /runs/schedule">client.runs.<a href="./src/resources/runs.ts">schedule</a>() -> void</code>
 
 # Server
 
@@ -85,7 +84,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/sources.ts">Source</a></code>
 - <code><a href="./src/resources/sources.ts">SourceListResponse</a></code>
 
 Methods:
@@ -96,15 +94,32 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/structure.ts">StructureIsCompleteResponse</a></code>
+- <code><a href="./src/resources/structure.ts">IsComplete</a></code>
 - <code><a href="./src/resources/structure.ts">StructureJobStatusResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureRunAsyncResponse</a></code>
 
 Methods:
 
-- <code title="post /structure/is_complete">client.structure.<a href="./src/resources/structure.ts">isComplete</a>([ ...job ]) -> string</code>
-- <code title="post /structure/job_status">client.structure.<a href="./src/resources/structure.ts">jobStatus</a>([ ...job ]) -> StructureJobStatusResponse</code>
-- <code title="post /structure/run_async">client.structure.<a href="./src/resources/structure.ts">runAsync</a>({ ...params }) -> string</code>
+- <code title="post /structure/is_complete">client.structure.<a href="./src/resources/structure.ts">isComplete</a>([ ...body ]) -> IsComplete</code>
+- <code title="post /structure/job_status">client.structure.<a href="./src/resources/structure.ts">jobStatus</a>([ ...body ]) -> unknown</code>
+- <code title="post /structure/run_async">client.structure.<a href="./src/resources/structure.ts">runAsync</a>({ ...params }) -> unknown</code>
+
+# Label
+
+Types:
+
+- <code><a href="./src/resources/label.ts">LabelUpdateResponse</a></code>
+- <code><a href="./src/resources/label.ts">LabelGetMessagesResponse</a></code>
+- <code><a href="./src/resources/label.ts">LabelLlmAssistResponse</a></code>
+- <code><a href="./src/resources/label.ts">LabelSubmitResponse</a></code>
+
+Methods:
+
+- <code title="post /label/update/{run_uuid}/{run_idx}">client.label.<a href="./src/resources/label.ts">update</a>(runUuid, runIdx, [ ...body ]) -> string</code>
+- <code title="get /label/refresh">client.label.<a href="./src/resources/label.ts">getMessages</a>({ ...params }) -> LabelGetMessagesResponse | null</code>
+- <code title="get /label/llm_assist/{uuid}">client.label.<a href="./src/resources/label.ts">llmAssist</a>(uuid) -> LabelLlmAssistResponse</code>
+- <code title="post /label/run_async">client.label.<a href="./src/resources/label.ts">run</a>({ ...params }) -> void</code>
+- <code title="post /label/submit/{uuid}">client.label.<a href="./src/resources/label.ts">submit</a>(uuid, [ ...body ]) -> string</code>
 
 # Usage
 
@@ -114,4 +129,4 @@ Types:
 
 Methods:
 
-- <code title="post /usage/get_job_info">client.usage.<a href="./src/resources/usage.ts">getJobInfo</a>({ ...params }) -> UsageGetJobInfoResponse</code>
+- <code title="post /usage/get_job_info">client.usage.<a href="./src/resources/usage.ts">getJobInfo</a>({ ...params }) -> unknown</code>
