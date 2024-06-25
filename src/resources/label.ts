@@ -2,7 +2,6 @@
 
 import * as Core from '../core';
 import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
 import * as LabelAPI from './label';
 import * as StructureAPI from './structure';
 import { type Uploadable } from '../core';
@@ -22,24 +21,6 @@ export class Label extends APIResource {
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
     });
-  }
-
-  /**
-   * web requests that would be cancelled by cloudflare in prod.
-   */
-  getMessages(
-    query?: LabelGetMessagesParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LabelGetMessagesResponse | null>;
-  getMessages(options?: Core.RequestOptions): Core.APIPromise<LabelGetMessagesResponse | null>;
-  getMessages(
-    query: LabelGetMessagesParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<LabelGetMessagesResponse | null> {
-    if (isRequestOptions(query)) {
-      return this.getMessages({}, query);
-    }
-    return this._client.get('/label/refresh', { query, ...options });
   }
 
   /**
@@ -73,14 +54,6 @@ export class Label extends APIResource {
 }
 
 export type LabelUpdateResponse = string;
-
-export interface LabelGetMessagesResponse {
-  chat: StructureAPI.ChatPrompt;
-
-  run_id: string;
-
-  uuid: string;
-}
 
 export type LabelLlmAssistResponse = Array<
   | LabelLlmAssistResponse.Save
@@ -426,10 +399,6 @@ export namespace LabelUpdateParams {
   }
 }
 
-export interface LabelGetMessagesParams {
-  uuid?: string | null;
-}
-
 export interface LabelRunParams {
   dataset_name: string;
 
@@ -688,12 +657,10 @@ export namespace LabelSubmitParams {
 
 export namespace Label {
   export import LabelUpdateResponse = LabelAPI.LabelUpdateResponse;
-  export import LabelGetMessagesResponse = LabelAPI.LabelGetMessagesResponse;
   export import LabelLlmAssistResponse = LabelAPI.LabelLlmAssistResponse;
   export import LabelRunResponse = LabelAPI.LabelRunResponse;
   export import LabelSubmitResponse = LabelAPI.LabelSubmitResponse;
   export import LabelUpdateParams = LabelAPI.LabelUpdateParams;
-  export import LabelGetMessagesParams = LabelAPI.LabelGetMessagesParams;
   export import LabelRunParams = LabelAPI.LabelRunParams;
   export import LabelSubmitParams = LabelAPI.LabelSubmitParams;
 }
