@@ -93,11 +93,11 @@ export namespace ChatPrompt {
     }
 
     export interface Functions {
-      Functions: Array<unknown>;
+      Functions: Array<Record<string, unknown>>;
     }
 
     export interface JsonValidator {
-      JsonValidator: unknown;
+      JsonValidator: Record<string, unknown>;
     }
 
     export interface RegexValidator {
