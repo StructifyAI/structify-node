@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '../core';
 import { APIResource } from '../resource';
+import * as Core from '../core';
 import * as SourcesAPI from './sources';
 
 export class Sources extends APIResource {
@@ -13,9 +13,15 @@ export class Sources extends APIResource {
   }
 }
 
-export type Source = Source.Web | Source.Document | 'None';
+export interface SourceListResponse {
+  extra_properties: Record<string, string | null | boolean | null | number | null>;
 
-export namespace Source {
+  link: SourceListResponse.Web | SourceListResponse.Document | 'None';
+
+  location: SourceListResponse.Text | SourceListResponse.Visual | 'None';
+}
+
+export namespace SourceListResponse {
   export interface Web {
     Web: Web.Web;
   }
@@ -35,17 +41,7 @@ export namespace Source {
       name: string;
     }
   }
-}
 
-export interface SourceListResponse {
-  extra_properties: Record<string, string | null | boolean | null | number | null>;
-
-  link: Source;
-
-  location: SourceListResponse.Text | SourceListResponse.Visual | 'None';
-}
-
-export namespace SourceListResponse {
   export interface Text {
     Text: Text.Text;
   }
@@ -77,7 +73,6 @@ export interface SourceListParams {
 }
 
 export namespace Sources {
-  export import Source = SourcesAPI.Source;
   export import SourceListResponse = SourcesAPI.SourceListResponse;
   export import SourceListParams = SourcesAPI.SourceListParams;
 }
