@@ -462,7 +462,7 @@ export interface ToolMetadata {
 
   regex_validator: string;
 
-  tool_validator: unknown;
+  tool_validator: Record<string, unknown>;
 }
 
 export type StructureIsCompleteResponse = string;
