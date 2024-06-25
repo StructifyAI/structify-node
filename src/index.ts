@@ -245,7 +245,6 @@ export namespace Structify {
   export import ChatPrompt = API.ChatPrompt;
   export import ExecutionStep = API.ExecutionStep;
   export import ExtractionCriteria = API.ExtractionCriteria;
-  export import ToolMetadata = API.ToolMetadata;
   export import StructureIsCompleteResponse = API.StructureIsCompleteResponse;
   export import StructureJobStatusResponse = API.StructureJobStatusResponse;
   export import StructureRunAsyncResponse = API.StructureRunAsyncResponse;
