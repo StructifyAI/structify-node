@@ -27,7 +27,7 @@ export {
   Datasets,
 } from './datasets';
 export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
-export { RunListResponse, RunDeleteResponse, RunCancelResponse, Runs } from './runs';
+export { RunListResponse, RunDeleteResponse, RunCancelResponse, RunGetResponse, Runs } from './runs';
 export { ServerInformation, Server } from './server';
 export { Source, SourceListResponse, SourceListParams, Sources } from './sources';
 export { UsageGetJobInfoResponse, UsageGetJobInfoParams, Usage } from './usage';
