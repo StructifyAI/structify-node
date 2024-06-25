@@ -1167,33 +1167,7 @@ export namespace LabelRunParams {
 
   export namespace Basic {
     export interface TextDocument {
-      TextDocument: TextDocument.TextDocument;
-    }
-
-    export namespace TextDocument {
-      export interface TextDocument {
-        extraction_criteria: Array<TextDocument.ExtractionCriterion>;
-
-        content?: string | null;
-
-        filepath?: string | null;
-
-        save?: boolean;
-      }
-
-      export namespace TextDocument {
-        /**
-         * It's an OR statement across these.
-         */
-        export interface ExtractionCriterion {
-          property_names: Array<string>;
-
-          /**
-           * Vec<ExtractionCriteria> = it has to meet every one.
-           */
-          table_name: string;
-        }
-      }
+      TextDocument: unknown;
     }
 
     export interface WebSearch {
