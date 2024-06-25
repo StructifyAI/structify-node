@@ -4,7 +4,7 @@
 
 This library provides convenient access to the Structify REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found [on api.structify.ai](https://api.structify.ai/). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found [on docs.structify.com](https://docs.structify.com). The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainlessapi.com/).
 
@@ -23,14 +23,13 @@ The full API of this library can be found in [api.md](api.md).
 import Structify from 'structifyai';
 
 const structify = new Structify({
-  apiKey: process.env['STRUCTIFY_API_TOKEN'], // This is the default and can be omitted
-  environment: 'deployment', // defaults to 'production'
+  environment: 'environment_1', // defaults to 'production'
 });
 
 async function main() {
-  const serverInformation = await structify.server.version();
+  const userInfoResponse = await structify.account.info();
 
-  console.log(serverInformation.version);
+  console.log(userInfoResponse.credits_remaining);
 }
 
 main();
@@ -45,12 +44,11 @@ This library includes TypeScript definitions for all request params and response
 import Structify from 'structifyai';
 
 const structify = new Structify({
-  apiKey: process.env['STRUCTIFY_API_TOKEN'], // This is the default and can be omitted
-  environment: 'deployment', // defaults to 'production'
+  environment: 'environment_1', // defaults to 'production'
 });
 
 async function main() {
-  const serverInformation: Structify.ServerInformation = await structify.server.version();
+  const userInfoResponse: Structify.UserInfoResponse = await structify.account.info();
 }
 
 main();
@@ -67,7 +65,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const serverInformation = await structify.server.version().catch(async (err) => {
+  const userInfoResponse = await structify.account.info().catch(async (err) => {
     if (err instanceof Structify.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
@@ -110,7 +108,7 @@ const structify = new Structify({
 });
 
 // Or, configure per-request:
-await structify.server.version({
+await structify.account.info({
   maxRetries: 5,
 });
 ```
@@ -127,7 +125,7 @@ const structify = new Structify({
 });
 
 // Override per-request:
-await structify.server.version({
+await structify.account.info({
   timeout: 5 * 1000,
 });
 ```
@@ -148,13 +146,13 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 ```ts
 const structify = new Structify();
 
-const response = await structify.server.version().asResponse();
+const response = await structify.account.info().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: serverInformation, response: raw } = await structify.server.version().withResponse();
+const { data: userInfoResponse, response: raw } = await structify.account.info().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(serverInformation.version);
+console.log(userInfoResponse.credits_remaining);
 ```
 
 ### Making custom/undocumented requests
@@ -258,7 +256,7 @@ const structify = new Structify({
 });
 
 // Override per-request:
-await structify.server.version({
+await structify.account.info({
   httpAgent: new http.Agent({ keepAlive: false }),
 });
 ```
