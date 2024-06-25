@@ -1,6 +1,6 @@
-import { multipartFormRequestOptions, createForm } from 'structify/core';
-import { Blob } from 'structify/_shims/index';
-import { toFile } from 'structify';
+import { multipartFormRequestOptions, createForm } from 'structifyai/core';
+import { Blob } from 'structifyai/_shims/index';
+import { toFile } from 'structifyai';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {
