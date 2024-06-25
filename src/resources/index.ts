@@ -29,12 +29,10 @@ export {
 export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
 export {
   LabelUpdateResponse,
-  LabelGetMessagesResponse,
   LabelLlmAssistResponse,
   LabelRunResponse,
   LabelSubmitResponse,
   LabelUpdateParams,
-  LabelGetMessagesParams,
   LabelRunParams,
   LabelSubmitParams,
   Label,
