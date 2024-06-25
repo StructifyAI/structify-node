@@ -136,4 +136,4 @@ Types:
 
 Methods:
 
-- <code title="post /usage/get_job_info">client.usage.<a href="./src/resources/usage.ts">getJobInfo</a>({ ...params }) -> unknown</code>
+- <code title="post /usage/get_job_info">client.usage.<a href="./src/resources/usage.ts">getJobInfo</a>({ ...params }) -> UsageGetJobInfoResponse</code>
