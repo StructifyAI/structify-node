@@ -14,12 +14,8 @@ export {
   Datasets,
 } from './datasets';
 export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
-export { NewToken, UserInfo, User } from './user';
-export { RunListResponse, RunDeleteResponse, RunCancelResponse, RunGetResponse, Runs } from './runs';
-export { ServerInformation, Server } from './server';
-export { Source, SourceListResponse, SourceListParams, Sources } from './sources';
 export {
-  StructureIsCompleteResponse,
+  IsComplete,
   StructureJobStatusResponse,
   StructureRunAsyncResponse,
   StructureIsCompleteParams,
@@ -27,4 +23,19 @@ export {
   StructureRunAsyncParams,
   Structure,
 } from './structure';
+export {
+  LabelUpdateResponse,
+  LabelGetMessagesResponse,
+  LabelLlmAssistResponse,
+  LabelSubmitResponse,
+  LabelUpdateParams,
+  LabelGetMessagesParams,
+  LabelRunParams,
+  LabelSubmitParams,
+  Label,
+} from './label';
+export { NewToken, UserInfo, User } from './user';
+export { RunListResponse, RunDeleteResponse, RunCancelResponse, RunGetResponse, Runs } from './runs';
+export { ServerInformation, Server } from './server';
+export { SourceListResponse, SourceListParams, Sources } from './sources';
 export { UsageGetJobInfoResponse, UsageGetJobInfoParams, Usage } from './usage';
