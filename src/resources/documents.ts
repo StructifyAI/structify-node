@@ -1,9 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '../core';
 import { APIResource } from '../resource';
+import * as Core from '../core';
 import * as DocumentsAPI from './documents';
-import { type Uploadable, multipartFormRequestOptions } from '../core';
 import { type Response } from '../_shims/index';
 
 export class Documents extends APIResource {
@@ -37,7 +36,7 @@ export class Documents extends APIResource {
   upload(body: DocumentUploadParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post(
       '/documents/upload',
-      multipartFormRequestOptions({ body, ...options, headers: { Accept: '*/*', ...options?.headers } }),
+      Core.multipartFormRequestOptions({ body, ...options, headers: { Accept: '*/*', ...options?.headers } }),
     );
   }
 }
@@ -50,16 +49,16 @@ export namespace DocumentListResponse {
 
     name: string;
 
-    content?: Uploadable | null;
+    content?: Core.Uploadable | null;
   }
 }
 
 export interface DocumentUploadParams {
-  content: Uploadable;
+  content: Core.Uploadable;
 
   file_type: 'Text' | 'Pdf' | 'SEC' | 'ExecutionHistory';
 
-  path: Uploadable;
+  path: Core.Uploadable;
 }
 
 export namespace Documents {

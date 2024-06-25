@@ -7,9 +7,9 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^structify$': '<rootDir>/src/index.ts',
-    '^structify/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
-    '^structify/(.*)$': '<rootDir>/src/$1',
+    '^structifyai$': '<rootDir>/src/index.ts',
+    '^structifyai/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
+    '^structifyai/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',
