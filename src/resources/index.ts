@@ -39,8 +39,8 @@ export {
   LabelSubmitParams,
   Label,
 } from './label';
-export { NewToken, UserInfo, User } from './user';
 export { RunListResponse, RunDeleteResponse, RunCancelResponse, RunGetResponse, Runs } from './runs';
 export { ServerInformation, Server } from './server';
 export { Source, SourceListResponse, SourceListParams, Sources } from './sources';
 export { UsageGetJobInfoResponse, UsageGetJobInfoParams, Usage } from './usage';
+export { UserInfo, UserCreateTestTokenResponse, User } from './user';
