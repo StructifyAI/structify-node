@@ -1,17 +1,17 @@
 # Structify Node API Library
 
-[![NPM version](https://img.shields.io/npm/v/structifyai.svg)](https://npmjs.org/package/structifyai) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/structifyai)
+[![NPM version](https://img.shields.io/npm/v/structify.svg)](https://npmjs.org/package/structify) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/structify)
 
 This library provides convenient access to the Structify REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found [on docs.structify.com](https://docs.structify.com). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found [on api.structify.ai](https://api.structify.ai/). The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainlessapi.com/).
 
 ## Installation
 
 ```sh
-npm install structifyai
+npm install structify
 ```
 
 ## Usage
@@ -20,16 +20,17 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import Structify from 'structifyai';
+import Structify from 'structify';
 
 const structify = new Structify({
+  apiKey: process.env['STRUCTIFY_API_TOKEN'], // This is the default and can be omitted
   environment: 'deployment', // defaults to 'production'
 });
 
 async function main() {
-  const userInfoResponse = await structify.account.info();
+  const serverInformation = await structify.server.version();
 
-  console.log(userInfoResponse.credits_remaining);
+  console.log(serverInformation.version);
 }
 
 main();
@@ -41,14 +42,15 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import Structify from 'structifyai';
+import Structify from 'structify';
 
 const structify = new Structify({
+  apiKey: process.env['STRUCTIFY_API_TOKEN'], // This is the default and can be omitted
   environment: 'deployment', // defaults to 'production'
 });
 
 async function main() {
-  const userInfoResponse: Structify.UserInfoResponse = await structify.account.info();
+  const serverInformation: Structify.ServerInformation = await structify.server.version();
 }
 
 main();
@@ -65,7 +67,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const userInfoResponse = await structify.account.info().catch(async (err) => {
+  const serverInformation = await structify.server.version().catch(async (err) => {
     if (err instanceof Structify.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
@@ -108,7 +110,7 @@ const structify = new Structify({
 });
 
 // Or, configure per-request:
-await structify.account.info({
+await structify.server.version({
   maxRetries: 5,
 });
 ```
@@ -125,7 +127,7 @@ const structify = new Structify({
 });
 
 // Override per-request:
-await structify.account.info({
+await structify.server.version({
   timeout: 5 * 1000,
 });
 ```
@@ -146,13 +148,13 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 ```ts
 const structify = new Structify();
 
-const response = await structify.account.info().asResponse();
+const response = await structify.server.version().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: userInfoResponse, response: raw } = await structify.account.info().withResponse();
+const { data: serverInformation, response: raw } = await structify.server.version().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(userInfoResponse.credits_remaining);
+console.log(serverInformation.version);
 ```
 
 ### Making custom/undocumented requests
@@ -210,11 +212,11 @@ add the following import before your first import `from "Structify"`:
 ```ts
 // Tell TypeScript and the package to use the global web fetch instead of node-fetch.
 // Note, despite the name, this does not add any polyfills, but expects them to be provided if needed.
-import 'structifyai/shims/web';
-import Structify from 'structifyai';
+import 'structify/shims/web';
+import Structify from 'structify';
 ```
 
-To do the inverse, add `import "structifyai/shims/node"` (which does import polyfills).
+To do the inverse, add `import "structify/shims/node"` (which does import polyfills).
 This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/StructifyAI/structify-node/tree/main/src/_shims#readme)).
 
 ### Logging and middleware
@@ -224,7 +226,7 @@ which can be used to inspect or alter the `Request` or `Response` before/after e
 
 ```ts
 import { fetch } from 'undici'; // as one example
-import Structify from 'structifyai';
+import Structify from 'structify';
 
 const client = new Structify({
   fetch: async (url: RequestInfo, init?: RequestInit): Promise<Response> => {
@@ -256,7 +258,7 @@ const structify = new Structify({
 });
 
 // Override per-request:
-await structify.account.info({
+await structify.server.version({
   httpAgent: new http.Agent({ keepAlive: false }),
 });
 ```
@@ -280,7 +282,7 @@ TypeScript >= 4.5 is supported.
 The following runtimes are supported:
 
 - Node.js 18 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.
-- Deno v1.28.0 or higher, using `import Structify from "npm:structifyai"`.
+- Deno v1.28.0 or higher, using `import Structify from "npm:structify"`.
 - Bun 1.0 or later.
 - Cloudflare Workers.
 - Vercel Edge Runtime.

@@ -14,6 +14,11 @@ type Environment = keyof typeof environments;
 
 export interface ClientOptions {
   /**
+   * Defaults to process.env['STRUCTIFY_API_TOKEN'].
+   */
+  apiKey?: string | undefined;
+
+  /**
    * Specifies the environment to use for the API.
    *
    * Each environment maps to a different base URL:
@@ -81,11 +86,14 @@ export interface ClientOptions {
 
 /** API Client for interfacing with the Structify API. */
 export class Structify extends Core.APIClient {
+  apiKey: string;
+
   private _options: ClientOptions;
 
   /**
    * API Client for interfacing with the Structify API.
    *
+   * @param {string | undefined} [opts.apiKey=process.env['STRUCTIFY_API_TOKEN'] ?? undefined]
    * @param {Environment} [opts.environment=production] - Specifies the environment URL to use for the API.
    * @param {string} [opts.baseURL=process.env['STRUCTIFY_BASE_URL'] ?? https://api.structify.ai] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
@@ -95,8 +103,19 @@ export class Structify extends Core.APIClient {
    * @param {Core.Headers} opts.defaultHeaders - Default headers to include with every request to the API.
    * @param {Core.DefaultQuery} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
-  constructor({ baseURL = Core.readEnv('STRUCTIFY_BASE_URL'), ...opts }: ClientOptions = {}) {
+  constructor({
+    baseURL = Core.readEnv('STRUCTIFY_BASE_URL'),
+    apiKey = Core.readEnv('STRUCTIFY_API_TOKEN'),
+    ...opts
+  }: ClientOptions = {}) {
+    if (apiKey === undefined) {
+      throw new Errors.StructifyError(
+        "The STRUCTIFY_API_TOKEN environment variable is missing or empty; either provide it, or instantiate the Structify client with an apiKey option, like new Structify({ apiKey: 'My API Key' }).",
+      );
+    }
+
     const options: ClientOptions = {
+      apiKey,
       ...opts,
       baseURL,
       environment: opts.environment ?? 'production',
@@ -116,17 +135,20 @@ export class Structify extends Core.APIClient {
       fetch: options.fetch,
     });
     this._options = options;
+
+    this.apiKey = apiKey;
   }
 
-  users: API.Users = new API.Users(this);
+  user: API.User = new API.User(this);
+  admin: API.Admin = new API.Admin(this);
   datasets: API.Datasets = new API.Datasets(this);
   documents: API.Documents = new API.Documents(this);
-  label: API.Label = new API.Label(this);
   runs: API.Runs = new API.Runs(this);
   server: API.Server = new API.Server(this);
+  sources: API.Sources = new API.Sources(this);
   structure: API.Structure = new API.Structure(this);
+  label: API.Label = new API.Label(this);
   usage: API.Usage = new API.Usage(this);
-  account: API.Account = new API.Account(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -137,6 +159,10 @@ export class Structify extends Core.APIClient {
       ...super.defaultHeaders(opts),
       ...this._options.defaultHeaders,
     };
+  }
+
+  protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
+    return { api_key: this.apiKey };
   }
 
   static Structify = this;
@@ -181,40 +207,46 @@ export import fileFromPath = Uploads.fileFromPath;
 export namespace Structify {
   export import RequestOptions = Core.RequestOptions;
 
-  export import Users = API.Users;
-  export import UserNode = API.UserNode;
-  export import UserListResponse = API.UserListResponse;
+  export import User = API.User;
+  export import NewToken = API.NewToken;
+  export import UserInfo = API.UserInfo;
+
+  export import Admin = API.Admin;
 
   export import Datasets = API.Datasets;
+  export import Dataset = API.Dataset;
   export import DatasetDescriptor = API.DatasetDescriptor;
-  export import DatasetNode = API.DatasetNode;
-  export import KgEntity = API.KgEntity;
+  export import Entity = API.Entity;
   export import DatasetListResponse = API.DatasetListResponse;
   export import DatasetViewResponse = API.DatasetViewResponse;
   export import DatasetCreateParams = API.DatasetCreateParams;
   export import DatasetDeleteParams = API.DatasetDeleteParams;
-  export import DatasetRetrieveInfoParams = API.DatasetRetrieveInfoParams;
+  export import DatasetGetParams = API.DatasetGetParams;
   export import DatasetViewParams = API.DatasetViewParams;
 
   export import Documents = API.Documents;
-  export import SourceNode = API.SourceNode;
-  export import UserFile = API.UserFile;
   export import DocumentListResponse = API.DocumentListResponse;
-  export import DocumentGetSourcesParams = API.DocumentGetSourcesParams;
   export import DocumentUploadParams = API.DocumentUploadParams;
 
-  export import Label = API.Label;
-
   export import Runs = API.Runs;
-  export import ExecutionHistory = API.ExecutionHistory;
-  export import JobNode = API.JobNode;
   export import RunListResponse = API.RunListResponse;
   export import RunDeleteResponse = API.RunDeleteResponse;
+  export import RunCancelResponse = API.RunCancelResponse;
+  export import RunGetResponse = API.RunGetResponse;
 
   export import Server = API.Server;
   export import ServerInformation = API.ServerInformation;
 
+  export import Sources = API.Sources;
+  export import Source = API.Source;
+  export import SourceListResponse = API.SourceListResponse;
+  export import SourceListParams = API.SourceListParams;
+
   export import Structure = API.Structure;
+  export import ChatPrompt = API.ChatPrompt;
+  export import ExecutionStep = API.ExecutionStep;
+  export import ExtractionCriteria = API.ExtractionCriteria;
+  export import ToolMetadata = API.ToolMetadata;
   export import StructureIsCompleteResponse = API.StructureIsCompleteResponse;
   export import StructureJobStatusResponse = API.StructureJobStatusResponse;
   export import StructureRunAsyncResponse = API.StructureRunAsyncResponse;
@@ -222,13 +254,20 @@ export namespace Structify {
   export import StructureJobStatusParams = API.StructureJobStatusParams;
   export import StructureRunAsyncParams = API.StructureRunAsyncParams;
 
+  export import Label = API.Label;
+  export import LabelUpdateResponse = API.LabelUpdateResponse;
+  export import LabelGetMessagesResponse = API.LabelGetMessagesResponse;
+  export import LabelLlmAssistResponse = API.LabelLlmAssistResponse;
+  export import LabelRunResponse = API.LabelRunResponse;
+  export import LabelSubmitResponse = API.LabelSubmitResponse;
+  export import LabelUpdateParams = API.LabelUpdateParams;
+  export import LabelGetMessagesParams = API.LabelGetMessagesParams;
+  export import LabelRunParams = API.LabelRunParams;
+  export import LabelSubmitParams = API.LabelSubmitParams;
+
   export import Usage = API.Usage;
   export import UsageGetJobInfoResponse = API.UsageGetJobInfoResponse;
   export import UsageGetJobInfoParams = API.UsageGetJobInfoParams;
-
-  export import Account = API.Account;
-  export import NewToken = API.NewToken;
-  export import UserInfoResponse = API.UserInfoResponse;
 }
 
 export default Structify;
