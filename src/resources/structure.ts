@@ -181,7 +181,7 @@ export namespace ChatPrompt {
 
     extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
 
-    tool_metadata: Array<StructureAPI.ToolMetadata>;
+    tool_metadata: Array<Metadata.ToolMetadata>;
 
     screenshot?: Uploadable | null;
 
@@ -217,6 +217,16 @@ export namespace ChatPrompt {
 
         type: string;
       }
+    }
+
+    export interface ToolMetadata {
+      description: string;
+
+      name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
+
+      regex_validator: string;
+
+      tool_validator: Record<string, unknown>;
     }
 
     export interface WebFlag {
@@ -455,16 +465,6 @@ export interface ExtractionCriteria {
   table_name: string;
 }
 
-export interface ToolMetadata {
-  description: string;
-
-  name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
-
-  regex_validator: string;
-
-  tool_validator: Record<string, unknown>;
-}
-
 export type StructureIsCompleteResponse = string;
 
 export type StructureJobStatusResponse = Array<'Running' | 'Completed' | 'Failed'>;
@@ -583,7 +583,6 @@ export namespace Structure {
   export import ChatPrompt = StructureAPI.ChatPrompt;
   export import ExecutionStep = StructureAPI.ExecutionStep;
   export import ExtractionCriteria = StructureAPI.ExtractionCriteria;
-  export import ToolMetadata = StructureAPI.ToolMetadata;
   export import StructureIsCompleteResponse = StructureAPI.StructureIsCompleteResponse;
   export import StructureJobStatusResponse = StructureAPI.StructureJobStatusResponse;
   export import StructureRunAsyncResponse = StructureAPI.StructureRunAsyncResponse;
