@@ -28,8 +28,12 @@ export class Structure extends APIResource {
   /**
    * Returns a token that can be waited on until the request is finished.
    */
-  runAsync(body: StructureRunAsyncParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
-    return this._client.post('/structure/run_async', { body, ...options });
+  runAsync(body: StructureRunAsyncParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.post('/structure/run_async', {
+      body,
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
   }
 }
 
@@ -462,7 +466,7 @@ export type StructureIsCompleteResponse = string;
 
 export type StructureJobStatusResponse = unknown;
 
-export type StructureRunAsyncResponse = unknown;
+export type StructureRunAsyncResponse = string;
 
 export type StructureIsCompleteParams = Array<string>;
 
