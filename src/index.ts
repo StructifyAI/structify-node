@@ -8,7 +8,7 @@ import * as API from './resources/index';
 
 const environments = {
   production: 'https://api.structify.ai',
-  environment_1: 'http://localhost:8080',
+  deployment: 'http://localhost:8080',
 };
 type Environment = keyof typeof environments;
 
@@ -18,7 +18,7 @@ export interface ClientOptions {
    *
    * Each environment maps to a different base URL:
    * - `production` corresponds to `https://api.structify.ai`
-   * - `environment_1` corresponds to `http://localhost:8080`
+   * - `deployment` corresponds to `http://localhost:8080`
    */
   environment?: Environment;
 
@@ -118,7 +118,7 @@ export class Structify extends Core.APIClient {
     this._options = options;
   }
 
-  adminUsers: API.AdminUsers = new API.AdminUsers(this);
+  users: API.Users = new API.Users(this);
   datasets: API.Datasets = new API.Datasets(this);
   documents: API.Documents = new API.Documents(this);
   label: API.Label = new API.Label(this);
@@ -181,9 +181,9 @@ export import fileFromPath = Uploads.fileFromPath;
 export namespace Structify {
   export import RequestOptions = Core.RequestOptions;
 
-  export import AdminUsers = API.AdminUsers;
+  export import Users = API.Users;
   export import UserNode = API.UserNode;
-  export import AdminUserListResponse = API.AdminUserListResponse;
+  export import UserListResponse = API.UserListResponse;
 
   export import Datasets = API.Datasets;
   export import DatasetDescriptor = API.DatasetDescriptor;
