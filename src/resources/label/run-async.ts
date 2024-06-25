@@ -1,34 +1,16 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '../core';
-import { APIResource } from '../resource';
-import * as StructureAPI from './structure';
-import { type Uploadable } from '../core';
+import * as Core from '../../core';
+import { APIResource } from '../../resource';
+import * as RunAsyncAPI from './run-async';
+import { type Uploadable } from '../../core';
 
-export class Structure extends APIResource {
-  /**
-   * Wait for all specified async tasks to be completed.
-   */
-  isComplete(body: StructureIsCompleteParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    return this._client.post('/structure/is_complete', {
-      body,
-      ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
-    });
-  }
-
-  /**
-   * Wait for all specified async tasks to be completed.
-   */
-  jobStatus(body: StructureJobStatusParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
-    return this._client.post('/structure/job_status', { body, ...options });
-  }
-
+export class RunAsync extends APIResource {
   /**
    * Returns a token that can be waited on until the request is finished.
    */
-  runAsync(body: StructureRunAsyncParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    return this._client.post('/structure/run_async', {
+  create(body: RunAsyncCreateParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.post('/label/run_async', {
       body,
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
@@ -36,29 +18,21 @@ export class Structure extends APIResource {
   }
 }
 
-export type StructureIsCompleteResponse = string;
+export type RunAsyncCreateResponse = string;
 
-export type StructureJobStatusResponse = unknown;
-
-export type StructureRunAsyncResponse = string;
-
-export type StructureIsCompleteParams = Array<string>;
-
-export type StructureJobStatusParams = Array<string>;
-
-export interface StructureRunAsyncParams {
+export interface RunAsyncCreateParams {
   dataset_name: string;
 
   /**
    * These are all the types that can be converted into a BasicInputType
    */
   structure_input:
-    | StructureRunAsyncParams.SecIngestor
-    | StructureRunAsyncParams.PdfIngestor
-    | StructureRunAsyncParams.Basic;
+    | RunAsyncCreateParams.SecIngestor
+    | RunAsyncCreateParams.PdfIngestor
+    | RunAsyncCreateParams.Basic;
 }
 
-export namespace StructureRunAsyncParams {
+export namespace RunAsyncCreateParams {
   export interface SecIngestor {
     SECIngestor: SecIngestor.SecIngestor;
   }
@@ -220,11 +194,7 @@ export namespace StructureRunAsyncParams {
   }
 }
 
-export namespace Structure {
-  export import StructureIsCompleteResponse = StructureAPI.StructureIsCompleteResponse;
-  export import StructureJobStatusResponse = StructureAPI.StructureJobStatusResponse;
-  export import StructureRunAsyncResponse = StructureAPI.StructureRunAsyncResponse;
-  export import StructureIsCompleteParams = StructureAPI.StructureIsCompleteParams;
-  export import StructureJobStatusParams = StructureAPI.StructureJobStatusParams;
-  export import StructureRunAsyncParams = StructureAPI.StructureRunAsyncParams;
+export namespace RunAsync {
+  export import RunAsyncCreateResponse = RunAsyncAPI.RunAsyncCreateResponse;
+  export import RunAsyncCreateParams = RunAsyncAPI.RunAsyncCreateParams;
 }

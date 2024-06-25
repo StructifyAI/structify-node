@@ -3,10 +3,7 @@
 import Structify from 'structifyai';
 import { Response } from 'node-fetch';
 
-const structify = new Structify({
-  apiKey: 'My API Key',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-});
+const structify = new Structify({ baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010' });
 
 describe('resource structure', () => {
   test('isComplete: only required params', async () => {
