@@ -31,6 +31,7 @@ export {
   LabelUpdateResponse,
   LabelGetMessagesResponse,
   LabelLlmAssistResponse,
+  LabelRunResponse,
   LabelSubmitResponse,
   LabelUpdateParams,
   LabelGetMessagesParams,
