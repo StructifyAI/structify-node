@@ -3,7 +3,6 @@
 import * as Core from '../core';
 import { APIResource } from '../resource';
 import * as RunsAPI from './runs';
-import * as StructureAPI from './structure';
 
 export class Runs extends APIResource {
   /**
@@ -31,13 +30,6 @@ export class Runs extends APIResource {
   }
 
   /**
-   * Retrieve a run from structify.
-   */
-  get(uuid: string, options?: Core.RequestOptions): Core.APIPromise<RunGetResponse> {
-    return this._client.get(`/runs/get/${uuid}`, options);
-  }
-
-  /**
    * One example use case is every single day check the news websites and pull them
    * into my dataset.
    */
@@ -59,20 +51,8 @@ export interface RunCancelResponse {
   status: 'Running' | 'Completed' | 'Failed';
 }
 
-export interface RunGetResponse {
-  date: string;
-
-  steps: Array<StructureAPI.ExecutionStep>;
-
-  /**
-   * Used to identify this history
-   */
-  uuid: string;
-}
-
 export namespace Runs {
   export import RunListResponse = RunsAPI.RunListResponse;
   export import RunDeleteResponse = RunsAPI.RunDeleteResponse;
   export import RunCancelResponse = RunsAPI.RunCancelResponse;
-  export import RunGetResponse = RunsAPI.RunGetResponse;
 }
