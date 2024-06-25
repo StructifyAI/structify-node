@@ -1,13 +1,13 @@
-# AdminUsers
+# Users
 
 Types:
 
-- <code><a href="./src/resources/admin-users.ts">UserNode</a></code>
-- <code><a href="./src/resources/admin-users.ts">AdminUserListResponse</a></code>
+- <code><a href="./src/resources/users.ts">UserNode</a></code>
+- <code><a href="./src/resources/users.ts">UserListResponse</a></code>
 
 Methods:
 
-- <code title="get /admin/users/list">client.adminUsers.<a href="./src/resources/admin-users.ts">list</a>() -> AdminUserListResponse</code>
+- <code title="get /admin/users/list">client.users.<a href="./src/resources/users.ts">list</a>() -> UserListResponse</code>
 
 # Datasets
 

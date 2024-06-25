@@ -34,4 +34,4 @@ export {
   Structure,
 } from './structure';
 export { UsageGetJobInfoResponse, UsageGetJobInfoParams, Usage } from './usage';
-export { UserNode, AdminUserListResponse, AdminUsers } from './admin-users';
+export { UserNode, UserListResponse, Users } from './users';

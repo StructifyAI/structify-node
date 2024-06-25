@@ -23,7 +23,7 @@ The full API of this library can be found in [api.md](api.md).
 import Structify from 'structifyai';
 
 const structify = new Structify({
-  environment: 'environment_1', // defaults to 'production'
+  environment: 'deployment', // defaults to 'production'
 });
 
 async function main() {
@@ -44,7 +44,7 @@ This library includes TypeScript definitions for all request params and response
 import Structify from 'structifyai';
 
 const structify = new Structify({
-  environment: 'environment_1', // defaults to 'production'
+  environment: 'deployment', // defaults to 'production'
 });
 
 async function main() {
