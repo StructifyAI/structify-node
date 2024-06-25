@@ -130,18 +130,7 @@ describe('resource label', () => {
   });
 
   test('run: only required params', async () => {
-    const responsePromise = structify.label.run({
-      dataset_name: 'string',
-      structure_input: {
-        SECIngestor: {
-          extraction_criteria: [
-            { property_names: ['string', 'string', 'string'], table_name: 'string' },
-            { property_names: ['string', 'string', 'string'], table_name: 'string' },
-            { property_names: ['string', 'string', 'string'], table_name: 'string' },
-          ],
-        },
-      },
-    });
+    const responsePromise = structify.label.run({ dataset_name: 'string', SECIngestor: {} });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -154,18 +143,8 @@ describe('resource label', () => {
   test('run: required and optional params', async () => {
     const response = await structify.label.run({
       dataset_name: 'string',
-      structure_input: {
-        SECIngestor: {
-          accession_number: 'string',
-          extraction_criteria: [
-            { property_names: ['string', 'string', 'string'], table_name: 'string' },
-            { property_names: ['string', 'string', 'string'], table_name: 'string' },
-            { property_names: ['string', 'string', 'string'], table_name: 'string' },
-          ],
-          quarter: 0,
-          year: 0,
-        },
-      },
+      SECIngestor: { accession_number: 'string', quarter: 0, year: 0 },
+      custom_instruction: 'string',
     });
   });
 

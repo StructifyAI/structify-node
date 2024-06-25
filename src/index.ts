@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from './core';
 import * as Errors from './error';
-import { type Agent } from './_shims/index';
 import * as Uploads from './uploads';
+import { type Agent } from './_shims/index';
+import * as Core from './core';
 import * as API from './resources/index';
 
 const environments = {
@@ -84,7 +84,9 @@ export interface ClientOptions {
   defaultQuery?: Core.DefaultQuery;
 }
 
-/** API Client for interfacing with the Structify API. */
+/**
+ * API Client for interfacing with the Structify API.
+ */
 export class Structify extends Core.APIClient {
   apiKey: string;
 
@@ -134,6 +136,7 @@ export class Structify extends Core.APIClient {
       maxRetries: options.maxRetries,
       fetch: options.fetch,
     });
+
     this._options = options;
 
     this.apiKey = apiKey;
@@ -238,14 +241,10 @@ export namespace Structify {
   export import ServerInformation = API.ServerInformation;
 
   export import Sources = API.Sources;
-  export import Source = API.Source;
   export import SourceListResponse = API.SourceListResponse;
   export import SourceListParams = API.SourceListParams;
 
   export import Structure = API.Structure;
-  export import ChatPrompt = API.ChatPrompt;
-  export import ExecutionStep = API.ExecutionStep;
-  export import ExtractionCriteria = API.ExtractionCriteria;
   export import IsComplete = API.IsComplete;
   export import StructureJobStatusResponse = API.StructureJobStatusResponse;
   export import StructureRunAsyncResponse = API.StructureRunAsyncResponse;
