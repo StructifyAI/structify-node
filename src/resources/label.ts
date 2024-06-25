@@ -52,11 +52,11 @@ export class Label extends APIResource {
   /**
    * Returns a token that can be waited on until the request is finished.
    */
-  run(body: LabelRunParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  run(body: LabelRunParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     return this._client.post('/label/run_async', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: { Accept: 'text/plain', ...options?.headers },
     });
   }
 
@@ -236,6 +236,8 @@ export namespace LabelLlmAssistResponse {
     }
   }
 }
+
+export type LabelRunResponse = string;
 
 export type LabelSubmitResponse = string;
 
@@ -688,6 +690,7 @@ export namespace Label {
   export import LabelUpdateResponse = LabelAPI.LabelUpdateResponse;
   export import LabelGetMessagesResponse = LabelAPI.LabelGetMessagesResponse;
   export import LabelLlmAssistResponse = LabelAPI.LabelLlmAssistResponse;
+  export import LabelRunResponse = LabelAPI.LabelRunResponse;
   export import LabelSubmitResponse = LabelAPI.LabelSubmitResponse;
   export import LabelUpdateParams = LabelAPI.LabelUpdateParams;
   export import LabelGetMessagesParams = LabelAPI.LabelGetMessagesParams;
