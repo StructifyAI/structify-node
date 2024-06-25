@@ -8,7 +8,7 @@ export class User extends APIResource {
   /**
    * Creates a test token.
    */
-  createTestToken(options?: Core.RequestOptions): Core.APIPromise<UserCreateTestTokenResponse> {
+  createTestToken(options?: Core.RequestOptions): Core.APIPromise<NewToken> {
     return this._client.post('/user/create_test_token', options);
   }
 
@@ -18,6 +18,10 @@ export class User extends APIResource {
   info(options?: Core.RequestOptions): Core.APIPromise<UserInfo> {
     return this._client.get('/user/info', options);
   }
+}
+
+export interface NewToken {
+  token: string;
 }
 
 export interface UserInfo {
@@ -30,11 +34,7 @@ export interface UserInfo {
   username: string;
 }
 
-export interface UserCreateTestTokenResponse {
-  token: string;
-}
-
 export namespace User {
+  export import NewToken = UserAPI.NewToken;
   export import UserInfo = UserAPI.UserInfo;
-  export import UserCreateTestTokenResponse = UserAPI.UserCreateTestTokenResponse;
 }
