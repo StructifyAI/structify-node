@@ -2,9 +2,9 @@
 
 import * as Core from '../core';
 import { APIResource } from '../resource';
-import * as UserAPI from './user';
+import * as AccountAPI from './account';
 
-export class User extends APIResource {
+export class Account extends APIResource {
   /**
    * Creates a test token.
    */
@@ -15,7 +15,7 @@ export class User extends APIResource {
   /**
    * Enable a source
    */
-  info(options?: Core.RequestOptions): Core.APIPromise<UserInfo> {
+  info(options?: Core.RequestOptions): Core.APIPromise<UserInfoResponse> {
     return this._client.get('/user/info', options);
   }
 }
@@ -24,7 +24,7 @@ export interface NewToken {
   token: string;
 }
 
-export interface UserInfo {
+export interface UserInfoResponse {
   credits_remaining: number;
 
   credits_used: number;
@@ -34,7 +34,7 @@ export interface UserInfo {
   username: string;
 }
 
-export namespace User {
-  export import NewToken = UserAPI.NewToken;
-  export import UserInfo = UserAPI.UserInfo;
+export namespace Account {
+  export import NewToken = AccountAPI.NewToken;
+  export import UserInfoResponse = AccountAPI.UserInfoResponse;
 }
