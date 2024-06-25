@@ -8,13 +8,26 @@ export class Usage extends APIResource {
   /**
    * Returns a token that can be waited on until the request is finished.
    */
-  getJobInfo(params: UsageGetJobInfoParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+  getJobInfo(
+    params: UsageGetJobInfoParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<UsageGetJobInfoResponse> {
     const { job_id } = params;
     return this._client.post('/usage/get_job_info', { query: { job_id }, ...options });
   }
 }
 
-export type UsageGetJobInfoResponse = unknown;
+export interface UsageGetJobInfoResponse {
+  images: Array<string>;
+
+  job_id: string;
+
+  job_status: unknown;
+
+  run_time: string;
+
+  summary_text: string;
+}
 
 export interface UsageGetJobInfoParams {
   job_id: string;
