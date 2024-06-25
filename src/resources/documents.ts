@@ -32,13 +32,6 @@ export class Documents extends APIResource {
   }
 
   /**
-   * Get all sources for a given entity
-   */
-  getSources(query: DocumentGetSourcesParams, options?: Core.RequestOptions): Core.APIPromise<SourceNode> {
-    return this._client.get('/source/get_sources', { query, ...options });
-  }
-
-  /**
    * Add a new file to the database
    */
   upload(body: DocumentUploadParams, options?: Core.RequestOptions): Core.APIPromise<void> {
@@ -49,73 +42,16 @@ export class Documents extends APIResource {
   }
 }
 
-export interface SourceNode {
-  extra_properties: Record<string, string | null | boolean | null | number | null>;
+export type DocumentListResponse = Array<DocumentListResponse.DocumentListResponseItem>;
 
-  link: SourceNode.Web | SourceNode.Document | 'None';
+export namespace DocumentListResponse {
+  export interface DocumentListResponseItem {
+    document_type: 'Text' | 'Pdf' | 'SEC' | 'ExecutionHistory';
 
-  location: SourceNode.Text | SourceNode.Visual | 'None';
-}
+    name: string;
 
-export namespace SourceNode {
-  export interface Web {
-    Web: Web.Web;
+    content?: Uploadable | null;
   }
-
-  export namespace Web {
-    export interface Web {
-      url: string;
-    }
-  }
-
-  export interface Document {
-    Document: Document.Document;
-  }
-
-  export namespace Document {
-    export interface Document {
-      name: string;
-    }
-  }
-
-  export interface Text {
-    Text: Text.Text;
-  }
-
-  export namespace Text {
-    export interface Text {
-      byte_offset: number;
-    }
-  }
-
-  export interface Visual {
-    Visual: Visual.Visual;
-  }
-
-  export namespace Visual {
-    export interface Visual {
-      x: number;
-
-      y: number;
-    }
-  }
-}
-
-export interface UserFile {
-  document_type: 'Text' | 'Pdf' | 'SEC' | 'ExecutionHistory';
-
-  name: string;
-
-  content?: Uploadable | null;
-}
-
-export type DocumentListResponse = Array<UserFile>;
-
-export interface DocumentGetSourcesParams {
-  /**
-   * Id of the entity to get sources for
-   */
-  id: number;
 }
 
 export interface DocumentUploadParams {
@@ -127,9 +63,6 @@ export interface DocumentUploadParams {
 }
 
 export namespace Documents {
-  export import SourceNode = DocumentsAPI.SourceNode;
-  export import UserFile = DocumentsAPI.UserFile;
   export import DocumentListResponse = DocumentsAPI.DocumentListResponse;
-  export import DocumentGetSourcesParams = DocumentsAPI.DocumentGetSourcesParams;
   export import DocumentUploadParams = DocumentsAPI.DocumentUploadParams;
 }
