@@ -61,14 +61,12 @@ Types:
 - <code><a href="./src/resources/runs.ts">RunListResponse</a></code>
 - <code><a href="./src/resources/runs.ts">RunDeleteResponse</a></code>
 - <code><a href="./src/resources/runs.ts">RunCancelResponse</a></code>
-- <code><a href="./src/resources/runs.ts">RunGetResponse</a></code>
 
 Methods:
 
 - <code title="get /runs/list">client.runs.<a href="./src/resources/runs.ts">list</a>() -> RunListResponse</code>
 - <code title="post /runs/delete/{uuid}">client.runs.<a href="./src/resources/runs.ts">delete</a>(uuid) -> string</code>
 - <code title="post /runs/cancel/{uuid}">client.runs.<a href="./src/resources/runs.ts">cancel</a>(uuid) -> RunCancelResponse</code>
-- <code title="get /runs/get/{uuid}">client.runs.<a href="./src/resources/runs.ts">get</a>(uuid) -> RunGetResponse</code>
 - <code title="post /runs/schedule">client.runs.<a href="./src/resources/runs.ts">schedule</a>() -> void</code>
 
 # Server
