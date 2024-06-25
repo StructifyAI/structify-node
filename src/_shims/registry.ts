@@ -42,12 +42,12 @@ export let isFsReadStream: Shims['isFsReadStream'] | undefined = undefined;
 export function setShims(shims: Shims, options: { auto: boolean } = { auto: false }) {
   if (auto) {
     throw new Error(
-      `you must \`import 'structify/shims/${shims.kind}'\` before importing anything else from structify`,
+      `you must \`import 'structifyai/shims/${shims.kind}'\` before importing anything else from structifyai`,
     );
   }
   if (kind) {
     throw new Error(
-      `can't \`import 'structify/shims/${shims.kind}'\` after \`import 'structify/shims/${kind}'\``,
+      `can't \`import 'structifyai/shims/${shims.kind}'\` after \`import 'structifyai/shims/${kind}'\``,
     );
   }
   auto = options.auto;
