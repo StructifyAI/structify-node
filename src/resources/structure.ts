@@ -21,7 +21,10 @@ export class Structure extends APIResource {
   /**
    * Wait for all specified async tasks to be completed.
    */
-  jobStatus(body: StructureJobStatusParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+  jobStatus(
+    body: StructureJobStatusParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<StructureJobStatusResponse> {
     return this._client.post('/structure/job_status', { body, ...options });
   }
 
@@ -464,7 +467,7 @@ export interface ToolMetadata {
 
 export type StructureIsCompleteResponse = string;
 
-export type StructureJobStatusResponse = unknown;
+export type StructureJobStatusResponse = Array<'Running' | 'Completed' | 'Failed'>;
 
 export type StructureRunAsyncResponse = string;
 
