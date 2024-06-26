@@ -18,7 +18,7 @@ export class Structure extends APIResource {
   }
 
   /**
-   * Wait for all specified async tasks to be completed.
+   * and any associated LogNodes that have been added to them
    */
   jobStatus(
     body: StructureJobStatusParams,
@@ -505,7 +505,11 @@ export interface ToolMetadata {
 
 export type StructureIsCompleteResponse = string;
 
-export type StructureJobStatusResponse = Array<'Running' | 'Completed' | 'Failed'>;
+export type StructureJobStatusResponse = Array<StructureJobStatusResponse.StructureJobStatusResponseItem>;
+
+export namespace StructureJobStatusResponse {
+  export interface StructureJobStatusResponseItem {}
+}
 
 export type StructureRunAsyncResponse = string;
 
