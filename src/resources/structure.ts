@@ -3,72 +3,537 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as StructureAPI from './structure';
+import * as DatasetsAPI from './datasets';
 
 export class Structure extends APIResource {
   /**
    * Wait for all specified async tasks to be completed.
    */
-  isComplete(body: StructureIsCompleteParams, options?: Core.RequestOptions): Core.APIPromise<IsComplete> {
-    return this._client.post('/structure/is_complete', { body, ...options });
+  isComplete(body: StructureIsCompleteParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.post('/structure/is_complete', {
+      body,
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
   }
 
   /**
    * Wait for all specified async tasks to be completed.
    */
-  jobStatus(body: StructureJobStatusParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+  jobStatus(
+    body: StructureJobStatusParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<StructureJobStatusResponse> {
     return this._client.post('/structure/job_status', { body, ...options });
   }
 
   /**
    * Returns a token that can be waited on until the request is finished.
    */
-  runAsync(params: StructureRunAsyncParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
-    const { dataset_name, custom_instruction, ...body } = params;
+  runAsync(body: StructureRunAsyncParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     return this._client.post('/structure/run_async', {
-      query: { dataset_name, custom_instruction },
       body,
       ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
     });
   }
 }
 
-export interface IsComplete {
-  completed: boolean;
+export interface ChatPrompt {
+  decoding_params: ChatPrompt.DecodingParams;
+
+  messages: Array<ChatPrompt.Message>;
+
+  human_llm_metadata?: ChatPrompt.HumanLlmMetadata | null;
+
+  metadata?: ChatPrompt.Metadata | null;
 }
 
-export type StructureJobStatusResponse = unknown;
+export namespace ChatPrompt {
+  export interface DecodingParams {
+    parameters: Array<
+      | DecodingParams.MaxTokens
+      | DecodingParams.TopP
+      | DecodingParams.RepeatWindow
+      | DecodingParams.RepeatPenalty
+      | DecodingParams.Temperature
+      | DecodingParams.StopTokens
+      | DecodingParams.Functions
+      | DecodingParams.JsonValidator
+      | DecodingParams.RegexValidator
+      | DecodingParams.ContextFreeeGrammar
+      | DecodingParams.Crop
+    >;
+  }
 
-export type StructureRunAsyncResponse = unknown;
+  export namespace DecodingParams {
+    export interface MaxTokens {
+      MaxTokens: number;
+    }
+
+    export interface TopP {
+      TopP: number;
+    }
+
+    export interface RepeatWindow {
+      RepeatWindow: number;
+    }
+
+    export interface RepeatPenalty {
+      RepeatPenalty: number;
+    }
+
+    export interface Temperature {
+      Temperature: number;
+    }
+
+    export interface StopTokens {
+      StopTokens: Array<string>;
+    }
+
+    export interface Functions {
+      Functions: Array<Record<string, unknown>>;
+    }
+
+    export interface JsonValidator {
+      JsonValidator: Record<string, unknown>;
+    }
+
+    export interface RegexValidator {
+      RegexValidator: string;
+    }
+
+    export interface ContextFreeeGrammar {
+      ContextFreeeGrammar: string;
+    }
+
+    export interface Crop {
+      Crop: boolean;
+    }
+  }
+
+  /**
+   * Our generic definition of a message to a chat agent.
+   */
+  export interface Message {
+    /**
+     * We want this to be a vec of contents so we can accurately capture an
+     * interleaving of images and text.
+     *
+     * This is meant to be a completely raw, unprocessed representation of the text.
+     * Don't take stuff out.
+     */
+    content: Array<Message.Text | Message.Image>;
+
+    role: 'user' | 'system' | 'assistant';
+  }
+
+  export namespace Message {
+    export interface Text {
+      Text: string;
+    }
+
+    export interface Image {
+      Image: Core.Uploadable;
+    }
+  }
+
+  export interface HumanLlmMetadata {
+    /**
+     * A dataset is where you put multiple referential schemas.
+     *
+     * A dataset is a complete namespace where all references between schemas are held
+     * within the dataset.
+     */
+    descriptor: DatasetsAPI.DatasetDescriptor;
+
+    run_id: string;
+
+    user_email: string;
+
+    history?: HumanLlmMetadata.History | null;
+  }
+
+  export namespace HumanLlmMetadata {
+    export interface History {
+      date: string;
+
+      steps: Array<StructureAPI.ExecutionStep>;
+
+      /**
+       * Used to identify this history
+       */
+      uuid: string;
+    }
+  }
+
+  export interface Metadata {
+    /**
+     * A dataset is where you put multiple referential schemas.
+     *
+     * A dataset is a complete namespace where all references between schemas are held
+     * within the dataset.
+     */
+    dataset_descriptor: DatasetsAPI.DatasetDescriptor;
+
+    extracted_entities: Array<Metadata.ExtractedEntity>;
+
+    extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+
+    tool_metadata: Array<StructureAPI.ToolMetadata>;
+
+    screenshot?: Core.Uploadable | null;
+
+    url?: string | null;
+
+    web_flags?: Array<Metadata.WebFlag> | null;
+  }
+
+  export namespace Metadata {
+    /**
+     * Knowledge graph info structured to deserialize and display in the same format
+     * that the LLM outputs.
+     */
+    export interface ExtractedEntity {
+      entities?: Array<ExtractedEntity.Entity>;
+
+      relationships?: Array<ExtractedEntity.Relationship>;
+    }
+
+    export namespace ExtractedEntity {
+      export interface Entity {
+        id: number;
+
+        properties: Record<string, string>;
+
+        type: string;
+      }
+
+      export interface Relationship {
+        source: number;
+
+        target: number;
+
+        type: string;
+      }
+    }
+
+    export interface WebFlag {
+      ariaLabel: string;
+
+      text: string;
+
+      type: string;
+
+      x: number;
+
+      y: number;
+
+      height?: number;
+
+      /**
+       * The serde default here is to give us backwards compatibility it's fine for these
+       * to be anything as long as the image isn't given since it won't regenerate.
+       */
+      width?: number;
+    }
+  }
+}
+
+export interface ExecutionStep {
+  prompt: ChatPrompt;
+
+  response: ExecutionStep.Response;
+
+  uuid: string;
+}
+
+export namespace ExecutionStep {
+  export interface Response {
+    completion_tokens: number;
+
+    /**
+     * Cost in dollars
+     */
+    cost: number;
+
+    llm: string;
+
+    /**
+     * New tokens
+     */
+    prompt_tokens: number;
+
+    text: string;
+
+    tool_calls: Array<Response.ToolCall>;
+  }
+
+  export namespace Response {
+    export interface ToolCall {
+      input:
+        | ToolCall.Save
+        | ToolCall.Scroll
+        | ToolCall.Exit
+        | ToolCall.Click
+        | ToolCall.Hover
+        | ToolCall.Wait
+        | ToolCall.Error
+        | ToolCall.Google
+        | ToolCall.Type;
+
+      name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
+
+      result?: ToolCall.ToolQueued | ToolCall.ToolFail | ToolCall.InputParseFail | ToolCall.Success | null;
+    }
+
+    export namespace ToolCall {
+      export interface Save {
+        /**
+         * Knowledge graph info structured to deserialize and display in the same format
+         * that the LLM outputs.
+         */
+        Save: Save.Save;
+      }
+
+      export namespace Save {
+        /**
+         * Knowledge graph info structured to deserialize and display in the same format
+         * that the LLM outputs.
+         */
+        export interface Save {
+          entities?: Array<Save.Entity>;
+
+          relationships?: Array<Save.Relationship>;
+        }
+
+        export namespace Save {
+          export interface Entity {
+            id: number;
+
+            properties: Record<string, string>;
+
+            type: string;
+          }
+
+          export interface Relationship {
+            source: number;
+
+            target: number;
+
+            type: string;
+          }
+        }
+      }
+
+      export interface Scroll {
+        /**
+         * For tools with no inputs.
+         */
+        Scroll: Scroll.Scroll;
+      }
+
+      export namespace Scroll {
+        /**
+         * For tools with no inputs.
+         */
+        export interface Scroll {
+          /**
+           * OpenAI Requires an argument, so we put a dummy one here.
+           */
+          reason: string;
+        }
+      }
+
+      export interface Exit {
+        /**
+         * For tools with no inputs.
+         */
+        Exit: Exit.Exit;
+      }
+
+      export namespace Exit {
+        /**
+         * For tools with no inputs.
+         */
+        export interface Exit {
+          /**
+           * OpenAI Requires an argument, so we put a dummy one here.
+           */
+          reason: string;
+        }
+      }
+
+      export interface Click {
+        Click: Click.Click;
+      }
+
+      export namespace Click {
+        export interface Click {
+          flag: number;
+        }
+      }
+
+      export interface Hover {
+        Hover: Hover.Hover;
+      }
+
+      export namespace Hover {
+        export interface Hover {
+          flag: number;
+        }
+      }
+
+      export interface Wait {
+        Wait: Wait.Wait;
+      }
+
+      export namespace Wait {
+        export interface Wait {
+          /**
+           * Time in seconds to wait
+           */
+          seconds: number;
+        }
+      }
+
+      export interface Error {
+        Error: Error.Error;
+      }
+
+      export namespace Error {
+        export interface Error {
+          error: string;
+        }
+      }
+
+      export interface Google {
+        Google: Google.Google;
+      }
+
+      export namespace Google {
+        export interface Google {
+          query: string;
+        }
+      }
+
+      export interface Type {
+        Type: Type.Type;
+      }
+
+      export namespace Type {
+        export interface Type {
+          flag: number;
+
+          input: string;
+        }
+      }
+
+      export interface ToolQueued {
+        ToolQueued: string;
+      }
+
+      export interface ToolFail {
+        ToolFail: string;
+      }
+
+      export interface InputParseFail {
+        InputParseFail: string;
+      }
+
+      export interface Success {
+        Success: string;
+      }
+    }
+  }
+}
+
+/**
+ * It's an OR statement across these.
+ */
+export type ExtractionCriteria =
+  | ExtractionCriteria.RelationshipExtraction
+  | ExtractionCriteria.EntityExtraction
+  | ExtractionCriteria.GenericProperty;
+
+export namespace ExtractionCriteria {
+  export interface RelationshipExtraction {
+    RelationshipExtraction: RelationshipExtraction.RelationshipExtraction;
+  }
+
+  export namespace RelationshipExtraction {
+    export interface RelationshipExtraction {
+      relationship_name: string;
+    }
+  }
+
+  export interface EntityExtraction {
+    EntityExtraction: EntityExtraction.EntityExtraction;
+  }
+
+  export namespace EntityExtraction {
+    export interface EntityExtraction {
+      entity_id: number;
+    }
+  }
+
+  export interface GenericProperty {
+    GenericProperty: GenericProperty.GenericProperty;
+  }
+
+  export namespace GenericProperty {
+    export interface GenericProperty {
+      property_names: Array<string>;
+
+      /**
+       * Vec<ExtractionCriteria> = it has to meet every one.
+       */
+      table_name: string;
+    }
+  }
+}
+
+export interface ToolMetadata {
+  description: string;
+
+  name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
+
+  regex_validator: string;
+
+  tool_validator: Record<string, unknown>;
+}
+
+export type StructureIsCompleteResponse = string;
+
+export type StructureJobStatusResponse = Array<'Running' | 'Completed' | 'Failed'>;
+
+export type StructureRunAsyncResponse = string;
 
 export type StructureIsCompleteParams = Array<string>;
 
 export type StructureJobStatusParams = Array<string>;
 
-export type StructureRunAsyncParams =
-  | StructureRunAsyncParams.Variant0
-  | StructureRunAsyncParams.Variant1
-  | StructureRunAsyncParams.Variant2;
+export interface StructureRunAsyncParams {
+  dataset_name: string;
+
+  /**
+   * These are all the types that can be converted into a BasicInputType
+   */
+  structure_input:
+    | StructureRunAsyncParams.SecIngestor
+    | StructureRunAsyncParams.PdfIngestor
+    | StructureRunAsyncParams.Basic;
+}
 
 export namespace StructureRunAsyncParams {
-  export interface Variant0 {
-    /**
-     * Query param:
-     */
-    dataset_name: string;
-
-    /**
-     * Body param:
-     */
-    SECIngestor: StructureRunAsyncParams.Variant0.SecIngestor;
-
-    /**
-     * Query param:
-     */
-    custom_instruction?: string | null;
+  export interface SecIngestor {
+    SECIngestor: SecIngestor.SecIngestor;
   }
 
-  export namespace Variant0 {
+  export namespace SecIngestor {
     export interface SecIngestor {
+      extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+
       accession_number?: string | null;
 
       quarter?: number | null;
@@ -77,62 +542,43 @@ export namespace StructureRunAsyncParams {
     }
   }
 
-  export interface Variant1 {
+  export interface PdfIngestor {
     /**
-     * Query param:
+     * This is currently a very simple ingestor. It converts everything to an image and
+     * processes them independently.
      */
-    dataset_name: string;
-
-    /**
-     * Body param: This is currently a very simple ingestor. It converts everything to
-     * an image and processes them independently.
-     */
-    PDFIngestor: StructureRunAsyncParams.Variant1.PdfIngestor;
-
-    /**
-     * Query param:
-     */
-    custom_instruction?: string | null;
+    PDFIngestor: PdfIngestor.PdfIngestor;
   }
 
-  export namespace Variant1 {
+  export namespace PdfIngestor {
     /**
      * This is currently a very simple ingestor. It converts everything to an image and
      * processes them independently.
      */
     export interface PdfIngestor {
+      extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+
       path: string;
     }
   }
 
-  export interface Variant2 {
+  export interface Basic {
     /**
-     * Query param:
+     * These are all the types for which we have an agent that is directly capable of
+     * navigating. There should be a one to one mapping between them.
      */
-    dataset_name: string;
-
-    /**
-     * Body param: These are all the types for which we have an agent that is directly
-     * capable of navigating. There should be a one to one mapping between them.
-     */
-    Basic:
-      | StructureRunAsyncParams.Variant2.TextDocument
-      | StructureRunAsyncParams.Variant2.WebSearch
-      | StructureRunAsyncParams.Variant2.ImageDocument;
-
-    /**
-     * Query param:
-     */
-    custom_instruction?: string | null;
+    Basic: Basic.TextDocument | Basic.WebSearch | Basic.ImageDocument;
   }
 
-  export namespace Variant2 {
+  export namespace Basic {
     export interface TextDocument {
       TextDocument: TextDocument.TextDocument;
     }
 
     export namespace TextDocument {
       export interface TextDocument {
+        extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+
         content?: string | null;
 
         filepath?: string | null;
@@ -147,7 +593,7 @@ export namespace StructureRunAsyncParams {
 
     export namespace WebSearch {
       export interface WebSearch {
-        conditioning_phrase: string;
+        extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
 
         use_local_browser: boolean;
 
@@ -164,13 +610,19 @@ export namespace StructureRunAsyncParams {
         content: Core.Uploadable;
 
         document_name: string;
+
+        extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
       }
     }
   }
 }
 
 export namespace Structure {
-  export import IsComplete = StructureAPI.IsComplete;
+  export import ChatPrompt = StructureAPI.ChatPrompt;
+  export import ExecutionStep = StructureAPI.ExecutionStep;
+  export import ExtractionCriteria = StructureAPI.ExtractionCriteria;
+  export import ToolMetadata = StructureAPI.ToolMetadata;
+  export import StructureIsCompleteResponse = StructureAPI.StructureIsCompleteResponse;
   export import StructureJobStatusResponse = StructureAPI.StructureJobStatusResponse;
   export import StructureRunAsyncResponse = StructureAPI.StructureRunAsyncResponse;
   export import StructureIsCompleteParams = StructureAPI.StructureIsCompleteParams;
