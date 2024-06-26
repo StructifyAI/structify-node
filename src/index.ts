@@ -241,11 +241,16 @@ export namespace Structify {
   export import ServerInformation = API.ServerInformation;
 
   export import Sources = API.Sources;
+  export import Source = API.Source;
   export import SourceListResponse = API.SourceListResponse;
   export import SourceListParams = API.SourceListParams;
 
   export import Structure = API.Structure;
-  export import IsComplete = API.IsComplete;
+  export import ChatPrompt = API.ChatPrompt;
+  export import ExecutionStep = API.ExecutionStep;
+  export import ExtractionCriteria = API.ExtractionCriteria;
+  export import ToolMetadata = API.ToolMetadata;
+  export import StructureIsCompleteResponse = API.StructureIsCompleteResponse;
   export import StructureJobStatusResponse = API.StructureJobStatusResponse;
   export import StructureRunAsyncResponse = API.StructureRunAsyncResponse;
   export import StructureIsCompleteParams = API.StructureIsCompleteParams;
@@ -256,6 +261,7 @@ export namespace Structify {
   export import LabelUpdateResponse = API.LabelUpdateResponse;
   export import LabelGetMessagesResponse = API.LabelGetMessagesResponse;
   export import LabelLlmAssistResponse = API.LabelLlmAssistResponse;
+  export import LabelRunResponse = API.LabelRunResponse;
   export import LabelSubmitResponse = API.LabelSubmitResponse;
   export import LabelUpdateParams = API.LabelUpdateParams;
   export import LabelGetMessagesParams = API.LabelGetMessagesParams;
