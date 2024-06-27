@@ -27,18 +27,6 @@ export {
   Datasets,
 } from './datasets';
 export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
-export {
-  LabelUpdateResponse,
-  LabelGetMessagesResponse,
-  LabelLlmAssistResponse,
-  LabelRunResponse,
-  LabelSubmitResponse,
-  LabelUpdateParams,
-  LabelGetMessagesParams,
-  LabelRunParams,
-  LabelSubmitParams,
-  Label,
-} from './label';
 export { NewToken, UserInfo, User } from './user';
 export { RunListResponse, RunDeleteResponse, RunCancelResponse, RunGetResponse, Runs } from './runs';
 export { ServerInformation, Server } from './server';
