@@ -110,24 +110,6 @@ Methods:
 - <code title="post /structure/job_status">client.structure.<a href="./src/resources/structure.ts">jobStatus</a>([ ...job ]) -> StructureJobStatusResponse</code>
 - <code title="post /structure/run_async">client.structure.<a href="./src/resources/structure.ts">runAsync</a>({ ...params }) -> string</code>
 
-# Label
-
-Types:
-
-- <code><a href="./src/resources/label.ts">LabelUpdateResponse</a></code>
-- <code><a href="./src/resources/label.ts">LabelGetMessagesResponse</a></code>
-- <code><a href="./src/resources/label.ts">LabelLlmAssistResponse</a></code>
-- <code><a href="./src/resources/label.ts">LabelRunResponse</a></code>
-- <code><a href="./src/resources/label.ts">LabelSubmitResponse</a></code>
-
-Methods:
-
-- <code title="post /label/update/{run_uuid}/{run_idx}">client.label.<a href="./src/resources/label.ts">update</a>(runUuid, runIdx, [ ...step_update ]) -> string</code>
-- <code title="get /label/refresh">client.label.<a href="./src/resources/label.ts">getMessages</a>({ ...params }) -> LabelGetMessagesResponse | null</code>
-- <code title="get /label/llm_assist/{uuid}">client.label.<a href="./src/resources/label.ts">llmAssist</a>(uuid) -> LabelLlmAssistResponse</code>
-- <code title="post /label/run_async">client.label.<a href="./src/resources/label.ts">run</a>({ ...params }) -> string</code>
-- <code title="post /label/submit/{uuid}">client.label.<a href="./src/resources/label.ts">submit</a>(uuid, [ ...label ]) -> string</code>
-
 # Usage
 
 Types:
