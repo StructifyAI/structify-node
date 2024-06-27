@@ -42,6 +42,7 @@ describe('resource structure', () => {
   test('runAsync: only required params', async () => {
     const responsePromise = structify.structure.runAsync({
       dataset_name: 'string',
+      seeded_entities: [{}, {}, {}],
       structure_input: {
         SECIngestor: {
           extraction_criteria: [
@@ -64,6 +65,44 @@ describe('resource structure', () => {
   test('runAsync: required and optional params', async () => {
     const response = await structify.structure.runAsync({
       dataset_name: 'string',
+      seeded_entities: [
+        {
+          entities: [
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+          ],
+          relationships: [
+            { source: 0, target: 0, type: 'string' },
+            { source: 0, target: 0, type: 'string' },
+            { source: 0, target: 0, type: 'string' },
+          ],
+        },
+        {
+          entities: [
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+          ],
+          relationships: [
+            { source: 0, target: 0, type: 'string' },
+            { source: 0, target: 0, type: 'string' },
+            { source: 0, target: 0, type: 'string' },
+          ],
+        },
+        {
+          entities: [
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+          ],
+          relationships: [
+            { source: 0, target: 0, type: 'string' },
+            { source: 0, target: 0, type: 'string' },
+            { source: 0, target: 0, type: 'string' },
+          ],
+        },
+      ],
       structure_input: {
         SECIngestor: {
           accession_number: 'string',
