@@ -527,6 +527,8 @@ export interface StructureRunAsyncParams {
     | StructureRunAsyncParams.SecIngestor
     | StructureRunAsyncParams.PdfIngestor
     | StructureRunAsyncParams.Basic;
+
+  seeded_entities?: Array<StructureRunAsyncParams.SeededEntity>;
 }
 
 export namespace StructureRunAsyncParams {
@@ -617,6 +619,34 @@ export namespace StructureRunAsyncParams {
 
         extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
       }
+    }
+  }
+
+  /**
+   * Knowledge graph info structured to deserialize and display in the same format
+   * that the LLM outputs.
+   */
+  export interface SeededEntity {
+    entities?: Array<SeededEntity.Entity>;
+
+    relationships?: Array<SeededEntity.Relationship>;
+  }
+
+  export namespace SeededEntity {
+    export interface Entity {
+      id: number;
+
+      properties: Record<string, string>;
+
+      type: string;
+    }
+
+    export interface Relationship {
+      source: number;
+
+      target: number;
+
+      type: string;
     }
   }
 }
