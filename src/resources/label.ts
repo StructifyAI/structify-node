@@ -436,6 +436,8 @@ export interface LabelRunParams {
    * These are all the types that can be converted into a BasicInputType
    */
   structure_input: LabelRunParams.SecIngestor | LabelRunParams.PdfIngestor | LabelRunParams.Basic;
+
+  seeded_entities?: Array<LabelRunParams.SeededEntity>;
 }
 
 export namespace LabelRunParams {
@@ -526,6 +528,34 @@ export namespace LabelRunParams {
 
         extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
       }
+    }
+  }
+
+  /**
+   * Knowledge graph info structured to deserialize and display in the same format
+   * that the LLM outputs.
+   */
+  export interface SeededEntity {
+    entities?: Array<SeededEntity.Entity>;
+
+    relationships?: Array<SeededEntity.Relationship>;
+  }
+
+  export namespace SeededEntity {
+    export interface Entity {
+      id: number;
+
+      properties: Record<string, string>;
+
+      type: string;
+    }
+
+    export interface Relationship {
+      source: number;
+
+      target: number;
+
+      type: string;
     }
   }
 }
