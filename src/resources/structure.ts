@@ -520,8 +520,6 @@ export type StructureJobStatusParams = Array<string>;
 export interface StructureRunAsyncParams {
   dataset_name: string;
 
-  seeded_entities: Array<StructureRunAsyncParams.SeededEntity>;
-
   /**
    * These are all the types that can be converted into a BasicInputType
    */
@@ -532,34 +530,6 @@ export interface StructureRunAsyncParams {
 }
 
 export namespace StructureRunAsyncParams {
-  /**
-   * Knowledge graph info structured to deserialize and display in the same format
-   * that the LLM outputs.
-   */
-  export interface SeededEntity {
-    entities?: Array<SeededEntity.Entity>;
-
-    relationships?: Array<SeededEntity.Relationship>;
-  }
-
-  export namespace SeededEntity {
-    export interface Entity {
-      id: number;
-
-      properties: Record<string, string>;
-
-      type: string;
-    }
-
-    export interface Relationship {
-      source: number;
-
-      target: number;
-
-      type: string;
-    }
-  }
-
   export interface SecIngestor {
     SECIngestor: SecIngestor.SecIngestor;
   }
