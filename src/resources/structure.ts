@@ -150,21 +150,6 @@ export namespace ChatPrompt {
     run_id: string;
 
     user_email: string;
-
-    history?: HumanLlmMetadata.History | null;
-  }
-
-  export namespace HumanLlmMetadata {
-    export interface History {
-      date: string;
-
-      steps: Array<StructureAPI.ExecutionStep>;
-
-      /**
-       * Used to identify this history
-       */
-      uuid: string;
-    }
   }
 
   export interface Metadata {
