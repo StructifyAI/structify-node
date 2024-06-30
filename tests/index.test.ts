@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Structify from 'structifyai';
-import { APIUserAbortError } from 'structifyai';
-import { Headers } from 'structifyai/core';
+import Structify from 'structify';
+import { APIUserAbortError } from 'structify';
+import { Headers } from 'structify/core';
 import defaultFetch, { Response, type RequestInit, type RequestInfo } from 'node-fetch';
 
 describe('instantiate client', () => {

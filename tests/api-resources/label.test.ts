@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Structify from 'structifyai';
+import Structify from 'structify';
 import { Response } from 'node-fetch';
 
 const structify = new Structify({
@@ -135,9 +135,9 @@ describe('resource label', () => {
       structure_input: {
         SECIngestor: {
           extraction_criteria: [
-            { property_names: ['string', 'string', 'string'], table_name: 'string' },
-            { property_names: ['string', 'string', 'string'], table_name: 'string' },
-            { property_names: ['string', 'string', 'string'], table_name: 'string' },
+            { RelationshipExtraction: { relationship_name: 'string' } },
+            { RelationshipExtraction: { relationship_name: 'string' } },
+            { RelationshipExtraction: { relationship_name: 'string' } },
           ],
         },
       },
@@ -158,14 +158,52 @@ describe('resource label', () => {
         SECIngestor: {
           accession_number: 'string',
           extraction_criteria: [
-            { property_names: ['string', 'string', 'string'], table_name: 'string' },
-            { property_names: ['string', 'string', 'string'], table_name: 'string' },
-            { property_names: ['string', 'string', 'string'], table_name: 'string' },
+            { RelationshipExtraction: { relationship_name: 'string' } },
+            { RelationshipExtraction: { relationship_name: 'string' } },
+            { RelationshipExtraction: { relationship_name: 'string' } },
           ],
           quarter: 0,
           year: 0,
         },
       },
+      seeded_entities: [
+        {
+          entities: [
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+          ],
+          relationships: [
+            { source: 0, target: 0, type: 'string' },
+            { source: 0, target: 0, type: 'string' },
+            { source: 0, target: 0, type: 'string' },
+          ],
+        },
+        {
+          entities: [
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+          ],
+          relationships: [
+            { source: 0, target: 0, type: 'string' },
+            { source: 0, target: 0, type: 'string' },
+            { source: 0, target: 0, type: 'string' },
+          ],
+        },
+        {
+          entities: [
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+            { id: 0, properties: { foo: 'string' }, type: 'string' },
+          ],
+          relationships: [
+            { source: 0, target: 0, type: 'string' },
+            { source: 0, target: 0, type: 'string' },
+            { source: 0, target: 0, type: 'string' },
+          ],
+        },
+      ],
     });
   });
 

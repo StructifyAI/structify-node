@@ -55,12 +55,12 @@ cd structify-node
 # With yarn
 yarn link
 cd ../my-package
-yarn link structifyai
+yarn link structify
 
 # With pnpm
 pnpm link --global
 cd ../my-package
-pnpm link -—global structifyai
+pnpm link -—global structify
 ```
 
 ## Running tests

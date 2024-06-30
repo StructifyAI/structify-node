@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "structifyai/*": ["dist/src/*"],
-      "structifyai": ["dist/src/index.ts"],
+      "structify/*": ["dist/src/*"],
+      "structify": ["dist/src/index.ts"],
     },
     "noEmit": false,
     "declaration": true,

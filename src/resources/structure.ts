@@ -1,31 +1,41 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '../core';
 import { APIResource } from '../resource';
+import * as Core from '../core';
 import * as StructureAPI from './structure';
 import * as DatasetsAPI from './datasets';
-import { type Uploadable } from '../core';
 
 export class Structure extends APIResource {
   /**
    * Wait for all specified async tasks to be completed.
    */
-  isComplete(body: StructureIsCompleteParams, options?: Core.RequestOptions): Core.APIPromise<IsComplete> {
-    return this._client.post('/structure/is_complete', { body, ...options });
+  isComplete(body: StructureIsCompleteParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.post('/structure/is_complete', {
+      body,
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
   }
 
   /**
-   * Wait for all specified async tasks to be completed.
+   * and any associated LogNodes that have been added to them
    */
-  jobStatus(body: StructureJobStatusParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+  jobStatus(
+    body: StructureJobStatusParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<StructureJobStatusResponse> {
     return this._client.post('/structure/job_status', { body, ...options });
   }
 
   /**
    * Returns a token that can be waited on until the request is finished.
    */
-  runAsync(body: StructureRunAsyncParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
-    return this._client.post('/structure/run_async', { body, ...options });
+  runAsync(body: StructureRunAsyncParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.post('/structure/run_async', {
+      body,
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
   }
 }
 
@@ -82,11 +92,11 @@ export namespace ChatPrompt {
     }
 
     export interface Functions {
-      Functions: Array<unknown>;
+      Functions: Array<Record<string, unknown>>;
     }
 
     export interface JsonValidator {
-      JsonValidator: unknown;
+      JsonValidator: Record<string, unknown>;
     }
 
     export interface RegexValidator {
@@ -124,7 +134,7 @@ export namespace ChatPrompt {
     }
 
     export interface Image {
-      Image: Uploadable;
+      Image: Core.Uploadable;
     }
   }
 
@@ -140,21 +150,6 @@ export namespace ChatPrompt {
     run_id: string;
 
     user_email: string;
-
-    history?: HumanLlmMetadata.History | null;
-  }
-
-  export namespace HumanLlmMetadata {
-    export interface History {
-      date: string;
-
-      steps: Array<StructureAPI.ExecutionStep>;
-
-      /**
-       * Used to identify this history
-       */
-      uuid: string;
-    }
   }
 
   export interface Metadata {
@@ -170,9 +165,9 @@ export namespace ChatPrompt {
 
     extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
 
-    tool_metadata: Array<Metadata.ToolMetadata>;
+    tool_metadata: Array<StructureAPI.ToolMetadata>;
 
-    screenshot?: Uploadable | null;
+    screenshot?: Core.Uploadable | null;
 
     url?: string | null;
 
@@ -208,30 +203,24 @@ export namespace ChatPrompt {
       }
     }
 
-    export interface ToolMetadata {
-      description: string;
-
-      name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
-
-      regex_validator: string;
-
-      tool_validator: unknown;
-    }
-
     export interface WebFlag {
       ariaLabel: string;
-
-      height: number;
 
       text: string;
 
       type: string;
 
-      width: number;
-
       x: number;
 
       y: number;
+
+      height?: number;
+
+      /**
+       * The serde default here is to give us backwards compatibility it's fine for these
+       * to be anything as long as the image isn't given since it won't regenerate.
+       */
+      width?: number;
     }
   }
 }
@@ -240,6 +229,8 @@ export interface ExecutionStep {
   prompt: ChatPrompt;
 
   response: ExecutionStep.Response;
+
+  uuid: string;
 }
 
 export namespace ExecutionStep {
@@ -445,22 +436,67 @@ export namespace ExecutionStep {
 /**
  * It's an OR statement across these.
  */
-export interface ExtractionCriteria {
-  property_names: Array<string>;
+export type ExtractionCriteria =
+  | ExtractionCriteria.RelationshipExtraction
+  | ExtractionCriteria.EntityExtraction
+  | ExtractionCriteria.GenericProperty;
 
-  /**
-   * Vec<ExtractionCriteria> = it has to meet every one.
-   */
-  table_name: string;
+export namespace ExtractionCriteria {
+  export interface RelationshipExtraction {
+    RelationshipExtraction: RelationshipExtraction.RelationshipExtraction;
+  }
+
+  export namespace RelationshipExtraction {
+    export interface RelationshipExtraction {
+      relationship_name: string;
+    }
+  }
+
+  export interface EntityExtraction {
+    EntityExtraction: EntityExtraction.EntityExtraction;
+  }
+
+  export namespace EntityExtraction {
+    export interface EntityExtraction {
+      entity_id: number;
+    }
+  }
+
+  export interface GenericProperty {
+    GenericProperty: GenericProperty.GenericProperty;
+  }
+
+  export namespace GenericProperty {
+    export interface GenericProperty {
+      property_names: Array<string>;
+
+      /**
+       * Vec<ExtractionCriteria> = it has to meet every one.
+       */
+      table_name: string;
+    }
+  }
 }
 
-export interface IsComplete {
-  completed: boolean;
+export interface ToolMetadata {
+  description: string;
+
+  name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
+
+  regex_validator: string;
+
+  tool_validator: Record<string, unknown>;
 }
 
-export type StructureJobStatusResponse = unknown;
+export type StructureIsCompleteResponse = string;
 
-export type StructureRunAsyncResponse = unknown;
+export type StructureJobStatusResponse = Array<StructureJobStatusResponse.StructureJobStatusResponseItem>;
+
+export namespace StructureJobStatusResponse {
+  export interface StructureJobStatusResponseItem {}
+}
+
+export type StructureRunAsyncResponse = string;
 
 export type StructureIsCompleteParams = Array<string>;
 
@@ -476,6 +512,8 @@ export interface StructureRunAsyncParams {
     | StructureRunAsyncParams.SecIngestor
     | StructureRunAsyncParams.PdfIngestor
     | StructureRunAsyncParams.Basic;
+
+  seeded_entities?: Array<StructureRunAsyncParams.SeededEntity>;
 }
 
 export namespace StructureRunAsyncParams {
@@ -560,12 +598,40 @@ export namespace StructureRunAsyncParams {
 
     export namespace ImageDocument {
       export interface ImageDocument {
-        content: Uploadable;
+        content: Core.Uploadable;
 
         document_name: string;
 
         extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
       }
+    }
+  }
+
+  /**
+   * Knowledge graph info structured to deserialize and display in the same format
+   * that the LLM outputs.
+   */
+  export interface SeededEntity {
+    entities?: Array<SeededEntity.Entity>;
+
+    relationships?: Array<SeededEntity.Relationship>;
+  }
+
+  export namespace SeededEntity {
+    export interface Entity {
+      id: number;
+
+      properties: Record<string, string>;
+
+      type: string;
+    }
+
+    export interface Relationship {
+      source: number;
+
+      target: number;
+
+      type: string;
     }
   }
 }
@@ -574,7 +640,8 @@ export namespace Structure {
   export import ChatPrompt = StructureAPI.ChatPrompt;
   export import ExecutionStep = StructureAPI.ExecutionStep;
   export import ExtractionCriteria = StructureAPI.ExtractionCriteria;
-  export import IsComplete = StructureAPI.IsComplete;
+  export import ToolMetadata = StructureAPI.ToolMetadata;
+  export import StructureIsCompleteResponse = StructureAPI.StructureIsCompleteResponse;
   export import StructureJobStatusResponse = StructureAPI.StructureJobStatusResponse;
   export import StructureRunAsyncResponse = StructureAPI.StructureRunAsyncResponse;
   export import StructureIsCompleteParams = StructureAPI.StructureIsCompleteParams;
