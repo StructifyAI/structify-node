@@ -166,44 +166,18 @@ describe('resource label', () => {
           year: 0,
         },
       },
-      seeded_entities: [
-        {
-          entities: [
-            { id: 0, properties: { foo: 'string' }, type: 'string' },
-            { id: 0, properties: { foo: 'string' }, type: 'string' },
-            { id: 0, properties: { foo: 'string' }, type: 'string' },
-          ],
-          relationships: [
-            { source: 0, target: 0, type: 'string' },
-            { source: 0, target: 0, type: 'string' },
-            { source: 0, target: 0, type: 'string' },
-          ],
-        },
-        {
-          entities: [
-            { id: 0, properties: { foo: 'string' }, type: 'string' },
-            { id: 0, properties: { foo: 'string' }, type: 'string' },
-            { id: 0, properties: { foo: 'string' }, type: 'string' },
-          ],
-          relationships: [
-            { source: 0, target: 0, type: 'string' },
-            { source: 0, target: 0, type: 'string' },
-            { source: 0, target: 0, type: 'string' },
-          ],
-        },
-        {
-          entities: [
-            { id: 0, properties: { foo: 'string' }, type: 'string' },
-            { id: 0, properties: { foo: 'string' }, type: 'string' },
-            { id: 0, properties: { foo: 'string' }, type: 'string' },
-          ],
-          relationships: [
-            { source: 0, target: 0, type: 'string' },
-            { source: 0, target: 0, type: 'string' },
-            { source: 0, target: 0, type: 'string' },
-          ],
-        },
-      ],
+      seeded_entity: {
+        entities: [
+          { id: 0, properties: { foo: 'string' }, type: 'string' },
+          { id: 0, properties: { foo: 'string' }, type: 'string' },
+          { id: 0, properties: { foo: 'string' }, type: 'string' },
+        ],
+        relationships: [
+          { source: 0, target: 0, type: 'string' },
+          { source: 0, target: 0, type: 'string' },
+          { source: 0, target: 0, type: 'string' },
+        ],
+      },
     });
   });
 
