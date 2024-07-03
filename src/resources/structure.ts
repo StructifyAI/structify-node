@@ -177,7 +177,8 @@ export namespace ChatPrompt {
   export namespace Metadata {
     /**
      * Knowledge graph info structured to deserialize and display in the same format
-     * that the LLM outputs.
+     * that the LLM outputs. Also the first representation of an LLM output in the
+     * pipeline from raw tool output to being merged into a Neo4j DB
      */
     export interface ExtractedEntity {
       entities?: Array<ExtractedEntity.Entity>;
@@ -276,7 +277,8 @@ export namespace ExecutionStep {
       export interface Save {
         /**
          * Knowledge graph info structured to deserialize and display in the same format
-         * that the LLM outputs.
+         * that the LLM outputs. Also the first representation of an LLM output in the
+         * pipeline from raw tool output to being merged into a Neo4j DB
          */
         Save: Save.Save;
       }
@@ -284,7 +286,8 @@ export namespace ExecutionStep {
       export namespace Save {
         /**
          * Knowledge graph info structured to deserialize and display in the same format
-         * that the LLM outputs.
+         * that the LLM outputs. Also the first representation of an LLM output in the
+         * pipeline from raw tool output to being merged into a Neo4j DB
          */
         export interface Save {
           entities?: Array<Save.Entity>;
@@ -513,7 +516,12 @@ export interface StructureRunAsyncParams {
     | StructureRunAsyncParams.PdfIngestor
     | StructureRunAsyncParams.Basic;
 
-  seeded_entities?: Array<StructureRunAsyncParams.SeededEntity>;
+  /**
+   * Knowledge graph info structured to deserialize and display in the same format
+   * that the LLM outputs. Also the first representation of an LLM output in the
+   * pipeline from raw tool output to being merged into a Neo4j DB
+   */
+  seeded_entity?: StructureRunAsyncParams.SeededEntity;
 }
 
 export namespace StructureRunAsyncParams {
@@ -609,7 +617,8 @@ export namespace StructureRunAsyncParams {
 
   /**
    * Knowledge graph info structured to deserialize and display in the same format
-   * that the LLM outputs.
+   * that the LLM outputs. Also the first representation of an LLM output in the
+   * pipeline from raw tool output to being merged into a Neo4j DB
    */
   export interface SeededEntity {
     entities?: Array<SeededEntity.Entity>;
