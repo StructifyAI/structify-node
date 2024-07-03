@@ -97,7 +97,8 @@ export namespace LabelLlmAssistResponse {
   export interface Save {
     /**
      * Knowledge graph info structured to deserialize and display in the same format
-     * that the LLM outputs.
+     * that the LLM outputs. Also the first representation of an LLM output in the
+     * pipeline from raw tool output to being merged into a Neo4j DB
      */
     Save: Save.Save;
   }
@@ -105,7 +106,8 @@ export namespace LabelLlmAssistResponse {
   export namespace Save {
     /**
      * Knowledge graph info structured to deserialize and display in the same format
-     * that the LLM outputs.
+     * that the LLM outputs. Also the first representation of an LLM output in the
+     * pipeline from raw tool output to being merged into a Neo4j DB
      */
     export interface Save {
       entities?: Array<Save.Entity>;
@@ -269,7 +271,8 @@ export namespace LabelUpdateParams {
     export interface Save {
       /**
        * Knowledge graph info structured to deserialize and display in the same format
-       * that the LLM outputs.
+       * that the LLM outputs. Also the first representation of an LLM output in the
+       * pipeline from raw tool output to being merged into a Neo4j DB
        */
       Save: Save.Save;
     }
@@ -277,7 +280,8 @@ export namespace LabelUpdateParams {
     export namespace Save {
       /**
        * Knowledge graph info structured to deserialize and display in the same format
-       * that the LLM outputs.
+       * that the LLM outputs. Also the first representation of an LLM output in the
+       * pipeline from raw tool output to being merged into a Neo4j DB
        */
       export interface Save {
         entities?: Array<Save.Entity>;
@@ -437,7 +441,12 @@ export interface LabelRunParams {
    */
   structure_input: LabelRunParams.SecIngestor | LabelRunParams.PdfIngestor | LabelRunParams.Basic;
 
-  seeded_entities?: Array<LabelRunParams.SeededEntity>;
+  /**
+   * Knowledge graph info structured to deserialize and display in the same format
+   * that the LLM outputs. Also the first representation of an LLM output in the
+   * pipeline from raw tool output to being merged into a Neo4j DB
+   */
+  seeded_entity?: LabelRunParams.SeededEntity;
 }
 
 export namespace LabelRunParams {
@@ -533,7 +542,8 @@ export namespace LabelRunParams {
 
   /**
    * Knowledge graph info structured to deserialize and display in the same format
-   * that the LLM outputs.
+   * that the LLM outputs. Also the first representation of an LLM output in the
+   * pipeline from raw tool output to being merged into a Neo4j DB
    */
   export interface SeededEntity {
     entities?: Array<SeededEntity.Entity>;
@@ -576,7 +586,8 @@ export namespace LabelSubmitParams {
   export interface Save {
     /**
      * Knowledge graph info structured to deserialize and display in the same format
-     * that the LLM outputs.
+     * that the LLM outputs. Also the first representation of an LLM output in the
+     * pipeline from raw tool output to being merged into a Neo4j DB
      */
     Save: Save.Save;
   }
@@ -584,7 +595,8 @@ export namespace LabelSubmitParams {
   export namespace Save {
     /**
      * Knowledge graph info structured to deserialize and display in the same format
-     * that the LLM outputs.
+     * that the LLM outputs. Also the first representation of an LLM output in the
+     * pipeline from raw tool output to being merged into a Neo4j DB
      */
     export interface Save {
       entities?: Array<Save.Entity>;
