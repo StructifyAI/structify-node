@@ -204,12 +204,6 @@ export interface DatasetGetParams {
 
 export interface DatasetViewParams {
   dataset_name: string;
-
-  table_name: string;
-
-  limit?: number;
-
-  skip?: number;
 }
 
 export namespace Datasets {
