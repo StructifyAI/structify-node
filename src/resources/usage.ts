@@ -22,7 +22,7 @@ export interface UsageGetJobInfoResponse {
 
   job_id: string;
 
-  job_status: 'Running' | 'Completed' | 'Failed';
+  job_status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
   run_time: string;
 
