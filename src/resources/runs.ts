@@ -56,7 +56,7 @@ export type RunDeleteResponse = string;
 export interface RunCancelResponse {
   id: string;
 
-  status: 'Running' | 'Completed' | 'Failed';
+  status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 }
 
 export interface RunGetResponse {

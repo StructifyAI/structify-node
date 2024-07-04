@@ -147,7 +147,7 @@ describe('resource datasets', () => {
   });
 
   test('view: only required params', async () => {
-    const responsePromise = structify.datasets.view({ dataset_name: 'string', table_name: 'string' });
+    const responsePromise = structify.datasets.view({ dataset_name: 'string' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -158,11 +158,6 @@ describe('resource datasets', () => {
   });
 
   test('view: required and optional params', async () => {
-    const response = await structify.datasets.view({
-      dataset_name: 'string',
-      table_name: 'string',
-      limit: 0,
-      skip: 0,
-    });
+    const response = await structify.datasets.view({ dataset_name: 'string' });
   });
 });
