@@ -29,6 +29,7 @@ Types:
 
 - <code><a href="./src/resources/datasets.ts">Dataset</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetDescriptor</a></code>
+- <code><a href="./src/resources/datasets.ts">Entity</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetListResponse</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetViewResponse</a></code>
 
