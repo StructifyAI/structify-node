@@ -227,14 +227,20 @@ export namespace ChatPrompt {
 }
 
 export interface ExecutionStep {
+  id: ExecutionStep.ID;
+
   prompt: ChatPrompt;
 
   response: ExecutionStep.Response;
-
-  uuid: string;
 }
 
 export namespace ExecutionStep {
+  export interface ID {
+    id: string;
+
+    id_type: 'Job' | 'Step' | 'Logger' | 'None';
+  }
+
   export interface Response {
     completion_tokens: number;
 
