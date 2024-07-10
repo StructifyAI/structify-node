@@ -137,3 +137,11 @@ Types:
 Methods:
 
 - <code title="post /usage/get_job_info">client.usage.<a href="./src/resources/usage.ts">getJobInfo</a>({ ...params }) -> UsageGetJobInfoResponse</code>
+
+# Shared
+
+Types:
+
+- <code><a href="./src/resources/shared.ts">Entity</a></code>
+- <code><a href="./src/resources/shared.ts">KnowledgeGraph</a></code>
+- <code><a href="./src/resources/shared.ts">Relationship</a></code>
