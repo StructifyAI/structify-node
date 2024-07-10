@@ -9,8 +9,8 @@ const structify = new Structify({
 });
 
 describe('resource runs', () => {
-  test('list', async () => {
-    const responsePromise = structify.runs.list();
+  test('list: only required params', async () => {
+    const responsePromise = structify.runs.list({ limit: 0, offset: 0 });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -20,11 +20,8 @@ describe('resource runs', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(structify.runs.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Structify.NotFoundError,
-    );
+  test('list: required and optional params', async () => {
+    const response = await structify.runs.list({ limit: 0, offset: 0 });
   });
 
   test('delete', async () => {
