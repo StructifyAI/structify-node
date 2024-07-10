@@ -4,6 +4,7 @@ import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as LabelAPI from './label';
+import * as SharedAPI from './shared';
 import * as StructureAPI from './structure';
 
 export class Label extends APIResource {
@@ -100,38 +101,7 @@ export namespace LabelLlmAssistResponse {
      * that the LLM outputs. Also the first representation of an LLM output in the
      * pipeline from raw tool output to being merged into a Neo4j DB
      */
-    Save: Save.Save;
-  }
-
-  export namespace Save {
-    /**
-     * Knowledge graph info structured to deserialize and display in the same format
-     * that the LLM outputs. Also the first representation of an LLM output in the
-     * pipeline from raw tool output to being merged into a Neo4j DB
-     */
-    export interface Save {
-      entities?: Array<Save.Entity>;
-
-      relationships?: Array<Save.Relationship>;
-    }
-
-    export namespace Save {
-      export interface Entity {
-        id: number;
-
-        properties: Record<string, string>;
-
-        type: string;
-      }
-
-      export interface Relationship {
-        source: number;
-
-        target: number;
-
-        type: string;
-      }
-    }
+    Save: SharedAPI.KnowledgeGraph;
   }
 
   export interface Scroll {
@@ -274,38 +244,7 @@ export namespace LabelUpdateParams {
        * that the LLM outputs. Also the first representation of an LLM output in the
        * pipeline from raw tool output to being merged into a Neo4j DB
        */
-      Save: Save.Save;
-    }
-
-    export namespace Save {
-      /**
-       * Knowledge graph info structured to deserialize and display in the same format
-       * that the LLM outputs. Also the first representation of an LLM output in the
-       * pipeline from raw tool output to being merged into a Neo4j DB
-       */
-      export interface Save {
-        entities?: Array<Save.Entity>;
-
-        relationships?: Array<Save.Relationship>;
-      }
-
-      export namespace Save {
-        export interface Entity {
-          id: number;
-
-          properties: Record<string, string>;
-
-          type: string;
-        }
-
-        export interface Relationship {
-          source: number;
-
-          target: number;
-
-          type: string;
-        }
-      }
+      Save: SharedAPI.KnowledgeGraph;
     }
 
     export interface Scroll {
@@ -446,7 +385,7 @@ export interface LabelRunParams {
    * that the LLM outputs. Also the first representation of an LLM output in the
    * pipeline from raw tool output to being merged into a Neo4j DB
    */
-  seeded_entity?: LabelRunParams.SeededEntity;
+  seeded_entity?: SharedAPI.KnowledgeGraph;
 }
 
 export namespace LabelRunParams {
@@ -539,35 +478,6 @@ export namespace LabelRunParams {
       }
     }
   }
-
-  /**
-   * Knowledge graph info structured to deserialize and display in the same format
-   * that the LLM outputs. Also the first representation of an LLM output in the
-   * pipeline from raw tool output to being merged into a Neo4j DB
-   */
-  export interface SeededEntity {
-    entities?: Array<SeededEntity.Entity>;
-
-    relationships?: Array<SeededEntity.Relationship>;
-  }
-
-  export namespace SeededEntity {
-    export interface Entity {
-      id: number;
-
-      properties: Record<string, string>;
-
-      type: string;
-    }
-
-    export interface Relationship {
-      source: number;
-
-      target: number;
-
-      type: string;
-    }
-  }
 }
 
 export type LabelSubmitParams = Array<
@@ -589,38 +499,7 @@ export namespace LabelSubmitParams {
      * that the LLM outputs. Also the first representation of an LLM output in the
      * pipeline from raw tool output to being merged into a Neo4j DB
      */
-    Save: Save.Save;
-  }
-
-  export namespace Save {
-    /**
-     * Knowledge graph info structured to deserialize and display in the same format
-     * that the LLM outputs. Also the first representation of an LLM output in the
-     * pipeline from raw tool output to being merged into a Neo4j DB
-     */
-    export interface Save {
-      entities?: Array<Save.Entity>;
-
-      relationships?: Array<Save.Relationship>;
-    }
-
-    export namespace Save {
-      export interface Entity {
-        id: number;
-
-        properties: Record<string, string>;
-
-        type: string;
-      }
-
-      export interface Relationship {
-        source: number;
-
-        target: number;
-
-        type: string;
-      }
-    }
+    Save: SharedAPI.KnowledgeGraph;
   }
 
   export interface Scroll {
