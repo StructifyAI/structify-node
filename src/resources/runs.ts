@@ -54,9 +54,17 @@ export type RunListResponse = Array<string>;
 export type RunDeleteResponse = string;
 
 export interface RunCancelResponse {
-  id: string;
+  id: RunCancelResponse.ID;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+}
+
+export namespace RunCancelResponse {
+  export interface ID {
+    id: string;
+
+    id_type: 'Job' | 'Step' | 'Logger' | 'None';
+  }
 }
 
 export interface RunGetResponse {
