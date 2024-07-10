@@ -116,18 +116,6 @@ export namespace DatasetDescriptor {
   }
 }
 
-export interface Entity {
-  id: number;
-
-  /**
-   * Since all Entities have exactly two labels (ENTITY_LABEL and their table name),
-   * we only store the non-ENTITY_LABEL label here.
-   */
-  label: string;
-
-  properties: Record<string, string | null | boolean | null | number | null>;
-}
-
 export type DatasetListResponse = Array<Dataset>;
 
 export type DatasetViewResponse = Array<'Entities' | 'Relationships'>;
@@ -210,7 +198,6 @@ export interface DatasetViewParams {
 export namespace Datasets {
   export import Dataset = DatasetsAPI.Dataset;
   export import DatasetDescriptor = DatasetsAPI.DatasetDescriptor;
-  export import Entity = DatasetsAPI.Entity;
   export import DatasetListResponse = DatasetsAPI.DatasetListResponse;
   export import DatasetViewResponse = DatasetsAPI.DatasetViewResponse;
   export import DatasetCreateParams = DatasetsAPI.DatasetCreateParams;
