@@ -43,8 +43,14 @@ export class Datasets extends APIResource {
   }
 
   /**
-   * TODO: Add pagination. Entities are paginated, relationships are based on
-   * entities.
+   * You need to specify a dataset. If you don't specify a table_name, we assume all
+   * tables.
+   *
+   * If you want to view relationships, you can not specify a table_name since the
+   * result of inter-table relationships is not well defined.
+   *
+   * You can either return entities or relationships from this call, but not both. If
+   * you want both, just make two calls.
    */
   view(query: DatasetViewParams, options?: Core.RequestOptions): Core.APIPromise<DatasetViewResponse> {
     return this._client.get('/dataset/view', { query, ...options });
@@ -124,22 +130,7 @@ export interface Entity {
 
 export type DatasetListResponse = Array<Dataset>;
 
-export type DatasetViewResponse = Array<Array<DatasetViewResponse.DatasetViewResponseItem>>;
-
-export namespace DatasetViewResponse {
-  /**
-   * Don't actually create these. These are solely used as return types in the API
-   *
-   * TODO: Remove them from models.
-   */
-  export interface DatasetViewResponseItem extends DatasetsAPI.Entity {
-    from_id: number;
-
-    label: string;
-
-    to_id: number;
-  }
-}
+export type DatasetViewResponse = Array<'Entities' | 'Relationships'>;
 
 export interface DatasetCreateParams {
   description: string;
@@ -204,6 +195,16 @@ export interface DatasetGetParams {
 
 export interface DatasetViewParams {
   dataset_name: string;
+
+  requested_type: 'Entities' | 'Relationships';
+
+  limit?: number;
+
+  offset?: number;
+
+  relationship_name?: string | null;
+
+  table_name?: string | null;
 }
 
 export namespace Datasets {
