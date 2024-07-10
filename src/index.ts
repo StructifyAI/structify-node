@@ -152,6 +152,7 @@ export class Structify extends Core.APIClient {
   structure: API.Structure = new API.Structure(this);
   label: API.Label = new API.Label(this);
   usage: API.Usage = new API.Usage(this);
+  shared: API.Shared = new API.Shared(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -271,6 +272,11 @@ export namespace Structify {
   export import Usage = API.Usage;
   export import UsageGetJobInfoResponse = API.UsageGetJobInfoResponse;
   export import UsageGetJobInfoParams = API.UsageGetJobInfoParams;
+
+  export import Shared = API.Shared;
+  export import Entity = API.Entity;
+  export import KnowledgeGraph = API.KnowledgeGraph;
+  export import Relationship = API.Relationship;
 }
 
 export default Structify;
