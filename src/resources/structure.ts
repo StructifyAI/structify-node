@@ -4,6 +4,7 @@ import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as StructureAPI from './structure';
 import * as DatasetsAPI from './datasets';
+import * as SharedAPI from './shared';
 
 export class Structure extends APIResource {
   /**
@@ -161,7 +162,7 @@ export namespace ChatPrompt {
      */
     dataset_descriptor: DatasetsAPI.DatasetDescriptor;
 
-    extracted_entities: Array<Metadata.ExtractedEntity>;
+    extracted_entities: Array<SharedAPI.KnowledgeGraph>;
 
     extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
 
@@ -175,35 +176,6 @@ export namespace ChatPrompt {
   }
 
   export namespace Metadata {
-    /**
-     * Knowledge graph info structured to deserialize and display in the same format
-     * that the LLM outputs. Also the first representation of an LLM output in the
-     * pipeline from raw tool output to being merged into a Neo4j DB
-     */
-    export interface ExtractedEntity {
-      entities?: Array<ExtractedEntity.Entity>;
-
-      relationships?: Array<ExtractedEntity.Relationship>;
-    }
-
-    export namespace ExtractedEntity {
-      export interface Entity {
-        id: number;
-
-        properties: Record<string, string>;
-
-        type: string;
-      }
-
-      export interface Relationship {
-        source: number;
-
-        target: number;
-
-        type: string;
-      }
-    }
-
     export interface WebFlag {
       ariaLabel: string;
 
@@ -286,38 +258,7 @@ export namespace ExecutionStep {
          * that the LLM outputs. Also the first representation of an LLM output in the
          * pipeline from raw tool output to being merged into a Neo4j DB
          */
-        Save: Save.Save;
-      }
-
-      export namespace Save {
-        /**
-         * Knowledge graph info structured to deserialize and display in the same format
-         * that the LLM outputs. Also the first representation of an LLM output in the
-         * pipeline from raw tool output to being merged into a Neo4j DB
-         */
-        export interface Save {
-          entities?: Array<Save.Entity>;
-
-          relationships?: Array<Save.Relationship>;
-        }
-
-        export namespace Save {
-          export interface Entity {
-            id: number;
-
-            properties: Record<string, string>;
-
-            type: string;
-          }
-
-          export interface Relationship {
-            source: number;
-
-            target: number;
-
-            type: string;
-          }
-        }
+        Save: SharedAPI.KnowledgeGraph;
       }
 
       export interface Scroll {
@@ -527,7 +468,7 @@ export interface StructureRunAsyncParams {
    * that the LLM outputs. Also the first representation of an LLM output in the
    * pipeline from raw tool output to being merged into a Neo4j DB
    */
-  seeded_entity?: StructureRunAsyncParams.SeededEntity;
+  seeded_entity?: SharedAPI.KnowledgeGraph;
 }
 
 export namespace StructureRunAsyncParams {
@@ -618,35 +559,6 @@ export namespace StructureRunAsyncParams {
 
         extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
       }
-    }
-  }
-
-  /**
-   * Knowledge graph info structured to deserialize and display in the same format
-   * that the LLM outputs. Also the first representation of an LLM output in the
-   * pipeline from raw tool output to being merged into a Neo4j DB
-   */
-  export interface SeededEntity {
-    entities?: Array<SeededEntity.Entity>;
-
-    relationships?: Array<SeededEntity.Relationship>;
-  }
-
-  export namespace SeededEntity {
-    export interface Entity {
-      id: number;
-
-      properties: Record<string, string>;
-
-      type: string;
-    }
-
-    export interface Relationship {
-      source: number;
-
-      target: number;
-
-      type: string;
     }
   }
 }
