@@ -17,6 +17,7 @@ export {
 export {
   Dataset,
   DatasetDescriptor,
+  Entity,
   DatasetListResponse,
   DatasetViewResponse,
   DatasetCreateParams,
