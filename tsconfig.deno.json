@@ -6,9 +6,9 @@
     "rootDir": "./deno",
     "lib": ["es2020", "DOM"],
     "paths": {
-      "structify/_shims/auto/*": ["deno/_shims/auto/*-deno"],
-      "structify/*": ["deno/*"],
-      "structify": ["deno/index.ts"],
+      "structifyai/_shims/auto/*": ["deno/_shims/auto/*-deno"],
+      "structifyai/*": ["deno/*"],
+      "structifyai": ["deno/index.ts"],
     },
     "noEmit": true,
     "declaration": true,
