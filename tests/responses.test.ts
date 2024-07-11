@@ -1,5 +1,5 @@
-import { createResponseHeaders } from 'structify/core';
-import { Headers } from 'structify/_shims/index';
+import { createResponseHeaders } from 'structifyai/core';
+import { Headers } from 'structifyai/_shims/index';
 
 describe('response parsing', () => {
   // TODO: test unicode characters
