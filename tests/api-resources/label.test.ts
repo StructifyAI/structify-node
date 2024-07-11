@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Structify from 'structifyai';
+import Structify from 'structify';
 import { Response } from 'node-fetch';
 
 const structify = new Structify({
@@ -10,7 +10,7 @@ const structify = new Structify({
 
 describe('resource label', () => {
   test('update: only required params', async () => {
-    const responsePromise = structify.label.update('string', 0, [
+    const responsePromise = structify.label.update('run_uuid', 0, [
       { input: { Save: {} }, name: 'Save' },
       { input: { Save: {} }, name: 'Save' },
       { input: { Save: {} }, name: 'Save' },
@@ -25,60 +25,60 @@ describe('resource label', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await structify.label.update('string', 0, [
+    const response = await structify.label.update('run_uuid', 0, [
       {
         input: {
           Save: {
             entities: [
-              { id: 0, properties: { foo: 'string' }, type: 'string' },
-              { id: 0, properties: { foo: 'string' }, type: 'string' },
-              { id: 0, properties: { foo: 'string' }, type: 'string' },
+              { id: 0, properties: { foo: 'string' }, type: 'type' },
+              { id: 0, properties: { foo: 'string' }, type: 'type' },
+              { id: 0, properties: { foo: 'string' }, type: 'type' },
             ],
             relationships: [
-              { source: 0, target: 0, type: 'string' },
-              { source: 0, target: 0, type: 'string' },
-              { source: 0, target: 0, type: 'string' },
+              { source: 0, target: 0, type: 'type' },
+              { source: 0, target: 0, type: 'type' },
+              { source: 0, target: 0, type: 'type' },
             ],
           },
         },
         name: 'Save',
-        result: { ToolQueued: 'string' },
+        result: { ToolQueued: 'ToolQueued' },
       },
       {
         input: {
           Save: {
             entities: [
-              { id: 0, properties: { foo: 'string' }, type: 'string' },
-              { id: 0, properties: { foo: 'string' }, type: 'string' },
-              { id: 0, properties: { foo: 'string' }, type: 'string' },
+              { id: 0, properties: { foo: 'string' }, type: 'type' },
+              { id: 0, properties: { foo: 'string' }, type: 'type' },
+              { id: 0, properties: { foo: 'string' }, type: 'type' },
             ],
             relationships: [
-              { source: 0, target: 0, type: 'string' },
-              { source: 0, target: 0, type: 'string' },
-              { source: 0, target: 0, type: 'string' },
+              { source: 0, target: 0, type: 'type' },
+              { source: 0, target: 0, type: 'type' },
+              { source: 0, target: 0, type: 'type' },
             ],
           },
         },
         name: 'Save',
-        result: { ToolQueued: 'string' },
+        result: { ToolQueued: 'ToolQueued' },
       },
       {
         input: {
           Save: {
             entities: [
-              { id: 0, properties: { foo: 'string' }, type: 'string' },
-              { id: 0, properties: { foo: 'string' }, type: 'string' },
-              { id: 0, properties: { foo: 'string' }, type: 'string' },
+              { id: 0, properties: { foo: 'string' }, type: 'type' },
+              { id: 0, properties: { foo: 'string' }, type: 'type' },
+              { id: 0, properties: { foo: 'string' }, type: 'type' },
             ],
             relationships: [
-              { source: 0, target: 0, type: 'string' },
-              { source: 0, target: 0, type: 'string' },
-              { source: 0, target: 0, type: 'string' },
+              { source: 0, target: 0, type: 'type' },
+              { source: 0, target: 0, type: 'type' },
+              { source: 0, target: 0, type: 'type' },
             ],
           },
         },
         name: 'Save',
-        result: { ToolQueued: 'string' },
+        result: { ToolQueued: 'ToolQueued' },
       },
     ]);
   });
@@ -131,13 +131,13 @@ describe('resource label', () => {
 
   test('run: only required params', async () => {
     const responsePromise = structify.label.run({
-      dataset_name: 'string',
+      dataset_name: 'dataset_name',
       structure_input: {
         SECIngestor: {
           extraction_criteria: [
-            { RelationshipExtraction: { relationship_name: 'string' } },
-            { RelationshipExtraction: { relationship_name: 'string' } },
-            { RelationshipExtraction: { relationship_name: 'string' } },
+            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
+            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
+            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
           ],
         },
       },
@@ -153,14 +153,14 @@ describe('resource label', () => {
 
   test('run: required and optional params', async () => {
     const response = await structify.label.run({
-      dataset_name: 'string',
+      dataset_name: 'dataset_name',
       structure_input: {
         SECIngestor: {
-          accession_number: 'string',
+          accession_number: 'accession_number',
           extraction_criteria: [
-            { RelationshipExtraction: { relationship_name: 'string' } },
-            { RelationshipExtraction: { relationship_name: 'string' } },
-            { RelationshipExtraction: { relationship_name: 'string' } },
+            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
+            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
+            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
           ],
           quarter: 0,
           year: 0,
@@ -168,21 +168,21 @@ describe('resource label', () => {
       },
       seeded_entity: {
         entities: [
-          { id: 0, properties: { foo: 'string' }, type: 'string' },
-          { id: 0, properties: { foo: 'string' }, type: 'string' },
-          { id: 0, properties: { foo: 'string' }, type: 'string' },
+          { id: 0, properties: { foo: 'string' }, type: 'type' },
+          { id: 0, properties: { foo: 'string' }, type: 'type' },
+          { id: 0, properties: { foo: 'string' }, type: 'type' },
         ],
         relationships: [
-          { source: 0, target: 0, type: 'string' },
-          { source: 0, target: 0, type: 'string' },
-          { source: 0, target: 0, type: 'string' },
+          { source: 0, target: 0, type: 'type' },
+          { source: 0, target: 0, type: 'type' },
+          { source: 0, target: 0, type: 'type' },
         ],
       },
     });
   });
 
   test('submit: only required params', async () => {
-    const responsePromise = structify.label.submit('string', [{ Save: {} }, { Save: {} }, { Save: {} }]);
+    const responsePromise = structify.label.submit('uuid', [{ Save: {} }, { Save: {} }, { Save: {} }]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -193,46 +193,46 @@ describe('resource label', () => {
   });
 
   test('submit: required and optional params', async () => {
-    const response = await structify.label.submit('string', [
+    const response = await structify.label.submit('uuid', [
       {
         Save: {
           entities: [
-            { id: 0, properties: { foo: 'string' }, type: 'string' },
-            { id: 0, properties: { foo: 'string' }, type: 'string' },
-            { id: 0, properties: { foo: 'string' }, type: 'string' },
+            { id: 0, properties: { foo: 'string' }, type: 'type' },
+            { id: 0, properties: { foo: 'string' }, type: 'type' },
+            { id: 0, properties: { foo: 'string' }, type: 'type' },
           ],
           relationships: [
-            { source: 0, target: 0, type: 'string' },
-            { source: 0, target: 0, type: 'string' },
-            { source: 0, target: 0, type: 'string' },
+            { source: 0, target: 0, type: 'type' },
+            { source: 0, target: 0, type: 'type' },
+            { source: 0, target: 0, type: 'type' },
           ],
         },
       },
       {
         Save: {
           entities: [
-            { id: 0, properties: { foo: 'string' }, type: 'string' },
-            { id: 0, properties: { foo: 'string' }, type: 'string' },
-            { id: 0, properties: { foo: 'string' }, type: 'string' },
+            { id: 0, properties: { foo: 'string' }, type: 'type' },
+            { id: 0, properties: { foo: 'string' }, type: 'type' },
+            { id: 0, properties: { foo: 'string' }, type: 'type' },
           ],
           relationships: [
-            { source: 0, target: 0, type: 'string' },
-            { source: 0, target: 0, type: 'string' },
-            { source: 0, target: 0, type: 'string' },
+            { source: 0, target: 0, type: 'type' },
+            { source: 0, target: 0, type: 'type' },
+            { source: 0, target: 0, type: 'type' },
           ],
         },
       },
       {
         Save: {
           entities: [
-            { id: 0, properties: { foo: 'string' }, type: 'string' },
-            { id: 0, properties: { foo: 'string' }, type: 'string' },
-            { id: 0, properties: { foo: 'string' }, type: 'string' },
+            { id: 0, properties: { foo: 'string' }, type: 'type' },
+            { id: 0, properties: { foo: 'string' }, type: 'type' },
+            { id: 0, properties: { foo: 'string' }, type: 'type' },
           ],
           relationships: [
-            { source: 0, target: 0, type: 'string' },
-            { source: 0, target: 0, type: 'string' },
-            { source: 0, target: 0, type: 'string' },
+            { source: 0, target: 0, type: 'type' },
+            { source: 0, target: 0, type: 'type' },
+            { source: 0, target: 0, type: 'type' },
           ],
         },
       },

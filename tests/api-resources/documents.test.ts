@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Structify, { toFile } from 'structifyai';
+import Structify, { toFile } from 'structify';
 import { Response } from 'node-fetch';
 
 const structify = new Structify({
@@ -28,7 +28,7 @@ describe('resource documents', () => {
   });
 
   test('delete', async () => {
-    const responsePromise = structify.documents.delete('string');
+    const responsePromise = structify.documents.delete('path');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -40,16 +40,16 @@ describe('resource documents', () => {
 
   test('delete: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(structify.documents.delete('string', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(structify.documents.delete('path', { path: '/_stainless_unknown_path' })).rejects.toThrow(
       Structify.NotFoundError,
     );
   });
 
   test('download: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      structify.documents.download('string', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Structify.NotFoundError);
+    await expect(structify.documents.download('path', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Structify.NotFoundError,
+    );
   });
 
   test('upload: only required params', async () => {
