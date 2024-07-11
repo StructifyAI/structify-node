@@ -9,8 +9,8 @@ export class Runs extends APIResource {
   /**
    * List all the executions
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<RunListResponse> {
-    return this._client.get('/runs/list', options);
+  list(query: RunListParams, options?: Core.RequestOptions): Core.APIPromise<RunListResponse> {
+    return this._client.get('/runs/list', { query, ...options });
   }
 
   /**
@@ -78,9 +78,16 @@ export interface RunGetResponse {
   uuid: string;
 }
 
+export interface RunListParams {
+  limit: number;
+
+  offset: number;
+}
+
 export namespace Runs {
   export import RunListResponse = RunsAPI.RunListResponse;
   export import RunDeleteResponse = RunsAPI.RunDeleteResponse;
   export import RunCancelResponse = RunsAPI.RunCancelResponse;
   export import RunGetResponse = RunsAPI.RunGetResponse;
+  export import RunListParams = RunsAPI.RunListParams;
 }
