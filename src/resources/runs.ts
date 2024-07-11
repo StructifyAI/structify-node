@@ -4,6 +4,7 @@ import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as RunsAPI from './runs';
+import * as SharedAPI from './shared';
 import * as StructureAPI from './structure';
 import { RunsList, type RunsListParams } from '../pagination';
 
@@ -65,33 +66,17 @@ export class Runs extends APIResource {
 export class RunListResponsesRunsList extends RunsList<RunListResponse> {}
 
 export interface RunListResponse {
-  id: RunListResponse.ID;
+  id: SharedAPI.StructifyID;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
-}
-
-export namespace RunListResponse {
-  export interface ID {
-    id: string;
-
-    id_type: 'Job' | 'Step' | 'Logger' | 'None';
-  }
 }
 
 export type RunDeleteResponse = string;
 
 export interface RunCancelResponse {
-  id: RunCancelResponse.ID;
+  id: SharedAPI.StructifyID;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
-}
-
-export namespace RunCancelResponse {
-  export interface ID {
-    id: string;
-
-    id_type: 'Job' | 'Step' | 'Logger' | 'None';
-  }
 }
 
 export interface RunGetResponse {
