@@ -124,7 +124,51 @@ export namespace DatasetDescriptor {
 
 export type DatasetListResponse = Array<Dataset>;
 
-export type DatasetViewResponse = unknown;
+export type DatasetViewResponse = DatasetViewResponse.Entity | DatasetViewResponse.Relationship;
+
+export namespace DatasetViewResponse {
+  export interface Entity {
+    Entity: Entity.Entity;
+  }
+
+  export namespace Entity {
+    export interface Entity {
+      id: number;
+
+      /**
+       * Since all Entities have exactly two labels (ENTITY_LABEL and their table name),
+       * we only store the non-ENTITY_LABEL label here.
+       */
+      label: string;
+
+      properties: Record<string, string | null | boolean | null | number | null>;
+    }
+  }
+
+  export interface Relationship {
+    /**
+     * Don't actually create these. These are solely used as return types in the API
+     *
+     * TODO: Remove them from models.
+     */
+    Relationship: Relationship.Relationship;
+  }
+
+  export namespace Relationship {
+    /**
+     * Don't actually create these. These are solely used as return types in the API
+     *
+     * TODO: Remove them from models.
+     */
+    export interface Relationship {
+      from_id: number;
+
+      label: string;
+
+      to_id: number;
+    }
+  }
+}
 
 export interface DatasetCreateParams {
   description: string;
