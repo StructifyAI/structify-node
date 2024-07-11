@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Structify from 'structifyai';
+import Structify from 'structify';
 import { Response } from 'node-fetch';
 
 const structify = new Structify({
@@ -11,39 +11,54 @@ const structify = new Structify({
 describe('resource datasets', () => {
   test('create: only required params', async () => {
     const responsePromise = structify.datasets.create({
-      description: 'string',
-      name: 'string',
+      description: 'description',
+      name: 'name',
       relationships: [
-        { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-        { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-        { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
+        {
+          description: 'description',
+          name: 'name',
+          source_table: 'source_table',
+          target_table: 'target_table',
+        },
+        {
+          description: 'description',
+          name: 'name',
+          source_table: 'source_table',
+          target_table: 'target_table',
+        },
+        {
+          description: 'description',
+          name: 'name',
+          source_table: 'source_table',
+          target_table: 'target_table',
+        },
       ],
       tables: [
         {
-          description: 'string',
-          name: 'string',
+          description: 'description',
+          name: 'name',
           properties: [
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
           ],
         },
         {
-          description: 'string',
-          name: 'string',
+          description: 'description',
+          name: 'name',
           properties: [
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
           ],
         },
         {
-          description: 'string',
-          name: 'string',
+          description: 'description',
+          name: 'name',
           properties: [
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
           ],
         },
       ],
@@ -59,39 +74,54 @@ describe('resource datasets', () => {
 
   test('create: required and optional params', async () => {
     const response = await structify.datasets.create({
-      description: 'string',
-      name: 'string',
+      description: 'description',
+      name: 'name',
       relationships: [
-        { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-        { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
-        { description: 'string', name: 'string', source_table: 'string', target_table: 'string' },
+        {
+          description: 'description',
+          name: 'name',
+          source_table: 'source_table',
+          target_table: 'target_table',
+        },
+        {
+          description: 'description',
+          name: 'name',
+          source_table: 'source_table',
+          target_table: 'target_table',
+        },
+        {
+          description: 'description',
+          name: 'name',
+          source_table: 'source_table',
+          target_table: 'target_table',
+        },
       ],
       tables: [
         {
-          description: 'string',
-          name: 'string',
+          description: 'description',
+          name: 'name',
           properties: [
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
           ],
         },
         {
-          description: 'string',
-          name: 'string',
+          description: 'description',
+          name: 'name',
           properties: [
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
           ],
         },
         {
-          description: 'string',
-          name: 'string',
+          description: 'description',
+          name: 'name',
           properties: [
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
-            { description: 'string', name: 'string' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
           ],
         },
       ],
@@ -117,7 +147,7 @@ describe('resource datasets', () => {
   });
 
   test('delete: only required params', async () => {
-    const responsePromise = structify.datasets.delete({ name: 'string' });
+    const responsePromise = structify.datasets.delete({ name: 'name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -128,11 +158,11 @@ describe('resource datasets', () => {
   });
 
   test('delete: required and optional params', async () => {
-    const response = await structify.datasets.delete({ name: 'string' });
+    const response = await structify.datasets.delete({ name: 'name' });
   });
 
   test('get: only required params', async () => {
-    const responsePromise = structify.datasets.get({ name: 'string' });
+    const responsePromise = structify.datasets.get({ name: 'name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -143,11 +173,14 @@ describe('resource datasets', () => {
   });
 
   test('get: required and optional params', async () => {
-    const response = await structify.datasets.get({ name: 'string' });
+    const response = await structify.datasets.get({ name: 'name' });
   });
 
   test('view: only required params', async () => {
-    const responsePromise = structify.datasets.view({ dataset_name: 'string', requested_type: 'Entities' });
+    const responsePromise = structify.datasets.view({
+      dataset_name: 'dataset_name',
+      requested_type: 'Entities',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -159,12 +192,12 @@ describe('resource datasets', () => {
 
   test('view: required and optional params', async () => {
     const response = await structify.datasets.view({
-      dataset_name: 'string',
+      dataset_name: 'dataset_name',
       requested_type: 'Entities',
       limit: 0,
       offset: 0,
-      relationship_name: 'string',
-      table_name: 'string',
+      relationship_name: 'relationship_name',
+      table_name: 'table_name',
     });
   });
 });

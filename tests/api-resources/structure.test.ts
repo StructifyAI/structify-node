@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Structify from 'structifyai';
+import Structify from 'structify';
 import { Response } from 'node-fetch';
 
 const structify = new Structify({
@@ -41,13 +41,13 @@ describe('resource structure', () => {
 
   test('runAsync: only required params', async () => {
     const responsePromise = structify.structure.runAsync({
-      dataset_name: 'string',
+      dataset_name: 'dataset_name',
       structure_input: {
         SECIngestor: {
           extraction_criteria: [
-            { RelationshipExtraction: { relationship_name: 'string' } },
-            { RelationshipExtraction: { relationship_name: 'string' } },
-            { RelationshipExtraction: { relationship_name: 'string' } },
+            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
+            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
+            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
           ],
         },
       },
@@ -63,14 +63,14 @@ describe('resource structure', () => {
 
   test('runAsync: required and optional params', async () => {
     const response = await structify.structure.runAsync({
-      dataset_name: 'string',
+      dataset_name: 'dataset_name',
       structure_input: {
         SECIngestor: {
-          accession_number: 'string',
+          accession_number: 'accession_number',
           extraction_criteria: [
-            { RelationshipExtraction: { relationship_name: 'string' } },
-            { RelationshipExtraction: { relationship_name: 'string' } },
-            { RelationshipExtraction: { relationship_name: 'string' } },
+            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
+            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
+            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
           ],
           quarter: 0,
           year: 0,
@@ -78,14 +78,14 @@ describe('resource structure', () => {
       },
       seeded_entity: {
         entities: [
-          { id: 0, properties: { foo: 'string' }, type: 'string' },
-          { id: 0, properties: { foo: 'string' }, type: 'string' },
-          { id: 0, properties: { foo: 'string' }, type: 'string' },
+          { id: 0, properties: { foo: 'string' }, type: 'type' },
+          { id: 0, properties: { foo: 'string' }, type: 'type' },
+          { id: 0, properties: { foo: 'string' }, type: 'type' },
         ],
         relationships: [
-          { source: 0, target: 0, type: 'string' },
-          { source: 0, target: 0, type: 'string' },
-          { source: 0, target: 0, type: 'string' },
+          { source: 0, target: 0, type: 'type' },
+          { source: 0, target: 0, type: 'type' },
+          { source: 0, target: 0, type: 'type' },
         ],
       },
     });

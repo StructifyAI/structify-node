@@ -45,7 +45,7 @@ export {
   RunDeleteResponse,
   RunCancelResponse,
   RunGetResponse,
-  RunListParams,
+  RunListResponsesRunsList,
   Runs,
 } from './runs';
 export { ServerInformation, Server } from './server';
