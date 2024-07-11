@@ -4,17 +4,13 @@ import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as RunsAPI from './runs';
 import * as StructureAPI from './structure';
-import { RunsList, type RunsListParams } from '../pagination';
 
 export class Runs extends APIResource {
   /**
    * List all the executions
    */
-  list(
-    query: RunListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<RunListResponsesRunsList, RunListResponse> {
-    return this._client.getAPIList('/runs/list', RunListResponsesRunsList, { query, ...options });
+  list(options?: Core.RequestOptions): Core.APIPromise<RunListResponse> {
+    return this._client.get('/runs/list', options);
   }
 
   /**
@@ -53,9 +49,7 @@ export class Runs extends APIResource {
   }
 }
 
-export class RunListResponsesRunsList extends RunsList<RunListResponse> {}
-
-export type RunListResponse = string;
+export type RunListResponse = Array<string>;
 
 export type RunDeleteResponse = string;
 
@@ -84,13 +78,9 @@ export interface RunGetResponse {
   uuid: string;
 }
 
-export interface RunListParams extends RunsListParams {}
-
 export namespace Runs {
   export import RunListResponse = RunsAPI.RunListResponse;
   export import RunDeleteResponse = RunsAPI.RunDeleteResponse;
   export import RunCancelResponse = RunsAPI.RunCancelResponse;
   export import RunGetResponse = RunsAPI.RunGetResponse;
-  export import RunListResponsesRunsList = RunsAPI.RunListResponsesRunsList;
-  export import RunListParams = RunsAPI.RunListParams;
 }
