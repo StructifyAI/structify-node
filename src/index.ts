@@ -4,7 +4,6 @@ import * as Errors from './error';
 import * as Uploads from './uploads';
 import { type Agent } from './_shims/index';
 import * as Core from './core';
-import * as Pagination from './pagination';
 import * as API from './resources/index';
 
 const environments = {
@@ -212,10 +211,6 @@ export import fileFromPath = Uploads.fileFromPath;
 export namespace Structify {
   export import RequestOptions = Core.RequestOptions;
 
-  export import RunsList = Pagination.RunsList;
-  export import RunsListParams = Pagination.RunsListParams;
-  export import RunsListResponse = Pagination.RunsListResponse;
-
   export import User = API.User;
   export import NewToken = API.NewToken;
   export import UserInfo = API.UserInfo;
@@ -225,6 +220,7 @@ export namespace Structify {
   export import Datasets = API.Datasets;
   export import Dataset = API.Dataset;
   export import DatasetDescriptor = API.DatasetDescriptor;
+  export import Entity = API.Entity;
   export import DatasetListResponse = API.DatasetListResponse;
   export import DatasetViewResponse = API.DatasetViewResponse;
   export import DatasetCreateParams = API.DatasetCreateParams;
@@ -241,7 +237,6 @@ export namespace Structify {
   export import RunDeleteResponse = API.RunDeleteResponse;
   export import RunCancelResponse = API.RunCancelResponse;
   export import RunGetResponse = API.RunGetResponse;
-  export import RunListParams = API.RunListParams;
 
   export import Server = API.Server;
   export import ServerInformation = API.ServerInformation;
