@@ -227,6 +227,7 @@ export namespace Structify {
   export import DatasetDescriptor = API.DatasetDescriptor;
   export import DatasetListResponse = API.DatasetListResponse;
   export import DatasetViewResponse = API.DatasetViewResponse;
+  export import DatasetViewResponsesRunsList = API.DatasetViewResponsesRunsList;
   export import DatasetCreateParams = API.DatasetCreateParams;
   export import DatasetDeleteParams = API.DatasetDeleteParams;
   export import DatasetGetParams = API.DatasetGetParams;
@@ -242,6 +243,7 @@ export namespace Structify {
   export import RunCancelResponse = API.RunCancelResponse;
   export import RunGetResponse = API.RunGetResponse;
   export import RunListResponsesRunsList = API.RunListResponsesRunsList;
+  export import RunListParams = API.RunListParams;
 
   export import Server = API.Server;
   export import ServerInformation = API.ServerInformation;
