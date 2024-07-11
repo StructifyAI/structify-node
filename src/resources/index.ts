@@ -17,6 +17,7 @@ export {
 export {
   Dataset,
   DatasetDescriptor,
+  Entity,
   DatasetListResponse,
   DatasetViewResponse,
   DatasetCreateParams,
@@ -40,14 +41,7 @@ export {
   Label,
 } from './label';
 export { NewToken, UserInfo, User } from './user';
-export {
-  RunListResponse,
-  RunDeleteResponse,
-  RunCancelResponse,
-  RunGetResponse,
-  RunListParams,
-  Runs,
-} from './runs';
+export { RunListResponse, RunDeleteResponse, RunCancelResponse, RunGetResponse, Runs } from './runs';
 export { ServerInformation, Server } from './server';
 export { Source, SourceListResponse, SourceListParams, Sources } from './sources';
 export { UsageGetJobInfoResponse, UsageGetJobInfoParams, Usage } from './usage';
