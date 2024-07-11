@@ -1,6 +1,6 @@
 import fs from 'fs';
-import { toFile, type ResponseLike } from 'structify/uploads';
-import { File } from 'structify/_shims/index';
+import { toFile, type ResponseLike } from 'structifyai/uploads';
+import { File } from 'structifyai/_shims/index';
 
 class MyClass {
   name: string = 'foo';
