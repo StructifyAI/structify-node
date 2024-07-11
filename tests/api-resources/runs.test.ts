@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Structify from 'structify';
+import Structify from 'structifyai';
 import { Response } from 'node-fetch';
 
 const structify = new Structify({
@@ -25,6 +25,13 @@ describe('resource runs', () => {
     await expect(structify.runs.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       Structify.NotFoundError,
     );
+  });
+
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      structify.runs.list({ limit: 0, offset: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Structify.NotFoundError);
   });
 
   test('delete', async () => {
