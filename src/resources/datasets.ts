@@ -124,7 +124,7 @@ export namespace DatasetDescriptor {
 
 export type DatasetListResponse = Array<Dataset>;
 
-export type DatasetViewResponse = 'Entities' | 'Relationships';
+export type DatasetViewResponse = unknown;
 
 export interface DatasetCreateParams {
   description: string;
