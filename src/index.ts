@@ -283,6 +283,7 @@ export namespace Structify {
   export import Entity = API.Entity;
   export import KnowledgeGraph = API.KnowledgeGraph;
   export import Relationship = API.Relationship;
+  export import StructifyID = API.StructifyID;
 }
 
 export default Structify;

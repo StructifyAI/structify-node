@@ -144,3 +144,4 @@ Types:
 - <code><a href="./src/resources/shared.ts">Entity</a></code>
 - <code><a href="./src/resources/shared.ts">KnowledgeGraph</a></code>
 - <code><a href="./src/resources/shared.ts">Relationship</a></code>
+- <code><a href="./src/resources/shared.ts">StructifyID</a></code>
