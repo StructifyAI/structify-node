@@ -1,16 +1,29 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../resource';
+import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as RunsAPI from './runs';
 import * as StructureAPI from './structure';
+import { RunsList, type RunsListParams } from '../pagination';
 
 export class Runs extends APIResource {
   /**
    * List all the executions
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<RunListResponse> {
-    return this._client.get('/runs/list', options);
+  list(
+    query?: RunListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<RunListResponsesRunsList, RunListResponse>;
+  list(options?: Core.RequestOptions): Core.PagePromise<RunListResponsesRunsList, RunListResponse>;
+  list(
+    query: RunListParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<RunListResponsesRunsList, RunListResponse> {
+    if (isRequestOptions(query)) {
+      return this.list({}, query);
+    }
+    return this._client.getAPIList('/runs/list', RunListResponsesRunsList, { query, ...options });
   }
 
   /**
@@ -49,7 +62,21 @@ export class Runs extends APIResource {
   }
 }
 
-export type RunListResponse = Array<string>;
+export class RunListResponsesRunsList extends RunsList<RunListResponse> {}
+
+export interface RunListResponse {
+  id: RunListResponse.ID;
+
+  status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+}
+
+export namespace RunListResponse {
+  export interface ID {
+    id: string;
+
+    id_type: 'Job' | 'Step' | 'Logger' | 'None';
+  }
+}
 
 export type RunDeleteResponse = string;
 
@@ -78,9 +105,13 @@ export interface RunGetResponse {
   uuid: string;
 }
 
+export interface RunListParams extends RunsListParams {}
+
 export namespace Runs {
   export import RunListResponse = RunsAPI.RunListResponse;
   export import RunDeleteResponse = RunsAPI.RunDeleteResponse;
   export import RunCancelResponse = RunsAPI.RunCancelResponse;
   export import RunGetResponse = RunsAPI.RunGetResponse;
+  export import RunListResponsesRunsList = RunsAPI.RunListResponsesRunsList;
+  export import RunListParams = RunsAPI.RunListParams;
 }
