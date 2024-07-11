@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { Structify } from 'structify';
+import { Structify } from 'structifyai';
 
 const { stringifyQuery } = Structify.prototype as any;
 
