@@ -23,6 +23,7 @@ export {
   DatasetDeleteParams,
   DatasetGetParams,
   DatasetViewParams,
+  DatasetViewResponsesRunsList,
   Datasets,
 } from './datasets';
 export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
@@ -45,6 +46,7 @@ export {
   RunDeleteResponse,
   RunCancelResponse,
   RunGetResponse,
+  RunListParams,
   RunListResponsesRunsList,
   Runs,
 } from './runs';
