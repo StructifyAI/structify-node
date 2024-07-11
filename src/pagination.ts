@@ -2,9 +2,7 @@
 
 import { AbstractPage, Response, APIClient, FinalRequestOptions, PageInfo } from './core';
 
-export interface RunsListResponse<Item> {
-  items: Array<Item>;
-}
+export type RunsListResponse<Item> = Item[];
 
 export interface RunsListParams {
   /**
@@ -18,7 +16,7 @@ export interface RunsListParams {
   limit?: number;
 }
 
-export class RunsList<Item> extends AbstractPage<Item> implements RunsListResponse<Item> {
+export class RunsList<Item> extends AbstractPage<Item> {
   items: Array<Item>;
 
   constructor(
@@ -29,7 +27,7 @@ export class RunsList<Item> extends AbstractPage<Item> implements RunsListRespon
   ) {
     super(client, response, body, options);
 
-    this.items = body.items || [];
+    this.items = body || [];
   }
 
   getPaginatedItems(): Item[] {

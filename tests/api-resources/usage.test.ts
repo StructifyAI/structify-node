@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Structify from 'structifyai';
+import Structify from 'structify';
 import { Response } from 'node-fetch';
 
 const structify = new Structify({
@@ -10,7 +10,7 @@ const structify = new Structify({
 
 describe('resource usage', () => {
   test('getJobInfo: only required params', async () => {
-    const responsePromise = structify.usage.getJobInfo({ job_id: 'string' });
+    const responsePromise = structify.usage.getJobInfo({ job_id: 'job_id' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,6 +21,6 @@ describe('resource usage', () => {
   });
 
   test('getJobInfo: required and optional params', async () => {
-    const response = await structify.usage.getJobInfo({ job_id: 'string' });
+    const response = await structify.usage.getJobInfo({ job_id: 'job_id' });
   });
 });

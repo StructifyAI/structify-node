@@ -1,5 +1,5 @@
 {
-  "name": "structifyai",
+  "name": "structify",
   "version": "0.1.0-alpha.45",
   "description": "The official TypeScript library for the Structify API",
   "author": "Structify <team@structify.ai>",
@@ -60,8 +60,8 @@
     "./shims/web.mjs"
   ],
   "imports": {
-    "structifyai": ".",
-    "structifyai/*": "./src/*"
+    "structify": ".",
+    "structify/*": "./src/*"
   },
   "exports": {
     "./_shims/auto/*": {
