@@ -1,16 +1,30 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../resource';
+import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as RunsAPI from './runs';
+import * as SharedAPI from './shared';
 import * as StructureAPI from './structure';
+import { RunsList, type RunsListParams } from '../pagination';
 
 export class Runs extends APIResource {
   /**
    * List all the executions
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<RunListResponse> {
-    return this._client.get('/runs/list', options);
+  list(
+    query?: RunListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<RunListResponsesRunsList, RunListResponse>;
+  list(options?: Core.RequestOptions): Core.PagePromise<RunListResponsesRunsList, RunListResponse>;
+  list(
+    query: RunListParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<RunListResponsesRunsList, RunListResponse> {
+    if (isRequestOptions(query)) {
+      return this.list({}, query);
+    }
+    return this._client.getAPIList('/runs/list', RunListResponsesRunsList, { query, ...options });
   }
 
   /**
@@ -38,6 +52,13 @@ export class Runs extends APIResource {
   }
 
   /**
+   * Retrieve a run from structify.
+   */
+  getSteps(jobId: string, options?: Core.RequestOptions): Core.APIPromise<RunGetStepsResponse> {
+    return this._client.get(`/runs/get_steps/${jobId}`, options);
+  }
+
+  /**
    * One example use case is every single day check the news websites and pull them
    * into my dataset.
    */
@@ -49,22 +70,24 @@ export class Runs extends APIResource {
   }
 }
 
-export type RunListResponse = Array<string>;
+export class RunListResponsesRunsList extends RunsList<RunListResponse> {}
 
-export type RunDeleteResponse = string;
+export interface RunListResponse {
+  id: SharedAPI.StructifyID;
 
-export interface RunCancelResponse {
-  id: RunCancelResponse.ID;
+  creation_time: string;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 }
 
-export namespace RunCancelResponse {
-  export interface ID {
-    id: string;
+export type RunDeleteResponse = string;
 
-    id_type: 'Job' | 'Step' | 'Logger' | 'None';
-  }
+export interface RunCancelResponse {
+  id: SharedAPI.StructifyID;
+
+  creation_time: string;
+
+  status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 }
 
 export interface RunGetResponse {
@@ -78,9 +101,16 @@ export interface RunGetResponse {
   uuid: string;
 }
 
+export type RunGetStepsResponse = Array<StructureAPI.ExecutionStep>;
+
+export interface RunListParams extends RunsListParams {}
+
 export namespace Runs {
   export import RunListResponse = RunsAPI.RunListResponse;
   export import RunDeleteResponse = RunsAPI.RunDeleteResponse;
   export import RunCancelResponse = RunsAPI.RunCancelResponse;
   export import RunGetResponse = RunsAPI.RunGetResponse;
+  export import RunGetStepsResponse = RunsAPI.RunGetStepsResponse;
+  export import RunListResponsesRunsList = RunsAPI.RunListResponsesRunsList;
+  export import RunListParams = RunsAPI.RunListParams;
 }

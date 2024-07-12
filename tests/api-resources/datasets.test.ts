@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Structify from 'structify';
+import Structify from 'structifyai';
 import { Response } from 'node-fetch';
 
 const structify = new Structify({
@@ -38,27 +38,27 @@ describe('resource datasets', () => {
           description: 'description',
           name: 'name',
           properties: [
-            { description: 'description', merge_strategy: {}, name: 'name' },
-            { description: 'description', merge_strategy: {}, name: 'name' },
-            { description: 'description', merge_strategy: {}, name: 'name' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
           ],
         },
         {
           description: 'description',
           name: 'name',
           properties: [
-            { description: 'description', merge_strategy: {}, name: 'name' },
-            { description: 'description', merge_strategy: {}, name: 'name' },
-            { description: 'description', merge_strategy: {}, name: 'name' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
           ],
         },
         {
           description: 'description',
           name: 'name',
           properties: [
-            { description: 'description', merge_strategy: {}, name: 'name' },
-            { description: 'description', merge_strategy: {}, name: 'name' },
-            { description: 'description', merge_strategy: {}, name: 'name' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
           ],
         },
       ],
@@ -101,27 +101,27 @@ describe('resource datasets', () => {
           description: 'description',
           name: 'name',
           properties: [
-            { description: 'description', merge_strategy: {}, name: 'name' },
-            { description: 'description', merge_strategy: {}, name: 'name' },
-            { description: 'description', merge_strategy: {}, name: 'name' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
           ],
         },
         {
           description: 'description',
           name: 'name',
           properties: [
-            { description: 'description', merge_strategy: {}, name: 'name' },
-            { description: 'description', merge_strategy: {}, name: 'name' },
-            { description: 'description', merge_strategy: {}, name: 'name' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
           ],
         },
         {
           description: 'description',
           name: 'name',
           properties: [
-            { description: 'description', merge_strategy: {}, name: 'name' },
-            { description: 'description', merge_strategy: {}, name: 'name' },
-            { description: 'description', merge_strategy: {}, name: 'name' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
+            { description: 'description', name: 'name' },
           ],
         },
       ],
