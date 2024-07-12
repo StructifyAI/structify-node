@@ -117,27 +117,7 @@ export namespace DatasetDescriptor {
     export interface Property {
       description: string;
 
-      /**
-       * merge on two entities if they have two property keys listed in this type that
-       * return true to some fuzzy string matching function
-       */
-      merge_strategy: Property.PropertyAttr | Property.FuzzyStringMatch | 'None';
-
       name: string;
-    }
-
-    export namespace Property {
-      export interface PropertyAttr {
-        PropertyAttr: string;
-      }
-
-      export interface FuzzyStringMatch {
-        /**
-         * merge on some list of property names iff the values are the same in the
-         * extracted KgEntity
-         */
-        FuzzyStringMatch: string;
-      }
     }
   }
 }
@@ -232,27 +212,7 @@ export namespace DatasetCreateParams {
     export interface Property {
       description: string;
 
-      /**
-       * merge on two entities if they have two property keys listed in this type that
-       * return true to some fuzzy string matching function
-       */
-      merge_strategy: Property.PropertyAttr | Property.FuzzyStringMatch | 'None';
-
       name: string;
-    }
-
-    export namespace Property {
-      export interface PropertyAttr {
-        PropertyAttr: string;
-      }
-
-      export interface FuzzyStringMatch {
-        /**
-         * merge on some list of property names iff the values are the same in the
-         * extracted KgEntity
-         */
-        FuzzyStringMatch: string;
-      }
     }
   }
 }

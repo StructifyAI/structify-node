@@ -239,7 +239,6 @@ export namespace Structify {
 
   export import Runs = API.Runs;
   export import RunListResponse = API.RunListResponse;
-  export import RunDeleteResponse = API.RunDeleteResponse;
   export import RunCancelResponse = API.RunCancelResponse;
   export import RunGetStepsResponse = API.RunGetStepsResponse;
   export import RunListResponsesRunsList = API.RunListResponsesRunsList;
@@ -281,7 +280,6 @@ export namespace Structify {
   export import Entity = API.Entity;
   export import KnowledgeGraph = API.KnowledgeGraph;
   export import Relationship = API.Relationship;
-  export import StructifyID = API.StructifyID;
 }
 
 export default Structify;
