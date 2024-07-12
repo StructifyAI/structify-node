@@ -17,17 +17,17 @@ export {
 export {
   Dataset,
   DatasetDescriptor,
-  Entity,
   DatasetListResponse,
   DatasetViewResponse,
   DatasetCreateParams,
   DatasetDeleteParams,
   DatasetGetParams,
   DatasetViewParams,
+  DatasetViewResponsesRunsList,
   Datasets,
 } from './datasets';
 export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
-export { Entity, KnowledgeGraph, Relationship, Shared } from './shared';
+export { Entity, KnowledgeGraph, Relationship, StructifyID, Shared } from './shared';
 export {
   LabelUpdateResponse,
   LabelGetMessagesResponse,
@@ -41,7 +41,16 @@ export {
   Label,
 } from './label';
 export { NewToken, UserInfo, User } from './user';
-export { RunListResponse, RunDeleteResponse, RunCancelResponse, RunGetResponse, Runs } from './runs';
+export {
+  RunListResponse,
+  RunDeleteResponse,
+  RunCancelResponse,
+  RunGetResponse,
+  RunGetStepsResponse,
+  RunListParams,
+  RunListResponsesRunsList,
+  Runs,
+} from './runs';
 export { ServerInformation, Server } from './server';
 export { Source, SourceListResponse, SourceListParams, Sources } from './sources';
-export { UsageGetJobInfoResponse, UsageGetJobInfoParams, Usage } from './usage';
+export { UsageGetJobInfoResponse, Usage } from './usage';

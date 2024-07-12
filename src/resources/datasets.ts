@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as DatasetsAPI from './datasets';
+import { RunsList, type RunsListParams } from '../pagination';
 
 export class Datasets extends APIResource {
   /**
@@ -52,10 +53,15 @@ export class Datasets extends APIResource {
    * You can either return entities or relationships from this call, but not both. If
    * you want both, just make two calls.
    */
-  view(query: DatasetViewParams, options?: Core.RequestOptions): Core.APIPromise<DatasetViewResponse> {
-    return this._client.get('/dataset/view', { query, ...options });
+  view(
+    query: DatasetViewParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<DatasetViewResponsesRunsList, DatasetViewResponse> {
+    return this._client.getAPIList('/dataset/view', DatasetViewResponsesRunsList, { query, ...options });
   }
 }
+
+export class DatasetViewResponsesRunsList extends RunsList<DatasetViewResponse> {}
 
 export interface Dataset {
   description: string;
@@ -111,28 +117,58 @@ export namespace DatasetDescriptor {
     export interface Property {
       description: string;
 
-      merge_strategy: unknown;
-
       name: string;
     }
   }
 }
 
-export interface Entity {
-  id: number;
-
-  /**
-   * Since all Entities have exactly two labels (ENTITY_LABEL and their table name),
-   * we only store the non-ENTITY_LABEL label here.
-   */
-  label: string;
-
-  properties: Record<string, string | null | boolean | null | number | null>;
-}
-
 export type DatasetListResponse = Array<Dataset>;
 
-export type DatasetViewResponse = Array<'Entities' | 'Relationships'>;
+export type DatasetViewResponse = DatasetViewResponse.Entity | DatasetViewResponse.Relationship;
+
+export namespace DatasetViewResponse {
+  export interface Entity {
+    Entity: Entity.Entity;
+  }
+
+  export namespace Entity {
+    export interface Entity {
+      id: number;
+
+      /**
+       * Since all Entities have exactly two labels (ENTITY_LABEL and their table name),
+       * we only store the non-ENTITY_LABEL label here.
+       */
+      label: string;
+
+      properties: Record<string, string | null | boolean | null | number | null>;
+    }
+  }
+
+  export interface Relationship {
+    /**
+     * Don't actually create these. These are solely used as return types in the API
+     *
+     * TODO: Remove them from models.
+     */
+    Relationship: Relationship.Relationship;
+  }
+
+  export namespace Relationship {
+    /**
+     * Don't actually create these. These are solely used as return types in the API
+     *
+     * TODO: Remove them from models.
+     */
+    export interface Relationship {
+      from_id: number;
+
+      label: string;
+
+      to_id: number;
+    }
+  }
+}
 
 export interface DatasetCreateParams {
   description: string;
@@ -176,8 +212,6 @@ export namespace DatasetCreateParams {
     export interface Property {
       description: string;
 
-      merge_strategy: unknown;
-
       name: string;
     }
   }
@@ -197,14 +231,10 @@ export interface DatasetGetParams {
   name: string;
 }
 
-export interface DatasetViewParams {
+export interface DatasetViewParams extends RunsListParams {
   dataset_name: string;
 
   requested_type: 'Entities' | 'Relationships';
-
-  limit?: number;
-
-  offset?: number;
 
   relationship_name?: string | null;
 
@@ -214,9 +244,9 @@ export interface DatasetViewParams {
 export namespace Datasets {
   export import Dataset = DatasetsAPI.Dataset;
   export import DatasetDescriptor = DatasetsAPI.DatasetDescriptor;
-  export import Entity = DatasetsAPI.Entity;
   export import DatasetListResponse = DatasetsAPI.DatasetListResponse;
   export import DatasetViewResponse = DatasetsAPI.DatasetViewResponse;
+  export import DatasetViewResponsesRunsList = DatasetsAPI.DatasetViewResponsesRunsList;
   export import DatasetCreateParams = DatasetsAPI.DatasetCreateParams;
   export import DatasetDeleteParams = DatasetsAPI.DatasetDeleteParams;
   export import DatasetGetParams = DatasetsAPI.DatasetGetParams;

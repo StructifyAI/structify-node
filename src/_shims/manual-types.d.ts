@@ -4,8 +4,8 @@
 /**
  * Types will get added to this namespace when you import one of the following:
  *
- *   import 'structify/shims/node'
- *   import 'structify/shims/web'
+ *   import 'structifyai/shims/node'
+ *   import 'structifyai/shims/web'
  *
  * Importing more than one will cause type and runtime errors.
  */
