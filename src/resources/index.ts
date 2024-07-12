@@ -27,7 +27,7 @@ export {
   Datasets,
 } from './datasets';
 export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
-export { Entity, KnowledgeGraph, Relationship, StructifyID, Shared } from './shared';
+export { Entity, KnowledgeGraph, Relationship, Shared } from './shared';
 export {
   LabelGetMessagesResponse,
   LabelLlmAssistResponse,
@@ -41,7 +41,6 @@ export {
 export { NewToken, UserInfo, User } from './user';
 export {
   RunListResponse,
-  RunDeleteResponse,
   RunCancelResponse,
   RunGetStepsResponse,
   RunListParams,

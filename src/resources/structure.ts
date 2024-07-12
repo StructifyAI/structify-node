@@ -199,7 +199,7 @@ export namespace ChatPrompt {
 }
 
 export interface ExecutionStep {
-  id: SharedAPI.StructifyID;
+  id: string;
 
   prompt: ChatPrompt;
 
