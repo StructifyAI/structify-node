@@ -32,15 +32,8 @@ export interface Relationship {
   type: string;
 }
 
-export interface StructifyID {
-  id: string;
-
-  id_type: 'Job' | 'Step' | 'Logger' | 'None';
-}
-
 export namespace Shared {
   export import Entity = SharedAPI.Entity;
   export import KnowledgeGraph = SharedAPI.KnowledgeGraph;
   export import Relationship = SharedAPI.Relationship;
-  export import StructifyID = SharedAPI.StructifyID;
 }

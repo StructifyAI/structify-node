@@ -199,7 +199,7 @@ export namespace ChatPrompt {
 }
 
 export interface ExecutionStep {
-  id: SharedAPI.StructifyID;
+  id: ExecutionStep.ID;
 
   prompt: ChatPrompt;
 
@@ -207,6 +207,12 @@ export interface ExecutionStep {
 }
 
 export namespace ExecutionStep {
+  export interface ID {
+    id: string;
+
+    id_type: 'Job' | 'Step' | 'Logger' | 'None';
+  }
+
   export interface Response {
     completion_tokens: number;
 
