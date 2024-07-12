@@ -75,6 +75,8 @@ export class RunListResponsesRunsList extends RunsList<RunListResponse> {}
 export interface RunListResponse {
   id: SharedAPI.StructifyID;
 
+  creation_time: string;
+
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 }
 
@@ -82,6 +84,8 @@ export type RunDeleteResponse = string;
 
 export interface RunCancelResponse {
   id: SharedAPI.StructifyID;
+
+  creation_time: string;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 }
