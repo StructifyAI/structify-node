@@ -46,6 +46,7 @@ export {
   RunDeleteResponse,
   RunCancelResponse,
   RunGetResponse,
+  RunGetStepsResponse,
   RunListParams,
   RunListResponsesRunsList,
   Runs,
