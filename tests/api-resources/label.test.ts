@@ -9,80 +9,6 @@ const structify = new Structify({
 });
 
 describe('resource label', () => {
-  test('update: only required params', async () => {
-    const responsePromise = structify.label.update('run_uuid', 0, [
-      { input: { Save: {} }, name: 'Save' },
-      { input: { Save: {} }, name: 'Save' },
-      { input: { Save: {} }, name: 'Save' },
-    ]);
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('update: required and optional params', async () => {
-    const response = await structify.label.update('run_uuid', 0, [
-      {
-        input: {
-          Save: {
-            entities: [
-              { id: 0, properties: { foo: 'string' }, type: 'type' },
-              { id: 0, properties: { foo: 'string' }, type: 'type' },
-              { id: 0, properties: { foo: 'string' }, type: 'type' },
-            ],
-            relationships: [
-              { source: 0, target: 0, type: 'type' },
-              { source: 0, target: 0, type: 'type' },
-              { source: 0, target: 0, type: 'type' },
-            ],
-          },
-        },
-        name: 'Save',
-        result: { ToolQueued: 'ToolQueued' },
-      },
-      {
-        input: {
-          Save: {
-            entities: [
-              { id: 0, properties: { foo: 'string' }, type: 'type' },
-              { id: 0, properties: { foo: 'string' }, type: 'type' },
-              { id: 0, properties: { foo: 'string' }, type: 'type' },
-            ],
-            relationships: [
-              { source: 0, target: 0, type: 'type' },
-              { source: 0, target: 0, type: 'type' },
-              { source: 0, target: 0, type: 'type' },
-            ],
-          },
-        },
-        name: 'Save',
-        result: { ToolQueued: 'ToolQueued' },
-      },
-      {
-        input: {
-          Save: {
-            entities: [
-              { id: 0, properties: { foo: 'string' }, type: 'type' },
-              { id: 0, properties: { foo: 'string' }, type: 'type' },
-              { id: 0, properties: { foo: 'string' }, type: 'type' },
-            ],
-            relationships: [
-              { source: 0, target: 0, type: 'type' },
-              { source: 0, target: 0, type: 'type' },
-              { source: 0, target: 0, type: 'type' },
-            ],
-          },
-        },
-        name: 'Save',
-        result: { ToolQueued: 'ToolQueued' },
-      },
-    ]);
-  });
-
   test('getMessages', async () => {
     const responsePromise = structify.label.getMessages();
     const rawResponse = await responsePromise.asResponse();
@@ -182,7 +108,11 @@ describe('resource label', () => {
   });
 
   test('submit: only required params', async () => {
-    const responsePromise = structify.label.submit('uuid', [{ Save: {} }, { Save: {} }, { Save: {} }]);
+    const responsePromise = structify.label.submit('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', [
+      { Save: {} },
+      { Save: {} },
+      { Save: {} },
+    ]);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -193,7 +123,7 @@ describe('resource label', () => {
   });
 
   test('submit: required and optional params', async () => {
-    const response = await structify.label.submit('uuid', [
+    const response = await structify.label.submit('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', [
       {
         Save: {
           entities: [
