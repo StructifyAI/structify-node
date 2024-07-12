@@ -242,7 +242,6 @@ export namespace Structify {
   export import RunDeleteResponse = API.RunDeleteResponse;
   export import RunCancelResponse = API.RunCancelResponse;
   export import RunGetResponse = API.RunGetResponse;
-  export import RunGetStepsResponse = API.RunGetStepsResponse;
   export import RunListResponsesRunsList = API.RunListResponsesRunsList;
   export import RunListParams = API.RunListParams;
 
@@ -279,6 +278,7 @@ export namespace Structify {
 
   export import Usage = API.Usage;
   export import UsageGetJobInfoResponse = API.UsageGetJobInfoResponse;
+  export import UsageGetJobInfoParams = API.UsageGetJobInfoParams;
 
   export import Shared = API.Shared;
   export import Entity = API.Entity;
