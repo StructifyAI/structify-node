@@ -29,12 +29,10 @@ export {
 export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
 export { Entity, KnowledgeGraph, Relationship, StructifyID, Shared } from './shared';
 export {
-  LabelUpdateResponse,
   LabelGetMessagesResponse,
   LabelLlmAssistResponse,
   LabelRunResponse,
   LabelSubmitResponse,
-  LabelUpdateParams,
   LabelGetMessagesParams,
   LabelRunParams,
   LabelSubmitParams,
@@ -45,7 +43,6 @@ export {
   RunListResponse,
   RunDeleteResponse,
   RunCancelResponse,
-  RunGetResponse,
   RunGetStepsResponse,
   RunListParams,
   RunListResponsesRunsList,
