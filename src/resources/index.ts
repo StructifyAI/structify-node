@@ -46,11 +46,10 @@ export {
   RunDeleteResponse,
   RunCancelResponse,
   RunGetResponse,
-  RunGetStepsResponse,
   RunListParams,
   RunListResponsesRunsList,
   Runs,
 } from './runs';
 export { ServerInformation, Server } from './server';
 export { Source, SourceListResponse, SourceListParams, Sources } from './sources';
-export { UsageGetJobInfoResponse, Usage } from './usage';
+export { UsageGetJobInfoResponse, UsageGetJobInfoParams, Usage } from './usage';
