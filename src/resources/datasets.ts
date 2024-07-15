@@ -119,7 +119,7 @@ export namespace DatasetDescriptor {
 
       name: string;
 
-      prop_type: unknown;
+      prop_type: 'String' | 'Integer';
 
       /**
        * merge on two entities if they have two property keys listed in this type that
@@ -236,7 +236,7 @@ export namespace DatasetCreateParams {
 
       name: string;
 
-      prop_type: unknown;
+      prop_type: 'String' | 'Integer';
 
       /**
        * merge on two entities if they have two property keys listed in this type that
