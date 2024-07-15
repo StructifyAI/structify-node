@@ -119,6 +119,8 @@ export namespace DatasetDescriptor {
 
       name: string;
 
+      prop_type: unknown;
+
       /**
        * merge on two entities if they have two property keys listed in this type that
        * return true to some fuzzy string matching function
@@ -233,6 +235,8 @@ export namespace DatasetCreateParams {
       description: string;
 
       name: string;
+
+      prop_type: unknown;
 
       /**
        * merge on two entities if they have two property keys listed in this type that
