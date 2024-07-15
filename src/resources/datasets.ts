@@ -157,10 +157,6 @@ export namespace DatasetViewResponse {
     export interface Entity {
       id: number;
 
-      /**
-       * Since all Entities have exactly two labels (ENTITY_LABEL and their table name),
-       * we only store the non-ENTITY_LABEL label here.
-       */
       label: string;
 
       properties: Record<string, string | null | boolean | null | number | null>;

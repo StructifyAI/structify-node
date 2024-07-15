@@ -38,7 +38,7 @@ export namespace Source {
 }
 
 export interface SourceListResponse {
-  extra_properties: Record<string, string | null | boolean | null | number | null>;
+  id: string;
 
   link: Source;
 
