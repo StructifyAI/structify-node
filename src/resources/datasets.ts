@@ -124,6 +124,8 @@ export namespace DatasetDescriptor {
        * return true to some fuzzy string matching function
        */
       merge_strategy?: Property.PropertyAttr | Property.FuzzyStringMatch | 'None';
+
+      prop_type?: 'Integer' | 'String';
     }
 
     export namespace Property {
@@ -239,6 +241,8 @@ export namespace DatasetCreateParams {
        * return true to some fuzzy string matching function
        */
       merge_strategy?: Property.PropertyAttr | Property.FuzzyStringMatch | 'None';
+
+      prop_type?: 'Integer' | 'String';
     }
 
     export namespace Property {
