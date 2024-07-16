@@ -155,7 +155,7 @@ export namespace DatasetViewResponse {
 
   export namespace Entity {
     export interface Entity {
-      id: number;
+      id: string;
 
       label: string;
 
@@ -164,26 +164,16 @@ export namespace DatasetViewResponse {
   }
 
   export interface Relationship {
-    /**
-     * Don't actually create these. These are solely used as return types in the API
-     *
-     * TODO: Remove them from models.
-     */
     Relationship: Relationship.Relationship;
   }
 
   export namespace Relationship {
-    /**
-     * Don't actually create these. These are solely used as return types in the API
-     *
-     * TODO: Remove them from models.
-     */
     export interface Relationship {
-      from_id: number;
+      from_id: string;
 
       label: string;
 
-      to_id: number;
+      to_id: string;
     }
   }
 }
