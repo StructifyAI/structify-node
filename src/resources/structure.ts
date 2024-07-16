@@ -434,10 +434,10 @@ export interface ToolMetadata {
 
 export type StructureIsCompleteResponse = string;
 
-export type StructureJobStatusResponse = Array<StructureJobStatusResponse.StructureJobStatusResponseItem>;
+export interface StructureJobStatusResponse {
+  job_status: Array<'Queued' | 'Running' | 'Completed' | 'Failed'>;
 
-export namespace StructureJobStatusResponse {
-  export interface StructureJobStatusResponseItem {}
+  log_nodes: Array<string>;
 }
 
 export type StructureRunAsyncResponse = string;
