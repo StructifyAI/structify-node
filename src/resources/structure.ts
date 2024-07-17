@@ -62,7 +62,7 @@ export namespace ChatPrompt {
       | DecodingParams.Functions
       | DecodingParams.JsonValidator
       | DecodingParams.RegexValidator
-      | DecodingParams.ContextFreeeGrammar
+      | DecodingParams.ContextFreeGrammar
       | DecodingParams.Crop
     >;
   }
@@ -104,8 +104,8 @@ export namespace ChatPrompt {
       RegexValidator: string;
     }
 
-    export interface ContextFreeeGrammar {
-      ContextFreeeGrammar: string;
+    export interface ContextFreeGrammar {
+      ContextFreeGrammar: string;
     }
 
     export interface Crop {
