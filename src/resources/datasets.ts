@@ -125,7 +125,7 @@ export namespace DatasetDescriptor {
        */
       merge_strategy?: Property.PropertyAttr | Property.FuzzyStringMatch | 'None';
 
-      prop_type?: 'Integer' | 'String';
+      prop_type?: Property.Enum | 'Integer' | 'String';
     }
 
     export namespace Property {
@@ -139,6 +139,16 @@ export namespace DatasetDescriptor {
          * extracted KgEntity
          */
         FuzzyStringMatch: string;
+      }
+
+      export interface Enum {
+        Enum: Enum.Enum;
+      }
+
+      export namespace Enum {
+        export interface Enum {
+          types: Array<string>;
+        }
       }
     }
   }
@@ -228,7 +238,7 @@ export namespace DatasetCreateParams {
        */
       merge_strategy?: Property.PropertyAttr | Property.FuzzyStringMatch | 'None';
 
-      prop_type?: 'Integer' | 'String';
+      prop_type?: Property.Enum | 'Integer' | 'String';
     }
 
     export namespace Property {
@@ -242,6 +252,16 @@ export namespace DatasetCreateParams {
          * extracted KgEntity
          */
         FuzzyStringMatch: string;
+      }
+
+      export interface Enum {
+        Enum: Enum.Enum;
+      }
+
+      export namespace Enum {
+        export interface Enum {
+          types: Array<string>;
+        }
       }
     }
   }
