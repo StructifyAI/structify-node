@@ -63,6 +63,7 @@ export namespace ChatPrompt {
       | DecodingParams.JsonValidator
       | DecodingParams.RegexValidator
       | DecodingParams.ContextFreeGrammar
+      | DecodingParams.NumBeams
       | DecodingParams.Crop
     >;
   }
@@ -106,6 +107,10 @@ export namespace ChatPrompt {
 
     export interface ContextFreeGrammar {
       ContextFreeGrammar: string;
+    }
+
+    export interface NumBeams {
+      NumBeams: number;
     }
 
     export interface Crop {
