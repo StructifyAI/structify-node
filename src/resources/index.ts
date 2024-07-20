@@ -42,6 +42,7 @@ export { NewToken, UserInfo, User } from './user';
 export {
   RunListResponse,
   RunCancelResponse,
+  RunGetStepResponse,
   RunGetStepsResponse,
   RunListParams,
   RunListResponsesRunsList,
