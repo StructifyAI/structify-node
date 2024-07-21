@@ -240,7 +240,6 @@ export namespace Structify {
   export import Runs = API.Runs;
   export import RunListResponse = API.RunListResponse;
   export import RunCancelResponse = API.RunCancelResponse;
-  export import RunGetStepResponse = API.RunGetStepResponse;
   export import RunGetStepsResponse = API.RunGetStepsResponse;
   export import RunListResponsesRunsList = API.RunListResponsesRunsList;
   export import RunListParams = API.RunListParams;
