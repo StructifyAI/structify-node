@@ -34,13 +34,6 @@ export class Runs extends APIResource {
   }
 
   /**
-   * Retrieve a step from structify.
-   */
-  getStep(stepId: string, options?: Core.RequestOptions): Core.APIPromise<RunGetStepResponse> {
-    return this._client.get(`/runs/get_step/${stepId}`, options);
-  }
-
-  /**
    * Retrieve a run from structify.
    */
   getSteps(jobId: string, options?: Core.RequestOptions): Core.APIPromise<RunGetStepsResponse> {
@@ -77,8 +70,6 @@ export interface RunCancelResponse {
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 }
 
-export type RunGetStepResponse = Array<StructureAPI.ExecutionStep>;
-
 export type RunGetStepsResponse = Array<StructureAPI.ExecutionStep>;
 
 export interface RunListParams extends RunsListParams {}
@@ -86,7 +77,6 @@ export interface RunListParams extends RunsListParams {}
 export namespace Runs {
   export import RunListResponse = RunsAPI.RunListResponse;
   export import RunCancelResponse = RunsAPI.RunCancelResponse;
-  export import RunGetStepResponse = RunsAPI.RunGetStepResponse;
   export import RunGetStepsResponse = RunsAPI.RunGetStepsResponse;
   export import RunListResponsesRunsList = RunsAPI.RunListResponsesRunsList;
   export import RunListParams = RunsAPI.RunListParams;
