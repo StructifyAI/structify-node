@@ -125,7 +125,7 @@ export namespace DatasetDescriptor {
        */
       merge_strategy?: Property.PropertyAttr | Property.FuzzyStringMatch | 'None';
 
-      prop_type?: Property.Enum | 'Integer' | 'String';
+      prop_type?: 'String' | Property.Enum | 'Integer';
     }
 
     export namespace Property {
@@ -238,7 +238,7 @@ export namespace DatasetCreateParams {
        */
       merge_strategy?: Property.PropertyAttr | Property.FuzzyStringMatch | 'None';
 
-      prop_type?: Property.Enum | 'Integer' | 'String';
+      prop_type?: 'String' | Property.Enum | 'Integer';
     }
 
     export namespace Property {
