@@ -65,6 +65,7 @@ Methods:
 
 - <code title="get /runs/list">client.runs.<a href="./src/resources/runs.ts">list</a>({ ...params }) -> RunListResponsesRunsList</code>
 - <code title="post /runs/cancel/{uuid}">client.runs.<a href="./src/resources/runs.ts">cancel</a>(uuid) -> RunCancelResponse</code>
+- <code title="get /runs/get_step/{step_id}">client.runs.<a href="./src/resources/runs.ts">getStep</a>(stepId) -> ExecutionStep</code>
 - <code title="get /runs/get_steps/{job_id}">client.runs.<a href="./src/resources/runs.ts">getSteps</a>(jobId) -> RunGetStepsResponse</code>
 - <code title="post /runs/schedule">client.runs.<a href="./src/resources/runs.ts">schedule</a>() -> void</code>
 
