@@ -34,6 +34,13 @@ export class Runs extends APIResource {
   }
 
   /**
+   * Retrieve a step from structify.
+   */
+  getStep(stepId: string, options?: Core.RequestOptions): Core.APIPromise<StructureAPI.ExecutionStep> {
+    return this._client.get(`/runs/get_step/${stepId}`, options);
+  }
+
+  /**
    * Retrieve a run from structify.
    */
   getSteps(jobId: string, options?: Core.RequestOptions): Core.APIPromise<RunGetStepsResponse> {
