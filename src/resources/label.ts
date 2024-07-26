@@ -4,7 +4,6 @@ import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as LabelAPI from './label';
-import * as DatasetsAPI from './datasets';
 import * as SharedAPI from './shared';
 import * as StructureAPI from './structure';
 
@@ -54,13 +53,6 @@ export class Label extends APIResource {
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
     });
-  }
-
-  /**
-   * Update a step as part of the human LLM.
-   */
-  verify(body: LabelVerifyParams, options?: Core.RequestOptions): Core.APIPromise<LabelVerifyResponse> {
-    return this._client.post('/label/verify', { body, ...options });
   }
 }
 
@@ -201,8 +193,6 @@ export namespace LabelLlmAssistResponse {
 export type LabelRunResponse = string;
 
 export type LabelSubmitResponse = string;
-
-export type LabelVerifyResponse = boolean;
 
 export interface LabelGetMessagesParams {
   uuid?: string | null;
@@ -442,68 +432,12 @@ export namespace LabelSubmitParams {
   }
 }
 
-export interface LabelVerifyParams {
-  better_response: string;
-
-  metadata: LabelVerifyParams.Metadata;
-
-  worse_response: string;
-}
-
-export namespace LabelVerifyParams {
-  export interface Metadata {
-    /**
-     * A dataset is where you put multiple referential schemas.
-     *
-     * A dataset is a complete namespace where all references between schemas are held
-     * within the dataset.
-     */
-    dataset_descriptor: DatasetsAPI.DatasetDescriptor;
-
-    extracted_entities: Array<SharedAPI.KnowledgeGraph>;
-
-    extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
-
-    tool_metadata: Array<StructureAPI.ToolMetadata>;
-
-    screenshot?: Core.Uploadable | null;
-
-    url?: string | null;
-
-    web_flags?: Array<Metadata.WebFlag> | null;
-  }
-
-  export namespace Metadata {
-    export interface WebFlag {
-      ariaLabel: string;
-
-      text: string;
-
-      type: string;
-
-      x: number;
-
-      y: number;
-
-      height?: number;
-
-      /**
-       * The serde default here is to give us backwards compatibility it's fine for these
-       * to be anything as long as the image isn't given since it won't regenerate.
-       */
-      width?: number;
-    }
-  }
-}
-
 export namespace Label {
   export import LabelGetMessagesResponse = LabelAPI.LabelGetMessagesResponse;
   export import LabelLlmAssistResponse = LabelAPI.LabelLlmAssistResponse;
   export import LabelRunResponse = LabelAPI.LabelRunResponse;
   export import LabelSubmitResponse = LabelAPI.LabelSubmitResponse;
-  export import LabelVerifyResponse = LabelAPI.LabelVerifyResponse;
   export import LabelGetMessagesParams = LabelAPI.LabelGetMessagesParams;
   export import LabelRunParams = LabelAPI.LabelRunParams;
   export import LabelSubmitParams = LabelAPI.LabelSubmitParams;
-  export import LabelVerifyParams = LabelAPI.LabelVerifyParams;
 }
