@@ -33,9 +33,11 @@ export {
   LabelLlmAssistResponse,
   LabelRunResponse,
   LabelSubmitResponse,
+  LabelVerifyResponse,
   LabelGetMessagesParams,
   LabelRunParams,
   LabelSubmitParams,
+  LabelVerifyParams,
   Label,
 } from './label';
 export { NewToken, UserInfo, User } from './user';
