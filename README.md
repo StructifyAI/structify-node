@@ -28,7 +28,7 @@ const client = new Structify({
 });
 
 async function main() {
-  const serverInformation = await structify.server.version();
+  const serverInformation = await client.server.version();
 
   console.log(serverInformation.version);
 }
@@ -50,7 +50,7 @@ const client = new Structify({
 });
 
 async function main() {
-  const serverInformation: Structify.ServerInformation = await structify.server.version();
+  const serverInformation: Structify.ServerInformation = await client.server.version();
 }
 
 main();
@@ -67,7 +67,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const serverInformation = await structify.server.version().catch(async (err) => {
+  const serverInformation = await client.server.version().catch(async (err) => {
     if (err instanceof Structify.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
@@ -110,7 +110,7 @@ const client = new Structify({
 });
 
 // Or, configure per-request:
-await structify.server.version({
+await client.server.version({
   maxRetries: 5,
 });
 ```
@@ -127,7 +127,7 @@ const client = new Structify({
 });
 
 // Override per-request:
-await structify.server.version({
+await client.server.version({
   timeout: 5 * 1000,
 });
 ```
@@ -148,11 +148,11 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 ```ts
 const client = new Structify();
 
-const response = await structify.server.version().asResponse();
+const response = await client.server.version().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: serverInformation, response: raw } = await structify.server.version().withResponse();
+const { data: serverInformation, response: raw } = await client.server.version().withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(serverInformation.version);
 ```
@@ -258,7 +258,7 @@ const client = new Structify({
 });
 
 // Override per-request:
-await structify.server.version({
+await client.server.version({
   httpAgent: new http.Agent({ keepAlive: false }),
 });
 ```
