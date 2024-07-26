@@ -116,7 +116,6 @@ Types:
 - <code><a href="./src/resources/label.ts">LabelLlmAssistResponse</a></code>
 - <code><a href="./src/resources/label.ts">LabelRunResponse</a></code>
 - <code><a href="./src/resources/label.ts">LabelSubmitResponse</a></code>
-- <code><a href="./src/resources/label.ts">LabelVerifyResponse</a></code>
 
 Methods:
 
@@ -124,7 +123,6 @@ Methods:
 - <code title="get /label/llm_assist/{uuid}">client.label.<a href="./src/resources/label.ts">llmAssist</a>(uuid) -> LabelLlmAssistResponse</code>
 - <code title="post /label/run_async">client.label.<a href="./src/resources/label.ts">run</a>({ ...params }) -> string</code>
 - <code title="post /label/submit/{uuid}">client.label.<a href="./src/resources/label.ts">submit</a>(uuid, [ ...label ]) -> string</code>
-- <code title="post /label/verify">client.label.<a href="./src/resources/label.ts">verify</a>({ ...params }) -> LabelVerifyResponse</code>
 
 # Usage
 
