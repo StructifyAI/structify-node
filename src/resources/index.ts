@@ -29,11 +29,13 @@ export {
 export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
 export { Entity, KnowledgeGraph, Relationship, Shared } from './shared';
 export {
+  LabelUpdateResponse,
   LabelGetMessagesResponse,
   LabelLlmAssistResponse,
   LabelRunResponse,
   LabelSubmitResponse,
   LabelVerifyResponse,
+  LabelUpdateParams,
   LabelGetMessagesParams,
   LabelRunParams,
   LabelSubmitParams,
@@ -43,7 +45,9 @@ export {
 export { NewToken, UserInfo, User } from './user';
 export {
   RunListResponse,
+  RunDeleteResponse,
   RunCancelResponse,
+  RunGetResponse,
   RunGetStepsResponse,
   RunListParams,
   RunListResponsesRunsList,
