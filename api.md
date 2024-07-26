@@ -58,16 +58,15 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/runs.ts">RunListResponse</a></code>
-- <code><a href="./src/resources/runs.ts">RunDeleteResponse</a></code>
 - <code><a href="./src/resources/runs.ts">RunCancelResponse</a></code>
-- <code><a href="./src/resources/runs.ts">RunGetResponse</a></code>
+- <code><a href="./src/resources/runs.ts">RunGetStepsResponse</a></code>
 
 Methods:
 
 - <code title="get /runs/list">client.runs.<a href="./src/resources/runs.ts">list</a>({ ...params }) -> RunListResponsesRunsList</code>
-- <code title="post /runs/delete/{uuid}">client.runs.<a href="./src/resources/runs.ts">delete</a>(uuid) -> string</code>
 - <code title="post /runs/cancel/{uuid}">client.runs.<a href="./src/resources/runs.ts">cancel</a>(uuid) -> RunCancelResponse</code>
-- <code title="get /runs/get/{uuid}">client.runs.<a href="./src/resources/runs.ts">get</a>(uuid) -> RunGetResponse</code>
+- <code title="get /runs/get_step/{step_id}">client.runs.<a href="./src/resources/runs.ts">getStep</a>(stepId) -> ExecutionStep</code>
+- <code title="get /runs/get_steps/{job_id}">client.runs.<a href="./src/resources/runs.ts">getSteps</a>(jobId) -> RunGetStepsResponse</code>
 - <code title="post /runs/schedule">client.runs.<a href="./src/resources/runs.ts">schedule</a>() -> void</code>
 
 # Server
@@ -113,19 +112,19 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/label.ts">LabelUpdateResponse</a></code>
 - <code><a href="./src/resources/label.ts">LabelGetMessagesResponse</a></code>
 - <code><a href="./src/resources/label.ts">LabelLlmAssistResponse</a></code>
 - <code><a href="./src/resources/label.ts">LabelRunResponse</a></code>
 - <code><a href="./src/resources/label.ts">LabelSubmitResponse</a></code>
+- <code><a href="./src/resources/label.ts">LabelVerifyResponse</a></code>
 
 Methods:
 
-- <code title="post /label/update/{run_uuid}/{run_idx}">client.label.<a href="./src/resources/label.ts">update</a>(runUuid, runIdx, [ ...step_update ]) -> string</code>
 - <code title="get /label/refresh">client.label.<a href="./src/resources/label.ts">getMessages</a>({ ...params }) -> LabelGetMessagesResponse | null</code>
 - <code title="get /label/llm_assist/{uuid}">client.label.<a href="./src/resources/label.ts">llmAssist</a>(uuid) -> LabelLlmAssistResponse</code>
 - <code title="post /label/run_async">client.label.<a href="./src/resources/label.ts">run</a>({ ...params }) -> string</code>
 - <code title="post /label/submit/{uuid}">client.label.<a href="./src/resources/label.ts">submit</a>(uuid, [ ...label ]) -> string</code>
+- <code title="post /label/verify">client.label.<a href="./src/resources/label.ts">verify</a>({ ...params }) -> LabelVerifyResponse</code>
 
 # Usage
 
@@ -144,4 +143,3 @@ Types:
 - <code><a href="./src/resources/shared.ts">Entity</a></code>
 - <code><a href="./src/resources/shared.ts">KnowledgeGraph</a></code>
 - <code><a href="./src/resources/shared.ts">Relationship</a></code>
-- <code><a href="./src/resources/shared.ts">StructifyID</a></code>

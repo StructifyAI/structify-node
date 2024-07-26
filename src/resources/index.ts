@@ -27,25 +27,24 @@ export {
   Datasets,
 } from './datasets';
 export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
-export { Entity, KnowledgeGraph, Relationship, StructifyID, Shared } from './shared';
+export { Entity, KnowledgeGraph, Relationship, Shared } from './shared';
 export {
-  LabelUpdateResponse,
   LabelGetMessagesResponse,
   LabelLlmAssistResponse,
   LabelRunResponse,
   LabelSubmitResponse,
-  LabelUpdateParams,
+  LabelVerifyResponse,
   LabelGetMessagesParams,
   LabelRunParams,
   LabelSubmitParams,
+  LabelVerifyParams,
   Label,
 } from './label';
 export { NewToken, UserInfo, User } from './user';
 export {
   RunListResponse,
-  RunDeleteResponse,
   RunCancelResponse,
-  RunGetResponse,
+  RunGetStepsResponse,
   RunListParams,
   RunListResponsesRunsList,
   Runs,

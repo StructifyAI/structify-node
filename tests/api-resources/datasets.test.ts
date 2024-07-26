@@ -3,14 +3,14 @@
 import Structify from 'structifyai';
 import { Response } from 'node-fetch';
 
-const structify = new Structify({
+const client = new Structify({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource datasets', () => {
   test('create: only required params', async () => {
-    const responsePromise = structify.datasets.create({
+    const responsePromise = client.datasets.create({
       description: 'description',
       name: 'name',
       relationships: [
@@ -73,7 +73,7 @@ describe('resource datasets', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await structify.datasets.create({
+    const response = await client.datasets.create({
       description: 'description',
       name: 'name',
       relationships: [
@@ -101,27 +101,72 @@ describe('resource datasets', () => {
           description: 'description',
           name: 'name',
           properties: [
-            { description: 'description', name: 'name' },
-            { description: 'description', name: 'name' },
-            { description: 'description', name: 'name' },
+            {
+              description: 'description',
+              merge_strategy: { PropertyAttr: 'PropertyAttr' },
+              name: 'name',
+              prop_type: 'String',
+            },
+            {
+              description: 'description',
+              merge_strategy: { PropertyAttr: 'PropertyAttr' },
+              name: 'name',
+              prop_type: 'String',
+            },
+            {
+              description: 'description',
+              merge_strategy: { PropertyAttr: 'PropertyAttr' },
+              name: 'name',
+              prop_type: 'String',
+            },
           ],
         },
         {
           description: 'description',
           name: 'name',
           properties: [
-            { description: 'description', name: 'name' },
-            { description: 'description', name: 'name' },
-            { description: 'description', name: 'name' },
+            {
+              description: 'description',
+              merge_strategy: { PropertyAttr: 'PropertyAttr' },
+              name: 'name',
+              prop_type: 'String',
+            },
+            {
+              description: 'description',
+              merge_strategy: { PropertyAttr: 'PropertyAttr' },
+              name: 'name',
+              prop_type: 'String',
+            },
+            {
+              description: 'description',
+              merge_strategy: { PropertyAttr: 'PropertyAttr' },
+              name: 'name',
+              prop_type: 'String',
+            },
           ],
         },
         {
           description: 'description',
           name: 'name',
           properties: [
-            { description: 'description', name: 'name' },
-            { description: 'description', name: 'name' },
-            { description: 'description', name: 'name' },
+            {
+              description: 'description',
+              merge_strategy: { PropertyAttr: 'PropertyAttr' },
+              name: 'name',
+              prop_type: 'String',
+            },
+            {
+              description: 'description',
+              merge_strategy: { PropertyAttr: 'PropertyAttr' },
+              name: 'name',
+              prop_type: 'String',
+            },
+            {
+              description: 'description',
+              merge_strategy: { PropertyAttr: 'PropertyAttr' },
+              name: 'name',
+              prop_type: 'String',
+            },
           ],
         },
       ],
@@ -129,7 +174,7 @@ describe('resource datasets', () => {
   });
 
   test('list', async () => {
-    const responsePromise = structify.datasets.list();
+    const responsePromise = client.datasets.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -141,13 +186,13 @@ describe('resource datasets', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(structify.datasets.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.datasets.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       Structify.NotFoundError,
     );
   });
 
   test('delete: only required params', async () => {
-    const responsePromise = structify.datasets.delete({ name: 'name' });
+    const responsePromise = client.datasets.delete({ name: 'name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -158,11 +203,11 @@ describe('resource datasets', () => {
   });
 
   test('delete: required and optional params', async () => {
-    const response = await structify.datasets.delete({ name: 'name' });
+    const response = await client.datasets.delete({ name: 'name' });
   });
 
   test('get: only required params', async () => {
-    const responsePromise = structify.datasets.get({ name: 'name' });
+    const responsePromise = client.datasets.get({ name: 'name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -173,11 +218,11 @@ describe('resource datasets', () => {
   });
 
   test('get: required and optional params', async () => {
-    const response = await structify.datasets.get({ name: 'name' });
+    const response = await client.datasets.get({ name: 'name' });
   });
 
   test('view: only required params', async () => {
-    const responsePromise = structify.datasets.view({
+    const responsePromise = client.datasets.view({
       dataset_name: 'dataset_name',
       requested_type: 'Entities',
     });
@@ -191,7 +236,7 @@ describe('resource datasets', () => {
   });
 
   test('view: required and optional params', async () => {
-    const response = await structify.datasets.view({
+    const response = await client.datasets.view({
       dataset_name: 'dataset_name',
       requested_type: 'Entities',
       limit: 0,

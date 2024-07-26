@@ -4,26 +4,11 @@ import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as LabelAPI from './label';
+import * as DatasetsAPI from './datasets';
 import * as SharedAPI from './shared';
 import * as StructureAPI from './structure';
 
 export class Label extends APIResource {
-  /**
-   * Submit a label as part of the human LLM.
-   */
-  update(
-    runUuid: string,
-    runIdx: number,
-    body: LabelUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
-    return this._client.post(`/label/update/${runUuid}/${runIdx}`, {
-      body,
-      ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
-    });
-  }
-
   /**
    * web requests that would be cancelled by cloudflare in prod.
    */
@@ -70,9 +55,14 @@ export class Label extends APIResource {
       headers: { Accept: 'text/plain', ...options?.headers },
     });
   }
-}
 
-export type LabelUpdateResponse = string;
+  /**
+   * Update a step as part of the human LLM.
+   */
+  verify(body: LabelVerifyParams, options?: Core.RequestOptions): Core.APIPromise<LabelVerifyResponse> {
+    return this._client.post('/label/verify', { body, ...options });
+  }
+}
 
 export interface LabelGetMessagesResponse {
   chat: StructureAPI.ChatPrompt;
@@ -212,161 +202,7 @@ export type LabelRunResponse = string;
 
 export type LabelSubmitResponse = string;
 
-export type LabelUpdateParams = Array<LabelUpdateParams.StepUpdate>;
-
-export namespace LabelUpdateParams {
-  export interface StepUpdate {
-    input:
-      | StepUpdate.Save
-      | StepUpdate.Scroll
-      | StepUpdate.Exit
-      | StepUpdate.Click
-      | StepUpdate.Hover
-      | StepUpdate.Wait
-      | StepUpdate.Error
-      | StepUpdate.Google
-      | StepUpdate.Type;
-
-    name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
-
-    result?:
-      | StepUpdate.ToolQueued
-      | StepUpdate.ToolFail
-      | StepUpdate.InputParseFail
-      | StepUpdate.Success
-      | null;
-  }
-
-  export namespace StepUpdate {
-    export interface Save {
-      /**
-       * Knowledge graph info structured to deserialize and display in the same format
-       * that the LLM outputs. Also the first representation of an LLM output in the
-       * pipeline from raw tool output to being merged into a Neo4j DB
-       */
-      Save: SharedAPI.KnowledgeGraph;
-    }
-
-    export interface Scroll {
-      /**
-       * For tools with no inputs.
-       */
-      Scroll: Scroll.Scroll;
-    }
-
-    export namespace Scroll {
-      /**
-       * For tools with no inputs.
-       */
-      export interface Scroll {
-        /**
-         * OpenAI Requires an argument, so we put a dummy one here.
-         */
-        reason: string;
-      }
-    }
-
-    export interface Exit {
-      /**
-       * For tools with no inputs.
-       */
-      Exit: Exit.Exit;
-    }
-
-    export namespace Exit {
-      /**
-       * For tools with no inputs.
-       */
-      export interface Exit {
-        /**
-         * OpenAI Requires an argument, so we put a dummy one here.
-         */
-        reason: string;
-      }
-    }
-
-    export interface Click {
-      Click: Click.Click;
-    }
-
-    export namespace Click {
-      export interface Click {
-        flag: number;
-      }
-    }
-
-    export interface Hover {
-      Hover: Hover.Hover;
-    }
-
-    export namespace Hover {
-      export interface Hover {
-        flag: number;
-      }
-    }
-
-    export interface Wait {
-      Wait: Wait.Wait;
-    }
-
-    export namespace Wait {
-      export interface Wait {
-        /**
-         * Time in seconds to wait
-         */
-        seconds: number;
-      }
-    }
-
-    export interface Error {
-      Error: Error.Error;
-    }
-
-    export namespace Error {
-      export interface Error {
-        error: string;
-      }
-    }
-
-    export interface Google {
-      Google: Google.Google;
-    }
-
-    export namespace Google {
-      export interface Google {
-        query: string;
-      }
-    }
-
-    export interface Type {
-      Type: Type.Type;
-    }
-
-    export namespace Type {
-      export interface Type {
-        flag: number;
-
-        input: string;
-      }
-    }
-
-    export interface ToolQueued {
-      ToolQueued: string;
-    }
-
-    export interface ToolFail {
-      ToolFail: string;
-    }
-
-    export interface InputParseFail {
-      InputParseFail: string;
-    }
-
-    export interface Success {
-      Success: string;
-    }
-  }
-}
+export type LabelVerifyResponse = boolean;
 
 export interface LabelGetMessagesParams {
   uuid?: string | null;
@@ -606,14 +442,68 @@ export namespace LabelSubmitParams {
   }
 }
 
+export interface LabelVerifyParams {
+  better_response: string;
+
+  metadata: LabelVerifyParams.Metadata;
+
+  worse_response: string;
+}
+
+export namespace LabelVerifyParams {
+  export interface Metadata {
+    /**
+     * A dataset is where you put multiple referential schemas.
+     *
+     * A dataset is a complete namespace where all references between schemas are held
+     * within the dataset.
+     */
+    dataset_descriptor: DatasetsAPI.DatasetDescriptor;
+
+    extracted_entities: Array<SharedAPI.KnowledgeGraph>;
+
+    extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+
+    tool_metadata: Array<StructureAPI.ToolMetadata>;
+
+    screenshot?: Core.Uploadable | null;
+
+    url?: string | null;
+
+    web_flags?: Array<Metadata.WebFlag> | null;
+  }
+
+  export namespace Metadata {
+    export interface WebFlag {
+      ariaLabel: string;
+
+      text: string;
+
+      type: string;
+
+      x: number;
+
+      y: number;
+
+      height?: number;
+
+      /**
+       * The serde default here is to give us backwards compatibility it's fine for these
+       * to be anything as long as the image isn't given since it won't regenerate.
+       */
+      width?: number;
+    }
+  }
+}
+
 export namespace Label {
-  export import LabelUpdateResponse = LabelAPI.LabelUpdateResponse;
   export import LabelGetMessagesResponse = LabelAPI.LabelGetMessagesResponse;
   export import LabelLlmAssistResponse = LabelAPI.LabelLlmAssistResponse;
   export import LabelRunResponse = LabelAPI.LabelRunResponse;
   export import LabelSubmitResponse = LabelAPI.LabelSubmitResponse;
-  export import LabelUpdateParams = LabelAPI.LabelUpdateParams;
+  export import LabelVerifyResponse = LabelAPI.LabelVerifyResponse;
   export import LabelGetMessagesParams = LabelAPI.LabelGetMessagesParams;
   export import LabelRunParams = LabelAPI.LabelRunParams;
   export import LabelSubmitParams = LabelAPI.LabelSubmitParams;
+  export import LabelVerifyParams = LabelAPI.LabelVerifyParams;
 }

@@ -4,7 +4,6 @@ import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as RunsAPI from './runs';
-import * as SharedAPI from './shared';
 import * as StructureAPI from './structure';
 import { RunsList, type RunsListParams } from '../pagination';
 
@@ -28,16 +27,6 @@ export class Runs extends APIResource {
   }
 
   /**
-   * Delete a run
-   */
-  delete(uuid: string, options?: Core.RequestOptions): Core.APIPromise<string> {
-    return this._client.post(`/runs/delete/${uuid}`, {
-      ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
-    });
-  }
-
-  /**
    * You successfully cancelled a run.
    */
   cancel(uuid: string, options?: Core.RequestOptions): Core.APIPromise<RunCancelResponse> {
@@ -45,10 +34,17 @@ export class Runs extends APIResource {
   }
 
   /**
+   * Retrieve a step from structify.
+   */
+  getStep(stepId: string, options?: Core.RequestOptions): Core.APIPromise<StructureAPI.ExecutionStep> {
+    return this._client.get(`/runs/get_step/${stepId}`, options);
+  }
+
+  /**
    * Retrieve a run from structify.
    */
-  get(uuid: string, options?: Core.RequestOptions): Core.APIPromise<RunGetResponse> {
-    return this._client.get(`/runs/get/${uuid}`, options);
+  getSteps(jobId: string, options?: Core.RequestOptions): Core.APIPromise<RunGetStepsResponse> {
+    return this._client.get(`/runs/get_steps/${jobId}`, options);
   }
 
   /**
@@ -66,37 +62,29 @@ export class Runs extends APIResource {
 export class RunListResponsesRunsList extends RunsList<RunListResponse> {}
 
 export interface RunListResponse {
-  id: SharedAPI.StructifyID;
+  id: string;
+
+  creation_time: string;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 }
-
-export type RunDeleteResponse = string;
 
 export interface RunCancelResponse {
-  id: SharedAPI.StructifyID;
+  id: string;
+
+  creation_time: string;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 }
 
-export interface RunGetResponse {
-  date: string;
-
-  steps: Array<StructureAPI.ExecutionStep>;
-
-  /**
-   * Used to identify this history
-   */
-  uuid: string;
-}
+export type RunGetStepsResponse = Array<StructureAPI.ExecutionStep>;
 
 export interface RunListParams extends RunsListParams {}
 
 export namespace Runs {
   export import RunListResponse = RunsAPI.RunListResponse;
-  export import RunDeleteResponse = RunsAPI.RunDeleteResponse;
   export import RunCancelResponse = RunsAPI.RunCancelResponse;
-  export import RunGetResponse = RunsAPI.RunGetResponse;
+  export import RunGetStepsResponse = RunsAPI.RunGetStepsResponse;
   export import RunListResponsesRunsList = RunsAPI.RunListResponsesRunsList;
   export import RunListParams = RunsAPI.RunListParams;
 }

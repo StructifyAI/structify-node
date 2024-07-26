@@ -239,9 +239,8 @@ export namespace Structify {
 
   export import Runs = API.Runs;
   export import RunListResponse = API.RunListResponse;
-  export import RunDeleteResponse = API.RunDeleteResponse;
   export import RunCancelResponse = API.RunCancelResponse;
-  export import RunGetResponse = API.RunGetResponse;
+  export import RunGetStepsResponse = API.RunGetStepsResponse;
   export import RunListResponsesRunsList = API.RunListResponsesRunsList;
   export import RunListParams = API.RunListParams;
 
@@ -266,15 +265,15 @@ export namespace Structify {
   export import StructureRunAsyncParams = API.StructureRunAsyncParams;
 
   export import Label = API.Label;
-  export import LabelUpdateResponse = API.LabelUpdateResponse;
   export import LabelGetMessagesResponse = API.LabelGetMessagesResponse;
   export import LabelLlmAssistResponse = API.LabelLlmAssistResponse;
   export import LabelRunResponse = API.LabelRunResponse;
   export import LabelSubmitResponse = API.LabelSubmitResponse;
-  export import LabelUpdateParams = API.LabelUpdateParams;
+  export import LabelVerifyResponse = API.LabelVerifyResponse;
   export import LabelGetMessagesParams = API.LabelGetMessagesParams;
   export import LabelRunParams = API.LabelRunParams;
   export import LabelSubmitParams = API.LabelSubmitParams;
+  export import LabelVerifyParams = API.LabelVerifyParams;
 
   export import Usage = API.Usage;
   export import UsageGetJobInfoResponse = API.UsageGetJobInfoResponse;
@@ -283,7 +282,6 @@ export namespace Structify {
   export import Entity = API.Entity;
   export import KnowledgeGraph = API.KnowledgeGraph;
   export import Relationship = API.Relationship;
-  export import StructifyID = API.StructifyID;
 }
 
 export default Structify;

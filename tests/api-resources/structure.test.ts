@@ -3,14 +3,14 @@
 import Structify from 'structifyai';
 import { Response } from 'node-fetch';
 
-const structify = new Structify({
+const client = new Structify({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource structure', () => {
   test('isComplete: only required params', async () => {
-    const responsePromise = structify.structure.isComplete(['string', 'string', 'string']);
+    const responsePromise = client.structure.isComplete(['string', 'string', 'string']);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,11 +21,11 @@ describe('resource structure', () => {
   });
 
   test('isComplete: required and optional params', async () => {
-    const response = await structify.structure.isComplete(['string', 'string', 'string']);
+    const response = await client.structure.isComplete(['string', 'string', 'string']);
   });
 
   test('jobStatus: only required params', async () => {
-    const responsePromise = structify.structure.jobStatus(['string', 'string', 'string']);
+    const responsePromise = client.structure.jobStatus(['string', 'string', 'string']);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -36,11 +36,11 @@ describe('resource structure', () => {
   });
 
   test('jobStatus: required and optional params', async () => {
-    const response = await structify.structure.jobStatus(['string', 'string', 'string']);
+    const response = await client.structure.jobStatus(['string', 'string', 'string']);
   });
 
   test('runAsync: only required params', async () => {
-    const responsePromise = structify.structure.runAsync({
+    const responsePromise = client.structure.runAsync({
       dataset_name: 'dataset_name',
       structure_input: {
         SECIngestor: {
@@ -62,7 +62,7 @@ describe('resource structure', () => {
   });
 
   test('runAsync: required and optional params', async () => {
-    const response = await structify.structure.runAsync({
+    const response = await client.structure.runAsync({
       dataset_name: 'dataset_name',
       structure_input: {
         SECIngestor: {

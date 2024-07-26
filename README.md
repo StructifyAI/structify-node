@@ -4,7 +4,7 @@
 
 This library provides convenient access to the Structify REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found [on api.structify.ai](https://api.structify.ai/). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [api.structify.ai](https://api.structify.ai/). The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainlessapi.com/).
 
@@ -22,13 +22,13 @@ The full API of this library can be found in [api.md](api.md).
 ```js
 import Structify from 'structifyai';
 
-const structify = new Structify({
+const client = new Structify({
   apiKey: process.env['STRUCTIFY_API_TOKEN'], // This is the default and can be omitted
   environment: 'deployment', // defaults to 'production'
 });
 
 async function main() {
-  const serverInformation = await structify.server.version();
+  const serverInformation = await client.server.version();
 
   console.log(serverInformation.version);
 }
@@ -44,13 +44,13 @@ This library includes TypeScript definitions for all request params and response
 ```ts
 import Structify from 'structifyai';
 
-const structify = new Structify({
+const client = new Structify({
   apiKey: process.env['STRUCTIFY_API_TOKEN'], // This is the default and can be omitted
   environment: 'deployment', // defaults to 'production'
 });
 
 async function main() {
-  const serverInformation: Structify.ServerInformation = await structify.server.version();
+  const serverInformation: Structify.ServerInformation = await client.server.version();
 }
 
 main();
@@ -67,7 +67,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const serverInformation = await structify.server.version().catch(async (err) => {
+  const serverInformation = await client.server.version().catch(async (err) => {
     if (err instanceof Structify.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
@@ -105,12 +105,12 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const structify = new Structify({
+const client = new Structify({
   maxRetries: 0, // default is 2
 });
 
 // Or, configure per-request:
-await structify.server.version({
+await client.server.version({
   maxRetries: 5,
 });
 ```
@@ -122,12 +122,12 @@ Requests time out after 1 minute by default. You can configure this with a `time
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const structify = new Structify({
+const client = new Structify({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
 });
 
 // Override per-request:
-await structify.server.version({
+await client.server.version({
   timeout: 5 * 1000,
 });
 ```
@@ -146,13 +146,13 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 
 <!-- prettier-ignore -->
 ```ts
-const structify = new Structify();
+const client = new Structify();
 
-const response = await structify.server.version().asResponse();
+const response = await client.server.version().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: serverInformation, response: raw } = await structify.server.version().withResponse();
+const { data: serverInformation, response: raw } = await client.server.version().withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(serverInformation.version);
 ```
@@ -253,12 +253,12 @@ import http from 'http';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 
 // Configure the default for all requests:
-const structify = new Structify({
+const client = new Structify({
   httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
 });
 
 // Override per-request:
-await structify.server.version({
+await client.server.version({
   httpAgent: new http.Agent({ keepAlive: false }),
 });
 ```
@@ -280,14 +280,6 @@ We are keen for your feedback; please open an [issue](https://www.github.com/Str
 TypeScript >= 4.5 is supported.
 
 The following runtimes are supported:
-
-- Node.js 18 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.
-- Deno v1.28.0 or higher, using `import Structify from "npm:structifyai"`.
-- Bun 1.0 or later.
-- Cloudflare Workers.
-- Vercel Edge Runtime.
-- Jest 28 or greater with the `"node"` environment (`"jsdom"` is not supported at this time).
-- Nitro v2.6 or greater.
 
 Note that React Native is not supported at this time.
 

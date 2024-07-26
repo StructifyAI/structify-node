@@ -62,7 +62,8 @@ export namespace ChatPrompt {
       | DecodingParams.Functions
       | DecodingParams.JsonValidator
       | DecodingParams.RegexValidator
-      | DecodingParams.ContextFreeeGrammar
+      | DecodingParams.ContextFreeGrammar
+      | DecodingParams.NumBeams
       | DecodingParams.Crop
     >;
   }
@@ -104,8 +105,12 @@ export namespace ChatPrompt {
       RegexValidator: string;
     }
 
-    export interface ContextFreeeGrammar {
-      ContextFreeeGrammar: string;
+    export interface ContextFreeGrammar {
+      ContextFreeGrammar: string;
+    }
+
+    export interface NumBeams {
+      NumBeams: number;
     }
 
     export interface Crop {
@@ -199,7 +204,7 @@ export namespace ChatPrompt {
 }
 
 export interface ExecutionStep {
-  id: SharedAPI.StructifyID;
+  id: string;
 
   prompt: ChatPrompt;
 
@@ -434,10 +439,10 @@ export interface ToolMetadata {
 
 export type StructureIsCompleteResponse = string;
 
-export type StructureJobStatusResponse = Array<StructureJobStatusResponse.StructureJobStatusResponseItem>;
+export interface StructureJobStatusResponse {
+  job_status: Array<'Queued' | 'Running' | 'Completed' | 'Failed'>;
 
-export namespace StructureJobStatusResponse {
-  export interface StructureJobStatusResponseItem {}
+  log_nodes: Array<string>;
 }
 
 export type StructureRunAsyncResponse = string;

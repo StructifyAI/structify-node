@@ -118,6 +118,38 @@ export namespace DatasetDescriptor {
       description: string;
 
       name: string;
+
+      /**
+       * merge on two entities if they have two property keys listed in this type that
+       * return true to some fuzzy string matching function
+       */
+      merge_strategy?: Property.PropertyAttr | Property.FuzzyStringMatch | 'None';
+
+      prop_type?: 'String' | Property.Enum | 'Integer';
+    }
+
+    export namespace Property {
+      export interface PropertyAttr {
+        PropertyAttr: string;
+      }
+
+      export interface FuzzyStringMatch {
+        /**
+         * merge on some list of property names iff the values are the same in the
+         * extracted KgEntity
+         */
+        FuzzyStringMatch: string;
+      }
+
+      export interface Enum {
+        Enum: Enum.Enum;
+      }
+
+      export namespace Enum {
+        export interface Enum {
+          types: Array<string>;
+        }
+      }
     }
   }
 }
@@ -133,12 +165,8 @@ export namespace DatasetViewResponse {
 
   export namespace Entity {
     export interface Entity {
-      id: number;
+      id: string;
 
-      /**
-       * Since all Entities have exactly two labels (ENTITY_LABEL and their table name),
-       * we only store the non-ENTITY_LABEL label here.
-       */
       label: string;
 
       properties: Record<string, string | null | boolean | null | number | null>;
@@ -146,26 +174,16 @@ export namespace DatasetViewResponse {
   }
 
   export interface Relationship {
-    /**
-     * Don't actually create these. These are solely used as return types in the API
-     *
-     * TODO: Remove them from models.
-     */
     Relationship: Relationship.Relationship;
   }
 
   export namespace Relationship {
-    /**
-     * Don't actually create these. These are solely used as return types in the API
-     *
-     * TODO: Remove them from models.
-     */
     export interface Relationship {
-      from_id: number;
+      from_id: string;
 
       label: string;
 
-      to_id: number;
+      to_id: string;
     }
   }
 }
@@ -213,6 +231,38 @@ export namespace DatasetCreateParams {
       description: string;
 
       name: string;
+
+      /**
+       * merge on two entities if they have two property keys listed in this type that
+       * return true to some fuzzy string matching function
+       */
+      merge_strategy?: Property.PropertyAttr | Property.FuzzyStringMatch | 'None';
+
+      prop_type?: 'String' | Property.Enum | 'Integer';
+    }
+
+    export namespace Property {
+      export interface PropertyAttr {
+        PropertyAttr: string;
+      }
+
+      export interface FuzzyStringMatch {
+        /**
+         * merge on some list of property names iff the values are the same in the
+         * extracted KgEntity
+         */
+        FuzzyStringMatch: string;
+      }
+
+      export interface Enum {
+        Enum: Enum.Enum;
+      }
+
+      export namespace Enum {
+        export interface Enum {
+          types: Array<string>;
+        }
+      }
     }
   }
 }

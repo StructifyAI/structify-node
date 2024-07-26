@@ -3,14 +3,14 @@
 import Structify, { toFile } from 'structifyai';
 import { Response } from 'node-fetch';
 
-const structify = new Structify({
+const client = new Structify({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource documents', () => {
   test('list', async () => {
-    const responsePromise = structify.documents.list();
+    const responsePromise = client.documents.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -22,13 +22,13 @@ describe('resource documents', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(structify.documents.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.documents.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       Structify.NotFoundError,
     );
   });
 
   test('delete', async () => {
-    const responsePromise = structify.documents.delete('path');
+    const responsePromise = client.documents.delete('path');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -40,20 +40,20 @@ describe('resource documents', () => {
 
   test('delete: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(structify.documents.delete('path', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.documents.delete('path', { path: '/_stainless_unknown_path' })).rejects.toThrow(
       Structify.NotFoundError,
     );
   });
 
   test('download: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(structify.documents.download('path', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.documents.download('path', { path: '/_stainless_unknown_path' })).rejects.toThrow(
       Structify.NotFoundError,
     );
   });
 
   test('upload: only required params', async () => {
-    const responsePromise = structify.documents.upload({
+    const responsePromise = client.documents.upload({
       content: await toFile(Buffer.from('# my file contents'), 'README.md'),
       file_type: 'Text',
       path: await toFile(Buffer.from('# my file contents'), 'README.md'),
@@ -68,7 +68,7 @@ describe('resource documents', () => {
   });
 
   test('upload: required and optional params', async () => {
-    const response = await structify.documents.upload({
+    const response = await client.documents.upload({
       content: await toFile(Buffer.from('# my file contents'), 'README.md'),
       file_type: 'Text',
       path: await toFile(Buffer.from('# my file contents'), 'README.md'),
