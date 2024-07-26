@@ -3,14 +3,14 @@
 import Structify from 'structifyai';
 import { Response } from 'node-fetch';
 
-const structify = new Structify({
+const client = new Structify({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource label', () => {
   test('getMessages', async () => {
-    const responsePromise = structify.label.getMessages();
+    const responsePromise = client.label.getMessages();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -22,7 +22,7 @@ describe('resource label', () => {
 
   test('getMessages: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(structify.label.getMessages({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.label.getMessages({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       Structify.NotFoundError,
     );
   });
@@ -30,7 +30,7 @@ describe('resource label', () => {
   test('getMessages: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      structify.label.getMessages(
+      client.label.getMessages(
         { uuid: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
         { path: '/_stainless_unknown_path' },
       ),
@@ -38,7 +38,7 @@ describe('resource label', () => {
   });
 
   test('llmAssist', async () => {
-    const responsePromise = structify.label.llmAssist('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
+    const responsePromise = client.label.llmAssist('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -51,12 +51,12 @@ describe('resource label', () => {
   test('llmAssist: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      structify.label.llmAssist('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: '/_stainless_unknown_path' }),
+      client.label.llmAssist('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
   test('run: only required params', async () => {
-    const responsePromise = structify.label.run({
+    const responsePromise = client.label.run({
       dataset_name: 'dataset_name',
       structure_input: {
         SECIngestor: {
@@ -78,7 +78,7 @@ describe('resource label', () => {
   });
 
   test('run: required and optional params', async () => {
-    const response = await structify.label.run({
+    const response = await client.label.run({
       dataset_name: 'dataset_name',
       structure_input: {
         SECIngestor: {
@@ -108,7 +108,7 @@ describe('resource label', () => {
   });
 
   test('submit: only required params', async () => {
-    const responsePromise = structify.label.submit('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', [
+    const responsePromise = client.label.submit('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', [
       { Save: {} },
       { Save: {} },
       { Save: {} },
@@ -123,7 +123,7 @@ describe('resource label', () => {
   });
 
   test('submit: required and optional params', async () => {
-    const response = await structify.label.submit('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', [
+    const response = await client.label.submit('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', [
       {
         Save: {
           entities: [
