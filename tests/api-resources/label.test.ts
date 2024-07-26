@@ -172,7 +172,7 @@ describe('resource label', () => {
   test('verify: only required params', async () => {
     const responsePromise = client.label.verify({
       better_response: 'better_response',
-      step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      step_id: 'step_id',
       worse_response: 'worse_response',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -187,7 +187,7 @@ describe('resource label', () => {
   test('verify: required and optional params', async () => {
     const response = await client.label.verify({
       better_response: 'better_response',
-      step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      step_id: 'step_id',
       worse_response: 'worse_response',
     });
   });
