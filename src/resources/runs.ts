@@ -27,10 +27,27 @@ export class Runs extends APIResource {
   }
 
   /**
+   * Delete a run
+   */
+  delete(jobId: string, options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.post(`/runs/delete/${jobId}`, {
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
    * You successfully cancelled a run.
    */
   cancel(uuid: string, options?: Core.RequestOptions): Core.APIPromise<RunCancelResponse> {
     return this._client.post(`/runs/cancel/${uuid}`, options);
+  }
+
+  /**
+   * Retrieve a run from structify.
+   */
+  get(jobId: string, options?: Core.RequestOptions): Core.APIPromise<RunGetResponse> {
+    return this._client.get(`/runs/get/${jobId}`, options);
   }
 
   /**
@@ -69,6 +86,8 @@ export interface RunListResponse {
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 }
 
+export type RunDeleteResponse = string;
+
 export interface RunCancelResponse {
   id: string;
 
@@ -77,13 +96,17 @@ export interface RunCancelResponse {
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 }
 
+export type RunGetResponse = Array<StructureAPI.ExecutionStep>;
+
 export type RunGetStepsResponse = Array<StructureAPI.ExecutionStep>;
 
 export interface RunListParams extends RunsListParams {}
 
 export namespace Runs {
   export import RunListResponse = RunsAPI.RunListResponse;
+  export import RunDeleteResponse = RunsAPI.RunDeleteResponse;
   export import RunCancelResponse = RunsAPI.RunCancelResponse;
+  export import RunGetResponse = RunsAPI.RunGetResponse;
   export import RunGetStepsResponse = RunsAPI.RunGetStepsResponse;
   export import RunListResponsesRunsList = RunsAPI.RunListResponsesRunsList;
   export import RunListParams = RunsAPI.RunListParams;
