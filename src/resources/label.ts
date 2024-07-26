@@ -54,13 +54,6 @@ export class Label extends APIResource {
       headers: { Accept: 'text/plain', ...options?.headers },
     });
   }
-
-  /**
-   * Update a step as part of the human LLM.
-   */
-  verify(body: LabelVerifyParams, options?: Core.RequestOptions): Core.APIPromise<LabelVerifyResponse> {
-    return this._client.post('/label/verify', { body, ...options });
-  }
 }
 
 export interface LabelGetMessagesResponse {
@@ -200,8 +193,6 @@ export namespace LabelLlmAssistResponse {
 export type LabelRunResponse = string;
 
 export type LabelSubmitResponse = string;
-
-export type LabelVerifyResponse = boolean;
 
 export interface LabelGetMessagesParams {
   uuid?: string | null;
@@ -441,16 +432,12 @@ export namespace LabelSubmitParams {
   }
 }
 
-export type LabelVerifyParams = unknown;
-
 export namespace Label {
   export import LabelGetMessagesResponse = LabelAPI.LabelGetMessagesResponse;
   export import LabelLlmAssistResponse = LabelAPI.LabelLlmAssistResponse;
   export import LabelRunResponse = LabelAPI.LabelRunResponse;
   export import LabelSubmitResponse = LabelAPI.LabelSubmitResponse;
-  export import LabelVerifyResponse = LabelAPI.LabelVerifyResponse;
   export import LabelGetMessagesParams = LabelAPI.LabelGetMessagesParams;
   export import LabelRunParams = LabelAPI.LabelRunParams;
   export import LabelSubmitParams = LabelAPI.LabelSubmitParams;
-  export import LabelVerifyParams = LabelAPI.LabelVerifyParams;
 }
