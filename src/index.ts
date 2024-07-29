@@ -171,6 +171,7 @@ export class Structify extends Core.APIClient {
   }
 
   static Structify = this;
+  static DEFAULT_TIMEOUT = 60000; // 1 minute
 
   static StructifyError = Errors.StructifyError;
   static APIError = Errors.APIError;
