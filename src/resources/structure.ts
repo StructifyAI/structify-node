@@ -203,6 +203,26 @@ export namespace ChatPrompt {
   }
 }
 
+export interface Click {
+  Click: Click.Click;
+}
+
+export namespace Click {
+  export interface Click {
+    flag: number;
+  }
+}
+
+export interface Error {
+  Error: Error.Error;
+}
+
+export namespace Error {
+  export interface Error {
+    error: string;
+  }
+}
+
 export interface ExecutionStep {
   id: string;
 
@@ -229,156 +249,26 @@ export namespace ExecutionStep {
 
     text: string;
 
-    tool_calls: Array<Response.ToolCall>;
+    tool_calls: Array<StructureAPI.ToolCall>;
   }
+}
 
-  export namespace Response {
-    export interface ToolCall {
-      input:
-        | ToolCall.Save
-        | ToolCall.Scroll
-        | ToolCall.Exit
-        | ToolCall.Click
-        | ToolCall.Hover
-        | ToolCall.Wait
-        | ToolCall.Error
-        | ToolCall.Google
-        | ToolCall.Type;
+export interface Exit {
+  /**
+   * For tools with no inputs.
+   */
+  Exit: Exit.Exit;
+}
 
-      name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
-
-      result?: ToolCall.ToolQueued | ToolCall.ToolFail | ToolCall.InputParseFail | ToolCall.Success | null;
-    }
-
-    export namespace ToolCall {
-      export interface Save {
-        /**
-         * Knowledge graph info structured to deserialize and display in the same format
-         * that the LLM outputs. Also the first representation of an LLM output in the
-         * pipeline from raw tool output to being merged into a Neo4j DB
-         */
-        Save: SharedAPI.KnowledgeGraph;
-      }
-
-      export interface Scroll {
-        /**
-         * For tools with no inputs.
-         */
-        Scroll: Scroll.Scroll;
-      }
-
-      export namespace Scroll {
-        /**
-         * For tools with no inputs.
-         */
-        export interface Scroll {
-          /**
-           * OpenAI Requires an argument, so we put a dummy one here.
-           */
-          reason: string;
-        }
-      }
-
-      export interface Exit {
-        /**
-         * For tools with no inputs.
-         */
-        Exit: Exit.Exit;
-      }
-
-      export namespace Exit {
-        /**
-         * For tools with no inputs.
-         */
-        export interface Exit {
-          /**
-           * OpenAI Requires an argument, so we put a dummy one here.
-           */
-          reason: string;
-        }
-      }
-
-      export interface Click {
-        Click: Click.Click;
-      }
-
-      export namespace Click {
-        export interface Click {
-          flag: number;
-        }
-      }
-
-      export interface Hover {
-        Hover: Hover.Hover;
-      }
-
-      export namespace Hover {
-        export interface Hover {
-          flag: number;
-        }
-      }
-
-      export interface Wait {
-        Wait: Wait.Wait;
-      }
-
-      export namespace Wait {
-        export interface Wait {
-          /**
-           * Time in seconds to wait
-           */
-          seconds: number;
-        }
-      }
-
-      export interface Error {
-        Error: Error.Error;
-      }
-
-      export namespace Error {
-        export interface Error {
-          error: string;
-        }
-      }
-
-      export interface Google {
-        Google: Google.Google;
-      }
-
-      export namespace Google {
-        export interface Google {
-          query: string;
-        }
-      }
-
-      export interface Type {
-        Type: Type.Type;
-      }
-
-      export namespace Type {
-        export interface Type {
-          flag: number;
-
-          input: string;
-        }
-      }
-
-      export interface ToolQueued {
-        ToolQueued: string;
-      }
-
-      export interface ToolFail {
-        ToolFail: string;
-      }
-
-      export interface InputParseFail {
-        InputParseFail: string;
-      }
-
-      export interface Success {
-        Success: string;
-      }
-    }
+export namespace Exit {
+  /**
+   * For tools with no inputs.
+   */
+  export interface Exit {
+    /**
+     * OpenAI Requires an argument, so we put a dummy one here.
+     */
+    reason: string;
   }
 }
 
@@ -427,6 +317,80 @@ export namespace ExtractionCriteria {
   }
 }
 
+export interface Google {
+  Google: Google.Google;
+}
+
+export namespace Google {
+  export interface Google {
+    query: string;
+  }
+}
+
+export interface Hover {
+  Hover: Hover.Hover;
+}
+
+export namespace Hover {
+  export interface Hover {
+    flag: number;
+  }
+}
+
+export interface Save {
+  /**
+   * Knowledge graph info structured to deserialize and display in the same format
+   * that the LLM outputs. Also the first representation of an LLM output in the
+   * pipeline from raw tool output to being merged into a Neo4j DB
+   */
+  Save: SharedAPI.KnowledgeGraph;
+}
+
+export interface Scroll {
+  /**
+   * For tools with no inputs.
+   */
+  Scroll: Scroll.Scroll;
+}
+
+export namespace Scroll {
+  /**
+   * For tools with no inputs.
+   */
+  export interface Scroll {
+    /**
+     * OpenAI Requires an argument, so we put a dummy one here.
+     */
+    reason: string;
+  }
+}
+
+export interface ToolCall {
+  input: Save | Scroll | Exit | Click | Hover | Wait | Error | Google | Type;
+
+  name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
+
+  result?: ToolCall.ToolQueued | ToolCall.ToolFail | ToolCall.InputParseFail | ToolCall.Success | null;
+}
+
+export namespace ToolCall {
+  export interface ToolQueued {
+    ToolQueued: string;
+  }
+
+  export interface ToolFail {
+    ToolFail: string;
+  }
+
+  export interface InputParseFail {
+    InputParseFail: string;
+  }
+
+  export interface Success {
+    Success: string;
+  }
+}
+
 export interface ToolMetadata {
   description: string;
 
@@ -435,6 +399,31 @@ export interface ToolMetadata {
   regex_validator: string;
 
   tool_validator: Record<string, unknown>;
+}
+
+export interface Type {
+  Type: Type.Type;
+}
+
+export namespace Type {
+  export interface Type {
+    flag: number;
+
+    input: string;
+  }
+}
+
+export interface Wait {
+  Wait: Wait.Wait;
+}
+
+export namespace Wait {
+  export interface Wait {
+    /**
+     * Time in seconds to wait
+     */
+    seconds: number;
+  }
 }
 
 export type StructureIsCompleteResponse = string;
@@ -554,9 +543,19 @@ export namespace StructureRunAsyncParams {
 
 export namespace Structure {
   export import ChatPrompt = StructureAPI.ChatPrompt;
+  export import Click = StructureAPI.Click;
+  export import Error = StructureAPI.Error;
   export import ExecutionStep = StructureAPI.ExecutionStep;
+  export import Exit = StructureAPI.Exit;
   export import ExtractionCriteria = StructureAPI.ExtractionCriteria;
+  export import Google = StructureAPI.Google;
+  export import Hover = StructureAPI.Hover;
+  export import Save = StructureAPI.Save;
+  export import Scroll = StructureAPI.Scroll;
+  export import ToolCall = StructureAPI.ToolCall;
   export import ToolMetadata = StructureAPI.ToolMetadata;
+  export import Type = StructureAPI.Type;
+  export import Wait = StructureAPI.Wait;
   export import StructureIsCompleteResponse = StructureAPI.StructureIsCompleteResponse;
   export import StructureJobStatusResponse = StructureAPI.StructureJobStatusResponse;
   export import StructureRunAsyncResponse = StructureAPI.StructureRunAsyncResponse;
