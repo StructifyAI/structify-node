@@ -79,7 +79,7 @@ export type LabelUpdateResponse = string;
 export interface LabelGetMessagesResponse {
   chat: StructureAPI.ChatPrompt;
 
-  job_id: string;
+  run_id: string;
 
   uuid: string;
 }
@@ -119,7 +119,7 @@ export namespace LabelLlmAssistResponse {
      */
     export interface Scroll {
       /**
-       * Dummy argument
+       * OpenAI Requires an argument, so we put a dummy one here.
        */
       reason: string;
     }
@@ -138,7 +138,7 @@ export namespace LabelLlmAssistResponse {
      */
     export interface Exit {
       /**
-       * Dummy argument
+       * OpenAI Requires an argument, so we put a dummy one here.
        */
       reason: string;
     }
@@ -264,7 +264,7 @@ export namespace LabelUpdateParams {
        */
       export interface Scroll {
         /**
-         * Dummy argument
+         * OpenAI Requires an argument, so we put a dummy one here.
          */
         reason: string;
       }
@@ -283,7 +283,7 @@ export namespace LabelUpdateParams {
        */
       export interface Exit {
         /**
-         * Dummy argument
+         * OpenAI Requires an argument, so we put a dummy one here.
          */
         reason: string;
       }
@@ -377,7 +377,7 @@ export interface LabelGetMessagesParams {
 }
 
 export interface LabelRunParams {
-  name: string;
+  dataset_name: string;
 
   /**
    * These are all the types that can be converted into a BasicInputType
@@ -444,7 +444,7 @@ export namespace LabelRunParams {
       export interface TextDocument {
         content?: string | null;
 
-        path?: string | null;
+        filepath?: string | null;
       }
     }
 
@@ -509,7 +509,7 @@ export namespace LabelSubmitParams {
      */
     export interface Scroll {
       /**
-       * Dummy argument
+       * OpenAI Requires an argument, so we put a dummy one here.
        */
       reason: string;
     }
@@ -528,7 +528,7 @@ export namespace LabelSubmitParams {
      */
     export interface Exit {
       /**
-       * Dummy argument
+       * OpenAI Requires an argument, so we put a dummy one here.
        */
       reason: string;
     }
