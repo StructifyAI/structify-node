@@ -27,8 +27,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/datasets.ts">Dataset</a></code>
-- <code><a href="./src/resources/datasets.ts">DatasetDescriptor</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetListResponse</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetViewResponse</a></code>
 
@@ -146,6 +144,11 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/shared.ts">Dataset</a></code>
+- <code><a href="./src/resources/shared.ts">DatasetDescriptor</a></code>
 - <code><a href="./src/resources/shared.ts">Entity</a></code>
 - <code><a href="./src/resources/shared.ts">KnowledgeGraph</a></code>
+- <code><a href="./src/resources/shared.ts">MergeStrategy</a></code>
+- <code><a href="./src/resources/shared.ts">PropertyType</a></code>
 - <code><a href="./src/resources/shared.ts">Relationship</a></code>
+- <code><a href="./src/resources/shared.ts">Table</a></code>
