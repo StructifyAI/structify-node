@@ -226,6 +226,7 @@ export namespace Structify {
   export import Datasets = API.Datasets;
   export import Dataset = API.Dataset;
   export import DatasetDescriptor = API.DatasetDescriptor;
+  export import Property = API.Property;
   export import DatasetListResponse = API.DatasetListResponse;
   export import DatasetViewResponse = API.DatasetViewResponse;
   export import DatasetViewResponsesRunsList = API.DatasetViewResponsesRunsList;
@@ -259,9 +260,19 @@ export namespace Structify {
 
   export import Structure = API.Structure;
   export import ChatPrompt = API.ChatPrompt;
+  export import Click = API.Click;
+  export import Error = API.Error;
   export import ExecutionStep = API.ExecutionStep;
+  export import Exit = API.Exit;
   export import ExtractionCriteria = API.ExtractionCriteria;
+  export import Google = API.Google;
+  export import Hover = API.Hover;
+  export import Save = API.Save;
+  export import Scroll = API.Scroll;
+  export import ToolCall = API.ToolCall;
   export import ToolMetadata = API.ToolMetadata;
+  export import Type = API.Type;
+  export import Wait = API.Wait;
   export import StructureIsCompleteResponse = API.StructureIsCompleteResponse;
   export import StructureJobStatusResponse = API.StructureJobStatusResponse;
   export import StructureRunAsyncResponse = API.StructureRunAsyncResponse;
