@@ -54,5 +54,12 @@ export {
   Runs,
 } from './runs';
 export { ServerInformation, Server } from './server';
-export { Source, SourceListResponse, SourceListParams, Sources } from './sources';
+export {
+  Source,
+  SourceListResponse,
+  SourceReportResponse,
+  SourceListParams,
+  SourceReportParams,
+  Sources,
+} from './sources';
 export { UsageGetJobInfoResponse, Usage } from './usage';

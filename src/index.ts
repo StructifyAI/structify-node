@@ -253,7 +253,9 @@ export namespace Structify {
   export import Sources = API.Sources;
   export import Source = API.Source;
   export import SourceListResponse = API.SourceListResponse;
+  export import SourceReportResponse = API.SourceReportResponse;
   export import SourceListParams = API.SourceListParams;
+  export import SourceReportParams = API.SourceReportParams;
 
   export import Structure = API.Structure;
   export import ChatPrompt = API.ChatPrompt;
