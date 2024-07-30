@@ -384,8 +384,6 @@ export interface LabelRunParams {
    */
   structure_input: LabelRunParams.SecIngestor | LabelRunParams.PdfIngestor | LabelRunParams.Basic;
 
-  extraction_criteria?: Array<StructureAPI.ExtractionCriteria>;
-
   /**
    * Knowledge graph info structured to deserialize and display in the same format
    * that the LLM outputs. Also the first representation of an LLM output in the
@@ -425,6 +423,8 @@ export namespace LabelRunParams {
      * processes them independently.
      */
     export interface PdfIngestor {
+      extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+
       path: string;
     }
   }
@@ -444,6 +444,8 @@ export namespace LabelRunParams {
 
     export namespace TextDocument {
       export interface TextDocument {
+        extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+
         content?: string | null;
 
         filepath?: string | null;
@@ -458,6 +460,8 @@ export namespace LabelRunParams {
 
     export namespace WebSearch {
       export interface WebSearch {
+        extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+
         use_local_browser: boolean;
 
         starting_website?: string | null;
@@ -473,6 +477,8 @@ export namespace LabelRunParams {
         content: Core.Uploadable;
 
         document_name: string;
+
+        extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
       }
     }
   }
