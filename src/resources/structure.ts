@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as StructureAPI from './structure';
+import * as DatasetsAPI from './datasets';
 import * as SharedAPI from './shared';
 
 export class Structure extends APIResource {
@@ -150,7 +151,7 @@ export namespace ChatPrompt {
      * A dataset is a complete namespace where all references between schemas are held
      * within the dataset.
      */
-    descriptor: SharedAPI.DatasetDescriptor;
+    descriptor: DatasetsAPI.DatasetDescriptor;
 
     run_id: string;
 
@@ -164,7 +165,7 @@ export namespace ChatPrompt {
      * A dataset is a complete namespace where all references between schemas are held
      * within the dataset.
      */
-    dataset_descriptor: SharedAPI.DatasetDescriptor;
+    dataset_descriptor: DatasetsAPI.DatasetDescriptor;
 
     extracted_entities: Array<SharedAPI.KnowledgeGraph>;
 

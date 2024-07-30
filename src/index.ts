@@ -224,6 +224,8 @@ export namespace Structify {
   export import Admin = API.Admin;
 
   export import Datasets = API.Datasets;
+  export import Dataset = API.Dataset;
+  export import DatasetDescriptor = API.DatasetDescriptor;
   export import DatasetListResponse = API.DatasetListResponse;
   export import DatasetViewResponse = API.DatasetViewResponse;
   export import DatasetViewResponsesRunsList = API.DatasetViewResponsesRunsList;
@@ -282,14 +284,9 @@ export namespace Structify {
   export import UsageGetJobInfoResponse = API.UsageGetJobInfoResponse;
 
   export import Shared = API.Shared;
-  export import Dataset = API.Dataset;
-  export import DatasetDescriptor = API.DatasetDescriptor;
   export import Entity = API.Entity;
   export import KnowledgeGraph = API.KnowledgeGraph;
-  export import MergeStrategy = API.MergeStrategy;
-  export import PropertyType = API.PropertyType;
   export import Relationship = API.Relationship;
-  export import Table = API.Table;
 }
 
 export default Structify;
