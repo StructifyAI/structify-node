@@ -204,23 +204,19 @@ export namespace ChatPrompt {
 }
 
 export interface Click {
-  Click: Click.Click;
+  Click: ClickParams;
 }
 
-export namespace Click {
-  export interface Click {
-    flag: number;
-  }
+export interface ClickParams {
+  flag: number;
 }
 
 export interface Error {
-  Error: Error.Error;
+  Error: ErrorParams;
 }
 
-export namespace Error {
-  export interface Error {
-    error: string;
-  }
+export interface ErrorParams {
+  error: string;
 }
 
 export interface ExecutionStep {
@@ -257,83 +253,72 @@ export interface Exit {
   /**
    * For tools with no inputs.
    */
-  Exit: Exit.Exit;
+  Exit: ExitParams;
 }
 
-export namespace Exit {
+/**
+ * For tools with no inputs.
+ */
+export interface ExitParams {
   /**
-   * For tools with no inputs.
+   * OpenAI Requires an argument, so we put a dummy one here.
    */
-  export interface Exit {
-    /**
-     * OpenAI Requires an argument, so we put a dummy one here.
-     */
-    reason: string;
-  }
+  reason: string;
 }
 
 /**
  * It's an OR statement across these.
  */
-export type ExtractionCriteria =
-  | ExtractionCriteria.RelationshipExtraction
-  | ExtractionCriteria.EntityExtraction
-  | ExtractionCriteria.GenericProperty;
-
-export namespace ExtractionCriteria {
-  export interface RelationshipExtraction {
-    RelationshipExtraction: RelationshipExtraction.RelationshipExtraction;
-  }
-
-  export namespace RelationshipExtraction {
-    export interface RelationshipExtraction {
-      relationship_name: string;
-    }
-  }
-
-  export interface EntityExtraction {
-    EntityExtraction: EntityExtraction.EntityExtraction;
-  }
-
-  export namespace EntityExtraction {
-    export interface EntityExtraction {
-      entity_id: number;
-    }
-  }
-
-  export interface GenericProperty {
-    GenericProperty: GenericProperty.GenericProperty;
-  }
-
-  export namespace GenericProperty {
-    export interface GenericProperty {
-      property_names: Array<string>;
-
-      /**
-       * Vec<ExtractionCriteria> = it has to meet every one.
-       */
-      table_name: string;
-    }
-  }
-}
+export type ExtractionCriteria = RequiredRelationship | RequiredEntity | RequiredProperty;
 
 export interface Google {
-  Google: Google.Google;
+  Google: GoogleParams;
 }
 
-export namespace Google {
-  export interface Google {
-    query: string;
-  }
+export interface GoogleParams {
+  query: string;
 }
 
 export interface Hover {
-  Hover: Hover.Hover;
+  Hover: HoverParams;
 }
 
-export namespace Hover {
-  export interface Hover {
-    flag: number;
+export interface HoverParams {
+  flag: number;
+}
+
+export interface RequiredEntity {
+  EntityExtraction: RequiredEntity.EntityExtraction;
+}
+
+export namespace RequiredEntity {
+  export interface EntityExtraction {
+    entity_id: number;
+  }
+}
+
+export interface RequiredProperty {
+  GenericProperty: RequiredProperty.GenericProperty;
+}
+
+export namespace RequiredProperty {
+  export interface GenericProperty {
+    property_names: Array<string>;
+
+    /**
+     * Vec<ExtractionCriteria> = it has to meet every one.
+     */
+    table_name: string;
+  }
+}
+
+export interface RequiredRelationship {
+  RelationshipExtraction: RequiredRelationship.RelationshipExtraction;
+}
+
+export namespace RequiredRelationship {
+  export interface RelationshipExtraction {
+    relationship_name: string;
   }
 }
 
@@ -350,19 +335,17 @@ export interface Scroll {
   /**
    * For tools with no inputs.
    */
-  Scroll: Scroll.Scroll;
+  Scroll: ScrollParams;
 }
 
-export namespace Scroll {
+/**
+ * For tools with no inputs.
+ */
+export interface ScrollParams {
   /**
-   * For tools with no inputs.
+   * OpenAI Requires an argument, so we put a dummy one here.
    */
-  export interface Scroll {
-    /**
-     * OpenAI Requires an argument, so we put a dummy one here.
-     */
-    reason: string;
-  }
+  reason: string;
 }
 
 export interface ToolCall {
@@ -402,28 +385,24 @@ export interface ToolMetadata {
 }
 
 export interface Type {
-  Type: Type.Type;
+  Type: TypeParams;
 }
 
-export namespace Type {
-  export interface Type {
-    flag: number;
+export interface TypeParams {
+  flag: number;
 
-    input: string;
-  }
+  input: string;
 }
 
 export interface Wait {
-  Wait: Wait.Wait;
+  Wait: WaitParams;
 }
 
-export namespace Wait {
-  export interface Wait {
-    /**
-     * Time in seconds to wait
-     */
-    seconds: number;
-  }
+export interface WaitParams {
+  /**
+   * Time in seconds to wait
+   */
+  seconds: number;
 }
 
 export type StructureIsCompleteResponse = string;
@@ -544,18 +523,29 @@ export namespace StructureRunAsyncParams {
 export namespace Structure {
   export import ChatPrompt = StructureAPI.ChatPrompt;
   export import Click = StructureAPI.Click;
+  export import ClickParams = StructureAPI.ClickParams;
   export import Error = StructureAPI.Error;
+  export import ErrorParams = StructureAPI.ErrorParams;
   export import ExecutionStep = StructureAPI.ExecutionStep;
   export import Exit = StructureAPI.Exit;
+  export import ExitParams = StructureAPI.ExitParams;
   export import ExtractionCriteria = StructureAPI.ExtractionCriteria;
   export import Google = StructureAPI.Google;
+  export import GoogleParams = StructureAPI.GoogleParams;
   export import Hover = StructureAPI.Hover;
+  export import HoverParams = StructureAPI.HoverParams;
+  export import RequiredEntity = StructureAPI.RequiredEntity;
+  export import RequiredProperty = StructureAPI.RequiredProperty;
+  export import RequiredRelationship = StructureAPI.RequiredRelationship;
   export import Save = StructureAPI.Save;
   export import Scroll = StructureAPI.Scroll;
+  export import ScrollParams = StructureAPI.ScrollParams;
   export import ToolCall = StructureAPI.ToolCall;
   export import ToolMetadata = StructureAPI.ToolMetadata;
   export import Type = StructureAPI.Type;
+  export import TypeParams = StructureAPI.TypeParams;
   export import Wait = StructureAPI.Wait;
+  export import WaitParams = StructureAPI.WaitParams;
   export import StructureIsCompleteResponse = StructureAPI.StructureIsCompleteResponse;
   export import StructureJobStatusResponse = StructureAPI.StructureJobStatusResponse;
   export import StructureRunAsyncResponse = StructureAPI.StructureRunAsyncResponse;
