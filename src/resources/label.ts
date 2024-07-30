@@ -79,7 +79,7 @@ export type LabelUpdateResponse = string;
 export interface LabelGetMessagesResponse {
   chat: StructureAPI.ChatPrompt;
 
-  run_id: string;
+  job_id: string;
 
   uuid: string;
 }
@@ -119,7 +119,7 @@ export namespace LabelLlmAssistResponse {
      */
     export interface Scroll {
       /**
-       * OpenAI Requires an argument, so we put a dummy one here.
+       * Dummy argument
        */
       reason: string;
     }
@@ -138,7 +138,7 @@ export namespace LabelLlmAssistResponse {
      */
     export interface Exit {
       /**
-       * OpenAI Requires an argument, so we put a dummy one here.
+       * Dummy argument
        */
       reason: string;
     }
@@ -214,7 +214,9 @@ export type LabelRunResponse = string;
 
 export type LabelSubmitResponse = string;
 
-export type LabelVerifyResponse = boolean;
+export interface LabelVerifyResponse {
+  error_message?: string | null;
+}
 
 export type LabelUpdateParams = Array<LabelUpdateParams.StepUpdate>;
 
@@ -264,7 +266,7 @@ export namespace LabelUpdateParams {
        */
       export interface Scroll {
         /**
-         * OpenAI Requires an argument, so we put a dummy one here.
+         * Dummy argument
          */
         reason: string;
       }
@@ -283,7 +285,7 @@ export namespace LabelUpdateParams {
        */
       export interface Exit {
         /**
-         * OpenAI Requires an argument, so we put a dummy one here.
+         * Dummy argument
          */
         reason: string;
       }
@@ -377,7 +379,7 @@ export interface LabelGetMessagesParams {
 }
 
 export interface LabelRunParams {
-  dataset_name: string;
+  name: string;
 
   /**
    * These are all the types that can be converted into a BasicInputType
@@ -444,7 +446,7 @@ export namespace LabelRunParams {
       export interface TextDocument {
         content?: string | null;
 
-        filepath?: string | null;
+        path?: string | null;
       }
     }
 
@@ -509,7 +511,7 @@ export namespace LabelSubmitParams {
      */
     export interface Scroll {
       /**
-       * OpenAI Requires an argument, so we put a dummy one here.
+       * Dummy argument
        */
       reason: string;
     }
@@ -528,7 +530,7 @@ export namespace LabelSubmitParams {
      */
     export interface Exit {
       /**
-       * OpenAI Requires an argument, so we put a dummy one here.
+       * Dummy argument
        */
       reason: string;
     }
