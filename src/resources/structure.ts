@@ -525,8 +525,6 @@ export namespace StructureRunAsyncParams {
         content?: string | null;
 
         filepath?: string | null;
-
-        save?: boolean;
       }
     }
 

@@ -447,8 +447,6 @@ export namespace LabelRunParams {
         content?: string | null;
 
         filepath?: string | null;
-
-        save?: boolean;
       }
     }
 
