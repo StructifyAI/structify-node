@@ -462,8 +462,6 @@ export interface StructureRunAsyncParams {
     | StructureRunAsyncParams.PdfIngestor
     | StructureRunAsyncParams.Basic;
 
-  extraction_criteria?: Array<ExtractionCriteria>;
-
   /**
    * Knowledge graph info structured to deserialize and display in the same format
    * that the LLM outputs. Also the first representation of an LLM output in the
@@ -503,6 +501,8 @@ export namespace StructureRunAsyncParams {
      * processes them independently.
      */
     export interface PdfIngestor {
+      extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+
       path: string;
     }
   }
@@ -522,6 +522,8 @@ export namespace StructureRunAsyncParams {
 
     export namespace TextDocument {
       export interface TextDocument {
+        extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+
         content?: string | null;
 
         filepath?: string | null;
@@ -536,6 +538,8 @@ export namespace StructureRunAsyncParams {
 
     export namespace WebSearch {
       export interface WebSearch {
+        extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+
         use_local_browser: boolean;
 
         starting_website?: string | null;
@@ -551,6 +555,8 @@ export namespace StructureRunAsyncParams {
         content: Core.Uploadable;
 
         document_name: string;
+
+        extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
       }
     }
   }
