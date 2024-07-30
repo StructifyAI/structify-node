@@ -140,9 +140,9 @@ export interface DatasetGetParams {
 export interface DatasetViewParams extends JobsListParams {
   dataset_name: string;
 
-  requested_type: 'Entities' | 'Relationships';
-
   relationship_name?: string | null;
+
+  requested_type?: 'Entities' | 'Relationships';
 
   table_name?: string | null;
 }
