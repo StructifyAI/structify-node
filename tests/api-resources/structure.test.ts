@@ -76,11 +76,6 @@ describe('resource structure', () => {
           year: 0,
         },
       },
-      extraction_criteria: [
-        { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-        { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-        { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-      ],
       seeded_entity: {
         entities: [
           { id: 0, properties: { foo: 'string' }, type: 'type' },
