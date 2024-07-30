@@ -27,9 +27,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/datasets.ts">Dataset</a></code>
-- <code><a href="./src/resources/datasets.ts">DatasetDescriptor</a></code>
-- <code><a href="./src/resources/datasets.ts">Property</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetListResponse</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetViewResponse</a></code>
 
@@ -39,7 +36,7 @@ Methods:
 - <code title="get /dataset/list">client.datasets.<a href="./src/resources/datasets.ts">list</a>() -> DatasetListResponse</code>
 - <code title="delete /dataset/delete">client.datasets.<a href="./src/resources/datasets.ts">delete</a>({ ...params }) -> void</code>
 - <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets.ts">get</a>({ ...params }) -> DatasetDescriptor | null</code>
-- <code title="get /dataset/view">client.datasets.<a href="./src/resources/datasets.ts">view</a>({ ...params }) -> DatasetViewResponsesRunsList</code>
+- <code title="get /dataset/view">client.datasets.<a href="./src/resources/datasets.ts">view</a>({ ...params }) -> DatasetViewResponsesJobsList</code>
 
 # Documents
 
@@ -54,25 +51,7 @@ Methods:
 - <code title="get /documents/download/{path}">client.documents.<a href="./src/resources/documents.ts">download</a>(path) -> Response</code>
 - <code title="post /documents/upload">client.documents.<a href="./src/resources/documents.ts">upload</a>({ ...params }) -> void</code>
 
-# Runs
-
-Types:
-
-- <code><a href="./src/resources/runs.ts">RunListResponse</a></code>
-- <code><a href="./src/resources/runs.ts">RunDeleteResponse</a></code>
-- <code><a href="./src/resources/runs.ts">RunCancelResponse</a></code>
-- <code><a href="./src/resources/runs.ts">RunGetResponse</a></code>
-- <code><a href="./src/resources/runs.ts">RunGetStepsResponse</a></code>
-
-Methods:
-
-- <code title="get /runs/list">client.runs.<a href="./src/resources/runs.ts">list</a>({ ...params }) -> RunListResponsesRunsList</code>
-- <code title="post /runs/delete/{job_id}">client.runs.<a href="./src/resources/runs.ts">delete</a>(jobId) -> string</code>
-- <code title="post /runs/cancel/{uuid}">client.runs.<a href="./src/resources/runs.ts">cancel</a>(uuid) -> RunCancelResponse</code>
-- <code title="get /runs/get/{job_id}">client.runs.<a href="./src/resources/runs.ts">get</a>(jobId) -> RunGetResponse</code>
-- <code title="get /runs/get_step/{step_id}">client.runs.<a href="./src/resources/runs.ts">getStep</a>(stepId) -> ExecutionStep</code>
-- <code title="get /runs/get_steps/{job_id}">client.runs.<a href="./src/resources/runs.ts">getSteps</a>(jobId) -> RunGetStepsResponse</code>
-- <code title="post /runs/schedule">client.runs.<a href="./src/resources/runs.ts">schedule</a>() -> void</code>
+# Jobs
 
 # Server
 
@@ -102,30 +81,9 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/structure.ts">ChatPrompt</a></code>
-- <code><a href="./src/resources/structure.ts">Click</a></code>
-- <code><a href="./src/resources/structure.ts">ClickParams</a></code>
-- <code><a href="./src/resources/structure.ts">Error</a></code>
-- <code><a href="./src/resources/structure.ts">ErrorParams</a></code>
 - <code><a href="./src/resources/structure.ts">ExecutionStep</a></code>
-- <code><a href="./src/resources/structure.ts">Exit</a></code>
-- <code><a href="./src/resources/structure.ts">ExitParams</a></code>
 - <code><a href="./src/resources/structure.ts">ExtractionCriteria</a></code>
-- <code><a href="./src/resources/structure.ts">Google</a></code>
-- <code><a href="./src/resources/structure.ts">GoogleParams</a></code>
-- <code><a href="./src/resources/structure.ts">Hover</a></code>
-- <code><a href="./src/resources/structure.ts">HoverParams</a></code>
-- <code><a href="./src/resources/structure.ts">RequiredEntity</a></code>
-- <code><a href="./src/resources/structure.ts">RequiredProperty</a></code>
-- <code><a href="./src/resources/structure.ts">RequiredRelationship</a></code>
-- <code><a href="./src/resources/structure.ts">Save</a></code>
-- <code><a href="./src/resources/structure.ts">Scroll</a></code>
-- <code><a href="./src/resources/structure.ts">ScrollParams</a></code>
-- <code><a href="./src/resources/structure.ts">ToolCall</a></code>
 - <code><a href="./src/resources/structure.ts">ToolMetadata</a></code>
-- <code><a href="./src/resources/structure.ts">Type</a></code>
-- <code><a href="./src/resources/structure.ts">TypeParams</a></code>
-- <code><a href="./src/resources/structure.ts">Wait</a></code>
-- <code><a href="./src/resources/structure.ts">WaitParams</a></code>
 - <code><a href="./src/resources/structure.ts">StructureIsCompleteResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureJobStatusResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureRunAsyncResponse</a></code>
@@ -170,6 +128,11 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/shared.ts">Dataset</a></code>
+- <code><a href="./src/resources/shared.ts">DatasetDescriptor</a></code>
 - <code><a href="./src/resources/shared.ts">Entity</a></code>
 - <code><a href="./src/resources/shared.ts">KnowledgeGraph</a></code>
+- <code><a href="./src/resources/shared.ts">MergeStrategy</a></code>
+- <code><a href="./src/resources/shared.ts">PropertyType</a></code>
 - <code><a href="./src/resources/shared.ts">Relationship</a></code>
+- <code><a href="./src/resources/shared.ts">Table</a></code>

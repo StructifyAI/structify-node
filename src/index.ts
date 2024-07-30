@@ -147,7 +147,7 @@ export class Structify extends Core.APIClient {
   admin: API.Admin = new API.Admin(this);
   datasets: API.Datasets = new API.Datasets(this);
   documents: API.Documents = new API.Documents(this);
-  runs: API.Runs = new API.Runs(this);
+  jobs: API.Jobs = new API.Jobs(this);
   server: API.Server = new API.Server(this);
   sources: API.Sources = new API.Sources(this);
   structure: API.Structure = new API.Structure(this);
@@ -213,9 +213,9 @@ export import fileFromPath = Uploads.fileFromPath;
 export namespace Structify {
   export import RequestOptions = Core.RequestOptions;
 
-  export import RunsList = Pagination.RunsList;
-  export import RunsListParams = Pagination.RunsListParams;
-  export import RunsListResponse = Pagination.RunsListResponse;
+  export import JobsList = Pagination.JobsList;
+  export import JobsListParams = Pagination.JobsListParams;
+  export import JobsListResponse = Pagination.JobsListResponse;
 
   export import User = API.User;
   export import NewToken = API.NewToken;
@@ -224,12 +224,9 @@ export namespace Structify {
   export import Admin = API.Admin;
 
   export import Datasets = API.Datasets;
-  export import Dataset = API.Dataset;
-  export import DatasetDescriptor = API.DatasetDescriptor;
-  export import Property = API.Property;
   export import DatasetListResponse = API.DatasetListResponse;
   export import DatasetViewResponse = API.DatasetViewResponse;
-  export import DatasetViewResponsesRunsList = API.DatasetViewResponsesRunsList;
+  export import DatasetViewResponsesJobsList = API.DatasetViewResponsesJobsList;
   export import DatasetCreateParams = API.DatasetCreateParams;
   export import DatasetDeleteParams = API.DatasetDeleteParams;
   export import DatasetGetParams = API.DatasetGetParams;
@@ -239,14 +236,7 @@ export namespace Structify {
   export import DocumentListResponse = API.DocumentListResponse;
   export import DocumentUploadParams = API.DocumentUploadParams;
 
-  export import Runs = API.Runs;
-  export import RunListResponse = API.RunListResponse;
-  export import RunDeleteResponse = API.RunDeleteResponse;
-  export import RunCancelResponse = API.RunCancelResponse;
-  export import RunGetResponse = API.RunGetResponse;
-  export import RunGetStepsResponse = API.RunGetStepsResponse;
-  export import RunListResponsesRunsList = API.RunListResponsesRunsList;
-  export import RunListParams = API.RunListParams;
+  export import Jobs = API.Jobs;
 
   export import Server = API.Server;
   export import ServerInformation = API.ServerInformation;
@@ -260,30 +250,9 @@ export namespace Structify {
 
   export import Structure = API.Structure;
   export import ChatPrompt = API.ChatPrompt;
-  export import Click = API.Click;
-  export import ClickParams = API.ClickParams;
-  export import Error = API.Error;
-  export import ErrorParams = API.ErrorParams;
   export import ExecutionStep = API.ExecutionStep;
-  export import Exit = API.Exit;
-  export import ExitParams = API.ExitParams;
   export import ExtractionCriteria = API.ExtractionCriteria;
-  export import Google = API.Google;
-  export import GoogleParams = API.GoogleParams;
-  export import Hover = API.Hover;
-  export import HoverParams = API.HoverParams;
-  export import RequiredEntity = API.RequiredEntity;
-  export import RequiredProperty = API.RequiredProperty;
-  export import RequiredRelationship = API.RequiredRelationship;
-  export import Save = API.Save;
-  export import Scroll = API.Scroll;
-  export import ScrollParams = API.ScrollParams;
-  export import ToolCall = API.ToolCall;
   export import ToolMetadata = API.ToolMetadata;
-  export import Type = API.Type;
-  export import TypeParams = API.TypeParams;
-  export import Wait = API.Wait;
-  export import WaitParams = API.WaitParams;
   export import StructureIsCompleteResponse = API.StructureIsCompleteResponse;
   export import StructureJobStatusResponse = API.StructureJobStatusResponse;
   export import StructureRunAsyncResponse = API.StructureRunAsyncResponse;
@@ -308,9 +277,14 @@ export namespace Structify {
   export import UsageGetJobInfoResponse = API.UsageGetJobInfoResponse;
 
   export import Shared = API.Shared;
+  export import Dataset = API.Dataset;
+  export import DatasetDescriptor = API.DatasetDescriptor;
   export import Entity = API.Entity;
   export import KnowledgeGraph = API.KnowledgeGraph;
+  export import MergeStrategy = API.MergeStrategy;
+  export import PropertyType = API.PropertyType;
   export import Relationship = API.Relationship;
+  export import Table = API.Table;
 }
 
 export default Structify;
