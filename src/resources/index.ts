@@ -36,7 +36,16 @@ export {
   Datasets,
 } from './datasets';
 export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
-export { Jobs } from './jobs';
+export {
+  JobListResponse,
+  JobDeleteResponse,
+  JobCancelResponse,
+  JobGetResponse,
+  JobGetStepsResponse,
+  JobListParams,
+  JobListResponsesJobsList,
+  Jobs,
+} from './jobs';
 export {
   LabelUpdateResponse,
   LabelGetMessagesResponse,
