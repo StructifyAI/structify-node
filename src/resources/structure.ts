@@ -479,8 +479,6 @@ export namespace StructureRunAsyncParams {
 
   export namespace SecIngestor {
     export interface SecIngestor {
-      extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
-
       accession_number?: string | null;
 
       quarter?: number | null;
@@ -534,9 +532,9 @@ export namespace StructureRunAsyncParams {
 
     export namespace WebSearch {
       export interface WebSearch {
-        use_local_browser: boolean;
-
         starting_website?: string | null;
+
+        use_local_browser?: boolean;
       }
     }
 
