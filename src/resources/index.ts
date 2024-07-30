@@ -3,30 +3,9 @@
 export { Admin } from './admin/admin';
 export {
   ChatPrompt,
-  Click,
-  ClickParams,
-  Error,
-  ErrorParams,
   ExecutionStep,
-  Exit,
-  ExitParams,
   ExtractionCriteria,
-  Google,
-  GoogleParams,
-  Hover,
-  HoverParams,
-  RequiredEntity,
-  RequiredProperty,
-  RequiredRelationship,
-  Save,
-  Scroll,
-  ScrollParams,
-  ToolCall,
   ToolMetadata,
-  Type,
-  TypeParams,
-  Wait,
-  WaitParams,
   StructureIsCompleteResponse,
   StructureJobStatusResponse,
   StructureRunAsyncResponse,
@@ -38,18 +17,26 @@ export {
 export {
   Dataset,
   DatasetDescriptor,
-  Property,
+  Entity,
+  KnowledgeGraph,
+  MergeStrategy,
+  PropertyType,
+  Relationship,
+  Table,
+  Shared,
+} from './shared';
+export {
   DatasetListResponse,
   DatasetViewResponse,
   DatasetCreateParams,
   DatasetDeleteParams,
   DatasetGetParams,
   DatasetViewParams,
-  DatasetViewResponsesRunsList,
+  DatasetViewResponsesJobsList,
   Datasets,
 } from './datasets';
 export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
-export { Entity, KnowledgeGraph, Relationship, Shared } from './shared';
+export { Jobs } from './jobs';
 export {
   LabelUpdateResponse,
   LabelGetMessagesResponse,
@@ -65,16 +52,6 @@ export {
   Label,
 } from './label';
 export { NewToken, UserInfo, User } from './user';
-export {
-  RunListResponse,
-  RunDeleteResponse,
-  RunCancelResponse,
-  RunGetResponse,
-  RunGetStepsResponse,
-  RunListParams,
-  RunListResponsesRunsList,
-  Runs,
-} from './runs';
 export { ServerInformation, Server } from './server';
 export {
   Source,
