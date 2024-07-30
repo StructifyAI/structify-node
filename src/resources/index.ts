@@ -17,6 +17,15 @@ export {
 export {
   Dataset,
   DatasetDescriptor,
+  Entity,
+  KnowledgeGraph,
+  MergeStrategy,
+  PropertyType,
+  Relationship,
+  Table,
+  Shared,
+} from './shared';
+export {
   DatasetListResponse,
   DatasetViewResponse,
   DatasetCreateParams,
@@ -27,7 +36,6 @@ export {
   Datasets,
 } from './datasets';
 export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
-export { Entity, KnowledgeGraph, Relationship, Shared } from './shared';
 export {
   LabelUpdateResponse,
   LabelGetMessagesResponse,
