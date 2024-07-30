@@ -152,7 +152,7 @@ export namespace ChatPrompt {
      */
     descriptor: SharedAPI.DatasetDescriptor;
 
-    job_id: string;
+    run_id: string;
 
     user_email: string;
   }
@@ -272,7 +272,7 @@ export namespace ExecutionStep {
          */
         export interface Scroll {
           /**
-           * Dummy argument
+           * OpenAI Requires an argument, so we put a dummy one here.
            */
           reason: string;
         }
@@ -291,7 +291,7 @@ export namespace ExecutionStep {
          */
         export interface Exit {
           /**
-           * Dummy argument
+           * OpenAI Requires an argument, so we put a dummy one here.
            */
           reason: string;
         }
@@ -451,7 +451,7 @@ export type StructureIsCompleteParams = Array<string>;
 export type StructureJobStatusParams = Array<string>;
 
 export interface StructureRunAsyncParams {
-  name: string;
+  dataset_name: string;
 
   /**
    * These are all the types that can be converted into a BasicInputType
@@ -521,7 +521,7 @@ export namespace StructureRunAsyncParams {
       export interface TextDocument {
         content?: string | null;
 
-        path?: string | null;
+        filepath?: string | null;
       }
     }
 
