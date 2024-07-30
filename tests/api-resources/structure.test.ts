@@ -42,15 +42,7 @@ describe('resource structure', () => {
   test('runAsync: only required params', async () => {
     const responsePromise = client.structure.runAsync({
       dataset_name: 'dataset_name',
-      structure_input: {
-        SECIngestor: {
-          extraction_criteria: [
-            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-          ],
-        },
-      },
+      structure_input: { SECIngestor: {} },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -64,18 +56,7 @@ describe('resource structure', () => {
   test('runAsync: required and optional params', async () => {
     const response = await client.structure.runAsync({
       dataset_name: 'dataset_name',
-      structure_input: {
-        SECIngestor: {
-          accession_number: 'accession_number',
-          extraction_criteria: [
-            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-          ],
-          quarter: 0,
-          year: 0,
-        },
-      },
+      structure_input: { SECIngestor: { accession_number: 'accession_number', quarter: 0, year: 0 } },
       extraction_criteria: [
         { RelationshipExtraction: { relationship_name: 'relationship_name' } },
         { RelationshipExtraction: { relationship_name: 'relationship_name' } },
