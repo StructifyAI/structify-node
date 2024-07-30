@@ -3,9 +3,19 @@
 export { Admin } from './admin/admin';
 export {
   ChatPrompt,
+  Click,
+  Error,
   ExecutionStep,
+  Exit,
   ExtractionCriteria,
+  Google,
+  Hover,
+  Save,
+  Scroll,
+  ToolCall,
   ToolMetadata,
+  Type,
+  Wait,
   StructureIsCompleteResponse,
   StructureJobStatusResponse,
   StructureRunAsyncResponse,
@@ -17,6 +27,7 @@ export {
 export {
   Dataset,
   DatasetDescriptor,
+  Property,
   DatasetListResponse,
   DatasetViewResponse,
   DatasetCreateParams,

@@ -110,46 +110,44 @@ export namespace DatasetDescriptor {
     /**
      * Organized in a name, description format.
      */
-    properties: Array<Table.Property>;
+    properties: Array<DatasetsAPI.Property>;
+  }
+}
+
+export interface Property {
+  description: string;
+
+  name: string;
+
+  /**
+   * merge on two entities if they have two property keys listed in this type that
+   * return true to some fuzzy string matching function
+   */
+  merge_strategy?: Property.PropertyAttr | Property.FuzzyStringMatch | 'None';
+
+  prop_type?: 'String' | Property.Enum | 'Integer';
+}
+
+export namespace Property {
+  export interface PropertyAttr {
+    PropertyAttr: string;
   }
 
-  export namespace Table {
-    export interface Property {
-      description: string;
+  export interface FuzzyStringMatch {
+    /**
+     * merge on some list of property names iff the values are the same in the
+     * extracted KgEntity
+     */
+    FuzzyStringMatch: string;
+  }
 
-      name: string;
+  export interface Enum {
+    Enum: Enum.Enum;
+  }
 
-      /**
-       * merge on two entities if they have two property keys listed in this type that
-       * return true to some fuzzy string matching function
-       */
-      merge_strategy?: Property.PropertyAttr | Property.FuzzyStringMatch | 'None';
-
-      prop_type?: 'String' | Property.Enum | 'Integer';
-    }
-
-    export namespace Property {
-      export interface PropertyAttr {
-        PropertyAttr: string;
-      }
-
-      export interface FuzzyStringMatch {
-        /**
-         * merge on some list of property names iff the values are the same in the
-         * extracted KgEntity
-         */
-        FuzzyStringMatch: string;
-      }
-
-      export interface Enum {
-        Enum: Enum.Enum;
-      }
-
-      export namespace Enum {
-        export interface Enum {
-          types: Array<string>;
-        }
-      }
+  export namespace Enum {
+    export interface Enum {
+      types: Array<string>;
     }
   }
 }
@@ -223,47 +221,7 @@ export namespace DatasetCreateParams {
     /**
      * Organized in a name, description format.
      */
-    properties: Array<Table.Property>;
-  }
-
-  export namespace Table {
-    export interface Property {
-      description: string;
-
-      name: string;
-
-      /**
-       * merge on two entities if they have two property keys listed in this type that
-       * return true to some fuzzy string matching function
-       */
-      merge_strategy?: Property.PropertyAttr | Property.FuzzyStringMatch | 'None';
-
-      prop_type?: 'String' | Property.Enum | 'Integer';
-    }
-
-    export namespace Property {
-      export interface PropertyAttr {
-        PropertyAttr: string;
-      }
-
-      export interface FuzzyStringMatch {
-        /**
-         * merge on some list of property names iff the values are the same in the
-         * extracted KgEntity
-         */
-        FuzzyStringMatch: string;
-      }
-
-      export interface Enum {
-        Enum: Enum.Enum;
-      }
-
-      export namespace Enum {
-        export interface Enum {
-          types: Array<string>;
-        }
-      }
-    }
+    properties: Array<DatasetsAPI.Property>;
   }
 }
 
@@ -294,6 +252,7 @@ export interface DatasetViewParams extends RunsListParams {
 export namespace Datasets {
   export import Dataset = DatasetsAPI.Dataset;
   export import DatasetDescriptor = DatasetsAPI.DatasetDescriptor;
+  export import Property = DatasetsAPI.Property;
   export import DatasetListResponse = DatasetsAPI.DatasetListResponse;
   export import DatasetViewResponse = DatasetsAPI.DatasetViewResponse;
   export import DatasetViewResponsesRunsList = DatasetsAPI.DatasetViewResponsesRunsList;

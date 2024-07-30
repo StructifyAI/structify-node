@@ -29,6 +29,7 @@ Types:
 
 - <code><a href="./src/resources/datasets.ts">Dataset</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetDescriptor</a></code>
+- <code><a href="./src/resources/datasets.ts">Property</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetListResponse</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetViewResponse</a></code>
 
@@ -101,9 +102,19 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/structure.ts">ChatPrompt</a></code>
+- <code><a href="./src/resources/structure.ts">Click</a></code>
+- <code><a href="./src/resources/structure.ts">Error</a></code>
 - <code><a href="./src/resources/structure.ts">ExecutionStep</a></code>
+- <code><a href="./src/resources/structure.ts">Exit</a></code>
 - <code><a href="./src/resources/structure.ts">ExtractionCriteria</a></code>
+- <code><a href="./src/resources/structure.ts">Google</a></code>
+- <code><a href="./src/resources/structure.ts">Hover</a></code>
+- <code><a href="./src/resources/structure.ts">Save</a></code>
+- <code><a href="./src/resources/structure.ts">Scroll</a></code>
+- <code><a href="./src/resources/structure.ts">ToolCall</a></code>
 - <code><a href="./src/resources/structure.ts">ToolMetadata</a></code>
+- <code><a href="./src/resources/structure.ts">Type</a></code>
+- <code><a href="./src/resources/structure.ts">Wait</a></code>
 - <code><a href="./src/resources/structure.ts">StructureIsCompleteResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureJobStatusResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureRunAsyncResponse</a></code>
