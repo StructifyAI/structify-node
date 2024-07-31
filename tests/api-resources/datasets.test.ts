@@ -177,10 +177,7 @@ describe('resource datasets', () => {
   });
 
   test('view: only required params', async () => {
-    const responsePromise = client.datasets.view({
-      dataset_name: 'dataset_name',
-      requested_type: 'Entities',
-    });
+    const responsePromise = client.datasets.view({ dataset_name: 'dataset_name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -193,10 +190,10 @@ describe('resource datasets', () => {
   test('view: required and optional params', async () => {
     const response = await client.datasets.view({
       dataset_name: 'dataset_name',
-      requested_type: 'Entities',
       limit: 0,
       offset: 0,
       relationship_name: 'relationship_name',
+      requested_type: 'Entities',
       table_name: 'table_name',
     });
   });
