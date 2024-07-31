@@ -27,7 +27,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/datasets.ts">DatasetDescriptor</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetListResponse</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetViewResponse</a></code>
 
@@ -37,7 +36,7 @@ Methods:
 - <code title="get /dataset/list">client.datasets.<a href="./src/resources/datasets.ts">list</a>() -> DatasetListResponse</code>
 - <code title="delete /dataset/delete">client.datasets.<a href="./src/resources/datasets.ts">delete</a>({ ...params }) -> void</code>
 - <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets.ts">get</a>({ ...params }) -> DatasetDescriptor | null</code>
-- <code title="get /dataset/view">client.datasets.<a href="./src/resources/datasets.ts">view</a>({ ...params }) -> DatasetViewResponsesRunsList</code>
+- <code title="get /dataset/view">client.datasets.<a href="./src/resources/datasets.ts">view</a>({ ...params }) -> DatasetViewResponsesJobsList</code>
 
 # Documents
 
@@ -52,25 +51,25 @@ Methods:
 - <code title="get /documents/download/{path}">client.documents.<a href="./src/resources/documents.ts">download</a>(path) -> Response</code>
 - <code title="post /documents/upload">client.documents.<a href="./src/resources/documents.ts">upload</a>({ ...params }) -> void</code>
 
-# Runs
+# Jobs
 
 Types:
 
-- <code><a href="./src/resources/runs.ts">RunListResponse</a></code>
-- <code><a href="./src/resources/runs.ts">RunDeleteResponse</a></code>
-- <code><a href="./src/resources/runs.ts">RunCancelResponse</a></code>
-- <code><a href="./src/resources/runs.ts">RunGetResponse</a></code>
-- <code><a href="./src/resources/runs.ts">RunGetStepsResponse</a></code>
+- <code><a href="./src/resources/jobs.ts">JobListResponse</a></code>
+- <code><a href="./src/resources/jobs.ts">JobDeleteResponse</a></code>
+- <code><a href="./src/resources/jobs.ts">JobCancelResponse</a></code>
+- <code><a href="./src/resources/jobs.ts">JobGetResponse</a></code>
+- <code><a href="./src/resources/jobs.ts">JobGetStepsResponse</a></code>
 
 Methods:
 
-- <code title="get /runs/list">client.runs.<a href="./src/resources/runs.ts">list</a>({ ...params }) -> RunListResponsesRunsList</code>
-- <code title="post /runs/delete/{job_id}">client.runs.<a href="./src/resources/runs.ts">delete</a>(jobId) -> string</code>
-- <code title="post /runs/cancel/{uuid}">client.runs.<a href="./src/resources/runs.ts">cancel</a>(uuid) -> RunCancelResponse</code>
-- <code title="get /runs/get/{job_id}">client.runs.<a href="./src/resources/runs.ts">get</a>(jobId) -> RunGetResponse</code>
-- <code title="get /runs/get_step/{step_id}">client.runs.<a href="./src/resources/runs.ts">getStep</a>(stepId) -> ExecutionStep</code>
-- <code title="get /runs/get_steps/{job_id}">client.runs.<a href="./src/resources/runs.ts">getSteps</a>(jobId) -> RunGetStepsResponse</code>
-- <code title="post /runs/schedule">client.runs.<a href="./src/resources/runs.ts">schedule</a>() -> void</code>
+- <code title="get /jobs/list">client.jobs.<a href="./src/resources/jobs.ts">list</a>({ ...params }) -> JobListResponsesJobsList</code>
+- <code title="post /jobs/delete/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">delete</a>(jobId) -> string</code>
+- <code title="post /jobs/cancel/{uuid}">client.jobs.<a href="./src/resources/jobs.ts">cancel</a>(uuid) -> JobCancelResponse</code>
+- <code title="get /jobs/get/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">get</a>(jobId) -> JobGetResponse</code>
+- <code title="get /jobs/get_step/{step_id}">client.jobs.<a href="./src/resources/jobs.ts">getStep</a>(stepId) -> ExecutionStep</code>
+- <code title="get /jobs/get_steps/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">getSteps</a>(jobId) -> JobGetStepsResponse</code>
+- <code title="post /jobs/schedule">client.jobs.<a href="./src/resources/jobs.ts">schedule</a>() -> void</code>
 
 # Server
 
@@ -147,6 +146,9 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/shared.ts">DatasetDescriptor</a></code>
 - <code><a href="./src/resources/shared.ts">Entity</a></code>
 - <code><a href="./src/resources/shared.ts">KnowledgeGraph</a></code>
+- <code><a href="./src/resources/shared.ts">PropertyType</a></code>
 - <code><a href="./src/resources/shared.ts">Relationship</a></code>
+- <code><a href="./src/resources/shared.ts">Table</a></code>

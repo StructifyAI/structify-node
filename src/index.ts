@@ -147,7 +147,7 @@ export class Structify extends Core.APIClient {
   admin: API.Admin = new API.Admin(this);
   datasets: API.Datasets = new API.Datasets(this);
   documents: API.Documents = new API.Documents(this);
-  runs: API.Runs = new API.Runs(this);
+  jobs: API.Jobs = new API.Jobs(this);
   server: API.Server = new API.Server(this);
   sources: API.Sources = new API.Sources(this);
   structure: API.Structure = new API.Structure(this);
@@ -213,9 +213,9 @@ export import fileFromPath = Uploads.fileFromPath;
 export namespace Structify {
   export import RequestOptions = Core.RequestOptions;
 
-  export import RunsList = Pagination.RunsList;
-  export import RunsListParams = Pagination.RunsListParams;
-  export import RunsListResponse = Pagination.RunsListResponse;
+  export import JobsList = Pagination.JobsList;
+  export import JobsListParams = Pagination.JobsListParams;
+  export import JobsListResponse = Pagination.JobsListResponse;
 
   export import User = API.User;
   export import NewToken = API.NewToken;
@@ -224,10 +224,9 @@ export namespace Structify {
   export import Admin = API.Admin;
 
   export import Datasets = API.Datasets;
-  export import DatasetDescriptor = API.DatasetDescriptor;
   export import DatasetListResponse = API.DatasetListResponse;
   export import DatasetViewResponse = API.DatasetViewResponse;
-  export import DatasetViewResponsesRunsList = API.DatasetViewResponsesRunsList;
+  export import DatasetViewResponsesJobsList = API.DatasetViewResponsesJobsList;
   export import DatasetCreateParams = API.DatasetCreateParams;
   export import DatasetDeleteParams = API.DatasetDeleteParams;
   export import DatasetGetParams = API.DatasetGetParams;
@@ -237,14 +236,14 @@ export namespace Structify {
   export import DocumentListResponse = API.DocumentListResponse;
   export import DocumentUploadParams = API.DocumentUploadParams;
 
-  export import Runs = API.Runs;
-  export import RunListResponse = API.RunListResponse;
-  export import RunDeleteResponse = API.RunDeleteResponse;
-  export import RunCancelResponse = API.RunCancelResponse;
-  export import RunGetResponse = API.RunGetResponse;
-  export import RunGetStepsResponse = API.RunGetStepsResponse;
-  export import RunListResponsesRunsList = API.RunListResponsesRunsList;
-  export import RunListParams = API.RunListParams;
+  export import Jobs = API.Jobs;
+  export import JobListResponse = API.JobListResponse;
+  export import JobDeleteResponse = API.JobDeleteResponse;
+  export import JobCancelResponse = API.JobCancelResponse;
+  export import JobGetResponse = API.JobGetResponse;
+  export import JobGetStepsResponse = API.JobGetStepsResponse;
+  export import JobListResponsesJobsList = API.JobListResponsesJobsList;
+  export import JobListParams = API.JobListParams;
 
   export import Server = API.Server;
   export import ServerInformation = API.ServerInformation;
@@ -285,9 +284,12 @@ export namespace Structify {
   export import UsageGetJobInfoResponse = API.UsageGetJobInfoResponse;
 
   export import Shared = API.Shared;
+  export import DatasetDescriptor = API.DatasetDescriptor;
   export import Entity = API.Entity;
   export import KnowledgeGraph = API.KnowledgeGraph;
+  export import PropertyType = API.PropertyType;
   export import Relationship = API.Relationship;
+  export import Table = API.Table;
 }
 
 export default Structify;
