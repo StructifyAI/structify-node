@@ -142,13 +142,7 @@ export namespace DatasetDescriptor {
       }
 
       export interface Enum {
-        Enum: Enum.Enum;
-      }
-
-      export namespace Enum {
-        export interface Enum {
-          types: Array<string>;
-        }
+        Enum: string;
       }
     }
   }
@@ -255,13 +249,7 @@ export namespace DatasetCreateParams {
       }
 
       export interface Enum {
-        Enum: Enum.Enum;
-      }
-
-      export namespace Enum {
-        export interface Enum {
-          types: Array<string>;
-        }
+        Enum: string;
       }
     }
   }
