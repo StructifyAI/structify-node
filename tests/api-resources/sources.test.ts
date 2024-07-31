@@ -25,7 +25,7 @@ describe('resource sources', () => {
   });
 
   test('report: only required params', async () => {
-    const responsePromise = client.sources.report({ id: 0, property: 'property' });
+    const responsePromise = client.sources.report({ id: 0 });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
