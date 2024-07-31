@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as StructureAPI from './structure';
-import * as DatasetsAPI from './datasets';
 import * as SharedAPI from './shared';
 
 export class Structure extends APIResource {
@@ -151,9 +150,9 @@ export namespace ChatPrompt {
      * A dataset is a complete namespace where all references between schemas are held
      * within the dataset.
      */
-    descriptor: DatasetsAPI.DatasetDescriptor;
+    descriptor: SharedAPI.DatasetDescriptor;
 
-    run_id: string;
+    job_id: string;
 
     user_email: string;
   }
@@ -165,7 +164,7 @@ export namespace ChatPrompt {
      * A dataset is a complete namespace where all references between schemas are held
      * within the dataset.
      */
-    dataset_descriptor: DatasetsAPI.DatasetDescriptor;
+    dataset_descriptor: SharedAPI.DatasetDescriptor;
 
     extracted_entities: Array<SharedAPI.KnowledgeGraph>;
 
@@ -273,7 +272,7 @@ export namespace ExecutionStep {
          */
         export interface Scroll {
           /**
-           * OpenAI Requires an argument, so we put a dummy one here.
+           * Dummy argument
            */
           reason: string;
         }
@@ -292,7 +291,7 @@ export namespace ExecutionStep {
          */
         export interface Exit {
           /**
-           * OpenAI Requires an argument, so we put a dummy one here.
+           * Dummy argument
            */
           reason: string;
         }
@@ -452,7 +451,7 @@ export type StructureIsCompleteParams = Array<string>;
 export type StructureJobStatusParams = Array<string>;
 
 export interface StructureRunAsyncParams {
-  dataset_name: string;
+  name: string;
 
   /**
    * These are all the types that can be converted into a BasicInputType
@@ -522,7 +521,7 @@ export namespace StructureRunAsyncParams {
       export interface TextDocument {
         content?: string | null;
 
-        filepath?: string | null;
+        path?: string | null;
       }
     }
 
