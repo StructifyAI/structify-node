@@ -136,14 +136,6 @@ Methods:
 
 # Usage
 
-Types:
-
-- <code><a href="./src/resources/usage.ts">UsageGetJobInfoResponse</a></code>
-
-Methods:
-
-- <code title="post /usage/get_job_info">client.usage.<a href="./src/resources/usage.ts">getJobInfo</a>() -> UsageGetJobInfoResponse</code>
-
 # Shared
 
 Types:
