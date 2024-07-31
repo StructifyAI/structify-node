@@ -62,4 +62,4 @@ export {
   SourceReportParams,
   Sources,
 } from './sources';
-export { UsageGetJobInfoResponse, Usage } from './usage';
+export { Usage } from './usage';

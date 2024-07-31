@@ -283,7 +283,6 @@ export namespace Structify {
   export import LabelVerifyParams = API.LabelVerifyParams;
 
   export import Usage = API.Usage;
-  export import UsageGetJobInfoResponse = API.UsageGetJobInfoResponse;
 
   export import Shared = API.Shared;
   export import Entity = API.Entity;
