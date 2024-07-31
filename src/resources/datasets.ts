@@ -119,28 +119,12 @@ export namespace DatasetDescriptor {
 
       name: string;
 
-      /**
-       * merge on two entities if they have two property keys listed in this type that
-       * return true to some fuzzy string matching function
-       */
-      merge_strategy?: Property.PropertyAttr | Property.FuzzyStringMatch | 'None';
+      merge_strategy?: 'Unique' | 'FuzzyMatch' | 'None';
 
       prop_type?: 'String' | Property.Enum | 'Integer';
     }
 
     export namespace Property {
-      export interface PropertyAttr {
-        PropertyAttr: string;
-      }
-
-      export interface FuzzyStringMatch {
-        /**
-         * merge on some list of property names iff the values are the same in the
-         * extracted KgEntity
-         */
-        FuzzyStringMatch: string;
-      }
-
       export interface Enum {
         Enum: string;
       }
@@ -226,28 +210,12 @@ export namespace DatasetCreateParams {
 
       name: string;
 
-      /**
-       * merge on two entities if they have two property keys listed in this type that
-       * return true to some fuzzy string matching function
-       */
-      merge_strategy?: Property.PropertyAttr | Property.FuzzyStringMatch | 'None';
+      merge_strategy?: 'Unique' | 'FuzzyMatch' | 'None';
 
       prop_type?: 'String' | Property.Enum | 'Integer';
     }
 
     export namespace Property {
-      export interface PropertyAttr {
-        PropertyAttr: string;
-      }
-
-      export interface FuzzyStringMatch {
-        /**
-         * merge on some list of property names iff the values are the same in the
-         * extracted KgEntity
-         */
-        FuzzyStringMatch: string;
-      }
-
       export interface Enum {
         Enum: string;
       }
