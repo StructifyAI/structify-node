@@ -99,7 +99,7 @@ export interface SourceReportParams {
   /**
    * Property name that is incorrect
    */
-  property: string;
+  property?: string | null;
 }
 
 export namespace Sources {
