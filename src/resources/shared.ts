@@ -80,6 +80,8 @@ export interface Relationship {
   target: number;
 
   type: string;
+
+  properties?: Record<string, string>;
 }
 
 /**
