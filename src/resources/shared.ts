@@ -70,7 +70,7 @@ export type PropertyType = 'String' | PropertyType.Enum | 'Integer';
 
 export namespace PropertyType {
   export interface Enum {
-    Enum: string;
+    Enum: Array<string>;
   }
 }
 
