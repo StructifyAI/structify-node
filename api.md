@@ -9,7 +9,6 @@ Methods:
 
 - <code title="post /user/create_test_token">client.user.<a href="./src/resources/user.ts">createTestToken</a>() -> NewToken</code>
 - <code title="get /user/info">client.user.<a href="./src/resources/user.ts">info</a>() -> UserInfo</code>
-- <code title="get /user/usage">client.user.<a href="./src/resources/user.ts">usage</a>() -> NewToken</code>
 
 # Admin
 
@@ -132,6 +131,16 @@ Methods:
 - <code title="post /label/run_async">client.label.<a href="./src/resources/label.ts">run</a>({ ...params }) -> string</code>
 - <code title="post /label/submit/{uuid}">client.label.<a href="./src/resources/label.ts">submit</a>(uuid, [ ...label ]) -> string</code>
 - <code title="post /label/verify">client.label.<a href="./src/resources/label.ts">verify</a>({ ...params }) -> LabelVerifyResponse</code>
+
+# Usage
+
+Types:
+
+- <code><a href="./src/resources/usage.ts">UsageGetJobInfoResponse</a></code>
+
+Methods:
+
+- <code title="post /usage/get_job_info">client.usage.<a href="./src/resources/usage.ts">getJobInfo</a>() -> UsageGetJobInfoResponse</code>
 
 # Shared
 
