@@ -66,9 +66,9 @@ describe('resource structure', () => {
           { id: 0, properties: { foo: 'string' }, type: 'type' },
         ],
         relationships: [
-          { source: 0, target: 0, type: 'type' },
-          { source: 0, target: 0, type: 'type' },
-          { source: 0, target: 0, type: 'type' },
+          { properties: { foo: 'string' }, source: 0, target: 0, type: 'type' },
+          { properties: { foo: 'string' }, source: 0, target: 0, type: 'type' },
+          { properties: { foo: 'string' }, source: 0, target: 0, type: 'type' },
         ],
       },
     });
