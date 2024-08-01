@@ -128,6 +128,20 @@ export namespace DatasetCreateParams {
     source_table: string;
 
     target_table: string;
+
+    properties?: Array<Relationship.Property>;
+  }
+
+  export namespace Relationship {
+    export interface Property {
+      description: string;
+
+      name: string;
+
+      merge_strategy?: 'Unique' | 'FuzzyMatch' | 'None';
+
+      prop_type?: SharedAPI.PropertyType;
+    }
   }
 }
 

@@ -68,4 +68,3 @@ export {
   SourceReportParams,
   Sources,
 } from './sources';
-export { Usage } from './usage';
