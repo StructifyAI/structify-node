@@ -58,7 +58,7 @@ export {
   LabelVerifyParams,
   Label,
 } from './label';
-export { NewToken, UserInfo, UserUsageResponse, User } from './user';
+export { NewToken, UserInfo, User } from './user';
 export { ServerInformation, Server } from './server';
 export {
   Source,
@@ -68,3 +68,4 @@ export {
   SourceReportParams,
   Sources,
 } from './sources';
+export { UsageGetJobInfoResponse, Usage } from './usage';

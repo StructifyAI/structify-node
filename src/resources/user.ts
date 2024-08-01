@@ -18,13 +18,6 @@ export class User extends APIResource {
   info(options?: Core.RequestOptions): Core.APIPromise<UserInfo> {
     return this._client.get('/user/info', options);
   }
-
-  /**
-   * Creates a test token.
-   */
-  usage(options?: Core.RequestOptions): Core.APIPromise<UserUsageResponse> {
-    return this._client.get('/user/usage', options);
-  }
 }
 
 export interface NewToken {
@@ -41,16 +34,7 @@ export interface UserInfo {
   username: string;
 }
 
-export interface UserUsageResponse {
-  num_entities: number;
-
-  num_relationships: number;
-
-  num_runs: number;
-}
-
 export namespace User {
   export import NewToken = UserAPI.NewToken;
   export import UserInfo = UserAPI.UserInfo;
-  export import UserUsageResponse = UserAPI.UserUsageResponse;
 }
