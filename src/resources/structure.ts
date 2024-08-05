@@ -172,6 +172,8 @@ export namespace ChatPrompt {
 
     tool_metadata: Array<StructureAPI.ToolMetadata>;
 
+    ocr_content?: string | null;
+
     screenshot?: Core.Uploadable | null;
 
     url?: string | null;
