@@ -88,6 +88,8 @@ export namespace DatasetViewResponse {
     export interface Entity {
       id: string;
 
+      creation_time: string;
+
       label: string;
 
       properties: Record<string, string | null | boolean | null | number | null>;
