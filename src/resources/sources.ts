@@ -52,6 +52,8 @@ export namespace Source {
 export interface SourceListResponse {
   id: string;
 
+  creation_time: string;
+
   link: Source;
 
   location: SourceListResponse.Text | SourceListResponse.Visual | 'None';
