@@ -23,19 +23,4 @@ describe('resource sources', () => {
   test('list: required and optional params', async () => {
     const response = await client.sources.list({ id: 0 });
   });
-
-  test('report: only required params', async () => {
-    const responsePromise = client.sources.report({ id: 0 });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('report: required and optional params', async () => {
-    const response = await client.sources.report({ id: 0, property: 'property' });
-  });
 });
