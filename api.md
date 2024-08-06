@@ -89,12 +89,22 @@ Types:
 
 - <code><a href="./src/resources/sources.ts">Source</a></code>
 - <code><a href="./src/resources/sources.ts">SourceListResponse</a></code>
-- <code><a href="./src/resources/sources.ts">SourceReportResponse</a></code>
 
 Methods:
 
 - <code title="get /source/get_sources">client.sources.<a href="./src/resources/sources.ts">list</a>({ ...params }) -> SourceListResponse</code>
-- <code title="post /source/report">client.sources.<a href="./src/resources/sources.ts">report</a>({ ...params }) -> string</code>
+
+# Entities
+
+Types:
+
+- <code><a href="./src/resources/entities.ts">EntityAddResponse</a></code>
+- <code><a href="./src/resources/entities.ts">EntityGetResponse</a></code>
+
+Methods:
+
+- <code title="post /entity/add">client.entities.<a href="./src/resources/entities.ts">add</a>({ ...params }) -> EntityAddResponse</code>
+- <code title="get /entity/get">client.entities.<a href="./src/resources/entities.ts">get</a>({ ...params }) -> EntityGetResponse</code>
 
 # Structure
 
