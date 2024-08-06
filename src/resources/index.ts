@@ -34,7 +34,6 @@ export {
   Datasets,
 } from './datasets';
 export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
-export { EntityAddResponse, EntityGetResponse, EntityAddParams, EntityGetParams, Entities } from './entities';
 export {
   JobListResponse,
   JobDeleteResponse,
@@ -61,4 +60,11 @@ export {
 } from './label';
 export { NewToken, UserInfo, UserUsageResponse, User } from './user';
 export { ServerInformation, Server } from './server';
-export { Source, SourceListResponse, SourceListParams, Sources } from './sources';
+export {
+  Source,
+  SourceListResponse,
+  SourceReportResponse,
+  SourceListParams,
+  SourceReportParams,
+  Sources,
+} from './sources';
