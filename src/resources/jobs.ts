@@ -5,7 +5,7 @@ import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as JobsAPI from './jobs';
 import * as StructureAPI from './structure';
-import { JobsList, type JobsListParams } from '../pagination';
+import { Pagination, type PaginationParams } from '../pagination';
 
 export class Jobs extends APIResource {
   /**
@@ -14,16 +14,16 @@ export class Jobs extends APIResource {
   list(
     query?: JobListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<JobListResponsesJobsList, JobListResponse>;
-  list(options?: Core.RequestOptions): Core.PagePromise<JobListResponsesJobsList, JobListResponse>;
+  ): Core.PagePromise<JobListResponsesPagination, JobListResponse>;
+  list(options?: Core.RequestOptions): Core.PagePromise<JobListResponsesPagination, JobListResponse>;
   list(
     query: JobListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<JobListResponsesJobsList, JobListResponse> {
+  ): Core.PagePromise<JobListResponsesPagination, JobListResponse> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.getAPIList('/jobs/list', JobListResponsesJobsList, { query, ...options });
+    return this._client.getAPIList('/jobs/list', JobListResponsesPagination, { query, ...options });
   }
 
   /**
@@ -76,7 +76,7 @@ export class Jobs extends APIResource {
   }
 }
 
-export class JobListResponsesJobsList extends JobsList<JobListResponse> {}
+export class JobListResponsesPagination extends Pagination<JobListResponse> {}
 
 export interface JobListResponse {
   id: string;
@@ -100,7 +100,7 @@ export type JobGetResponse = Array<StructureAPI.ExecutionStep>;
 
 export type JobGetStepsResponse = Array<StructureAPI.ExecutionStep>;
 
-export interface JobListParams extends JobsListParams {}
+export interface JobListParams extends PaginationParams {}
 
 export namespace Jobs {
   export import JobListResponse = JobsAPI.JobListResponse;
@@ -108,6 +108,6 @@ export namespace Jobs {
   export import JobCancelResponse = JobsAPI.JobCancelResponse;
   export import JobGetResponse = JobsAPI.JobGetResponse;
   export import JobGetStepsResponse = JobsAPI.JobGetStepsResponse;
-  export import JobListResponsesJobsList = JobsAPI.JobListResponsesJobsList;
+  export import JobListResponsesPagination = JobsAPI.JobListResponsesPagination;
   export import JobListParams = JobsAPI.JobListParams;
 }

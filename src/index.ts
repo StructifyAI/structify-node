@@ -4,7 +4,6 @@ import * as Errors from './error';
 import * as Uploads from './uploads';
 import { type Agent } from './_shims/index';
 import * as Core from './core';
-import * as Pagination from './pagination';
 import * as API from './resources/index';
 
 const environments = {
@@ -213,9 +212,9 @@ export import fileFromPath = Uploads.fileFromPath;
 export namespace Structify {
   export import RequestOptions = Core.RequestOptions;
 
-  export import JobsList = Pagination.JobsList;
-  export import JobsListParams = Pagination.JobsListParams;
-  export import JobsListResponse = Pagination.JobsListResponse;
+  export import Pagination = Pagination.Pagination;
+  export import PaginationParams = Pagination.PaginationParams;
+  export import PaginationResponse = Pagination.PaginationResponse;
 
   export import User = API.User;
   export import NewToken = API.NewToken;
@@ -227,7 +226,6 @@ export namespace Structify {
   export import Datasets = API.Datasets;
   export import DatasetListResponse = API.DatasetListResponse;
   export import DatasetViewResponse = API.DatasetViewResponse;
-  export import DatasetViewResponsesJobsList = API.DatasetViewResponsesJobsList;
   export import DatasetCreateParams = API.DatasetCreateParams;
   export import DatasetDeleteParams = API.DatasetDeleteParams;
   export import DatasetGetParams = API.DatasetGetParams;
@@ -243,7 +241,7 @@ export namespace Structify {
   export import JobCancelResponse = API.JobCancelResponse;
   export import JobGetResponse = API.JobGetResponse;
   export import JobGetStepsResponse = API.JobGetStepsResponse;
-  export import JobListResponsesJobsList = API.JobListResponsesJobsList;
+  export import JobListResponsesPagination = API.JobListResponsesPagination;
   export import JobListParams = API.JobListParams;
 
   export import Server = API.Server;
