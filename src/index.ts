@@ -227,7 +227,6 @@ export namespace Structify {
   export import Datasets = API.Datasets;
   export import DatasetListResponse = API.DatasetListResponse;
   export import DatasetViewResponse = API.DatasetViewResponse;
-  export import DatasetViewResponsesJobsList = API.DatasetViewResponsesJobsList;
   export import DatasetCreateParams = API.DatasetCreateParams;
   export import DatasetDeleteParams = API.DatasetDeleteParams;
   export import DatasetGetParams = API.DatasetGetParams;
@@ -257,8 +256,10 @@ export namespace Structify {
   export import Entities = API.Entities;
   export import EntityAddResponse = API.EntityAddResponse;
   export import EntityGetResponse = API.EntityGetResponse;
+  export import EntityReportResponse = API.EntityReportResponse;
   export import EntityAddParams = API.EntityAddParams;
   export import EntityGetParams = API.EntityGetParams;
+  export import EntityReportParams = API.EntityReportParams;
 
   export import Structure = API.Structure;
   export import ChatPrompt = API.ChatPrompt;

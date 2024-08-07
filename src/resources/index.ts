@@ -30,11 +30,18 @@ export {
   DatasetDeleteParams,
   DatasetGetParams,
   DatasetViewParams,
-  DatasetViewResponsesJobsList,
   Datasets,
 } from './datasets';
 export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
-export { EntityAddResponse, EntityGetResponse, EntityAddParams, EntityGetParams, Entities } from './entities';
+export {
+  EntityAddResponse,
+  EntityGetResponse,
+  EntityReportResponse,
+  EntityAddParams,
+  EntityGetParams,
+  EntityReportParams,
+  Entities,
+} from './entities';
 export {
   JobListResponse,
   JobDeleteResponse,
