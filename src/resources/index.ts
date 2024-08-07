@@ -30,7 +30,6 @@ export {
   DatasetDeleteParams,
   DatasetGetParams,
   DatasetViewParams,
-  DatasetViewResponsesJobsList,
   Datasets,
 } from './datasets';
 export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
@@ -42,7 +41,7 @@ export {
   JobGetResponse,
   JobGetStepsResponse,
   JobListParams,
-  JobListResponsesJobsList,
+  JobListResponsesPagination,
   Jobs,
 } from './jobs';
 export {

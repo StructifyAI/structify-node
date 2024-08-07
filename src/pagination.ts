@@ -2,9 +2,9 @@
 
 import { AbstractPage, Response, APIClient, FinalRequestOptions, PageInfo } from './core';
 
-export type JobsListResponse<Item> = Item[];
+export type PaginationResponse<Item> = Item[];
 
-export interface JobsListParams {
+export interface PaginationParams {
   /**
    * The offset to start from
    */
@@ -16,13 +16,13 @@ export interface JobsListParams {
   limit?: number;
 }
 
-export class JobsList<Item> extends AbstractPage<Item> {
+export class Pagination<Item> extends AbstractPage<Item> {
   items: Array<Item>;
 
   constructor(
     client: APIClient,
     response: Response,
-    body: JobsListResponse<Item>,
+    body: PaginationResponse<Item>,
     options: FinalRequestOptions,
   ) {
     super(client, response, body, options);
@@ -35,7 +35,7 @@ export class JobsList<Item> extends AbstractPage<Item> {
   }
 
   // @deprecated Please use `nextPageInfo()` instead
-  nextPageParams(): Partial<JobsListParams> | null {
+  nextPageParams(): Partial<PaginationParams> | null {
     const info = this.nextPageInfo();
     if (!info) return null;
     if ('params' in info) return info.params;
@@ -45,7 +45,7 @@ export class JobsList<Item> extends AbstractPage<Item> {
   }
 
   nextPageInfo(): PageInfo | null {
-    const offset = (this.options.query as JobsListParams).offset ?? 0;
+    const offset = (this.options.query as PaginationParams).offset ?? 0;
     if (!offset) {
       return null;
     }
