@@ -208,7 +208,6 @@ describe('resource datasets', () => {
       limit: 0,
       offset: 0,
       relationship_name: 'relationship_name',
-      requested_type: 'Entities',
       table_name: 'table_name',
     });
   });
