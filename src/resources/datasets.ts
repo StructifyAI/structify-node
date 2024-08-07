@@ -48,21 +48,35 @@ export class Datasets extends APIResource {
   }
 
   /**
-   * You need to specify a dataset and either a table_name (to view tables) or a
-   * relationship_name (to view relationships).
-   *
-   * You can either return entities or relationships from this call, but not both. If
-   * you want both, just make two calls.
+   * You need to specify a dataset and the name of the relationship
    */
-  view(
-    query: DatasetViewParams,
+  viewRelationships(
+    query: DatasetViewRelationshipsParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<DatasetViewResponsesJobsList, DatasetViewResponse> {
-    return this._client.getAPIList('/dataset/view', DatasetViewResponsesJobsList, { query, ...options });
+  ): Core.PagePromise<DatasetViewRelationshipsResponsesJobsList, DatasetViewRelationshipsResponse> {
+    return this._client.getAPIList('/dataset/view_relationships', DatasetViewRelationshipsResponsesJobsList, {
+      query,
+      ...options,
+    });
+  }
+
+  /**
+   * You need to specify a dataset and a table_name
+   */
+  viewTable(
+    query: DatasetViewTableParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<DatasetViewTableResponsesJobsList, DatasetViewTableResponse> {
+    return this._client.getAPIList('/dataset/view_table', DatasetViewTableResponsesJobsList, {
+      query,
+      ...options,
+    });
   }
 }
 
-export class DatasetViewResponsesJobsList extends JobsList<DatasetViewResponse> {}
+export class DatasetViewRelationshipsResponsesJobsList extends JobsList<DatasetViewRelationshipsResponse> {}
+
+export class DatasetViewTableResponsesJobsList extends JobsList<DatasetViewTableResponse> {}
 
 export type DatasetListResponse = Array<DatasetListResponse.DatasetListResponseItem>;
 
@@ -74,26 +88,22 @@ export namespace DatasetListResponse {
   }
 }
 
-export type DatasetViewResponse = DatasetViewResponse.KgEntity | DatasetViewResponse.Relationship;
+export interface DatasetViewRelationshipsResponse {
+  from_id: string;
 
-export namespace DatasetViewResponse {
-  export interface KgEntity {
-    id: string;
+  label: string;
 
-    creation_time: string;
+  to_id: string;
+}
 
-    label: string;
+export interface DatasetViewTableResponse {
+  id: string;
 
-    properties: Record<string, string | null | boolean | null | number | null>;
-  }
+  creation_time: string;
 
-  export interface Relationship {
-    from_id: string;
+  label: string;
 
-    label: string;
-
-    to_id: string;
-  }
+  properties: Record<string, string | null | boolean | null | number | null>;
 }
 
 export interface DatasetCreateParams {
@@ -146,20 +156,27 @@ export interface DatasetGetParams {
   name: string;
 }
 
-export interface DatasetViewParams extends JobsListParams {
-  dataset_name: string;
+export interface DatasetViewRelationshipsParams extends JobsListParams {
+  dataset: string;
 
-  relationship_name?: string | null;
+  name: string;
+}
 
-  table_name?: string | null;
+export interface DatasetViewTableParams extends JobsListParams {
+  dataset: string;
+
+  name: string;
 }
 
 export namespace Datasets {
   export import DatasetListResponse = DatasetsAPI.DatasetListResponse;
-  export import DatasetViewResponse = DatasetsAPI.DatasetViewResponse;
-  export import DatasetViewResponsesJobsList = DatasetsAPI.DatasetViewResponsesJobsList;
+  export import DatasetViewRelationshipsResponse = DatasetsAPI.DatasetViewRelationshipsResponse;
+  export import DatasetViewTableResponse = DatasetsAPI.DatasetViewTableResponse;
+  export import DatasetViewRelationshipsResponsesJobsList = DatasetsAPI.DatasetViewRelationshipsResponsesJobsList;
+  export import DatasetViewTableResponsesJobsList = DatasetsAPI.DatasetViewTableResponsesJobsList;
   export import DatasetCreateParams = DatasetsAPI.DatasetCreateParams;
   export import DatasetDeleteParams = DatasetsAPI.DatasetDeleteParams;
   export import DatasetGetParams = DatasetsAPI.DatasetGetParams;
-  export import DatasetViewParams = DatasetsAPI.DatasetViewParams;
+  export import DatasetViewRelationshipsParams = DatasetsAPI.DatasetViewRelationshipsParams;
+  export import DatasetViewTableParams = DatasetsAPI.DatasetViewTableParams;
 }
