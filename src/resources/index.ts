@@ -25,12 +25,15 @@ export {
 } from './shared';
 export {
   DatasetListResponse,
-  DatasetViewResponse,
+  DatasetViewRelationshipsResponse,
+  DatasetViewTableResponse,
   DatasetCreateParams,
   DatasetDeleteParams,
   DatasetGetParams,
-  DatasetViewParams,
-  DatasetViewResponsesJobsList,
+  DatasetViewRelationshipsParams,
+  DatasetViewTableParams,
+  DatasetViewRelationshipsResponsesJobsList,
+  DatasetViewTableResponsesJobsList,
   Datasets,
 } from './datasets';
 export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
