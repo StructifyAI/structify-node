@@ -147,12 +147,12 @@ export class Structify extends Core.APIClient {
   admin: API.Admin = new API.Admin(this);
   datasets: API.Datasets = new API.Datasets(this);
   documents: API.Documents = new API.Documents(this);
-  runs: API.Runs = new API.Runs(this);
+  jobs: API.Jobs = new API.Jobs(this);
   server: API.Server = new API.Server(this);
   sources: API.Sources = new API.Sources(this);
+  entities: API.Entities = new API.Entities(this);
   structure: API.Structure = new API.Structure(this);
   label: API.Label = new API.Label(this);
-  usage: API.Usage = new API.Usage(this);
   shared: API.Shared = new API.Shared(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
@@ -171,6 +171,7 @@ export class Structify extends Core.APIClient {
   }
 
   static Structify = this;
+  static DEFAULT_TIMEOUT = 60000; // 1 minute
 
   static StructifyError = Errors.StructifyError;
   static APIError = Errors.APIError;
@@ -212,39 +213,41 @@ export import fileFromPath = Uploads.fileFromPath;
 export namespace Structify {
   export import RequestOptions = Core.RequestOptions;
 
-  export import RunsList = Pagination.RunsList;
-  export import RunsListParams = Pagination.RunsListParams;
-  export import RunsListResponse = Pagination.RunsListResponse;
+  export import JobsList = Pagination.JobsList;
+  export import JobsListParams = Pagination.JobsListParams;
+  export import JobsListResponse = Pagination.JobsListResponse;
 
   export import User = API.User;
   export import NewToken = API.NewToken;
   export import UserInfo = API.UserInfo;
+  export import UserUsageResponse = API.UserUsageResponse;
 
   export import Admin = API.Admin;
 
   export import Datasets = API.Datasets;
-  export import Dataset = API.Dataset;
-  export import DatasetDescriptor = API.DatasetDescriptor;
   export import DatasetListResponse = API.DatasetListResponse;
-  export import DatasetViewResponse = API.DatasetViewResponse;
-  export import DatasetViewResponsesRunsList = API.DatasetViewResponsesRunsList;
+  export import DatasetViewRelationshipsResponse = API.DatasetViewRelationshipsResponse;
+  export import DatasetViewTableResponse = API.DatasetViewTableResponse;
+  export import DatasetViewRelationshipsResponsesJobsList = API.DatasetViewRelationshipsResponsesJobsList;
+  export import DatasetViewTableResponsesJobsList = API.DatasetViewTableResponsesJobsList;
   export import DatasetCreateParams = API.DatasetCreateParams;
   export import DatasetDeleteParams = API.DatasetDeleteParams;
   export import DatasetGetParams = API.DatasetGetParams;
-  export import DatasetViewParams = API.DatasetViewParams;
+  export import DatasetViewRelationshipsParams = API.DatasetViewRelationshipsParams;
+  export import DatasetViewTableParams = API.DatasetViewTableParams;
 
   export import Documents = API.Documents;
   export import DocumentListResponse = API.DocumentListResponse;
   export import DocumentUploadParams = API.DocumentUploadParams;
 
-  export import Runs = API.Runs;
-  export import RunListResponse = API.RunListResponse;
-  export import RunDeleteResponse = API.RunDeleteResponse;
-  export import RunCancelResponse = API.RunCancelResponse;
-  export import RunGetResponse = API.RunGetResponse;
-  export import RunGetStepsResponse = API.RunGetStepsResponse;
-  export import RunListResponsesRunsList = API.RunListResponsesRunsList;
-  export import RunListParams = API.RunListParams;
+  export import Jobs = API.Jobs;
+  export import JobListResponse = API.JobListResponse;
+  export import JobDeleteResponse = API.JobDeleteResponse;
+  export import JobCancelResponse = API.JobCancelResponse;
+  export import JobGetResponse = API.JobGetResponse;
+  export import JobGetStepsResponse = API.JobGetStepsResponse;
+  export import JobListResponsesJobsList = API.JobListResponsesJobsList;
+  export import JobListParams = API.JobListParams;
 
   export import Server = API.Server;
   export import ServerInformation = API.ServerInformation;
@@ -253,6 +256,14 @@ export namespace Structify {
   export import Source = API.Source;
   export import SourceListResponse = API.SourceListResponse;
   export import SourceListParams = API.SourceListParams;
+
+  export import Entities = API.Entities;
+  export import EntityAddResponse = API.EntityAddResponse;
+  export import EntityGetResponse = API.EntityGetResponse;
+  export import EntityReportResponse = API.EntityReportResponse;
+  export import EntityAddParams = API.EntityAddParams;
+  export import EntityGetParams = API.EntityGetParams;
+  export import EntityReportParams = API.EntityReportParams;
 
   export import Structure = API.Structure;
   export import ChatPrompt = API.ChatPrompt;
@@ -279,13 +290,13 @@ export namespace Structify {
   export import LabelSubmitParams = API.LabelSubmitParams;
   export import LabelVerifyParams = API.LabelVerifyParams;
 
-  export import Usage = API.Usage;
-  export import UsageGetJobInfoResponse = API.UsageGetJobInfoResponse;
-
   export import Shared = API.Shared;
+  export import DatasetDescriptor = API.DatasetDescriptor;
   export import Entity = API.Entity;
   export import KnowledgeGraph = API.KnowledgeGraph;
+  export import PropertyType = API.PropertyType;
   export import Relationship = API.Relationship;
+  export import Table = API.Table;
 }
 
 export default Structify;

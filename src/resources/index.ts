@@ -15,19 +15,47 @@ export {
   Structure,
 } from './structure';
 export {
-  Dataset,
   DatasetDescriptor,
+  Entity,
+  KnowledgeGraph,
+  PropertyType,
+  Relationship,
+  Table,
+  Shared,
+} from './shared';
+export {
   DatasetListResponse,
-  DatasetViewResponse,
+  DatasetViewRelationshipsResponse,
+  DatasetViewTableResponse,
   DatasetCreateParams,
   DatasetDeleteParams,
   DatasetGetParams,
-  DatasetViewParams,
-  DatasetViewResponsesRunsList,
+  DatasetViewRelationshipsParams,
+  DatasetViewTableParams,
+  DatasetViewRelationshipsResponsesJobsList,
+  DatasetViewTableResponsesJobsList,
   Datasets,
 } from './datasets';
 export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
-export { Entity, KnowledgeGraph, Relationship, Shared } from './shared';
+export {
+  EntityAddResponse,
+  EntityGetResponse,
+  EntityReportResponse,
+  EntityAddParams,
+  EntityGetParams,
+  EntityReportParams,
+  Entities,
+} from './entities';
+export {
+  JobListResponse,
+  JobDeleteResponse,
+  JobCancelResponse,
+  JobGetResponse,
+  JobGetStepsResponse,
+  JobListParams,
+  JobListResponsesJobsList,
+  Jobs,
+} from './jobs';
 export {
   LabelUpdateResponse,
   LabelGetMessagesResponse,
@@ -42,17 +70,6 @@ export {
   LabelVerifyParams,
   Label,
 } from './label';
-export { NewToken, UserInfo, User } from './user';
-export {
-  RunListResponse,
-  RunDeleteResponse,
-  RunCancelResponse,
-  RunGetResponse,
-  RunGetStepsResponse,
-  RunListParams,
-  RunListResponsesRunsList,
-  Runs,
-} from './runs';
+export { NewToken, UserInfo, UserUsageResponse, User } from './user';
 export { ServerInformation, Server } from './server';
 export { Source, SourceListResponse, SourceListParams, Sources } from './sources';
-export { UsageGetJobInfoResponse, Usage } from './usage';

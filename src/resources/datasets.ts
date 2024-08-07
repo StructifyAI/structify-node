@@ -3,7 +3,8 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as DatasetsAPI from './datasets';
-import { RunsList, type RunsListParams } from '../pagination';
+import * as SharedAPI from './shared';
+import { JobsList, type JobsListParams } from '../pagination';
 
 export class Datasets extends APIResource {
   /**
@@ -39,153 +40,70 @@ export class Datasets extends APIResource {
   /**
    * Grab a dataset by its name.
    */
-  get(query: DatasetGetParams, options?: Core.RequestOptions): Core.APIPromise<DatasetDescriptor | null> {
+  get(
+    query: DatasetGetParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<SharedAPI.DatasetDescriptor | null> {
     return this._client.get('/dataset/info', { query, ...options });
   }
 
   /**
-   * You need to specify a dataset. If you don't specify a table_name, we assume all
-   * tables.
-   *
-   * If you want to view relationships, you can not specify a table_name since the
-   * result of inter-table relationships is not well defined.
-   *
-   * You can either return entities or relationships from this call, but not both. If
-   * you want both, just make two calls.
+   * You need to specify a dataset and the name of the relationship
    */
-  view(
-    query: DatasetViewParams,
+  viewRelationships(
+    query: DatasetViewRelationshipsParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<DatasetViewResponsesRunsList, DatasetViewResponse> {
-    return this._client.getAPIList('/dataset/view', DatasetViewResponsesRunsList, { query, ...options });
-  }
-}
-
-export class DatasetViewResponsesRunsList extends RunsList<DatasetViewResponse> {}
-
-export interface Dataset {
-  description: string;
-
-  name: string;
-}
-
-/**
- * A dataset is where you put multiple referential schemas.
- *
- * A dataset is a complete namespace where all references between schemas are held
- * within the dataset.
- */
-export interface DatasetDescriptor {
-  description: string;
-
-  name: string;
-
-  relationships: Array<DatasetDescriptor.Relationship>;
-
-  tables: Array<DatasetDescriptor.Table>;
-}
-
-export namespace DatasetDescriptor {
-  export interface Relationship {
-    description: string;
-
-    name: string;
-
-    source_table: string;
-
-    target_table: string;
+  ): Core.PagePromise<DatasetViewRelationshipsResponsesJobsList, DatasetViewRelationshipsResponse> {
+    return this._client.getAPIList('/dataset/view_relationships', DatasetViewRelationshipsResponsesJobsList, {
+      query,
+      ...options,
+    });
   }
 
   /**
-   * The full definition of what a schema is - without duplicate information.
+   * You need to specify a dataset and a table_name
    */
-  export interface Table {
-    description: string;
-
-    /**
-     * Organized in a name, description format.
-     */
-    name: string;
-
-    /**
-     * Organized in a name, description format.
-     */
-    properties: Array<Table.Property>;
-  }
-
-  export namespace Table {
-    export interface Property {
-      description: string;
-
-      name: string;
-
-      /**
-       * merge on two entities if they have two property keys listed in this type that
-       * return true to some fuzzy string matching function
-       */
-      merge_strategy?: Property.PropertyAttr | Property.FuzzyStringMatch | 'None';
-
-      prop_type?: 'String' | Property.Enum | 'Integer';
-    }
-
-    export namespace Property {
-      export interface PropertyAttr {
-        PropertyAttr: string;
-      }
-
-      export interface FuzzyStringMatch {
-        /**
-         * merge on some list of property names iff the values are the same in the
-         * extracted KgEntity
-         */
-        FuzzyStringMatch: string;
-      }
-
-      export interface Enum {
-        Enum: Enum.Enum;
-      }
-
-      export namespace Enum {
-        export interface Enum {
-          types: Array<string>;
-        }
-      }
-    }
+  viewTable(
+    query: DatasetViewTableParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<DatasetViewTableResponsesJobsList, DatasetViewTableResponse> {
+    return this._client.getAPIList('/dataset/view_table', DatasetViewTableResponsesJobsList, {
+      query,
+      ...options,
+    });
   }
 }
 
-export type DatasetListResponse = Array<Dataset>;
+export class DatasetViewRelationshipsResponsesJobsList extends JobsList<DatasetViewRelationshipsResponse> {}
 
-export type DatasetViewResponse = DatasetViewResponse.Entity | DatasetViewResponse.Relationship;
+export class DatasetViewTableResponsesJobsList extends JobsList<DatasetViewTableResponse> {}
 
-export namespace DatasetViewResponse {
-  export interface Entity {
-    Entity: Entity.Entity;
+export type DatasetListResponse = Array<DatasetListResponse.DatasetListResponseItem>;
+
+export namespace DatasetListResponse {
+  export interface DatasetListResponseItem {
+    description: string;
+
+    name: string;
   }
+}
 
-  export namespace Entity {
-    export interface Entity {
-      id: string;
+export interface DatasetViewRelationshipsResponse {
+  from_id: string;
 
-      label: string;
+  label: string;
 
-      properties: Record<string, string | null | boolean | null | number | null>;
-    }
-  }
+  to_id: string;
+}
 
-  export interface Relationship {
-    Relationship: Relationship.Relationship;
-  }
+export interface DatasetViewTableResponse {
+  id: string;
 
-  export namespace Relationship {
-    export interface Relationship {
-      from_id: string;
+  creation_time: string;
 
-      label: string;
+  label: string;
 
-      to_id: string;
-    }
-  }
+  properties: Record<string, string | null | boolean | null | number | null>;
 }
 
 export interface DatasetCreateParams {
@@ -195,7 +113,7 @@ export interface DatasetCreateParams {
 
   relationships: Array<DatasetCreateParams.Relationship>;
 
-  tables: Array<DatasetCreateParams.Table>;
+  tables: Array<SharedAPI.Table>;
 }
 
 export namespace DatasetCreateParams {
@@ -207,62 +125,19 @@ export namespace DatasetCreateParams {
     source_table: string;
 
     target_table: string;
+
+    properties?: Array<Relationship.Property>;
   }
 
-  /**
-   * The full definition of what a schema is - without duplicate information.
-   */
-  export interface Table {
-    description: string;
-
-    /**
-     * Organized in a name, description format.
-     */
-    name: string;
-
-    /**
-     * Organized in a name, description format.
-     */
-    properties: Array<Table.Property>;
-  }
-
-  export namespace Table {
+  export namespace Relationship {
     export interface Property {
       description: string;
 
       name: string;
 
-      /**
-       * merge on two entities if they have two property keys listed in this type that
-       * return true to some fuzzy string matching function
-       */
-      merge_strategy?: Property.PropertyAttr | Property.FuzzyStringMatch | 'None';
+      merge_strategy?: 'Unique' | 'FuzzyMatch' | 'None';
 
-      prop_type?: 'String' | Property.Enum | 'Integer';
-    }
-
-    export namespace Property {
-      export interface PropertyAttr {
-        PropertyAttr: string;
-      }
-
-      export interface FuzzyStringMatch {
-        /**
-         * merge on some list of property names iff the values are the same in the
-         * extracted KgEntity
-         */
-        FuzzyStringMatch: string;
-      }
-
-      export interface Enum {
-        Enum: Enum.Enum;
-      }
-
-      export namespace Enum {
-        export interface Enum {
-          types: Array<string>;
-        }
-      }
+      prop_type?: SharedAPI.PropertyType;
     }
   }
 }
@@ -281,24 +156,27 @@ export interface DatasetGetParams {
   name: string;
 }
 
-export interface DatasetViewParams extends RunsListParams {
-  dataset_name: string;
+export interface DatasetViewRelationshipsParams extends JobsListParams {
+  dataset: string;
 
-  requested_type: 'Entities' | 'Relationships';
+  name: string;
+}
 
-  relationship_name?: string | null;
+export interface DatasetViewTableParams extends JobsListParams {
+  dataset: string;
 
-  table_name?: string | null;
+  name: string;
 }
 
 export namespace Datasets {
-  export import Dataset = DatasetsAPI.Dataset;
-  export import DatasetDescriptor = DatasetsAPI.DatasetDescriptor;
   export import DatasetListResponse = DatasetsAPI.DatasetListResponse;
-  export import DatasetViewResponse = DatasetsAPI.DatasetViewResponse;
-  export import DatasetViewResponsesRunsList = DatasetsAPI.DatasetViewResponsesRunsList;
+  export import DatasetViewRelationshipsResponse = DatasetsAPI.DatasetViewRelationshipsResponse;
+  export import DatasetViewTableResponse = DatasetsAPI.DatasetViewTableResponse;
+  export import DatasetViewRelationshipsResponsesJobsList = DatasetsAPI.DatasetViewRelationshipsResponsesJobsList;
+  export import DatasetViewTableResponsesJobsList = DatasetsAPI.DatasetViewTableResponsesJobsList;
   export import DatasetCreateParams = DatasetsAPI.DatasetCreateParams;
   export import DatasetDeleteParams = DatasetsAPI.DatasetDeleteParams;
   export import DatasetGetParams = DatasetsAPI.DatasetGetParams;
-  export import DatasetViewParams = DatasetsAPI.DatasetViewParams;
+  export import DatasetViewRelationshipsParams = DatasetsAPI.DatasetViewRelationshipsParams;
+  export import DatasetViewTableParams = DatasetsAPI.DatasetViewTableParams;
 }

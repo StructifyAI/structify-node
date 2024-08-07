@@ -80,18 +80,33 @@ describe('resource datasets', () => {
         {
           description: 'description',
           name: 'name',
+          properties: [
+            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
+            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
+            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
+          ],
           source_table: 'source_table',
           target_table: 'target_table',
         },
         {
           description: 'description',
           name: 'name',
+          properties: [
+            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
+            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
+            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
+          ],
           source_table: 'source_table',
           target_table: 'target_table',
         },
         {
           description: 'description',
           name: 'name',
+          properties: [
+            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
+            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
+            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
+          ],
           source_table: 'source_table',
           target_table: 'target_table',
         },
@@ -101,72 +116,27 @@ describe('resource datasets', () => {
           description: 'description',
           name: 'name',
           properties: [
-            {
-              description: 'description',
-              merge_strategy: { PropertyAttr: 'PropertyAttr' },
-              name: 'name',
-              prop_type: 'String',
-            },
-            {
-              description: 'description',
-              merge_strategy: { PropertyAttr: 'PropertyAttr' },
-              name: 'name',
-              prop_type: 'String',
-            },
-            {
-              description: 'description',
-              merge_strategy: { PropertyAttr: 'PropertyAttr' },
-              name: 'name',
-              prop_type: 'String',
-            },
+            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
+            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
+            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
           ],
         },
         {
           description: 'description',
           name: 'name',
           properties: [
-            {
-              description: 'description',
-              merge_strategy: { PropertyAttr: 'PropertyAttr' },
-              name: 'name',
-              prop_type: 'String',
-            },
-            {
-              description: 'description',
-              merge_strategy: { PropertyAttr: 'PropertyAttr' },
-              name: 'name',
-              prop_type: 'String',
-            },
-            {
-              description: 'description',
-              merge_strategy: { PropertyAttr: 'PropertyAttr' },
-              name: 'name',
-              prop_type: 'String',
-            },
+            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
+            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
+            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
           ],
         },
         {
           description: 'description',
           name: 'name',
           properties: [
-            {
-              description: 'description',
-              merge_strategy: { PropertyAttr: 'PropertyAttr' },
-              name: 'name',
-              prop_type: 'String',
-            },
-            {
-              description: 'description',
-              merge_strategy: { PropertyAttr: 'PropertyAttr' },
-              name: 'name',
-              prop_type: 'String',
-            },
-            {
-              description: 'description',
-              merge_strategy: { PropertyAttr: 'PropertyAttr' },
-              name: 'name',
-              prop_type: 'String',
-            },
+            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
+            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
+            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
           ],
         },
       ],
@@ -221,11 +191,8 @@ describe('resource datasets', () => {
     const response = await client.datasets.get({ name: 'name' });
   });
 
-  test('view: only required params', async () => {
-    const responsePromise = client.datasets.view({
-      dataset_name: 'dataset_name',
-      requested_type: 'Entities',
-    });
+  test('viewRelationships: only required params', async () => {
+    const responsePromise = client.datasets.viewRelationships({ dataset: 'dataset', name: 'name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -235,14 +202,32 @@ describe('resource datasets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('view: required and optional params', async () => {
-    const response = await client.datasets.view({
-      dataset_name: 'dataset_name',
-      requested_type: 'Entities',
+  test('viewRelationships: required and optional params', async () => {
+    const response = await client.datasets.viewRelationships({
+      dataset: 'dataset',
+      name: 'name',
       limit: 0,
       offset: 0,
-      relationship_name: 'relationship_name',
-      table_name: 'table_name',
+    });
+  });
+
+  test('viewTable: only required params', async () => {
+    const responsePromise = client.datasets.viewTable({ dataset: 'dataset', name: 'name' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('viewTable: required and optional params', async () => {
+    const response = await client.datasets.viewTable({
+      dataset: 'dataset',
+      name: 'name',
+      limit: 0,
+      offset: 0,
     });
   });
 });

@@ -40,18 +40,7 @@ describe('resource structure', () => {
   });
 
   test('runAsync: only required params', async () => {
-    const responsePromise = client.structure.runAsync({
-      dataset_name: 'dataset_name',
-      structure_input: {
-        SECIngestor: {
-          extraction_criteria: [
-            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-          ],
-        },
-      },
-    });
+    const responsePromise = client.structure.runAsync({ name: 'name', structure_input: { SECIngestor: {} } });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -63,19 +52,13 @@ describe('resource structure', () => {
 
   test('runAsync: required and optional params', async () => {
     const response = await client.structure.runAsync({
-      dataset_name: 'dataset_name',
-      structure_input: {
-        SECIngestor: {
-          accession_number: 'accession_number',
-          extraction_criteria: [
-            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-            { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-          ],
-          quarter: 0,
-          year: 0,
-        },
-      },
+      name: 'name',
+      structure_input: { SECIngestor: { accession_number: 'accession_number', quarter: 0, year: 0 } },
+      extraction_criteria: [
+        { RelationshipExtraction: { relationship_name: 'relationship_name' } },
+        { RelationshipExtraction: { relationship_name: 'relationship_name' } },
+        { RelationshipExtraction: { relationship_name: 'relationship_name' } },
+      ],
       seeded_entity: {
         entities: [
           { id: 0, properties: { foo: 'string' }, type: 'type' },
@@ -83,9 +66,9 @@ describe('resource structure', () => {
           { id: 0, properties: { foo: 'string' }, type: 'type' },
         ],
         relationships: [
-          { source: 0, target: 0, type: 'type' },
-          { source: 0, target: 0, type: 'type' },
-          { source: 0, target: 0, type: 'type' },
+          { properties: { foo: 'string' }, source: 0, target: 0, type: 'type' },
+          { properties: { foo: 'string' }, source: 0, target: 0, type: 'type' },
+          { properties: { foo: 'string' }, source: 0, target: 0, type: 'type' },
         ],
       },
     });

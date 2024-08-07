@@ -79,7 +79,7 @@ export type LabelUpdateResponse = string;
 export interface LabelGetMessagesResponse {
   chat: StructureAPI.ChatPrompt;
 
-  run_id: string;
+  job_id: string;
 
   uuid: string;
 }
@@ -119,7 +119,7 @@ export namespace LabelLlmAssistResponse {
      */
     export interface Scroll {
       /**
-       * OpenAI Requires an argument, so we put a dummy one here.
+       * Dummy argument
        */
       reason: string;
     }
@@ -138,7 +138,7 @@ export namespace LabelLlmAssistResponse {
      */
     export interface Exit {
       /**
-       * OpenAI Requires an argument, so we put a dummy one here.
+       * Dummy argument
        */
       reason: string;
     }
@@ -214,7 +214,9 @@ export type LabelRunResponse = string;
 
 export type LabelSubmitResponse = string;
 
-export type LabelVerifyResponse = boolean;
+export interface LabelVerifyResponse {
+  error_message?: string | null;
+}
 
 export type LabelUpdateParams = Array<LabelUpdateParams.StepUpdate>;
 
@@ -264,7 +266,7 @@ export namespace LabelUpdateParams {
        */
       export interface Scroll {
         /**
-         * OpenAI Requires an argument, so we put a dummy one here.
+         * Dummy argument
          */
         reason: string;
       }
@@ -283,7 +285,7 @@ export namespace LabelUpdateParams {
        */
       export interface Exit {
         /**
-         * OpenAI Requires an argument, so we put a dummy one here.
+         * Dummy argument
          */
         reason: string;
       }
@@ -377,12 +379,14 @@ export interface LabelGetMessagesParams {
 }
 
 export interface LabelRunParams {
-  dataset_name: string;
+  name: string;
 
   /**
    * These are all the types that can be converted into a BasicInputType
    */
   structure_input: LabelRunParams.SecIngestor | LabelRunParams.PdfIngestor | LabelRunParams.Basic;
+
+  extraction_criteria?: Array<StructureAPI.ExtractionCriteria>;
 
   /**
    * Knowledge graph info structured to deserialize and display in the same format
@@ -399,8 +403,6 @@ export namespace LabelRunParams {
 
   export namespace SecIngestor {
     export interface SecIngestor {
-      extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
-
       accession_number?: string | null;
 
       quarter?: number | null;
@@ -423,8 +425,6 @@ export namespace LabelRunParams {
      * processes them independently.
      */
     export interface PdfIngestor {
-      extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
-
       path: string;
     }
   }
@@ -444,13 +444,9 @@ export namespace LabelRunParams {
 
     export namespace TextDocument {
       export interface TextDocument {
-        extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
-
         content?: string | null;
 
-        filepath?: string | null;
-
-        save?: boolean;
+        path?: string | null;
       }
     }
 
@@ -460,11 +456,9 @@ export namespace LabelRunParams {
 
     export namespace WebSearch {
       export interface WebSearch {
-        extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
-
-        use_local_browser: boolean;
-
         starting_website?: string | null;
+
+        use_local_browser?: boolean;
       }
     }
 
@@ -477,8 +471,6 @@ export namespace LabelRunParams {
         content: Core.Uploadable;
 
         document_name: string;
-
-        extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
       }
     }
   }
@@ -519,7 +511,7 @@ export namespace LabelSubmitParams {
      */
     export interface Scroll {
       /**
-       * OpenAI Requires an argument, so we put a dummy one here.
+       * Dummy argument
        */
       reason: string;
     }
@@ -538,7 +530,7 @@ export namespace LabelSubmitParams {
      */
     export interface Exit {
       /**
-       * OpenAI Requires an argument, so we put a dummy one here.
+       * Dummy argument
        */
       reason: string;
     }

@@ -4,11 +4,13 @@ Types:
 
 - <code><a href="./src/resources/user.ts">NewToken</a></code>
 - <code><a href="./src/resources/user.ts">UserInfo</a></code>
+- <code><a href="./src/resources/user.ts">UserUsageResponse</a></code>
 
 Methods:
 
 - <code title="post /user/create_test_token">client.user.<a href="./src/resources/user.ts">createTestToken</a>() -> NewToken</code>
 - <code title="get /user/info">client.user.<a href="./src/resources/user.ts">info</a>() -> UserInfo</code>
+- <code title="get /user/usage">client.user.<a href="./src/resources/user.ts">usage</a>() -> UserUsageResponse</code>
 
 # Admin
 
@@ -27,10 +29,9 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/datasets.ts">Dataset</a></code>
-- <code><a href="./src/resources/datasets.ts">DatasetDescriptor</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetListResponse</a></code>
-- <code><a href="./src/resources/datasets.ts">DatasetViewResponse</a></code>
+- <code><a href="./src/resources/datasets.ts">DatasetViewRelationshipsResponse</a></code>
+- <code><a href="./src/resources/datasets.ts">DatasetViewTableResponse</a></code>
 
 Methods:
 
@@ -38,7 +39,8 @@ Methods:
 - <code title="get /dataset/list">client.datasets.<a href="./src/resources/datasets.ts">list</a>() -> DatasetListResponse</code>
 - <code title="delete /dataset/delete">client.datasets.<a href="./src/resources/datasets.ts">delete</a>({ ...params }) -> void</code>
 - <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets.ts">get</a>({ ...params }) -> DatasetDescriptor | null</code>
-- <code title="get /dataset/view">client.datasets.<a href="./src/resources/datasets.ts">view</a>({ ...params }) -> DatasetViewResponsesRunsList</code>
+- <code title="get /dataset/view_relationships">client.datasets.<a href="./src/resources/datasets.ts">viewRelationships</a>({ ...params }) -> DatasetViewRelationshipsResponsesJobsList</code>
+- <code title="get /dataset/view_table">client.datasets.<a href="./src/resources/datasets.ts">viewTable</a>({ ...params }) -> DatasetViewTableResponsesJobsList</code>
 
 # Documents
 
@@ -53,25 +55,25 @@ Methods:
 - <code title="get /documents/download/{path}">client.documents.<a href="./src/resources/documents.ts">download</a>(path) -> Response</code>
 - <code title="post /documents/upload">client.documents.<a href="./src/resources/documents.ts">upload</a>({ ...params }) -> void</code>
 
-# Runs
+# Jobs
 
 Types:
 
-- <code><a href="./src/resources/runs.ts">RunListResponse</a></code>
-- <code><a href="./src/resources/runs.ts">RunDeleteResponse</a></code>
-- <code><a href="./src/resources/runs.ts">RunCancelResponse</a></code>
-- <code><a href="./src/resources/runs.ts">RunGetResponse</a></code>
-- <code><a href="./src/resources/runs.ts">RunGetStepsResponse</a></code>
+- <code><a href="./src/resources/jobs.ts">JobListResponse</a></code>
+- <code><a href="./src/resources/jobs.ts">JobDeleteResponse</a></code>
+- <code><a href="./src/resources/jobs.ts">JobCancelResponse</a></code>
+- <code><a href="./src/resources/jobs.ts">JobGetResponse</a></code>
+- <code><a href="./src/resources/jobs.ts">JobGetStepsResponse</a></code>
 
 Methods:
 
-- <code title="get /runs/list">client.runs.<a href="./src/resources/runs.ts">list</a>({ ...params }) -> RunListResponsesRunsList</code>
-- <code title="post /runs/delete/{job_id}">client.runs.<a href="./src/resources/runs.ts">delete</a>(jobId) -> string</code>
-- <code title="post /runs/cancel/{uuid}">client.runs.<a href="./src/resources/runs.ts">cancel</a>(uuid) -> RunCancelResponse</code>
-- <code title="get /runs/get/{job_id}">client.runs.<a href="./src/resources/runs.ts">get</a>(jobId) -> RunGetResponse</code>
-- <code title="get /runs/get_step/{step_id}">client.runs.<a href="./src/resources/runs.ts">getStep</a>(stepId) -> ExecutionStep</code>
-- <code title="get /runs/get_steps/{job_id}">client.runs.<a href="./src/resources/runs.ts">getSteps</a>(jobId) -> RunGetStepsResponse</code>
-- <code title="post /runs/schedule">client.runs.<a href="./src/resources/runs.ts">schedule</a>() -> void</code>
+- <code title="get /jobs/list">client.jobs.<a href="./src/resources/jobs.ts">list</a>({ ...params }) -> JobListResponsesJobsList</code>
+- <code title="post /jobs/delete/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">delete</a>(jobId) -> string</code>
+- <code title="post /jobs/cancel/{uuid}">client.jobs.<a href="./src/resources/jobs.ts">cancel</a>(uuid) -> JobCancelResponse</code>
+- <code title="get /jobs/get/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">get</a>(jobId) -> JobGetResponse</code>
+- <code title="get /jobs/get_step/{step_id}">client.jobs.<a href="./src/resources/jobs.ts">getStep</a>(stepId) -> ExecutionStep</code>
+- <code title="get /jobs/get_steps/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">getSteps</a>(jobId) -> JobGetStepsResponse</code>
+- <code title="post /jobs/schedule">client.jobs.<a href="./src/resources/jobs.ts">schedule</a>() -> void</code>
 
 # Server
 
@@ -93,6 +95,20 @@ Types:
 Methods:
 
 - <code title="get /source/get_sources">client.sources.<a href="./src/resources/sources.ts">list</a>({ ...params }) -> SourceListResponse</code>
+
+# Entities
+
+Types:
+
+- <code><a href="./src/resources/entities.ts">EntityAddResponse</a></code>
+- <code><a href="./src/resources/entities.ts">EntityGetResponse</a></code>
+- <code><a href="./src/resources/entities.ts">EntityReportResponse</a></code>
+
+Methods:
+
+- <code title="post /entity/add">client.entities.<a href="./src/resources/entities.ts">add</a>({ ...params }) -> EntityAddResponse</code>
+- <code title="get /entity/get">client.entities.<a href="./src/resources/entities.ts">get</a>({ ...params }) -> EntityGetResponse</code>
+- <code title="post /entity/report">client.entities.<a href="./src/resources/entities.ts">report</a>({ ...params }) -> string</code>
 
 # Structure
 
@@ -132,20 +148,13 @@ Methods:
 - <code title="post /label/submit/{uuid}">client.label.<a href="./src/resources/label.ts">submit</a>(uuid, [ ...label ]) -> string</code>
 - <code title="post /label/verify">client.label.<a href="./src/resources/label.ts">verify</a>({ ...params }) -> LabelVerifyResponse</code>
 
-# Usage
-
-Types:
-
-- <code><a href="./src/resources/usage.ts">UsageGetJobInfoResponse</a></code>
-
-Methods:
-
-- <code title="post /usage/get_job_info">client.usage.<a href="./src/resources/usage.ts">getJobInfo</a>() -> UsageGetJobInfoResponse</code>
-
 # Shared
 
 Types:
 
+- <code><a href="./src/resources/shared.ts">DatasetDescriptor</a></code>
 - <code><a href="./src/resources/shared.ts">Entity</a></code>
 - <code><a href="./src/resources/shared.ts">KnowledgeGraph</a></code>
+- <code><a href="./src/resources/shared.ts">PropertyType</a></code>
 - <code><a href="./src/resources/shared.ts">Relationship</a></code>
+- <code><a href="./src/resources/shared.ts">Table</a></code>

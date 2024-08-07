@@ -8,9 +8,9 @@ const client = new Structify({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource user', () => {
-  test('createTestToken', async () => {
-    const responsePromise = client.user.createTestToken();
+describe('resource entities', () => {
+  test('add: only required params', async () => {
+    const responsePromise = client.entities.add({ dataset_name: 'dataset_name', kg: {} });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -20,15 +20,26 @@ describe('resource user', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createTestToken: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.user.createTestToken({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Structify.NotFoundError,
-    );
+  test('add: required and optional params', async () => {
+    const response = await client.entities.add({
+      dataset_name: 'dataset_name',
+      kg: {
+        entities: [
+          { id: 0, properties: { foo: 'string' }, type: 'type' },
+          { id: 0, properties: { foo: 'string' }, type: 'type' },
+          { id: 0, properties: { foo: 'string' }, type: 'type' },
+        ],
+        relationships: [
+          { properties: { foo: 'string' }, source: 0, target: 0, type: 'type' },
+          { properties: { foo: 'string' }, source: 0, target: 0, type: 'type' },
+          { properties: { foo: 'string' }, source: 0, target: 0, type: 'type' },
+        ],
+      },
+    });
   });
 
-  test('info', async () => {
-    const responsePromise = client.user.info();
+  test('get: only required params', async () => {
+    const responsePromise = client.entities.get({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -38,15 +49,12 @@ describe('resource user', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('info: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.user.info({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Structify.NotFoundError,
-    );
+  test('get: required and optional params', async () => {
+    const response = await client.entities.get({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
   });
 
-  test('usage', async () => {
-    const responsePromise = client.user.usage();
+  test('report: only required params', async () => {
+    const responsePromise = client.entities.report({ id: 0 });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -56,10 +64,7 @@ describe('resource user', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('usage: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.user.usage({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Structify.NotFoundError,
-    );
+  test('report: required and optional params', async () => {
+    const response = await client.entities.report({ id: 0, property: 'property' });
   });
 });

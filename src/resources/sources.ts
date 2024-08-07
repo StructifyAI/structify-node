@@ -13,7 +13,7 @@ export class Sources extends APIResource {
   }
 }
 
-export type Source = Source.Web | Source.Document | 'None';
+export type Source = Source.Web | Source.Document | 'UserCreated';
 
 export namespace Source {
   export interface Web {
@@ -39,6 +39,8 @@ export namespace Source {
 
 export interface SourceListResponse {
   id: string;
+
+  creation_time: string;
 
   link: Source;
 
