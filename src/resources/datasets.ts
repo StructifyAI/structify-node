@@ -4,7 +4,6 @@ import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as DatasetsAPI from './datasets';
 import * as SharedAPI from './shared';
-import { JobsList, type JobsListParams } from '../pagination';
 
 export class Datasets extends APIResource {
   /**
@@ -57,15 +56,10 @@ export class Datasets extends APIResource {
    * You can either return entities or relationships from this call, but not both. If
    * you want both, just make two calls.
    */
-  view(
-    query: DatasetViewParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<DatasetViewResponsesJobsList, DatasetViewResponse> {
-    return this._client.getAPIList('/dataset/view', DatasetViewResponsesJobsList, { query, ...options });
+  view(query: DatasetViewParams, options?: Core.RequestOptions): Core.APIPromise<DatasetViewResponse> {
+    return this._client.get('/dataset/view', { query, ...options });
   }
 }
-
-export class DatasetViewResponsesJobsList extends JobsList<DatasetViewResponse> {}
 
 export type DatasetListResponse = Array<DatasetListResponse.DatasetListResponseItem>;
 
@@ -77,37 +71,27 @@ export namespace DatasetListResponse {
   }
 }
 
-export type DatasetViewResponse = DatasetViewResponse.Entity | DatasetViewResponse.Relationship;
+export type DatasetViewResponse =
+  | Array<DatasetViewResponse.UnionMember0>
+  | Array<DatasetViewResponse.UnionMember1>;
 
 export namespace DatasetViewResponse {
-  export interface Entity {
-    Entity: Entity.Entity;
+  export interface UnionMember0 {
+    id: string;
+
+    creation_time: string;
+
+    label: string;
+
+    properties: Record<string, string | null | boolean | null | number | null>;
   }
 
-  export namespace Entity {
-    export interface Entity {
-      id: string;
+  export interface UnionMember1 {
+    from_id: string;
 
-      creation_time: string;
+    label: string;
 
-      label: string;
-
-      properties: Record<string, string | null | boolean | null | number | null>;
-    }
-  }
-
-  export interface Relationship {
-    Relationship: Relationship.Relationship;
-  }
-
-  export namespace Relationship {
-    export interface Relationship {
-      from_id: string;
-
-      label: string;
-
-      to_id: string;
-    }
+    to_id: string;
   }
 }
 
@@ -161,12 +145,14 @@ export interface DatasetGetParams {
   name: string;
 }
 
-export interface DatasetViewParams extends JobsListParams {
+export interface DatasetViewParams {
   dataset_name: string;
 
-  relationship_name?: string | null;
+  limit?: number;
 
-  requested_type?: 'Entities' | 'Relationships';
+  offset?: number;
+
+  relationship_name?: string | null;
 
   table_name?: string | null;
 }
@@ -174,7 +160,6 @@ export interface DatasetViewParams extends JobsListParams {
 export namespace Datasets {
   export import DatasetListResponse = DatasetsAPI.DatasetListResponse;
   export import DatasetViewResponse = DatasetsAPI.DatasetViewResponse;
-  export import DatasetViewResponsesJobsList = DatasetsAPI.DatasetViewResponsesJobsList;
   export import DatasetCreateParams = DatasetsAPI.DatasetCreateParams;
   export import DatasetDeleteParams = DatasetsAPI.DatasetDeleteParams;
   export import DatasetGetParams = DatasetsAPI.DatasetGetParams;

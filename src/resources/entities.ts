@@ -19,6 +19,18 @@ export class Entities extends APIResource {
   get(query: EntityGetParams, options?: Core.RequestOptions): Core.APIPromise<EntityGetResponse> {
     return this._client.get('/entity/get', { query, ...options });
   }
+
+  /**
+   * Get all sources for a given entity
+   */
+  report(params: EntityReportParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+    const { id, property } = params;
+    return this._client.post('/entity/report', {
+      query: { id, property },
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
 }
 
 export type EntityAddResponse = Array<string>;
@@ -32,6 +44,8 @@ export interface EntityGetResponse {
 
   properties: Record<string, string | null | boolean | null | number | null>;
 }
+
+export type EntityReportResponse = string;
 
 export interface EntityAddParams {
   dataset_name: string;
@@ -48,9 +62,23 @@ export interface EntityGetParams {
   id: string;
 }
 
+export interface EntityReportParams {
+  /**
+   * Id of the entity to report
+   */
+  id: number;
+
+  /**
+   * Property name that is incorrect
+   */
+  property?: string | null;
+}
+
 export namespace Entities {
   export import EntityAddResponse = EntitiesAPI.EntityAddResponse;
   export import EntityGetResponse = EntitiesAPI.EntityGetResponse;
+  export import EntityReportResponse = EntitiesAPI.EntityReportResponse;
   export import EntityAddParams = EntitiesAPI.EntityAddParams;
   export import EntityGetParams = EntitiesAPI.EntityGetParams;
+  export import EntityReportParams = EntitiesAPI.EntityReportParams;
 }
