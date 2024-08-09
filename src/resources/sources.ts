@@ -73,9 +73,14 @@ export namespace SourceListResponse {
 
 export interface SourceListParams {
   /**
-   * Id of the entity to get sources for
+   * Entity ID to get sources for
    */
-  id: number;
+  id: string;
+
+  /**
+   * Optional property name to filter sources by
+   */
+  property?: string | null;
 }
 
 export namespace Sources {
