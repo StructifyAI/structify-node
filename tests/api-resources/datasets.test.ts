@@ -80,35 +80,35 @@ describe('resource datasets', () => {
         {
           description: 'description',
           name: 'name',
-          properties: [
-            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
-            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
-            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
-          ],
           source_table: 'source_table',
           target_table: 'target_table',
+          properties: [
+            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+          ],
         },
         {
           description: 'description',
           name: 'name',
-          properties: [
-            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
-            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
-            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
-          ],
           source_table: 'source_table',
           target_table: 'target_table',
+          properties: [
+            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+          ],
         },
         {
           description: 'description',
           name: 'name',
-          properties: [
-            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
-            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
-            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
-          ],
           source_table: 'source_table',
           target_table: 'target_table',
+          properties: [
+            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+          ],
         },
       ],
       tables: [
@@ -116,27 +116,27 @@ describe('resource datasets', () => {
           description: 'description',
           name: 'name',
           properties: [
-            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
-            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
-            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
+            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
           ],
         },
         {
           description: 'description',
           name: 'name',
           properties: [
-            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
-            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
-            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
+            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
           ],
         },
         {
           description: 'description',
           name: 'name',
           properties: [
-            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
-            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
-            { description: 'description', merge_strategy: 'Unique', name: 'name', prop_type: 'String' },
+            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
           ],
         },
       ],
