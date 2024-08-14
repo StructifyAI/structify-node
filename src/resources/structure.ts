@@ -185,8 +185,6 @@ export namespace ChatPrompt {
     export interface WebFlag {
       ariaLabel: string;
 
-      text: string;
-
       type: string;
 
       x: number;
@@ -194,6 +192,13 @@ export namespace ChatPrompt {
       y: number;
 
       height?: number;
+
+      /**
+       * The number by which the flag is referred in image, prompt, and tool calls.
+       */
+      number?: number | null;
+
+      text?: string;
 
       /**
        * The serde default here is to give us backwards compatibility it's fine for these
