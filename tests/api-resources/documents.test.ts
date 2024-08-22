@@ -28,7 +28,7 @@ describe('resource documents', () => {
   });
 
   test('delete: only required params', async () => {
-    const responsePromise = client.documents.delete({ path: 'path' });
+    const responsePromise = client.documents.delete({});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -39,14 +39,7 @@ describe('resource documents', () => {
   });
 
   test('delete: required and optional params', async () => {
-    const response = await client.documents.delete({ path: 'path' });
-  });
-
-  test('download: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.documents.download('path', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Structify.NotFoundError,
-    );
+    const response = await client.documents.delete({});
   });
 
   test('upload: only required params', async () => {
