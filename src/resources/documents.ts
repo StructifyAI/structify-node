@@ -14,6 +14,17 @@ export class Documents extends APIResource {
   }
 
   /**
+   * Delete a file from the database
+   */
+  delete(body: DocumentDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete('/documents/delete', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
    * Download a file from the database
    */
   download(path: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
@@ -43,6 +54,13 @@ export namespace DocumentListResponse {
   }
 }
 
+export interface DocumentDeleteParams {
+  /**
+   * The path of the file to delete
+   */
+  path: string;
+}
+
 export interface DocumentUploadParams {
   content: Core.Uploadable;
 
@@ -53,5 +71,6 @@ export interface DocumentUploadParams {
 
 export namespace Documents {
   export import DocumentListResponse = DocumentsAPI.DocumentListResponse;
+  export import DocumentDeleteParams = DocumentsAPI.DocumentDeleteParams;
   export import DocumentUploadParams = DocumentsAPI.DocumentUploadParams;
 }
