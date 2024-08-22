@@ -14,16 +14,6 @@ export class Documents extends APIResource {
   }
 
   /**
-   * Delete a file from the database
-   */
-  delete(path: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/documents/delete/${path}`, {
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Download a file from the database
    */
   download(path: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
