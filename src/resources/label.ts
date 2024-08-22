@@ -173,7 +173,7 @@ export namespace LabelLlmAssistResponse {
       /**
        * Time in seconds to wait
        */
-      seconds: number;
+      seconds?: number;
     }
   }
 
@@ -320,7 +320,7 @@ export namespace LabelUpdateParams {
         /**
          * Time in seconds to wait
          */
-        seconds: number;
+        seconds?: number;
       }
     }
 
@@ -565,7 +565,7 @@ export namespace LabelSubmitParams {
       /**
        * Time in seconds to wait
        */
-      seconds: number;
+      seconds?: number;
     }
   }
 
