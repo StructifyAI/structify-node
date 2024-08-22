@@ -51,8 +51,8 @@ Types:
 Methods:
 
 - <code title="get /documents/list">client.documents.<a href="./src/resources/documents.ts">list</a>() -> DocumentListResponse</code>
-- <code title="delete /documents/delete">client.documents.<a href="./src/resources/documents.ts">delete</a>({ ...params }) -> void</code>
-- <code title="get /documents/download">client.documents.<a href="./src/resources/documents.ts">download</a>() -> Response</code>
+- <code title="delete /documents/delete/{path}">client.documents.<a href="./src/resources/documents.ts">delete</a>(path) -> void</code>
+- <code title="get /documents/download/{path}">client.documents.<a href="./src/resources/documents.ts">download</a>(path) -> Response</code>
 - <code title="post /documents/upload">client.documents.<a href="./src/resources/documents.ts">upload</a>({ ...params }) -> void</code>
 
 # Jobs
@@ -108,7 +108,7 @@ Methods:
 
 - <code title="post /entity/add">client.entities.<a href="./src/resources/entities.ts">add</a>({ ...params }) -> EntityAddResponse</code>
 - <code title="get /entity/get">client.entities.<a href="./src/resources/entities.ts">get</a>({ ...params }) -> EntityGetResponse</code>
-- <code title="post /entity/report">client.entities.<a href="./src/resources/entities.ts">report</a>({ ...params }) -> string</code>
+- <code title="post /entity/report">client.entities.<a href="./src/resources/entities.ts">report</a>() -> string</code>
 
 # Structure
 
