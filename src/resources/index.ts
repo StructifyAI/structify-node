@@ -36,7 +36,7 @@ export {
   DatasetViewTableResponsesJobsList,
   Datasets,
 } from './datasets';
-export { DocumentListResponse, DocumentUploadParams, Documents } from './documents';
+export { DocumentListResponse, DocumentDeleteParams, DocumentUploadParams, Documents } from './documents';
 export {
   EntityAddResponse,
   EntityGetResponse,
