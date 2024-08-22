@@ -335,7 +335,7 @@ export namespace ExecutionStep {
           /**
            * Time in seconds to wait
            */
-          seconds: number;
+          seconds?: number;
         }
       }
 
