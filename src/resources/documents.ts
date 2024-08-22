@@ -27,8 +27,8 @@ export class Documents extends APIResource {
   /**
    * Download a file from the database
    */
-  download(query: DocumentDownloadParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
-    return this._client.get('/documents/download', { ...options, __binaryResponse: true });
+  download(body: DocumentDownloadParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
+    return this._client.post('/documents/download', { body, ...options, __binaryResponse: true });
   }
 
   /**
@@ -61,7 +61,12 @@ export interface DocumentDeleteParams {
   file_path: string;
 }
 
-export interface DocumentDownloadParams {}
+export interface DocumentDownloadParams {
+  /**
+   * The path of the file to delete
+   */
+  file_path: string;
+}
 
 export interface DocumentUploadParams {
   content: Core.Uploadable;
