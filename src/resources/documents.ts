@@ -54,7 +54,12 @@ export namespace DocumentListResponse {
   }
 }
 
-export type DocumentDeleteParams = unknown;
+export interface DocumentDeleteParams {
+  /**
+   * The path of the file to delete
+   */
+  file_path: string;
+}
 
 export interface DocumentDownloadParams {}
 
