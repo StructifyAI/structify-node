@@ -42,6 +42,10 @@ describe('resource documents', () => {
     const response = await client.documents.delete({ file_path: 'file_path' });
   });
 
+  test('download: required and optional params', async () => {
+    const response = await client.documents.download({ file_path: 'file_path' });
+  });
+
   test('upload: only required params', async () => {
     const responsePromise = client.documents.upload({
       content: await toFile(Buffer.from('# my file contents'), 'README.md'),
