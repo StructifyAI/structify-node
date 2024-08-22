@@ -28,7 +28,7 @@ describe('resource documents', () => {
   });
 
   test('delete: only required params', async () => {
-    const responsePromise = client.documents.delete({});
+    const responsePromise = client.documents.delete({ file_path: 'file_path' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -39,7 +39,7 @@ describe('resource documents', () => {
   });
 
   test('delete: required and optional params', async () => {
-    const response = await client.documents.delete({});
+    const response = await client.documents.delete({ file_path: 'file_path' });
   });
 
   test('upload: only required params', async () => {
