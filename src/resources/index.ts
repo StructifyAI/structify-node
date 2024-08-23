@@ -49,6 +49,7 @@ export {
   EntityReportResponse,
   EntityAddParams,
   EntityGetParams,
+  EntityReportParams,
   Entities,
 } from './entities';
 export {
