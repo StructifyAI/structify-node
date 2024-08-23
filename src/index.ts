@@ -238,6 +238,8 @@ export namespace Structify {
 
   export import Documents = API.Documents;
   export import DocumentListResponse = API.DocumentListResponse;
+  export import DocumentDeleteParams = API.DocumentDeleteParams;
+  export import DocumentDownloadParams = API.DocumentDownloadParams;
   export import DocumentUploadParams = API.DocumentUploadParams;
 
   export import Jobs = API.Jobs;
@@ -258,6 +260,7 @@ export namespace Structify {
   export import SourceListParams = API.SourceListParams;
 
   export import Entities = API.Entities;
+  export import ReportParams = API.ReportParams;
   export import EntityAddResponse = API.EntityAddResponse;
   export import EntityGetResponse = API.EntityGetResponse;
   export import EntityReportResponse = API.EntityReportResponse;

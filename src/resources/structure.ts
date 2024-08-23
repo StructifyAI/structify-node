@@ -44,9 +44,9 @@ export interface ChatPrompt {
 
   messages: Array<ChatPrompt.Message>;
 
-  human_llm_metadata?: ChatPrompt.HumanLlmMetadata | null;
+  metadata: ChatPrompt.Metadata;
 
-  metadata?: ChatPrompt.Metadata | null;
+  human_llm_metadata?: ChatPrompt.HumanLlmMetadata | null;
 }
 
 export namespace ChatPrompt {
@@ -143,20 +143,6 @@ export namespace ChatPrompt {
     }
   }
 
-  export interface HumanLlmMetadata {
-    /**
-     * A dataset is where you put multiple referential schemas.
-     *
-     * A dataset is a complete namespace where all references between schemas are held
-     * within the dataset.
-     */
-    descriptor: SharedAPI.DatasetDescriptor;
-
-    job_id: string;
-
-    user_email: string;
-  }
-
   export interface Metadata {
     /**
      * A dataset is where you put multiple referential schemas.
@@ -193,6 +179,8 @@ export namespace ChatPrompt {
 
       height?: number;
 
+      href?: string | null;
+
       /**
        * The number by which the flag is referred in image, prompt, and tool calls.
        */
@@ -206,6 +194,20 @@ export namespace ChatPrompt {
        */
       width?: number;
     }
+  }
+
+  export interface HumanLlmMetadata {
+    /**
+     * A dataset is where you put multiple referential schemas.
+     *
+     * A dataset is a complete namespace where all references between schemas are held
+     * within the dataset.
+     */
+    descriptor: SharedAPI.DatasetDescriptor;
+
+    job_id: string;
+
+    user_email: string;
   }
 }
 
@@ -333,7 +335,7 @@ export namespace ExecutionStep {
           /**
            * Time in seconds to wait
            */
-          seconds: number;
+          seconds?: number;
         }
       }
 

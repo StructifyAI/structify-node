@@ -16,8 +16,9 @@ export class Documents extends APIResource {
   /**
    * Delete a file from the database
    */
-  delete(path: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/documents/delete/${path}`, {
+  delete(body: DocumentDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete('/documents/delete', {
+      body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -26,8 +27,8 @@ export class Documents extends APIResource {
   /**
    * Download a file from the database
    */
-  download(path: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
-    return this._client.get(`/documents/download/${path}`, { ...options, __binaryResponse: true });
+  download(body: DocumentDownloadParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
+    return this._client.post('/documents/download', { body, ...options, __binaryResponse: true });
   }
 
   /**
@@ -53,6 +54,20 @@ export namespace DocumentListResponse {
   }
 }
 
+export interface DocumentDeleteParams {
+  /**
+   * The path of the file to delete
+   */
+  file_path: string;
+}
+
+export interface DocumentDownloadParams {
+  /**
+   * The path of the file to delete
+   */
+  file_path: string;
+}
+
 export interface DocumentUploadParams {
   content: Core.Uploadable;
 
@@ -63,5 +78,7 @@ export interface DocumentUploadParams {
 
 export namespace Documents {
   export import DocumentListResponse = DocumentsAPI.DocumentListResponse;
+  export import DocumentDeleteParams = DocumentsAPI.DocumentDeleteParams;
+  export import DocumentDownloadParams = DocumentsAPI.DocumentDownloadParams;
   export import DocumentUploadParams = DocumentsAPI.DocumentUploadParams;
 }

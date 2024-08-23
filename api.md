@@ -51,8 +51,8 @@ Types:
 Methods:
 
 - <code title="get /documents/list">client.documents.<a href="./src/resources/documents.ts">list</a>() -> DocumentListResponse</code>
-- <code title="delete /documents/delete/{path}">client.documents.<a href="./src/resources/documents.ts">delete</a>(path) -> void</code>
-- <code title="get /documents/download/{path}">client.documents.<a href="./src/resources/documents.ts">download</a>(path) -> Response</code>
+- <code title="delete /documents/delete">client.documents.<a href="./src/resources/documents.ts">delete</a>({ ...params }) -> void</code>
+- <code title="post /documents/download">client.documents.<a href="./src/resources/documents.ts">download</a>({ ...params }) -> Response</code>
 - <code title="post /documents/upload">client.documents.<a href="./src/resources/documents.ts">upload</a>({ ...params }) -> void</code>
 
 # Jobs
@@ -100,6 +100,7 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/entities.ts">ReportParams</a></code>
 - <code><a href="./src/resources/entities.ts">EntityAddResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityGetResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityReportResponse</a></code>
