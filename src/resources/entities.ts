@@ -23,8 +23,9 @@ export class Entities extends APIResource {
   /**
    * Get all sources for a given entity
    */
-  report(options?: Core.RequestOptions): Core.APIPromise<string> {
+  report(body: EntityReportParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     return this._client.post('/entity/report', {
+      body,
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
     });
@@ -60,10 +61,13 @@ export interface EntityGetParams {
   id: string;
 }
 
+export type EntityReportParams = unknown;
+
 export namespace Entities {
   export import EntityAddResponse = EntitiesAPI.EntityAddResponse;
   export import EntityGetResponse = EntitiesAPI.EntityGetResponse;
   export import EntityReportResponse = EntitiesAPI.EntityReportResponse;
   export import EntityAddParams = EntitiesAPI.EntityAddParams;
   export import EntityGetParams = EntitiesAPI.EntityGetParams;
+  export import EntityReportParams = EntitiesAPI.EntityReportParams;
 }
