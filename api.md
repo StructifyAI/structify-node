@@ -108,7 +108,7 @@ Methods:
 
 - <code title="post /entity/add">client.entities.<a href="./src/resources/entities.ts">add</a>({ ...params }) -> EntityAddResponse</code>
 - <code title="get /entity/get">client.entities.<a href="./src/resources/entities.ts">get</a>({ ...params }) -> EntityGetResponse</code>
-- <code title="post /entity/report">client.entities.<a href="./src/resources/entities.ts">report</a>() -> string</code>
+- <code title="post /entity/report">client.entities.<a href="./src/resources/entities.ts">report</a>({ ...params }) -> string</code>
 
 # Structure
 
