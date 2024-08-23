@@ -260,6 +260,7 @@ export namespace Structify {
   export import SourceListParams = API.SourceListParams;
 
   export import Entities = API.Entities;
+  export import ReportParams = API.ReportParams;
   export import EntityAddResponse = API.EntityAddResponse;
   export import EntityGetResponse = API.EntityGetResponse;
   export import EntityReportResponse = API.EntityReportResponse;

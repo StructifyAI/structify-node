@@ -44,15 +44,6 @@ export {
   Documents,
 } from './documents';
 export {
-  EntityAddResponse,
-  EntityGetResponse,
-  EntityReportResponse,
-  EntityAddParams,
-  EntityGetParams,
-  EntityReportParams,
-  Entities,
-} from './entities';
-export {
   JobListResponse,
   JobDeleteResponse,
   JobCancelResponse,
@@ -77,5 +68,15 @@ export {
   Label,
 } from './label';
 export { NewToken, UserInfo, UserUsageResponse, User } from './user';
+export {
+  ReportParams,
+  EntityAddResponse,
+  EntityGetResponse,
+  EntityReportResponse,
+  EntityAddParams,
+  EntityGetParams,
+  EntityReportParams,
+  Entities,
+} from './entities';
 export { ServerInformation, Server } from './server';
 export { Source, SourceListResponse, SourceListParams, Sources } from './sources';

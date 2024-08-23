@@ -32,6 +32,15 @@ export class Entities extends APIResource {
   }
 }
 
+export interface ReportParams {
+  id: string;
+
+  /**
+   * Property name that is incorrect
+   */
+  property?: string | null;
+}
+
 export type EntityAddResponse = Array<string>;
 
 export interface EntityGetResponse {
@@ -71,6 +80,7 @@ export interface EntityReportParams {
 }
 
 export namespace Entities {
+  export import ReportParams = EntitiesAPI.ReportParams;
   export import EntityAddResponse = EntitiesAPI.EntityAddResponse;
   export import EntityGetResponse = EntitiesAPI.EntityGetResponse;
   export import EntityReportResponse = EntitiesAPI.EntityReportResponse;
