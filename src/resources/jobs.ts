@@ -96,7 +96,21 @@ export interface JobCancelResponse {
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 }
 
-export type JobGetResponse = Array<StructureAPI.ExecutionStep>;
+export interface JobGetResponse {
+  job: JobGetResponse.Job;
+
+  steps: Array<StructureAPI.ExecutionStep>;
+}
+
+export namespace JobGetResponse {
+  export interface Job {
+    id: string;
+
+    creation_time: string;
+
+    status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+  }
+}
 
 export type JobGetStepsResponse = Array<StructureAPI.ExecutionStep>;
 
