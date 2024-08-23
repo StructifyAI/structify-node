@@ -100,6 +100,7 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/entities.ts">ReportParams</a></code>
 - <code><a href="./src/resources/entities.ts">EntityAddResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityGetResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityReportResponse</a></code>
