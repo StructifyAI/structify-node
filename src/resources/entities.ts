@@ -61,7 +61,14 @@ export interface EntityGetParams {
   id: string;
 }
 
-export type EntityReportParams = unknown;
+export interface EntityReportParams {
+  id: string;
+
+  /**
+   * Property name that is incorrect
+   */
+  property?: string | null;
+}
 
 export namespace Entities {
   export import EntityAddResponse = EntitiesAPI.EntityAddResponse;
