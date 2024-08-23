@@ -54,7 +54,7 @@ describe('resource entities', () => {
   });
 
   test('report: only required params', async () => {
-    const responsePromise = client.entities.report({});
+    const responsePromise = client.entities.report({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -65,6 +65,9 @@ describe('resource entities', () => {
   });
 
   test('report: required and optional params', async () => {
-    const response = await client.entities.report({});
+    const response = await client.entities.report({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      property: 'property',
+    });
   });
 });
