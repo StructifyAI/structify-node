@@ -21,15 +21,6 @@ export class Entities extends APIResource {
   }
 }
 
-export interface ReportParams {
-  id: string;
-
-  /**
-   * A short message about why the entity is being reported
-   */
-  property?: string | null;
-}
-
 export type EntityAddResponse = Array<string>;
 
 export interface EntityGetResponse {
@@ -58,7 +49,6 @@ export interface EntityGetParams {
 }
 
 export namespace Entities {
-  export import ReportParams = EntitiesAPI.ReportParams;
   export import EntityAddResponse = EntitiesAPI.EntityAddResponse;
   export import EntityGetResponse = EntitiesAPI.EntityGetResponse;
   export import EntityAddParams = EntitiesAPI.EntityAddParams;
