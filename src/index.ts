@@ -151,6 +151,7 @@ export class Structify extends Core.APIClient {
   server: API.Server = new API.Server(this);
   sources: API.Sources = new API.Sources(this);
   entities: API.Entities = new API.Entities(this);
+  report: API.Report = new API.Report(this);
   structure: API.Structure = new API.Structure(this);
   label: API.Label = new API.Label(this);
   shared: API.Shared = new API.Shared(this);
@@ -260,13 +261,17 @@ export namespace Structify {
   export import SourceListParams = API.SourceListParams;
 
   export import Entities = API.Entities;
-  export import ReportParams = API.ReportParams;
   export import EntityAddResponse = API.EntityAddResponse;
   export import EntityGetResponse = API.EntityGetResponse;
-  export import EntityReportResponse = API.EntityReportResponse;
   export import EntityAddParams = API.EntityAddParams;
   export import EntityGetParams = API.EntityGetParams;
-  export import EntityReportParams = API.EntityReportParams;
+
+  export import Report = API.Report;
+  export import ReportParams = API.ReportParams;
+  export import ReportReportEntityResponse = API.ReportReportEntityResponse;
+  export import ReportReportStepResponse = API.ReportReportStepResponse;
+  export import ReportReportEntityParams = API.ReportReportEntityParams;
+  export import ReportReportStepParams = API.ReportReportStepParams;
 
   export import Structure = API.Structure;
   export import ChatPrompt = API.ChatPrompt;

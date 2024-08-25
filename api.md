@@ -100,16 +100,26 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/entities.ts">ReportParams</a></code>
 - <code><a href="./src/resources/entities.ts">EntityAddResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityGetResponse</a></code>
-- <code><a href="./src/resources/entities.ts">EntityReportResponse</a></code>
 
 Methods:
 
 - <code title="post /entity/add">client.entities.<a href="./src/resources/entities.ts">add</a>({ ...params }) -> EntityAddResponse</code>
 - <code title="get /entity/get">client.entities.<a href="./src/resources/entities.ts">get</a>({ ...params }) -> EntityGetResponse</code>
-- <code title="post /entity/report">client.entities.<a href="./src/resources/entities.ts">report</a>({ ...params }) -> string</code>
+
+# Report
+
+Types:
+
+- <code><a href="./src/resources/report.ts">ReportParams</a></code>
+- <code><a href="./src/resources/report.ts">ReportReportEntityResponse</a></code>
+- <code><a href="./src/resources/report.ts">ReportReportStepResponse</a></code>
+
+Methods:
+
+- <code title="post /report/entity">client.report.<a href="./src/resources/report.ts">reportEntity</a>({ ...params }) -> string</code>
+- <code title="post /report/step">client.report.<a href="./src/resources/report.ts">reportStep</a>({ ...params }) -> string</code>
 
 # Structure
 
