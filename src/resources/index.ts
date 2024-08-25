@@ -43,6 +43,7 @@ export {
   DocumentUploadParams,
   Documents,
 } from './documents';
+export { EntityAddResponse, EntityGetResponse, EntityAddParams, EntityGetParams, Entities } from './entities';
 export {
   JobListResponse,
   JobDeleteResponse,
@@ -70,11 +71,11 @@ export {
 export { NewToken, UserInfo, UserUsageResponse, User } from './user';
 export {
   ReportParams,
-  EntityAddResponse,
-  EntityGetResponse,
-  EntityAddParams,
-  EntityGetParams,
-  Entities,
-} from './entities';
+  ReportReportEntityResponse,
+  ReportReportStepResponse,
+  ReportReportEntityParams,
+  ReportReportStepParams,
+  Report,
+} from './report';
 export { ServerInformation, Server } from './server';
 export { Source, SourceListResponse, SourceListParams, Sources } from './sources';
