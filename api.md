@@ -112,14 +112,13 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/report.ts">ReportParams</a></code>
-- <code><a href="./src/resources/report.ts">ReportReportEntityResponse</a></code>
-- <code><a href="./src/resources/report.ts">ReportReportStepResponse</a></code>
+- <code><a href="./src/resources/report.ts">ReportEntityResponse</a></code>
+- <code><a href="./src/resources/report.ts">ReportStepResponse</a></code>
 
 Methods:
 
-- <code title="post /report/entity">client.report.<a href="./src/resources/report.ts">reportEntity</a>({ ...params }) -> string</code>
-- <code title="post /report/step">client.report.<a href="./src/resources/report.ts">reportStep</a>({ ...params }) -> string</code>
+- <code title="post /report/entity">client.report.<a href="./src/resources/report.ts">entity</a>({ ...params }) -> string</code>
+- <code title="post /report/step">client.report.<a href="./src/resources/report.ts">step</a>({ ...params }) -> string</code>
 
 # Structure
 

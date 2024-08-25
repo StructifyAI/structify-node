@@ -9,8 +9,8 @@ const client = new Structify({
 });
 
 describe('resource report', () => {
-  test('reportEntity: only required params', async () => {
-    const responsePromise = client.report.reportEntity({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
+  test('entity: only required params', async () => {
+    const responsePromise = client.report.entity({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -20,15 +20,15 @@ describe('resource report', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('reportEntity: required and optional params', async () => {
-    const response = await client.report.reportEntity({
+  test('entity: required and optional params', async () => {
+    const response = await client.report.entity({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       property: 'property',
     });
   });
 
-  test('reportStep: only required params', async () => {
-    const responsePromise = client.report.reportStep({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
+  test('step: only required params', async () => {
+    const responsePromise = client.report.step({ step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -38,10 +38,10 @@ describe('resource report', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('reportStep: required and optional params', async () => {
-    const response = await client.report.reportStep({
-      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      property: 'property',
+  test('step: required and optional params', async () => {
+    const response = await client.report.step({
+      step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      message: 'message',
     });
   });
 });
