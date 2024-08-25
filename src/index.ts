@@ -263,10 +263,8 @@ export namespace Structify {
   export import ReportParams = API.ReportParams;
   export import EntityAddResponse = API.EntityAddResponse;
   export import EntityGetResponse = API.EntityGetResponse;
-  export import EntityReportResponse = API.EntityReportResponse;
   export import EntityAddParams = API.EntityAddParams;
   export import EntityGetParams = API.EntityGetParams;
-  export import EntityReportParams = API.EntityReportParams;
 
   export import Structure = API.Structure;
   export import ChatPrompt = API.ChatPrompt;
