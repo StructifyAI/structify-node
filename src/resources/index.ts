@@ -70,11 +70,10 @@ export {
 } from './label';
 export { NewToken, UserInfo, UserUsageResponse, User } from './user';
 export {
-  ReportParams,
-  ReportReportEntityResponse,
-  ReportReportStepResponse,
-  ReportReportEntityParams,
-  ReportReportStepParams,
+  ReportEntityResponse,
+  ReportStepResponse,
+  ReportEntityParams,
+  ReportStepParams,
   Report,
 } from './report';
 export { ServerInformation, Server } from './server';
