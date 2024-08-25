@@ -72,10 +72,8 @@ export {
   ReportParams,
   EntityAddResponse,
   EntityGetResponse,
-  EntityReportResponse,
   EntityAddParams,
   EntityGetParams,
-  EntityReportParams,
   Entities,
 } from './entities';
 export { ServerInformation, Server } from './server';
