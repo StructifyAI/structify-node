@@ -8,7 +8,7 @@ export class Report extends APIResource {
   /**
    * Get all sources for a given entity
    */
-  reportEntity(body: ReportReportEntityParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  entity(body: ReportEntityParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     return this._client.post('/report/entity', {
       body,
       ...options,
@@ -19,7 +19,7 @@ export class Report extends APIResource {
   /**
    * Get all sources for a given entity
    */
-  reportStep(body: ReportReportStepParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  step(body: ReportStepParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     return this._client.post('/report/step', {
       body,
       ...options,
@@ -28,7 +28,11 @@ export class Report extends APIResource {
   }
 }
 
-export interface ReportParams {
+export type ReportEntityResponse = string;
+
+export type ReportStepResponse = string;
+
+export interface ReportEntityParams {
   id: string;
 
   /**
@@ -37,32 +41,18 @@ export interface ReportParams {
   property?: string | null;
 }
 
-export type ReportReportEntityResponse = string;
-
-export type ReportReportStepResponse = string;
-
-export interface ReportReportEntityParams {
-  id: string;
+export interface ReportStepParams {
+  step_id: string;
 
   /**
-   * A short message about why the entity is being reported
+   * A short message about why the step is being reported
    */
-  property?: string | null;
-}
-
-export interface ReportReportStepParams {
-  id: string;
-
-  /**
-   * A short message about why the entity is being reported
-   */
-  property?: string | null;
+  message?: string | null;
 }
 
 export namespace Report {
-  export import ReportParams = ReportAPI.ReportParams;
-  export import ReportReportEntityResponse = ReportAPI.ReportReportEntityResponse;
-  export import ReportReportStepResponse = ReportAPI.ReportReportStepResponse;
-  export import ReportReportEntityParams = ReportAPI.ReportReportEntityParams;
-  export import ReportReportStepParams = ReportAPI.ReportReportStepParams;
+  export import ReportEntityResponse = ReportAPI.ReportEntityResponse;
+  export import ReportStepResponse = ReportAPI.ReportStepResponse;
+  export import ReportEntityParams = ReportAPI.ReportEntityParams;
+  export import ReportStepParams = ReportAPI.ReportStepParams;
 }
