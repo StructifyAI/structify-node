@@ -267,11 +267,10 @@ export namespace Structify {
   export import EntityGetParams = API.EntityGetParams;
 
   export import Report = API.Report;
-  export import ReportParams = API.ReportParams;
-  export import ReportReportEntityResponse = API.ReportReportEntityResponse;
-  export import ReportReportStepResponse = API.ReportReportStepResponse;
-  export import ReportReportEntityParams = API.ReportReportEntityParams;
-  export import ReportReportStepParams = API.ReportReportStepParams;
+  export import ReportEntityResponse = API.ReportEntityResponse;
+  export import ReportStepResponse = API.ReportStepResponse;
+  export import ReportEntityParams = API.ReportEntityParams;
+  export import ReportStepParams = API.ReportStepParams;
 
   export import Structure = API.Structure;
   export import ChatPrompt = API.ChatPrompt;
