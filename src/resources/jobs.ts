@@ -84,6 +84,11 @@ export interface JobListResponse {
   creation_time: string;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+  /**
+   * What time did the job start running?
+   */
+  run_started_time?: string | null;
 }
 
 export type JobDeleteResponse = string;
@@ -94,6 +99,11 @@ export interface JobCancelResponse {
   creation_time: string;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+  /**
+   * What time did the job start running?
+   */
+  run_started_time?: string | null;
 }
 
 export interface JobGetResponse {
@@ -109,6 +119,11 @@ export namespace JobGetResponse {
     creation_time: string;
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+    /**
+     * What time did the job start running?
+     */
+    run_started_time?: string | null;
   }
 }
 
