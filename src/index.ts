@@ -229,6 +229,7 @@ export namespace Structify {
   export import DatasetListResponse = API.DatasetListResponse;
   export import DatasetViewRelationshipsResponse = API.DatasetViewRelationshipsResponse;
   export import DatasetViewTableResponse = API.DatasetViewTableResponse;
+  export import DatasetViewTablesWithRelationshipsResponse = API.DatasetViewTablesWithRelationshipsResponse;
   export import DatasetViewRelationshipsResponsesJobsList = API.DatasetViewRelationshipsResponsesJobsList;
   export import DatasetViewTableResponsesJobsList = API.DatasetViewTableResponsesJobsList;
   export import DatasetCreateParams = API.DatasetCreateParams;
@@ -236,6 +237,7 @@ export namespace Structify {
   export import DatasetGetParams = API.DatasetGetParams;
   export import DatasetViewRelationshipsParams = API.DatasetViewRelationshipsParams;
   export import DatasetViewTableParams = API.DatasetViewTableParams;
+  export import DatasetViewTablesWithRelationshipsParams = API.DatasetViewTablesWithRelationshipsParams;
 
   export import Documents = API.Documents;
   export import DocumentListResponse = API.DocumentListResponse;

@@ -72,6 +72,16 @@ export class Datasets extends APIResource {
       ...options,
     });
   }
+
+  /**
+   * the relationships for each entity and the targets for each relationship.
+   */
+  viewTablesWithRelationships(
+    query: DatasetViewTablesWithRelationshipsParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<DatasetViewTablesWithRelationshipsResponse> {
+    return this._client.get('/dataset/view_tables_with_relationships', { query, ...options });
+  }
 }
 
 export class DatasetViewRelationshipsResponsesJobsList extends JobsList<DatasetViewRelationshipsResponse> {}
@@ -104,6 +114,44 @@ export interface DatasetViewTableResponse {
   label: string;
 
   properties: Record<string, string | null | boolean | null | number | null>;
+}
+
+export interface DatasetViewTablesWithRelationshipsResponse {
+  connected_entities: Array<DatasetViewTablesWithRelationshipsResponse.ConnectedEntity>;
+
+  entities: Array<DatasetViewTablesWithRelationshipsResponse.Entity>;
+
+  relationships: Array<DatasetViewTablesWithRelationshipsResponse.Relationship>;
+}
+
+export namespace DatasetViewTablesWithRelationshipsResponse {
+  export interface ConnectedEntity {
+    id: string;
+
+    creation_time: string;
+
+    label: string;
+
+    properties: Record<string, string | null | boolean | null | number | null>;
+  }
+
+  export interface Entity {
+    id: string;
+
+    creation_time: string;
+
+    label: string;
+
+    properties: Record<string, string | null | boolean | null | number | null>;
+  }
+
+  export interface Relationship {
+    from_id: string;
+
+    label: string;
+
+    to_id: string;
+  }
 }
 
 export interface DatasetCreateParams {
@@ -168,10 +216,21 @@ export interface DatasetViewTableParams extends JobsListParams {
   name: string;
 }
 
+export interface DatasetViewTablesWithRelationshipsParams {
+  dataset: string;
+
+  name: string;
+
+  limit?: number;
+
+  offset?: number;
+}
+
 export namespace Datasets {
   export import DatasetListResponse = DatasetsAPI.DatasetListResponse;
   export import DatasetViewRelationshipsResponse = DatasetsAPI.DatasetViewRelationshipsResponse;
   export import DatasetViewTableResponse = DatasetsAPI.DatasetViewTableResponse;
+  export import DatasetViewTablesWithRelationshipsResponse = DatasetsAPI.DatasetViewTablesWithRelationshipsResponse;
   export import DatasetViewRelationshipsResponsesJobsList = DatasetsAPI.DatasetViewRelationshipsResponsesJobsList;
   export import DatasetViewTableResponsesJobsList = DatasetsAPI.DatasetViewTableResponsesJobsList;
   export import DatasetCreateParams = DatasetsAPI.DatasetCreateParams;
@@ -179,4 +238,5 @@ export namespace Datasets {
   export import DatasetGetParams = DatasetsAPI.DatasetGetParams;
   export import DatasetViewRelationshipsParams = DatasetsAPI.DatasetViewRelationshipsParams;
   export import DatasetViewTableParams = DatasetsAPI.DatasetViewTableParams;
+  export import DatasetViewTablesWithRelationshipsParams = DatasetsAPI.DatasetViewTablesWithRelationshipsParams;
 }

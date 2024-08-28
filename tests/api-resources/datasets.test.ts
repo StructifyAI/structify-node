@@ -230,4 +230,24 @@ describe('resource datasets', () => {
       offset: 0,
     });
   });
+
+  test('viewTablesWithRelationships: only required params', async () => {
+    const responsePromise = client.datasets.viewTablesWithRelationships({ dataset: 'dataset', name: 'name' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('viewTablesWithRelationships: required and optional params', async () => {
+    const response = await client.datasets.viewTablesWithRelationships({
+      dataset: 'dataset',
+      name: 'name',
+      limit: 0,
+      offset: 0,
+    });
+  });
 });
