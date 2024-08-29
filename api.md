@@ -48,6 +48,7 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/documents.ts">FilePath</a></code>
 - <code><a href="./src/resources/documents.ts">DocumentListResponse</a></code>
 
 Methods:
