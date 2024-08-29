@@ -38,15 +38,14 @@ export {
   DatasetViewTableResponsesJobsList,
   Datasets,
 } from './datasets';
-export { EntityAddResponse, EntityGetResponse, EntityAddParams, EntityGetParams, Entities } from './entities';
 export {
-  FilePath,
   DocumentListResponse,
   DocumentDeleteParams,
   DocumentDownloadParams,
   DocumentUploadParams,
   Documents,
 } from './documents';
+export { EntityAddResponse, EntityGetResponse, EntityAddParams, EntityGetParams, Entities } from './entities';
 export {
   JobListResponse,
   JobDeleteResponse,
