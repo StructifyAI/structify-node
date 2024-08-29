@@ -240,7 +240,6 @@ export namespace Structify {
   export import DatasetViewTablesWithRelationshipsParams = API.DatasetViewTablesWithRelationshipsParams;
 
   export import Documents = API.Documents;
-  export import FilePath = API.FilePath;
   export import DocumentListResponse = API.DocumentListResponse;
   export import DocumentDeleteParams = API.DocumentDeleteParams;
   export import DocumentDownloadParams = API.DocumentDownloadParams;
