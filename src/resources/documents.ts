@@ -42,6 +42,17 @@ export class Documents extends APIResource {
   }
 }
 
+/**
+ * Note: We call it filepathstruct because it otherwise conflicts with the
+ * file_path in stainless
+ */
+export interface FilePath {
+  /**
+   * The path of the file to delete
+   */
+  file_path: string;
+}
+
 export type DocumentListResponse = Array<DocumentListResponse.DocumentListResponseItem>;
 
 export namespace DocumentListResponse {
@@ -77,6 +88,7 @@ export interface DocumentUploadParams {
 }
 
 export namespace Documents {
+  export import FilePath = DocumentsAPI.FilePath;
   export import DocumentListResponse = DocumentsAPI.DocumentListResponse;
   export import DocumentDeleteParams = DocumentsAPI.DocumentDeleteParams;
   export import DocumentDownloadParams = DocumentsAPI.DocumentDownloadParams;
