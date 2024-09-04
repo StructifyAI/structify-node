@@ -30,7 +30,10 @@ describe('resource jobs', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.jobs.list({ limit: 0, offset: 0 }, { path: '/_stainless_unknown_path' }),
+      client.jobs.list(
+        { dataset_name: 'dataset_name', limit: 0, offset: 0, status: 'Queued' },
+        { path: '/_stainless_unknown_path' },
+      ),
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
