@@ -40,10 +40,7 @@ export class Datasets extends APIResource {
   /**
    * Grab a dataset by its name.
    */
-  get(
-    query: DatasetGetParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SharedAPI.DatasetDescriptor | null> {
+  get(query: DatasetGetParams, options?: Core.RequestOptions): Core.APIPromise<DatasetGetResponse> {
     return this._client.get('/dataset/info', { query, ...options });
   }
 
@@ -96,6 +93,16 @@ export namespace DatasetListResponse {
 
     name: string;
   }
+}
+
+/**
+ * A dataset is where you put multiple referential schemas.
+ *
+ * A dataset is a complete namespace where all references between schemas are held
+ * within the dataset.
+ */
+export interface DatasetGetResponse extends SharedAPI.DatasetDescriptor {
+  created_timestamp: string;
 }
 
 export interface DatasetViewRelationshipsResponse {
@@ -228,6 +235,7 @@ export interface DatasetViewTablesWithRelationshipsParams {
 
 export namespace Datasets {
   export import DatasetListResponse = DatasetsAPI.DatasetListResponse;
+  export import DatasetGetResponse = DatasetsAPI.DatasetGetResponse;
   export import DatasetViewRelationshipsResponse = DatasetsAPI.DatasetViewRelationshipsResponse;
   export import DatasetViewTableResponse = DatasetsAPI.DatasetViewTableResponse;
   export import DatasetViewTablesWithRelationshipsResponse = DatasetsAPI.DatasetViewTablesWithRelationshipsResponse;
