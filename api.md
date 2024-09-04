@@ -30,6 +30,7 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/datasets.ts">DatasetListResponse</a></code>
+- <code><a href="./src/resources/datasets.ts">DatasetGetResponse</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetViewRelationshipsResponse</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetViewTableResponse</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetViewTablesWithRelationshipsResponse</a></code>
@@ -39,7 +40,7 @@ Methods:
 - <code title="post /dataset/create">client.datasets.<a href="./src/resources/datasets.ts">create</a>({ ...params }) -> void</code>
 - <code title="get /dataset/list">client.datasets.<a href="./src/resources/datasets.ts">list</a>() -> DatasetListResponse</code>
 - <code title="delete /dataset/delete">client.datasets.<a href="./src/resources/datasets.ts">delete</a>({ ...params }) -> void</code>
-- <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets.ts">get</a>({ ...params }) -> DatasetDescriptor | null</code>
+- <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets.ts">get</a>({ ...params }) -> DatasetGetResponse</code>
 - <code title="get /dataset/view_relationships">client.datasets.<a href="./src/resources/datasets.ts">viewRelationships</a>({ ...params }) -> DatasetViewRelationshipsResponsesJobsList</code>
 - <code title="get /dataset/view_table">client.datasets.<a href="./src/resources/datasets.ts">viewTable</a>({ ...params }) -> DatasetViewTableResponsesJobsList</code>
 - <code title="get /dataset/view_tables_with_relationships">client.datasets.<a href="./src/resources/datasets.ts">viewTablesWithRelationships</a>({ ...params }) -> DatasetViewTablesWithRelationshipsResponse</code>

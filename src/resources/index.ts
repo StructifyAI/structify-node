@@ -25,6 +25,7 @@ export {
 } from './shared';
 export {
   DatasetListResponse,
+  DatasetGetResponse,
   DatasetViewRelationshipsResponse,
   DatasetViewTableResponse,
   DatasetViewTablesWithRelationshipsResponse,
