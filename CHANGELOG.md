@@ -1,5 +1,30 @@
 # Changelog
 
+## 1.8.0 (2024-09-04)
+
+Full Changelog: [v1.7.0...v1.8.0](https://github.com/StructifyAI/structify-node/compare/v1.7.0...v1.8.0)
+
+### Features
+
+* **api:** manual updates ([#430](https://github.com/StructifyAI/structify-node/issues/430)) ([66accd6](https://github.com/StructifyAI/structify-node/commit/66accd64ac6b5f3ab25ebdf6c7b8db1c2dfbc307))
+* **api:** OpenAPI spec update via Stainless API ([#427](https://github.com/StructifyAI/structify-node/issues/427)) ([948802b](https://github.com/StructifyAI/structify-node/commit/948802b59df6d412fb6056ca6966a7c24282a032))
+* **api:** OpenAPI spec update via Stainless API ([#429](https://github.com/StructifyAI/structify-node/issues/429)) ([f1fb8be](https://github.com/StructifyAI/structify-node/commit/f1fb8be01bb2ec28cf27b2ac3ead1d5e7526c8d9))
+* **api:** OpenAPI spec update via Stainless API ([#431](https://github.com/StructifyAI/structify-node/issues/431)) ([356e031](https://github.com/StructifyAI/structify-node/commit/356e03172070d91f8678773ae0c66293ba1a0083))
+* **api:** OpenAPI spec update via Stainless API ([#432](https://github.com/StructifyAI/structify-node/issues/432)) ([ae95f3f](https://github.com/StructifyAI/structify-node/commit/ae95f3fc54ac45f4f76ec1e60cba3d6a47b3222b))
+* **api:** OpenAPI spec update via Stainless API ([#437](https://github.com/StructifyAI/structify-node/issues/437)) ([9a64447](https://github.com/StructifyAI/structify-node/commit/9a644476178669542f263ba60167871de373fb10))
+
+
+### Bug Fixes
+
+* **client:** correct File construction from node-fetch Responses ([#435](https://github.com/StructifyAI/structify-node/issues/435)) ([b88f0a0](https://github.com/StructifyAI/structify-node/commit/b88f0a06b4766a34f01af22da0ff8b6dfa78419f))
+
+
+### Chores
+
+* **ci:** install deps via ./script/bootstrap ([#434](https://github.com/StructifyAI/structify-node/issues/434)) ([6b2b0ef](https://github.com/StructifyAI/structify-node/commit/6b2b0ef0624841b05ab9fee4003ce518be1fad63))
+* **internal:** codegen related update ([#433](https://github.com/StructifyAI/structify-node/issues/433)) ([b9ee122](https://github.com/StructifyAI/structify-node/commit/b9ee122a23ca9ec71cfaeb1945bc19d4979f6904))
+* **internal:** dependency updates ([#436](https://github.com/StructifyAI/structify-node/issues/436)) ([a4794b0](https://github.com/StructifyAI/structify-node/commit/a4794b04f6464e543e648b2579bbcda26d7f8233))
+
 ## 1.7.0 (2024-08-28)
 
 Full Changelog: [v1.6.0...v1.7.0](https://github.com/StructifyAI/structify-node/compare/v1.6.0...v1.7.0)
