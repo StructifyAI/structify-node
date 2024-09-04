@@ -84,6 +84,11 @@ export interface JobListResponse {
   creation_time: string;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+  /**
+   * What time did the job start running?
+   */
+  run_started_time?: string | null;
 }
 
 export type JobDeleteResponse = string;
@@ -94,6 +99,11 @@ export interface JobCancelResponse {
   creation_time: string;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+  /**
+   * What time did the job start running?
+   */
+  run_started_time?: string | null;
 }
 
 export interface JobGetResponse {
@@ -109,12 +119,27 @@ export namespace JobGetResponse {
     creation_time: string;
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+    /**
+     * What time did the job start running?
+     */
+    run_started_time?: string | null;
   }
 }
 
 export type JobGetStepsResponse = Array<StructureAPI.ExecutionStep>;
 
-export interface JobListParams extends JobsListParams {}
+export interface JobListParams extends JobsListParams {
+  /**
+   * Dataset name to optionally filter jobs by
+   */
+  dataset_name?: string | null;
+
+  /**
+   * Status to optionally filter jobs by
+   */
+  status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
+}
 
 export namespace Jobs {
   export import JobListResponse = JobsAPI.JobListResponse;
