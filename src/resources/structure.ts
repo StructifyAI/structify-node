@@ -7,6 +7,17 @@ import * as SharedAPI from './shared';
 
 export class Structure extends APIResource {
   /**
+   * Returns a job id that can be waited on until the request is finished.
+   */
+  enhance(body: StructureEnhanceParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.post('/structure/enhance', {
+      body,
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
    * Wait for all specified async tasks to be completed.
    */
   isComplete(body: StructureIsCompleteParams, options?: Core.RequestOptions): Core.APIPromise<string> {
@@ -445,6 +456,8 @@ export interface ToolMetadata {
   tool_validator: Record<string, unknown>;
 }
 
+export type StructureEnhanceResponse = string;
+
 export type StructureIsCompleteResponse = string;
 
 export interface StructureJobStatusResponse {
@@ -454,6 +467,107 @@ export interface StructureJobStatusResponse {
 }
 
 export type StructureRunAsyncResponse = string;
+
+export interface StructureEnhanceParams {
+  name: string;
+
+  /**
+   * These are all the types that can be converted into a BasicInputType
+   */
+  structure_input:
+    | StructureEnhanceParams.SecIngestor
+    | StructureEnhanceParams.PdfIngestor
+    | StructureEnhanceParams.Basic;
+
+  extraction_criteria?: Array<ExtractionCriteria>;
+
+  /**
+   * Knowledge graph info structured to deserialize and display in the same format
+   * that the LLM outputs. Also the first representation of an LLM output in the
+   * pipeline from raw tool output to being merged into a Neo4j DB
+   */
+  seeded_entity?: SharedAPI.KnowledgeGraph;
+}
+
+export namespace StructureEnhanceParams {
+  export interface SecIngestor {
+    SECIngestor: SecIngestor.SecIngestor;
+  }
+
+  export namespace SecIngestor {
+    export interface SecIngestor {
+      accession_number?: string | null;
+
+      quarter?: number | null;
+
+      year?: number | null;
+    }
+  }
+
+  export interface PdfIngestor {
+    /**
+     * This is currently a very simple ingestor. It converts everything to an image and
+     * processes them independently.
+     */
+    PDFIngestor: PdfIngestor.PdfIngestor;
+  }
+
+  export namespace PdfIngestor {
+    /**
+     * This is currently a very simple ingestor. It converts everything to an image and
+     * processes them independently.
+     */
+    export interface PdfIngestor {
+      path: string;
+    }
+  }
+
+  export interface Basic {
+    /**
+     * These are all the types for which we have an agent that is directly capable of
+     * navigating. There should be a one to one mapping between them.
+     */
+    Basic: Basic.TextDocument | Basic.WebSearch | Basic.ImageDocument;
+  }
+
+  export namespace Basic {
+    export interface TextDocument {
+      TextDocument: TextDocument.TextDocument;
+    }
+
+    export namespace TextDocument {
+      export interface TextDocument {
+        content?: string | null;
+
+        path?: string | null;
+      }
+    }
+
+    export interface WebSearch {
+      WebSearch: WebSearch.WebSearch;
+    }
+
+    export namespace WebSearch {
+      export interface WebSearch {
+        starting_website?: string | null;
+
+        use_local_browser?: boolean;
+      }
+    }
+
+    export interface ImageDocument {
+      ImageDocument: ImageDocument.ImageDocument;
+    }
+
+    export namespace ImageDocument {
+      export interface ImageDocument {
+        content: Core.Uploadable;
+
+        document_name: string;
+      }
+    }
+  }
+}
 
 export type StructureIsCompleteParams = Array<string>;
 
@@ -565,9 +679,11 @@ export namespace Structure {
   export import ExecutionStep = StructureAPI.ExecutionStep;
   export import ExtractionCriteria = StructureAPI.ExtractionCriteria;
   export import ToolMetadata = StructureAPI.ToolMetadata;
+  export import StructureEnhanceResponse = StructureAPI.StructureEnhanceResponse;
   export import StructureIsCompleteResponse = StructureAPI.StructureIsCompleteResponse;
   export import StructureJobStatusResponse = StructureAPI.StructureJobStatusResponse;
   export import StructureRunAsyncResponse = StructureAPI.StructureRunAsyncResponse;
+  export import StructureEnhanceParams = StructureAPI.StructureEnhanceParams;
   export import StructureIsCompleteParams = StructureAPI.StructureIsCompleteParams;
   export import StructureJobStatusParams = StructureAPI.StructureJobStatusParams;
   export import StructureRunAsyncParams = StructureAPI.StructureRunAsyncParams;
