@@ -10,7 +10,10 @@ const client = new Structify({
 
 describe('resource structure', () => {
   test('enhance: only required params', async () => {
-    const responsePromise = client.structure.enhance({ name: 'name', structure_input: { SECIngestor: {} } });
+    const responsePromise = client.structure.enhance({
+      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      property_name: 'property_name',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -22,25 +25,8 @@ describe('resource structure', () => {
 
   test('enhance: required and optional params', async () => {
     const response = await client.structure.enhance({
-      name: 'name',
-      structure_input: { SECIngestor: { accession_number: 'accession_number', quarter: 0, year: 0 } },
-      extraction_criteria: [
-        { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-        { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-        { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-      ],
-      seeded_entity: {
-        entities: [
-          { id: 0, properties: { foo: 'string' }, type: 'type' },
-          { id: 0, properties: { foo: 'string' }, type: 'type' },
-          { id: 0, properties: { foo: 'string' }, type: 'type' },
-        ],
-        relationships: [
-          { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-          { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-          { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-        ],
-      },
+      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      property_name: 'property_name',
     });
   });
 
