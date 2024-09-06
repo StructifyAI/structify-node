@@ -131,12 +131,14 @@ Types:
 - <code><a href="./src/resources/structure.ts">ExecutionStep</a></code>
 - <code><a href="./src/resources/structure.ts">ExtractionCriteria</a></code>
 - <code><a href="./src/resources/structure.ts">ToolMetadata</a></code>
+- <code><a href="./src/resources/structure.ts">StructureEnhanceResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureIsCompleteResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureJobStatusResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureRunAsyncResponse</a></code>
 
 Methods:
 
+- <code title="post /structure/enhance">client.structure.<a href="./src/resources/structure.ts">enhance</a>({ ...params }) -> string</code>
 - <code title="post /structure/is_complete">client.structure.<a href="./src/resources/structure.ts">isComplete</a>([ ...job ]) -> string</code>
 - <code title="post /structure/job_status">client.structure.<a href="./src/resources/structure.ts">jobStatus</a>([ ...job ]) -> StructureJobStatusResponse</code>
 - <code title="post /structure/run_async">client.structure.<a href="./src/resources/structure.ts">runAsync</a>({ ...params }) -> string</code>
