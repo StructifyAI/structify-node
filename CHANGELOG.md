@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.9.0 (2024-09-06)
+
+Full Changelog: [v1.8.0...v1.9.0](https://github.com/StructifyAI/structify-node/compare/v1.8.0...v1.9.0)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#439](https://github.com/StructifyAI/structify-node/issues/439)) ([44012ea](https://github.com/StructifyAI/structify-node/commit/44012ea3400463fda493211d46f7ebfcc7254921))
+* **api:** OpenAPI spec update via Stainless API ([#442](https://github.com/StructifyAI/structify-node/issues/442)) ([885a78f](https://github.com/StructifyAI/structify-node/commit/885a78fd4614dba16dc16dc470f7101e61d826b1))
+* **api:** OpenAPI spec update via Stainless API ([#443](https://github.com/StructifyAI/structify-node/issues/443)) ([03392a4](https://github.com/StructifyAI/structify-node/commit/03392a4d2b3f6e33d319800ab4cdd1812005904a))
+
+
+### Bug Fixes
+
+* **uploads:** avoid making redundant memory copies ([#441](https://github.com/StructifyAI/structify-node/issues/441)) ([a508bab](https://github.com/StructifyAI/structify-node/commit/a508babe4a056bee1af3eb731e2cc50dca40fa7c))
+
+
+### Chores
+
+* **internal:** codegen related update ([#444](https://github.com/StructifyAI/structify-node/issues/444)) ([6da4b1a](https://github.com/StructifyAI/structify-node/commit/6da4b1ac821d60244efe19e5b263318d1b12bf14))
+* **internal:** codegen related update ([#445](https://github.com/StructifyAI/structify-node/issues/445)) ([daf3af8](https://github.com/StructifyAI/structify-node/commit/daf3af8142f366b8f545d67edb7fe208d0b36fd7))
+
 ## 1.8.0 (2024-09-04)
 
 Full Changelog: [v1.7.0...v1.8.0](https://github.com/StructifyAI/structify-node/compare/v1.7.0...v1.8.0)
