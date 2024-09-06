@@ -280,9 +280,11 @@ export namespace Structify {
   export import ExecutionStep = API.ExecutionStep;
   export import ExtractionCriteria = API.ExtractionCriteria;
   export import ToolMetadata = API.ToolMetadata;
+  export import StructureEnhanceResponse = API.StructureEnhanceResponse;
   export import StructureIsCompleteResponse = API.StructureIsCompleteResponse;
   export import StructureJobStatusResponse = API.StructureJobStatusResponse;
   export import StructureRunAsyncResponse = API.StructureRunAsyncResponse;
+  export import StructureEnhanceParams = API.StructureEnhanceParams;
   export import StructureIsCompleteParams = API.StructureIsCompleteParams;
   export import StructureJobStatusParams = API.StructureJobStatusParams;
   export import StructureRunAsyncParams = API.StructureRunAsyncParams;
