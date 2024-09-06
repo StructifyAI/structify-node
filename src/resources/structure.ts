@@ -7,6 +7,17 @@ import * as SharedAPI from './shared';
 
 export class Structure extends APIResource {
   /**
+   * Returns a job id that can be waited on until the request is finished.
+   */
+  enhance(body: StructureEnhanceParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.post('/structure/enhance', {
+      body,
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
    * Wait for all specified async tasks to be completed.
    */
   isComplete(body: StructureIsCompleteParams, options?: Core.RequestOptions): Core.APIPromise<string> {
@@ -415,7 +426,12 @@ export namespace ExtractionCriteria {
 
   export namespace EntityExtraction {
     export interface EntityExtraction {
-      entity_id: number;
+      /**
+       * The integer id corresponding to an entity in the seeded kg
+       */
+      seeded_kg_id: number;
+
+      dataset_entity_id?: string | null;
     }
   }
 
@@ -445,6 +461,8 @@ export interface ToolMetadata {
   tool_validator: Record<string, unknown>;
 }
 
+export type StructureEnhanceResponse = string;
+
 export type StructureIsCompleteResponse = string;
 
 export interface StructureJobStatusResponse {
@@ -454,6 +472,12 @@ export interface StructureJobStatusResponse {
 }
 
 export type StructureRunAsyncResponse = string;
+
+export interface StructureEnhanceParams {
+  entity_id: string;
+
+  property_name: string;
+}
 
 export type StructureIsCompleteParams = Array<string>;
 
@@ -565,9 +589,11 @@ export namespace Structure {
   export import ExecutionStep = StructureAPI.ExecutionStep;
   export import ExtractionCriteria = StructureAPI.ExtractionCriteria;
   export import ToolMetadata = StructureAPI.ToolMetadata;
+  export import StructureEnhanceResponse = StructureAPI.StructureEnhanceResponse;
   export import StructureIsCompleteResponse = StructureAPI.StructureIsCompleteResponse;
   export import StructureJobStatusResponse = StructureAPI.StructureJobStatusResponse;
   export import StructureRunAsyncResponse = StructureAPI.StructureRunAsyncResponse;
+  export import StructureEnhanceParams = StructureAPI.StructureEnhanceParams;
   export import StructureIsCompleteParams = StructureAPI.StructureIsCompleteParams;
   export import StructureJobStatusParams = StructureAPI.StructureJobStatusParams;
   export import StructureRunAsyncParams = StructureAPI.StructureRunAsyncParams;
