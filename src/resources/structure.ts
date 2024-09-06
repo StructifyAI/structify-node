@@ -426,7 +426,12 @@ export namespace ExtractionCriteria {
 
   export namespace EntityExtraction {
     export interface EntityExtraction {
-      entity_id: number;
+      /**
+       * The integer id corresponding to an entity in the seeded kg
+       */
+      seeded_kg_id: number;
+
+      dataset_entity_id?: string | null;
     }
   }
 
