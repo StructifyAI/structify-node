@@ -59,6 +59,8 @@ export interface EntityAddParams {
    * pipeline from raw tool output to being merged into a Neo4j DB
    */
   kg: SharedAPI.KnowledgeGraph;
+
+  source_website?: string | null;
 }
 
 export interface EntityGetParams {
