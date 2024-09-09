@@ -19,11 +19,28 @@ export class Entities extends APIResource {
   get(query: EntityGetParams, options?: Core.RequestOptions): Core.APIPromise<EntityGetResponse> {
     return this._client.get('/entity/get', { query, ...options });
   }
+
+  /**
+   * merge an entity manually
+   */
+  merge(body: EntityMergeParams, options?: Core.RequestOptions): Core.APIPromise<EntityMergeResponse> {
+    return this._client.post('/entity/merge', { body, ...options });
+  }
 }
 
 export type EntityAddResponse = Array<string>;
 
 export interface EntityGetResponse {
+  id: string;
+
+  creation_time: string;
+
+  label: string;
+
+  properties: Record<string, string | null | boolean | null | number | null>;
+}
+
+export interface EntityMergeResponse {
   id: string;
 
   creation_time: string;
@@ -48,9 +65,13 @@ export interface EntityGetParams {
   id: string;
 }
 
+export type EntityMergeParams = unknown;
+
 export namespace Entities {
   export import EntityAddResponse = EntitiesAPI.EntityAddResponse;
   export import EntityGetResponse = EntitiesAPI.EntityGetResponse;
+  export import EntityMergeResponse = EntitiesAPI.EntityMergeResponse;
   export import EntityAddParams = EntitiesAPI.EntityAddParams;
   export import EntityGetParams = EntitiesAPI.EntityGetParams;
+  export import EntityMergeParams = EntitiesAPI.EntityMergeParams;
 }

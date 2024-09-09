@@ -48,7 +48,15 @@ export {
   DocumentUploadParams,
   Documents,
 } from './documents';
-export { EntityAddResponse, EntityGetResponse, EntityAddParams, EntityGetParams, Entities } from './entities';
+export {
+  EntityAddResponse,
+  EntityGetResponse,
+  EntityMergeResponse,
+  EntityAddParams,
+  EntityGetParams,
+  EntityMergeParams,
+  Entities,
+} from './entities';
 export {
   JobListResponse,
   JobDeleteResponse,
