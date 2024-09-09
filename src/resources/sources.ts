@@ -13,7 +13,7 @@ export class Sources extends APIResource {
   }
 }
 
-export type Source = Source.Web | Source.Document | 'UserCreated';
+export type Source = Source.Web | Source.Document | 'UserCreated' | Source.UserCreatedWeb;
 
 export namespace Source {
   export interface Web {
@@ -33,6 +33,16 @@ export namespace Source {
   export namespace Document {
     export interface Document {
       name: string;
+    }
+  }
+
+  export interface UserCreatedWeb {
+    UserCreatedWeb: UserCreatedWeb.UserCreatedWeb;
+  }
+
+  export namespace UserCreatedWeb {
+    export interface UserCreatedWeb {
+      url: string;
     }
   }
 }
