@@ -105,11 +105,13 @@ Types:
 
 - <code><a href="./src/resources/entities.ts">EntityAddResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityGetResponse</a></code>
+- <code><a href="./src/resources/entities.ts">EntityMergeResponse</a></code>
 
 Methods:
 
 - <code title="post /entity/add">client.entities.<a href="./src/resources/entities.ts">add</a>({ ...params }) -> EntityAddResponse</code>
 - <code title="get /entity/get">client.entities.<a href="./src/resources/entities.ts">get</a>({ ...params }) -> EntityGetResponse</code>
+- <code title="post /entity/merge">client.entities.<a href="./src/resources/entities.ts">merge</a>({ ...params }) -> EntityMergeResponse</code>
 
 # Report
 
