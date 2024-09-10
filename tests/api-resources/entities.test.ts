@@ -55,7 +55,10 @@ describe('resource entities', () => {
   });
 
   test('merge: only required params', async () => {
-    const responsePromise = client.entities.merge({});
+    const responsePromise = client.entities.merge({
+      entity_1_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      entity_2_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -66,6 +69,9 @@ describe('resource entities', () => {
   });
 
   test('merge: required and optional params', async () => {
-    const response = await client.entities.merge({});
+    const response = await client.entities.merge({
+      entity_1_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      entity_2_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
   });
 });
