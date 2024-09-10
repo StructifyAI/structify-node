@@ -47,36 +47,40 @@ export namespace Source {
   }
 }
 
-export interface SourceListResponse {
-  id: string;
-
-  creation_time: string;
-
-  link: Source;
-
-  location: SourceListResponse.Text | SourceListResponse.Visual | 'None';
-}
+export type SourceListResponse = Array<SourceListResponse.SourceListResponseItem>;
 
 export namespace SourceListResponse {
-  export interface Text {
-    Text: Text.Text;
+  export interface SourceListResponseItem {
+    id: string;
+
+    creation_time: string;
+
+    link: SourcesAPI.Source;
+
+    location: SourceListResponseItem.Text | SourceListResponseItem.Visual | 'None';
   }
 
-  export namespace Text {
+  export namespace SourceListResponseItem {
     export interface Text {
-      byte_offset: number;
+      Text: Text.Text;
     }
-  }
 
-  export interface Visual {
-    Visual: Visual.Visual;
-  }
+    export namespace Text {
+      export interface Text {
+        byte_offset: number;
+      }
+    }
 
-  export namespace Visual {
     export interface Visual {
-      x: number;
+      Visual: Visual.Visual;
+    }
 
-      y: number;
+    export namespace Visual {
+      export interface Visual {
+        x: number;
+
+        y: number;
+      }
     }
   }
 }
