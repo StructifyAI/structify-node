@@ -67,7 +67,11 @@ export interface EntityGetParams {
   id: string;
 }
 
-export type EntityMergeParams = unknown;
+export interface EntityMergeParams {
+  entity_1_id: string;
+
+  entity_2_id: string;
+}
 
 export namespace Entities {
   export import EntityAddResponse = EntitiesAPI.EntityAddResponse;
