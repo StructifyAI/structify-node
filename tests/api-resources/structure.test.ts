@@ -10,10 +10,7 @@ const client = new Structify({
 
 describe('resource structure', () => {
   test('enhance: only required params', async () => {
-    const responsePromise = client.structure.enhance({
-      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      property_name: 'property_name',
-    });
+    const responsePromise = client.structure.enhance({ entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -27,6 +24,7 @@ describe('resource structure', () => {
     const response = await client.structure.enhance({
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       property_name: 'property_name',
+      relationship_name: 'relationship_name',
     });
   });
 
