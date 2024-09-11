@@ -67,6 +67,7 @@ export {
   JobListResponsesJobsList,
   Jobs,
 } from './jobs';
+export { JwtToAPIToken, NewToken, UserInfo, UserUsageResponse, User } from './user';
 export {
   LabelUpdateResponse,
   LabelGetMessagesResponse,
@@ -81,7 +82,6 @@ export {
   LabelVerifyParams,
   Label,
 } from './label';
-export { NewToken, UserInfo, UserUsageResponse, User } from './user';
 export {
   ReportEntityResponse,
   ReportStepResponse,
