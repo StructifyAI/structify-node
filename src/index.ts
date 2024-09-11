@@ -219,6 +219,7 @@ export namespace Structify {
   export import JobsListResponse = Pagination.JobsListResponse;
 
   export import User = API.User;
+  export import JwtToAPIToken = API.JwtToAPIToken;
   export import NewToken = API.NewToken;
   export import UserInfo = API.UserInfo;
   export import UserUsageResponse = API.UserUsageResponse;
