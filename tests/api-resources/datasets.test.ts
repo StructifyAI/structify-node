@@ -120,6 +120,7 @@ describe('resource datasets', () => {
             { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
             { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
           ],
+          expected_cardinality: 0,
         },
         {
           description: 'description',
@@ -129,6 +130,7 @@ describe('resource datasets', () => {
             { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
             { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
           ],
+          expected_cardinality: 0,
         },
         {
           description: 'description',
@@ -138,6 +140,7 @@ describe('resource datasets', () => {
             { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
             { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
           ],
+          expected_cardinality: 0,
         },
       ],
     });
