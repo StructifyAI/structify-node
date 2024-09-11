@@ -2,6 +2,7 @@
 
 Types:
 
+- <code><a href="./src/resources/user.ts">JwtToAPIToken</a></code>
 - <code><a href="./src/resources/user.ts">NewToken</a></code>
 - <code><a href="./src/resources/user.ts">UserInfo</a></code>
 - <code><a href="./src/resources/user.ts">UserUsageResponse</a></code>
@@ -10,6 +11,7 @@ Methods:
 
 - <code title="post /user/create_test_token">client.user.<a href="./src/resources/user.ts">createTestToken</a>() -> NewToken</code>
 - <code title="get /user/info">client.user.<a href="./src/resources/user.ts">info</a>() -> UserInfo</code>
+- <code title="post /user/jwt_to_api_token">client.user.<a href="./src/resources/user.ts">jwtToAPIToken</a>() -> JwtToAPIToken</code>
 - <code title="get /user/usage">client.user.<a href="./src/resources/user.ts">usage</a>() -> UserUsageResponse</code>
 
 # Admin
