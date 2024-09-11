@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.12.0 (2024-09-11)
+
+Full Changelog: [v1.11.0...v1.12.0](https://github.com/StructifyAI/structify-node/compare/v1.11.0...v1.12.0)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#458](https://github.com/StructifyAI/structify-node/issues/458)) ([dcd394f](https://github.com/StructifyAI/structify-node/commit/dcd394f1124e3a333639f3ec269afa2eecd4a19c))
+* **api:** OpenAPI spec update via Stainless API ([#460](https://github.com/StructifyAI/structify-node/issues/460)) ([5307472](https://github.com/StructifyAI/structify-node/commit/530747238d9398e6c04a9bedf00beec72f935e1d))
+* **api:** OpenAPI spec update via Stainless API ([#461](https://github.com/StructifyAI/structify-node/issues/461)) ([62ce943](https://github.com/StructifyAI/structify-node/commit/62ce9433e966dfada353979dd4a261e3c657b28d))
+
 ## 1.11.0 (2024-09-11)
 
 Full Changelog: [v1.10.0...v1.11.0](https://github.com/StructifyAI/structify-node/compare/v1.10.0...v1.11.0)

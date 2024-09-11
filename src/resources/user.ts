@@ -8,7 +8,7 @@ export class User extends APIResource {
   /**
    * Creates a test token.
    */
-  createTestToken(options?: Core.RequestOptions): Core.APIPromise<NewToken> {
+  createTestToken(options?: Core.RequestOptions): Core.APIPromise<TokenResponse> {
     return this._client.post('/user/create_test_token', options);
   }
 
@@ -20,9 +20,21 @@ export class User extends APIResource {
   }
 
   /**
-   * Converts a JWT to an API token.
+   * JWTs are commonly used for authentication in web applications. They contain
+   * encoded information about the user and are typically short-lived for security
+   * reasons.
+   *
+   * This endpoint exists to allow clients who have authenticated via JWT (e.g.,
+   * through Supabase) to obtain a long-lived API token. The API token can then be
+   * used for subsequent requests to the API without requiring frequent
+   * re-authentication.
+   *
+   * This conversion process enhances security by separating the authentication
+   * mechanism (JWT) from the API access mechanism (API token), while providing a
+   * seamless experience for users transitioning from web-based authentication to API
+   * usage.
    */
-  jwtToAPIToken(options?: Core.RequestOptions): Core.APIPromise<JwtToAPIToken> {
+  jwtToAPIToken(options?: Core.RequestOptions): Core.APIPromise<TokenResponse> {
     return this._client.post('/user/jwt_to_api_token', options);
   }
 
@@ -34,11 +46,7 @@ export class User extends APIResource {
   }
 }
 
-export interface JwtToAPIToken {
-  jwt: string;
-}
-
-export interface NewToken {
+export interface TokenResponse {
   token: string;
 }
 
@@ -61,8 +69,7 @@ export interface UserUsageResponse {
 }
 
 export namespace User {
-  export import JwtToAPIToken = UserAPI.JwtToAPIToken;
-  export import NewToken = UserAPI.NewToken;
+  export import TokenResponse = UserAPI.TokenResponse;
   export import UserInfo = UserAPI.UserInfo;
   export import UserUsageResponse = UserAPI.UserUsageResponse;
 }

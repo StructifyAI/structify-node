@@ -476,7 +476,9 @@ export type StructureRunAsyncResponse = string;
 export interface StructureEnhanceParams {
   entity_id: string;
 
-  property_name: string;
+  property_name?: string | null;
+
+  relationship_name?: string | null;
 }
 
 export type StructureIsCompleteParams = Array<string>;
