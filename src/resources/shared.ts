@@ -73,7 +73,7 @@ export namespace DatasetDescriptor {
            * would be lower because people can have multiple job titles over time or at
            * different companies at the same time.
            */
-          property_match_probability: number;
+          match_transfer_probability: number;
         }
       }
     }
@@ -180,7 +180,7 @@ export namespace Table {
          * would be lower because people can have multiple job titles over time or at
          * different companies at the same time.
          */
-        property_match_probability: number;
+        match_transfer_probability: number;
       }
     }
   }
