@@ -20,11 +20,22 @@ export class User extends APIResource {
   }
 
   /**
+   * Converts a JWT to an API token.
+   */
+  jwtToAPIToken(options?: Core.RequestOptions): Core.APIPromise<JwtToAPIToken> {
+    return this._client.post('/user/jwt_to_api_token', options);
+  }
+
+  /**
    * Creates a test token.
    */
   usage(options?: Core.RequestOptions): Core.APIPromise<UserUsageResponse> {
     return this._client.get('/user/usage', options);
   }
+}
+
+export interface JwtToAPIToken {
+  jwt: string;
 }
 
 export interface NewToken {
@@ -50,6 +61,7 @@ export interface UserUsageResponse {
 }
 
 export namespace User {
+  export import JwtToAPIToken = UserAPI.JwtToAPIToken;
   export import NewToken = UserAPI.NewToken;
   export import UserInfo = UserAPI.UserInfo;
   export import UserUsageResponse = UserAPI.UserUsageResponse;
