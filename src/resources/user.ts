@@ -34,8 +34,8 @@ export class User extends APIResource {
    * seamless experience for users transitioning from web-based authentication to API
    * usage.
    */
-  jwtToAPIToken(options?: Core.RequestOptions): Core.APIPromise<TokenResponse> {
-    return this._client.post('/user/jwt_to_api_token', options);
+  jwtToAPIToken(jwt: string, options?: Core.RequestOptions): Core.APIPromise<TokenResponse> {
+    return this._client.post(`/user/jwt_to_api_token/${jwt}`, options);
   }
 
   /**

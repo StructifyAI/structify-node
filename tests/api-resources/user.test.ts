@@ -46,7 +46,7 @@ describe('resource user', () => {
   });
 
   test('jwtToAPIToken', async () => {
-    const responsePromise = client.user.jwtToAPIToken();
+    const responsePromise = client.user.jwtToAPIToken('jwt');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -58,7 +58,7 @@ describe('resource user', () => {
 
   test('jwtToAPIToken: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.user.jwtToAPIToken({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.user.jwtToAPIToken('jwt', { path: '/_stainless_unknown_path' })).rejects.toThrow(
       Structify.NotFoundError,
     );
   });
