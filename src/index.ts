@@ -266,8 +266,10 @@ export namespace Structify {
   export import Entities = API.Entities;
   export import EntityAddResponse = API.EntityAddResponse;
   export import EntityGetResponse = API.EntityGetResponse;
+  export import EntityMergeResponse = API.EntityMergeResponse;
   export import EntityAddParams = API.EntityAddParams;
   export import EntityGetParams = API.EntityGetParams;
+  export import EntityMergeParams = API.EntityMergeParams;
 
   export import Report = API.Report;
   export import ReportEntityResponse = API.ReportEntityResponse;

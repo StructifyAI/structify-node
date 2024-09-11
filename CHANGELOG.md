@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.10.0 (2024-09-11)
+
+Full Changelog: [v1.9.0...v1.10.0](https://github.com/StructifyAI/structify-node/compare/v1.9.0...v1.10.0)
+
+### Features
+
+* **api:** manual updates ([#453](https://github.com/StructifyAI/structify-node/issues/453)) ([6f99114](https://github.com/StructifyAI/structify-node/commit/6f9911482194fdd40cf12377b5fcb177e05c2537))
+* **api:** OpenAPI spec update via Stainless API ([#447](https://github.com/StructifyAI/structify-node/issues/447)) ([ac61278](https://github.com/StructifyAI/structify-node/commit/ac612780adfbad7acbbf8b1f7f39e1bb96ed14ea))
+* **api:** OpenAPI spec update via Stainless API ([#451](https://github.com/StructifyAI/structify-node/issues/451)) ([4a822af](https://github.com/StructifyAI/structify-node/commit/4a822af09443d3e81d278f15335453a61a60b019))
+* **api:** OpenAPI spec update via Stainless API ([#452](https://github.com/StructifyAI/structify-node/issues/452)) ([277015b](https://github.com/StructifyAI/structify-node/commit/277015b3b90b9646c62e6f9237dcaa7029a97b79))
+
+
+### Bug Fixes
+
+* **errors:** pass message through to APIConnectionError ([#449](https://github.com/StructifyAI/structify-node/issues/449)) ([3a5e1cf](https://github.com/StructifyAI/structify-node/commit/3a5e1cf6ec21dde3e70fcd18d98730f171b66da2))
+
+
+### Chores
+
+* better object fallback behaviour for casting errors ([#450](https://github.com/StructifyAI/structify-node/issues/450)) ([ae91670](https://github.com/StructifyAI/structify-node/commit/ae916705a7f523f101e3654cf38a586c8633be7c))
+
 ## 1.9.0 (2024-09-06)
 
 Full Changelog: [v1.8.0...v1.9.0](https://github.com/StructifyAI/structify-node/compare/v1.8.0...v1.9.0)
