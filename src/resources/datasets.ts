@@ -128,6 +128,8 @@ export interface DatasetViewRelationshipsResponse {
 
   label: string;
 
+  properties: Record<string, string>;
+
   to_id: string;
 }
 
@@ -174,6 +176,8 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
     from_id: string;
 
     label: string;
+
+    properties: Record<string, string>;
 
     to_id: string;
   }
