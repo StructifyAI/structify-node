@@ -194,6 +194,35 @@ describe('resource datasets', () => {
     const response = await client.datasets.get({ name: 'name' });
   });
 
+  test('match: only required params', async () => {
+    const responsePromise = client.datasets.match({ dataset: 'dataset', query_kg: {} });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('match: required and optional params', async () => {
+    const response = await client.datasets.match({
+      dataset: 'dataset',
+      query_kg: {
+        entities: [
+          { id: 0, properties: { foo: 'string' }, type: 'type' },
+          { id: 0, properties: { foo: 'string' }, type: 'type' },
+          { id: 0, properties: { foo: 'string' }, type: 'type' },
+        ],
+        relationships: [
+          { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
+          { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
+          { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
+        ],
+      },
+    });
+  });
+
   test('viewRelationships: only required params', async () => {
     const responsePromise = client.datasets.viewRelationships({ dataset: 'dataset', name: 'name' });
     const rawResponse = await responsePromise.asResponse();
