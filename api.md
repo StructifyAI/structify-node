@@ -10,7 +10,7 @@ Methods:
 
 - <code title="post /user/create_test_token">client.user.<a href="./src/resources/user.ts">createTestToken</a>() -> TokenResponse</code>
 - <code title="get /user/info">client.user.<a href="./src/resources/user.ts">info</a>() -> UserInfo</code>
-- <code title="post /user/jwt_to_api_token">client.user.<a href="./src/resources/user.ts">jwtToAPIToken</a>() -> TokenResponse</code>
+- <code title="post /user/jwt_to_api_token/{jwt}">client.user.<a href="./src/resources/user.ts">jwtToAPIToken</a>(jwt) -> TokenResponse</code>
 - <code title="get /user/usage">client.user.<a href="./src/resources/user.ts">usage</a>() -> UserUsageResponse</code>
 
 # Admin
@@ -32,6 +32,7 @@ Types:
 
 - <code><a href="./src/resources/datasets.ts">DatasetListResponse</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetGetResponse</a></code>
+- <code><a href="./src/resources/datasets.ts">DatasetMatchResponse</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetViewRelationshipsResponse</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetViewTableResponse</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetViewTablesWithRelationshipsResponse</a></code>
@@ -42,6 +43,7 @@ Methods:
 - <code title="get /dataset/list">client.datasets.<a href="./src/resources/datasets.ts">list</a>() -> DatasetListResponse</code>
 - <code title="delete /dataset/delete">client.datasets.<a href="./src/resources/datasets.ts">delete</a>({ ...params }) -> void</code>
 - <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets.ts">get</a>({ ...params }) -> DatasetGetResponse</code>
+- <code title="post /dataset/match">client.datasets.<a href="./src/resources/datasets.ts">match</a>({ ...params }) -> DatasetMatchResponse</code>
 - <code title="get /dataset/view_relationships">client.datasets.<a href="./src/resources/datasets.ts">viewRelationships</a>({ ...params }) -> DatasetViewRelationshipsResponsesJobsList</code>
 - <code title="get /dataset/view_table">client.datasets.<a href="./src/resources/datasets.ts">viewTable</a>({ ...params }) -> DatasetViewTableResponsesJobsList</code>
 - <code title="get /dataset/view_tables_with_relationships">client.datasets.<a href="./src/resources/datasets.ts">viewTablesWithRelationships</a>({ ...params }) -> DatasetViewTablesWithRelationshipsResponse</code>

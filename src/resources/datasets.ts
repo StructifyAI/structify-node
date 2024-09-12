@@ -45,6 +45,13 @@ export class Datasets extends APIResource {
   }
 
   /**
+   * Returns: The matched subgraph and a score for the match.
+   */
+  match(body: DatasetMatchParams, options?: Core.RequestOptions): Core.APIPromise<DatasetMatchResponse> {
+    return this._client.post('/dataset/match', { body, ...options });
+  }
+
+  /**
    * You need to specify a dataset and the name of the relationship
    */
   viewRelationships(
@@ -105,10 +112,23 @@ export interface DatasetGetResponse extends SharedAPI.DatasetDescriptor {
   created_timestamp: string;
 }
 
+export interface DatasetMatchResponse {
+  /**
+   * Knowledge graph info structured to deserialize and display in the same format
+   * that the LLM outputs. Also the first representation of an LLM output in the
+   * pipeline from raw tool output to being merged into a Neo4j DB
+   */
+  llm_kg: SharedAPI.KnowledgeGraph;
+
+  score: number;
+}
+
 export interface DatasetViewRelationshipsResponse {
   from_id: string;
 
   label: string;
+
+  properties: Record<string, string>;
 
   to_id: string;
 }
@@ -156,6 +176,8 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
     from_id: string;
 
     label: string;
+
+    properties: Record<string, string>;
 
     to_id: string;
   }
@@ -223,7 +245,7 @@ export namespace DatasetCreateParams {
            * would be lower because people can have multiple job titles over time or at
            * different companies at the same time.
            */
-          property_match_probability: number;
+          match_transfer_probability: number;
         }
       }
     }
@@ -242,6 +264,20 @@ export interface DatasetGetParams {
    * Information about the dataset
    */
   name: string;
+}
+
+export interface DatasetMatchParams {
+  /**
+   * The dataset to match against
+   */
+  dataset: string;
+
+  /**
+   * Knowledge graph info structured to deserialize and display in the same format
+   * that the LLM outputs. Also the first representation of an LLM output in the
+   * pipeline from raw tool output to being merged into a Neo4j DB
+   */
+  query_kg: SharedAPI.KnowledgeGraph;
 }
 
 export interface DatasetViewRelationshipsParams extends JobsListParams {
@@ -269,6 +305,7 @@ export interface DatasetViewTablesWithRelationshipsParams {
 export namespace Datasets {
   export import DatasetListResponse = DatasetsAPI.DatasetListResponse;
   export import DatasetGetResponse = DatasetsAPI.DatasetGetResponse;
+  export import DatasetMatchResponse = DatasetsAPI.DatasetMatchResponse;
   export import DatasetViewRelationshipsResponse = DatasetsAPI.DatasetViewRelationshipsResponse;
   export import DatasetViewTableResponse = DatasetsAPI.DatasetViewTableResponse;
   export import DatasetViewTablesWithRelationshipsResponse = DatasetsAPI.DatasetViewTablesWithRelationshipsResponse;
@@ -277,6 +314,7 @@ export namespace Datasets {
   export import DatasetCreateParams = DatasetsAPI.DatasetCreateParams;
   export import DatasetDeleteParams = DatasetsAPI.DatasetDeleteParams;
   export import DatasetGetParams = DatasetsAPI.DatasetGetParams;
+  export import DatasetMatchParams = DatasetsAPI.DatasetMatchParams;
   export import DatasetViewRelationshipsParams = DatasetsAPI.DatasetViewRelationshipsParams;
   export import DatasetViewTableParams = DatasetsAPI.DatasetViewTableParams;
   export import DatasetViewTablesWithRelationshipsParams = DatasetsAPI.DatasetViewTablesWithRelationshipsParams;
