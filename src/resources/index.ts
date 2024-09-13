@@ -69,20 +69,7 @@ export {
   JobListResponsesJobsList,
   Jobs,
 } from './jobs';
-export {
-  LabelUpdateResponse,
-  LabelGetMessagesResponse,
-  LabelLlmAssistResponse,
-  LabelRunResponse,
-  LabelSubmitResponse,
-  LabelVerifyResponse,
-  LabelUpdateParams,
-  LabelGetMessagesParams,
-  LabelRunParams,
-  LabelSubmitParams,
-  LabelVerifyParams,
-  Label,
-} from './label';
+export { Label } from './label';
 export {
   ReportEntityResponse,
   ReportStepResponse,
