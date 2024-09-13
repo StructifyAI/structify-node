@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as DocumentsAPI from './documents';
-import { type Response } from '../_shims/index';
 
 export class Documents extends APIResource {
   /**
@@ -27,8 +26,11 @@ export class Documents extends APIResource {
   /**
    * Download a file from the database
    */
-  download(body: DocumentDownloadParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
-    return this._client.post('/documents/download', { body, ...options, __binaryResponse: true });
+  download(
+    body: DocumentDownloadParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<DocumentDownloadResponse> {
+    return this._client.post('/documents/download', { body, ...options });
   }
 
   /**
@@ -52,6 +54,10 @@ export namespace DocumentListResponse {
 
     content?: Core.Uploadable | null;
   }
+}
+
+export interface DocumentDownloadResponse {
+  content: Core.Uploadable;
 }
 
 export interface DocumentDeleteParams {
@@ -78,6 +84,7 @@ export interface DocumentUploadParams {
 
 export namespace Documents {
   export import DocumentListResponse = DocumentsAPI.DocumentListResponse;
+  export import DocumentDownloadResponse = DocumentsAPI.DocumentDownloadResponse;
   export import DocumentDeleteParams = DocumentsAPI.DocumentDeleteParams;
   export import DocumentDownloadParams = DocumentsAPI.DocumentDownloadParams;
   export import DocumentUploadParams = DocumentsAPI.DocumentUploadParams;

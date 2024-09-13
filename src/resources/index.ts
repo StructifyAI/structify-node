@@ -45,6 +45,7 @@ export {
 } from './datasets';
 export {
   DocumentListResponse,
+  DocumentDownloadResponse,
   DocumentDeleteParams,
   DocumentDownloadParams,
   DocumentUploadParams,
