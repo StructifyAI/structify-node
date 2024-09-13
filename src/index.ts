@@ -244,6 +244,7 @@ export namespace Structify {
 
   export import Documents = API.Documents;
   export import DocumentListResponse = API.DocumentListResponse;
+  export import DocumentDownloadResponse = API.DocumentDownloadResponse;
   export import DocumentDeleteParams = API.DocumentDeleteParams;
   export import DocumentDownloadParams = API.DocumentDownloadParams;
   export import DocumentUploadParams = API.DocumentUploadParams;
