@@ -56,8 +56,6 @@ export interface ChatPrompt {
   messages: Array<ChatPrompt.Message>;
 
   metadata: ChatPrompt.Metadata;
-
-  human_llm_metadata?: ChatPrompt.HumanLlmMetadata | null;
 }
 
 export namespace ChatPrompt {
@@ -205,20 +203,6 @@ export namespace ChatPrompt {
        */
       width?: number;
     }
-  }
-
-  export interface HumanLlmMetadata {
-    /**
-     * A dataset is where you put multiple referential schemas.
-     *
-     * A dataset is a complete namespace where all references between schemas are held
-     * within the dataset.
-     */
-    descriptor: SharedAPI.DatasetDescriptor;
-
-    job_id: string;
-
-    user_email: string;
   }
 }
 

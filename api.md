@@ -150,24 +150,6 @@ Methods:
 
 # Label
 
-Types:
-
-- <code><a href="./src/resources/label.ts">LabelUpdateResponse</a></code>
-- <code><a href="./src/resources/label.ts">LabelGetMessagesResponse</a></code>
-- <code><a href="./src/resources/label.ts">LabelLlmAssistResponse</a></code>
-- <code><a href="./src/resources/label.ts">LabelRunResponse</a></code>
-- <code><a href="./src/resources/label.ts">LabelSubmitResponse</a></code>
-- <code><a href="./src/resources/label.ts">LabelVerifyResponse</a></code>
-
-Methods:
-
-- <code title="post /label/update/{step_id}">client.label.<a href="./src/resources/label.ts">update</a>(stepId, [ ...step_update ]) -> string</code>
-- <code title="get /label/refresh">client.label.<a href="./src/resources/label.ts">getMessages</a>({ ...params }) -> LabelGetMessagesResponse | null</code>
-- <code title="get /label/llm_assist/{uuid}">client.label.<a href="./src/resources/label.ts">llmAssist</a>(uuid) -> LabelLlmAssistResponse</code>
-- <code title="post /label/run_async">client.label.<a href="./src/resources/label.ts">run</a>({ ...params }) -> string</code>
-- <code title="post /label/submit/{uuid}">client.label.<a href="./src/resources/label.ts">submit</a>(uuid, [ ...label ]) -> string</code>
-- <code title="post /label/verify">client.label.<a href="./src/resources/label.ts">verify</a>({ ...params }) -> LabelVerifyResponse</code>
-
 # Shared
 
 Types:
