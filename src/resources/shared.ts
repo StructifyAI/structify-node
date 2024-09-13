@@ -83,7 +83,7 @@ export namespace DatasetDescriptor {
 export interface Entity {
   id: number;
 
-  properties: Record<string, string>;
+  properties: Record<string, string | number | boolean>;
 
   type: string;
 }
@@ -114,7 +114,7 @@ export interface Relationship {
 
   type: string;
 
-  properties?: Record<string, string>;
+  properties?: Record<string, string | number | boolean>;
 }
 
 /**
