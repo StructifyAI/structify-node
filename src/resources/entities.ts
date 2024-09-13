@@ -37,7 +37,7 @@ export interface EntityGetResponse {
 
   label: string;
 
-  properties: Record<string, string | null | boolean | null | number | null>;
+  properties: Record<string, string | number | boolean>;
 }
 
 export interface EntityMergeResponse {
@@ -47,7 +47,7 @@ export interface EntityMergeResponse {
 
   label: string;
 
-  properties: Record<string, string | null | boolean | null | number | null>;
+  properties: Record<string, string | number | boolean>;
 }
 
 export interface EntityAddParams {
