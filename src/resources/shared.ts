@@ -99,7 +99,7 @@ export interface KnowledgeGraph {
   relationships?: Array<Relationship>;
 }
 
-export type PropertyType = 'String' | PropertyType.Enum | 'Integer';
+export type PropertyType = 'String' | 'Boolean' | PropertyType.Enum | 'Integer';
 
 export namespace PropertyType {
   export interface Enum {
