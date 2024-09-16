@@ -80,4 +80,4 @@ export {
 } from './report';
 export { ServerInformation, Server } from './server';
 export { Source, SourceListResponse, SourceListParams, Sources } from './sources';
-export { TokenResponse, UserInfo, UserUsageResponse, UserCreateTestTokenParams, User } from './user';
+export { TokenResponse, UserInfo, UserUsageResponse, User } from './user';
