@@ -54,9 +54,11 @@ export {
 export {
   EntityAddResponse,
   EntityGetResponse,
+  EntityGetLocalSubgraphResponse,
   EntityMergeResponse,
   EntityAddParams,
   EntityGetParams,
+  EntityGetLocalSubgraphParams,
   EntityMergeParams,
   Entities,
 } from './entities';
