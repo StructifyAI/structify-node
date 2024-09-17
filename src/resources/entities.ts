@@ -20,6 +20,13 @@ export class Entities extends APIResource {
     return this._client.get('/entity/get', { query, ...options });
   }
 
+  getLocalSubgraph(
+    query: EntityGetLocalSubgraphParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<EntityGetLocalSubgraphResponse> {
+    return this._client.get('/entity/get_local_subgraph', { query, ...options });
+  }
+
   /**
    * merge an entity manually
    */
@@ -38,6 +45,34 @@ export interface EntityGetResponse {
   label: string;
 
   properties: Record<string, string | number | boolean>;
+}
+
+export interface EntityGetLocalSubgraphResponse {
+  neighbors: Array<EntityGetLocalSubgraphResponse.Neighbor>;
+
+  relationships: Array<EntityGetLocalSubgraphResponse.Relationship>;
+}
+
+export namespace EntityGetLocalSubgraphResponse {
+  export interface Neighbor {
+    id: string;
+
+    creation_time: string;
+
+    label: string;
+
+    properties: Record<string, string | number | boolean>;
+  }
+
+  export interface Relationship {
+    from_id: string;
+
+    label: string;
+
+    properties: Record<string, string | number | boolean>;
+
+    to_id: string;
+  }
 }
 
 export interface EntityMergeResponse {
@@ -67,6 +102,12 @@ export interface EntityGetParams {
   id: string;
 }
 
+export interface EntityGetLocalSubgraphParams {
+  id: string;
+
+  radius?: number;
+}
+
 export interface EntityMergeParams {
   entity_1_id: string;
 
@@ -76,8 +117,10 @@ export interface EntityMergeParams {
 export namespace Entities {
   export import EntityAddResponse = EntitiesAPI.EntityAddResponse;
   export import EntityGetResponse = EntitiesAPI.EntityGetResponse;
+  export import EntityGetLocalSubgraphResponse = EntitiesAPI.EntityGetLocalSubgraphResponse;
   export import EntityMergeResponse = EntitiesAPI.EntityMergeResponse;
   export import EntityAddParams = EntitiesAPI.EntityAddParams;
   export import EntityGetParams = EntitiesAPI.EntityGetParams;
+  export import EntityGetLocalSubgraphParams = EntitiesAPI.EntityGetLocalSubgraphParams;
   export import EntityMergeParams = EntitiesAPI.EntityMergeParams;
 }
