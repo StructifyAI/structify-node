@@ -83,7 +83,7 @@ export namespace DatasetDescriptor {
 export interface Entity {
   id: number;
 
-  properties: Record<string, string | number | boolean>;
+  properties: Record<string, string | boolean | number>;
 
   type: string;
 }
@@ -99,7 +99,7 @@ export interface KnowledgeGraph {
   relationships?: Array<Relationship>;
 }
 
-export type PropertyType = 'String' | 'Boolean' | PropertyType.Enum | 'Integer';
+export type PropertyType = 'String' | 'Boolean' | PropertyType.Enum | 'Integer' | 'Float';
 
 export namespace PropertyType {
   export interface Enum {
@@ -114,7 +114,7 @@ export interface Relationship {
 
   type: string;
 
-  properties?: Record<string, string | number | boolean>;
+  properties?: Record<string, string | boolean | number>;
 }
 
 /**
