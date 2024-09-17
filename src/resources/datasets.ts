@@ -126,7 +126,7 @@ export namespace DatasetMatchResponse {
 
     label: string;
 
-    properties: Record<string, string | number | boolean>;
+    properties: Record<string, string | boolean | number>;
   }
 }
 
@@ -135,7 +135,7 @@ export interface DatasetViewRelationshipsResponse {
 
   label: string;
 
-  properties: Record<string, string | number | boolean>;
+  properties: Record<string, string | boolean | number>;
 
   to_id: string;
 }
@@ -147,7 +147,7 @@ export interface DatasetViewTableResponse {
 
   label: string;
 
-  properties: Record<string, string | number | boolean>;
+  properties: Record<string, string | boolean | number>;
 }
 
 export interface DatasetViewTablesWithRelationshipsResponse {
@@ -166,7 +166,7 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     label: string;
 
-    properties: Record<string, string | number | boolean>;
+    properties: Record<string, string | boolean | number>;
   }
 
   export interface Entity {
@@ -176,7 +176,7 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     label: string;
 
-    properties: Record<string, string | number | boolean>;
+    properties: Record<string, string | boolean | number>;
   }
 
   export interface Relationship {
@@ -184,7 +184,7 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     label: string;
 
-    properties: Record<string, string | number | boolean>;
+    properties: Record<string, string | boolean | number>;
 
     to_id: string;
   }

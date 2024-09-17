@@ -44,7 +44,7 @@ export interface EntityGetResponse {
 
   label: string;
 
-  properties: Record<string, string | number | boolean>;
+  properties: Record<string, string | boolean | number>;
 }
 
 export interface EntityGetLocalSubgraphResponse {
@@ -61,7 +61,7 @@ export namespace EntityGetLocalSubgraphResponse {
 
     label: string;
 
-    properties: Record<string, string | number | boolean>;
+    properties: Record<string, string | boolean | number>;
   }
 
   export interface Relationship {
@@ -69,7 +69,7 @@ export namespace EntityGetLocalSubgraphResponse {
 
     label: string;
 
-    properties: Record<string, string | number | boolean>;
+    properties: Record<string, string | boolean | number>;
 
     to_id: string;
   }
@@ -82,7 +82,7 @@ export interface EntityMergeResponse {
 
   label: string;
 
-  properties: Record<string, string | number | boolean>;
+  properties: Record<string, string | boolean | number>;
 }
 
 export interface EntityAddParams {
