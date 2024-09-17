@@ -113,14 +113,21 @@ export interface DatasetGetResponse extends SharedAPI.DatasetDescriptor {
 }
 
 export interface DatasetMatchResponse {
-  /**
-   * Knowledge graph info structured to deserialize and display in the same format
-   * that the LLM outputs. Also the first representation of an LLM output in the
-   * pipeline from raw tool output to being merged into a Neo4j DB
-   */
-  llm_kg: SharedAPI.KnowledgeGraph;
+  entity: DatasetMatchResponse.Entity;
 
   score: number;
+}
+
+export namespace DatasetMatchResponse {
+  export interface Entity {
+    id: string;
+
+    creation_time: string;
+
+    label: string;
+
+    properties: Record<string, string | number | boolean>;
+  }
 }
 
 export interface DatasetViewRelationshipsResponse {
