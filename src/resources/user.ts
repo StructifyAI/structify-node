@@ -43,7 +43,7 @@ export class User extends APIResource {
   }
 
   /**
-   * Creates a test token.
+   * Returns usage statistics for the user.
    */
   usage(query?: UserUsageParams, options?: Core.RequestOptions): Core.APIPromise<UserUsageResponse>;
   usage(options?: Core.RequestOptions): Core.APIPromise<UserUsageResponse>;
@@ -73,6 +73,8 @@ export interface UserInfo {
 }
 
 export interface UserUsageResponse {
+  credits_used: number;
+
   num_entities: number;
 
   num_relationships: number;
