@@ -73,4 +73,11 @@ describe('resource user', () => {
       Structify.NotFoundError,
     );
   });
+
+  test('usage: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.user.usage({ dataset: 'dataset' }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
 });

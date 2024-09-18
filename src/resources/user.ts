@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../resource';
+import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as UserAPI from './user';
 
@@ -44,8 +45,16 @@ export class User extends APIResource {
   /**
    * Creates a test token.
    */
-  usage(options?: Core.RequestOptions): Core.APIPromise<UserUsageResponse> {
-    return this._client.get('/user/usage', options);
+  usage(query?: UserUsageParams, options?: Core.RequestOptions): Core.APIPromise<UserUsageResponse>;
+  usage(options?: Core.RequestOptions): Core.APIPromise<UserUsageResponse>;
+  usage(
+    query: UserUsageParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<UserUsageResponse> {
+    if (isRequestOptions(query)) {
+      return this.usage({}, query);
+    }
+    return this._client.get('/user/usage', { query, ...options });
   }
 }
 
@@ -77,9 +86,14 @@ export interface UserCreateTestTokenParams {
   is_admin?: boolean;
 }
 
+export interface UserUsageParams {
+  dataset?: string | null;
+}
+
 export namespace User {
   export import TokenResponse = UserAPI.TokenResponse;
   export import UserInfo = UserAPI.UserInfo;
   export import UserUsageResponse = UserAPI.UserUsageResponse;
   export import UserCreateTestTokenParams = UserAPI.UserCreateTestTokenParams;
+  export import UserUsageParams = UserAPI.UserUsageParams;
 }
