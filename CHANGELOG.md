@@ -1,5 +1,35 @@
 # Changelog
 
+## 1.15.0 (2024-09-22)
+
+Full Changelog: [v1.14.0...v1.15.0](https://github.com/StructifyAI/structify-node/compare/v1.14.0...v1.15.0)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#475](https://github.com/StructifyAI/structify-node/issues/475)) ([5c56fb8](https://github.com/StructifyAI/structify-node/commit/5c56fb877bcd8220f86503b00b96c03a407a5bd6))
+* **api:** OpenAPI spec update via Stainless API ([#477](https://github.com/StructifyAI/structify-node/issues/477)) ([cc5f4e7](https://github.com/StructifyAI/structify-node/commit/cc5f4e7b90825bdd16f2b5af9312394bab90d377))
+* **api:** OpenAPI spec update via Stainless API ([#478](https://github.com/StructifyAI/structify-node/issues/478)) ([3cadd75](https://github.com/StructifyAI/structify-node/commit/3cadd75ecb9410c3f79efc3aabb257e1f6fa3484))
+* **api:** OpenAPI spec update via Stainless API ([#479](https://github.com/StructifyAI/structify-node/issues/479)) ([7141620](https://github.com/StructifyAI/structify-node/commit/714162072b899dcc2b8c9e579be71597fd6b5e70))
+* **api:** OpenAPI spec update via Stainless API ([#480](https://github.com/StructifyAI/structify-node/issues/480)) ([a34e7a1](https://github.com/StructifyAI/structify-node/commit/a34e7a12f4f1a4f5d66eeb860deb764389caaaf7))
+* **api:** OpenAPI spec update via Stainless API ([#481](https://github.com/StructifyAI/structify-node/issues/481)) ([efdc630](https://github.com/StructifyAI/structify-node/commit/efdc630eeb2d336e322877f816e8ca65105b550e))
+* **api:** OpenAPI spec update via Stainless API ([#483](https://github.com/StructifyAI/structify-node/issues/483)) ([c905728](https://github.com/StructifyAI/structify-node/commit/c905728f540d47245cdee7514cd3f781c0f68cac))
+* **api:** OpenAPI spec update via Stainless API ([#484](https://github.com/StructifyAI/structify-node/issues/484)) ([b1c7b58](https://github.com/StructifyAI/structify-node/commit/b1c7b58c2b6bf36fe081733c547818a78f4a5870))
+* **api:** OpenAPI spec update via Stainless API ([#486](https://github.com/StructifyAI/structify-node/issues/486)) ([b2c83fa](https://github.com/StructifyAI/structify-node/commit/b2c83fa08b54e67f0d7e535a539537404e4111e6))
+* **api:** OpenAPI spec update via Stainless API ([#487](https://github.com/StructifyAI/structify-node/issues/487)) ([2500f4a](https://github.com/StructifyAI/structify-node/commit/2500f4a323219a94e9c6f42d7104f512a6d671ea))
+* **api:** OpenAPI spec update via Stainless API ([#489](https://github.com/StructifyAI/structify-node/issues/489)) ([3b36b39](https://github.com/StructifyAI/structify-node/commit/3b36b39b1cdd62dd6d94c78f0d0e6f519548c629))
+* **api:** OpenAPI spec update via Stainless API ([#490](https://github.com/StructifyAI/structify-node/issues/490)) ([ec38044](https://github.com/StructifyAI/structify-node/commit/ec38044b029f3e9dcab1ac63dcfd1cc1bf11d824))
+* **client:** send retry count header ([#488](https://github.com/StructifyAI/structify-node/issues/488)) ([8eb2910](https://github.com/StructifyAI/structify-node/commit/8eb2910fb1378fbce3d609296e0feba07d4be027))
+
+
+### Bug Fixes
+
+* **types:** remove leftover polyfill usage ([#485](https://github.com/StructifyAI/structify-node/issues/485)) ([7d4c182](https://github.com/StructifyAI/structify-node/commit/7d4c182ef2672081d3768a8fb5c31505a39c8698))
+
+
+### Chores
+
+* **internal:** add dev dependency ([#482](https://github.com/StructifyAI/structify-node/issues/482)) ([3f12f55](https://github.com/StructifyAI/structify-node/commit/3f12f5580449a76d6e3e79c58b64848a854e437f))
+
 ## 1.14.0 (2024-09-13)
 
 Full Changelog: [v1.13.0...v1.14.0](https://github.com/StructifyAI/structify-node/compare/v1.13.0...v1.14.0)
