@@ -67,6 +67,7 @@ export {
   JobDeleteResponse,
   JobCancelResponse,
   JobGetResponse,
+  JobGetStepGraphResponse,
   JobGetStepsResponse,
   JobListParams,
   JobListResponsesJobsList,
