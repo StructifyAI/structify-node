@@ -256,6 +256,7 @@ export namespace Structify {
   export import JobDeleteResponse = API.JobDeleteResponse;
   export import JobCancelResponse = API.JobCancelResponse;
   export import JobGetResponse = API.JobGetResponse;
+  export import JobGetStepGraphResponse = API.JobGetStepGraphResponse;
   export import JobGetStepsResponse = API.JobGetStepsResponse;
   export import JobListResponsesJobsList = API.JobListResponsesJobsList;
   export import JobListParams = API.JobListParams;
