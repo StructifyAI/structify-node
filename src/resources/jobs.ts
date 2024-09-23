@@ -94,6 +94,11 @@ export interface JobListResponse {
    * What time did the job start running?
    */
   run_started_time?: string | null;
+
+  /**
+   * How many steps were taken for this job?
+   */
+  step_count?: number | null;
 }
 
 export type JobDeleteResponse = string;
@@ -109,6 +114,11 @@ export interface JobCancelResponse {
    * What time did the job start running?
    */
   run_started_time?: string | null;
+
+  /**
+   * How many steps were taken for this job?
+   */
+  step_count?: number | null;
 }
 
 export interface JobGetResponse {
@@ -129,6 +139,11 @@ export namespace JobGetResponse {
      * What time did the job start running?
      */
     run_started_time?: string | null;
+
+    /**
+     * How many steps were taken for this job?
+     */
+    step_count?: number | null;
   }
 }
 
