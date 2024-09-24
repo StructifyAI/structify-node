@@ -90,15 +90,12 @@ export interface JobListResponse {
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
+  message?: string | null;
+
   /**
    * What time did the job start running?
    */
   run_started_time?: string | null;
-
-  /**
-   * How many steps were taken for this job?
-   */
-  step_count?: number | null;
 }
 
 export type JobDeleteResponse = string;
@@ -110,15 +107,12 @@ export interface JobCancelResponse {
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
+  message?: string | null;
+
   /**
    * What time did the job start running?
    */
   run_started_time?: string | null;
-
-  /**
-   * How many steps were taken for this job?
-   */
-  step_count?: number | null;
 }
 
 export interface JobGetResponse {
@@ -135,15 +129,12 @@ export namespace JobGetResponse {
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
+    message?: string | null;
+
     /**
      * What time did the job start running?
      */
     run_started_time?: string | null;
-
-    /**
-     * How many steps were taken for this job?
-     */
-    step_count?: number | null;
   }
 }
 
