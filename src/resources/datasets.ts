@@ -291,18 +291,24 @@ export interface DatasetViewRelationshipsParams extends JobsListParams {
   dataset: string;
 
   name: string;
+
+  job_id?: string | null;
 }
 
 export interface DatasetViewTableParams extends JobsListParams {
   dataset: string;
 
   name: string;
+
+  job_id?: string | null;
 }
 
 export interface DatasetViewTablesWithRelationshipsParams {
   dataset: string;
 
   name: string;
+
+  job_id?: string | null;
 
   limit?: number;
 
