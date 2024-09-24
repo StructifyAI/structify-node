@@ -175,6 +175,8 @@ export namespace JobGetStepGraphResponse {
     screenshot?: Core.Uploadable | null;
 
     skipped_reason?: string | null;
+
+    step_index?: number | null;
   }
 
   export interface Transition {
