@@ -95,7 +95,7 @@ export interface EntityAddParams {
    */
   kg: SharedAPI.KnowledgeGraph;
 
-  source: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage;
+  source?: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage;
 }
 
 export namespace EntityAddParams {
