@@ -167,6 +167,8 @@ export namespace JobGetStepGraphResponse {
 
     skipped_reason?: string | null;
 
+    state_change_message?: string | null;
+
     step_index?: number | null;
   }
 
