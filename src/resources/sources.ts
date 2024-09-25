@@ -13,12 +13,7 @@ export class Sources extends APIResource {
   }
 }
 
-export type Source =
-  | Source.Web
-  | Source.Document
-  | 'UserCreated'
-  | Source.UserCreatedWeb
-  | Source.UserCreatedDocument;
+export type Source = Source.Web | Source.Document | 'UserCreated' | Source.UserCreatedWeb;
 
 export namespace Source {
   export interface Web {
@@ -50,16 +45,6 @@ export namespace Source {
       url: string;
     }
   }
-
-  export interface UserCreatedDocument {
-    UserCreatedDocument: UserCreatedDocument.UserCreatedDocument;
-  }
-
-  export namespace UserCreatedDocument {
-    export interface UserCreatedDocument {
-      name: string;
-    }
-  }
 }
 
 export type SourceListResponse = Array<SourceListResponse.SourceListResponseItem>;
@@ -72,11 +57,7 @@ export namespace SourceListResponse {
 
     link: SourcesAPI.Source;
 
-    location:
-      | SourceListResponseItem.Text
-      | SourceListResponseItem.Visual
-      | SourceListResponseItem.Page
-      | 'None';
+    location: SourceListResponseItem.Text | SourceListResponseItem.Visual | 'None';
   }
 
   export namespace SourceListResponseItem {
@@ -99,16 +80,6 @@ export namespace SourceListResponse {
         x: number;
 
         y: number;
-      }
-    }
-
-    export interface Page {
-      Page: Page.Page;
-    }
-
-    export namespace Page {
-      export interface Page {
-        page_number: number;
       }
     }
   }
