@@ -95,7 +95,17 @@ export interface EntityAddParams {
    */
   kg: SharedAPI.KnowledgeGraph;
 
-  source_website?: string | null;
+  source: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage;
+}
+
+export namespace EntityAddParams {
+  export interface Web {
+    Web: string;
+  }
+
+  export interface DocumentPage {
+    DocumentPage: Array<unknown>;
+  }
 }
 
 export interface EntityGetParams {
