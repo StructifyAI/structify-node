@@ -10,7 +10,7 @@ const client = new Structify({
 
 describe('resource entities', () => {
   test('add: only required params', async () => {
-    const responsePromise = client.entities.add({ dataset_name: 'dataset_name', kg: {}, source: 'None' });
+    const responsePromise = client.entities.add({ dataset_name: 'dataset_name', kg: {} });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
