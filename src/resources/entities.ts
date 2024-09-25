@@ -95,7 +95,7 @@ export interface EntityAddParams {
    */
   kg: SharedAPI.KnowledgeGraph;
 
-  source: 'None' | EntityAddParams.Web | EntityAddParams.Pdf;
+  source: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage;
 }
 
 export namespace EntityAddParams {
@@ -103,8 +103,8 @@ export namespace EntityAddParams {
     Web: string;
   }
 
-  export interface Pdf {
-    PDF: Array<unknown>;
+  export interface DocumentPage {
+    DocumentPage: Array<unknown>;
   }
 }
 
