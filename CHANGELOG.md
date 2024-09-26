@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.19.0 (2024-09-26)
+
+Full Changelog: [v1.18.0...v1.19.0](https://github.com/StructifyAI/structify-node/compare/v1.18.0...v1.19.0)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#505](https://github.com/StructifyAI/structify-node/issues/505)) ([ec96489](https://github.com/StructifyAI/structify-node/commit/ec9648915d5f1fca36181ee793be257616bc6f4a))
+* **api:** OpenAPI spec update via Stainless API ([#506](https://github.com/StructifyAI/structify-node/issues/506)) ([a446812](https://github.com/StructifyAI/structify-node/commit/a446812be8ba591bac8af63e96bc906c4dc100b5))
+* **api:** OpenAPI spec update via Stainless API ([#507](https://github.com/StructifyAI/structify-node/issues/507)) ([6fc9d5c](https://github.com/StructifyAI/structify-node/commit/6fc9d5cde4f2c8ffbfac635c6f9fc0705793ed07))
+* **api:** OpenAPI spec update via Stainless API ([#508](https://github.com/StructifyAI/structify-node/issues/508)) ([e7e0c69](https://github.com/StructifyAI/structify-node/commit/e7e0c69a0a0ffefd884676053baf240aabd42d80))
+* **api:** OpenAPI spec update via Stainless API ([#509](https://github.com/StructifyAI/structify-node/issues/509)) ([ad819df](https://github.com/StructifyAI/structify-node/commit/ad819df61b85bc2e462c535860aeb19c7a3f90e7))
+* **api:** OpenAPI spec update via Stainless API ([#510](https://github.com/StructifyAI/structify-node/issues/510)) ([c26ec4e](https://github.com/StructifyAI/structify-node/commit/c26ec4e1dc9e6056b616c72d816a38eeb7288d3e))
+
+
+### Chores
+
+* **internal:** codegen related update ([#503](https://github.com/StructifyAI/structify-node/issues/503)) ([c753dfa](https://github.com/StructifyAI/structify-node/commit/c753dfa38751d64aae7a66bbc8a7060325373ab9))
+* **internal:** codegen related update ([#511](https://github.com/StructifyAI/structify-node/issues/511)) ([6c2204c](https://github.com/StructifyAI/structify-node/commit/6c2204c0878c053263583223d99cae99a3258cb4))
+
 ## 1.18.0 (2024-09-25)
 
 Full Changelog: [v1.17.0...v1.18.0](https://github.com/StructifyAI/structify-node/compare/v1.17.0...v1.18.0)
