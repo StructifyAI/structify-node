@@ -35,7 +35,7 @@ describe('resource entities', () => {
           { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
         ],
       },
-      source_website: 'source_website',
+      source: 'None',
     });
   });
 
