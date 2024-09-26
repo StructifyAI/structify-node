@@ -48,7 +48,7 @@ export type DocumentListResponse = Array<DocumentListResponse.DocumentListRespon
 
 export namespace DocumentListResponse {
   export interface DocumentListResponseItem {
-    document_type: 'Text' | 'PDF' | 'SEC';
+    document_type: 'Text' | 'PDF' | 'SEC' | 'ExecutionHistory';
 
     name: string;
 
@@ -77,7 +77,7 @@ export interface DocumentDownloadParams {
 export interface DocumentUploadParams {
   content: Core.Uploadable;
 
-  file_type: 'Text' | 'PDF' | 'SEC';
+  file_type: 'Text' | 'PDF' | 'SEC' | 'ExecutionHistory';
 
   path: Core.Uploadable;
 }
