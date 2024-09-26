@@ -565,8 +565,6 @@ export namespace StructureRunAsyncParams {
         content: Core.Uploadable;
 
         document_name: string;
-
-        document_page: number;
       }
     }
   }
