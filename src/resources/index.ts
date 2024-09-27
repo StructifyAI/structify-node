@@ -55,10 +55,12 @@ export {
   EntityAddResponse,
   EntityGetResponse,
   EntityGetLocalSubgraphResponse,
+  EntityGetSourceEntitiesResponse,
   EntityMergeResponse,
   EntityAddParams,
   EntityGetParams,
   EntityGetLocalSubgraphParams,
+  EntityGetSourceEntitiesParams,
   EntityMergeParams,
   Entities,
 } from './entities';
