@@ -4,6 +4,7 @@ import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as EntitiesAPI from './entities';
 import * as SharedAPI from './shared';
+import * as SourcesAPI from './sources';
 
 export class Entities extends APIResource {
   /**
@@ -25,6 +26,13 @@ export class Entities extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<EntityGetLocalSubgraphResponse> {
     return this._client.get('/entity/get_local_subgraph', { query, ...options });
+  }
+
+  getSourceEntities(
+    query: EntityGetSourceEntitiesParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<EntityGetSourceEntitiesResponse> {
+    return this._client.get('/entity/get_source_entities', { query, ...options });
   }
 
   /**
@@ -75,6 +83,72 @@ export namespace EntityGetLocalSubgraphResponse {
   }
 }
 
+export interface EntityGetSourceEntitiesResponse {
+  source_entities: Array<EntityGetSourceEntitiesResponse.SourceEntity>;
+
+  source_nodes: Array<EntityGetSourceEntitiesResponse.SourceNode>;
+}
+
+export namespace EntityGetSourceEntitiesResponse {
+  export interface SourceEntity {
+    id: string;
+
+    creation_time: string;
+
+    label: string;
+
+    llm_id: number;
+
+    properties: Record<string, string | boolean | number>;
+  }
+
+  export interface SourceNode {
+    id: string;
+
+    creation_time: string;
+
+    link: SourcesAPI.Source;
+
+    location: SourceNode.Text | SourceNode.Visual | SourceNode.Page | 'None';
+
+    user_specified: boolean;
+  }
+
+  export namespace SourceNode {
+    export interface Text {
+      Text: Text.Text;
+    }
+
+    export namespace Text {
+      export interface Text {
+        byte_offset: number;
+      }
+    }
+
+    export interface Visual {
+      Visual: Visual.Visual;
+    }
+
+    export namespace Visual {
+      export interface Visual {
+        x: number;
+
+        y: number;
+      }
+    }
+
+    export interface Page {
+      Page: Page.Page;
+    }
+
+    export namespace Page {
+      export interface Page {
+        page_number: number;
+      }
+    }
+  }
+}
+
 export interface EntityMergeResponse {
   id: string;
 
@@ -118,6 +192,10 @@ export interface EntityGetLocalSubgraphParams {
   radius?: number;
 }
 
+export interface EntityGetSourceEntitiesParams {
+  id: string;
+}
+
 export interface EntityMergeParams {
   entity_1_id: string;
 
@@ -128,9 +206,11 @@ export namespace Entities {
   export import EntityAddResponse = EntitiesAPI.EntityAddResponse;
   export import EntityGetResponse = EntitiesAPI.EntityGetResponse;
   export import EntityGetLocalSubgraphResponse = EntitiesAPI.EntityGetLocalSubgraphResponse;
+  export import EntityGetSourceEntitiesResponse = EntitiesAPI.EntityGetSourceEntitiesResponse;
   export import EntityMergeResponse = EntitiesAPI.EntityMergeResponse;
   export import EntityAddParams = EntitiesAPI.EntityAddParams;
   export import EntityGetParams = EntitiesAPI.EntityGetParams;
   export import EntityGetLocalSubgraphParams = EntitiesAPI.EntityGetLocalSubgraphParams;
+  export import EntityGetSourceEntitiesParams = EntitiesAPI.EntityGetSourceEntitiesParams;
   export import EntityMergeParams = EntitiesAPI.EntityMergeParams;
 }
