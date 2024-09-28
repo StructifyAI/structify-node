@@ -567,6 +567,8 @@ export namespace StructureRunAsyncParams {
         document_name: string;
 
         document_page: number;
+
+        ocr_content?: string | null;
       }
     }
   }
