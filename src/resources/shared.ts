@@ -131,7 +131,15 @@ export interface KnowledgeGraph {
   relationships?: Array<Relationship>;
 }
 
-export type PropertyType = 'String' | 'Boolean' | PropertyType.Enum | 'Integer' | 'Float' | 'Date' | 'URL';
+export type PropertyType =
+  | 'String'
+  | 'Boolean'
+  | PropertyType.Enum
+  | 'Integer'
+  | 'Float'
+  | 'Date'
+  | 'URL'
+  | 'Money';
 
 export namespace PropertyType {
   export interface Enum {
