@@ -302,6 +302,8 @@ export namespace Structify {
   export import StructureRunAsyncParams = API.StructureRunAsyncParams;
 
   export import Label = API.Label;
+  export import LabelVerifyResponse = API.LabelVerifyResponse;
+  export import LabelVerifyParams = API.LabelVerifyParams;
 
   export import Shared = API.Shared;
   export import DatasetDescriptor = API.DatasetDescriptor;

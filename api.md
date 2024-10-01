@@ -157,6 +157,14 @@ Methods:
 
 # Label
 
+Types:
+
+- <code><a href="./src/resources/label.ts">LabelVerifyResponse</a></code>
+
+Methods:
+
+- <code title="post /label/verify">client.label.<a href="./src/resources/label.ts">verify</a>({ ...params }) -> LabelVerifyResponse</code>
+
 # Shared
 
 Types:
