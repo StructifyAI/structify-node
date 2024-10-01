@@ -84,9 +84,7 @@ export namespace EntityGetLocalSubgraphResponse {
 }
 
 export interface EntityGetSourceEntitiesResponse {
-  source_entities: Array<EntityGetSourceEntitiesResponse.SourceEntity>;
-
-  source_nodes: Array<EntityGetSourceEntitiesResponse.SourceNode>;
+  source_entities: Array<Array<EntityGetSourceEntitiesResponse.SourceEntity>>;
 }
 
 export namespace EntityGetSourceEntitiesResponse {
@@ -97,24 +95,18 @@ export namespace EntityGetSourceEntitiesResponse {
 
     label: string;
 
-    llm_id: number;
-
-    properties: Record<string, string | boolean | number>;
-  }
-
-  export interface SourceNode {
-    id: string;
-
-    creation_time: string;
-
     link: SourcesAPI.Source;
 
-    location: SourceNode.Text | SourceNode.Visual | SourceNode.Page | 'None';
+    llm_id: number;
+
+    location: SourceEntity.Text | SourceEntity.Visual | SourceEntity.Page | 'None';
+
+    properties: Record<string, string | boolean | number>;
 
     user_specified: boolean;
   }
 
-  export namespace SourceNode {
+  export namespace SourceEntity {
     export interface Text {
       Text: Text.Text;
     }
