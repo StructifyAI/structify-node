@@ -75,7 +75,7 @@ export {
   JobListResponsesJobsList,
   Jobs,
 } from './jobs';
-export { Label } from './label';
+export { LabelVerifyResponse, LabelVerifyParams, Label } from './label';
 export {
   ReportEntityResponse,
   ReportStepResponse,
