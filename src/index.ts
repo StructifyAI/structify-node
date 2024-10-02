@@ -275,11 +275,13 @@ export namespace Structify {
   export import EntityGetLocalSubgraphResponse = API.EntityGetLocalSubgraphResponse;
   export import EntityGetSourceEntitiesResponse = API.EntityGetSourceEntitiesResponse;
   export import EntityMergeResponse = API.EntityMergeResponse;
+  export import EntitySearchResponse = API.EntitySearchResponse;
   export import EntityAddParams = API.EntityAddParams;
   export import EntityGetParams = API.EntityGetParams;
   export import EntityGetLocalSubgraphParams = API.EntityGetLocalSubgraphParams;
   export import EntityGetSourceEntitiesParams = API.EntityGetSourceEntitiesParams;
   export import EntityMergeParams = API.EntityMergeParams;
+  export import EntitySearchParams = API.EntitySearchParams;
 
   export import Report = API.Report;
   export import ReportEntityResponse = API.ReportEntityResponse;
