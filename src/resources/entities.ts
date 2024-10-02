@@ -41,6 +41,13 @@ export class Entities extends APIResource {
   merge(body: EntityMergeParams, options?: Core.RequestOptions): Core.APIPromise<EntityMergeResponse> {
     return this._client.post('/entity/merge', { body, ...options });
   }
+
+  /**
+   * Search for entities based on the given query
+   */
+  search(body: EntitySearchParams, options?: Core.RequestOptions): Core.APIPromise<EntitySearchResponse> {
+    return this._client.post('/entity/search', { body, ...options });
+  }
 }
 
 export type EntityAddResponse = Array<string>;
@@ -151,6 +158,20 @@ export interface EntityMergeResponse {
   properties: Record<string, string | boolean | number>;
 }
 
+export type EntitySearchResponse = Array<EntitySearchResponse.EntitySearchResponseItem>;
+
+export namespace EntitySearchResponse {
+  export interface EntitySearchResponseItem {
+    id: string;
+
+    creation_time: string;
+
+    label: string;
+
+    properties: Record<string, string | boolean | number>;
+  }
+}
+
 export interface EntityAddParams {
   dataset_name: string;
 
@@ -194,15 +215,25 @@ export interface EntityMergeParams {
   entity_2_id: string;
 }
 
+export interface EntitySearchParams {
+  dataset_name: string;
+
+  query: string;
+
+  table_name: string;
+}
+
 export namespace Entities {
   export import EntityAddResponse = EntitiesAPI.EntityAddResponse;
   export import EntityGetResponse = EntitiesAPI.EntityGetResponse;
   export import EntityGetLocalSubgraphResponse = EntitiesAPI.EntityGetLocalSubgraphResponse;
   export import EntityGetSourceEntitiesResponse = EntitiesAPI.EntityGetSourceEntitiesResponse;
   export import EntityMergeResponse = EntitiesAPI.EntityMergeResponse;
+  export import EntitySearchResponse = EntitiesAPI.EntitySearchResponse;
   export import EntityAddParams = EntitiesAPI.EntityAddParams;
   export import EntityGetParams = EntitiesAPI.EntityGetParams;
   export import EntityGetLocalSubgraphParams = EntitiesAPI.EntityGetLocalSubgraphParams;
   export import EntityGetSourceEntitiesParams = EntitiesAPI.EntityGetSourceEntitiesParams;
   export import EntityMergeParams = EntitiesAPI.EntityMergeParams;
+  export import EntitySearchParams = EntitiesAPI.EntitySearchParams;
 }
