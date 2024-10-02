@@ -57,11 +57,13 @@ export {
   EntityGetLocalSubgraphResponse,
   EntityGetSourceEntitiesResponse,
   EntityMergeResponse,
+  EntitySearchResponse,
   EntityAddParams,
   EntityGetParams,
   EntityGetLocalSubgraphParams,
   EntityGetSourceEntitiesParams,
   EntityMergeParams,
+  EntitySearchParams,
   Entities,
 } from './entities';
 export {
