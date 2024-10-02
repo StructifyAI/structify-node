@@ -67,6 +67,7 @@ export namespace ChatPrompt {
       | DecodingParams.RepeatPenalty
       | DecodingParams.Temperature
       | DecodingParams.StopTokens
+      | DecodingParams.LogitBias
       | DecodingParams.Functions
       | DecodingParams.JsonValidator
       | DecodingParams.RegexValidator
@@ -99,6 +100,10 @@ export namespace ChatPrompt {
 
     export interface StopTokens {
       StopTokens: Array<string>;
+    }
+
+    export interface LogitBias {
+      LogitBias: Record<string, number>;
     }
 
     export interface Functions {
