@@ -48,6 +48,10 @@ export class Entities extends APIResource {
   search(body: EntitySearchParams, options?: Core.RequestOptions): Core.APIPromise<EntitySearchResponse> {
     return this._client.post('/entity/search', { body, ...options });
   }
+
+  view(query: EntityViewParams, options?: Core.RequestOptions): Core.APIPromise<EntityViewResponse> {
+    return this._client.get('/entity/view', { query, ...options });
+  }
 }
 
 export type EntityAddResponse = Array<string>;
@@ -172,6 +176,108 @@ export namespace EntitySearchResponse {
   }
 }
 
+export interface EntityViewResponse {
+  connected_entities: Array<EntityViewResponse.ConnectedEntity>;
+
+  entity: EntityViewResponse.Entity;
+
+  last_updated: string;
+
+  relationships: Array<EntityViewResponse.Relationship>;
+
+  similar_entities: Array<EntityViewResponse.SimilarEntity>;
+
+  sources: Array<EntityViewResponse.Source>;
+}
+
+export namespace EntityViewResponse {
+  export interface ConnectedEntity {
+    id: string;
+
+    creation_time: string;
+
+    label: string;
+
+    properties: Record<string, string | boolean | number>;
+  }
+
+  export interface Entity {
+    id: string;
+
+    creation_time: string;
+
+    label: string;
+
+    properties: Record<string, string | boolean | number>;
+  }
+
+  export interface Relationship {
+    from_id: string;
+
+    label: string;
+
+    properties: Record<string, string | boolean | number>;
+
+    to_id: string;
+  }
+
+  export interface SimilarEntity {
+    id: string;
+
+    creation_time: string;
+
+    label: string;
+
+    properties: Record<string, string | boolean | number>;
+  }
+
+  export interface Source {
+    id: string;
+
+    creation_time: string;
+
+    link: SourcesAPI.Source;
+
+    location: Source.Text | Source.Visual | Source.Page | 'None';
+
+    user_specified: boolean;
+  }
+
+  export namespace Source {
+    export interface Text {
+      Text: Text.Text;
+    }
+
+    export namespace Text {
+      export interface Text {
+        byte_offset: number;
+      }
+    }
+
+    export interface Visual {
+      Visual: Visual.Visual;
+    }
+
+    export namespace Visual {
+      export interface Visual {
+        x: number;
+
+        y: number;
+      }
+    }
+
+    export interface Page {
+      Page: Page.Page;
+    }
+
+    export namespace Page {
+      export interface Page {
+        page_number: number;
+      }
+    }
+  }
+}
+
 export interface EntityAddParams {
   dataset_name: string;
 
@@ -223,6 +329,10 @@ export interface EntitySearchParams {
   table_name: string;
 }
 
+export interface EntityViewParams {
+  id: string;
+}
+
 export namespace Entities {
   export import EntityAddResponse = EntitiesAPI.EntityAddResponse;
   export import EntityGetResponse = EntitiesAPI.EntityGetResponse;
@@ -230,10 +340,12 @@ export namespace Entities {
   export import EntityGetSourceEntitiesResponse = EntitiesAPI.EntityGetSourceEntitiesResponse;
   export import EntityMergeResponse = EntitiesAPI.EntityMergeResponse;
   export import EntitySearchResponse = EntitiesAPI.EntitySearchResponse;
+  export import EntityViewResponse = EntitiesAPI.EntityViewResponse;
   export import EntityAddParams = EntitiesAPI.EntityAddParams;
   export import EntityGetParams = EntitiesAPI.EntityGetParams;
   export import EntityGetLocalSubgraphParams = EntitiesAPI.EntityGetLocalSubgraphParams;
   export import EntityGetSourceEntitiesParams = EntitiesAPI.EntityGetSourceEntitiesParams;
   export import EntityMergeParams = EntitiesAPI.EntityMergeParams;
   export import EntitySearchParams = EntitiesAPI.EntitySearchParams;
+  export import EntityViewParams = EntitiesAPI.EntityViewParams;
 }
