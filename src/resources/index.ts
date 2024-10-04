@@ -58,12 +58,14 @@ export {
   EntityGetSourceEntitiesResponse,
   EntityMergeResponse,
   EntitySearchResponse,
+  EntityViewResponse,
   EntityAddParams,
   EntityGetParams,
   EntityGetLocalSubgraphParams,
   EntityGetSourceEntitiesParams,
   EntityMergeParams,
   EntitySearchParams,
+  EntityViewParams,
   Entities,
 } from './entities';
 export {
