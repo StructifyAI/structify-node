@@ -26,6 +26,26 @@ Methods:
 
 - <code title="get /admin/users/list">client.admin.users.<a href="./src/resources/admin/users.ts">list</a>() -> UserListResponse</code>
 
+## TrainingDatasets
+
+Types:
+
+- <code><a href="./src/resources/admin/training-datasets.ts">AddDatasetRequest</a></code>
+- <code><a href="./src/resources/admin/training-datasets.ts">AddDatumRequest</a></code>
+- <code><a href="./src/resources/admin/training-datasets.ts">GetSizeQuery</a></code>
+- <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatumResponse</a></code>
+- <code><a href="./src/resources/admin/training-datasets.ts">UpdateDatumRequest</a></code>
+- <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatasetSizeResponse</a></code>
+
+Methods:
+
+- <code title="post /admin/training_datasets">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">add</a>({ ...params }) -> void</code>
+- <code title="post /admin/training_datasets/{name}/data">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">addDatum</a>(name, { ...params }) -> void</code>
+- <code title="get /admin/training_datasets/{name}/next_unverified">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getNextUnverified</a>(name) -> TrainingDatumResponse</code>
+- <code title="post /admin/training_datasets/{name}/reset_pending">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">resetPending</a>(name) -> void</code>
+- <code title="get /admin/training_datasets/{name}/size">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">size</a>(name) -> TrainingDatasetSizeResponse</code>
+- <code title="put /admin/training_data/{id}">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">updateDatum</a>(id, { ...params }) -> void</code>
+
 # Datasets
 
 Types:
