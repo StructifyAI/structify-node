@@ -50,6 +50,14 @@ export class TrainingDatasets extends APIResource {
   }
 
   /**
+   * Returns the number of training data in the specified dataset, filtered by
+   * status.
+   */
+  size(name: string, options?: Core.RequestOptions): Core.APIPromise<TrainingDatasetSizeResponse> {
+    return this._client.get(`/admin/training_datasets/${name}/size`, options);
+  }
+
+  /**
    * Updates the status and content of an existing training datum.
    */
   updateDatum(
@@ -91,6 +99,8 @@ export interface UpdateDatumRequest {
   step: StructureAPI.ExecutionStep;
 }
 
+export type TrainingDatasetSizeResponse = number;
+
 export interface TrainingDatasetAddParams {
   name: string;
 }
@@ -111,6 +121,7 @@ export namespace TrainingDatasets {
   export import GetSizeQuery = TrainingDatasetsAPI.GetSizeQuery;
   export import TrainingDatumResponse = TrainingDatasetsAPI.TrainingDatumResponse;
   export import UpdateDatumRequest = TrainingDatasetsAPI.UpdateDatumRequest;
+  export import TrainingDatasetSizeResponse = TrainingDatasetsAPI.TrainingDatasetSizeResponse;
   export import TrainingDatasetAddParams = TrainingDatasetsAPI.TrainingDatasetAddParams;
   export import TrainingDatasetAddDatumParams = TrainingDatasetsAPI.TrainingDatasetAddDatumParams;
   export import TrainingDatasetUpdateDatumParams = TrainingDatasetsAPI.TrainingDatasetUpdateDatumParams;
