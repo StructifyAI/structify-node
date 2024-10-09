@@ -35,7 +35,6 @@ Types:
 - <code><a href="./src/resources/admin/training-datasets.ts">GetSizeQuery</a></code>
 - <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatumResponse</a></code>
 - <code><a href="./src/resources/admin/training-datasets.ts">UpdateDatumRequest</a></code>
-- <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatasetSizeResponse</a></code>
 
 Methods:
 
@@ -43,7 +42,6 @@ Methods:
 - <code title="post /admin/training_datasets/{name}/data">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">addDatum</a>(name, { ...params }) -> void</code>
 - <code title="get /admin/training_datasets/{name}/next_unverified">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getNextUnverified</a>(name) -> TrainingDatumResponse</code>
 - <code title="post /admin/training_datasets/{name}/reset_pending">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">resetPending</a>(name) -> void</code>
-- <code title="get /admin/training_datasets/{name}/size">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">size</a>(name) -> TrainingDatasetSizeResponse</code>
 - <code title="put /admin/training_data/{id}">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">updateDatum</a>(id, { ...params }) -> void</code>
 
 # Datasets
