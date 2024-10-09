@@ -6,6 +6,7 @@ export {
   GetSizeQuery,
   TrainingDatumResponse,
   UpdateDatumRequest,
+  TrainingDatasetSizeResponse,
   TrainingDatasetAddParams,
   TrainingDatasetAddDatumParams,
   TrainingDatasetUpdateDatumParams,
