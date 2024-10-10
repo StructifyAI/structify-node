@@ -62,7 +62,7 @@ export class TrainingDatasets extends APIResource {
     query: TrainingDatasetSizeParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<TrainingDatasetSizeResponse> {
-    return this._client.get('/admin/training_datasets/size', { query, ...options });
+    return this._client.get('/admin/training_datasets/size', options);
   }
 
   /**
@@ -119,11 +119,7 @@ export interface TrainingDatasetResetPendingParams {
   dataset_name: string;
 }
 
-export interface TrainingDatasetSizeParams {
-  dataset_name: string;
-
-  status?: 'Unverified' | 'Verified' | 'Pending' | 'Skipped' | null;
-}
+export interface TrainingDatasetSizeParams {}
 
 export interface TrainingDatasetUpdateDatumParams {
   id: string;
