@@ -35,8 +35,6 @@ describe('resource entities', () => {
           { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
         ],
       },
-      attempt_merge: true,
-      source: 'None',
     });
   });
 
@@ -53,97 +51,5 @@ describe('resource entities', () => {
 
   test('get: required and optional params', async () => {
     const response = await client.entities.get({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
-  });
-
-  test('getLocalSubgraph: only required params', async () => {
-    const responsePromise = client.entities.getLocalSubgraph({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('getLocalSubgraph: required and optional params', async () => {
-    const response = await client.entities.getLocalSubgraph({
-      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      radius: 0,
-    });
-  });
-
-  test('getSourceEntities: only required params', async () => {
-    const responsePromise = client.entities.getSourceEntities({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('getSourceEntities: required and optional params', async () => {
-    const response = await client.entities.getSourceEntities({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
-  });
-
-  test('merge: only required params', async () => {
-    const responsePromise = client.entities.merge({
-      entity_1_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      entity_2_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('merge: required and optional params', async () => {
-    const response = await client.entities.merge({
-      entity_1_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      entity_2_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
-  });
-
-  test('search: only required params', async () => {
-    const responsePromise = client.entities.search({
-      dataset_name: 'dataset_name',
-      query: 'query',
-      table_name: 'table_name',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('search: required and optional params', async () => {
-    const response = await client.entities.search({
-      dataset_name: 'dataset_name',
-      query: 'query',
-      table_name: 'table_name',
-    });
-  });
-
-  test('view: only required params', async () => {
-    const responsePromise = client.entities.view({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('view: required and optional params', async () => {
-    const response = await client.entities.view({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
   });
 });
