@@ -533,8 +533,8 @@ describe('resource trainingDatasets', () => {
     const response = await client.admin.trainingDatasets.resetPending({ dataset_name: 'dataset_name' });
   });
 
-  test('size: only required params', async () => {
-    const responsePromise = client.admin.trainingDatasets.size({ dataset_name: 'dataset_name' });
+  test('size', async () => {
+    const responsePromise = client.admin.trainingDatasets.size({});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -542,13 +542,6 @@ describe('resource trainingDatasets', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('size: required and optional params', async () => {
-    const response = await client.admin.trainingDatasets.size({
-      dataset_name: 'dataset_name',
-      status: 'Unverified',
-    });
   });
 
   test('updateDatum: only required params', async () => {
