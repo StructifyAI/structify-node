@@ -221,6 +221,7 @@ export namespace Structify {
   export import User = API.User;
   export import TokenResponse = API.TokenResponse;
   export import UserInfo = API.UserInfo;
+  export import UserTransactionsResponse = API.UserTransactionsResponse;
   export import UserUsageResponse = API.UserUsageResponse;
   export import UserCreateTestTokenParams = API.UserCreateTestTokenParams;
   export import UserUsageParams = API.UserUsageParams;
