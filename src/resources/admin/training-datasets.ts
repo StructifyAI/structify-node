@@ -55,6 +55,17 @@ export class TrainingDatasets extends APIResource {
   }
 
   /**
+   * Returns the number of training data in the specified dataset, filtered by
+   * status.
+   */
+  size(
+    body: TrainingDatasetSizeParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<TrainingDatasetSizeResponse> {
+    return this._client.post('/admin/training_datasets/size', { body, ...options });
+  }
+
+  /**
    * Updates the status and content of an existing training datum.
    */
   updateDatum(body: TrainingDatasetUpdateDatumParams, options?: Core.RequestOptions): Core.APIPromise<void> {
@@ -88,6 +99,8 @@ export interface UpdateDatumRequest {
   step: StructureAPI.ExecutionStep;
 }
 
+export type TrainingDatasetSizeResponse = number;
+
 export interface TrainingDatasetAddParams {
   dataset_name: string;
 }
@@ -106,6 +119,12 @@ export interface TrainingDatasetResetPendingParams {
   dataset_name: string;
 }
 
+export interface TrainingDatasetSizeParams {
+  dataset_name: string;
+
+  status?: 'Unverified' | 'Verified' | 'Pending' | 'Skipped' | null;
+}
+
 export interface TrainingDatasetUpdateDatumParams {
   id: string;
 
@@ -118,9 +137,11 @@ export namespace TrainingDatasets {
   export import AddDatumRequest = TrainingDatasetsAPI.AddDatumRequest;
   export import TrainingDatumResponse = TrainingDatasetsAPI.TrainingDatumResponse;
   export import UpdateDatumRequest = TrainingDatasetsAPI.UpdateDatumRequest;
+  export import TrainingDatasetSizeResponse = TrainingDatasetsAPI.TrainingDatasetSizeResponse;
   export import TrainingDatasetAddParams = TrainingDatasetsAPI.TrainingDatasetAddParams;
   export import TrainingDatasetAddDatumParams = TrainingDatasetsAPI.TrainingDatasetAddDatumParams;
   export import TrainingDatasetGetNextUnverifiedParams = TrainingDatasetsAPI.TrainingDatasetGetNextUnverifiedParams;
   export import TrainingDatasetResetPendingParams = TrainingDatasetsAPI.TrainingDatasetResetPendingParams;
+  export import TrainingDatasetSizeParams = TrainingDatasetsAPI.TrainingDatasetSizeParams;
   export import TrainingDatasetUpdateDatumParams = TrainingDatasetsAPI.TrainingDatasetUpdateDatumParams;
 }
