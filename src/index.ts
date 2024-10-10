@@ -219,19 +219,14 @@ export namespace Structify {
   export import JobsListResponse = Pagination.JobsListResponse;
 
   export import User = API.User;
-  export import TokenResponse = API.TokenResponse;
+  export import NewToken = API.NewToken;
   export import UserInfo = API.UserInfo;
-  export import UserTransactionsResponse = API.UserTransactionsResponse;
   export import UserUsageResponse = API.UserUsageResponse;
-  export import UserCreateTestTokenParams = API.UserCreateTestTokenParams;
-  export import UserUsageParams = API.UserUsageParams;
 
   export import Admin = API.Admin;
 
   export import Datasets = API.Datasets;
   export import DatasetListResponse = API.DatasetListResponse;
-  export import DatasetGetResponse = API.DatasetGetResponse;
-  export import DatasetMatchResponse = API.DatasetMatchResponse;
   export import DatasetViewRelationshipsResponse = API.DatasetViewRelationshipsResponse;
   export import DatasetViewTableResponse = API.DatasetViewTableResponse;
   export import DatasetViewTablesWithRelationshipsResponse = API.DatasetViewTablesWithRelationshipsResponse;
@@ -240,14 +235,12 @@ export namespace Structify {
   export import DatasetCreateParams = API.DatasetCreateParams;
   export import DatasetDeleteParams = API.DatasetDeleteParams;
   export import DatasetGetParams = API.DatasetGetParams;
-  export import DatasetMatchParams = API.DatasetMatchParams;
   export import DatasetViewRelationshipsParams = API.DatasetViewRelationshipsParams;
   export import DatasetViewTableParams = API.DatasetViewTableParams;
   export import DatasetViewTablesWithRelationshipsParams = API.DatasetViewTablesWithRelationshipsParams;
 
   export import Documents = API.Documents;
   export import DocumentListResponse = API.DocumentListResponse;
-  export import DocumentDownloadResponse = API.DocumentDownloadResponse;
   export import DocumentDeleteParams = API.DocumentDeleteParams;
   export import DocumentDownloadParams = API.DocumentDownloadParams;
   export import DocumentUploadParams = API.DocumentUploadParams;
@@ -257,7 +250,6 @@ export namespace Structify {
   export import JobDeleteResponse = API.JobDeleteResponse;
   export import JobCancelResponse = API.JobCancelResponse;
   export import JobGetResponse = API.JobGetResponse;
-  export import JobGetStepGraphResponse = API.JobGetStepGraphResponse;
   export import JobGetStepsResponse = API.JobGetStepsResponse;
   export import JobListResponsesJobsList = API.JobListResponsesJobsList;
   export import JobListParams = API.JobListParams;
@@ -273,18 +265,8 @@ export namespace Structify {
   export import Entities = API.Entities;
   export import EntityAddResponse = API.EntityAddResponse;
   export import EntityGetResponse = API.EntityGetResponse;
-  export import EntityGetLocalSubgraphResponse = API.EntityGetLocalSubgraphResponse;
-  export import EntityGetSourceEntitiesResponse = API.EntityGetSourceEntitiesResponse;
-  export import EntityMergeResponse = API.EntityMergeResponse;
-  export import EntitySearchResponse = API.EntitySearchResponse;
-  export import EntityViewResponse = API.EntityViewResponse;
   export import EntityAddParams = API.EntityAddParams;
   export import EntityGetParams = API.EntityGetParams;
-  export import EntityGetLocalSubgraphParams = API.EntityGetLocalSubgraphParams;
-  export import EntityGetSourceEntitiesParams = API.EntityGetSourceEntitiesParams;
-  export import EntityMergeParams = API.EntityMergeParams;
-  export import EntitySearchParams = API.EntitySearchParams;
-  export import EntityViewParams = API.EntityViewParams;
 
   export import Report = API.Report;
   export import ReportEntityResponse = API.ReportEntityResponse;
@@ -297,17 +279,24 @@ export namespace Structify {
   export import ExecutionStep = API.ExecutionStep;
   export import ExtractionCriteria = API.ExtractionCriteria;
   export import ToolMetadata = API.ToolMetadata;
-  export import StructureEnhanceResponse = API.StructureEnhanceResponse;
   export import StructureIsCompleteResponse = API.StructureIsCompleteResponse;
   export import StructureJobStatusResponse = API.StructureJobStatusResponse;
   export import StructureRunAsyncResponse = API.StructureRunAsyncResponse;
-  export import StructureEnhanceParams = API.StructureEnhanceParams;
   export import StructureIsCompleteParams = API.StructureIsCompleteParams;
   export import StructureJobStatusParams = API.StructureJobStatusParams;
   export import StructureRunAsyncParams = API.StructureRunAsyncParams;
 
   export import Label = API.Label;
+  export import LabelUpdateResponse = API.LabelUpdateResponse;
+  export import LabelGetMessagesResponse = API.LabelGetMessagesResponse;
+  export import LabelLlmAssistResponse = API.LabelLlmAssistResponse;
+  export import LabelRunResponse = API.LabelRunResponse;
+  export import LabelSubmitResponse = API.LabelSubmitResponse;
   export import LabelVerifyResponse = API.LabelVerifyResponse;
+  export import LabelUpdateParams = API.LabelUpdateParams;
+  export import LabelGetMessagesParams = API.LabelGetMessagesParams;
+  export import LabelRunParams = API.LabelRunParams;
+  export import LabelSubmitParams = API.LabelSubmitParams;
   export import LabelVerifyParams = API.LabelVerifyParams;
 
   export import Shared = API.Shared;
