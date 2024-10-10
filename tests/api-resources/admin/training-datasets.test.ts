@@ -10,7 +10,7 @@ const client = new Structify({
 
 describe('resource trainingDatasets', () => {
   test('add: only required params', async () => {
-    const responsePromise = client.admin.trainingDatasets.add({ name: 'name' });
+    const responsePromise = client.admin.trainingDatasets.add({ dataset_name: 'dataset_name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,11 +21,12 @@ describe('resource trainingDatasets', () => {
   });
 
   test('add: required and optional params', async () => {
-    const response = await client.admin.trainingDatasets.add({ name: 'name' });
+    const response = await client.admin.trainingDatasets.add({ dataset_name: 'dataset_name' });
   });
 
   test('addDatum: only required params', async () => {
-    const responsePromise = client.admin.trainingDatasets.addDatum('name', {
+    const responsePromise = client.admin.trainingDatasets.addDatum({
+      dataset_name: 'dataset_name',
       step: {
         id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         prompt: {
@@ -141,7 +142,8 @@ describe('resource trainingDatasets', () => {
   });
 
   test('addDatum: required and optional params', async () => {
-    const response = await client.admin.trainingDatasets.addDatum('name', {
+    const response = await client.admin.trainingDatasets.addDatum({
+      dataset_name: 'dataset_name',
       step: {
         id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         prompt: {
@@ -501,8 +503,8 @@ describe('resource trainingDatasets', () => {
     });
   });
 
-  test('getNextUnverified', async () => {
-    const responsePromise = client.admin.trainingDatasets.getNextUnverified('name');
+  test('getNextUnverified: only required params', async () => {
+    const responsePromise = client.admin.trainingDatasets.getNextUnverified({ dataset_name: 'dataset_name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -512,15 +514,12 @@ describe('resource trainingDatasets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('getNextUnverified: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.admin.trainingDatasets.getNextUnverified('name', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Structify.NotFoundError);
+  test('getNextUnverified: required and optional params', async () => {
+    const response = await client.admin.trainingDatasets.getNextUnverified({ dataset_name: 'dataset_name' });
   });
 
-  test('resetPending', async () => {
-    const responsePromise = client.admin.trainingDatasets.resetPending('name');
+  test('resetPending: only required params', async () => {
+    const responsePromise = client.admin.trainingDatasets.resetPending({ dataset_name: 'dataset_name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -530,15 +529,12 @@ describe('resource trainingDatasets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('resetPending: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.admin.trainingDatasets.resetPending('name', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Structify.NotFoundError);
+  test('resetPending: required and optional params', async () => {
+    const response = await client.admin.trainingDatasets.resetPending({ dataset_name: 'dataset_name' });
   });
 
-  test('size', async () => {
-    const responsePromise = client.admin.trainingDatasets.size('name');
+  test('size: only required params', async () => {
+    const responsePromise = client.admin.trainingDatasets.size({ dataset_name: 'dataset_name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -548,124 +544,122 @@ describe('resource trainingDatasets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('size: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.admin.trainingDatasets.size('name', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Structify.NotFoundError);
+  test('size: required and optional params', async () => {
+    const response = await client.admin.trainingDatasets.size({
+      dataset_name: 'dataset_name',
+      status: 'Unverified',
+    });
   });
 
   test('updateDatum: only required params', async () => {
-    const responsePromise = client.admin.trainingDatasets.updateDatum(
-      '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      {
-        status: 'Unverified',
-        step: {
-          id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          prompt: {
-            decoding_params: { parameters: [{ MaxTokens: 0 }, { MaxTokens: 0 }, { MaxTokens: 0 }] },
-            messages: [
-              { content: [{ Text: 'Text' }, { Text: 'Text' }, { Text: 'Text' }], role: 'user' },
-              { content: [{ Text: 'Text' }, { Text: 'Text' }, { Text: 'Text' }], role: 'user' },
-              { content: [{ Text: 'Text' }, { Text: 'Text' }, { Text: 'Text' }], role: 'user' },
-            ],
-            metadata: {
-              dataset_descriptor: {
-                description: 'description',
-                name: 'name',
-                relationships: [
-                  {
-                    description: 'description',
-                    name: 'name',
-                    source_table: 'source_table',
-                    target_table: 'target_table',
-                  },
-                  {
-                    description: 'description',
-                    name: 'name',
-                    source_table: 'source_table',
-                    target_table: 'target_table',
-                  },
-                  {
-                    description: 'description',
-                    name: 'name',
-                    source_table: 'source_table',
-                    target_table: 'target_table',
-                  },
-                ],
-                tables: [
-                  {
-                    description: 'description',
-                    name: 'name',
-                    properties: [
-                      { description: 'description', name: 'name' },
-                      { description: 'description', name: 'name' },
-                      { description: 'description', name: 'name' },
-                    ],
-                  },
-                  {
-                    description: 'description',
-                    name: 'name',
-                    properties: [
-                      { description: 'description', name: 'name' },
-                      { description: 'description', name: 'name' },
-                      { description: 'description', name: 'name' },
-                    ],
-                  },
-                  {
-                    description: 'description',
-                    name: 'name',
-                    properties: [
-                      { description: 'description', name: 'name' },
-                      { description: 'description', name: 'name' },
-                      { description: 'description', name: 'name' },
-                    ],
-                  },
-                ],
-              },
-              extracted_entities: [{}, {}, {}],
-              extraction_criteria: [
-                { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-                { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-                { RelationshipExtraction: { relationship_name: 'relationship_name' } },
+    const responsePromise = client.admin.trainingDatasets.updateDatum({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      status: 'Unverified',
+      step: {
+        id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        prompt: {
+          decoding_params: { parameters: [{ MaxTokens: 0 }, { MaxTokens: 0 }, { MaxTokens: 0 }] },
+          messages: [
+            { content: [{ Text: 'Text' }, { Text: 'Text' }, { Text: 'Text' }], role: 'user' },
+            { content: [{ Text: 'Text' }, { Text: 'Text' }, { Text: 'Text' }], role: 'user' },
+            { content: [{ Text: 'Text' }, { Text: 'Text' }, { Text: 'Text' }], role: 'user' },
+          ],
+          metadata: {
+            dataset_descriptor: {
+              description: 'description',
+              name: 'name',
+              relationships: [
+                {
+                  description: 'description',
+                  name: 'name',
+                  source_table: 'source_table',
+                  target_table: 'target_table',
+                },
+                {
+                  description: 'description',
+                  name: 'name',
+                  source_table: 'source_table',
+                  target_table: 'target_table',
+                },
+                {
+                  description: 'description',
+                  name: 'name',
+                  source_table: 'source_table',
+                  target_table: 'target_table',
+                },
               ],
-              tool_metadata: [
+              tables: [
                 {
                   description: 'description',
-                  name: 'Save',
-                  regex_validator: 'regex_validator',
-                  tool_validator: { foo: 'bar' },
+                  name: 'name',
+                  properties: [
+                    { description: 'description', name: 'name' },
+                    { description: 'description', name: 'name' },
+                    { description: 'description', name: 'name' },
+                  ],
                 },
                 {
                   description: 'description',
-                  name: 'Save',
-                  regex_validator: 'regex_validator',
-                  tool_validator: { foo: 'bar' },
+                  name: 'name',
+                  properties: [
+                    { description: 'description', name: 'name' },
+                    { description: 'description', name: 'name' },
+                    { description: 'description', name: 'name' },
+                  ],
                 },
                 {
                   description: 'description',
-                  name: 'Save',
-                  regex_validator: 'regex_validator',
-                  tool_validator: { foo: 'bar' },
+                  name: 'name',
+                  properties: [
+                    { description: 'description', name: 'name' },
+                    { description: 'description', name: 'name' },
+                    { description: 'description', name: 'name' },
+                  ],
                 },
               ],
             },
-          },
-          response: {
-            completion_tokens: 0,
-            cost: 0,
-            llm: 'llm',
-            prompt_tokens: 0,
-            text: 'text',
-            tool_calls: [
-              { input: { Save: {} }, name: 'Save' },
-              { input: { Save: {} }, name: 'Save' },
-              { input: { Save: {} }, name: 'Save' },
+            extracted_entities: [{}, {}, {}],
+            extraction_criteria: [
+              { RelationshipExtraction: { relationship_name: 'relationship_name' } },
+              { RelationshipExtraction: { relationship_name: 'relationship_name' } },
+              { RelationshipExtraction: { relationship_name: 'relationship_name' } },
+            ],
+            tool_metadata: [
+              {
+                description: 'description',
+                name: 'Save',
+                regex_validator: 'regex_validator',
+                tool_validator: { foo: 'bar' },
+              },
+              {
+                description: 'description',
+                name: 'Save',
+                regex_validator: 'regex_validator',
+                tool_validator: { foo: 'bar' },
+              },
+              {
+                description: 'description',
+                name: 'Save',
+                regex_validator: 'regex_validator',
+                tool_validator: { foo: 'bar' },
+              },
             ],
           },
         },
+        response: {
+          completion_tokens: 0,
+          cost: 0,
+          llm: 'llm',
+          prompt_tokens: 0,
+          text: 'text',
+          tool_calls: [
+            { input: { Save: {} }, name: 'Save' },
+            { input: { Save: {} }, name: 'Save' },
+            { input: { Save: {} }, name: 'Save' },
+          ],
+        },
       },
-    );
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -676,7 +670,8 @@ describe('resource trainingDatasets', () => {
   });
 
   test('updateDatum: required and optional params', async () => {
-    const response = await client.admin.trainingDatasets.updateDatum('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+    const response = await client.admin.trainingDatasets.updateDatum({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       status: 'Unverified',
       step: {
         id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
