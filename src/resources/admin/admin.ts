@@ -16,13 +16,14 @@ export namespace Admin {
   export import User = UsersAPI.User;
   export import UserListResponse = UsersAPI.UserListResponse;
   export import TrainingDatasets = TrainingDatasetsAPI.TrainingDatasets;
-  export import AddDatasetRequest = TrainingDatasetsAPI.AddDatasetRequest;
   export import AddDatumRequest = TrainingDatasetsAPI.AddDatumRequest;
-  export import GetSizeQuery = TrainingDatasetsAPI.GetSizeQuery;
   export import TrainingDatumResponse = TrainingDatasetsAPI.TrainingDatumResponse;
   export import UpdateDatumRequest = TrainingDatasetsAPI.UpdateDatumRequest;
   export import TrainingDatasetSizeResponse = TrainingDatasetsAPI.TrainingDatasetSizeResponse;
   export import TrainingDatasetAddParams = TrainingDatasetsAPI.TrainingDatasetAddParams;
   export import TrainingDatasetAddDatumParams = TrainingDatasetsAPI.TrainingDatasetAddDatumParams;
+  export import TrainingDatasetGetNextUnverifiedParams = TrainingDatasetsAPI.TrainingDatasetGetNextUnverifiedParams;
+  export import TrainingDatasetResetPendingParams = TrainingDatasetsAPI.TrainingDatasetResetPendingParams;
+  export import TrainingDatasetSizeParams = TrainingDatasetsAPI.TrainingDatasetSizeParams;
   export import TrainingDatasetUpdateDatumParams = TrainingDatasetsAPI.TrainingDatasetUpdateDatumParams;
 }
