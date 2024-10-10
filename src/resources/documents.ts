@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as DocumentsAPI from './documents';
+import { type Response } from '../_shims/index';
 
 export class Documents extends APIResource {
   /**
@@ -26,11 +27,8 @@ export class Documents extends APIResource {
   /**
    * Download a file from the database
    */
-  download(
-    body: DocumentDownloadParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<DocumentDownloadResponse> {
-    return this._client.post('/documents/download', { body, ...options });
+  download(body: DocumentDownloadParams, options?: Core.RequestOptions): Core.APIPromise<Response> {
+    return this._client.post('/documents/download', { body, ...options, __binaryResponse: true });
   }
 
   /**
@@ -48,16 +46,12 @@ export type DocumentListResponse = Array<DocumentListResponse.DocumentListRespon
 
 export namespace DocumentListResponse {
   export interface DocumentListResponseItem {
-    document_type: 'Text' | 'PDF' | 'SEC';
+    document_type: 'Text' | 'PDF' | 'SEC' | 'ExecutionHistory';
 
     name: string;
 
     content?: Core.Uploadable | null;
   }
-}
-
-export interface DocumentDownloadResponse {
-  content: Core.Uploadable;
 }
 
 export interface DocumentDeleteParams {
@@ -77,14 +71,13 @@ export interface DocumentDownloadParams {
 export interface DocumentUploadParams {
   content: Core.Uploadable;
 
-  file_type: 'Text' | 'PDF' | 'SEC';
+  file_type: 'Text' | 'PDF' | 'SEC' | 'ExecutionHistory';
 
   path: Core.Uploadable;
 }
 
 export namespace Documents {
   export import DocumentListResponse = DocumentsAPI.DocumentListResponse;
-  export import DocumentDownloadResponse = DocumentsAPI.DocumentDownloadResponse;
   export import DocumentDeleteParams = DocumentsAPI.DocumentDeleteParams;
   export import DocumentDownloadParams = DocumentsAPI.DocumentDownloadParams;
   export import DocumentUploadParams = DocumentsAPI.DocumentUploadParams;

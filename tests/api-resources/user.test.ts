@@ -10,7 +10,7 @@ const client = new Structify({
 
 describe('resource user', () => {
   test('createTestToken', async () => {
-    const responsePromise = client.user.createTestToken({});
+    const responsePromise = client.user.createTestToken();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -18,6 +18,13 @@ describe('resource user', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('createTestToken: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.user.createTestToken({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Structify.NotFoundError,
+    );
   });
 
   test('info', async () => {
@@ -38,42 +45,6 @@ describe('resource user', () => {
     );
   });
 
-  test('jwtToAPIToken', async () => {
-    const responsePromise = client.user.jwtToAPIToken('jwt');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('jwtToAPIToken: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.user.jwtToAPIToken('jwt', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Structify.NotFoundError,
-    );
-  });
-
-  test('transactions', async () => {
-    const responsePromise = client.user.transactions();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('transactions: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.user.transactions({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Structify.NotFoundError,
-    );
-  });
-
   test('usage', async () => {
     const responsePromise = client.user.usage();
     const rawResponse = await responsePromise.asResponse();
@@ -90,12 +61,5 @@ describe('resource user', () => {
     await expect(client.user.usage({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       Structify.NotFoundError,
     );
-  });
-
-  test('usage: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.user.usage({ dataset: 'dataset' }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Structify.NotFoundError);
   });
 });
