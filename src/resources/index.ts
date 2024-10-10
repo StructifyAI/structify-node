@@ -92,6 +92,7 @@ export { Source, SourceListResponse, SourceListParams, Sources } from './sources
 export {
   TokenResponse,
   UserInfo,
+  UserTransactionsResponse,
   UserUsageResponse,
   UserCreateTestTokenParams,
   UserUsageParams,
