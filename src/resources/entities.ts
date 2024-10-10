@@ -288,6 +288,11 @@ export interface EntityAddParams {
    */
   kg: SharedAPI.KnowledgeGraph;
 
+  /**
+   * If true, attempt to merge with existing entities in the dataset
+   */
+  attempt_merge?: boolean;
+
   source?: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage;
 }
 
