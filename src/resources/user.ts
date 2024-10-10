@@ -42,6 +42,10 @@ export class User extends APIResource {
     return this._client.post(`/user/jwt_to_api_token/${jwt}`, options);
   }
 
+  transactions(options?: Core.RequestOptions): Core.APIPromise<UserTransactionsResponse> {
+    return this._client.get('/user/transactions/list', options);
+  }
+
   /**
    * Returns usage statistics for the user.
    */
@@ -72,6 +76,21 @@ export interface UserInfo {
   username: string;
 }
 
+export type UserTransactionsResponse = Array<UserTransactionsResponse.UserTransactionsResponseItem>;
+
+export namespace UserTransactionsResponse {
+  /**
+   * Represents a transaction in our database.
+   */
+  export interface UserTransactionsResponseItem {
+    amount: number;
+
+    timestamp: string;
+
+    transaction_id: string;
+  }
+}
+
 export interface UserUsageResponse {
   credits_used: number;
 
@@ -95,6 +114,7 @@ export interface UserUsageParams {
 export namespace User {
   export import TokenResponse = UserAPI.TokenResponse;
   export import UserInfo = UserAPI.UserInfo;
+  export import UserTransactionsResponse = UserAPI.UserTransactionsResponse;
   export import UserUsageResponse = UserAPI.UserUsageResponse;
   export import UserCreateTestTokenParams = UserAPI.UserCreateTestTokenParams;
   export import UserUsageParams = UserAPI.UserUsageParams;
