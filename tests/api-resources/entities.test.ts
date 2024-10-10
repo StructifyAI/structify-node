@@ -35,6 +35,7 @@ describe('resource entities', () => {
           { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
         ],
       },
+      attempt_merge: true,
       source: 'None',
     });
   });
