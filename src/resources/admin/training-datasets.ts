@@ -9,9 +9,10 @@ export class TrainingDatasets extends APIResource {
   /**
    * Creates a new training dataset with the given name.
    */
-  add(body: TrainingDatasetAddParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/admin/training_datasets', {
-      body,
+  add(params: TrainingDatasetAddParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { dataset_name } = params;
+    return this._client.post('/admin/training_datasets/add_dataset', {
+      query: { dataset_name },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -20,12 +21,8 @@ export class TrainingDatasets extends APIResource {
   /**
    * Adds a new training datum to the specified dataset.
    */
-  addDatum(
-    name: string,
-    body: TrainingDatasetAddDatumParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.post(`/admin/training_datasets/${name}/data`, {
+  addDatum(body: TrainingDatasetAddDatumParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/admin/training_datasets/add_datum', {
       body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
@@ -35,15 +32,23 @@ export class TrainingDatasets extends APIResource {
   /**
    * Retrieves the next unverified training datum from the specified dataset.
    */
-  getNextUnverified(name: string, options?: Core.RequestOptions): Core.APIPromise<TrainingDatumResponse> {
-    return this._client.get(`/admin/training_datasets/${name}/next_unverified`, options);
+  getNextUnverified(
+    query: TrainingDatasetGetNextUnverifiedParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<TrainingDatumResponse> {
+    return this._client.get('/admin/training_datasets/next_unverified', { query, ...options });
   }
 
   /**
    * Resets all pending training data in the specified dataset back to unverified.
    */
-  resetPending(name: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post(`/admin/training_datasets/${name}/reset_pending`, {
+  resetPending(
+    params: TrainingDatasetResetPendingParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    const { dataset_name } = params;
+    return this._client.post('/admin/training_datasets/reset_pending', {
+      query: { dataset_name },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -53,19 +58,18 @@ export class TrainingDatasets extends APIResource {
    * Returns the number of training data in the specified dataset, filtered by
    * status.
    */
-  size(name: string, options?: Core.RequestOptions): Core.APIPromise<TrainingDatasetSizeResponse> {
-    return this._client.get(`/admin/training_datasets/${name}/size`, options);
+  size(
+    query: TrainingDatasetSizeParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<TrainingDatasetSizeResponse> {
+    return this._client.get('/admin/training_datasets/size', { query, ...options });
   }
 
   /**
    * Updates the status and content of an existing training datum.
    */
-  updateDatum(
-    id: string,
-    body: TrainingDatasetUpdateDatumParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(`/admin/training_data/${id}`, {
+  updateDatum(body: TrainingDatasetUpdateDatumParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.put('/admin/training_data/update_datum', {
       body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
@@ -73,16 +77,10 @@ export class TrainingDatasets extends APIResource {
   }
 }
 
-export interface AddDatasetRequest {
-  name: string;
-}
-
 export interface AddDatumRequest {
-  step: StructureAPI.ExecutionStep;
-}
+  dataset_name: string;
 
-export interface GetSizeQuery {
-  status?: 'Unverified' | 'Verified' | 'Pending' | 'Skipped' | null;
+  step: StructureAPI.ExecutionStep;
 }
 
 export interface TrainingDatumResponse {
@@ -94,6 +92,8 @@ export interface TrainingDatumResponse {
 }
 
 export interface UpdateDatumRequest {
+  id: string;
+
   status: 'Unverified' | 'Verified' | 'Pending' | 'Skipped';
 
   step: StructureAPI.ExecutionStep;
@@ -102,27 +102,46 @@ export interface UpdateDatumRequest {
 export type TrainingDatasetSizeResponse = number;
 
 export interface TrainingDatasetAddParams {
-  name: string;
+  dataset_name: string;
 }
 
 export interface TrainingDatasetAddDatumParams {
+  dataset_name: string;
+
   step: StructureAPI.ExecutionStep;
 }
 
+export interface TrainingDatasetGetNextUnverifiedParams {
+  dataset_name: string;
+}
+
+export interface TrainingDatasetResetPendingParams {
+  dataset_name: string;
+}
+
+export interface TrainingDatasetSizeParams {
+  dataset_name: string;
+
+  status?: 'Unverified' | 'Verified' | 'Pending' | 'Skipped' | null;
+}
+
 export interface TrainingDatasetUpdateDatumParams {
+  id: string;
+
   status: 'Unverified' | 'Verified' | 'Pending' | 'Skipped';
 
   step: StructureAPI.ExecutionStep;
 }
 
 export namespace TrainingDatasets {
-  export import AddDatasetRequest = TrainingDatasetsAPI.AddDatasetRequest;
   export import AddDatumRequest = TrainingDatasetsAPI.AddDatumRequest;
-  export import GetSizeQuery = TrainingDatasetsAPI.GetSizeQuery;
   export import TrainingDatumResponse = TrainingDatasetsAPI.TrainingDatumResponse;
   export import UpdateDatumRequest = TrainingDatasetsAPI.UpdateDatumRequest;
   export import TrainingDatasetSizeResponse = TrainingDatasetsAPI.TrainingDatasetSizeResponse;
   export import TrainingDatasetAddParams = TrainingDatasetsAPI.TrainingDatasetAddParams;
   export import TrainingDatasetAddDatumParams = TrainingDatasetsAPI.TrainingDatasetAddDatumParams;
+  export import TrainingDatasetGetNextUnverifiedParams = TrainingDatasetsAPI.TrainingDatasetGetNextUnverifiedParams;
+  export import TrainingDatasetResetPendingParams = TrainingDatasetsAPI.TrainingDatasetResetPendingParams;
+  export import TrainingDatasetSizeParams = TrainingDatasetsAPI.TrainingDatasetSizeParams;
   export import TrainingDatasetUpdateDatumParams = TrainingDatasetsAPI.TrainingDatasetUpdateDatumParams;
 }

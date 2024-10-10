@@ -1,14 +1,15 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export {
-  AddDatasetRequest,
   AddDatumRequest,
-  GetSizeQuery,
   TrainingDatumResponse,
   UpdateDatumRequest,
   TrainingDatasetSizeResponse,
   TrainingDatasetAddParams,
   TrainingDatasetAddDatumParams,
+  TrainingDatasetGetNextUnverifiedParams,
+  TrainingDatasetResetPendingParams,
+  TrainingDatasetSizeParams,
   TrainingDatasetUpdateDatumParams,
   TrainingDatasets,
 } from './training-datasets';
