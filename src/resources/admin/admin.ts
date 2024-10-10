@@ -19,11 +19,9 @@ export namespace Admin {
   export import AddDatumRequest = TrainingDatasetsAPI.AddDatumRequest;
   export import TrainingDatumResponse = TrainingDatasetsAPI.TrainingDatumResponse;
   export import UpdateDatumRequest = TrainingDatasetsAPI.UpdateDatumRequest;
-  export import TrainingDatasetSizeResponse = TrainingDatasetsAPI.TrainingDatasetSizeResponse;
   export import TrainingDatasetAddParams = TrainingDatasetsAPI.TrainingDatasetAddParams;
   export import TrainingDatasetAddDatumParams = TrainingDatasetsAPI.TrainingDatasetAddDatumParams;
   export import TrainingDatasetGetNextUnverifiedParams = TrainingDatasetsAPI.TrainingDatasetGetNextUnverifiedParams;
   export import TrainingDatasetResetPendingParams = TrainingDatasetsAPI.TrainingDatasetResetPendingParams;
-  export import TrainingDatasetSizeParams = TrainingDatasetsAPI.TrainingDatasetSizeParams;
   export import TrainingDatasetUpdateDatumParams = TrainingDatasetsAPI.TrainingDatasetUpdateDatumParams;
 }

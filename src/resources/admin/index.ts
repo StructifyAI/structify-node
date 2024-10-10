@@ -4,12 +4,10 @@ export {
   AddDatumRequest,
   TrainingDatumResponse,
   UpdateDatumRequest,
-  TrainingDatasetSizeResponse,
   TrainingDatasetAddParams,
   TrainingDatasetAddDatumParams,
   TrainingDatasetGetNextUnverifiedParams,
   TrainingDatasetResetPendingParams,
-  TrainingDatasetSizeParams,
   TrainingDatasetUpdateDatumParams,
   TrainingDatasets,
 } from './training-datasets';
