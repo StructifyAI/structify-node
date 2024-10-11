@@ -7,6 +7,17 @@ import * as SharedAPI from './shared';
 
 export class Structure extends APIResource {
   /**
+   * Returns a job id that can be waited on until the request is finished.
+   */
+  enhance(body: StructureEnhanceParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.post('/structure/enhance', {
+      body,
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
    * Wait for all specified async tasks to be completed.
    */
   isComplete(body: StructureIsCompleteParams, options?: Core.RequestOptions): Core.APIPromise<string> {
@@ -45,8 +56,6 @@ export interface ChatPrompt {
   messages: Array<ChatPrompt.Message>;
 
   metadata: ChatPrompt.Metadata;
-
-  human_llm_metadata?: ChatPrompt.HumanLlmMetadata | null;
 }
 
 export namespace ChatPrompt {
@@ -58,6 +67,7 @@ export namespace ChatPrompt {
       | DecodingParams.RepeatPenalty
       | DecodingParams.Temperature
       | DecodingParams.StopTokens
+      | DecodingParams.LogitBias
       | DecodingParams.Functions
       | DecodingParams.JsonValidator
       | DecodingParams.RegexValidator
@@ -90,6 +100,10 @@ export namespace ChatPrompt {
 
     export interface StopTokens {
       StopTokens: Array<string>;
+    }
+
+    export interface LogitBias {
+      LogitBias: Record<string, number>;
     }
 
     export interface Functions {
@@ -194,20 +208,6 @@ export namespace ChatPrompt {
        */
       width?: number;
     }
-  }
-
-  export interface HumanLlmMetadata {
-    /**
-     * A dataset is where you put multiple referential schemas.
-     *
-     * A dataset is a complete namespace where all references between schemas are held
-     * within the dataset.
-     */
-    descriptor: SharedAPI.DatasetDescriptor;
-
-    job_id: string;
-
-    user_email: string;
   }
 }
 
@@ -415,7 +415,12 @@ export namespace ExtractionCriteria {
 
   export namespace EntityExtraction {
     export interface EntityExtraction {
-      entity_id: number;
+      /**
+       * The integer id corresponding to an entity in the seeded kg
+       */
+      seeded_kg_id: number;
+
+      dataset_entity_id?: string | null;
     }
   }
 
@@ -445,6 +450,8 @@ export interface ToolMetadata {
   tool_validator: Record<string, unknown>;
 }
 
+export type StructureEnhanceResponse = string;
+
 export type StructureIsCompleteResponse = string;
 
 export interface StructureJobStatusResponse {
@@ -454,6 +461,14 @@ export interface StructureJobStatusResponse {
 }
 
 export type StructureRunAsyncResponse = string;
+
+export interface StructureEnhanceParams {
+  entity_id: string;
+
+  property_name?: string | null;
+
+  relationship_name?: string | null;
+}
 
 export type StructureIsCompleteParams = Array<string>;
 
@@ -468,6 +483,7 @@ export interface StructureRunAsyncParams {
   structure_input:
     | StructureRunAsyncParams.SecIngestor
     | StructureRunAsyncParams.PdfIngestor
+    | StructureRunAsyncParams.EnhanceIngestor
     | StructureRunAsyncParams.Basic;
 
   extraction_criteria?: Array<ExtractionCriteria>;
@@ -513,6 +529,171 @@ export namespace StructureRunAsyncParams {
     }
   }
 
+  export interface EnhanceIngestor {
+    EnhanceIngestor: EnhanceIngestor.EnhanceIngestor;
+  }
+
+  export namespace EnhanceIngestor {
+    export interface EnhanceIngestor {
+      central_entity: SharedAPI.Entity;
+
+      /**
+       * Knowledge graph info structured to deserialize and display in the same format
+       * that the LLM outputs. Also the first representation of an LLM output in the
+       * pipeline from raw tool output to being merged into a Neo4j DB
+       */
+      surrounding_kg: SharedAPI.KnowledgeGraph;
+
+      target_descriptor: EnhanceIngestor.Property | EnhanceIngestor.Relationship;
+    }
+
+    export namespace EnhanceIngestor {
+      export interface Property {
+        Property: Property.Property;
+      }
+
+      export namespace Property {
+        export interface Property {
+          description: string;
+
+          name: string;
+
+          /**
+           * Property with unique 1:1 correspondence to its parent.
+           *
+           * Merge based on this property 100% of the time
+           */
+          merge_strategy?: 'Unique' | Property.Probabilistic | 'NoSignal';
+
+          prop_type?: SharedAPI.PropertyType;
+        }
+
+        export namespace Property {
+          export interface Probabilistic {
+            Probabilistic: Probabilistic.Probabilistic;
+          }
+
+          export namespace Probabilistic {
+            export interface Probabilistic {
+              /**
+               * The number of unique values that are expected to be present in the complete
+               * dataset
+               *
+               * This is used for merging to determine how significant a match is. (i.e. if there
+               * are only 2 possible values, a match gives less confidence than if there are 100)
+               */
+              baseline_cardinality: number;
+
+              /**
+               * The estimated probability that, given an entity match, the properties also match
+               *
+               * For a person's full name, this would be quite high. For a person's job title, it
+               * would be lower because people can have multiple job titles over time or at
+               * different companies at the same time.
+               */
+              match_transfer_probability: number;
+            }
+          }
+        }
+      }
+
+      export interface Relationship {
+        Relationship: Relationship.Relationship;
+      }
+
+      export namespace Relationship {
+        export interface Relationship {
+          description: string;
+
+          name: string;
+
+          source_table: string;
+
+          target_table: string;
+
+          merge_strategy?: Relationship.MergeStrategy | null;
+
+          properties?: Array<Relationship.Property>;
+        }
+
+        export namespace Relationship {
+          export interface MergeStrategy {
+            Probabilistic: MergeStrategy.Probabilistic;
+          }
+
+          export namespace MergeStrategy {
+            export interface Probabilistic {
+              /**
+               * Describes the expected cardinality of the source table when a match is found in
+               * the target table
+               *
+               * For example, if we have a source company and a target funding round, we expect
+               * the source company to appear in multiple funding rounds, but not _too_ many. So
+               * if we have a funding round match, the expected number of unique companies is
+               * relatively small. This is an estimate of that number.
+               */
+              source_cardinality_given_target_match?: number | null;
+
+              /**
+               * Describes the expected cardinality of the target table when a match is found in
+               * the source table
+               *
+               * For example, if we have a source company and a target funding round, we usually
+               * expect some number of funding rounds to be associated with a single company but
+               * not _too_ many. So if we have a company match, the expected number of unique
+               * funding rounds is relatively small. This is an estimate of that number.
+               */
+              target_cardinality_given_source_match?: number | null;
+            }
+          }
+
+          export interface Property {
+            description: string;
+
+            name: string;
+
+            /**
+             * Property with unique 1:1 correspondence to its parent.
+             *
+             * Merge based on this property 100% of the time
+             */
+            merge_strategy?: 'Unique' | Property.Probabilistic | 'NoSignal';
+
+            prop_type?: SharedAPI.PropertyType;
+          }
+
+          export namespace Property {
+            export interface Probabilistic {
+              Probabilistic: Probabilistic.Probabilistic;
+            }
+
+            export namespace Probabilistic {
+              export interface Probabilistic {
+                /**
+                 * The number of unique values that are expected to be present in the complete
+                 * dataset
+                 *
+                 * This is used for merging to determine how significant a match is. (i.e. if there
+                 * are only 2 possible values, a match gives less confidence than if there are 100)
+                 */
+                baseline_cardinality: number;
+
+                /**
+                 * The estimated probability that, given an entity match, the properties also match
+                 *
+                 * For a person's full name, this would be quite high. For a person's job title, it
+                 * would be lower because people can have multiple job titles over time or at
+                 * different companies at the same time.
+                 */
+                match_transfer_probability: number;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
   export interface Basic {
     /**
      * These are all the types for which we have an agent that is directly capable of
@@ -555,6 +736,10 @@ export namespace StructureRunAsyncParams {
         content: Core.Uploadable;
 
         document_name: string;
+
+        document_page: number;
+
+        ocr_content?: string | null;
       }
     }
   }
@@ -565,9 +750,11 @@ export namespace Structure {
   export import ExecutionStep = StructureAPI.ExecutionStep;
   export import ExtractionCriteria = StructureAPI.ExtractionCriteria;
   export import ToolMetadata = StructureAPI.ToolMetadata;
+  export import StructureEnhanceResponse = StructureAPI.StructureEnhanceResponse;
   export import StructureIsCompleteResponse = StructureAPI.StructureIsCompleteResponse;
   export import StructureJobStatusResponse = StructureAPI.StructureJobStatusResponse;
   export import StructureRunAsyncResponse = StructureAPI.StructureRunAsyncResponse;
+  export import StructureEnhanceParams = StructureAPI.StructureEnhanceParams;
   export import StructureIsCompleteParams = StructureAPI.StructureIsCompleteParams;
   export import StructureJobStatusParams = StructureAPI.StructureJobStatusParams;
   export import StructureRunAsyncParams = StructureAPI.StructureRunAsyncParams;
