@@ -42,6 +42,17 @@ describe('resource documents', () => {
     const response = await client.documents.delete({ file_path: 'file_path' });
   });
 
+  test('download: only required params', async () => {
+    const responsePromise = client.documents.download({ file_path: 'file_path' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
   test('download: required and optional params', async () => {
     const response = await client.documents.download({ file_path: 'file_path' });
   });

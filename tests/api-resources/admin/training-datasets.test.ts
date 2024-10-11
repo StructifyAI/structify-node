@@ -555,110 +555,11 @@ describe('resource trainingDatasets', () => {
     const responsePromise = client.admin.trainingDatasets.updateDatum({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       status: 'Unverified',
-      step: {
-        id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        prompt: {
-          decoding_params: { parameters: [{ MaxTokens: 0 }, { MaxTokens: 0 }, { MaxTokens: 0 }] },
-          messages: [
-            { content: [{ Text: 'Text' }, { Text: 'Text' }, { Text: 'Text' }], role: 'user' },
-            { content: [{ Text: 'Text' }, { Text: 'Text' }, { Text: 'Text' }], role: 'user' },
-            { content: [{ Text: 'Text' }, { Text: 'Text' }, { Text: 'Text' }], role: 'user' },
-          ],
-          metadata: {
-            dataset_descriptor: {
-              description: 'description',
-              name: 'name',
-              relationships: [
-                {
-                  description: 'description',
-                  name: 'name',
-                  source_table: 'source_table',
-                  target_table: 'target_table',
-                },
-                {
-                  description: 'description',
-                  name: 'name',
-                  source_table: 'source_table',
-                  target_table: 'target_table',
-                },
-                {
-                  description: 'description',
-                  name: 'name',
-                  source_table: 'source_table',
-                  target_table: 'target_table',
-                },
-              ],
-              tables: [
-                {
-                  description: 'description',
-                  name: 'name',
-                  properties: [
-                    { description: 'description', name: 'name' },
-                    { description: 'description', name: 'name' },
-                    { description: 'description', name: 'name' },
-                  ],
-                },
-                {
-                  description: 'description',
-                  name: 'name',
-                  properties: [
-                    { description: 'description', name: 'name' },
-                    { description: 'description', name: 'name' },
-                    { description: 'description', name: 'name' },
-                  ],
-                },
-                {
-                  description: 'description',
-                  name: 'name',
-                  properties: [
-                    { description: 'description', name: 'name' },
-                    { description: 'description', name: 'name' },
-                    { description: 'description', name: 'name' },
-                  ],
-                },
-              ],
-            },
-            extracted_entities: [{}, {}, {}],
-            extraction_criteria: [
-              { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-              { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-              { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-            ],
-            tool_metadata: [
-              {
-                description: 'description',
-                name: 'Save',
-                regex_validator: 'regex_validator',
-                tool_validator: { foo: 'bar' },
-              },
-              {
-                description: 'description',
-                name: 'Save',
-                regex_validator: 'regex_validator',
-                tool_validator: { foo: 'bar' },
-              },
-              {
-                description: 'description',
-                name: 'Save',
-                regex_validator: 'regex_validator',
-                tool_validator: { foo: 'bar' },
-              },
-            ],
-          },
-        },
-        response: {
-          completion_tokens: 0,
-          cost: 0,
-          llm: 'llm',
-          prompt_tokens: 0,
-          text: 'text',
-          tool_calls: [
-            { input: { Save: {} }, name: 'Save' },
-            { input: { Save: {} }, name: 'Save' },
-            { input: { Save: {} }, name: 'Save' },
-          ],
-        },
-      },
+      updated_tool_calls: [
+        { input: { Save: {} }, name: 'Save' },
+        { input: { Save: {} }, name: 'Save' },
+        { input: { Save: {} }, name: 'Save' },
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -673,362 +574,62 @@ describe('resource trainingDatasets', () => {
     const response = await client.admin.trainingDatasets.updateDatum({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       status: 'Unverified',
-      step: {
-        id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        prompt: {
-          decoding_params: { parameters: [{ MaxTokens: 0 }, { MaxTokens: 0 }, { MaxTokens: 0 }] },
-          messages: [
-            { content: [{ Text: 'Text' }, { Text: 'Text' }, { Text: 'Text' }], role: 'user' },
-            { content: [{ Text: 'Text' }, { Text: 'Text' }, { Text: 'Text' }], role: 'user' },
-            { content: [{ Text: 'Text' }, { Text: 'Text' }, { Text: 'Text' }], role: 'user' },
-          ],
-          metadata: {
-            dataset_descriptor: {
-              description: 'description',
-              name: 'name',
+      updated_tool_calls: [
+        {
+          input: {
+            Save: {
+              entities: [
+                { id: 0, properties: { foo: 'string' }, type: 'type' },
+                { id: 0, properties: { foo: 'string' }, type: 'type' },
+                { id: 0, properties: { foo: 'string' }, type: 'type' },
+              ],
               relationships: [
-                {
-                  description: 'description',
-                  name: 'name',
-                  source_table: 'source_table',
-                  target_table: 'target_table',
-                  merge_strategy: {
-                    Probabilistic: {
-                      source_cardinality_given_target_match: 0,
-                      target_cardinality_given_source_match: 0,
-                    },
-                  },
-                  properties: [
-                    {
-                      description: 'description',
-                      name: 'name',
-                      merge_strategy: 'Unique',
-                      prop_type: 'String',
-                    },
-                    {
-                      description: 'description',
-                      name: 'name',
-                      merge_strategy: 'Unique',
-                      prop_type: 'String',
-                    },
-                    {
-                      description: 'description',
-                      name: 'name',
-                      merge_strategy: 'Unique',
-                      prop_type: 'String',
-                    },
-                  ],
-                },
-                {
-                  description: 'description',
-                  name: 'name',
-                  source_table: 'source_table',
-                  target_table: 'target_table',
-                  merge_strategy: {
-                    Probabilistic: {
-                      source_cardinality_given_target_match: 0,
-                      target_cardinality_given_source_match: 0,
-                    },
-                  },
-                  properties: [
-                    {
-                      description: 'description',
-                      name: 'name',
-                      merge_strategy: 'Unique',
-                      prop_type: 'String',
-                    },
-                    {
-                      description: 'description',
-                      name: 'name',
-                      merge_strategy: 'Unique',
-                      prop_type: 'String',
-                    },
-                    {
-                      description: 'description',
-                      name: 'name',
-                      merge_strategy: 'Unique',
-                      prop_type: 'String',
-                    },
-                  ],
-                },
-                {
-                  description: 'description',
-                  name: 'name',
-                  source_table: 'source_table',
-                  target_table: 'target_table',
-                  merge_strategy: {
-                    Probabilistic: {
-                      source_cardinality_given_target_match: 0,
-                      target_cardinality_given_source_match: 0,
-                    },
-                  },
-                  properties: [
-                    {
-                      description: 'description',
-                      name: 'name',
-                      merge_strategy: 'Unique',
-                      prop_type: 'String',
-                    },
-                    {
-                      description: 'description',
-                      name: 'name',
-                      merge_strategy: 'Unique',
-                      prop_type: 'String',
-                    },
-                    {
-                      description: 'description',
-                      name: 'name',
-                      merge_strategy: 'Unique',
-                      prop_type: 'String',
-                    },
-                  ],
-                },
-              ],
-              tables: [
-                {
-                  description: 'description',
-                  name: 'name',
-                  properties: [
-                    {
-                      description: 'description',
-                      name: 'name',
-                      merge_strategy: 'Unique',
-                      prop_type: 'String',
-                    },
-                    {
-                      description: 'description',
-                      name: 'name',
-                      merge_strategy: 'Unique',
-                      prop_type: 'String',
-                    },
-                    {
-                      description: 'description',
-                      name: 'name',
-                      merge_strategy: 'Unique',
-                      prop_type: 'String',
-                    },
-                  ],
-                  expected_cardinality: 0,
-                },
-                {
-                  description: 'description',
-                  name: 'name',
-                  properties: [
-                    {
-                      description: 'description',
-                      name: 'name',
-                      merge_strategy: 'Unique',
-                      prop_type: 'String',
-                    },
-                    {
-                      description: 'description',
-                      name: 'name',
-                      merge_strategy: 'Unique',
-                      prop_type: 'String',
-                    },
-                    {
-                      description: 'description',
-                      name: 'name',
-                      merge_strategy: 'Unique',
-                      prop_type: 'String',
-                    },
-                  ],
-                  expected_cardinality: 0,
-                },
-                {
-                  description: 'description',
-                  name: 'name',
-                  properties: [
-                    {
-                      description: 'description',
-                      name: 'name',
-                      merge_strategy: 'Unique',
-                      prop_type: 'String',
-                    },
-                    {
-                      description: 'description',
-                      name: 'name',
-                      merge_strategy: 'Unique',
-                      prop_type: 'String',
-                    },
-                    {
-                      description: 'description',
-                      name: 'name',
-                      merge_strategy: 'Unique',
-                      prop_type: 'String',
-                    },
-                  ],
-                  expected_cardinality: 0,
-                },
+                { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
+                { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
+                { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
               ],
             },
-            extracted_entities: [
-              {
-                entities: [
-                  { id: 0, properties: { foo: 'string' }, type: 'type' },
-                  { id: 0, properties: { foo: 'string' }, type: 'type' },
-                  { id: 0, properties: { foo: 'string' }, type: 'type' },
-                ],
-                relationships: [
-                  { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                  { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                  { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                ],
-              },
-              {
-                entities: [
-                  { id: 0, properties: { foo: 'string' }, type: 'type' },
-                  { id: 0, properties: { foo: 'string' }, type: 'type' },
-                  { id: 0, properties: { foo: 'string' }, type: 'type' },
-                ],
-                relationships: [
-                  { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                  { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                  { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                ],
-              },
-              {
-                entities: [
-                  { id: 0, properties: { foo: 'string' }, type: 'type' },
-                  { id: 0, properties: { foo: 'string' }, type: 'type' },
-                  { id: 0, properties: { foo: 'string' }, type: 'type' },
-                ],
-                relationships: [
-                  { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                  { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                  { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                ],
-              },
-            ],
-            extraction_criteria: [
-              { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-              { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-              { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-            ],
-            tool_metadata: [
-              {
-                description: 'description',
-                name: 'Save',
-                regex_validator: 'regex_validator',
-                tool_validator: { foo: 'bar' },
-              },
-              {
-                description: 'description',
-                name: 'Save',
-                regex_validator: 'regex_validator',
-                tool_validator: { foo: 'bar' },
-              },
-              {
-                description: 'description',
-                name: 'Save',
-                regex_validator: 'regex_validator',
-                tool_validator: { foo: 'bar' },
-              },
-            ],
-            ocr_content: 'ocr_content',
-            screenshot: await toFile(Buffer.from('# my file contents'), 'README.md'),
-            url: 'url',
-            web_flags: [
-              {
-                ariaLabel: 'ariaLabel',
-                type: 'type',
-                x: 0,
-                y: 0,
-                height: 0,
-                href: 'href',
-                number: 0,
-                text: 'text',
-                width: 0,
-              },
-              {
-                ariaLabel: 'ariaLabel',
-                type: 'type',
-                x: 0,
-                y: 0,
-                height: 0,
-                href: 'href',
-                number: 0,
-                text: 'text',
-                width: 0,
-              },
-              {
-                ariaLabel: 'ariaLabel',
-                type: 'type',
-                x: 0,
-                y: 0,
-                height: 0,
-                href: 'href',
-                number: 0,
-                text: 'text',
-                width: 0,
-              },
-            ],
           },
+          name: 'Save',
+          result: { ToolQueued: 'ToolQueued' },
         },
-        response: {
-          completion_tokens: 0,
-          cost: 0,
-          llm: 'llm',
-          prompt_tokens: 0,
-          text: 'text',
-          tool_calls: [
-            {
-              input: {
-                Save: {
-                  entities: [
-                    { id: 0, properties: { foo: 'string' }, type: 'type' },
-                    { id: 0, properties: { foo: 'string' }, type: 'type' },
-                    { id: 0, properties: { foo: 'string' }, type: 'type' },
-                  ],
-                  relationships: [
-                    { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                    { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                    { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                  ],
-                },
-              },
-              name: 'Save',
-              result: { ToolQueued: 'ToolQueued' },
+        {
+          input: {
+            Save: {
+              entities: [
+                { id: 0, properties: { foo: 'string' }, type: 'type' },
+                { id: 0, properties: { foo: 'string' }, type: 'type' },
+                { id: 0, properties: { foo: 'string' }, type: 'type' },
+              ],
+              relationships: [
+                { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
+                { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
+                { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
+              ],
             },
-            {
-              input: {
-                Save: {
-                  entities: [
-                    { id: 0, properties: { foo: 'string' }, type: 'type' },
-                    { id: 0, properties: { foo: 'string' }, type: 'type' },
-                    { id: 0, properties: { foo: 'string' }, type: 'type' },
-                  ],
-                  relationships: [
-                    { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                    { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                    { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                  ],
-                },
-              },
-              name: 'Save',
-              result: { ToolQueued: 'ToolQueued' },
-            },
-            {
-              input: {
-                Save: {
-                  entities: [
-                    { id: 0, properties: { foo: 'string' }, type: 'type' },
-                    { id: 0, properties: { foo: 'string' }, type: 'type' },
-                    { id: 0, properties: { foo: 'string' }, type: 'type' },
-                  ],
-                  relationships: [
-                    { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                    { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                    { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                  ],
-                },
-              },
-              name: 'Save',
-              result: { ToolQueued: 'ToolQueued' },
-            },
-          ],
+          },
+          name: 'Save',
+          result: { ToolQueued: 'ToolQueued' },
         },
-      },
+        {
+          input: {
+            Save: {
+              entities: [
+                { id: 0, properties: { foo: 'string' }, type: 'type' },
+                { id: 0, properties: { foo: 'string' }, type: 'type' },
+                { id: 0, properties: { foo: 'string' }, type: 'type' },
+              ],
+              relationships: [
+                { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
+                { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
+                { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
+              ],
+            },
+          },
+          name: 'Save',
+          result: { ToolQueued: 'ToolQueued' },
+        },
+      ],
     });
   });
 });
