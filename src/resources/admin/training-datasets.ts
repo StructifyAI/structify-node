@@ -50,6 +50,16 @@ export class TrainingDatasets extends APIResource {
   /**
    * Lists all training datums for a dataset.
    */
+  getStepById(
+    query: TrainingDatasetGetStepByIDParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<StructureAPI.ExecutionStep> {
+    return this._client.get('/admin/training_datasets/get_step_by_id', { query, ...options });
+  }
+
+  /**
+   * Lists all training datums for a dataset.
+   */
   listDatums(
     query: TrainingDatasetListDatumsParams,
     options?: Core.RequestOptions,
@@ -308,6 +318,10 @@ export interface TrainingDatasetGetNextUnverifiedParams {
   dataset_name: string;
 }
 
+export interface TrainingDatasetGetStepByIDParams {
+  step_id: string;
+}
+
 export interface TrainingDatasetListDatumsParams {
   dataset_name: string;
 }
@@ -494,6 +508,7 @@ export namespace TrainingDatasets {
   export import TrainingDatasetAddParams = TrainingDatasetsAPI.TrainingDatasetAddParams;
   export import TrainingDatasetAddDatumParams = TrainingDatasetsAPI.TrainingDatasetAddDatumParams;
   export import TrainingDatasetGetNextUnverifiedParams = TrainingDatasetsAPI.TrainingDatasetGetNextUnverifiedParams;
+  export import TrainingDatasetGetStepByIDParams = TrainingDatasetsAPI.TrainingDatasetGetStepByIDParams;
   export import TrainingDatasetListDatumsParams = TrainingDatasetsAPI.TrainingDatasetListDatumsParams;
   export import TrainingDatasetResetPendingParams = TrainingDatasetsAPI.TrainingDatasetResetPendingParams;
   export import TrainingDatasetSizeParams = TrainingDatasetsAPI.TrainingDatasetSizeParams;
