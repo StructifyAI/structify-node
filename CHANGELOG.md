@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.25.0 (2024-10-11)
+
+Full Changelog: [v1.24.0...v1.25.0](https://github.com/StructifyAI/structify-node/compare/v1.24.0...v1.25.0)
+
+### Features
+
+* **api:** api update ([#536](https://github.com/StructifyAI/structify-node/issues/536)) ([a61319c](https://github.com/StructifyAI/structify-node/commit/a61319c7b2db7487d527e2d4f930e3b72718d751))
+* **api:** api update ([#538](https://github.com/StructifyAI/structify-node/issues/538)) ([4a3efed](https://github.com/StructifyAI/structify-node/commit/4a3efed96473151727551bcb2518f4adfd37fc54))
+* **api:** api update ([#539](https://github.com/StructifyAI/structify-node/issues/539)) ([d3284ef](https://github.com/StructifyAI/structify-node/commit/d3284ef77b5c8d6f147b425b0c962999a18831ae))
+* **api:** api update ([#540](https://github.com/StructifyAI/structify-node/issues/540)) ([d5fa0cf](https://github.com/StructifyAI/structify-node/commit/d5fa0cfdd2154f26a7c526e4a0585446b8628a72))
+* **api:** api update ([#541](https://github.com/StructifyAI/structify-node/issues/541)) ([4e6ef84](https://github.com/StructifyAI/structify-node/commit/4e6ef84b477ea5f877e88a0b1cd1a0fd13a113b0))
+* **api:** api update ([#542](https://github.com/StructifyAI/structify-node/issues/542)) ([f25ac5a](https://github.com/StructifyAI/structify-node/commit/f25ac5ac9fcd54cfe0f1026dfd78910ebdef6c48))
+* **api:** api update ([#543](https://github.com/StructifyAI/structify-node/issues/543)) ([ffc10ad](https://github.com/StructifyAI/structify-node/commit/ffc10adcf39633ba48749a96f5bde175ba37667b))
+* **api:** api update ([#544](https://github.com/StructifyAI/structify-node/issues/544)) ([7544565](https://github.com/StructifyAI/structify-node/commit/754456583afcb9c1b917254a0f2edaa732cef029))
+* **api:** api update ([#545](https://github.com/StructifyAI/structify-node/issues/545)) ([2e83c55](https://github.com/StructifyAI/structify-node/commit/2e83c5596d149e3a103be2fea65c8c4e6db8302a))
+
 ## 1.24.0 (2024-10-09)
 
 Full Changelog: [v1.23.0...v1.24.0](https://github.com/StructifyAI/structify-node/compare/v1.23.0...v1.24.0)
