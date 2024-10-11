@@ -78,6 +78,25 @@ describe('resource trainingDatasets', () => {
     const response = await client.admin.trainingDatasets.getNextUnverified({ dataset_name: 'dataset_name' });
   });
 
+  test('getStepById: only required params', async () => {
+    const responsePromise = client.admin.trainingDatasets.getStepById({
+      step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('getStepById: required and optional params', async () => {
+    const response = await client.admin.trainingDatasets.getStepById({
+      step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+  });
+
   test('listDatums: only required params', async () => {
     const responsePromise = client.admin.trainingDatasets.listDatums({ dataset_name: 'dataset_name' });
     const rawResponse = await responsePromise.asResponse();
