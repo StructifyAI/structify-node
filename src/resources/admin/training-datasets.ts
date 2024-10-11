@@ -94,6 +94,10 @@ export interface AddDatumRequest {
 export interface TrainingDatumResponse {
   id: string;
 
+  labelers: Array<string>;
+
+  last_updated: string;
+
   status: 'Unverified' | 'Verified' | 'Pending' | 'Skipped';
 
   step: StructureAPI.ExecutionStep;
