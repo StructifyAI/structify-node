@@ -78,6 +78,21 @@ describe('resource trainingDatasets', () => {
     const response = await client.admin.trainingDatasets.getNextUnverified({ dataset_name: 'dataset_name' });
   });
 
+  test('listDatums: only required params', async () => {
+    const responsePromise = client.admin.trainingDatasets.listDatums({ dataset_name: 'dataset_name' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('listDatums: required and optional params', async () => {
+    const response = await client.admin.trainingDatasets.listDatums({ dataset_name: 'dataset_name' });
+  });
+
   test('resetPending: only required params', async () => {
     const responsePromise = client.admin.trainingDatasets.resetPending({ dataset_name: 'dataset_name' });
     const rawResponse = await responsePromise.asResponse();
