@@ -8,6 +8,13 @@ import * as StructureAPI from '../structure';
 
 export class TrainingDatasets extends APIResource {
   /**
+   * Lists all training datasets.
+   */
+  list(options?: Core.RequestOptions): Core.APIPromise<TrainingDatasetListResponse> {
+    return this._client.get('/admin/training_datasets/list', options);
+  }
+
+  /**
    * Creates a new training dataset with the given name.
    */
   add(params: TrainingDatasetAddParams, options?: Core.RequestOptions): Core.APIPromise<void> {
@@ -254,6 +261,8 @@ export namespace UpdateDatumRequest {
   }
 }
 
+export type TrainingDatasetListResponse = Array<string>;
+
 export type TrainingDatasetSizeResponse = number;
 
 export interface TrainingDatasetAddParams {
@@ -446,6 +455,7 @@ export namespace TrainingDatasets {
   export import AddDatumRequest = TrainingDatasetsAPI.AddDatumRequest;
   export import TrainingDatumResponse = TrainingDatasetsAPI.TrainingDatumResponse;
   export import UpdateDatumRequest = TrainingDatasetsAPI.UpdateDatumRequest;
+  export import TrainingDatasetListResponse = TrainingDatasetsAPI.TrainingDatasetListResponse;
   export import TrainingDatasetSizeResponse = TrainingDatasetsAPI.TrainingDatasetSizeResponse;
   export import TrainingDatasetAddParams = TrainingDatasetsAPI.TrainingDatasetAddParams;
   export import TrainingDatasetAddDatumParams = TrainingDatasetsAPI.TrainingDatasetAddDatumParams;

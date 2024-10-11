@@ -35,10 +35,12 @@ Types:
 - <code><a href="./src/resources/admin/training-datasets.ts">AddDatumRequest</a></code>
 - <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatumResponse</a></code>
 - <code><a href="./src/resources/admin/training-datasets.ts">UpdateDatumRequest</a></code>
+- <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatasetListResponse</a></code>
 - <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatasetSizeResponse</a></code>
 
 Methods:
 
+- <code title="get /admin/training_datasets/list">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">list</a>() -> TrainingDatasetListResponse</code>
 - <code title="post /admin/training_datasets/add_dataset">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">add</a>({ ...params }) -> void</code>
 - <code title="post /admin/training_datasets/add_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">addDatum</a>({ ...params }) -> void</code>
 - <code title="get /admin/training_datasets/next_unverified">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getNextUnverified</a>({ ...params }) -> TrainingDatumResponse</code>

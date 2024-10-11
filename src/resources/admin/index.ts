@@ -4,6 +4,7 @@ export {
   AddDatumRequest,
   TrainingDatumResponse,
   UpdateDatumRequest,
+  TrainingDatasetListResponse,
   TrainingDatasetSizeResponse,
   TrainingDatasetAddParams,
   TrainingDatasetAddDatumParams,
