@@ -48,6 +48,16 @@ export class TrainingDatasets extends APIResource {
   }
 
   /**
+   * Lists all training datums for a dataset.
+   */
+  listDatums(
+    query: TrainingDatasetListDatumsParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<TrainingDatasetListDatumsResponse> {
+    return this._client.get('/admin/training_datasets/list_datums', { query, ...options });
+  }
+
+  /**
    * Resets all pending training data in the specified dataset back to unverified.
    */
   resetPending(
@@ -267,6 +277,21 @@ export namespace UpdateDatumRequest {
 
 export type TrainingDatasetListResponse = Array<string>;
 
+export type TrainingDatasetListDatumsResponse =
+  Array<TrainingDatasetListDatumsResponse.TrainingDatasetListDatumsResponseItem>;
+
+export namespace TrainingDatasetListDatumsResponse {
+  export interface TrainingDatasetListDatumsResponseItem {
+    id: string;
+
+    labelers: Array<string>;
+
+    last_updated: string;
+
+    status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped';
+  }
+}
+
 export type TrainingDatasetSizeResponse = number;
 
 export interface TrainingDatasetAddParams {
@@ -280,6 +305,10 @@ export interface TrainingDatasetAddDatumParams {
 }
 
 export interface TrainingDatasetGetNextUnverifiedParams {
+  dataset_name: string;
+}
+
+export interface TrainingDatasetListDatumsParams {
   dataset_name: string;
 }
 
@@ -460,10 +489,12 @@ export namespace TrainingDatasets {
   export import TrainingDatumResponse = TrainingDatasetsAPI.TrainingDatumResponse;
   export import UpdateDatumRequest = TrainingDatasetsAPI.UpdateDatumRequest;
   export import TrainingDatasetListResponse = TrainingDatasetsAPI.TrainingDatasetListResponse;
+  export import TrainingDatasetListDatumsResponse = TrainingDatasetsAPI.TrainingDatasetListDatumsResponse;
   export import TrainingDatasetSizeResponse = TrainingDatasetsAPI.TrainingDatasetSizeResponse;
   export import TrainingDatasetAddParams = TrainingDatasetsAPI.TrainingDatasetAddParams;
   export import TrainingDatasetAddDatumParams = TrainingDatasetsAPI.TrainingDatasetAddDatumParams;
   export import TrainingDatasetGetNextUnverifiedParams = TrainingDatasetsAPI.TrainingDatasetGetNextUnverifiedParams;
+  export import TrainingDatasetListDatumsParams = TrainingDatasetsAPI.TrainingDatasetListDatumsParams;
   export import TrainingDatasetResetPendingParams = TrainingDatasetsAPI.TrainingDatasetResetPendingParams;
   export import TrainingDatasetSizeParams = TrainingDatasetsAPI.TrainingDatasetSizeParams;
   export import TrainingDatasetUpdateDatumParams = TrainingDatasetsAPI.TrainingDatasetUpdateDatumParams;

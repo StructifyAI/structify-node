@@ -20,10 +20,12 @@ export namespace Admin {
   export import TrainingDatumResponse = TrainingDatasetsAPI.TrainingDatumResponse;
   export import UpdateDatumRequest = TrainingDatasetsAPI.UpdateDatumRequest;
   export import TrainingDatasetListResponse = TrainingDatasetsAPI.TrainingDatasetListResponse;
+  export import TrainingDatasetListDatumsResponse = TrainingDatasetsAPI.TrainingDatasetListDatumsResponse;
   export import TrainingDatasetSizeResponse = TrainingDatasetsAPI.TrainingDatasetSizeResponse;
   export import TrainingDatasetAddParams = TrainingDatasetsAPI.TrainingDatasetAddParams;
   export import TrainingDatasetAddDatumParams = TrainingDatasetsAPI.TrainingDatasetAddDatumParams;
   export import TrainingDatasetGetNextUnverifiedParams = TrainingDatasetsAPI.TrainingDatasetGetNextUnverifiedParams;
+  export import TrainingDatasetListDatumsParams = TrainingDatasetsAPI.TrainingDatasetListDatumsParams;
   export import TrainingDatasetResetPendingParams = TrainingDatasetsAPI.TrainingDatasetResetPendingParams;
   export import TrainingDatasetSizeParams = TrainingDatasetsAPI.TrainingDatasetSizeParams;
   export import TrainingDatasetUpdateDatumParams = TrainingDatasetsAPI.TrainingDatasetUpdateDatumParams;
