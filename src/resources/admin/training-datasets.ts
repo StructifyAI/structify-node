@@ -81,7 +81,7 @@ export class TrainingDatasets extends APIResource {
 export interface AddDatumRequest {
   dataset_name: string;
 
-  step: StructureAPI.ExecutionStep;
+  step_id: string;
 }
 
 export interface TrainingDatumResponse {
@@ -263,7 +263,7 @@ export interface TrainingDatasetAddParams {
 export interface TrainingDatasetAddDatumParams {
   dataset_name: string;
 
-  step: StructureAPI.ExecutionStep;
+  step_id: string;
 }
 
 export interface TrainingDatasetGetNextUnverifiedParams {
