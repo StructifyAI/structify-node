@@ -45,6 +45,8 @@ export namespace SourceListResponse {
 
     creation_time: string;
 
+    is_summary: boolean;
+
     link: SourcesAPI.Source;
 
     location:
