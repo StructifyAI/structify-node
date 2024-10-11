@@ -98,7 +98,7 @@ export interface TrainingDatumResponse {
 
   last_updated: string;
 
-  status: 'Unverified' | 'Verified' | 'Pending' | 'Skipped';
+  status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped';
 
   step: StructureAPI.ExecutionStep;
 }
@@ -106,7 +106,7 @@ export interface TrainingDatumResponse {
 export interface UpdateDatumRequest {
   id: string;
 
-  status: 'Unverified' | 'Verified' | 'Pending' | 'Skipped';
+  status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped';
 
   updated_tool_calls: Array<UpdateDatumRequest.UpdatedToolCall>;
 }
@@ -290,13 +290,13 @@ export interface TrainingDatasetResetPendingParams {
 export interface TrainingDatasetSizeParams {
   dataset_name: string;
 
-  status?: 'Unverified' | 'Verified' | 'Pending' | 'Skipped' | null;
+  status?: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | null;
 }
 
 export interface TrainingDatasetUpdateDatumParams {
   id: string;
 
-  status: 'Unverified' | 'Verified' | 'Pending' | 'Skipped';
+  status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped';
 
   updated_tool_calls: Array<TrainingDatasetUpdateDatumParams.UpdatedToolCall>;
 }
