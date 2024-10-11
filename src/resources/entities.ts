@@ -49,6 +49,16 @@ export class Entities extends APIResource {
     return this._client.post('/entity/search', { body, ...options });
   }
 
+  /**
+   * Search for entities based on the given query
+   */
+  summarize(
+    body: EntitySummarizeParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<EntitySummarizeResponse> {
+    return this._client.post('/entity/summarize', { body, ...options });
+  }
+
   view(query: EntityViewParams, options?: Core.RequestOptions): Core.APIPromise<EntityViewResponse> {
     return this._client.get('/entity/view', { query, ...options });
   }
@@ -168,6 +178,20 @@ export type EntitySearchResponse = Array<EntitySearchResponse.EntitySearchRespon
 
 export namespace EntitySearchResponse {
   export interface EntitySearchResponseItem {
+    id: string;
+
+    creation_time: string;
+
+    label: string;
+
+    properties: Record<string, string | boolean | number>;
+  }
+}
+
+export type EntitySummarizeResponse = Array<EntitySummarizeResponse.EntitySummarizeResponseItem>;
+
+export namespace EntitySummarizeResponse {
+  export interface EntitySummarizeResponseItem {
     id: string;
 
     creation_time: string;
@@ -338,6 +362,14 @@ export interface EntitySearchParams {
   table_name: string;
 }
 
+export interface EntitySummarizeParams {
+  dataset_name: string;
+
+  entity_id: string;
+
+  properties: Array<string>;
+}
+
 export interface EntityViewParams {
   id: string;
 }
@@ -349,6 +381,7 @@ export namespace Entities {
   export import EntityGetSourceEntitiesResponse = EntitiesAPI.EntityGetSourceEntitiesResponse;
   export import EntityMergeResponse = EntitiesAPI.EntityMergeResponse;
   export import EntitySearchResponse = EntitiesAPI.EntitySearchResponse;
+  export import EntitySummarizeResponse = EntitiesAPI.EntitySummarizeResponse;
   export import EntityViewResponse = EntitiesAPI.EntityViewResponse;
   export import EntityAddParams = EntitiesAPI.EntityAddParams;
   export import EntityGetParams = EntitiesAPI.EntityGetParams;
@@ -356,5 +389,6 @@ export namespace Entities {
   export import EntityGetSourceEntitiesParams = EntitiesAPI.EntityGetSourceEntitiesParams;
   export import EntityMergeParams = EntitiesAPI.EntityMergeParams;
   export import EntitySearchParams = EntitiesAPI.EntitySearchParams;
+  export import EntitySummarizeParams = EntitiesAPI.EntitySummarizeParams;
   export import EntityViewParams = EntitiesAPI.EntityViewParams;
 }
