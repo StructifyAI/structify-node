@@ -49,7 +49,6 @@ Methods:
 - <code title="get /admin/training_datasets/list_datums">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">listDatums</a>({ ...params }) -> TrainingDatasetListDatumsResponse</code>
 - <code title="post /admin/training_datasets/reset_pending">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">resetPending</a>({ ...params }) -> void</code>
 - <code title="post /admin/training_datasets/size">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">size</a>({ ...params }) -> TrainingDatasetSizeResponse</code>
-- <code title="put /admin/training_data/update_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">updateDatum</a>({ ...params }) -> void</code>
 
 # Datasets
 
