@@ -19,6 +19,7 @@ export namespace Admin {
   export import AddDatumRequest = TrainingDatasetsAPI.AddDatumRequest;
   export import TrainingDatumResponse = TrainingDatasetsAPI.TrainingDatumResponse;
   export import UpdateDatumRequest = TrainingDatasetsAPI.UpdateDatumRequest;
+  export import TrainingDatasetListResponse = TrainingDatasetsAPI.TrainingDatasetListResponse;
   export import TrainingDatasetSizeResponse = TrainingDatasetsAPI.TrainingDatasetSizeResponse;
   export import TrainingDatasetAddParams = TrainingDatasetsAPI.TrainingDatasetAddParams;
   export import TrainingDatasetAddDatumParams = TrainingDatasetsAPI.TrainingDatasetAddDatumParams;
