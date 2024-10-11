@@ -104,6 +104,8 @@ export namespace EntityGetSourceEntitiesResponse {
 
     creation_time: string;
 
+    is_summary: boolean;
+
     label: string;
 
     link: SourcesAPI.Source;
@@ -235,6 +237,8 @@ export namespace EntityViewResponse {
     id: string;
 
     creation_time: string;
+
+    is_summary: boolean;
 
     link: SourcesAPI.Source;
 
