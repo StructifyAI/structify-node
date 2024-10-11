@@ -14,6 +14,7 @@ export {
   TrainingDatasetListDatumsParams,
   TrainingDatasetResetPendingParams,
   TrainingDatasetSizeParams,
+  TrainingDatasetUpdateDatumParams,
   TrainingDatasets,
 } from './training-datasets';
 export { Admin } from './admin';
