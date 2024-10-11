@@ -107,14 +107,14 @@ describe('resource trainingDatasets', () => {
   test('size: required and optional params', async () => {
     const response = await client.admin.trainingDatasets.size({
       dataset_name: 'dataset_name',
-      status: 'Unverified',
+      status: 'Unlabeled',
     });
   });
 
   test('updateDatum: only required params', async () => {
     const responsePromise = client.admin.trainingDatasets.updateDatum({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      status: 'Unverified',
+      status: 'Unlabeled',
       updated_tool_calls: [
         { input: { Save: {} }, name: 'Save' },
         { input: { Save: {} }, name: 'Save' },
@@ -133,7 +133,7 @@ describe('resource trainingDatasets', () => {
   test('updateDatum: required and optional params', async () => {
     const response = await client.admin.trainingDatasets.updateDatum({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      status: 'Unverified',
+      status: 'Unlabeled',
       updated_tool_calls: [
         {
           input: {
