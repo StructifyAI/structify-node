@@ -4,6 +4,7 @@ import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as JobsAPI from './jobs';
+import * as SharedAPI from './shared';
 import * as StructureAPI from './structure';
 import { JobsList, type JobsListParams } from '../pagination';
 
@@ -57,6 +58,10 @@ export class Jobs extends APIResource {
     return this._client.get(`/jobs/get_step/${stepId}`, options);
   }
 
+  getStepGraph(jobId: string, options?: Core.RequestOptions): Core.APIPromise<JobGetStepGraphResponse> {
+    return this._client.get(`/jobs/get_step_graph/${jobId}`, options);
+  }
+
   /**
    * Retrieve a job from structify.
    */
@@ -85,6 +90,8 @@ export interface JobListResponse {
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
+  message?: string | null;
+
   /**
    * What time did the job start running?
    */
@@ -99,6 +106,8 @@ export interface JobCancelResponse {
   creation_time: string;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+  message?: string | null;
 
   /**
    * What time did the job start running?
@@ -120,6 +129,8 @@ export namespace JobGetResponse {
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
+    message?: string | null;
+
     /**
      * What time did the job start running?
      */
@@ -127,15 +138,77 @@ export namespace JobGetResponse {
   }
 }
 
+export interface JobGetStepGraphResponse {
+  steps: Array<JobGetStepGraphResponse.Step>;
+
+  transitions: Array<JobGetStepGraphResponse.Transition>;
+}
+
+export namespace JobGetStepGraphResponse {
+  export interface Step {
+    id: string;
+
+    creation_time: string;
+
+    status: 'Queued' | 'Ignored' | 'Executed';
+
+    prompt?: string | null;
+
+    queued_message?: string | null;
+
+    /**
+     * Knowledge graph info structured to deserialize and display in the same format
+     * that the LLM outputs. Also the first representation of an LLM output in the
+     * pipeline from raw tool output to being merged into a Neo4j DB
+     */
+    save?: SharedAPI.KnowledgeGraph | null;
+
+    screenshot?: Core.Uploadable | null;
+
+    skipped_reason?: string | null;
+
+    state_change_message?: string | null;
+
+    step_index?: number | null;
+  }
+
+  export interface Transition {
+    from: string;
+
+    to: string;
+
+    tool_call: Transition.ToolCall;
+  }
+
+  export namespace Transition {
+    export interface ToolCall {
+      formatted_input: string;
+
+      name: string;
+    }
+  }
+}
+
 export type JobGetStepsResponse = Array<StructureAPI.ExecutionStep>;
 
-export interface JobListParams extends JobsListParams {}
+export interface JobListParams extends JobsListParams {
+  /**
+   * Dataset name to optionally filter jobs by
+   */
+  dataset_name?: string | null;
+
+  /**
+   * Status to optionally filter jobs by
+   */
+  status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
+}
 
 export namespace Jobs {
   export import JobListResponse = JobsAPI.JobListResponse;
   export import JobDeleteResponse = JobsAPI.JobDeleteResponse;
   export import JobCancelResponse = JobsAPI.JobCancelResponse;
   export import JobGetResponse = JobsAPI.JobGetResponse;
+  export import JobGetStepGraphResponse = JobsAPI.JobGetStepGraphResponse;
   export import JobGetStepsResponse = JobsAPI.JobGetStepsResponse;
   export import JobListResponsesJobsList = JobsAPI.JobListResponsesJobsList;
   export import JobListParams = JobsAPI.JobListParams;

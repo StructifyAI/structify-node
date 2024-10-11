@@ -6,9 +6,11 @@ export {
   ExecutionStep,
   ExtractionCriteria,
   ToolMetadata,
+  StructureEnhanceResponse,
   StructureIsCompleteResponse,
   StructureJobStatusResponse,
   StructureRunAsyncResponse,
+  StructureEnhanceParams,
   StructureIsCompleteParams,
   StructureJobStatusParams,
   StructureRunAsyncParams,
@@ -25,12 +27,15 @@ export {
 } from './shared';
 export {
   DatasetListResponse,
+  DatasetGetResponse,
+  DatasetMatchResponse,
   DatasetViewRelationshipsResponse,
   DatasetViewTableResponse,
   DatasetViewTablesWithRelationshipsResponse,
   DatasetCreateParams,
   DatasetDeleteParams,
   DatasetGetParams,
+  DatasetMatchParams,
   DatasetViewRelationshipsParams,
   DatasetViewTableParams,
   DatasetViewTablesWithRelationshipsParams,
@@ -40,37 +45,41 @@ export {
 } from './datasets';
 export {
   DocumentListResponse,
+  DocumentDownloadResponse,
   DocumentDeleteParams,
   DocumentDownloadParams,
   DocumentUploadParams,
   Documents,
 } from './documents';
-export { EntityAddResponse, EntityGetResponse, EntityAddParams, EntityGetParams, Entities } from './entities';
+export {
+  EntityAddResponse,
+  EntityGetResponse,
+  EntityGetLocalSubgraphResponse,
+  EntityGetSourceEntitiesResponse,
+  EntityMergeResponse,
+  EntitySearchResponse,
+  EntityViewResponse,
+  EntityAddParams,
+  EntityGetParams,
+  EntityGetLocalSubgraphParams,
+  EntityGetSourceEntitiesParams,
+  EntityMergeParams,
+  EntitySearchParams,
+  EntityViewParams,
+  Entities,
+} from './entities';
 export {
   JobListResponse,
   JobDeleteResponse,
   JobCancelResponse,
   JobGetResponse,
+  JobGetStepGraphResponse,
   JobGetStepsResponse,
   JobListParams,
   JobListResponsesJobsList,
   Jobs,
 } from './jobs';
-export {
-  LabelUpdateResponse,
-  LabelGetMessagesResponse,
-  LabelLlmAssistResponse,
-  LabelRunResponse,
-  LabelSubmitResponse,
-  LabelVerifyResponse,
-  LabelUpdateParams,
-  LabelGetMessagesParams,
-  LabelRunParams,
-  LabelSubmitParams,
-  LabelVerifyParams,
-  Label,
-} from './label';
-export { NewToken, UserInfo, UserUsageResponse, User } from './user';
+export { LabelVerifyResponse, LabelVerifyParams, Label } from './label';
 export {
   ReportEntityResponse,
   ReportStepResponse,
@@ -80,3 +89,12 @@ export {
 } from './report';
 export { ServerInformation, Server } from './server';
 export { Source, SourceListResponse, SourceListParams, Sources } from './sources';
+export {
+  TokenResponse,
+  UserInfo,
+  UserTransactionsResponse,
+  UserUsageResponse,
+  UserCreateTestTokenParams,
+  UserUsageParams,
+  User,
+} from './user';

@@ -3,6 +3,7 @@
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
 import * as TrainingDatasetsAPI from './training-datasets';
+import * as SharedAPI from '../shared';
 import * as StructureAPI from '../structure';
 
 export class TrainingDatasets extends APIResource {
@@ -96,7 +97,161 @@ export interface UpdateDatumRequest {
 
   status: 'Unverified' | 'Verified' | 'Pending' | 'Skipped';
 
-  step: StructureAPI.ExecutionStep;
+  updated_tool_calls: Array<UpdateDatumRequest.UpdatedToolCall>;
+}
+
+export namespace UpdateDatumRequest {
+  export interface UpdatedToolCall {
+    input:
+      | UpdatedToolCall.Save
+      | UpdatedToolCall.Scroll
+      | UpdatedToolCall.Exit
+      | UpdatedToolCall.Click
+      | UpdatedToolCall.Hover
+      | UpdatedToolCall.Wait
+      | UpdatedToolCall.Error
+      | UpdatedToolCall.Google
+      | UpdatedToolCall.Type;
+
+    name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
+
+    result?:
+      | UpdatedToolCall.ToolQueued
+      | UpdatedToolCall.ToolFail
+      | UpdatedToolCall.InputParseFail
+      | UpdatedToolCall.Success
+      | null;
+  }
+
+  export namespace UpdatedToolCall {
+    export interface Save {
+      /**
+       * Knowledge graph info structured to deserialize and display in the same format
+       * that the LLM outputs. Also the first representation of an LLM output in the
+       * pipeline from raw tool output to being merged into a Neo4j DB
+       */
+      Save: SharedAPI.KnowledgeGraph;
+    }
+
+    export interface Scroll {
+      /**
+       * For tools with no inputs.
+       */
+      Scroll: Scroll.Scroll;
+    }
+
+    export namespace Scroll {
+      /**
+       * For tools with no inputs.
+       */
+      export interface Scroll {
+        /**
+         * Dummy argument
+         */
+        reason: string;
+      }
+    }
+
+    export interface Exit {
+      /**
+       * For tools with no inputs.
+       */
+      Exit: Exit.Exit;
+    }
+
+    export namespace Exit {
+      /**
+       * For tools with no inputs.
+       */
+      export interface Exit {
+        /**
+         * Dummy argument
+         */
+        reason: string;
+      }
+    }
+
+    export interface Click {
+      Click: Click.Click;
+    }
+
+    export namespace Click {
+      export interface Click {
+        flag: number;
+      }
+    }
+
+    export interface Hover {
+      Hover: Hover.Hover;
+    }
+
+    export namespace Hover {
+      export interface Hover {
+        flag: number;
+      }
+    }
+
+    export interface Wait {
+      Wait: Wait.Wait;
+    }
+
+    export namespace Wait {
+      export interface Wait {
+        /**
+         * Time in seconds to wait
+         */
+        seconds?: number;
+      }
+    }
+
+    export interface Error {
+      Error: Error.Error;
+    }
+
+    export namespace Error {
+      export interface Error {
+        error: string;
+      }
+    }
+
+    export interface Google {
+      Google: Google.Google;
+    }
+
+    export namespace Google {
+      export interface Google {
+        query: string;
+      }
+    }
+
+    export interface Type {
+      Type: Type.Type;
+    }
+
+    export namespace Type {
+      export interface Type {
+        flag: number;
+
+        input: string;
+      }
+    }
+
+    export interface ToolQueued {
+      ToolQueued: string;
+    }
+
+    export interface ToolFail {
+      ToolFail: string;
+    }
+
+    export interface InputParseFail {
+      InputParseFail: string;
+    }
+
+    export interface Success {
+      Success: string;
+    }
+  }
 }
 
 export type TrainingDatasetSizeResponse = number;
@@ -130,7 +285,161 @@ export interface TrainingDatasetUpdateDatumParams {
 
   status: 'Unverified' | 'Verified' | 'Pending' | 'Skipped';
 
-  step: StructureAPI.ExecutionStep;
+  updated_tool_calls: Array<TrainingDatasetUpdateDatumParams.UpdatedToolCall>;
+}
+
+export namespace TrainingDatasetUpdateDatumParams {
+  export interface UpdatedToolCall {
+    input:
+      | UpdatedToolCall.Save
+      | UpdatedToolCall.Scroll
+      | UpdatedToolCall.Exit
+      | UpdatedToolCall.Click
+      | UpdatedToolCall.Hover
+      | UpdatedToolCall.Wait
+      | UpdatedToolCall.Error
+      | UpdatedToolCall.Google
+      | UpdatedToolCall.Type;
+
+    name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
+
+    result?:
+      | UpdatedToolCall.ToolQueued
+      | UpdatedToolCall.ToolFail
+      | UpdatedToolCall.InputParseFail
+      | UpdatedToolCall.Success
+      | null;
+  }
+
+  export namespace UpdatedToolCall {
+    export interface Save {
+      /**
+       * Knowledge graph info structured to deserialize and display in the same format
+       * that the LLM outputs. Also the first representation of an LLM output in the
+       * pipeline from raw tool output to being merged into a Neo4j DB
+       */
+      Save: SharedAPI.KnowledgeGraph;
+    }
+
+    export interface Scroll {
+      /**
+       * For tools with no inputs.
+       */
+      Scroll: Scroll.Scroll;
+    }
+
+    export namespace Scroll {
+      /**
+       * For tools with no inputs.
+       */
+      export interface Scroll {
+        /**
+         * Dummy argument
+         */
+        reason: string;
+      }
+    }
+
+    export interface Exit {
+      /**
+       * For tools with no inputs.
+       */
+      Exit: Exit.Exit;
+    }
+
+    export namespace Exit {
+      /**
+       * For tools with no inputs.
+       */
+      export interface Exit {
+        /**
+         * Dummy argument
+         */
+        reason: string;
+      }
+    }
+
+    export interface Click {
+      Click: Click.Click;
+    }
+
+    export namespace Click {
+      export interface Click {
+        flag: number;
+      }
+    }
+
+    export interface Hover {
+      Hover: Hover.Hover;
+    }
+
+    export namespace Hover {
+      export interface Hover {
+        flag: number;
+      }
+    }
+
+    export interface Wait {
+      Wait: Wait.Wait;
+    }
+
+    export namespace Wait {
+      export interface Wait {
+        /**
+         * Time in seconds to wait
+         */
+        seconds?: number;
+      }
+    }
+
+    export interface Error {
+      Error: Error.Error;
+    }
+
+    export namespace Error {
+      export interface Error {
+        error: string;
+      }
+    }
+
+    export interface Google {
+      Google: Google.Google;
+    }
+
+    export namespace Google {
+      export interface Google {
+        query: string;
+      }
+    }
+
+    export interface Type {
+      Type: Type.Type;
+    }
+
+    export namespace Type {
+      export interface Type {
+        flag: number;
+
+        input: string;
+      }
+    }
+
+    export interface ToolQueued {
+      ToolQueued: string;
+    }
+
+    export interface ToolFail {
+      ToolFail: string;
+    }
+
+    export interface InputParseFail {
+      InputParseFail: string;
+    }
+
+    export interface Success {
+      Success: string;
+    }
+  }
 }
 
 export namespace TrainingDatasets {

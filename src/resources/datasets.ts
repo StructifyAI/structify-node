@@ -40,11 +40,15 @@ export class Datasets extends APIResource {
   /**
    * Grab a dataset by its name.
    */
-  get(
-    query: DatasetGetParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SharedAPI.DatasetDescriptor | null> {
+  get(query: DatasetGetParams, options?: Core.RequestOptions): Core.APIPromise<DatasetGetResponse> {
     return this._client.get('/dataset/info', { query, ...options });
+  }
+
+  /**
+   * Returns: The matched subgraph and a score for the match.
+   */
+  match(body: DatasetMatchParams, options?: Core.RequestOptions): Core.APIPromise<DatasetMatchResponse> {
+    return this._client.post('/dataset/match', { body, ...options });
   }
 
   /**
@@ -98,10 +102,40 @@ export namespace DatasetListResponse {
   }
 }
 
+/**
+ * A dataset is where you put multiple referential schemas.
+ *
+ * A dataset is a complete namespace where all references between schemas are held
+ * within the dataset.
+ */
+export interface DatasetGetResponse extends SharedAPI.DatasetDescriptor {
+  created_timestamp: string;
+}
+
+export interface DatasetMatchResponse {
+  entity: DatasetMatchResponse.Entity;
+
+  score: number;
+}
+
+export namespace DatasetMatchResponse {
+  export interface Entity {
+    id: string;
+
+    creation_time: string;
+
+    label: string;
+
+    properties: Record<string, string | boolean | number>;
+  }
+}
+
 export interface DatasetViewRelationshipsResponse {
   from_id: string;
 
   label: string;
+
+  properties: Record<string, string | boolean | number>;
 
   to_id: string;
 }
@@ -113,7 +147,7 @@ export interface DatasetViewTableResponse {
 
   label: string;
 
-  properties: Record<string, string | null | boolean | null | number | null>;
+  properties: Record<string, string | boolean | number>;
 }
 
 export interface DatasetViewTablesWithRelationshipsResponse {
@@ -132,7 +166,7 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     label: string;
 
-    properties: Record<string, string | null | boolean | null | number | null>;
+    properties: Record<string, string | boolean | number>;
   }
 
   export interface Entity {
@@ -142,13 +176,15 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     label: string;
 
-    properties: Record<string, string | null | boolean | null | number | null>;
+    properties: Record<string, string | boolean | number>;
   }
 
   export interface Relationship {
     from_id: string;
 
     label: string;
+
+    properties: Record<string, string | boolean | number>;
 
     to_id: string;
   }
@@ -174,18 +210,83 @@ export namespace DatasetCreateParams {
 
     target_table: string;
 
+    merge_strategy?: Relationship.MergeStrategy | null;
+
     properties?: Array<Relationship.Property>;
   }
 
   export namespace Relationship {
+    export interface MergeStrategy {
+      Probabilistic: MergeStrategy.Probabilistic;
+    }
+
+    export namespace MergeStrategy {
+      export interface Probabilistic {
+        /**
+         * Describes the expected cardinality of the source table when a match is found in
+         * the target table
+         *
+         * For example, if we have a source company and a target funding round, we expect
+         * the source company to appear in multiple funding rounds, but not _too_ many. So
+         * if we have a funding round match, the expected number of unique companies is
+         * relatively small. This is an estimate of that number.
+         */
+        source_cardinality_given_target_match?: number | null;
+
+        /**
+         * Describes the expected cardinality of the target table when a match is found in
+         * the source table
+         *
+         * For example, if we have a source company and a target funding round, we usually
+         * expect some number of funding rounds to be associated with a single company but
+         * not _too_ many. So if we have a company match, the expected number of unique
+         * funding rounds is relatively small. This is an estimate of that number.
+         */
+        target_cardinality_given_source_match?: number | null;
+      }
+    }
+
     export interface Property {
       description: string;
 
       name: string;
 
-      merge_strategy?: 'Unique' | 'FuzzyMatch' | 'None';
+      /**
+       * Property with unique 1:1 correspondence to its parent.
+       *
+       * Merge based on this property 100% of the time
+       */
+      merge_strategy?: 'Unique' | Property.Probabilistic | 'NoSignal';
 
       prop_type?: SharedAPI.PropertyType;
+    }
+
+    export namespace Property {
+      export interface Probabilistic {
+        Probabilistic: Probabilistic.Probabilistic;
+      }
+
+      export namespace Probabilistic {
+        export interface Probabilistic {
+          /**
+           * The number of unique values that are expected to be present in the complete
+           * dataset
+           *
+           * This is used for merging to determine how significant a match is. (i.e. if there
+           * are only 2 possible values, a match gives less confidence than if there are 100)
+           */
+          baseline_cardinality: number;
+
+          /**
+           * The estimated probability that, given an entity match, the properties also match
+           *
+           * For a person's full name, this would be quite high. For a person's job title, it
+           * would be lower because people can have multiple job titles over time or at
+           * different companies at the same time.
+           */
+          match_transfer_probability: number;
+        }
+      }
     }
   }
 }
@@ -204,22 +305,42 @@ export interface DatasetGetParams {
   name: string;
 }
 
+export interface DatasetMatchParams {
+  /**
+   * The dataset to match against
+   */
+  dataset: string;
+
+  /**
+   * Knowledge graph info structured to deserialize and display in the same format
+   * that the LLM outputs. Also the first representation of an LLM output in the
+   * pipeline from raw tool output to being merged into a Neo4j DB
+   */
+  query_kg: SharedAPI.KnowledgeGraph;
+}
+
 export interface DatasetViewRelationshipsParams extends JobsListParams {
   dataset: string;
 
   name: string;
+
+  job_id?: string | null;
 }
 
 export interface DatasetViewTableParams extends JobsListParams {
   dataset: string;
 
   name: string;
+
+  job_id?: string | null;
 }
 
 export interface DatasetViewTablesWithRelationshipsParams {
   dataset: string;
 
   name: string;
+
+  job_id?: string | null;
 
   limit?: number;
 
@@ -228,6 +349,8 @@ export interface DatasetViewTablesWithRelationshipsParams {
 
 export namespace Datasets {
   export import DatasetListResponse = DatasetsAPI.DatasetListResponse;
+  export import DatasetGetResponse = DatasetsAPI.DatasetGetResponse;
+  export import DatasetMatchResponse = DatasetsAPI.DatasetMatchResponse;
   export import DatasetViewRelationshipsResponse = DatasetsAPI.DatasetViewRelationshipsResponse;
   export import DatasetViewTableResponse = DatasetsAPI.DatasetViewTableResponse;
   export import DatasetViewTablesWithRelationshipsResponse = DatasetsAPI.DatasetViewTablesWithRelationshipsResponse;
@@ -236,6 +359,7 @@ export namespace Datasets {
   export import DatasetCreateParams = DatasetsAPI.DatasetCreateParams;
   export import DatasetDeleteParams = DatasetsAPI.DatasetDeleteParams;
   export import DatasetGetParams = DatasetsAPI.DatasetGetParams;
+  export import DatasetMatchParams = DatasetsAPI.DatasetMatchParams;
   export import DatasetViewRelationshipsParams = DatasetsAPI.DatasetViewRelationshipsParams;
   export import DatasetViewTableParams = DatasetsAPI.DatasetViewTableParams;
   export import DatasetViewTablesWithRelationshipsParams = DatasetsAPI.DatasetViewTablesWithRelationshipsParams;
