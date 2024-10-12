@@ -22,6 +22,8 @@ export interface LabelVerifyParams {
 
   step_id: string;
 
+  verify_type: 'DeprecatedToolCalling' | 'ActionStr' | 'Json';
+
   worse_response: string;
 }
 
