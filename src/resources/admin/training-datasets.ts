@@ -68,6 +68,21 @@ export class TrainingDatasets extends APIResource {
   }
 
   /**
+   * Removes a training datum from the specified dataset.
+   */
+  removeDatum(
+    params: TrainingDatasetRemoveDatumParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    const { step_id } = params;
+    return this._client.delete('/admin/training_datasets/remove_datum', {
+      query: { step_id },
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
    * Resets all pending training data in the specified dataset back to unverified.
    */
   resetPending(
@@ -326,6 +341,10 @@ export interface TrainingDatasetListDatumsParams {
   dataset_name: string;
 }
 
+export interface TrainingDatasetRemoveDatumParams {
+  step_id: string;
+}
+
 export interface TrainingDatasetResetPendingParams {
   dataset_name: string;
 }
@@ -510,6 +529,7 @@ export namespace TrainingDatasets {
   export import TrainingDatasetGetNextUnverifiedParams = TrainingDatasetsAPI.TrainingDatasetGetNextUnverifiedParams;
   export import TrainingDatasetGetStepByIDParams = TrainingDatasetsAPI.TrainingDatasetGetStepByIDParams;
   export import TrainingDatasetListDatumsParams = TrainingDatasetsAPI.TrainingDatasetListDatumsParams;
+  export import TrainingDatasetRemoveDatumParams = TrainingDatasetsAPI.TrainingDatasetRemoveDatumParams;
   export import TrainingDatasetResetPendingParams = TrainingDatasetsAPI.TrainingDatasetResetPendingParams;
   export import TrainingDatasetSizeParams = TrainingDatasetsAPI.TrainingDatasetSizeParams;
   export import TrainingDatasetUpdateDatumParams = TrainingDatasetsAPI.TrainingDatasetUpdateDatumParams;
