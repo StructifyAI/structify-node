@@ -12,6 +12,7 @@ export {
   TrainingDatasetGetNextUnverifiedParams,
   TrainingDatasetGetStepByIDParams,
   TrainingDatasetListDatumsParams,
+  TrainingDatasetRemoveDatumParams,
   TrainingDatasetResetPendingParams,
   TrainingDatasetSizeParams,
   TrainingDatasetUpdateDatumParams,

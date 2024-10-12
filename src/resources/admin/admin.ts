@@ -27,6 +27,7 @@ export namespace Admin {
   export import TrainingDatasetGetNextUnverifiedParams = TrainingDatasetsAPI.TrainingDatasetGetNextUnverifiedParams;
   export import TrainingDatasetGetStepByIDParams = TrainingDatasetsAPI.TrainingDatasetGetStepByIDParams;
   export import TrainingDatasetListDatumsParams = TrainingDatasetsAPI.TrainingDatasetListDatumsParams;
+  export import TrainingDatasetRemoveDatumParams = TrainingDatasetsAPI.TrainingDatasetRemoveDatumParams;
   export import TrainingDatasetResetPendingParams = TrainingDatasetsAPI.TrainingDatasetResetPendingParams;
   export import TrainingDatasetSizeParams = TrainingDatasetsAPI.TrainingDatasetSizeParams;
   export import TrainingDatasetUpdateDatumParams = TrainingDatasetsAPI.TrainingDatasetUpdateDatumParams;
