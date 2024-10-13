@@ -13,7 +13,6 @@ describe('resource label', () => {
     const responsePromise = client.label.verify({
       better_response: 'better_response',
       step_id: 'step_id',
-      verify_type: 'DeprecatedToolCalling',
       worse_response: 'worse_response',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -29,7 +28,6 @@ describe('resource label', () => {
     const response = await client.label.verify({
       better_response: 'better_response',
       step_id: 'step_id',
-      verify_type: 'DeprecatedToolCalling',
       worse_response: 'worse_response',
     });
   });
