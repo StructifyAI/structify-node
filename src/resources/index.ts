@@ -52,6 +52,7 @@ export {
   Documents,
 } from './documents';
 export {
+  EntityDeleteResponse,
   EntityAddResponse,
   EntityGetResponse,
   EntityGetLocalSubgraphResponse,
@@ -59,7 +60,9 @@ export {
   EntityMergeResponse,
   EntitySearchResponse,
   EntitySummarizeResponse,
+  EntityUpdatePropertyResponse,
   EntityViewResponse,
+  EntityDeleteParams,
   EntityAddParams,
   EntityGetParams,
   EntityGetLocalSubgraphParams,
@@ -67,6 +70,7 @@ export {
   EntityMergeParams,
   EntitySearchParams,
   EntitySummarizeParams,
+  EntityUpdatePropertyParams,
   EntityViewParams,
   Entities,
 } from './entities';

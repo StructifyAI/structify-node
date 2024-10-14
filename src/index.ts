@@ -271,6 +271,7 @@ export namespace Structify {
   export import SourceListParams = API.SourceListParams;
 
   export import Entities = API.Entities;
+  export import EntityDeleteResponse = API.EntityDeleteResponse;
   export import EntityAddResponse = API.EntityAddResponse;
   export import EntityGetResponse = API.EntityGetResponse;
   export import EntityGetLocalSubgraphResponse = API.EntityGetLocalSubgraphResponse;
@@ -278,7 +279,9 @@ export namespace Structify {
   export import EntityMergeResponse = API.EntityMergeResponse;
   export import EntitySearchResponse = API.EntitySearchResponse;
   export import EntitySummarizeResponse = API.EntitySummarizeResponse;
+  export import EntityUpdatePropertyResponse = API.EntityUpdatePropertyResponse;
   export import EntityViewResponse = API.EntityViewResponse;
+  export import EntityDeleteParams = API.EntityDeleteParams;
   export import EntityAddParams = API.EntityAddParams;
   export import EntityGetParams = API.EntityGetParams;
   export import EntityGetLocalSubgraphParams = API.EntityGetLocalSubgraphParams;
@@ -286,6 +289,7 @@ export namespace Structify {
   export import EntityMergeParams = API.EntityMergeParams;
   export import EntitySearchParams = API.EntitySearchParams;
   export import EntitySummarizeParams = API.EntitySummarizeParams;
+  export import EntityUpdatePropertyParams = API.EntityUpdatePropertyParams;
   export import EntityViewParams = API.EntityViewParams;
 
   export import Report = API.Report;

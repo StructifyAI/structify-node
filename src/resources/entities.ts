@@ -8,6 +8,13 @@ import * as SourcesAPI from './sources';
 
 export class Entities extends APIResource {
   /**
+   * Delete an entity manually
+   */
+  delete(body: EntityDeleteParams, options?: Core.RequestOptions): Core.APIPromise<EntityDeleteResponse> {
+    return this._client.delete('/entity/delete', { body, ...options });
+  }
+
+  /**
    * Add an entity manually
    */
   add(body: EntityAddParams, options?: Core.RequestOptions): Core.APIPromise<EntityAddResponse> {
@@ -59,10 +66,22 @@ export class Entities extends APIResource {
     return this._client.post('/entity/summarize', { body, ...options });
   }
 
+  /**
+   * update an entity manually
+   */
+  updateProperty(
+    body: EntityUpdatePropertyParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<EntityUpdatePropertyResponse> {
+    return this._client.post('/entity/update', { body, ...options });
+  }
+
   view(query: EntityViewParams, options?: Core.RequestOptions): Core.APIPromise<EntityViewResponse> {
     return this._client.get('/entity/view', { query, ...options });
   }
 }
+
+export type EntityDeleteResponse = Array<string>;
 
 export type EntityAddResponse = Array<string>;
 
@@ -202,6 +221,16 @@ export namespace EntitySummarizeResponse {
   }
 }
 
+export interface EntityUpdatePropertyResponse {
+  id: string;
+
+  creation_time: string;
+
+  label: string;
+
+  properties: Record<string, string | boolean | number>;
+}
+
 export interface EntityViewResponse {
   connected_entities: Array<EntityViewResponse.ConnectedEntity>;
 
@@ -306,6 +335,12 @@ export namespace EntityViewResponse {
   }
 }
 
+export interface EntityDeleteParams {
+  dataset_name: string;
+
+  entity_id: string;
+}
+
 export interface EntityAddParams {
   dataset_name: string;
 
@@ -370,11 +405,25 @@ export interface EntitySummarizeParams {
   properties: Array<string>;
 }
 
+export interface EntityUpdatePropertyParams {
+  dataset_name: string;
+
+  entity_id: string;
+
+  /**
+   * The name of the property to update
+   */
+  prop_name: string;
+
+  prop_value: string | boolean | number;
+}
+
 export interface EntityViewParams {
   id: string;
 }
 
 export namespace Entities {
+  export import EntityDeleteResponse = EntitiesAPI.EntityDeleteResponse;
   export import EntityAddResponse = EntitiesAPI.EntityAddResponse;
   export import EntityGetResponse = EntitiesAPI.EntityGetResponse;
   export import EntityGetLocalSubgraphResponse = EntitiesAPI.EntityGetLocalSubgraphResponse;
@@ -382,7 +431,9 @@ export namespace Entities {
   export import EntityMergeResponse = EntitiesAPI.EntityMergeResponse;
   export import EntitySearchResponse = EntitiesAPI.EntitySearchResponse;
   export import EntitySummarizeResponse = EntitiesAPI.EntitySummarizeResponse;
+  export import EntityUpdatePropertyResponse = EntitiesAPI.EntityUpdatePropertyResponse;
   export import EntityViewResponse = EntitiesAPI.EntityViewResponse;
+  export import EntityDeleteParams = EntitiesAPI.EntityDeleteParams;
   export import EntityAddParams = EntitiesAPI.EntityAddParams;
   export import EntityGetParams = EntitiesAPI.EntityGetParams;
   export import EntityGetLocalSubgraphParams = EntitiesAPI.EntityGetLocalSubgraphParams;
@@ -390,5 +441,6 @@ export namespace Entities {
   export import EntityMergeParams = EntitiesAPI.EntityMergeParams;
   export import EntitySearchParams = EntitiesAPI.EntitySearchParams;
   export import EntitySummarizeParams = EntitiesAPI.EntitySummarizeParams;
+  export import EntityUpdatePropertyParams = EntitiesAPI.EntityUpdatePropertyParams;
   export import EntityViewParams = EntitiesAPI.EntityViewParams;
 }
