@@ -66,6 +66,16 @@ export class Entities extends APIResource {
     return this._client.post('/entity/summarize', { body, ...options });
   }
 
+  /**
+   * update an entity manually
+   */
+  updateProperty(
+    body: EntityUpdatePropertyParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<EntityUpdatePropertyResponse> {
+    return this._client.post('/entity/update', { body, ...options });
+  }
+
   view(query: EntityViewParams, options?: Core.RequestOptions): Core.APIPromise<EntityViewResponse> {
     return this._client.get('/entity/view', { query, ...options });
   }
@@ -209,6 +219,16 @@ export namespace EntitySummarizeResponse {
 
     properties: Record<string, string | boolean | number>;
   }
+}
+
+export interface EntityUpdatePropertyResponse {
+  id: string;
+
+  creation_time: string;
+
+  label: string;
+
+  properties: Record<string, string | boolean | number>;
 }
 
 export interface EntityViewResponse {
@@ -385,6 +405,8 @@ export interface EntitySummarizeParams {
   properties: Array<string>;
 }
 
+export type EntityUpdatePropertyParams = unknown;
+
 export interface EntityViewParams {
   id: string;
 }
@@ -398,6 +420,7 @@ export namespace Entities {
   export import EntityMergeResponse = EntitiesAPI.EntityMergeResponse;
   export import EntitySearchResponse = EntitiesAPI.EntitySearchResponse;
   export import EntitySummarizeResponse = EntitiesAPI.EntitySummarizeResponse;
+  export import EntityUpdatePropertyResponse = EntitiesAPI.EntityUpdatePropertyResponse;
   export import EntityViewResponse = EntitiesAPI.EntityViewResponse;
   export import EntityDeleteParams = EntitiesAPI.EntityDeleteParams;
   export import EntityAddParams = EntitiesAPI.EntityAddParams;
@@ -407,5 +430,6 @@ export namespace Entities {
   export import EntityMergeParams = EntitiesAPI.EntityMergeParams;
   export import EntitySearchParams = EntitiesAPI.EntitySearchParams;
   export import EntitySummarizeParams = EntitiesAPI.EntitySummarizeParams;
+  export import EntityUpdatePropertyParams = EntitiesAPI.EntityUpdatePropertyParams;
   export import EntityViewParams = EntitiesAPI.EntityViewParams;
 }

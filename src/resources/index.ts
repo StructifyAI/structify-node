@@ -60,6 +60,7 @@ export {
   EntityMergeResponse,
   EntitySearchResponse,
   EntitySummarizeResponse,
+  EntityUpdatePropertyResponse,
   EntityViewResponse,
   EntityDeleteParams,
   EntityAddParams,
@@ -69,6 +70,7 @@ export {
   EntityMergeParams,
   EntitySearchParams,
   EntitySummarizeParams,
+  EntityUpdatePropertyParams,
   EntityViewParams,
   Entities,
 } from './entities';
