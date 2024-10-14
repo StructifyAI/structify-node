@@ -177,7 +177,12 @@ describe('resource entities', () => {
   });
 
   test('updateProperty: only required params', async () => {
-    const responsePromise = client.entities.updateProperty({});
+    const responsePromise = client.entities.updateProperty({
+      dataset_name: 'dataset_name',
+      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      prop_name: 'prop_name',
+      prop_value: 'string',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -188,7 +193,12 @@ describe('resource entities', () => {
   });
 
   test('updateProperty: required and optional params', async () => {
-    const response = await client.entities.updateProperty({});
+    const response = await client.entities.updateProperty({
+      dataset_name: 'dataset_name',
+      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      prop_name: 'prop_name',
+      prop_value: 'string',
+    });
   });
 
   test('view: only required params', async () => {
