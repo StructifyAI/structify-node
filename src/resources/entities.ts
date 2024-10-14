@@ -405,7 +405,18 @@ export interface EntitySummarizeParams {
   properties: Array<string>;
 }
 
-export type EntityUpdatePropertyParams = unknown;
+export interface EntityUpdatePropertyParams {
+  dataset_name: string;
+
+  entity_id: string;
+
+  /**
+   * The name of the property to update
+   */
+  prop_name: string;
+
+  prop_value: string | boolean | number;
+}
 
 export interface EntityViewParams {
   id: string;
