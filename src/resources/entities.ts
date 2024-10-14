@@ -8,6 +8,13 @@ import * as SourcesAPI from './sources';
 
 export class Entities extends APIResource {
   /**
+   * Delete an entity manually
+   */
+  delete(body: EntityDeleteParams, options?: Core.RequestOptions): Core.APIPromise<EntityDeleteResponse> {
+    return this._client.delete('/entity/delete', { body, ...options });
+  }
+
+  /**
    * Add an entity manually
    */
   add(body: EntityAddParams, options?: Core.RequestOptions): Core.APIPromise<EntityAddResponse> {
@@ -63,6 +70,8 @@ export class Entities extends APIResource {
     return this._client.get('/entity/view', { query, ...options });
   }
 }
+
+export type EntityDeleteResponse = Array<string>;
 
 export type EntityAddResponse = Array<string>;
 
@@ -306,6 +315,12 @@ export namespace EntityViewResponse {
   }
 }
 
+export interface EntityDeleteParams {
+  dataset_name: string;
+
+  entity_id: string;
+}
+
 export interface EntityAddParams {
   dataset_name: string;
 
@@ -375,6 +390,7 @@ export interface EntityViewParams {
 }
 
 export namespace Entities {
+  export import EntityDeleteResponse = EntitiesAPI.EntityDeleteResponse;
   export import EntityAddResponse = EntitiesAPI.EntityAddResponse;
   export import EntityGetResponse = EntitiesAPI.EntityGetResponse;
   export import EntityGetLocalSubgraphResponse = EntitiesAPI.EntityGetLocalSubgraphResponse;
@@ -383,6 +399,7 @@ export namespace Entities {
   export import EntitySearchResponse = EntitiesAPI.EntitySearchResponse;
   export import EntitySummarizeResponse = EntitiesAPI.EntitySummarizeResponse;
   export import EntityViewResponse = EntitiesAPI.EntityViewResponse;
+  export import EntityDeleteParams = EntitiesAPI.EntityDeleteParams;
   export import EntityAddParams = EntitiesAPI.EntityAddParams;
   export import EntityGetParams = EntitiesAPI.EntityGetParams;
   export import EntityGetLocalSubgraphParams = EntitiesAPI.EntityGetLocalSubgraphParams;
