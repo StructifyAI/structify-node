@@ -285,6 +285,8 @@ export namespace DatasetCreateParams {
            * different companies at the same time.
            */
           match_transfer_probability: number;
+
+          comparison_strategy?: 'Default' | 'EnforceUniqueness';
         }
       }
     }

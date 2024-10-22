@@ -592,6 +592,8 @@ export namespace StructureRunAsyncParams {
                * different companies at the same time.
                */
               match_transfer_probability: number;
+
+              comparison_strategy?: 'Default' | 'EnforceUniqueness';
             }
           }
         }
@@ -686,6 +688,8 @@ export namespace StructureRunAsyncParams {
                  * different companies at the same time.
                  */
                 match_transfer_probability: number;
+
+                comparison_strategy?: 'Default' | 'EnforceUniqueness';
               }
             }
           }
