@@ -204,12 +204,12 @@ export interface JobListParams extends JobsListParams {
 }
 
 export namespace Jobs {
-  export import JobListResponse = JobsAPI.JobListResponse;
-  export import JobDeleteResponse = JobsAPI.JobDeleteResponse;
-  export import JobCancelResponse = JobsAPI.JobCancelResponse;
-  export import JobGetResponse = JobsAPI.JobGetResponse;
-  export import JobGetStepGraphResponse = JobsAPI.JobGetStepGraphResponse;
-  export import JobGetStepsResponse = JobsAPI.JobGetStepsResponse;
+  export type JobListResponse = JobsAPI.JobListResponse;
+  export type JobDeleteResponse = JobsAPI.JobDeleteResponse;
+  export type JobCancelResponse = JobsAPI.JobCancelResponse;
+  export type JobGetResponse = JobsAPI.JobGetResponse;
+  export type JobGetStepGraphResponse = JobsAPI.JobGetStepGraphResponse;
+  export type JobGetStepsResponse = JobsAPI.JobGetStepsResponse;
   export import JobListResponsesJobsList = JobsAPI.JobListResponsesJobsList;
-  export import JobListParams = JobsAPI.JobListParams;
+  export type JobListParams = JobsAPI.JobListParams;
 }

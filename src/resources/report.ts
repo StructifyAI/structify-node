@@ -51,8 +51,8 @@ export interface ReportStepParams {
 }
 
 export namespace Report {
-  export import ReportEntityResponse = ReportAPI.ReportEntityResponse;
-  export import ReportStepResponse = ReportAPI.ReportStepResponse;
-  export import ReportEntityParams = ReportAPI.ReportEntityParams;
-  export import ReportStepParams = ReportAPI.ReportStepParams;
+  export type ReportEntityResponse = ReportAPI.ReportEntityResponse;
+  export type ReportStepResponse = ReportAPI.ReportStepResponse;
+  export type ReportEntityParams = ReportAPI.ReportEntityParams;
+  export type ReportStepParams = ReportAPI.ReportStepParams;
 }

@@ -518,19 +518,20 @@ export namespace TrainingDatasetUpdateDatumParams {
 }
 
 export namespace TrainingDatasets {
-  export import AddDatumRequest = TrainingDatasetsAPI.AddDatumRequest;
-  export import TrainingDatumResponse = TrainingDatasetsAPI.TrainingDatumResponse;
-  export import UpdateDatumRequest = TrainingDatasetsAPI.UpdateDatumRequest;
-  export import TrainingDatasetListResponse = TrainingDatasetsAPI.TrainingDatasetListResponse;
-  export import TrainingDatasetListDatumsResponse = TrainingDatasetsAPI.TrainingDatasetListDatumsResponse;
-  export import TrainingDatasetSizeResponse = TrainingDatasetsAPI.TrainingDatasetSizeResponse;
-  export import TrainingDatasetAddParams = TrainingDatasetsAPI.TrainingDatasetAddParams;
-  export import TrainingDatasetAddDatumParams = TrainingDatasetsAPI.TrainingDatasetAddDatumParams;
-  export import TrainingDatasetGetNextUnverifiedParams = TrainingDatasetsAPI.TrainingDatasetGetNextUnverifiedParams;
-  export import TrainingDatasetGetStepByIDParams = TrainingDatasetsAPI.TrainingDatasetGetStepByIDParams;
-  export import TrainingDatasetListDatumsParams = TrainingDatasetsAPI.TrainingDatasetListDatumsParams;
-  export import TrainingDatasetRemoveDatumParams = TrainingDatasetsAPI.TrainingDatasetRemoveDatumParams;
-  export import TrainingDatasetResetPendingParams = TrainingDatasetsAPI.TrainingDatasetResetPendingParams;
-  export import TrainingDatasetSizeParams = TrainingDatasetsAPI.TrainingDatasetSizeParams;
-  export import TrainingDatasetUpdateDatumParams = TrainingDatasetsAPI.TrainingDatasetUpdateDatumParams;
+  export type AddDatumRequest = TrainingDatasetsAPI.AddDatumRequest;
+  export type TrainingDatumResponse = TrainingDatasetsAPI.TrainingDatumResponse;
+  export type UpdateDatumRequest = TrainingDatasetsAPI.UpdateDatumRequest;
+  export type TrainingDatasetListResponse = TrainingDatasetsAPI.TrainingDatasetListResponse;
+  export type TrainingDatasetListDatumsResponse = TrainingDatasetsAPI.TrainingDatasetListDatumsResponse;
+  export type TrainingDatasetSizeResponse = TrainingDatasetsAPI.TrainingDatasetSizeResponse;
+  export type TrainingDatasetAddParams = TrainingDatasetsAPI.TrainingDatasetAddParams;
+  export type TrainingDatasetAddDatumParams = TrainingDatasetsAPI.TrainingDatasetAddDatumParams;
+  export type TrainingDatasetGetNextUnverifiedParams =
+    TrainingDatasetsAPI.TrainingDatasetGetNextUnverifiedParams;
+  export type TrainingDatasetGetStepByIDParams = TrainingDatasetsAPI.TrainingDatasetGetStepByIDParams;
+  export type TrainingDatasetListDatumsParams = TrainingDatasetsAPI.TrainingDatasetListDatumsParams;
+  export type TrainingDatasetRemoveDatumParams = TrainingDatasetsAPI.TrainingDatasetRemoveDatumParams;
+  export type TrainingDatasetResetPendingParams = TrainingDatasetsAPI.TrainingDatasetResetPendingParams;
+  export type TrainingDatasetSizeParams = TrainingDatasetsAPI.TrainingDatasetSizeParams;
+  export type TrainingDatasetUpdateDatumParams = TrainingDatasetsAPI.TrainingDatasetUpdateDatumParams;
 }

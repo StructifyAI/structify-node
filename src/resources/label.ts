@@ -28,6 +28,6 @@ export interface LabelVerifyParams {
 }
 
 export namespace Label {
-  export import LabelVerifyResponse = LabelAPI.LabelVerifyResponse;
-  export import LabelVerifyParams = LabelAPI.LabelVerifyParams;
+  export type LabelVerifyResponse = LabelAPI.LabelVerifyResponse;
+  export type LabelVerifyParams = LabelAPI.LabelVerifyParams;
 }
