@@ -106,7 +106,7 @@ export interface SourceListParams {
 }
 
 export namespace Sources {
-  export import Source = SourcesAPI.Source;
-  export import SourceListResponse = SourcesAPI.SourceListResponse;
-  export import SourceListParams = SourcesAPI.SourceListParams;
+  export type Source = SourcesAPI.Source;
+  export type SourceListResponse = SourcesAPI.SourceListResponse;
+  export type SourceListParams = SourcesAPI.SourceListParams;
 }

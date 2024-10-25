@@ -83,9 +83,9 @@ export interface DocumentUploadParams {
 }
 
 export namespace Documents {
-  export import DocumentListResponse = DocumentsAPI.DocumentListResponse;
-  export import DocumentDownloadResponse = DocumentsAPI.DocumentDownloadResponse;
-  export import DocumentDeleteParams = DocumentsAPI.DocumentDeleteParams;
-  export import DocumentDownloadParams = DocumentsAPI.DocumentDownloadParams;
-  export import DocumentUploadParams = DocumentsAPI.DocumentUploadParams;
+  export type DocumentListResponse = DocumentsAPI.DocumentListResponse;
+  export type DocumentDownloadResponse = DocumentsAPI.DocumentDownloadResponse;
+  export type DocumentDeleteParams = DocumentsAPI.DocumentDeleteParams;
+  export type DocumentDownloadParams = DocumentsAPI.DocumentDownloadParams;
+  export type DocumentUploadParams = DocumentsAPI.DocumentUploadParams;
 }
