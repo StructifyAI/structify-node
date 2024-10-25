@@ -11,7 +11,7 @@
     "paths": {
       "structifyai/_shims/auto/*": ["src/_shims/auto/*-node"],
       "structifyai/*": ["src/*"],
-      "structifyai": ["src/index.ts"],
+      "structifyai": ["src/index.ts"]
     },
     "noEmit": true,
 
@@ -32,6 +32,7 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
+    "isolatedModules": true,
 
     "skipLibCheck": true
   }

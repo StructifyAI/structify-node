@@ -173,6 +173,7 @@ describe('resource entities', () => {
       dataset_name: 'dataset_name',
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       properties: ['string', 'string', 'string'],
+      extra_instructions: ['string', 'string', 'string'],
     });
   });
 
