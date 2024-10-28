@@ -88,6 +88,8 @@ export interface JobListResponse {
 
   creation_time: string;
 
+  report_on_complete: boolean;
+
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
   message?: string | null;
@@ -104,6 +106,8 @@ export interface JobCancelResponse {
   id: string;
 
   creation_time: string;
+
+  report_on_complete: boolean;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
@@ -126,6 +130,8 @@ export namespace JobGetResponse {
     id: string;
 
     creation_time: string;
+
+    report_on_complete: boolean;
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
@@ -204,12 +210,12 @@ export interface JobListParams extends JobsListParams {
 }
 
 export namespace Jobs {
-  export type JobListResponse = JobsAPI.JobListResponse;
-  export type JobDeleteResponse = JobsAPI.JobDeleteResponse;
-  export type JobCancelResponse = JobsAPI.JobCancelResponse;
-  export type JobGetResponse = JobsAPI.JobGetResponse;
-  export type JobGetStepGraphResponse = JobsAPI.JobGetStepGraphResponse;
-  export type JobGetStepsResponse = JobsAPI.JobGetStepsResponse;
+  export import JobListResponse = JobsAPI.JobListResponse;
+  export import JobDeleteResponse = JobsAPI.JobDeleteResponse;
+  export import JobCancelResponse = JobsAPI.JobCancelResponse;
+  export import JobGetResponse = JobsAPI.JobGetResponse;
+  export import JobGetStepGraphResponse = JobsAPI.JobGetStepGraphResponse;
+  export import JobGetStepsResponse = JobsAPI.JobGetStepsResponse;
   export import JobListResponsesJobsList = JobsAPI.JobListResponsesJobsList;
-  export type JobListParams = JobsAPI.JobListParams;
+  export import JobListParams = JobsAPI.JobListParams;
 }
