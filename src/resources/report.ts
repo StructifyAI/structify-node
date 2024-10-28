@@ -17,7 +17,7 @@ export class Report extends APIResource {
   }
 
   /**
-   * Get all sources for a given entity
+   * Report a step
    */
   step(body: ReportStepParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     return this._client.post('/report/step', {
@@ -36,9 +36,14 @@ export interface ReportEntityParams {
   id: string;
 
   /**
-   * A short message about why the entity is being reported
+   * A property that is being reported
    */
   property?: string | null;
+
+  /**
+   * Correct source URL for the reported entity
+   */
+  source_url?: string | null;
 }
 
 export interface ReportStepParams {
@@ -51,8 +56,8 @@ export interface ReportStepParams {
 }
 
 export namespace Report {
-  export type ReportEntityResponse = ReportAPI.ReportEntityResponse;
-  export type ReportStepResponse = ReportAPI.ReportStepResponse;
-  export type ReportEntityParams = ReportAPI.ReportEntityParams;
-  export type ReportStepParams = ReportAPI.ReportStepParams;
+  export import ReportEntityResponse = ReportAPI.ReportEntityResponse;
+  export import ReportStepResponse = ReportAPI.ReportStepResponse;
+  export import ReportEntityParams = ReportAPI.ReportEntityParams;
+  export import ReportStepParams = ReportAPI.ReportStepParams;
 }

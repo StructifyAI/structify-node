@@ -350,20 +350,19 @@ export interface DatasetViewTablesWithRelationshipsParams {
 }
 
 export namespace Datasets {
-  export type DatasetListResponse = DatasetsAPI.DatasetListResponse;
-  export type DatasetGetResponse = DatasetsAPI.DatasetGetResponse;
-  export type DatasetMatchResponse = DatasetsAPI.DatasetMatchResponse;
-  export type DatasetViewRelationshipsResponse = DatasetsAPI.DatasetViewRelationshipsResponse;
-  export type DatasetViewTableResponse = DatasetsAPI.DatasetViewTableResponse;
-  export type DatasetViewTablesWithRelationshipsResponse =
-    DatasetsAPI.DatasetViewTablesWithRelationshipsResponse;
+  export import DatasetListResponse = DatasetsAPI.DatasetListResponse;
+  export import DatasetGetResponse = DatasetsAPI.DatasetGetResponse;
+  export import DatasetMatchResponse = DatasetsAPI.DatasetMatchResponse;
+  export import DatasetViewRelationshipsResponse = DatasetsAPI.DatasetViewRelationshipsResponse;
+  export import DatasetViewTableResponse = DatasetsAPI.DatasetViewTableResponse;
+  export import DatasetViewTablesWithRelationshipsResponse = DatasetsAPI.DatasetViewTablesWithRelationshipsResponse;
   export import DatasetViewRelationshipsResponsesJobsList = DatasetsAPI.DatasetViewRelationshipsResponsesJobsList;
   export import DatasetViewTableResponsesJobsList = DatasetsAPI.DatasetViewTableResponsesJobsList;
-  export type DatasetCreateParams = DatasetsAPI.DatasetCreateParams;
-  export type DatasetDeleteParams = DatasetsAPI.DatasetDeleteParams;
-  export type DatasetGetParams = DatasetsAPI.DatasetGetParams;
-  export type DatasetMatchParams = DatasetsAPI.DatasetMatchParams;
-  export type DatasetViewRelationshipsParams = DatasetsAPI.DatasetViewRelationshipsParams;
-  export type DatasetViewTableParams = DatasetsAPI.DatasetViewTableParams;
-  export type DatasetViewTablesWithRelationshipsParams = DatasetsAPI.DatasetViewTablesWithRelationshipsParams;
+  export import DatasetCreateParams = DatasetsAPI.DatasetCreateParams;
+  export import DatasetDeleteParams = DatasetsAPI.DatasetDeleteParams;
+  export import DatasetGetParams = DatasetsAPI.DatasetGetParams;
+  export import DatasetMatchParams = DatasetsAPI.DatasetMatchParams;
+  export import DatasetViewRelationshipsParams = DatasetsAPI.DatasetViewRelationshipsParams;
+  export import DatasetViewTableParams = DatasetsAPI.DatasetViewTableParams;
+  export import DatasetViewTablesWithRelationshipsParams = DatasetsAPI.DatasetViewTablesWithRelationshipsParams;
 }
