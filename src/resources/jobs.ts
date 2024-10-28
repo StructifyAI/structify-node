@@ -88,11 +88,11 @@ export interface JobListResponse {
 
   creation_time: string;
 
-  report_on_complete: boolean;
-
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
   message?: string | null;
+
+  report_on_complete?: boolean;
 
   /**
    * What time did the job start running?
@@ -107,11 +107,11 @@ export interface JobCancelResponse {
 
   creation_time: string;
 
-  report_on_complete: boolean;
-
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
   message?: string | null;
+
+  report_on_complete?: boolean;
 
   /**
    * What time did the job start running?
@@ -131,11 +131,11 @@ export namespace JobGetResponse {
 
     creation_time: string;
 
-    report_on_complete: boolean;
-
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
     message?: string | null;
+
+    report_on_complete?: boolean;
 
     /**
      * What time did the job start running?
