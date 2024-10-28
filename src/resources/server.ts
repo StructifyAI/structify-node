@@ -18,5 +18,5 @@ export interface ServerInformation {
 }
 
 export namespace Server {
-  export type ServerInformation = ServerAPI.ServerInformation;
+  export import ServerInformation = ServerAPI.ServerInformation;
 }

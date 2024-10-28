@@ -22,6 +22,6 @@ export interface User {
 export type UserListResponse = Array<User>;
 
 export namespace Users {
-  export type User = UsersAPI.User;
-  export type UserListResponse = UsersAPI.UserListResponse;
+  export import User = UsersAPI.User;
+  export import UserListResponse = UsersAPI.UserListResponse;
 }

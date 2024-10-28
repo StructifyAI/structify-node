@@ -112,10 +112,10 @@ export interface UserUsageParams {
 }
 
 export namespace User {
-  export type TokenResponse = UserAPI.TokenResponse;
-  export type UserInfo = UserAPI.UserInfo;
-  export type UserTransactionsResponse = UserAPI.UserTransactionsResponse;
-  export type UserUsageResponse = UserAPI.UserUsageResponse;
-  export type UserCreateTestTokenParams = UserAPI.UserCreateTestTokenParams;
-  export type UserUsageParams = UserAPI.UserUsageParams;
+  export import TokenResponse = UserAPI.TokenResponse;
+  export import UserInfo = UserAPI.UserInfo;
+  export import UserTransactionsResponse = UserAPI.UserTransactionsResponse;
+  export import UserUsageResponse = UserAPI.UserUsageResponse;
+  export import UserCreateTestTokenParams = UserAPI.UserCreateTestTokenParams;
+  export import UserUsageParams = UserAPI.UserUsageParams;
 }

@@ -428,24 +428,24 @@ export interface EntityViewParams {
 }
 
 export namespace Entities {
-  export type EntityDeleteResponse = EntitiesAPI.EntityDeleteResponse;
-  export type EntityAddResponse = EntitiesAPI.EntityAddResponse;
-  export type EntityGetResponse = EntitiesAPI.EntityGetResponse;
-  export type EntityGetLocalSubgraphResponse = EntitiesAPI.EntityGetLocalSubgraphResponse;
-  export type EntityGetSourceEntitiesResponse = EntitiesAPI.EntityGetSourceEntitiesResponse;
-  export type EntityMergeResponse = EntitiesAPI.EntityMergeResponse;
-  export type EntitySearchResponse = EntitiesAPI.EntitySearchResponse;
-  export type EntitySummarizeResponse = EntitiesAPI.EntitySummarizeResponse;
-  export type EntityUpdatePropertyResponse = EntitiesAPI.EntityUpdatePropertyResponse;
-  export type EntityViewResponse = EntitiesAPI.EntityViewResponse;
-  export type EntityDeleteParams = EntitiesAPI.EntityDeleteParams;
-  export type EntityAddParams = EntitiesAPI.EntityAddParams;
-  export type EntityGetParams = EntitiesAPI.EntityGetParams;
-  export type EntityGetLocalSubgraphParams = EntitiesAPI.EntityGetLocalSubgraphParams;
-  export type EntityGetSourceEntitiesParams = EntitiesAPI.EntityGetSourceEntitiesParams;
-  export type EntityMergeParams = EntitiesAPI.EntityMergeParams;
-  export type EntitySearchParams = EntitiesAPI.EntitySearchParams;
-  export type EntitySummarizeParams = EntitiesAPI.EntitySummarizeParams;
-  export type EntityUpdatePropertyParams = EntitiesAPI.EntityUpdatePropertyParams;
-  export type EntityViewParams = EntitiesAPI.EntityViewParams;
+  export import EntityDeleteResponse = EntitiesAPI.EntityDeleteResponse;
+  export import EntityAddResponse = EntitiesAPI.EntityAddResponse;
+  export import EntityGetResponse = EntitiesAPI.EntityGetResponse;
+  export import EntityGetLocalSubgraphResponse = EntitiesAPI.EntityGetLocalSubgraphResponse;
+  export import EntityGetSourceEntitiesResponse = EntitiesAPI.EntityGetSourceEntitiesResponse;
+  export import EntityMergeResponse = EntitiesAPI.EntityMergeResponse;
+  export import EntitySearchResponse = EntitiesAPI.EntitySearchResponse;
+  export import EntitySummarizeResponse = EntitiesAPI.EntitySummarizeResponse;
+  export import EntityUpdatePropertyResponse = EntitiesAPI.EntityUpdatePropertyResponse;
+  export import EntityViewResponse = EntitiesAPI.EntityViewResponse;
+  export import EntityDeleteParams = EntitiesAPI.EntityDeleteParams;
+  export import EntityAddParams = EntitiesAPI.EntityAddParams;
+  export import EntityGetParams = EntitiesAPI.EntityGetParams;
+  export import EntityGetLocalSubgraphParams = EntitiesAPI.EntityGetLocalSubgraphParams;
+  export import EntityGetSourceEntitiesParams = EntitiesAPI.EntityGetSourceEntitiesParams;
+  export import EntityMergeParams = EntitiesAPI.EntityMergeParams;
+  export import EntitySearchParams = EntitiesAPI.EntitySearchParams;
+  export import EntitySummarizeParams = EntitiesAPI.EntitySummarizeParams;
+  export import EntityUpdatePropertyParams = EntitiesAPI.EntityUpdatePropertyParams;
+  export import EntityViewParams = EntitiesAPI.EntityViewParams;
 }
