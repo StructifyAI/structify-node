@@ -31,4 +31,5 @@ export namespace Admin {
   export import TrainingDatasetResetPendingParams = TrainingDatasetsAPI.TrainingDatasetResetPendingParams;
   export import TrainingDatasetSizeParams = TrainingDatasetsAPI.TrainingDatasetSizeParams;
   export import TrainingDatasetUpdateDatumParams = TrainingDatasetsAPI.TrainingDatasetUpdateDatumParams;
+  export import TrainingDatasetUploadDatumParams = TrainingDatasetsAPI.TrainingDatasetUploadDatumParams;
 }
