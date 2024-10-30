@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Structify from 'structifyai';
+import Structify, { toFile } from 'structifyai';
 import { Response } from 'node-fetch';
 
 const client = new Structify({
@@ -243,6 +243,27 @@ describe('resource trainingDatasets', () => {
           result: { ToolQueued: 'ToolQueued' },
         },
       ],
+    });
+  });
+
+  test('uploadDatum: only required params', async () => {
+    const responsePromise = client.admin.trainingDatasets.uploadDatum({
+      dataset_name: 'dataset_name',
+      step_bytes: await toFile(Buffer.from('# my file contents'), 'README.md'),
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('uploadDatum: required and optional params', async () => {
+    const response = await client.admin.trainingDatasets.uploadDatum({
+      dataset_name: 'dataset_name',
+      step_bytes: await toFile(Buffer.from('# my file contents'), 'README.md'),
     });
   });
 });
