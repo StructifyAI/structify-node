@@ -248,7 +248,7 @@ describe('resource trainingDatasets', () => {
 
   test('uploadDatum: only required params', async () => {
     const responsePromise = client.admin.trainingDatasets.uploadDatum({
-      dataset_name: 'dataset_name',
+      dataset_name: await toFile(Buffer.from('# my file contents'), 'README.md'),
       step_bytes: await toFile(Buffer.from('# my file contents'), 'README.md'),
     });
     const rawResponse = await responsePromise.asResponse();
@@ -262,7 +262,7 @@ describe('resource trainingDatasets', () => {
 
   test('uploadDatum: required and optional params', async () => {
     const response = await client.admin.trainingDatasets.uploadDatum({
-      dataset_name: 'dataset_name',
+      dataset_name: await toFile(Buffer.from('# my file contents'), 'README.md'),
       step_bytes: await toFile(Buffer.from('# my file contents'), 'README.md'),
     });
   });
