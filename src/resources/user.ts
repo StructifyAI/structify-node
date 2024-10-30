@@ -96,9 +96,9 @@ export interface UserUsageResponse {
 
   num_entities: number;
 
-  num_relationships: number;
+  num_jobs: number;
 
-  num_runs: number;
+  num_relationships: number;
 }
 
 export interface UserCreateTestTokenParams {
