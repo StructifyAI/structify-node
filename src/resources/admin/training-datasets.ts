@@ -123,11 +123,10 @@ export class TrainingDatasets extends APIResource {
    * Uploads a new training datum to the specified dataset.
    */
   uploadDatum(body: TrainingDatasetUploadDatumParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/admin/training_datasets/upload_datum', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
+    return this._client.post(
+      '/admin/training_datasets/upload_datum',
+      Core.multipartFormRequestOptions({ body, ...options, headers: { Accept: '*/*', ...options?.headers } }),
+    );
   }
 }
 
@@ -529,11 +528,8 @@ export namespace TrainingDatasetUpdateDatumParams {
 }
 
 export interface TrainingDatasetUploadDatumParams {
-  dataset_name: string;
+  dataset_name: Core.Uploadable;
 
-  /**
-   * Proto bytes of the step
-   */
   step_bytes: Core.Uploadable;
 }
 
