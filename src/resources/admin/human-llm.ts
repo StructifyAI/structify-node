@@ -10,10 +10,10 @@ export class HumanLlm extends APIResource {
    * Given a step id, get the next formatted step to label.
    */
   getNextStep(
-    query: HumanLlmGetNextStepParams,
+    body: HumanLlmGetNextStepParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<StructureAPI.ExecutionStep> {
-    return this._client.get('/admin/human_llm/get_next_step', options);
+    return this._client.post('/admin/human_llm/get_next_step', { body, ...options });
   }
 
   /**
@@ -36,7 +36,11 @@ export namespace HumanLlmUpdateStepResponse {
   export interface HumanLlmUpdateStepResponseItem {}
 }
 
-export interface HumanLlmGetNextStepParams {}
+export interface HumanLlmGetNextStepParams {
+  job_id: string;
+
+  step_id: string;
+}
 
 export interface HumanLlmUpdateStepParams {
   job_id: string;
