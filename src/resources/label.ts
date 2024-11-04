@@ -19,7 +19,7 @@ export interface LabelVerifyResponse {
 export interface LabelVerifyParams {
   better_response: string;
 
-  step_id: string;
+  training_step_id: string;
 
   verify_type: 'DeprecatedToolCalling' | 'ActionStr' | 'Json';
 
