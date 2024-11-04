@@ -230,11 +230,13 @@ export namespace Table {
   }
 }
 
-export namespace Shared {
-  export import DatasetDescriptor = SharedAPI.DatasetDescriptor;
-  export import Entity = SharedAPI.Entity;
-  export import KnowledgeGraph = SharedAPI.KnowledgeGraph;
-  export import PropertyType = SharedAPI.PropertyType;
-  export import Relationship = SharedAPI.Relationship;
-  export import Table = SharedAPI.Table;
+export declare namespace Shared {
+  export {
+    type DatasetDescriptor as DatasetDescriptor,
+    type Entity as Entity,
+    type KnowledgeGraph as KnowledgeGraph,
+    type PropertyType as PropertyType,
+    type Relationship as Relationship,
+    type Table as Table,
+  };
 }

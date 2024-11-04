@@ -1,11 +1,116 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Errors from './error';
-import * as Uploads from './uploads';
 import { type Agent } from './_shims/index';
 import * as Core from './core';
+import * as Errors from './error';
 import * as Pagination from './pagination';
+import { type JobsListParams, JobsListResponse } from './pagination';
+import * as Uploads from './uploads';
 import * as API from './resources/index';
+import {
+  DatasetCreateParams,
+  DatasetDeleteParams,
+  DatasetGetParams,
+  DatasetGetResponse,
+  DatasetListResponse,
+  DatasetMatchParams,
+  DatasetMatchResponse,
+  DatasetViewRelationshipsParams,
+  DatasetViewRelationshipsResponse,
+  DatasetViewRelationshipsResponsesJobsList,
+  DatasetViewTableParams,
+  DatasetViewTableResponse,
+  DatasetViewTableResponsesJobsList,
+  DatasetViewTablesWithRelationshipsParams,
+  DatasetViewTablesWithRelationshipsResponse,
+  Datasets,
+} from './resources/datasets';
+import {
+  DocumentDeleteParams,
+  DocumentDownloadParams,
+  DocumentDownloadResponse,
+  DocumentListResponse,
+  DocumentUploadParams,
+  Documents,
+} from './resources/documents';
+import {
+  Entities,
+  EntityAddParams,
+  EntityAddResponse,
+  EntityDeleteParams,
+  EntityDeleteResponse,
+  EntityGetLocalSubgraphParams,
+  EntityGetLocalSubgraphResponse,
+  EntityGetParams,
+  EntityGetResponse,
+  EntityGetSourceEntitiesParams,
+  EntityGetSourceEntitiesResponse,
+  EntityMergeParams,
+  EntityMergeResponse,
+  EntitySearchParams,
+  EntitySearchResponse,
+  EntitySummarizeParams,
+  EntitySummarizeResponse,
+  EntityUpdatePropertyParams,
+  EntityUpdatePropertyResponse,
+  EntityViewParams,
+  EntityViewResponse,
+} from './resources/entities';
+import {
+  JobCancelResponse,
+  JobDeleteResponse,
+  JobGetResponse,
+  JobGetStepGraphResponse,
+  JobGetStepsResponse,
+  JobListParams,
+  JobListResponse,
+  JobListResponsesJobsList,
+  Jobs,
+} from './resources/jobs';
+import { Label, LabelVerifyParams, LabelVerifyResponse } from './resources/label';
+import {
+  Report,
+  ReportEntityParams,
+  ReportEntityResponse,
+  ReportStepParams,
+  ReportStepResponse,
+} from './resources/report';
+import { Server, ServerInformation } from './resources/server';
+import {
+  DatasetDescriptor,
+  Entity,
+  KnowledgeGraph,
+  PropertyType,
+  Relationship,
+  Shared,
+  Table,
+} from './resources/shared';
+import { Source, SourceListParams, SourceListResponse, Sources } from './resources/sources';
+import {
+  ChatPrompt,
+  ExecutionStep,
+  ExtractionCriteria,
+  Structure,
+  StructureEnhanceParams,
+  StructureEnhanceResponse,
+  StructureIsCompleteParams,
+  StructureIsCompleteResponse,
+  StructureJobStatusParams,
+  StructureJobStatusResponse,
+  StructureRunAsyncParams,
+  StructureRunAsyncResponse,
+  ToolMetadata,
+} from './resources/structure';
+import {
+  TokenResponse,
+  User,
+  UserCreateTestTokenParams,
+  UserInfo,
+  UserTransactionsResponse,
+  UserUsageParams,
+  UserUsageResponse,
+} from './resources/user';
+import { Admin } from './resources/admin/admin';
 
 const environments = {
   production: 'https://api.structify.ai',
@@ -192,7 +297,7 @@ export class Structify extends Core.APIClient {
   static fileFromPath = Uploads.fileFromPath;
 }
 
-export const {
+export {
   StructifyError,
   APIError,
   APIConnectionError,
@@ -206,123 +311,157 @@ export const {
   InternalServerError,
   PermissionDeniedError,
   UnprocessableEntityError,
-} = Errors;
+} from './error';
 
 export import toFile = Uploads.toFile;
 export import fileFromPath = Uploads.fileFromPath;
 
-export namespace Structify {
-  export import RequestOptions = Core.RequestOptions;
+Structify.User = User;
+Structify.Admin = Admin;
+Structify.Datasets = Datasets;
+Structify.DatasetViewRelationshipsResponsesJobsList = DatasetViewRelationshipsResponsesJobsList;
+Structify.DatasetViewTableResponsesJobsList = DatasetViewTableResponsesJobsList;
+Structify.Documents = Documents;
+Structify.Jobs = Jobs;
+Structify.JobListResponsesJobsList = JobListResponsesJobsList;
+Structify.Server = Server;
+Structify.Sources = Sources;
+Structify.Entities = Entities;
+Structify.Report = Report;
+Structify.Structure = Structure;
+Structify.Label = Label;
+Structify.Shared = Shared;
+
+export declare namespace Structify {
+  export type RequestOptions = Core.RequestOptions;
 
   export import JobsList = Pagination.JobsList;
-  export import JobsListParams = Pagination.JobsListParams;
-  export import JobsListResponse = Pagination.JobsListResponse;
+  export { type JobsListParams as JobsListParams, type JobsListResponse as JobsListResponse };
 
-  export import User = API.User;
-  export import TokenResponse = API.TokenResponse;
-  export import UserInfo = API.UserInfo;
-  export import UserTransactionsResponse = API.UserTransactionsResponse;
-  export import UserUsageResponse = API.UserUsageResponse;
-  export import UserCreateTestTokenParams = API.UserCreateTestTokenParams;
-  export import UserUsageParams = API.UserUsageParams;
+  export {
+    User as User,
+    type TokenResponse as TokenResponse,
+    type UserInfo as UserInfo,
+    type UserTransactionsResponse as UserTransactionsResponse,
+    type UserUsageResponse as UserUsageResponse,
+    type UserCreateTestTokenParams as UserCreateTestTokenParams,
+    type UserUsageParams as UserUsageParams,
+  };
 
-  export import Admin = API.Admin;
+  export { Admin as Admin };
 
-  export import Datasets = API.Datasets;
-  export import DatasetListResponse = API.DatasetListResponse;
-  export import DatasetGetResponse = API.DatasetGetResponse;
-  export import DatasetMatchResponse = API.DatasetMatchResponse;
-  export import DatasetViewRelationshipsResponse = API.DatasetViewRelationshipsResponse;
-  export import DatasetViewTableResponse = API.DatasetViewTableResponse;
-  export import DatasetViewTablesWithRelationshipsResponse = API.DatasetViewTablesWithRelationshipsResponse;
-  export import DatasetViewRelationshipsResponsesJobsList = API.DatasetViewRelationshipsResponsesJobsList;
-  export import DatasetViewTableResponsesJobsList = API.DatasetViewTableResponsesJobsList;
-  export import DatasetCreateParams = API.DatasetCreateParams;
-  export import DatasetDeleteParams = API.DatasetDeleteParams;
-  export import DatasetGetParams = API.DatasetGetParams;
-  export import DatasetMatchParams = API.DatasetMatchParams;
-  export import DatasetViewRelationshipsParams = API.DatasetViewRelationshipsParams;
-  export import DatasetViewTableParams = API.DatasetViewTableParams;
-  export import DatasetViewTablesWithRelationshipsParams = API.DatasetViewTablesWithRelationshipsParams;
+  export {
+    Datasets as Datasets,
+    type DatasetListResponse as DatasetListResponse,
+    type DatasetGetResponse as DatasetGetResponse,
+    type DatasetMatchResponse as DatasetMatchResponse,
+    type DatasetViewRelationshipsResponse as DatasetViewRelationshipsResponse,
+    type DatasetViewTableResponse as DatasetViewTableResponse,
+    type DatasetViewTablesWithRelationshipsResponse as DatasetViewTablesWithRelationshipsResponse,
+    DatasetViewRelationshipsResponsesJobsList as DatasetViewRelationshipsResponsesJobsList,
+    DatasetViewTableResponsesJobsList as DatasetViewTableResponsesJobsList,
+    type DatasetCreateParams as DatasetCreateParams,
+    type DatasetDeleteParams as DatasetDeleteParams,
+    type DatasetGetParams as DatasetGetParams,
+    type DatasetMatchParams as DatasetMatchParams,
+    type DatasetViewRelationshipsParams as DatasetViewRelationshipsParams,
+    type DatasetViewTableParams as DatasetViewTableParams,
+    type DatasetViewTablesWithRelationshipsParams as DatasetViewTablesWithRelationshipsParams,
+  };
 
-  export import Documents = API.Documents;
-  export import DocumentListResponse = API.DocumentListResponse;
-  export import DocumentDownloadResponse = API.DocumentDownloadResponse;
-  export import DocumentDeleteParams = API.DocumentDeleteParams;
-  export import DocumentDownloadParams = API.DocumentDownloadParams;
-  export import DocumentUploadParams = API.DocumentUploadParams;
+  export {
+    Documents as Documents,
+    type DocumentListResponse as DocumentListResponse,
+    type DocumentDownloadResponse as DocumentDownloadResponse,
+    type DocumentDeleteParams as DocumentDeleteParams,
+    type DocumentDownloadParams as DocumentDownloadParams,
+    type DocumentUploadParams as DocumentUploadParams,
+  };
 
-  export import Jobs = API.Jobs;
-  export import JobListResponse = API.JobListResponse;
-  export import JobDeleteResponse = API.JobDeleteResponse;
-  export import JobCancelResponse = API.JobCancelResponse;
-  export import JobGetResponse = API.JobGetResponse;
-  export import JobGetStepGraphResponse = API.JobGetStepGraphResponse;
-  export import JobGetStepsResponse = API.JobGetStepsResponse;
-  export import JobListResponsesJobsList = API.JobListResponsesJobsList;
-  export import JobListParams = API.JobListParams;
+  export {
+    Jobs as Jobs,
+    type JobListResponse as JobListResponse,
+    type JobDeleteResponse as JobDeleteResponse,
+    type JobCancelResponse as JobCancelResponse,
+    type JobGetResponse as JobGetResponse,
+    type JobGetStepGraphResponse as JobGetStepGraphResponse,
+    type JobGetStepsResponse as JobGetStepsResponse,
+    JobListResponsesJobsList as JobListResponsesJobsList,
+    type JobListParams as JobListParams,
+  };
 
-  export import Server = API.Server;
-  export import ServerInformation = API.ServerInformation;
+  export { Server as Server, type ServerInformation as ServerInformation };
 
-  export import Sources = API.Sources;
-  export import Source = API.Source;
-  export import SourceListResponse = API.SourceListResponse;
-  export import SourceListParams = API.SourceListParams;
+  export {
+    Sources as Sources,
+    type Source as Source,
+    type SourceListResponse as SourceListResponse,
+    type SourceListParams as SourceListParams,
+  };
 
-  export import Entities = API.Entities;
-  export import EntityDeleteResponse = API.EntityDeleteResponse;
-  export import EntityAddResponse = API.EntityAddResponse;
-  export import EntityGetResponse = API.EntityGetResponse;
-  export import EntityGetLocalSubgraphResponse = API.EntityGetLocalSubgraphResponse;
-  export import EntityGetSourceEntitiesResponse = API.EntityGetSourceEntitiesResponse;
-  export import EntityMergeResponse = API.EntityMergeResponse;
-  export import EntitySearchResponse = API.EntitySearchResponse;
-  export import EntitySummarizeResponse = API.EntitySummarizeResponse;
-  export import EntityUpdatePropertyResponse = API.EntityUpdatePropertyResponse;
-  export import EntityViewResponse = API.EntityViewResponse;
-  export import EntityDeleteParams = API.EntityDeleteParams;
-  export import EntityAddParams = API.EntityAddParams;
-  export import EntityGetParams = API.EntityGetParams;
-  export import EntityGetLocalSubgraphParams = API.EntityGetLocalSubgraphParams;
-  export import EntityGetSourceEntitiesParams = API.EntityGetSourceEntitiesParams;
-  export import EntityMergeParams = API.EntityMergeParams;
-  export import EntitySearchParams = API.EntitySearchParams;
-  export import EntitySummarizeParams = API.EntitySummarizeParams;
-  export import EntityUpdatePropertyParams = API.EntityUpdatePropertyParams;
-  export import EntityViewParams = API.EntityViewParams;
+  export {
+    Entities as Entities,
+    type EntityDeleteResponse as EntityDeleteResponse,
+    type EntityAddResponse as EntityAddResponse,
+    type EntityGetResponse as EntityGetResponse,
+    type EntityGetLocalSubgraphResponse as EntityGetLocalSubgraphResponse,
+    type EntityGetSourceEntitiesResponse as EntityGetSourceEntitiesResponse,
+    type EntityMergeResponse as EntityMergeResponse,
+    type EntitySearchResponse as EntitySearchResponse,
+    type EntitySummarizeResponse as EntitySummarizeResponse,
+    type EntityUpdatePropertyResponse as EntityUpdatePropertyResponse,
+    type EntityViewResponse as EntityViewResponse,
+    type EntityDeleteParams as EntityDeleteParams,
+    type EntityAddParams as EntityAddParams,
+    type EntityGetParams as EntityGetParams,
+    type EntityGetLocalSubgraphParams as EntityGetLocalSubgraphParams,
+    type EntityGetSourceEntitiesParams as EntityGetSourceEntitiesParams,
+    type EntityMergeParams as EntityMergeParams,
+    type EntitySearchParams as EntitySearchParams,
+    type EntitySummarizeParams as EntitySummarizeParams,
+    type EntityUpdatePropertyParams as EntityUpdatePropertyParams,
+    type EntityViewParams as EntityViewParams,
+  };
 
-  export import Report = API.Report;
-  export import ReportEntityResponse = API.ReportEntityResponse;
-  export import ReportStepResponse = API.ReportStepResponse;
-  export import ReportEntityParams = API.ReportEntityParams;
-  export import ReportStepParams = API.ReportStepParams;
+  export {
+    Report as Report,
+    type ReportEntityResponse as ReportEntityResponse,
+    type ReportStepResponse as ReportStepResponse,
+    type ReportEntityParams as ReportEntityParams,
+    type ReportStepParams as ReportStepParams,
+  };
 
-  export import Structure = API.Structure;
-  export import ChatPrompt = API.ChatPrompt;
-  export import ExecutionStep = API.ExecutionStep;
-  export import ExtractionCriteria = API.ExtractionCriteria;
-  export import ToolMetadata = API.ToolMetadata;
-  export import StructureEnhanceResponse = API.StructureEnhanceResponse;
-  export import StructureIsCompleteResponse = API.StructureIsCompleteResponse;
-  export import StructureJobStatusResponse = API.StructureJobStatusResponse;
-  export import StructureRunAsyncResponse = API.StructureRunAsyncResponse;
-  export import StructureEnhanceParams = API.StructureEnhanceParams;
-  export import StructureIsCompleteParams = API.StructureIsCompleteParams;
-  export import StructureJobStatusParams = API.StructureJobStatusParams;
-  export import StructureRunAsyncParams = API.StructureRunAsyncParams;
+  export {
+    Structure as Structure,
+    type ChatPrompt as ChatPrompt,
+    type ExecutionStep as ExecutionStep,
+    type ExtractionCriteria as ExtractionCriteria,
+    type ToolMetadata as ToolMetadata,
+    type StructureEnhanceResponse as StructureEnhanceResponse,
+    type StructureIsCompleteResponse as StructureIsCompleteResponse,
+    type StructureJobStatusResponse as StructureJobStatusResponse,
+    type StructureRunAsyncResponse as StructureRunAsyncResponse,
+    type StructureEnhanceParams as StructureEnhanceParams,
+    type StructureIsCompleteParams as StructureIsCompleteParams,
+    type StructureJobStatusParams as StructureJobStatusParams,
+    type StructureRunAsyncParams as StructureRunAsyncParams,
+  };
 
-  export import Label = API.Label;
-  export import LabelVerifyResponse = API.LabelVerifyResponse;
-  export import LabelVerifyParams = API.LabelVerifyParams;
+  export {
+    Label as Label,
+    type LabelVerifyResponse as LabelVerifyResponse,
+    type LabelVerifyParams as LabelVerifyParams,
+  };
 
-  export import Shared = API.Shared;
-  export import DatasetDescriptor = API.DatasetDescriptor;
-  export import Entity = API.Entity;
-  export import KnowledgeGraph = API.KnowledgeGraph;
-  export import PropertyType = API.PropertyType;
-  export import Relationship = API.Relationship;
-  export import Table = API.Table;
+  export {
+    Shared as Shared,
+    type DatasetDescriptor as DatasetDescriptor,
+    type Entity as Entity,
+    type KnowledgeGraph as KnowledgeGraph,
+    type PropertyType as PropertyType,
+    type Relationship as Relationship,
+    type Table as Table,
+  };
 }
 
 export default Structify;

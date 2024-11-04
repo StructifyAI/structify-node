@@ -2,7 +2,6 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
-import * as ReportAPI from './report';
 
 export class Report extends APIResource {
   /**
@@ -55,9 +54,11 @@ export interface ReportStepParams {
   message?: string | null;
 }
 
-export namespace Report {
-  export import ReportEntityResponse = ReportAPI.ReportEntityResponse;
-  export import ReportStepResponse = ReportAPI.ReportStepResponse;
-  export import ReportEntityParams = ReportAPI.ReportEntityParams;
-  export import ReportStepParams = ReportAPI.ReportStepParams;
+export declare namespace Report {
+  export {
+    type ReportEntityResponse as ReportEntityResponse,
+    type ReportStepResponse as ReportStepResponse,
+    type ReportEntityParams as ReportEntityParams,
+    type ReportStepParams as ReportStepParams,
+  };
 }
