@@ -2,7 +2,7 @@
 
 import { APIResource } from '../../resource';
 import * as HumanLlmAPI from './human-llm';
-import { HumanLlm } from './human-llm';
+import { HumanLlm, HumanLlmUpdateStepParams, HumanLlmUpdateStepResponse } from './human-llm';
 import * as TrainingDatasetsAPI from './training-datasets';
 import {
   AddDatumRequest,
@@ -39,7 +39,11 @@ Admin.Users = Users;
 Admin.TrainingDatasets = TrainingDatasets;
 
 export declare namespace Admin {
-  export { HumanLlm as HumanLlm };
+  export {
+    HumanLlm as HumanLlm,
+    type HumanLlmUpdateStepResponse as HumanLlmUpdateStepResponse,
+    type HumanLlmUpdateStepParams as HumanLlmUpdateStepParams,
+  };
 
   export { Users as Users, type User as User, type UserListResponse as UserListResponse };
 
