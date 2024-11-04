@@ -17,6 +17,8 @@ Methods:
 
 # Admin
 
+## HumanLlm
+
 ## Users
 
 Types:
