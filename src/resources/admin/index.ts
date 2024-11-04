@@ -2,6 +2,12 @@
 
 export { Admin } from './admin';
 export {
+  HumanLlm,
+  type HumanLlmUpdateStepResponse,
+  type HumanLlmGetNextStepParams,
+  type HumanLlmUpdateStepParams,
+} from './human-llm';
+export {
   TrainingDatasets,
   type AddDatumRequest,
   type TrainingDatumResponse,
