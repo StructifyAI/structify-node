@@ -17,16 +17,6 @@ Methods:
 
 # Admin
 
-## HumanLlm
-
-Types:
-
-- <code><a href="./src/resources/admin/human-llm.ts">HumanLlmUpdateStepResponse</a></code>
-
-Methods:
-
-- <code title="post /admin/human_llm/update_step">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">updateStep</a>({ ...params }) -> HumanLlmUpdateStepResponse</code>
-
 ## Users
 
 Types:
