@@ -2,7 +2,6 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
-import * as DatasetsAPI from './datasets';
 import * as SharedAPI from './shared';
 import { JobsList, type JobsListParams } from '../pagination';
 
@@ -349,20 +348,25 @@ export interface DatasetViewTablesWithRelationshipsParams {
   offset?: number;
 }
 
-export namespace Datasets {
-  export import DatasetListResponse = DatasetsAPI.DatasetListResponse;
-  export import DatasetGetResponse = DatasetsAPI.DatasetGetResponse;
-  export import DatasetMatchResponse = DatasetsAPI.DatasetMatchResponse;
-  export import DatasetViewRelationshipsResponse = DatasetsAPI.DatasetViewRelationshipsResponse;
-  export import DatasetViewTableResponse = DatasetsAPI.DatasetViewTableResponse;
-  export import DatasetViewTablesWithRelationshipsResponse = DatasetsAPI.DatasetViewTablesWithRelationshipsResponse;
-  export import DatasetViewRelationshipsResponsesJobsList = DatasetsAPI.DatasetViewRelationshipsResponsesJobsList;
-  export import DatasetViewTableResponsesJobsList = DatasetsAPI.DatasetViewTableResponsesJobsList;
-  export import DatasetCreateParams = DatasetsAPI.DatasetCreateParams;
-  export import DatasetDeleteParams = DatasetsAPI.DatasetDeleteParams;
-  export import DatasetGetParams = DatasetsAPI.DatasetGetParams;
-  export import DatasetMatchParams = DatasetsAPI.DatasetMatchParams;
-  export import DatasetViewRelationshipsParams = DatasetsAPI.DatasetViewRelationshipsParams;
-  export import DatasetViewTableParams = DatasetsAPI.DatasetViewTableParams;
-  export import DatasetViewTablesWithRelationshipsParams = DatasetsAPI.DatasetViewTablesWithRelationshipsParams;
+Datasets.DatasetViewRelationshipsResponsesJobsList = DatasetViewRelationshipsResponsesJobsList;
+Datasets.DatasetViewTableResponsesJobsList = DatasetViewTableResponsesJobsList;
+
+export declare namespace Datasets {
+  export {
+    type DatasetListResponse as DatasetListResponse,
+    type DatasetGetResponse as DatasetGetResponse,
+    type DatasetMatchResponse as DatasetMatchResponse,
+    type DatasetViewRelationshipsResponse as DatasetViewRelationshipsResponse,
+    type DatasetViewTableResponse as DatasetViewTableResponse,
+    type DatasetViewTablesWithRelationshipsResponse as DatasetViewTablesWithRelationshipsResponse,
+    DatasetViewRelationshipsResponsesJobsList as DatasetViewRelationshipsResponsesJobsList,
+    DatasetViewTableResponsesJobsList as DatasetViewTableResponsesJobsList,
+    type DatasetCreateParams as DatasetCreateParams,
+    type DatasetDeleteParams as DatasetDeleteParams,
+    type DatasetGetParams as DatasetGetParams,
+    type DatasetMatchParams as DatasetMatchParams,
+    type DatasetViewRelationshipsParams as DatasetViewRelationshipsParams,
+    type DatasetViewTableParams as DatasetViewTableParams,
+    type DatasetViewTablesWithRelationshipsParams as DatasetViewTablesWithRelationshipsParams,
+  };
 }
