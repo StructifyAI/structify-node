@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as UserAPI from './user';
 
 export class User extends APIResource {
   /**
@@ -111,11 +110,13 @@ export interface UserUsageParams {
   dataset?: string | null;
 }
 
-export namespace User {
-  export import TokenResponse = UserAPI.TokenResponse;
-  export import UserInfo = UserAPI.UserInfo;
-  export import UserTransactionsResponse = UserAPI.UserTransactionsResponse;
-  export import UserUsageResponse = UserAPI.UserUsageResponse;
-  export import UserCreateTestTokenParams = UserAPI.UserCreateTestTokenParams;
-  export import UserUsageParams = UserAPI.UserUsageParams;
+export declare namespace User {
+  export {
+    type TokenResponse as TokenResponse,
+    type UserInfo as UserInfo,
+    type UserTransactionsResponse as UserTransactionsResponse,
+    type UserUsageResponse as UserUsageResponse,
+    type UserCreateTestTokenParams as UserCreateTestTokenParams,
+    type UserUsageParams as UserUsageParams,
+  };
 }

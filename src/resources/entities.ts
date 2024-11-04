@@ -2,7 +2,6 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
-import * as EntitiesAPI from './entities';
 import * as SharedAPI from './shared';
 import * as SourcesAPI from './sources';
 
@@ -427,25 +426,27 @@ export interface EntityViewParams {
   id: string;
 }
 
-export namespace Entities {
-  export import EntityDeleteResponse = EntitiesAPI.EntityDeleteResponse;
-  export import EntityAddResponse = EntitiesAPI.EntityAddResponse;
-  export import EntityGetResponse = EntitiesAPI.EntityGetResponse;
-  export import EntityGetLocalSubgraphResponse = EntitiesAPI.EntityGetLocalSubgraphResponse;
-  export import EntityGetSourceEntitiesResponse = EntitiesAPI.EntityGetSourceEntitiesResponse;
-  export import EntityMergeResponse = EntitiesAPI.EntityMergeResponse;
-  export import EntitySearchResponse = EntitiesAPI.EntitySearchResponse;
-  export import EntitySummarizeResponse = EntitiesAPI.EntitySummarizeResponse;
-  export import EntityUpdatePropertyResponse = EntitiesAPI.EntityUpdatePropertyResponse;
-  export import EntityViewResponse = EntitiesAPI.EntityViewResponse;
-  export import EntityDeleteParams = EntitiesAPI.EntityDeleteParams;
-  export import EntityAddParams = EntitiesAPI.EntityAddParams;
-  export import EntityGetParams = EntitiesAPI.EntityGetParams;
-  export import EntityGetLocalSubgraphParams = EntitiesAPI.EntityGetLocalSubgraphParams;
-  export import EntityGetSourceEntitiesParams = EntitiesAPI.EntityGetSourceEntitiesParams;
-  export import EntityMergeParams = EntitiesAPI.EntityMergeParams;
-  export import EntitySearchParams = EntitiesAPI.EntitySearchParams;
-  export import EntitySummarizeParams = EntitiesAPI.EntitySummarizeParams;
-  export import EntityUpdatePropertyParams = EntitiesAPI.EntityUpdatePropertyParams;
-  export import EntityViewParams = EntitiesAPI.EntityViewParams;
+export declare namespace Entities {
+  export {
+    type EntityDeleteResponse as EntityDeleteResponse,
+    type EntityAddResponse as EntityAddResponse,
+    type EntityGetResponse as EntityGetResponse,
+    type EntityGetLocalSubgraphResponse as EntityGetLocalSubgraphResponse,
+    type EntityGetSourceEntitiesResponse as EntityGetSourceEntitiesResponse,
+    type EntityMergeResponse as EntityMergeResponse,
+    type EntitySearchResponse as EntitySearchResponse,
+    type EntitySummarizeResponse as EntitySummarizeResponse,
+    type EntityUpdatePropertyResponse as EntityUpdatePropertyResponse,
+    type EntityViewResponse as EntityViewResponse,
+    type EntityDeleteParams as EntityDeleteParams,
+    type EntityAddParams as EntityAddParams,
+    type EntityGetParams as EntityGetParams,
+    type EntityGetLocalSubgraphParams as EntityGetLocalSubgraphParams,
+    type EntityGetSourceEntitiesParams as EntityGetSourceEntitiesParams,
+    type EntityMergeParams as EntityMergeParams,
+    type EntitySearchParams as EntitySearchParams,
+    type EntitySummarizeParams as EntitySummarizeParams,
+    type EntityUpdatePropertyParams as EntityUpdatePropertyParams,
+    type EntityViewParams as EntityViewParams,
+  };
 }

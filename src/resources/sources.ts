@@ -105,8 +105,10 @@ export interface SourceListParams {
   property?: string | null;
 }
 
-export namespace Sources {
-  export import Source = SourcesAPI.Source;
-  export import SourceListResponse = SourcesAPI.SourceListResponse;
-  export import SourceListParams = SourcesAPI.SourceListParams;
+export declare namespace Sources {
+  export {
+    type Source as Source,
+    type SourceListResponse as SourceListResponse,
+    type SourceListParams as SourceListParams,
+  };
 }

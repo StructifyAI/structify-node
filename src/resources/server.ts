@@ -2,7 +2,6 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
-import * as ServerAPI from './server';
 
 export class Server extends APIResource {
   /**
@@ -17,6 +16,6 @@ export interface ServerInformation {
   version: string;
 }
 
-export namespace Server {
-  export import ServerInformation = ServerAPI.ServerInformation;
+export declare namespace Server {
+  export { type ServerInformation as ServerInformation };
 }
