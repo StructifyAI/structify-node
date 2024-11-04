@@ -12,7 +12,7 @@ describe('resource label', () => {
   test('verify: only required params', async () => {
     const responsePromise = client.label.verify({
       better_response: 'better_response',
-      step_id: 'step_id',
+      training_step_id: 'training_step_id',
       verify_type: 'DeprecatedToolCalling',
       worse_response: 'worse_response',
     });
@@ -28,7 +28,7 @@ describe('resource label', () => {
   test('verify: required and optional params', async () => {
     const response = await client.label.verify({
       better_response: 'better_response',
-      step_id: 'step_id',
+      training_step_id: 'training_step_id',
       verify_type: 'DeprecatedToolCalling',
       worse_response: 'worse_response',
     });
