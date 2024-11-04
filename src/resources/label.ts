@@ -2,7 +2,6 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
-import * as LabelAPI from './label';
 
 export class Label extends APIResource {
   /**
@@ -27,7 +26,6 @@ export interface LabelVerifyParams {
   worse_response: string;
 }
 
-export namespace Label {
-  export import LabelVerifyResponse = LabelAPI.LabelVerifyResponse;
-  export import LabelVerifyParams = LabelAPI.LabelVerifyParams;
+export declare namespace Label {
+  export { type LabelVerifyResponse as LabelVerifyResponse, type LabelVerifyParams as LabelVerifyParams };
 }

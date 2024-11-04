@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as JobsAPI from './jobs';
 import * as SharedAPI from './shared';
 import * as StructureAPI from './structure';
 import { JobsList, type JobsListParams } from '../pagination';
@@ -209,13 +208,17 @@ export interface JobListParams extends JobsListParams {
   status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
 }
 
-export namespace Jobs {
-  export import JobListResponse = JobsAPI.JobListResponse;
-  export import JobDeleteResponse = JobsAPI.JobDeleteResponse;
-  export import JobCancelResponse = JobsAPI.JobCancelResponse;
-  export import JobGetResponse = JobsAPI.JobGetResponse;
-  export import JobGetStepGraphResponse = JobsAPI.JobGetStepGraphResponse;
-  export import JobGetStepsResponse = JobsAPI.JobGetStepsResponse;
-  export import JobListResponsesJobsList = JobsAPI.JobListResponsesJobsList;
-  export import JobListParams = JobsAPI.JobListParams;
+Jobs.JobListResponsesJobsList = JobListResponsesJobsList;
+
+export declare namespace Jobs {
+  export {
+    type JobListResponse as JobListResponse,
+    type JobDeleteResponse as JobDeleteResponse,
+    type JobCancelResponse as JobCancelResponse,
+    type JobGetResponse as JobGetResponse,
+    type JobGetStepGraphResponse as JobGetStepGraphResponse,
+    type JobGetStepsResponse as JobGetStepsResponse,
+    JobListResponsesJobsList as JobListResponsesJobsList,
+    type JobListParams as JobListParams,
+  };
 }

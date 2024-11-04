@@ -749,17 +749,19 @@ export namespace StructureRunAsyncParams {
   }
 }
 
-export namespace Structure {
-  export import ChatPrompt = StructureAPI.ChatPrompt;
-  export import ExecutionStep = StructureAPI.ExecutionStep;
-  export import ExtractionCriteria = StructureAPI.ExtractionCriteria;
-  export import ToolMetadata = StructureAPI.ToolMetadata;
-  export import StructureEnhanceResponse = StructureAPI.StructureEnhanceResponse;
-  export import StructureIsCompleteResponse = StructureAPI.StructureIsCompleteResponse;
-  export import StructureJobStatusResponse = StructureAPI.StructureJobStatusResponse;
-  export import StructureRunAsyncResponse = StructureAPI.StructureRunAsyncResponse;
-  export import StructureEnhanceParams = StructureAPI.StructureEnhanceParams;
-  export import StructureIsCompleteParams = StructureAPI.StructureIsCompleteParams;
-  export import StructureJobStatusParams = StructureAPI.StructureJobStatusParams;
-  export import StructureRunAsyncParams = StructureAPI.StructureRunAsyncParams;
+export declare namespace Structure {
+  export {
+    type ChatPrompt as ChatPrompt,
+    type ExecutionStep as ExecutionStep,
+    type ExtractionCriteria as ExtractionCriteria,
+    type ToolMetadata as ToolMetadata,
+    type StructureEnhanceResponse as StructureEnhanceResponse,
+    type StructureIsCompleteResponse as StructureIsCompleteResponse,
+    type StructureJobStatusResponse as StructureJobStatusResponse,
+    type StructureRunAsyncResponse as StructureRunAsyncResponse,
+    type StructureEnhanceParams as StructureEnhanceParams,
+    type StructureIsCompleteParams as StructureIsCompleteParams,
+    type StructureJobStatusParams as StructureJobStatusParams,
+    type StructureRunAsyncParams as StructureRunAsyncParams,
+  };
 }

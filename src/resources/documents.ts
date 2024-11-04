@@ -2,7 +2,6 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
-import * as DocumentsAPI from './documents';
 
 export class Documents extends APIResource {
   /**
@@ -82,10 +81,12 @@ export interface DocumentUploadParams {
   path: Core.Uploadable;
 }
 
-export namespace Documents {
-  export import DocumentListResponse = DocumentsAPI.DocumentListResponse;
-  export import DocumentDownloadResponse = DocumentsAPI.DocumentDownloadResponse;
-  export import DocumentDeleteParams = DocumentsAPI.DocumentDeleteParams;
-  export import DocumentDownloadParams = DocumentsAPI.DocumentDownloadParams;
-  export import DocumentUploadParams = DocumentsAPI.DocumentUploadParams;
+export declare namespace Documents {
+  export {
+    type DocumentListResponse as DocumentListResponse,
+    type DocumentDownloadResponse as DocumentDownloadResponse,
+    type DocumentDeleteParams as DocumentDeleteParams,
+    type DocumentDownloadParams as DocumentDownloadParams,
+    type DocumentUploadParams as DocumentUploadParams,
+  };
 }
