@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export { Admin } from './admin';
-export { HumanLlm } from './human-llm';
+export { HumanLlm, type HumanLlmUpdateStepResponse, type HumanLlmUpdateStepParams } from './human-llm';
 export {
   TrainingDatasets,
   type AddDatumRequest,
