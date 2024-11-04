@@ -9,8 +9,11 @@ const client = new Structify({
 });
 
 describe('resource humanLlm', () => {
-  test('getNextStep', async () => {
-    const responsePromise = client.admin.humanLlm.getNextStep({});
+  test('getNextStep: only required params', async () => {
+    const responsePromise = client.admin.humanLlm.getNextStep({
+      job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -18,6 +21,13 @@ describe('resource humanLlm', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('getNextStep: required and optional params', async () => {
+    const response = await client.admin.humanLlm.getNextStep({
+      job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
   });
 
   test('updateStep: only required params', async () => {
