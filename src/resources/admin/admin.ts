@@ -1,8 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
-import * as HumanLlmAPI from './human-llm';
-import { HumanLlm, HumanLlmUpdateStepParams, HumanLlmUpdateStepResponse } from './human-llm';
 import * as TrainingDatasetsAPI from './training-datasets';
 import {
   AddDatumRequest,
@@ -27,24 +25,16 @@ import * as UsersAPI from './users';
 import { User, UserListResponse, Users } from './users';
 
 export class Admin extends APIResource {
-  humanLlm: HumanLlmAPI.HumanLlm = new HumanLlmAPI.HumanLlm(this._client);
   users: UsersAPI.Users = new UsersAPI.Users(this._client);
   trainingDatasets: TrainingDatasetsAPI.TrainingDatasets = new TrainingDatasetsAPI.TrainingDatasets(
     this._client,
   );
 }
 
-Admin.HumanLlm = HumanLlm;
 Admin.Users = Users;
 Admin.TrainingDatasets = TrainingDatasets;
 
 export declare namespace Admin {
-  export {
-    HumanLlm as HumanLlm,
-    type HumanLlmUpdateStepResponse as HumanLlmUpdateStepResponse,
-    type HumanLlmUpdateStepParams as HumanLlmUpdateStepParams,
-  };
-
   export { Users as Users, type User as User, type UserListResponse as UserListResponse };
 
   export {
