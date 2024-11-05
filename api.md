@@ -21,14 +21,13 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/admin/human-llm.ts">HumanLlmStartNextJobResponse</a></code>
-- <code><a href="./src/resources/admin/human-llm.ts">HumanLlmUpdateStepResponse</a></code>
+- <code><a href="./src/resources/admin/human-llm.ts">StepChoiceInfo</a></code>
 
 Methods:
 
 - <code title="post /admin/human_llm/get_next_step">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">getNextStep</a>({ ...params }) -> ExecutionStep</code>
-- <code title="post /admin/human_llm/start_next_job">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">startNextJob</a>() -> HumanLlmStartNextJobResponse</code>
-- <code title="post /admin/human_llm/update_step">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">updateStep</a>({ ...params }) -> HumanLlmUpdateStepResponse</code>
+- <code title="post /admin/human_llm/start_next_job">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">startNextJob</a>() -> StepChoiceInfo</code>
+- <code title="post /admin/human_llm/update_step">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">updateStep</a>({ ...params }) -> StepChoiceInfo</code>
 
 ## Users
 
