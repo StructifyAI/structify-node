@@ -3,7 +3,7 @@
 export { Admin } from './admin';
 export {
   HumanLlm,
-  type StepChoiceInfo,
+  type StepChoices,
   type HumanLlmGetNextStepParams,
   type HumanLlmUpdateStepParams,
 } from './human-llm';

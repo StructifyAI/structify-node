@@ -2,7 +2,7 @@
 
 import { APIResource } from '../../resource';
 import * as HumanLlmAPI from './human-llm';
-import { HumanLlm, HumanLlmGetNextStepParams, HumanLlmUpdateStepParams, StepChoiceInfo } from './human-llm';
+import { HumanLlm, HumanLlmGetNextStepParams, HumanLlmUpdateStepParams, StepChoices } from './human-llm';
 import * as TrainingDatasetsAPI from './training-datasets';
 import {
   AddDatumRequest,
@@ -41,7 +41,7 @@ Admin.TrainingDatasets = TrainingDatasets;
 export declare namespace Admin {
   export {
     HumanLlm as HumanLlm,
-    type StepChoiceInfo as StepChoiceInfo,
+    type StepChoices as StepChoices,
     type HumanLlmGetNextStepParams as HumanLlmGetNextStepParams,
     type HumanLlmUpdateStepParams as HumanLlmUpdateStepParams,
   };
