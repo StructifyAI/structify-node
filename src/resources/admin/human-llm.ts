@@ -17,6 +17,13 @@ export class HumanLlm extends APIResource {
   }
 
   /**
+   * Start the next human llm job in the queue
+   */
+  startNextJob(options?: Core.RequestOptions): Core.APIPromise<HumanLlmStartNextJobResponse> {
+    return this._client.post('/admin/human_llm/start_next_job', options);
+  }
+
+  /**
    * Update a step by setting and preparing the given tool calls, then return
    * possible next steps with descriptions.
    */
@@ -28,12 +35,38 @@ export class HumanLlm extends APIResource {
   }
 }
 
-export type HumanLlmUpdateStepResponse = Array<
-  Array<HumanLlmUpdateStepResponse.HumanLlmUpdateStepResponseItem>
->;
+export interface HumanLlmStartNextJobResponse {
+  extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+
+  /**
+   * Knowledge graph info structured to deserialize and display in the same format
+   * that the LLM outputs. Also the first representation of an LLM output in the
+   * pipeline from raw tool output to being merged into a Neo4j DB
+   */
+  seeded_kg: SharedAPI.KnowledgeGraph;
+
+  step_options: Array<Array<HumanLlmStartNextJobResponse.StepOption>>;
+}
+
+export namespace HumanLlmStartNextJobResponse {
+  export interface StepOption {}
+}
+
+export interface HumanLlmUpdateStepResponse {
+  extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+
+  /**
+   * Knowledge graph info structured to deserialize and display in the same format
+   * that the LLM outputs. Also the first representation of an LLM output in the
+   * pipeline from raw tool output to being merged into a Neo4j DB
+   */
+  seeded_kg: SharedAPI.KnowledgeGraph;
+
+  step_options: Array<Array<HumanLlmUpdateStepResponse.StepOption>>;
+}
 
 export namespace HumanLlmUpdateStepResponse {
-  export interface HumanLlmUpdateStepResponseItem {}
+  export interface StepOption {}
 }
 
 export interface HumanLlmGetNextStepParams {
@@ -201,6 +234,7 @@ export namespace HumanLlmUpdateStepParams {
 
 export declare namespace HumanLlm {
   export {
+    type HumanLlmStartNextJobResponse as HumanLlmStartNextJobResponse,
     type HumanLlmUpdateStepResponse as HumanLlmUpdateStepResponse,
     type HumanLlmGetNextStepParams as HumanLlmGetNextStepParams,
     type HumanLlmUpdateStepParams as HumanLlmUpdateStepParams,
