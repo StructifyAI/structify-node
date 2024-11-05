@@ -5,6 +5,7 @@ import * as HumanLlmAPI from './human-llm';
 import {
   HumanLlm,
   HumanLlmGetNextStepParams,
+  HumanLlmStartNextJobResponse,
   HumanLlmUpdateStepParams,
   HumanLlmUpdateStepResponse,
 } from './human-llm';
@@ -46,6 +47,7 @@ Admin.TrainingDatasets = TrainingDatasets;
 export declare namespace Admin {
   export {
     HumanLlm as HumanLlm,
+    type HumanLlmStartNextJobResponse as HumanLlmStartNextJobResponse,
     type HumanLlmUpdateStepResponse as HumanLlmUpdateStepResponse,
     type HumanLlmGetNextStepParams as HumanLlmGetNextStepParams,
     type HumanLlmUpdateStepParams as HumanLlmUpdateStepParams,
