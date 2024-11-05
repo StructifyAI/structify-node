@@ -19,7 +19,7 @@ export class HumanLlm extends APIResource {
   /**
    * Start the next human llm job in the queue
    */
-  startNextJob(options?: Core.RequestOptions): Core.APIPromise<StepChoiceInfo> {
+  startNextJob(options?: Core.RequestOptions): Core.APIPromise<StepChoices> {
     return this._client.post('/admin/human_llm/start_next_job', options);
   }
 
@@ -27,13 +27,15 @@ export class HumanLlm extends APIResource {
    * Update a step by setting and preparing the given tool calls, then return
    * possible next steps with descriptions.
    */
-  updateStep(body: HumanLlmUpdateStepParams, options?: Core.RequestOptions): Core.APIPromise<StepChoiceInfo> {
+  updateStep(body: HumanLlmUpdateStepParams, options?: Core.RequestOptions): Core.APIPromise<StepChoices> {
     return this._client.post('/admin/human_llm/update_step', { body, ...options });
   }
 }
 
-export interface StepChoiceInfo {
+export interface StepChoices {
   extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+
+  job_id: string;
 
   /**
    * Knowledge graph info structured to deserialize and display in the same format
@@ -42,11 +44,15 @@ export interface StepChoiceInfo {
    */
   seeded_kg: SharedAPI.KnowledgeGraph;
 
-  step_options: Array<Array<StepChoiceInfo.StepOption>>;
+  step_options: Array<StepChoices.StepOption>;
 }
 
-export namespace StepChoiceInfo {
-  export interface StepOption {}
+export namespace StepChoices {
+  export interface StepOption {
+    id: string;
+
+    description: string;
+  }
 }
 
 export interface HumanLlmGetNextStepParams {
@@ -214,7 +220,7 @@ export namespace HumanLlmUpdateStepParams {
 
 export declare namespace HumanLlm {
   export {
-    type StepChoiceInfo as StepChoiceInfo,
+    type StepChoices as StepChoices,
     type HumanLlmGetNextStepParams as HumanLlmGetNextStepParams,
     type HumanLlmUpdateStepParams as HumanLlmUpdateStepParams,
   };
