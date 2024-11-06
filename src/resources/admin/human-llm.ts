@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as SharedAPI from '../shared';
 import * as StructureAPI from '../structure';
@@ -19,8 +20,20 @@ export class HumanLlm extends APIResource {
   /**
    * Start the next human llm job in the queue
    */
-  startNextJob(options?: Core.RequestOptions): Core.APIPromise<StepChoices> {
-    return this._client.post('/admin/human_llm/start_next_job', options);
+  startNextJob(
+    params?: HumanLlmStartNextJobParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<StepChoices>;
+  startNextJob(options?: Core.RequestOptions): Core.APIPromise<StepChoices>;
+  startNextJob(
+    params: HumanLlmStartNextJobParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<StepChoices> {
+    if (isRequestOptions(params)) {
+      return this.startNextJob({}, params);
+    }
+    const { job_id } = params;
+    return this._client.post('/admin/human_llm/start_next_job', { query: { job_id }, ...options });
   }
 
   /**
@@ -59,6 +72,10 @@ export interface HumanLlmGetNextStepParams {
   job_id: string;
 
   step_id: string;
+}
+
+export interface HumanLlmStartNextJobParams {
+  job_id?: string | null;
 }
 
 export interface HumanLlmUpdateStepParams {
@@ -222,6 +239,7 @@ export declare namespace HumanLlm {
   export {
     type StepChoices as StepChoices,
     type HumanLlmGetNextStepParams as HumanLlmGetNextStepParams,
+    type HumanLlmStartNextJobParams as HumanLlmStartNextJobParams,
     type HumanLlmUpdateStepParams as HumanLlmUpdateStepParams,
   };
 }

@@ -5,6 +5,7 @@ export {
   HumanLlm,
   type StepChoices,
   type HumanLlmGetNextStepParams,
+  type HumanLlmStartNextJobParams,
   type HumanLlmUpdateStepParams,
 } from './human-llm';
 export {

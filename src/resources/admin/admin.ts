@@ -2,7 +2,13 @@
 
 import { APIResource } from '../../resource';
 import * as HumanLlmAPI from './human-llm';
-import { HumanLlm, HumanLlmGetNextStepParams, HumanLlmUpdateStepParams, StepChoices } from './human-llm';
+import {
+  HumanLlm,
+  HumanLlmGetNextStepParams,
+  HumanLlmStartNextJobParams,
+  HumanLlmUpdateStepParams,
+  StepChoices,
+} from './human-llm';
 import * as TrainingDatasetsAPI from './training-datasets';
 import {
   AddDatumRequest,
@@ -43,6 +49,7 @@ export declare namespace Admin {
     HumanLlm as HumanLlm,
     type StepChoices as StepChoices,
     type HumanLlmGetNextStepParams as HumanLlmGetNextStepParams,
+    type HumanLlmStartNextJobParams as HumanLlmStartNextJobParams,
     type HumanLlmUpdateStepParams as HumanLlmUpdateStepParams,
   };
 
