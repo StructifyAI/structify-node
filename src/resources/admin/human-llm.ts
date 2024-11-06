@@ -20,6 +20,13 @@ export class HumanLlm extends APIResource {
   /**
    * Start the next human llm job in the queue
    */
+  getQueuedJobs(options?: Core.RequestOptions): Core.APIPromise<HumanLlmGetQueuedJobsResponse> {
+    return this._client.post('/admin/human_llm/get_queued_jobs', options);
+  }
+
+  /**
+   * Start the next human llm job in the queue
+   */
   startNextJob(
     params?: HumanLlmStartNextJobParams,
     options?: Core.RequestOptions,
@@ -65,6 +72,28 @@ export namespace StepChoices {
     id: string;
 
     description: string;
+  }
+}
+
+export type HumanLlmGetQueuedJobsResponse =
+  Array<HumanLlmGetQueuedJobsResponse.HumanLlmGetQueuedJobsResponseItem>;
+
+export namespace HumanLlmGetQueuedJobsResponse {
+  export interface HumanLlmGetQueuedJobsResponseItem {
+    id: string;
+
+    creation_time: string;
+
+    status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+    message?: string | null;
+
+    report_on_complete?: boolean;
+
+    /**
+     * What time did the job start running?
+     */
+    run_started_time?: string | null;
   }
 }
 
@@ -238,6 +267,7 @@ export namespace HumanLlmUpdateStepParams {
 export declare namespace HumanLlm {
   export {
     type StepChoices as StepChoices,
+    type HumanLlmGetQueuedJobsResponse as HumanLlmGetQueuedJobsResponse,
     type HumanLlmGetNextStepParams as HumanLlmGetNextStepParams,
     type HumanLlmStartNextJobParams as HumanLlmStartNextJobParams,
     type HumanLlmUpdateStepParams as HumanLlmUpdateStepParams,

@@ -5,6 +5,7 @@ import * as HumanLlmAPI from './human-llm';
 import {
   HumanLlm,
   HumanLlmGetNextStepParams,
+  HumanLlmGetQueuedJobsResponse,
   HumanLlmStartNextJobParams,
   HumanLlmUpdateStepParams,
   StepChoices,
@@ -48,6 +49,7 @@ export declare namespace Admin {
   export {
     HumanLlm as HumanLlm,
     type StepChoices as StepChoices,
+    type HumanLlmGetQueuedJobsResponse as HumanLlmGetQueuedJobsResponse,
     type HumanLlmGetNextStepParams as HumanLlmGetNextStepParams,
     type HumanLlmStartNextJobParams as HumanLlmStartNextJobParams,
     type HumanLlmUpdateStepParams as HumanLlmUpdateStepParams,
