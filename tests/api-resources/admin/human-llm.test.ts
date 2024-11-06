@@ -48,6 +48,16 @@ describe('resource humanLlm', () => {
     );
   });
 
+  test('startNextJob: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.admin.humanLlm.startNextJob(
+        { job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
   test('updateStep: only required params', async () => {
     const responsePromise = client.admin.humanLlm.updateStep({
       job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
