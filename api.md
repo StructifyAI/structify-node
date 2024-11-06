@@ -22,10 +22,12 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/admin/human-llm.ts">StepChoices</a></code>
+- <code><a href="./src/resources/admin/human-llm.ts">HumanLlmGetQueuedJobsResponse</a></code>
 
 Methods:
 
 - <code title="post /admin/human_llm/get_next_step">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">getNextStep</a>({ ...params }) -> ExecutionStep</code>
+- <code title="post /admin/human_llm/get_queued_jobs">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">getQueuedJobs</a>() -> HumanLlmGetQueuedJobsResponse</code>
 - <code title="post /admin/human_llm/start_next_job">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">startNextJob</a>({ ...params }) -> StepChoices</code>
 - <code title="post /admin/human_llm/update_step">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">updateStep</a>({ ...params }) -> StepChoices</code>
 
