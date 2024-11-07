@@ -66,6 +66,18 @@ export class TrainingDatasets extends APIResource {
     return this._client.get('/admin/training_datasets/list_datums', { query, ...options });
   }
 
+  markSuspiciousDatum(
+    params: TrainingDatasetMarkSuspiciousDatumParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    const { reason, step_id } = params;
+    return this._client.post('/admin/training_datasets/mark_suspicious_datum', {
+      query: { reason, step_id },
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
   /**
    * Removes a training datum from the specified dataset.
    */
@@ -142,7 +154,7 @@ export interface TrainingDatumResponse {
 
   last_updated: string;
 
-  status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped';
+  status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
 
   step: StructureAPI.ExecutionStep;
 }
@@ -150,7 +162,7 @@ export interface TrainingDatumResponse {
 export interface UpdateDatumRequest {
   id: string;
 
-  status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped';
+  status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
 
   updated_tool_calls: Array<UpdateDatumRequest.UpdatedToolCall>;
 }
@@ -322,7 +334,9 @@ export namespace TrainingDatasetListDatumsResponse {
 
     last_updated: string;
 
-    status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped';
+    review_messages: Array<string>;
+
+    status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
   }
 }
 
@@ -350,6 +364,12 @@ export interface TrainingDatasetListDatumsParams {
   dataset_name: string;
 }
 
+export interface TrainingDatasetMarkSuspiciousDatumParams {
+  reason: string;
+
+  step_id: string;
+}
+
 export interface TrainingDatasetRemoveDatumParams {
   step_id: string;
 }
@@ -361,13 +381,13 @@ export interface TrainingDatasetResetPendingParams {
 export interface TrainingDatasetSizeParams {
   dataset_name: string;
 
-  status?: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | null;
+  status?: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious' | null;
 }
 
 export interface TrainingDatasetUpdateDatumParams {
   id: string;
 
-  status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped';
+  status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
 
   updated_tool_calls: Array<TrainingDatasetUpdateDatumParams.UpdatedToolCall>;
 }
@@ -545,6 +565,7 @@ export declare namespace TrainingDatasets {
     type TrainingDatasetGetNextUnverifiedParams as TrainingDatasetGetNextUnverifiedParams,
     type TrainingDatasetGetStepByIDParams as TrainingDatasetGetStepByIDParams,
     type TrainingDatasetListDatumsParams as TrainingDatasetListDatumsParams,
+    type TrainingDatasetMarkSuspiciousDatumParams as TrainingDatasetMarkSuspiciousDatumParams,
     type TrainingDatasetRemoveDatumParams as TrainingDatasetRemoveDatumParams,
     type TrainingDatasetResetPendingParams as TrainingDatasetResetPendingParams,
     type TrainingDatasetSizeParams as TrainingDatasetSizeParams,

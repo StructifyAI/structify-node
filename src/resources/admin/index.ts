@@ -22,6 +22,7 @@ export {
   type TrainingDatasetGetNextUnverifiedParams,
   type TrainingDatasetGetStepByIDParams,
   type TrainingDatasetListDatumsParams,
+  type TrainingDatasetMarkSuspiciousDatumParams,
   type TrainingDatasetRemoveDatumParams,
   type TrainingDatasetResetPendingParams,
   type TrainingDatasetSizeParams,
