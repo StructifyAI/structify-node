@@ -253,7 +253,17 @@ export namespace ExecutionStep {
         | ToolCall.Google
         | ToolCall.Type;
 
-      name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
+      name:
+        | 'Save'
+        | 'Scroll'
+        | 'ScrollToBottom'
+        | 'Exit'
+        | 'Click'
+        | 'Hover'
+        | 'Wait'
+        | 'Error'
+        | 'Google'
+        | 'Type';
 
       result?: ToolCall.ToolQueued | ToolCall.ToolFail | ToolCall.InputParseFail | ToolCall.Success | null;
     }
@@ -443,7 +453,17 @@ export namespace ExtractionCriteria {
 export interface ToolMetadata {
   description: string;
 
-  name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
+  name:
+    | 'Save'
+    | 'Scroll'
+    | 'ScrollToBottom'
+    | 'Exit'
+    | 'Click'
+    | 'Hover'
+    | 'Wait'
+    | 'Error'
+    | 'Google'
+    | 'Type';
 
   regex_validator: string;
 
