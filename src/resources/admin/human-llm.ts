@@ -138,7 +138,17 @@ export namespace HumanLlmPrelabelStepResponse {
       | ToolCall.Google
       | ToolCall.Type;
 
-    name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
+    name:
+      | 'Save'
+      | 'Scroll'
+      | 'ScrollToBottom'
+      | 'Exit'
+      | 'Click'
+      | 'Hover'
+      | 'Wait'
+      | 'Error'
+      | 'Google'
+      | 'Type';
 
     result?: ToolCall.ToolQueued | ToolCall.ToolFail | ToolCall.InputParseFail | ToolCall.Success | null;
   }
@@ -305,7 +315,17 @@ export namespace HumanLlmUpdateStepParams {
       | ToolCall.Google
       | ToolCall.Type;
 
-    name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
+    name:
+      | 'Save'
+      | 'Scroll'
+      | 'ScrollToBottom'
+      | 'Exit'
+      | 'Click'
+      | 'Hover'
+      | 'Wait'
+      | 'Error'
+      | 'Google'
+      | 'Type';
 
     result?: ToolCall.ToolQueued | ToolCall.ToolFail | ToolCall.InputParseFail | ToolCall.Success | null;
   }
