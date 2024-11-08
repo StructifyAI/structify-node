@@ -25,6 +25,14 @@ export class HumanLlm extends APIResource {
   }
 
   /**
+   * Update a step by setting and preparing the given tool calls, then return
+   * possible next steps with descriptions.
+   */
+  prelabelStep(stepId: string, options?: Core.RequestOptions): Core.APIPromise<HumanLlmPrelabelStepResponse> {
+    return this._client.post(`/admin/human_llm/prelabel_step/${stepId}`, options);
+  }
+
+  /**
    * Start the next human llm job in the queue
    */
   startNextJob(
@@ -94,6 +102,175 @@ export namespace HumanLlmGetQueuedJobsResponse {
      * What time did the job start running?
      */
     run_started_time?: string | null;
+  }
+}
+
+export interface HumanLlmPrelabelStepResponse {
+  completion_tokens: number;
+
+  /**
+   * Cost in dollars
+   */
+  cost: number;
+
+  llm: string;
+
+  /**
+   * New tokens
+   */
+  prompt_tokens: number;
+
+  text: string;
+
+  tool_calls: Array<HumanLlmPrelabelStepResponse.ToolCall>;
+}
+
+export namespace HumanLlmPrelabelStepResponse {
+  export interface ToolCall {
+    input:
+      | ToolCall.Save
+      | ToolCall.Scroll
+      | ToolCall.Exit
+      | ToolCall.Click
+      | ToolCall.Hover
+      | ToolCall.Wait
+      | ToolCall.Error
+      | ToolCall.Google
+      | ToolCall.Type;
+
+    name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
+
+    result?: ToolCall.ToolQueued | ToolCall.ToolFail | ToolCall.InputParseFail | ToolCall.Success | null;
+  }
+
+  export namespace ToolCall {
+    export interface Save {
+      /**
+       * Knowledge graph info structured to deserialize and display in the same format
+       * that the LLM outputs. Also the first representation of an LLM output in the
+       * pipeline from raw tool output to being merged into a Neo4j DB
+       */
+      Save: SharedAPI.KnowledgeGraph;
+    }
+
+    export interface Scroll {
+      /**
+       * For tools with no inputs.
+       */
+      Scroll: Scroll.Scroll;
+    }
+
+    export namespace Scroll {
+      /**
+       * For tools with no inputs.
+       */
+      export interface Scroll {
+        /**
+         * Dummy argument
+         */
+        reason: string;
+      }
+    }
+
+    export interface Exit {
+      /**
+       * For tools with no inputs.
+       */
+      Exit: Exit.Exit;
+    }
+
+    export namespace Exit {
+      /**
+       * For tools with no inputs.
+       */
+      export interface Exit {
+        /**
+         * Dummy argument
+         */
+        reason: string;
+      }
+    }
+
+    export interface Click {
+      Click: Click.Click;
+    }
+
+    export namespace Click {
+      export interface Click {
+        flag: number;
+      }
+    }
+
+    export interface Hover {
+      Hover: Hover.Hover;
+    }
+
+    export namespace Hover {
+      export interface Hover {
+        flag: number;
+      }
+    }
+
+    export interface Wait {
+      Wait: Wait.Wait;
+    }
+
+    export namespace Wait {
+      export interface Wait {
+        /**
+         * Time in seconds to wait
+         */
+        seconds?: number;
+      }
+    }
+
+    export interface Error {
+      Error: Error.Error;
+    }
+
+    export namespace Error {
+      export interface Error {
+        error: string;
+      }
+    }
+
+    export interface Google {
+      Google: Google.Google;
+    }
+
+    export namespace Google {
+      export interface Google {
+        query: string;
+      }
+    }
+
+    export interface Type {
+      Type: Type.Type;
+    }
+
+    export namespace Type {
+      export interface Type {
+        flag: number;
+
+        input: string;
+      }
+    }
+
+    export interface ToolQueued {
+      ToolQueued: string;
+    }
+
+    export interface ToolFail {
+      ToolFail: string;
+    }
+
+    export interface InputParseFail {
+      InputParseFail: string;
+    }
+
+    export interface Success {
+      Success: string;
+    }
   }
 }
 
@@ -268,6 +445,7 @@ export declare namespace HumanLlm {
   export {
     type StepChoices as StepChoices,
     type HumanLlmGetQueuedJobsResponse as HumanLlmGetQueuedJobsResponse,
+    type HumanLlmPrelabelStepResponse as HumanLlmPrelabelStepResponse,
     type HumanLlmGetNextStepParams as HumanLlmGetNextStepParams,
     type HumanLlmStartNextJobParams as HumanLlmStartNextJobParams,
     type HumanLlmUpdateStepParams as HumanLlmUpdateStepParams,

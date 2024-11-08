@@ -5,6 +5,7 @@ export {
   HumanLlm,
   type StepChoices,
   type HumanLlmGetQueuedJobsResponse,
+  type HumanLlmPrelabelStepResponse,
   type HumanLlmGetNextStepParams,
   type HumanLlmStartNextJobParams,
   type HumanLlmUpdateStepParams,
