@@ -180,7 +180,17 @@ export namespace UpdateDatumRequest {
       | UpdatedToolCall.Google
       | UpdatedToolCall.Type;
 
-    name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
+    name:
+      | 'Save'
+      | 'Scroll'
+      | 'ScrollToBottom'
+      | 'Exit'
+      | 'Click'
+      | 'Hover'
+      | 'Wait'
+      | 'Error'
+      | 'Google'
+      | 'Type';
 
     result?:
       | UpdatedToolCall.ToolQueued
@@ -405,7 +415,17 @@ export namespace TrainingDatasetUpdateDatumParams {
       | UpdatedToolCall.Google
       | UpdatedToolCall.Type;
 
-    name: 'Save' | 'Scroll' | 'Exit' | 'Click' | 'Hover' | 'Wait' | 'Error' | 'Google' | 'Type';
+    name:
+      | 'Save'
+      | 'Scroll'
+      | 'ScrollToBottom'
+      | 'Exit'
+      | 'Click'
+      | 'Hover'
+      | 'Wait'
+      | 'Error'
+      | 'Google'
+      | 'Type';
 
     result?:
       | UpdatedToolCall.ToolQueued
