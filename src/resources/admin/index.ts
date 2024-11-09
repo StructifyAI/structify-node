@@ -4,8 +4,9 @@ export { Admin } from './admin';
 export {
   HumanLlm,
   type StepChoices,
-  type HumanLlmGetQueuedJobsResponse,
+  type HumanLlmGetJobsResponse,
   type HumanLlmPrelabelStepResponse,
+  type HumanLlmGetJobsParams,
   type HumanLlmGetNextStepParams,
   type HumanLlmStartNextJobParams,
   type HumanLlmUpdateStepParams,
