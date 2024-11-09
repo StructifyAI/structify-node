@@ -9,6 +9,31 @@ const client = new Structify({
 });
 
 describe('resource humanLlm', () => {
+  test('getJobs', async () => {
+    const responsePromise = client.admin.humanLlm.getJobs();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('getJobs: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.admin.humanLlm.getJobs({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Structify.NotFoundError,
+    );
+  });
+
+  test('getJobs: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.admin.humanLlm.getJobs({ status: 'Queued' }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
   test('getNextStep: only required params', async () => {
     const responsePromise = client.admin.humanLlm.getNextStep({
       job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -28,24 +53,6 @@ describe('resource humanLlm', () => {
       job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
-  });
-
-  test('getQueuedJobs', async () => {
-    const responsePromise = client.admin.humanLlm.getQueuedJobs();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('getQueuedJobs: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.admin.humanLlm.getQueuedJobs({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Structify.NotFoundError,
-    );
   });
 
   test('prelabelStep', async () => {
