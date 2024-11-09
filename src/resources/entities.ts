@@ -355,7 +355,7 @@ export interface EntityAddParams {
    */
   attempt_merge?: boolean;
 
-  source?: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage;
+  source?: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage | EntityAddParams.SecFiling;
 }
 
 export namespace EntityAddParams {
@@ -365,6 +365,10 @@ export namespace EntityAddParams {
 
   export interface DocumentPage {
     DocumentPage: Array<unknown>;
+  }
+
+  export interface SecFiling {
+    SecFiling: Array<unknown>;
   }
 }
 
