@@ -8,6 +8,25 @@ import * as StructureAPI from '../structure';
 
 export class HumanLlm extends APIResource {
   /**
+   * Start the next human llm job in the queue
+   */
+  getJobs(
+    params?: HumanLlmGetJobsParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<HumanLlmGetJobsResponse>;
+  getJobs(options?: Core.RequestOptions): Core.APIPromise<HumanLlmGetJobsResponse>;
+  getJobs(
+    params: HumanLlmGetJobsParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<HumanLlmGetJobsResponse> {
+    if (isRequestOptions(params)) {
+      return this.getJobs({}, params);
+    }
+    const { status } = params;
+    return this._client.post('/admin/human_llm/get_jobs', { query: { status }, ...options });
+  }
+
+  /**
    * Given a step id, get the next formatted step to label.
    */
   getNextStep(
@@ -15,13 +34,6 @@ export class HumanLlm extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<StructureAPI.ExecutionStep> {
     return this._client.post('/admin/human_llm/get_next_step', { body, ...options });
-  }
-
-  /**
-   * Start the next human llm job in the queue
-   */
-  getQueuedJobs(options?: Core.RequestOptions): Core.APIPromise<HumanLlmGetQueuedJobsResponse> {
-    return this._client.post('/admin/human_llm/get_queued_jobs', options);
   }
 
   /**
@@ -83,11 +95,10 @@ export namespace StepChoices {
   }
 }
 
-export type HumanLlmGetQueuedJobsResponse =
-  Array<HumanLlmGetQueuedJobsResponse.HumanLlmGetQueuedJobsResponseItem>;
+export type HumanLlmGetJobsResponse = Array<HumanLlmGetJobsResponse.HumanLlmGetJobsResponseItem>;
 
-export namespace HumanLlmGetQueuedJobsResponse {
-  export interface HumanLlmGetQueuedJobsResponseItem {
+export namespace HumanLlmGetJobsResponse {
+  export interface HumanLlmGetJobsResponseItem {
     id: string;
 
     creation_time: string;
@@ -284,6 +295,10 @@ export namespace HumanLlmPrelabelStepResponse {
   }
 }
 
+export interface HumanLlmGetJobsParams {
+  status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
+}
+
 export interface HumanLlmGetNextStepParams {
   job_id: string;
 
@@ -464,8 +479,9 @@ export namespace HumanLlmUpdateStepParams {
 export declare namespace HumanLlm {
   export {
     type StepChoices as StepChoices,
-    type HumanLlmGetQueuedJobsResponse as HumanLlmGetQueuedJobsResponse,
+    type HumanLlmGetJobsResponse as HumanLlmGetJobsResponse,
     type HumanLlmPrelabelStepResponse as HumanLlmPrelabelStepResponse,
+    type HumanLlmGetJobsParams as HumanLlmGetJobsParams,
     type HumanLlmGetNextStepParams as HumanLlmGetNextStepParams,
     type HumanLlmStartNextJobParams as HumanLlmStartNextJobParams,
     type HumanLlmUpdateStepParams as HumanLlmUpdateStepParams,
