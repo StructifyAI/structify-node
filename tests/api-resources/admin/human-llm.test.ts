@@ -182,6 +182,7 @@ describe('resource humanLlm', () => {
           result: { ToolQueued: 'ToolQueued' },
         },
       ],
+      add_to_training_datum: true,
     });
   });
 });
