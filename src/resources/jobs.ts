@@ -187,6 +187,8 @@ export namespace JobGetStepGraphResponse {
 
   export namespace Transition {
     export interface ToolCall {
+      action: string;
+
       formatted_input: string;
 
       name: string;
