@@ -117,7 +117,6 @@ const environments = {
   deployment: 'http://localhost:8080',
 };
 type Environment = keyof typeof environments;
-
 export interface ClientOptions {
   /**
    * Defaults to process.env['STRUCTIFY_API_TOKEN'].
@@ -297,25 +296,6 @@ export class Structify extends Core.APIClient {
   static fileFromPath = Uploads.fileFromPath;
 }
 
-export {
-  StructifyError,
-  APIError,
-  APIConnectionError,
-  APIConnectionTimeoutError,
-  APIUserAbortError,
-  NotFoundError,
-  ConflictError,
-  RateLimitError,
-  BadRequestError,
-  AuthenticationError,
-  InternalServerError,
-  PermissionDeniedError,
-  UnprocessableEntityError,
-} from './error';
-
-export import toFile = Uploads.toFile;
-export import fileFromPath = Uploads.fileFromPath;
-
 Structify.User = User;
 Structify.Admin = Admin;
 Structify.Datasets = Datasets;
@@ -331,7 +311,6 @@ Structify.Report = Report;
 Structify.Structure = Structure;
 Structify.Label = Label;
 Structify.Shared = Shared;
-
 export declare namespace Structify {
   export type RequestOptions = Core.RequestOptions;
 
@@ -463,5 +442,22 @@ export declare namespace Structify {
     type Table as Table,
   };
 }
+
+export { toFile, fileFromPath } from 'structifyai/uploads';
+export {
+  StructifyError,
+  APIError,
+  APIConnectionError,
+  APIConnectionTimeoutError,
+  APIUserAbortError,
+  NotFoundError,
+  ConflictError,
+  RateLimitError,
+  BadRequestError,
+  AuthenticationError,
+  InternalServerError,
+  PermissionDeniedError,
+  UnprocessableEntityError,
+} from 'structifyai/error';
 
 export default Structify;
