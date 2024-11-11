@@ -315,6 +315,8 @@ export interface HumanLlmUpdateStepParams {
   step_id: string;
 
   tool_calls: Array<HumanLlmUpdateStepParams.ToolCall>;
+
+  add_to_training_datum?: boolean;
 }
 
 export namespace HumanLlmUpdateStepParams {
