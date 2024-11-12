@@ -64,7 +64,10 @@ describe('resource trainingDatasets', () => {
   });
 
   test('getNextUnverified: only required params', async () => {
-    const responsePromise = client.admin.trainingDatasets.getNextUnverified({ dataset_name: 'dataset_name' });
+    const responsePromise = client.admin.trainingDatasets.getNextUnverified({
+      dataset_name: 'dataset_name',
+      status: 'Unlabeled',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -75,7 +78,10 @@ describe('resource trainingDatasets', () => {
   });
 
   test('getNextUnverified: required and optional params', async () => {
-    const response = await client.admin.trainingDatasets.getNextUnverified({ dataset_name: 'dataset_name' });
+    const response = await client.admin.trainingDatasets.getNextUnverified({
+      dataset_name: 'dataset_name',
+      status: 'Unlabeled',
+    });
   });
 
   test('getStepById: only required params', async () => {
