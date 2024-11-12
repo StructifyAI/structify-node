@@ -7,6 +7,17 @@ import * as SharedAPI from '../shared';
 import * as StructureAPI from '../structure';
 
 export class HumanLlm extends APIResource {
+  addSearchForJob(
+    params: HumanLlmAddSearchForJobParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<StepChoices> {
+    const { job_id, search_term } = params;
+    return this._client.post('/admin/human_llm/add_search_for_job', {
+      query: { job_id, search_term },
+      ...options,
+    });
+  }
+
   /**
    * Start the next human llm job in the queue
    */
@@ -295,6 +306,12 @@ export namespace HumanLlmPrelabelStepResponse {
   }
 }
 
+export interface HumanLlmAddSearchForJobParams {
+  job_id: string;
+
+  search_term: string;
+}
+
 export interface HumanLlmGetJobsParams {
   status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
 }
@@ -483,6 +500,7 @@ export declare namespace HumanLlm {
     type StepChoices as StepChoices,
     type HumanLlmGetJobsResponse as HumanLlmGetJobsResponse,
     type HumanLlmPrelabelStepResponse as HumanLlmPrelabelStepResponse,
+    type HumanLlmAddSearchForJobParams as HumanLlmAddSearchForJobParams,
     type HumanLlmGetJobsParams as HumanLlmGetJobsParams,
     type HumanLlmGetNextStepParams as HumanLlmGetNextStepParams,
     type HumanLlmStartNextJobParams as HumanLlmStartNextJobParams,

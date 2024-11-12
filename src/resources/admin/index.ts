@@ -6,6 +6,7 @@ export {
   type StepChoices,
   type HumanLlmGetJobsResponse,
   type HumanLlmPrelabelStepResponse,
+  type HumanLlmAddSearchForJobParams,
   type HumanLlmGetJobsParams,
   type HumanLlmGetNextStepParams,
   type HumanLlmStartNextJobParams,
