@@ -4,6 +4,7 @@ import { APIResource } from '../../resource';
 import * as HumanLlmAPI from './human-llm';
 import {
   HumanLlm,
+  HumanLlmAddSearchForJobParams,
   HumanLlmGetJobsParams,
   HumanLlmGetJobsResponse,
   HumanLlmGetNextStepParams,
@@ -54,6 +55,7 @@ export declare namespace Admin {
     type StepChoices as StepChoices,
     type HumanLlmGetJobsResponse as HumanLlmGetJobsResponse,
     type HumanLlmPrelabelStepResponse as HumanLlmPrelabelStepResponse,
+    type HumanLlmAddSearchForJobParams as HumanLlmAddSearchForJobParams,
     type HumanLlmGetJobsParams as HumanLlmGetJobsParams,
     type HumanLlmGetNextStepParams as HumanLlmGetNextStepParams,
     type HumanLlmStartNextJobParams as HumanLlmStartNextJobParams,
