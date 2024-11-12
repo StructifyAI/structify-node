@@ -9,8 +9,8 @@ const client = new Structify({
 });
 
 describe('resource report', () => {
-  test('entity: only required params', async () => {
-    const responsePromise = client.report.entity({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
+  test('missing: only required params', async () => {
+    const responsePromise = client.report.missing({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -20,8 +20,8 @@ describe('resource report', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('entity: required and optional params', async () => {
-    const response = await client.report.entity({
+  test('missing: required and optional params', async () => {
+    const response = await client.report.missing({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       property: 'property',
       source_url: 'source_url',
@@ -43,6 +43,25 @@ describe('resource report', () => {
     const response = await client.report.step({
       step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       message: 'message',
+    });
+  });
+
+  test('wrong: only required params', async () => {
+    const responsePromise = client.report.wrong({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('wrong: required and optional params', async () => {
+    const response = await client.report.wrong({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      property: 'property',
+      source_url: 'source_url',
     });
   });
 });
