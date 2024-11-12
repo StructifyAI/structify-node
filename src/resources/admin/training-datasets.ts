@@ -366,6 +366,8 @@ export interface TrainingDatasetAddDatumParams {
 
 export interface TrainingDatasetGetNextUnverifiedParams {
   dataset_name: string;
+
+  status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
 }
 
 export interface TrainingDatasetGetStepByIDParams {
