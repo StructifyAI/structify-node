@@ -61,7 +61,7 @@ Methods:
 - <code title="post /admin/training_datasets/add_dataset">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">add</a>({ ...params }) -> void</code>
 - <code title="post /admin/training_datasets/add_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">addDatum</a>({ ...params }) -> void</code>
 - <code title="get /admin/training_datasets/next_unverified">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getNextUnverified</a>({ ...params }) -> TrainingDatumResponse</code>
-- <code title="get /admin/training_datasets/get_step_by_id">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getStepById</a>({ ...params }) -> ExecutionStep</code>
+- <code title="get /admin/training_datasets/get_step_by_id">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getStepById</a>({ ...params }) -> TrainingDatumResponse</code>
 - <code title="get /admin/training_datasets/list_datums">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">listDatums</a>({ ...params }) -> TrainingDatasetListDatumsResponse</code>
 - <code title="post /admin/training_datasets/mark_suspicious_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">markSuspiciousDatum</a>({ ...params }) -> void</code>
 - <code title="delete /admin/training_datasets/remove_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">removeDatum</a>({ ...params }) -> void</code>
