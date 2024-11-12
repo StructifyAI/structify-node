@@ -70,10 +70,12 @@ import {
 import { Label, LabelVerifyParams, LabelVerifyResponse } from './resources/label';
 import {
   Report,
-  ReportEntityParams,
-  ReportEntityResponse,
+  ReportMissingParams,
+  ReportMissingResponse,
   ReportStepParams,
   ReportStepResponse,
+  ReportWrongParams,
+  ReportWrongResponse,
 } from './resources/report';
 import { Server, ServerInformation } from './resources/server';
 import {
@@ -404,10 +406,12 @@ export declare namespace Structify {
 
   export {
     Report as Report,
-    type ReportEntityResponse as ReportEntityResponse,
+    type ReportMissingResponse as ReportMissingResponse,
     type ReportStepResponse as ReportStepResponse,
-    type ReportEntityParams as ReportEntityParams,
+    type ReportWrongResponse as ReportWrongResponse,
+    type ReportMissingParams as ReportMissingParams,
     type ReportStepParams as ReportStepParams,
+    type ReportWrongParams as ReportWrongParams,
   };
 
   export {
