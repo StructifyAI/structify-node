@@ -64,10 +64,12 @@ export {
 export { Label, type LabelVerifyResponse, type LabelVerifyParams } from './label';
 export {
   Report,
-  type ReportEntityResponse,
+  type ReportMissingResponse,
   type ReportStepResponse,
-  type ReportEntityParams,
+  type ReportWrongResponse,
+  type ReportMissingParams,
   type ReportStepParams,
+  type ReportWrongParams,
 } from './report';
 export { Server, type ServerInformation } from './server';
 export {
