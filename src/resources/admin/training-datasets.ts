@@ -52,7 +52,7 @@ export class TrainingDatasets extends APIResource {
   getStepById(
     query: TrainingDatasetGetStepByIDParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<StructureAPI.ExecutionStep> {
+  ): Core.APIPromise<TrainingDatumResponse> {
     return this._client.get('/admin/training_datasets/get_step_by_id', { query, ...options });
   }
 
@@ -153,6 +153,8 @@ export interface TrainingDatumResponse {
   labelers: Array<string>;
 
   last_updated: string;
+
+  review_messages: Array<string>;
 
   status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
 
