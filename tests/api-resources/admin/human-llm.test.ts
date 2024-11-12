@@ -12,7 +12,7 @@ describe('resource humanLlm', () => {
   test('addSearchForJob: only required params', async () => {
     const responsePromise = client.admin.humanLlm.addSearchForJob({
       job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      search_term: 'search_term',
+      url: 'url',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -26,7 +26,7 @@ describe('resource humanLlm', () => {
   test('addSearchForJob: required and optional params', async () => {
     const response = await client.admin.humanLlm.addSearchForJob({
       job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      search_term: 'search_term',
+      url: 'url',
     });
   });
 
