@@ -5,10 +5,11 @@ import * as Core from '../core';
 
 export class Report extends APIResource {
   /**
-   * Get all sources for a given entity
+   * Returns a success message if the report was added successfully Throws an error
+   * if the property for this entity has already been reported
    */
-  entity(body: ReportEntityParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    return this._client.post('/report/entity', {
+  missing(body: ReportMissingParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.post('/report/entity/missing', {
       body,
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
@@ -25,13 +26,26 @@ export class Report extends APIResource {
       headers: { Accept: 'text/plain', ...options?.headers },
     });
   }
+
+  /**
+   * Reports a wrong property for an entity
+   */
+  wrong(body: ReportWrongParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.post('/report/entity/wrong', {
+      body,
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
 }
 
-export type ReportEntityResponse = string;
+export type ReportMissingResponse = string;
 
 export type ReportStepResponse = string;
 
-export interface ReportEntityParams {
+export type ReportWrongResponse = string;
+
+export interface ReportMissingParams {
   id: string;
 
   /**
@@ -54,11 +68,27 @@ export interface ReportStepParams {
   message?: string | null;
 }
 
+export interface ReportWrongParams {
+  id: string;
+
+  /**
+   * A property that is being reported
+   */
+  property?: string | null;
+
+  /**
+   * Correct source URL for the reported entity
+   */
+  source_url?: string | null;
+}
+
 export declare namespace Report {
   export {
-    type ReportEntityResponse as ReportEntityResponse,
+    type ReportMissingResponse as ReportMissingResponse,
     type ReportStepResponse as ReportStepResponse,
-    type ReportEntityParams as ReportEntityParams,
+    type ReportWrongResponse as ReportWrongResponse,
+    type ReportMissingParams as ReportMissingParams,
     type ReportStepParams as ReportStepParams,
+    type ReportWrongParams as ReportWrongParams,
   };
 }
