@@ -64,10 +64,7 @@ describe('resource trainingDatasets', () => {
   });
 
   test('getLabellerStats: only required params', async () => {
-    const responsePromise = client.admin.trainingDatasets.getLabellerStats({
-      dataset_name: 'dataset_name',
-      status: 'Unlabeled',
-    });
+    const responsePromise = client.admin.trainingDatasets.getLabellerStats({ status: 'Unlabeled' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -79,8 +76,8 @@ describe('resource trainingDatasets', () => {
 
   test('getLabellerStats: required and optional params', async () => {
     const response = await client.admin.trainingDatasets.getLabellerStats({
-      dataset_name: 'dataset_name',
       status: 'Unlabeled',
+      dataset_name: 'dataset_name',
       end_date: '2019-12-27T18:11:19.117Z',
       start_date: '2019-12-27T18:11:19.117Z',
     });
