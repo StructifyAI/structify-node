@@ -398,9 +398,9 @@ export interface TrainingDatasetAddDatumParams {
 }
 
 export interface TrainingDatasetGetLabellerStatsParams {
-  dataset_name: string;
-
   status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
+
+  dataset_name?: string | null;
 
   end_date?: string | null;
 
