@@ -63,6 +63,29 @@ describe('resource trainingDatasets', () => {
     });
   });
 
+  test('getLabellerStats: only required params', async () => {
+    const responsePromise = client.admin.trainingDatasets.getLabellerStats({
+      dataset_name: 'dataset_name',
+      status: 'Unlabeled',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('getLabellerStats: required and optional params', async () => {
+    const response = await client.admin.trainingDatasets.getLabellerStats({
+      dataset_name: 'dataset_name',
+      status: 'Unlabeled',
+      end_date: '2019-12-27T18:11:19.117Z',
+      start_date: '2019-12-27T18:11:19.117Z',
+    });
+  });
+
   test('getNextUnverified: only required params', async () => {
     const responsePromise = client.admin.trainingDatasets.getNextUnverified({
       dataset_name: 'dataset_name',
@@ -187,6 +210,8 @@ describe('resource trainingDatasets', () => {
   test('size: required and optional params', async () => {
     const response = await client.admin.trainingDatasets.size({
       dataset_name: 'dataset_name',
+      end_date: '2019-12-27T18:11:19.117Z',
+      start_date: '2019-12-27T18:11:19.117Z',
       status: 'Unlabeled',
     });
   });

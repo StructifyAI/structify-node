@@ -53,6 +53,7 @@ Types:
 - <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatumResponse</a></code>
 - <code><a href="./src/resources/admin/training-datasets.ts">UpdateDatumRequest</a></code>
 - <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatasetListResponse</a></code>
+- <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatasetGetLabellerStatsResponse</a></code>
 - <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatasetListDatumsResponse</a></code>
 - <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatasetSizeResponse</a></code>
 
@@ -61,6 +62,7 @@ Methods:
 - <code title="get /admin/training_datasets/list">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">list</a>() -> TrainingDatasetListResponse</code>
 - <code title="post /admin/training_datasets/add_dataset">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">add</a>({ ...params }) -> void</code>
 - <code title="post /admin/training_datasets/add_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">addDatum</a>({ ...params }) -> void</code>
+- <code title="get /admin/training_datasets/labeller_stats">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getLabellerStats</a>({ ...params }) -> TrainingDatasetGetLabellerStatsResponse</code>
 - <code title="get /admin/training_datasets/next_unverified">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getNextUnverified</a>({ ...params }) -> TrainingDatumResponse</code>
 - <code title="get /admin/training_datasets/get_step_by_id">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getStepById</a>({ ...params }) -> TrainingDatumResponse</code>
 - <code title="get /admin/training_datasets/list_datums">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">listDatums</a>({ ...params }) -> TrainingDatasetListDatumsResponse</code>
