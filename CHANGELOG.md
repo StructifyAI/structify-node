@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.50.0 (2024-11-13)
+
+Full Changelog: [v1.49.0...v1.50.0](https://github.com/StructifyAI/structify-node/compare/v1.49.0...v1.50.0)
+
+### Features
+
+* **api:** api update ([#643](https://github.com/StructifyAI/structify-node/issues/643)) ([ae08a16](https://github.com/StructifyAI/structify-node/commit/ae08a16f20061c041f852a6c31dd07d588227ead))
+
 ## 1.49.0 (2024-11-12)
 
 Full Changelog: [v1.48.0...v1.49.0](https://github.com/StructifyAI/structify-node/compare/v1.48.0...v1.49.0)
