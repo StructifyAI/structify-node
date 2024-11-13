@@ -3,6 +3,7 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
+import * as HumanLlmAPI from './human-llm';
 import * as SharedAPI from '../shared';
 import * as StructureAPI from '../structure';
 
@@ -72,6 +73,16 @@ export class HumanLlm extends APIResource {
   }
 }
 
+export interface HumanLlmMetadata {
+  dataset_name: string;
+
+  entity_name: string;
+
+  property_name: string;
+
+  user_email: string;
+}
+
 export interface StepChoices {
   extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
 
@@ -98,18 +109,12 @@ export namespace StepChoices {
 export type HumanLlmGetJobsResponse = Array<Array<HumanLlmGetJobsResponse.HumanLlmGetJobsResponseItem>>;
 
 export namespace HumanLlmGetJobsResponse {
-  export interface HumanLlmGetJobsResponseItem {
+  export interface HumanLlmGetJobsResponseItem extends HumanLlmAPI.HumanLlmMetadata {
     id: string;
 
     creation_time: string;
 
-    entity_name: string;
-
-    property_name: string;
-
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
-
-    user_email: string;
 
     message?: string | null;
 
@@ -492,6 +497,7 @@ export namespace HumanLlmUpdateStepParams {
 
 export declare namespace HumanLlm {
   export {
+    type HumanLlmMetadata as HumanLlmMetadata,
     type StepChoices as StepChoices,
     type HumanLlmGetJobsResponse as HumanLlmGetJobsResponse,
     type HumanLlmPrelabelStepResponse as HumanLlmPrelabelStepResponse,
