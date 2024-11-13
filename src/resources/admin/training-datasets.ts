@@ -37,6 +37,16 @@ export class TrainingDatasets extends APIResource {
   }
 
   /**
+   * Gets statistics about labellers' work on a dataset.
+   */
+  getLabellerStats(
+    query: TrainingDatasetGetLabellerStatsParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<TrainingDatasetGetLabellerStatsResponse> {
+    return this._client.get('/admin/training_datasets/labeller_stats', { query, ...options });
+  }
+
+  /**
    * Retrieves the next unverified training datum from the specified dataset.
    */
   getNextUnverified(
@@ -159,6 +169,12 @@ export interface TrainingDatumResponse {
   status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
 
   step: StructureAPI.ExecutionStep;
+
+  verifiers: Array<string>;
+
+  last_labeled?: string | null;
+
+  last_verified?: string | null;
 }
 
 export interface UpdateDatumRequest {
@@ -335,6 +351,17 @@ export namespace UpdateDatumRequest {
 
 export type TrainingDatasetListResponse = Array<string>;
 
+export type TrainingDatasetGetLabellerStatsResponse =
+  Array<TrainingDatasetGetLabellerStatsResponse.TrainingDatasetGetLabellerStatsResponseItem>;
+
+export namespace TrainingDatasetGetLabellerStatsResponse {
+  export interface TrainingDatasetGetLabellerStatsResponseItem {
+    count: number;
+
+    labeller: string;
+  }
+}
+
 export type TrainingDatasetListDatumsResponse =
   Array<TrainingDatasetListDatumsResponse.TrainingDatasetListDatumsResponseItem>;
 
@@ -349,6 +376,12 @@ export namespace TrainingDatasetListDatumsResponse {
     review_messages: Array<string>;
 
     status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
+
+    last_labeled?: string | null;
+
+    last_verified?: string | null;
+
+    verifiers?: Array<string>;
   }
 }
 
@@ -362,6 +395,16 @@ export interface TrainingDatasetAddDatumParams {
   dataset_name: string;
 
   step_id: string;
+}
+
+export interface TrainingDatasetGetLabellerStatsParams {
+  dataset_name: string;
+
+  status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
+
+  end_date?: string | null;
+
+  start_date?: string | null;
 }
 
 export interface TrainingDatasetGetNextUnverifiedParams {
@@ -394,6 +437,10 @@ export interface TrainingDatasetResetPendingParams {
 
 export interface TrainingDatasetSizeParams {
   dataset_name: string;
+
+  end_date?: string | null;
+
+  start_date?: string | null;
 
   status?: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious' | null;
 }
@@ -582,10 +629,12 @@ export declare namespace TrainingDatasets {
     type TrainingDatumResponse as TrainingDatumResponse,
     type UpdateDatumRequest as UpdateDatumRequest,
     type TrainingDatasetListResponse as TrainingDatasetListResponse,
+    type TrainingDatasetGetLabellerStatsResponse as TrainingDatasetGetLabellerStatsResponse,
     type TrainingDatasetListDatumsResponse as TrainingDatasetListDatumsResponse,
     type TrainingDatasetSizeResponse as TrainingDatasetSizeResponse,
     type TrainingDatasetAddParams as TrainingDatasetAddParams,
     type TrainingDatasetAddDatumParams as TrainingDatasetAddDatumParams,
+    type TrainingDatasetGetLabellerStatsParams as TrainingDatasetGetLabellerStatsParams,
     type TrainingDatasetGetNextUnverifiedParams as TrainingDatasetGetNextUnverifiedParams,
     type TrainingDatasetGetStepByIDParams as TrainingDatasetGetStepByIDParams,
     type TrainingDatasetListDatumsParams as TrainingDatasetListDatumsParams,
