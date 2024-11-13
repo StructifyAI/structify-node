@@ -3,6 +3,7 @@
 export { Admin } from './admin';
 export {
   HumanLlm,
+  type HumanLlmMetadata,
   type StepChoices,
   type HumanLlmGetJobsResponse,
   type HumanLlmPrelabelStepResponse,
