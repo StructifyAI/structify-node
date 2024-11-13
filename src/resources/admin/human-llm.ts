@@ -19,17 +19,9 @@ export class HumanLlm extends APIResource {
    * Start the next human llm job in the queue
    */
   getJobs(
-    params?: HumanLlmGetJobsParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<HumanLlmGetJobsResponse>;
-  getJobs(options?: Core.RequestOptions): Core.APIPromise<HumanLlmGetJobsResponse>;
-  getJobs(
-    params: HumanLlmGetJobsParams | Core.RequestOptions = {},
+    params: HumanLlmGetJobsParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<HumanLlmGetJobsResponse> {
-    if (isRequestOptions(params)) {
-      return this.getJobs({}, params);
-    }
     const { status } = params;
     return this._client.post('/admin/human_llm/get_jobs', { query: { status }, ...options });
   }
@@ -103,7 +95,7 @@ export namespace StepChoices {
   }
 }
 
-export type HumanLlmGetJobsResponse = Array<HumanLlmGetJobsResponse.HumanLlmGetJobsResponseItem>;
+export type HumanLlmGetJobsResponse = Array<Array<HumanLlmGetJobsResponse.HumanLlmGetJobsResponseItem>>;
 
 export namespace HumanLlmGetJobsResponse {
   export interface HumanLlmGetJobsResponseItem {
@@ -111,7 +103,13 @@ export namespace HumanLlmGetJobsResponse {
 
     creation_time: string;
 
+    entity_name: string;
+
+    property_name: string;
+
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+    user_email: string;
 
     message?: string | null;
 
@@ -310,7 +308,7 @@ export interface HumanLlmAddSearchForJobParams {
 }
 
 export interface HumanLlmGetJobsParams {
-  status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
+  status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 }
 
 export interface HumanLlmGetNextStepParams {
