@@ -21,7 +21,7 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/admin/human-llm.ts">HumanLlmMetadata</a></code>
+- <code><a href="./src/resources/admin/human-llm.ts">HumanLlmJob</a></code>
 - <code><a href="./src/resources/admin/human-llm.ts">StepChoices</a></code>
 - <code><a href="./src/resources/admin/human-llm.ts">HumanLlmGetJobsResponse</a></code>
 - <code><a href="./src/resources/admin/human-llm.ts">HumanLlmPrelabelStepResponse</a></code>
