@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as HumanLlmAPI from './human-llm';
 import * as SharedAPI from '../shared';
 import * as StructureAPI from '../structure';
 
@@ -73,14 +72,39 @@ export class HumanLlm extends APIResource {
   }
 }
 
-export interface HumanLlmMetadata {
-  dataset_name: string;
+export interface HumanLlmJob {
+  job: HumanLlmJob.Job;
 
-  entity_name: string;
+  metadata: HumanLlmJob.Metadata;
+}
 
-  property_name: string;
+export namespace HumanLlmJob {
+  export interface Job {
+    id: string;
 
-  user_email: string;
+    creation_time: string;
+
+    status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+    message?: string | null;
+
+    report_on_complete?: boolean;
+
+    /**
+     * What time did the job start running?
+     */
+    run_started_time?: string | null;
+  }
+
+  export interface Metadata {
+    dataset_name: string;
+
+    entity_name: string;
+
+    property_name: string;
+
+    user_email: string;
+  }
 }
 
 export interface StepChoices {
@@ -106,26 +130,7 @@ export namespace StepChoices {
   }
 }
 
-export type HumanLlmGetJobsResponse = Array<Array<HumanLlmGetJobsResponse.HumanLlmGetJobsResponseItem>>;
-
-export namespace HumanLlmGetJobsResponse {
-  export interface HumanLlmGetJobsResponseItem extends HumanLlmAPI.HumanLlmMetadata {
-    id: string;
-
-    creation_time: string;
-
-    status: 'Queued' | 'Running' | 'Completed' | 'Failed';
-
-    message?: string | null;
-
-    report_on_complete?: boolean;
-
-    /**
-     * What time did the job start running?
-     */
-    run_started_time?: string | null;
-  }
-}
+export type HumanLlmGetJobsResponse = Array<HumanLlmJob>;
 
 export interface HumanLlmPrelabelStepResponse {
   completion_tokens: number;
@@ -497,7 +502,7 @@ export namespace HumanLlmUpdateStepParams {
 
 export declare namespace HumanLlm {
   export {
-    type HumanLlmMetadata as HumanLlmMetadata,
+    type HumanLlmJob as HumanLlmJob,
     type StepChoices as StepChoices,
     type HumanLlmGetJobsResponse as HumanLlmGetJobsResponse,
     type HumanLlmPrelabelStepResponse as HumanLlmPrelabelStepResponse,
