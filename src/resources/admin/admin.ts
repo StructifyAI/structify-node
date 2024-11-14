@@ -8,7 +8,7 @@ import {
   HumanLlmGetJobsParams,
   HumanLlmGetJobsResponse,
   HumanLlmGetNextStepParams,
-  HumanLlmMetadata,
+  HumanLlmJob,
   HumanLlmPrelabelStepResponse,
   HumanLlmStartNextJobParams,
   HumanLlmUpdateStepParams,
@@ -55,7 +55,7 @@ Admin.TrainingDatasets = TrainingDatasets;
 export declare namespace Admin {
   export {
     HumanLlm as HumanLlm,
-    type HumanLlmMetadata as HumanLlmMetadata,
+    type HumanLlmJob as HumanLlmJob,
     type StepChoices as StepChoices,
     type HumanLlmGetJobsResponse as HumanLlmGetJobsResponse,
     type HumanLlmPrelabelStepResponse as HumanLlmPrelabelStepResponse,
