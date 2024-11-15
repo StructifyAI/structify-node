@@ -245,6 +245,7 @@ export namespace ExecutionStep {
       input:
         | ToolCall.Save
         | ToolCall.Scroll
+        | ToolCall.ScrollToBottom
         | ToolCall.Exit
         | ToolCall.Click
         | ToolCall.Hover
@@ -290,6 +291,25 @@ export namespace ExecutionStep {
          * For tools with no inputs.
          */
         export interface Scroll {
+          /**
+           * Dummy argument
+           */
+          reason: string;
+        }
+      }
+
+      export interface ScrollToBottom {
+        /**
+         * For tools with no inputs.
+         */
+        ScrollToBottom: ScrollToBottom.ScrollToBottom;
+      }
+
+      export namespace ScrollToBottom {
+        /**
+         * For tools with no inputs.
+         */
+        export interface ScrollToBottom {
           /**
            * Dummy argument
            */
