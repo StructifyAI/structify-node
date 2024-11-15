@@ -447,7 +447,7 @@ export declare namespace Structify {
   };
 }
 
-export { toFile, fileFromPath } from 'structifyai/uploads';
+export { toFile, fileFromPath } from './uploads';
 export {
   StructifyError,
   APIError,
@@ -462,6 +462,6 @@ export {
   InternalServerError,
   PermissionDeniedError,
   UnprocessableEntityError,
-} from 'structifyai/error';
+} from './error';
 
 export default Structify;
