@@ -190,6 +190,7 @@ export namespace UpdateDatumRequest {
     input:
       | UpdatedToolCall.Save
       | UpdatedToolCall.Scroll
+      | UpdatedToolCall.ScrollToBottom
       | UpdatedToolCall.Exit
       | UpdatedToolCall.Click
       | UpdatedToolCall.Hover
@@ -240,6 +241,25 @@ export namespace UpdateDatumRequest {
        * For tools with no inputs.
        */
       export interface Scroll {
+        /**
+         * Dummy argument
+         */
+        reason: string;
+      }
+    }
+
+    export interface ScrollToBottom {
+      /**
+       * For tools with no inputs.
+       */
+      ScrollToBottom: ScrollToBottom.ScrollToBottom;
+    }
+
+    export namespace ScrollToBottom {
+      /**
+       * For tools with no inputs.
+       */
+      export interface ScrollToBottom {
         /**
          * Dummy argument
          */
@@ -458,6 +478,7 @@ export namespace TrainingDatasetUpdateDatumParams {
     input:
       | UpdatedToolCall.Save
       | UpdatedToolCall.Scroll
+      | UpdatedToolCall.ScrollToBottom
       | UpdatedToolCall.Exit
       | UpdatedToolCall.Click
       | UpdatedToolCall.Hover
@@ -508,6 +529,25 @@ export namespace TrainingDatasetUpdateDatumParams {
        * For tools with no inputs.
        */
       export interface Scroll {
+        /**
+         * Dummy argument
+         */
+        reason: string;
+      }
+    }
+
+    export interface ScrollToBottom {
+      /**
+       * For tools with no inputs.
+       */
+      ScrollToBottom: ScrollToBottom.ScrollToBottom;
+    }
+
+    export namespace ScrollToBottom {
+      /**
+       * For tools with no inputs.
+       */
+      export interface ScrollToBottom {
         /**
          * Dummy argument
          */
