@@ -326,6 +326,8 @@ export interface DatasetViewRelationshipsParams extends JobsListParams {
   name: string;
 
   job_id?: string | null;
+
+  last_updated?: string | null;
 }
 
 export interface DatasetViewTableParams extends JobsListParams {
@@ -334,6 +336,8 @@ export interface DatasetViewTableParams extends JobsListParams {
   name: string;
 
   job_id?: string | null;
+
+  last_updated?: string | null;
 }
 
 export interface DatasetViewTablesWithRelationshipsParams {
@@ -342,6 +346,8 @@ export interface DatasetViewTablesWithRelationshipsParams {
   name: string;
 
   job_id?: string | null;
+
+  last_updated?: string | null;
 
   limit?: number;
 
