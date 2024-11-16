@@ -15,13 +15,26 @@ export class HumanLlm extends APIResource {
     return this._client.post('/admin/human_llm/add_search_for_job', { query: { job_id, url }, ...options });
   }
 
+  finishJob(params: HumanLlmFinishJobParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+    const { id, status } = params;
+    return this._client.post('/admin/human_llm/finish_job', { query: { id, status }, ...options });
+  }
+
   /**
    * Start the next human llm job in the queue
    */
   getJobs(
-    params: HumanLlmGetJobsParams,
+    params?: HumanLlmGetJobsParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<HumanLlmGetJobsResponse>;
+  getJobs(options?: Core.RequestOptions): Core.APIPromise<HumanLlmGetJobsResponse>;
+  getJobs(
+    params: HumanLlmGetJobsParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<HumanLlmGetJobsResponse> {
+    if (isRequestOptions(params)) {
+      return this.getJobs({}, params);
+    }
     const { status } = params;
     return this._client.post('/admin/human_llm/get_jobs', { query: { status }, ...options });
   }
@@ -129,6 +142,8 @@ export namespace StepChoices {
     description: string;
   }
 }
+
+export type HumanLlmFinishJobResponse = unknown;
 
 export type HumanLlmGetJobsResponse = Array<HumanLlmJob>;
 
@@ -337,8 +352,14 @@ export interface HumanLlmAddSearchForJobParams {
   url: string;
 }
 
-export interface HumanLlmGetJobsParams {
+export interface HumanLlmFinishJobParams {
+  id: string;
+
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+}
+
+export interface HumanLlmGetJobsParams {
+  status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
 }
 
 export interface HumanLlmGetNextStepParams {
@@ -544,9 +565,11 @@ export declare namespace HumanLlm {
   export {
     type HumanLlmJob as HumanLlmJob,
     type StepChoices as StepChoices,
+    type HumanLlmFinishJobResponse as HumanLlmFinishJobResponse,
     type HumanLlmGetJobsResponse as HumanLlmGetJobsResponse,
     type HumanLlmPrelabelStepResponse as HumanLlmPrelabelStepResponse,
     type HumanLlmAddSearchForJobParams as HumanLlmAddSearchForJobParams,
+    type HumanLlmFinishJobParams as HumanLlmFinishJobParams,
     type HumanLlmGetJobsParams as HumanLlmGetJobsParams,
     type HumanLlmGetNextStepParams as HumanLlmGetNextStepParams,
     type HumanLlmStartNextJobParams as HumanLlmStartNextJobParams,
