@@ -30,8 +30,11 @@ describe('resource humanLlm', () => {
     });
   });
 
-  test('getJobs: only required params', async () => {
-    const responsePromise = client.admin.humanLlm.getJobs({ status: 'Queued' });
+  test('finishJob: only required params', async () => {
+    const responsePromise = client.admin.humanLlm.finishJob({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      status: 'Queued',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -41,8 +44,36 @@ describe('resource humanLlm', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('getJobs: required and optional params', async () => {
-    const response = await client.admin.humanLlm.getJobs({ status: 'Queued' });
+  test('finishJob: required and optional params', async () => {
+    const response = await client.admin.humanLlm.finishJob({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      status: 'Queued',
+    });
+  });
+
+  test('getJobs', async () => {
+    const responsePromise = client.admin.humanLlm.getJobs();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('getJobs: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.admin.humanLlm.getJobs({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Structify.NotFoundError,
+    );
+  });
+
+  test('getJobs: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.admin.humanLlm.getJobs({ status: 'Queued' }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Structify.NotFoundError);
   });
 
   test('getNextStep: only required params', async () => {
