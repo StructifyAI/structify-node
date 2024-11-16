@@ -23,12 +23,14 @@ Types:
 
 - <code><a href="./src/resources/admin/human-llm.ts">HumanLlmJob</a></code>
 - <code><a href="./src/resources/admin/human-llm.ts">StepChoices</a></code>
+- <code><a href="./src/resources/admin/human-llm.ts">HumanLlmFinishJobResponse</a></code>
 - <code><a href="./src/resources/admin/human-llm.ts">HumanLlmGetJobsResponse</a></code>
 - <code><a href="./src/resources/admin/human-llm.ts">HumanLlmPrelabelStepResponse</a></code>
 
 Methods:
 
 - <code title="post /admin/human_llm/add_search_for_job">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">addSearchForJob</a>({ ...params }) -> ExecutionStep</code>
+- <code title="post /admin/human_llm/finish_job">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">finishJob</a>({ ...params }) -> unknown</code>
 - <code title="post /admin/human_llm/get_jobs">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">getJobs</a>({ ...params }) -> HumanLlmGetJobsResponse</code>
 - <code title="post /admin/human_llm/get_next_step">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">getNextStep</a>({ ...params }) -> ExecutionStep</code>
 - <code title="post /admin/human_llm/prelabel_step/{step_id}">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">prelabelStep</a>(stepId) -> HumanLlmPrelabelStepResponse</code>
