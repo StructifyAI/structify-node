@@ -1,6 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import * as EntityAPI from './entity';
+import { Entity, EntityVerifyParams } from './entity';
 import * as HumanLlmAPI from './human-llm';
 import {
   HumanLlm,
@@ -43,6 +45,7 @@ import * as UsersAPI from './users';
 import { User, UserListResponse, Users } from './users';
 
 export class Admin extends APIResource {
+  entity: EntityAPI.Entity = new EntityAPI.Entity(this._client);
   humanLlm: HumanLlmAPI.HumanLlm = new HumanLlmAPI.HumanLlm(this._client);
   users: UsersAPI.Users = new UsersAPI.Users(this._client);
   trainingDatasets: TrainingDatasetsAPI.TrainingDatasets = new TrainingDatasetsAPI.TrainingDatasets(
@@ -50,11 +53,14 @@ export class Admin extends APIResource {
   );
 }
 
+Admin.Entity = Entity;
 Admin.HumanLlm = HumanLlm;
 Admin.Users = Users;
 Admin.TrainingDatasets = TrainingDatasets;
 
 export declare namespace Admin {
+  export { Entity as Entity, type EntityVerifyParams as EntityVerifyParams };
+
   export {
     HumanLlm as HumanLlm,
     type HumanLlmJob as HumanLlmJob,
