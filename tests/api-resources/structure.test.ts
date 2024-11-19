@@ -29,7 +29,7 @@ describe('resource structure', () => {
   });
 
   test('isComplete: only required params', async () => {
-    const responsePromise = client.structure.isComplete(['string', 'string', 'string']);
+    const responsePromise = client.structure.isComplete(['string']);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -40,11 +40,11 @@ describe('resource structure', () => {
   });
 
   test('isComplete: required and optional params', async () => {
-    const response = await client.structure.isComplete(['string', 'string', 'string']);
+    const response = await client.structure.isComplete(['string']);
   });
 
   test('jobStatus: only required params', async () => {
-    const responsePromise = client.structure.jobStatus(['string', 'string', 'string']);
+    const responsePromise = client.structure.jobStatus(['string']);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -55,7 +55,7 @@ describe('resource structure', () => {
   });
 
   test('jobStatus: required and optional params', async () => {
-    const response = await client.structure.jobStatus(['string', 'string', 'string']);
+    const response = await client.structure.jobStatus(['string']);
   });
 
   test('runAsync: only required params', async () => {
@@ -73,22 +73,10 @@ describe('resource structure', () => {
     const response = await client.structure.runAsync({
       name: 'name',
       structure_input: { SECIngestor: { accession_number: 'accession_number', quarter: 0, year: 0 } },
-      extraction_criteria: [
-        { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-        { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-        { RelationshipExtraction: { relationship_name: 'relationship_name' } },
-      ],
+      extraction_criteria: [{ RelationshipExtraction: { relationship_name: 'relationship_name' } }],
       seeded_entity: {
-        entities: [
-          { id: 0, properties: { foo: 'string' }, type: 'type' },
-          { id: 0, properties: { foo: 'string' }, type: 'type' },
-          { id: 0, properties: { foo: 'string' }, type: 'type' },
-        ],
-        relationships: [
-          { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-          { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-          { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-        ],
+        entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
+        relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
       },
     });
   });

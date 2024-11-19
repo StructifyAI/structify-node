@@ -20,46 +20,12 @@ describe('resource datasets', () => {
           source_table: 'source_table',
           target_table: 'target_table',
         },
-        {
-          description: 'description',
-          name: 'name',
-          source_table: 'source_table',
-          target_table: 'target_table',
-        },
-        {
-          description: 'description',
-          name: 'name',
-          source_table: 'source_table',
-          target_table: 'target_table',
-        },
       ],
       tables: [
         {
           description: 'description',
           name: 'name',
-          properties: [
-            { description: 'description', name: 'name' },
-            { description: 'description', name: 'name' },
-            { description: 'description', name: 'name' },
-          ],
-        },
-        {
-          description: 'description',
-          name: 'name',
-          properties: [
-            { description: 'description', name: 'name' },
-            { description: 'description', name: 'name' },
-            { description: 'description', name: 'name' },
-          ],
-        },
-        {
-          description: 'description',
-          name: 'name',
-          properties: [
-            { description: 'description', name: 'name' },
-            { description: 'description', name: 'name' },
-            { description: 'description', name: 'name' },
-          ],
+          properties: [{ description: 'description', name: 'name' }],
         },
       ],
     });
@@ -90,42 +56,6 @@ describe('resource datasets', () => {
           },
           properties: [
             { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
-            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
-            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
-          ],
-        },
-        {
-          description: 'description',
-          name: 'name',
-          source_table: 'source_table',
-          target_table: 'target_table',
-          merge_strategy: {
-            Probabilistic: {
-              source_cardinality_given_target_match: 0,
-              target_cardinality_given_source_match: 0,
-            },
-          },
-          properties: [
-            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
-            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
-            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
-          ],
-        },
-        {
-          description: 'description',
-          name: 'name',
-          source_table: 'source_table',
-          target_table: 'target_table',
-          merge_strategy: {
-            Probabilistic: {
-              source_cardinality_given_target_match: 0,
-              target_cardinality_given_source_match: 0,
-            },
-          },
-          properties: [
-            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
-            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
-            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
           ],
         },
       ],
@@ -134,28 +64,6 @@ describe('resource datasets', () => {
           description: 'description',
           name: 'name',
           properties: [
-            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
-            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
-            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
-          ],
-          expected_cardinality: 0,
-        },
-        {
-          description: 'description',
-          name: 'name',
-          properties: [
-            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
-            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
-            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
-          ],
-          expected_cardinality: 0,
-        },
-        {
-          description: 'description',
-          name: 'name',
-          properties: [
-            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
-            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
             { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
           ],
           expected_cardinality: 0,
@@ -227,16 +135,8 @@ describe('resource datasets', () => {
     const response = await client.datasets.match({
       dataset: 'dataset',
       query_kg: {
-        entities: [
-          { id: 0, properties: { foo: 'string' }, type: 'type' },
-          { id: 0, properties: { foo: 'string' }, type: 'type' },
-          { id: 0, properties: { foo: 'string' }, type: 'type' },
-        ],
-        relationships: [
-          { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-          { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-          { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-        ],
+        entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
+        relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
       },
     });
   });
