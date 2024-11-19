@@ -24,16 +24,8 @@ describe('resource entity', () => {
     const response = await client.admin.entity.verify({
       dataset_name: 'dataset_name',
       kg: {
-        entities: [
-          { id: 0, properties: { foo: 'string' }, type: 'type' },
-          { id: 0, properties: { foo: 'string' }, type: 'type' },
-          { id: 0, properties: { foo: 'string' }, type: 'type' },
-        ],
-        relationships: [
-          { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-          { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-          { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-        ],
+        entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
+        relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
       },
       fix: true,
     });

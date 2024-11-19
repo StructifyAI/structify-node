@@ -45,16 +45,8 @@ describe('resource entities', () => {
     const response = await client.entities.add({
       dataset_name: 'dataset_name',
       kg: {
-        entities: [
-          { id: 0, properties: { foo: 'string' }, type: 'type' },
-          { id: 0, properties: { foo: 'string' }, type: 'type' },
-          { id: 0, properties: { foo: 'string' }, type: 'type' },
-        ],
-        relationships: [
-          { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-          { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-          { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-        ],
+        entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
+        relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
       },
       attempt_merge: true,
       source: 'None',
@@ -157,7 +149,7 @@ describe('resource entities', () => {
     const responsePromise = client.entities.summarize({
       dataset_name: 'dataset_name',
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      properties: ['string', 'string', 'string'],
+      properties: ['string'],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -172,8 +164,8 @@ describe('resource entities', () => {
     const response = await client.entities.summarize({
       dataset_name: 'dataset_name',
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      properties: ['string', 'string', 'string'],
-      extra_instructions: ['string', 'string', 'string'],
+      properties: ['string'],
+      extra_instructions: ['string'],
     });
   });
 
