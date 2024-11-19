@@ -217,11 +217,7 @@ describe('resource trainingDatasets', () => {
     const responsePromise = client.admin.trainingDatasets.updateDatum({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       status: 'Unlabeled',
-      updated_tool_calls: [
-        { input: { Save: {} }, name: 'Save' },
-        { input: { Save: {} }, name: 'Save' },
-        { input: { Save: {} }, name: 'Save' },
-      ],
+      updated_tool_calls: [{ input: { Save: {} }, name: 'Save' }],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -240,52 +236,8 @@ describe('resource trainingDatasets', () => {
         {
           input: {
             Save: {
-              entities: [
-                { id: 0, properties: { foo: 'string' }, type: 'type' },
-                { id: 0, properties: { foo: 'string' }, type: 'type' },
-                { id: 0, properties: { foo: 'string' }, type: 'type' },
-              ],
-              relationships: [
-                { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-              ],
-            },
-          },
-          name: 'Save',
-          result: { ToolQueued: 'ToolQueued' },
-        },
-        {
-          input: {
-            Save: {
-              entities: [
-                { id: 0, properties: { foo: 'string' }, type: 'type' },
-                { id: 0, properties: { foo: 'string' }, type: 'type' },
-                { id: 0, properties: { foo: 'string' }, type: 'type' },
-              ],
-              relationships: [
-                { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-              ],
-            },
-          },
-          name: 'Save',
-          result: { ToolQueued: 'ToolQueued' },
-        },
-        {
-          input: {
-            Save: {
-              entities: [
-                { id: 0, properties: { foo: 'string' }, type: 'type' },
-                { id: 0, properties: { foo: 'string' }, type: 'type' },
-                { id: 0, properties: { foo: 'string' }, type: 'type' },
-              ],
-              relationships: [
-                { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-                { source: 0, target: 0, type: 'type', properties: { foo: 'string' } },
-              ],
+              entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
+              relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
             },
           },
           name: 'Save',
