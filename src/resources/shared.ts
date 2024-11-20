@@ -141,7 +141,8 @@ export type PropertyType =
   | 'Float'
   | 'Date'
   | 'URL'
-  | 'Money';
+  | 'Money'
+  | 'Image';
 
 export namespace PropertyType {
   export interface Enum {

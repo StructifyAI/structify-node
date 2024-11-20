@@ -195,6 +195,8 @@ export namespace ChatPrompt {
 
       href?: string | null;
 
+      isInteractive?: boolean | null;
+
       /**
        * The number by which the flag is referred in image, prompt, and tool calls.
        */
