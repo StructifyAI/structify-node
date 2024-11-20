@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.54.0 (2024-11-20)
+
+Full Changelog: [v1.53.0...v1.54.0](https://github.com/StructifyAI/structify-node/compare/v1.53.0...v1.54.0)
+
+### Features
+
+* **api:** api update ([#660](https://github.com/StructifyAI/structify-node/issues/660)) ([5bb3602](https://github.com/StructifyAI/structify-node/commit/5bb36026ab4baac4c703a4e2fdf0ff04b4736a18))
+* **api:** api update ([#665](https://github.com/StructifyAI/structify-node/issues/665)) ([60bf848](https://github.com/StructifyAI/structify-node/commit/60bf8481dc72658abd2c3354b0ce9de0ae4d0e72))
+
+
+### Chores
+
+* rebuild project due to codegen change ([#662](https://github.com/StructifyAI/structify-node/issues/662)) ([76f578d](https://github.com/StructifyAI/structify-node/commit/76f578d603e7d9fcd6883c13728ea2883ab349a4))
+* remove redundant word in comment ([#664](https://github.com/StructifyAI/structify-node/issues/664)) ([34b85bd](https://github.com/StructifyAI/structify-node/commit/34b85bd70e219b75aa6e2d5cd848683da93f0309))
+
+
+### Documentation
+
+* remove suggestion to use `npm` call out ([#663](https://github.com/StructifyAI/structify-node/issues/663)) ([2cf40ab](https://github.com/StructifyAI/structify-node/commit/2cf40ab1e19f987a2333751c4a4635f355821161))
+
 ## 1.53.0 (2024-11-16)
 
 Full Changelog: [v1.52.0...v1.53.0](https://github.com/StructifyAI/structify-node/compare/v1.52.0...v1.53.0)
