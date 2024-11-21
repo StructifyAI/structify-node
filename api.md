@@ -191,9 +191,13 @@ Methods:
 
 # Image
 
+Types:
+
+- <code><a href="./src/resources/image.ts">ImageGetResponse</a></code>
+
 Methods:
 
-- <code title="get /images/{hash}">client.image.<a href="./src/resources/image.ts">get</a>(hash) -> void</code>
+- <code title="get /images/{hash}">client.image.<a href="./src/resources/image.ts">get</a>(hash) -> ImageGetResponse</code>
 
 # Report
 
