@@ -5,12 +5,17 @@ import * as Core from '../core';
 
 export class Image extends APIResource {
   /**
-   * Returns the raw image bytes with appropriate content-type header
+   * Returns an object containing the image bytes
    */
-  get(hash: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.get(`/images/${hash}`, {
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
+  get(hash: string, options?: Core.RequestOptions): Core.APIPromise<ImageGetResponse> {
+    return this._client.get(`/images/${hash}`, options);
   }
+}
+
+export interface ImageGetResponse {
+  bytes: Core.Uploadable;
+}
+
+export declare namespace Image {
+  export { type ImageGetResponse as ImageGetResponse };
 }
