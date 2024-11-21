@@ -56,6 +56,7 @@ import {
   EntityViewParams,
   EntityViewResponse,
 } from './resources/entities';
+import { Image } from './resources/image';
 import {
   JobCancelResponse,
   JobDeleteResponse,
@@ -257,6 +258,7 @@ export class Structify extends Core.APIClient {
   server: API.Server = new API.Server(this);
   sources: API.Sources = new API.Sources(this);
   entities: API.Entities = new API.Entities(this);
+  image: API.Image = new API.Image(this);
   report: API.Report = new API.Report(this);
   structure: API.Structure = new API.Structure(this);
   label: API.Label = new API.Label(this);
@@ -309,6 +311,7 @@ Structify.JobListResponsesJobsList = JobListResponsesJobsList;
 Structify.Server = Server;
 Structify.Sources = Sources;
 Structify.Entities = Entities;
+Structify.Image = Image;
 Structify.Report = Report;
 Structify.Structure = Structure;
 Structify.Label = Label;
@@ -403,6 +406,8 @@ export declare namespace Structify {
     type EntityUpdatePropertyParams as EntityUpdatePropertyParams,
     type EntityViewParams as EntityViewParams,
   };
+
+  export { Image as Image };
 
   export {
     Report as Report,
