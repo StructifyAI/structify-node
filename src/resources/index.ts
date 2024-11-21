@@ -50,7 +50,7 @@ export {
   type EntityUpdatePropertyParams,
   type EntityViewParams,
 } from './entities';
-export { Image } from './image';
+export { Image, type ImageGetResponse } from './image';
 export {
   JobListResponsesJobsList,
   Jobs,
