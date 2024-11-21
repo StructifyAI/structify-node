@@ -189,6 +189,12 @@ Methods:
 - <code title="post /entity/update">client.entities.<a href="./src/resources/entities.ts">updateProperty</a>({ ...params }) -> EntityUpdatePropertyResponse</code>
 - <code title="get /entity/view">client.entities.<a href="./src/resources/entities.ts">view</a>({ ...params }) -> EntityViewResponse</code>
 
+# Image
+
+Methods:
+
+- <code title="get /images/{hash}">client.image.<a href="./src/resources/image.ts">get</a>(hash) -> void</code>
+
 # Report
 
 Types:
