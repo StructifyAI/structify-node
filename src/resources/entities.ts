@@ -424,6 +424,26 @@ export interface EntityUpdatePropertyParams {
   prop_name: string;
 
   prop_value: string | boolean | number;
+
+  source?:
+    | 'None'
+    | EntityUpdatePropertyParams.Web
+    | EntityUpdatePropertyParams.DocumentPage
+    | EntityUpdatePropertyParams.SecFiling;
+}
+
+export namespace EntityUpdatePropertyParams {
+  export interface Web {
+    Web: string;
+  }
+
+  export interface DocumentPage {
+    DocumentPage: Array<unknown>;
+  }
+
+  export interface SecFiling {
+    SecFiling: Array<unknown>;
+  }
 }
 
 export interface EntityViewParams {
