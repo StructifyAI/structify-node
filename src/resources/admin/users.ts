@@ -2,8 +2,16 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
+import * as UserAPI from '../user';
 
 export class Users extends APIResource {
+  /**
+   * Create a user, returing their API token.
+   */
+  create(options?: Core.RequestOptions): Core.APIPromise<UserAPI.TokenResponse> {
+    return this._client.post('/admin/users/create', options);
+  }
+
   /**
    * Lists all the users in the system.
    */
