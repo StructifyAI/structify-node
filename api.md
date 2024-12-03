@@ -204,12 +204,14 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/report.ts">ReportMissingResponse</a></code>
+- <code><a href="./src/resources/report.ts">ReportRelationshipResponse</a></code>
 - <code><a href="./src/resources/report.ts">ReportStepResponse</a></code>
 - <code><a href="./src/resources/report.ts">ReportWrongResponse</a></code>
 
 Methods:
 
 - <code title="post /report/entity/missing">client.report.<a href="./src/resources/report.ts">missing</a>({ ...params }) -> string</code>
+- <code title="post /report/relationship/missing">client.report.<a href="./src/resources/report.ts">relationship</a>({ ...params }) -> string</code>
 - <code title="post /report/step">client.report.<a href="./src/resources/report.ts">step</a>({ ...params }) -> string</code>
 - <code title="post /report/entity/wrong">client.report.<a href="./src/resources/report.ts">wrong</a>({ ...params }) -> string</code>
 
