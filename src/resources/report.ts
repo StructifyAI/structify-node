@@ -17,6 +17,17 @@ export class Report extends APIResource {
   }
 
   /**
+   * Reports a missing relationship between entities
+   */
+  relationship(body: ReportRelationshipParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.post('/report/relationship/missing', {
+      body,
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
    * Report a step
    */
   step(body: ReportStepParams, options?: Core.RequestOptions): Core.APIPromise<string> {
@@ -41,6 +52,8 @@ export class Report extends APIResource {
 
 export type ReportMissingResponse = string;
 
+export type ReportRelationshipResponse = string;
+
 export type ReportStepResponse = string;
 
 export type ReportWrongResponse = string;
@@ -57,6 +70,16 @@ export interface ReportMissingParams {
    * Correct source URL for the reported entity
    */
   source_url?: string | null;
+}
+
+export interface ReportRelationshipParams {
+  relationship_type: string;
+
+  source_id?: string | null;
+
+  source_url?: string | null;
+
+  target_id?: string | null;
 }
 
 export interface ReportStepParams {
@@ -85,9 +108,11 @@ export interface ReportWrongParams {
 export declare namespace Report {
   export {
     type ReportMissingResponse as ReportMissingResponse,
+    type ReportRelationshipResponse as ReportRelationshipResponse,
     type ReportStepResponse as ReportStepResponse,
     type ReportWrongResponse as ReportWrongResponse,
     type ReportMissingParams as ReportMissingParams,
+    type ReportRelationshipParams as ReportRelationshipParams,
     type ReportStepParams as ReportStepParams,
     type ReportWrongParams as ReportWrongParams,
   };
