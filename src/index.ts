@@ -73,6 +73,8 @@ import {
   Report,
   ReportMissingParams,
   ReportMissingResponse,
+  ReportRelationshipParams,
+  ReportRelationshipResponse,
   ReportStepParams,
   ReportStepResponse,
   ReportWrongParams,
@@ -412,9 +414,11 @@ export declare namespace Structify {
   export {
     Report as Report,
     type ReportMissingResponse as ReportMissingResponse,
+    type ReportRelationshipResponse as ReportRelationshipResponse,
     type ReportStepResponse as ReportStepResponse,
     type ReportWrongResponse as ReportWrongResponse,
     type ReportMissingParams as ReportMissingParams,
+    type ReportRelationshipParams as ReportRelationshipParams,
     type ReportStepParams as ReportStepParams,
     type ReportWrongParams as ReportWrongParams,
   };

@@ -66,9 +66,11 @@ export { Label, type LabelVerifyResponse, type LabelVerifyParams } from './label
 export {
   Report,
   type ReportMissingResponse,
+  type ReportRelationshipResponse,
   type ReportStepResponse,
   type ReportWrongResponse,
   type ReportMissingParams,
+  type ReportRelationshipParams,
   type ReportStepParams,
   type ReportWrongParams,
 } from './report';
