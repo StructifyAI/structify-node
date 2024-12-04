@@ -106,6 +106,5 @@ export {
   type UserInfo,
   type UserTransactionsResponse,
   type UserUsageResponse,
-  type UserCreateTestTokenParams,
   type UserUsageParams,
 } from './user';

@@ -109,7 +109,6 @@ import {
 import {
   TokenResponse,
   User,
-  UserCreateTestTokenParams,
   UserInfo,
   UserTransactionsResponse,
   UserUsageParams,
@@ -330,7 +329,6 @@ export declare namespace Structify {
     type UserInfo as UserInfo,
     type UserTransactionsResponse as UserTransactionsResponse,
     type UserUsageResponse as UserUsageResponse,
-    type UserCreateTestTokenParams as UserCreateTestTokenParams,
     type UserUsageParams as UserUsageParams,
   };
 
