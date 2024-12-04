@@ -42,7 +42,7 @@ import {
   UpdateDatumRequest,
 } from './training-datasets';
 import * as UsersAPI from './users';
-import { User, UserListResponse, Users } from './users';
+import { User, UserCreateParams, UserListResponse, Users } from './users';
 
 export class Admin extends APIResource {
   entity: EntityAPI.Entity = new EntityAPI.Entity(this._client);
@@ -76,7 +76,12 @@ export declare namespace Admin {
     type HumanLlmUpdateStepParams as HumanLlmUpdateStepParams,
   };
 
-  export { Users as Users, type User as User, type UserListResponse as UserListResponse };
+  export {
+    Users as Users,
+    type User as User,
+    type UserListResponse as UserListResponse,
+    type UserCreateParams as UserCreateParams,
+  };
 
   export {
     TrainingDatasets as TrainingDatasets,
