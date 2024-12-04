@@ -6,16 +6,6 @@ import * as Core from '../core';
 
 export class User extends APIResource {
   /**
-   * Creates a test token.
-   */
-  createTestToken(
-    body: UserCreateTestTokenParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TokenResponse> {
-    return this._client.post('/user/create_test_token', { body, ...options });
-  }
-
-  /**
    * Enable a source
    */
   info(options?: Core.RequestOptions): Core.APIPromise<UserInfo> {
@@ -100,12 +90,6 @@ export interface UserUsageResponse {
   num_relationships: number;
 }
 
-export interface UserCreateTestTokenParams {
-  credits?: number;
-
-  is_admin?: boolean;
-}
-
 export interface UserUsageParams {
   dataset?: string | null;
 }
@@ -116,7 +100,6 @@ export declare namespace User {
     type UserInfo as UserInfo,
     type UserTransactionsResponse as UserTransactionsResponse,
     type UserUsageResponse as UserUsageResponse,
-    type UserCreateTestTokenParams as UserCreateTestTokenParams,
     type UserUsageParams as UserUsageParams,
   };
 }
