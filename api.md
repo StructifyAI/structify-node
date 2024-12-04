@@ -52,7 +52,7 @@ Types:
 
 Methods:
 
-- <code title="post /admin/users/create">client.admin.users.<a href="./src/resources/admin/users.ts">create</a>() -> TokenResponse</code>
+- <code title="post /admin/users/create">client.admin.users.<a href="./src/resources/admin/users.ts">create</a>({ ...params }) -> TokenResponse</code>
 - <code title="get /admin/users/list">client.admin.users.<a href="./src/resources/admin/users.ts">list</a>() -> UserListResponse</code>
 
 ## TrainingDatasets
