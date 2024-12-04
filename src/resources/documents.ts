@@ -47,6 +47,8 @@ export type DocumentListResponse = Array<DocumentListResponse.DocumentListRespon
 
 export namespace DocumentListResponse {
   export interface DocumentListResponseItem {
+    created_time: string;
+
     document_type: 'Text' | 'PDF' | 'SEC';
 
     name: string;
