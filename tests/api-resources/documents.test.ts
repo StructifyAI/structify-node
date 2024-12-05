@@ -27,6 +27,13 @@ describe('resource documents', () => {
     );
   });
 
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.documents.list({ dataset_name: 'dataset_name' }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
   test('delete: only required params', async () => {
     const responsePromise = client.documents.delete({ file_path: 'file_path' });
     const rawResponse = await responsePromise.asResponse();
@@ -77,6 +84,7 @@ describe('resource documents', () => {
       content: await toFile(Buffer.from('# my file contents'), 'README.md'),
       file_type: 'Text',
       path: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      dataset_name: 'dataset_name',
     });
   });
 });
