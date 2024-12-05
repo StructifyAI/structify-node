@@ -49,6 +49,7 @@ export {
   type EntitySearchParams,
   type EntitySummarizeParams,
   type EntityUpdatePropertyParams,
+  type EntityVerifyParams,
   type EntityViewParams,
 } from './entities';
 export { Image, type ImageGetResponse } from './image';
@@ -80,7 +81,6 @@ export {
   Shared,
   type DatasetDescriptor,
   type Entity,
-  type Image,
   type KnowledgeGraph,
   type PropertyType,
   type Relationship,
