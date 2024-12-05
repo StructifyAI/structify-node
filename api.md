@@ -16,12 +16,6 @@ Methods:
 
 # Admin
 
-## Entity
-
-Methods:
-
-- <code title="post /admin/entity/verify">client.admin.entity.<a href="./src/resources/admin/entity.ts">verify</a>({ ...params }) -> KnowledgeGraph</code>
-
 ## HumanLlm
 
 Types:
