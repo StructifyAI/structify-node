@@ -117,9 +117,17 @@ export namespace DatasetDescriptor {
 export interface Entity {
   id: number;
 
-  properties: Record<string, string | boolean | number>;
+  properties: Record<string, string | boolean | number | Entity.Image>;
 
   type: string;
+}
+
+export namespace Entity {
+  export interface Image {
+    number: number;
+
+    hash?: string;
+  }
 }
 
 /**
@@ -157,7 +165,15 @@ export interface Relationship {
 
   type: string;
 
-  properties?: Record<string, string | boolean | number>;
+  properties?: Record<string, string | boolean | number | Relationship.Image>;
+}
+
+export namespace Relationship {
+  export interface Image {
+    number: number;
+
+    hash?: string;
+  }
 }
 
 /**

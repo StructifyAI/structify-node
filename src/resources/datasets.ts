@@ -125,7 +125,15 @@ export namespace DatasetMatchResponse {
 
     label: string;
 
-    properties: Record<string, string | boolean | number>;
+    properties: Record<string, string | boolean | number | Entity.Image>;
+  }
+
+  export namespace Entity {
+    export interface Image {
+      number: number;
+
+      hash?: string;
+    }
   }
 }
 
@@ -134,9 +142,17 @@ export interface DatasetViewRelationshipsResponse {
 
   label: string;
 
-  properties: Record<string, string | boolean | number>;
+  properties: Record<string, string | boolean | number | DatasetViewRelationshipsResponse.Image>;
 
   to_id: string;
+}
+
+export namespace DatasetViewRelationshipsResponse {
+  export interface Image {
+    number: number;
+
+    hash?: string;
+  }
 }
 
 export interface DatasetViewTableResponse {
@@ -146,7 +162,15 @@ export interface DatasetViewTableResponse {
 
   label: string;
 
-  properties: Record<string, string | boolean | number>;
+  properties: Record<string, string | boolean | number | DatasetViewTableResponse.Image>;
+}
+
+export namespace DatasetViewTableResponse {
+  export interface Image {
+    number: number;
+
+    hash?: string;
+  }
 }
 
 export interface DatasetViewTablesWithRelationshipsResponse {
@@ -165,7 +189,15 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     label: string;
 
-    properties: Record<string, string | boolean | number>;
+    properties: Record<string, string | boolean | number | ConnectedEntity.Image>;
+  }
+
+  export namespace ConnectedEntity {
+    export interface Image {
+      number: number;
+
+      hash?: string;
+    }
   }
 
   export interface Entity {
@@ -175,7 +207,15 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     label: string;
 
-    properties: Record<string, string | boolean | number>;
+    properties: Record<string, string | boolean | number | Entity.Image>;
+  }
+
+  export namespace Entity {
+    export interface Image {
+      number: number;
+
+      hash?: string;
+    }
   }
 
   export interface Relationship {
@@ -183,9 +223,17 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     label: string;
 
-    properties: Record<string, string | boolean | number>;
+    properties: Record<string, string | boolean | number | Relationship.Image>;
 
     to_id: string;
+  }
+
+  export namespace Relationship {
+    export interface Image {
+      number: number;
+
+      hash?: string;
+    }
   }
 }
 
