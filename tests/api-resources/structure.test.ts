@@ -78,6 +78,7 @@ describe('resource structure', () => {
         entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
         relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
       },
+      special_job_type: 'HumanLLM',
     });
   });
 });
