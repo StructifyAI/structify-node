@@ -16,6 +16,12 @@ Methods:
 
 # Admin
 
+## Entity
+
+Methods:
+
+- <code title="post /admin/entity/verify">client.admin.entity.<a href="./src/resources/admin/entity.ts">verify</a>({ ...params }) -> KnowledgeGraph</code>
+
 ## HumanLlm
 
 Types:
@@ -181,7 +187,6 @@ Methods:
 - <code title="post /entity/search">client.entities.<a href="./src/resources/entities.ts">search</a>({ ...params }) -> EntitySearchResponse</code>
 - <code title="post /entity/summarize">client.entities.<a href="./src/resources/entities.ts">summarize</a>({ ...params }) -> EntitySummarizeResponse</code>
 - <code title="post /entity/update">client.entities.<a href="./src/resources/entities.ts">updateProperty</a>({ ...params }) -> EntityUpdatePropertyResponse</code>
-- <code title="post /entity/verify">client.entities.<a href="./src/resources/entities.ts">verify</a>({ ...params }) -> KnowledgeGraph</code>
 - <code title="get /entity/view">client.entities.<a href="./src/resources/entities.ts">view</a>({ ...params }) -> EntityViewResponse</code>
 
 # Image
@@ -246,6 +251,7 @@ Types:
 
 - <code><a href="./src/resources/shared.ts">DatasetDescriptor</a></code>
 - <code><a href="./src/resources/shared.ts">Entity</a></code>
+- <code><a href="./src/resources/shared.ts">Image</a></code>
 - <code><a href="./src/resources/shared.ts">KnowledgeGraph</a></code>
 - <code><a href="./src/resources/shared.ts">PropertyType</a></code>
 - <code><a href="./src/resources/shared.ts">Relationship</a></code>
