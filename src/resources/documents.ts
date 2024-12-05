@@ -1,14 +1,23 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../resource';
+import { isRequestOptions } from '../core';
 import * as Core from '../core';
 
 export class Documents extends APIResource {
   /**
    * List all files for your user account in the database.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<DocumentListResponse> {
-    return this._client.get('/documents/list', options);
+  list(query?: DocumentListParams, options?: Core.RequestOptions): Core.APIPromise<DocumentListResponse>;
+  list(options?: Core.RequestOptions): Core.APIPromise<DocumentListResponse>;
+  list(
+    query: DocumentListParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<DocumentListResponse> {
+    if (isRequestOptions(query)) {
+      return this.list({}, query);
+    }
+    return this._client.get('/documents/list', { query, ...options });
   }
 
   /**
@@ -35,10 +44,16 @@ export class Documents extends APIResource {
   /**
    * Add a new file to the database
    */
-  upload(body: DocumentUploadParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  upload(params: DocumentUploadParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { dataset_name, ...body } = params;
     return this._client.post(
       '/documents/upload',
-      Core.multipartFormRequestOptions({ body, ...options, headers: { Accept: '*/*', ...options?.headers } }),
+      Core.multipartFormRequestOptions({
+        query: { dataset_name },
+        body,
+        ...options,
+        headers: { Accept: '*/*', ...options?.headers },
+      }),
     );
   }
 }
@@ -61,6 +76,10 @@ export interface DocumentDownloadResponse {
   content: Core.Uploadable;
 }
 
+export interface DocumentListParams {
+  dataset_name?: string | null;
+}
+
 export interface DocumentDeleteParams {
   /**
    * The path of the file to delete
@@ -76,17 +95,32 @@ export interface DocumentDownloadParams {
 }
 
 export interface DocumentUploadParams {
+  /**
+   * Body param:
+   */
   content: Core.Uploadable;
 
+  /**
+   * Body param:
+   */
   file_type: 'Text' | 'PDF' | 'SEC';
 
+  /**
+   * Body param:
+   */
   path: Core.Uploadable;
+
+  /**
+   * Query param:
+   */
+  dataset_name?: string | null;
 }
 
 export declare namespace Documents {
   export {
     type DocumentListResponse as DocumentListResponse,
     type DocumentDownloadResponse as DocumentDownloadResponse,
+    type DocumentListParams as DocumentListParams,
     type DocumentDeleteParams as DocumentDeleteParams,
     type DocumentDownloadParams as DocumentDownloadParams,
     type DocumentUploadParams as DocumentUploadParams,
