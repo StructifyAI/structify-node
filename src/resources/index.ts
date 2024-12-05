@@ -81,7 +81,6 @@ export {
   Shared,
   type DatasetDescriptor,
   type Entity,
-  type Image,
   type KnowledgeGraph,
   type PropertyType,
   type Relationship,
