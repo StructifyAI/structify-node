@@ -98,7 +98,15 @@ export interface EntityGetResponse {
 
   label: string;
 
-  properties: Record<string, string | boolean | number | SharedAPI.Image>;
+  properties: Record<string, string | boolean | number | EntityGetResponse.Image>;
+}
+
+export namespace EntityGetResponse {
+  export interface Image {
+    number: number;
+
+    hash?: string;
+  }
 }
 
 export interface EntityGetLocalSubgraphResponse {
@@ -115,7 +123,15 @@ export namespace EntityGetLocalSubgraphResponse {
 
     label: string;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: Record<string, string | boolean | number | Neighbor.Image>;
+  }
+
+  export namespace Neighbor {
+    export interface Image {
+      number: number;
+
+      hash?: string;
+    }
   }
 
   export interface Relationship {
@@ -123,9 +139,17 @@ export namespace EntityGetLocalSubgraphResponse {
 
     label: string;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: Record<string, string | boolean | number | Relationship.Image>;
 
     to_id: string;
+  }
+
+  export namespace Relationship {
+    export interface Image {
+      number: number;
+
+      hash?: string;
+    }
   }
 }
 
@@ -149,7 +173,7 @@ export namespace EntityGetSourceEntitiesResponse {
 
     location: SourceEntity.Text | SourceEntity.Visual | SourceEntity.Page | 'None';
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: Record<string, string | boolean | number | SourceEntity.Image>;
 
     user_specified: boolean;
   }
@@ -186,6 +210,12 @@ export namespace EntityGetSourceEntitiesResponse {
         page_number: number;
       }
     }
+
+    export interface Image {
+      number: number;
+
+      hash?: string;
+    }
   }
 }
 
@@ -196,7 +226,15 @@ export interface EntityMergeResponse {
 
   label: string;
 
-  properties: Record<string, string | boolean | number | SharedAPI.Image>;
+  properties: Record<string, string | boolean | number | EntityMergeResponse.Image>;
+}
+
+export namespace EntityMergeResponse {
+  export interface Image {
+    number: number;
+
+    hash?: string;
+  }
 }
 
 export type EntitySearchResponse = Array<EntitySearchResponse.EntitySearchResponseItem>;
@@ -209,7 +247,15 @@ export namespace EntitySearchResponse {
 
     label: string;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: Record<string, string | boolean | number | EntitySearchResponseItem.Image>;
+  }
+
+  export namespace EntitySearchResponseItem {
+    export interface Image {
+      number: number;
+
+      hash?: string;
+    }
   }
 }
 
@@ -223,7 +269,15 @@ export namespace EntitySummarizeResponse {
 
     label: string;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: Record<string, string | boolean | number | EntitySummarizeResponseItem.Image>;
+  }
+
+  export namespace EntitySummarizeResponseItem {
+    export interface Image {
+      number: number;
+
+      hash?: string;
+    }
   }
 }
 
@@ -234,7 +288,15 @@ export interface EntityUpdatePropertyResponse {
 
   label: string;
 
-  properties: Record<string, string | boolean | number | SharedAPI.Image>;
+  properties: Record<string, string | boolean | number | EntityUpdatePropertyResponse.Image>;
+}
+
+export namespace EntityUpdatePropertyResponse {
+  export interface Image {
+    number: number;
+
+    hash?: string;
+  }
 }
 
 export interface EntityViewResponse {
@@ -259,7 +321,15 @@ export namespace EntityViewResponse {
 
     label: string;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: Record<string, string | boolean | number | ConnectedEntity.Image>;
+  }
+
+  export namespace ConnectedEntity {
+    export interface Image {
+      number: number;
+
+      hash?: string;
+    }
   }
 
   export interface Entity {
@@ -269,7 +339,15 @@ export namespace EntityViewResponse {
 
     label: string;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: Record<string, string | boolean | number | Entity.Image>;
+  }
+
+  export namespace Entity {
+    export interface Image {
+      number: number;
+
+      hash?: string;
+    }
   }
 
   export interface Relationship {
@@ -277,9 +355,17 @@ export namespace EntityViewResponse {
 
     label: string;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: Record<string, string | boolean | number | Relationship.Image>;
 
     to_id: string;
+  }
+
+  export namespace Relationship {
+    export interface Image {
+      number: number;
+
+      hash?: string;
+    }
   }
 
   export interface SimilarEntity {
@@ -289,7 +375,15 @@ export namespace EntityViewResponse {
 
     label: string;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: Record<string, string | boolean | number | SimilarEntity.Image>;
+  }
+
+  export namespace SimilarEntity {
+    export interface Image {
+      number: number;
+
+      hash?: string;
+    }
   }
 
   export interface Source {
@@ -430,7 +524,7 @@ export interface EntityUpdatePropertyParams {
    */
   prop_name: string;
 
-  prop_value: string | boolean | number | SharedAPI.Image;
+  prop_value: string | boolean | number | EntityUpdatePropertyParams.Image;
 
   source?:
     | 'None'
@@ -440,6 +534,12 @@ export interface EntityUpdatePropertyParams {
 }
 
 export namespace EntityUpdatePropertyParams {
+  export interface Image {
+    number: number;
+
+    hash?: string;
+  }
+
   export interface Web {
     Web: string;
   }
