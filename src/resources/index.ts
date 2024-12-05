@@ -23,6 +23,7 @@ export {
   Documents,
   type DocumentListResponse,
   type DocumentDownloadResponse,
+  type DocumentListParams,
   type DocumentDeleteParams,
   type DocumentDownloadParams,
   type DocumentUploadParams,
