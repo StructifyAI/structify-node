@@ -536,6 +536,8 @@ export interface StructureRunAsyncParams {
    * pipeline from raw tool output to being merged into a Neo4j DB
    */
   seeded_entity?: SharedAPI.KnowledgeGraph;
+
+  special_job_type?: 'HumanLLM' | null;
 }
 
 export namespace StructureRunAsyncParams {
