@@ -54,6 +54,7 @@ import {
   EntitySummarizeResponse,
   EntityUpdatePropertyParams,
   EntityUpdatePropertyResponse,
+  EntityVerifyParams,
   EntityViewParams,
   EntityViewResponse,
 } from './resources/entities';
@@ -406,6 +407,7 @@ export declare namespace Structify {
     type EntitySearchParams as EntitySearchParams,
     type EntitySummarizeParams as EntitySummarizeParams,
     type EntityUpdatePropertyParams as EntityUpdatePropertyParams,
+    type EntityVerifyParams as EntityVerifyParams,
     type EntityViewParams as EntityViewParams,
   };
 
