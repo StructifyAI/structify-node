@@ -75,6 +75,13 @@ export class Entities extends APIResource {
     return this._client.post('/entity/update', { body, ...options });
   }
 
+  /**
+   * verify a kg against the dataset
+   */
+  verify(body: EntityVerifyParams, options?: Core.RequestOptions): Core.APIPromise<SharedAPI.KnowledgeGraph> {
+    return this._client.post('/entity/verify', { body, ...options });
+  }
+
   view(query: EntityViewParams, options?: Core.RequestOptions): Core.APIPromise<EntityViewResponse> {
     return this._client.get('/entity/view', { query, ...options });
   }
@@ -546,6 +553,22 @@ export namespace EntityUpdatePropertyParams {
   }
 }
 
+export interface EntityVerifyParams {
+  dataset_name: string;
+
+  /**
+   * Knowledge graph info structured to deserialize and display in the same format
+   * that the LLM outputs. Also the first representation of an LLM output in the
+   * pipeline from raw tool output to being merged into a Neo4j DB
+   */
+  kg: SharedAPI.KnowledgeGraph;
+
+  /**
+   * Whether to apply fixes to the dataset
+   */
+  fix?: boolean;
+}
+
 export interface EntityViewParams {
   id: string;
 }
@@ -571,6 +594,7 @@ export declare namespace Entities {
     type EntitySearchParams as EntitySearchParams,
     type EntitySummarizeParams as EntitySummarizeParams,
     type EntityUpdatePropertyParams as EntityUpdatePropertyParams,
+    type EntityVerifyParams as EntityVerifyParams,
     type EntityViewParams as EntityViewParams,
   };
 }
