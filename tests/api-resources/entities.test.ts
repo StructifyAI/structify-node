@@ -195,28 +195,6 @@ describe('resource entities', () => {
     });
   });
 
-  test('verify: only required params', async () => {
-    const responsePromise = client.entities.verify({ dataset_name: 'dataset_name', kg: {} });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('verify: required and optional params', async () => {
-    const response = await client.entities.verify({
-      dataset_name: 'dataset_name',
-      kg: {
-        entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
-        relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
-      },
-      fix: true,
-    });
-  });
-
   test('view: only required params', async () => {
     const responsePromise = client.entities.view({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
