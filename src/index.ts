@@ -54,6 +54,7 @@ import {
   EntitySummarizeResponse,
   EntityUpdatePropertyParams,
   EntityUpdatePropertyResponse,
+  EntityVerifyParams,
   EntityViewParams,
   EntityViewResponse,
 } from './resources/entities';
@@ -85,7 +86,6 @@ import { Server, ServerInformation } from './resources/server';
 import {
   DatasetDescriptor,
   Entity,
-  Image as SharedAPIImage,
   KnowledgeGraph,
   PropertyType,
   Relationship,
@@ -407,6 +407,7 @@ export declare namespace Structify {
     type EntitySearchParams as EntitySearchParams,
     type EntitySummarizeParams as EntitySummarizeParams,
     type EntityUpdatePropertyParams as EntityUpdatePropertyParams,
+    type EntityVerifyParams as EntityVerifyParams,
     type EntityViewParams as EntityViewParams,
   };
 
@@ -450,7 +451,6 @@ export declare namespace Structify {
     Shared as Shared,
     type DatasetDescriptor as DatasetDescriptor,
     type Entity as Entity,
-    type SharedAPIImage as Image,
     type KnowledgeGraph as KnowledgeGraph,
     type PropertyType as PropertyType,
     type Relationship as Relationship,
