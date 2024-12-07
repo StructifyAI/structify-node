@@ -112,11 +112,11 @@ export namespace HumanLlmJob {
   export interface Metadata {
     dataset_name: string;
 
-    entity_name: string;
-
     property_name: string;
 
     user_email: string;
+
+    entity_name?: string | null;
   }
 }
 
