@@ -42,6 +42,16 @@ export class Entities extends APIResource {
   }
 
   /**
+   * list jobs for a given entity
+   */
+  listJobs(
+    query: EntityListJobsParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<EntityListJobsResponse> {
+    return this._client.get('/entity/list_jobs', { query, ...options });
+  }
+
+  /**
    * merge an entity manually
    */
   merge(body: EntityMergeParams, options?: Core.RequestOptions): Core.APIPromise<EntityMergeResponse> {
@@ -216,6 +226,27 @@ export namespace EntityGetSourceEntitiesResponse {
 
       hash?: string;
     }
+  }
+}
+
+export type EntityListJobsResponse = Array<EntityListJobsResponse.EntityListJobsResponseItem>;
+
+export namespace EntityListJobsResponse {
+  export interface EntityListJobsResponseItem {
+    id: string;
+
+    creation_time: string;
+
+    status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+    message?: string | null;
+
+    report_on_complete?: boolean;
+
+    /**
+     * What time did the job start running?
+     */
+    run_started_time?: string | null;
   }
 }
 
@@ -487,6 +518,10 @@ export interface EntityGetSourceEntitiesParams {
   id: string;
 }
 
+export interface EntityListJobsParams {
+  id: string;
+}
+
 export interface EntityMergeParams {
   entity_1_id: string;
 
@@ -580,6 +615,7 @@ export declare namespace Entities {
     type EntityGetResponse as EntityGetResponse,
     type EntityGetLocalSubgraphResponse as EntityGetLocalSubgraphResponse,
     type EntityGetSourceEntitiesResponse as EntityGetSourceEntitiesResponse,
+    type EntityListJobsResponse as EntityListJobsResponse,
     type EntityMergeResponse as EntityMergeResponse,
     type EntitySearchResponse as EntitySearchResponse,
     type EntitySummarizeResponse as EntitySummarizeResponse,
@@ -590,6 +626,7 @@ export declare namespace Entities {
     type EntityGetParams as EntityGetParams,
     type EntityGetLocalSubgraphParams as EntityGetLocalSubgraphParams,
     type EntityGetSourceEntitiesParams as EntityGetSourceEntitiesParams,
+    type EntityListJobsParams as EntityListJobsParams,
     type EntityMergeParams as EntityMergeParams,
     type EntitySearchParams as EntitySearchParams,
     type EntitySummarizeParams as EntitySummarizeParams,
