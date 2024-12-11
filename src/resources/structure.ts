@@ -507,6 +507,8 @@ export type StructureRunAsyncResponse = string;
 export interface StructureEnhanceParams {
   entity_id: string;
 
+  allow_new_entities?: boolean;
+
   property_name?: string | null;
 
   relationship_name?: string | null;
@@ -589,6 +591,8 @@ export namespace StructureRunAsyncParams {
       surrounding_kg: SharedAPI.KnowledgeGraph;
 
       target_descriptor: EnhanceIngestor.Property | EnhanceIngestor.Relationship;
+
+      allow_new_entities?: boolean;
     }
 
     export namespace EnhanceIngestor {
