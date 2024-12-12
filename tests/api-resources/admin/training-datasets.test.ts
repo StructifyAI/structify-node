@@ -138,27 +138,6 @@ describe('resource trainingDatasets', () => {
     const response = await client.admin.trainingDatasets.listDatums({ dataset_name: 'dataset_name' });
   });
 
-  test('markSuspiciousDatum: only required params', async () => {
-    const responsePromise = client.admin.trainingDatasets.markSuspiciousDatum({
-      reason: 'reason',
-      step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('markSuspiciousDatum: required and optional params', async () => {
-    const response = await client.admin.trainingDatasets.markSuspiciousDatum({
-      reason: 'reason',
-      step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
-  });
-
   test('removeDatum: only required params', async () => {
     const responsePromise = client.admin.trainingDatasets.removeDatum({
       step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -244,6 +223,28 @@ describe('resource trainingDatasets', () => {
           result: { ToolQueued: 'ToolQueued' },
         },
       ],
+    });
+  });
+
+  test('updateDatumStatus: only required params', async () => {
+    const responsePromise = client.admin.trainingDatasets.updateDatumStatus({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      status: 'Unlabeled',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('updateDatumStatus: required and optional params', async () => {
+    const response = await client.admin.trainingDatasets.updateDatumStatus({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      status: 'Unlabeled',
+      review_message: 'review_message',
     });
   });
 
