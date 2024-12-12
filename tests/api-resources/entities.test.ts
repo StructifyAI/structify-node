@@ -134,6 +134,7 @@ describe('resource entities', () => {
     const response = await client.entities.merge({
       entity_1_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       entity_2_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      debug: true,
     });
   });
 
