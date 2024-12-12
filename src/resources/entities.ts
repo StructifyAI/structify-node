@@ -506,6 +506,8 @@ export namespace EntityAddParams {
 
 export interface EntityGetParams {
   id: string;
+
+  resolve_id?: boolean;
 }
 
 export interface EntityGetLocalSubgraphParams {
@@ -608,6 +610,8 @@ export interface EntityVerifyParams {
 
 export interface EntityViewParams {
   id: string;
+
+  resolve_id?: boolean;
 }
 
 export declare namespace Entities {
