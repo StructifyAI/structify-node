@@ -30,11 +30,11 @@ export {
   type TrainingDatasetGetNextUnverifiedParams,
   type TrainingDatasetGetStepByIDParams,
   type TrainingDatasetListDatumsParams,
-  type TrainingDatasetMarkSuspiciousDatumParams,
   type TrainingDatasetRemoveDatumParams,
   type TrainingDatasetResetPendingParams,
   type TrainingDatasetSizeParams,
   type TrainingDatasetUpdateDatumParams,
+  type TrainingDatasetUpdateDatumStatusParams,
   type TrainingDatasetUploadDatumParams,
 } from './training-datasets';
 export { Users, type User, type UserListResponse, type UserCreateParams } from './users';
