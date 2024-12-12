@@ -148,19 +148,7 @@ export type HumanLlmFinishJobResponse = unknown;
 export type HumanLlmGetJobsResponse = Array<HumanLlmJob>;
 
 export interface HumanLlmPrelabelStepResponse {
-  completion_tokens: number;
-
-  /**
-   * Cost in dollars
-   */
-  cost: number;
-
   llm: string;
-
-  /**
-   * New tokens
-   */
-  prompt_tokens: number;
 
   text: string;
 
