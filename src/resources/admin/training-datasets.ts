@@ -76,18 +76,6 @@ export class TrainingDatasets extends APIResource {
     return this._client.get('/admin/training_datasets/list_datums', { query, ...options });
   }
 
-  markSuspiciousDatum(
-    params: TrainingDatasetMarkSuspiciousDatumParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    const { reason, step_id } = params;
-    return this._client.post('/admin/training_datasets/mark_suspicious_datum', {
-      query: { reason, step_id },
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
   /**
    * Removes a training datum from the specified dataset.
    */
@@ -134,6 +122,17 @@ export class TrainingDatasets extends APIResource {
    */
   updateDatum(body: TrainingDatasetUpdateDatumParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.put('/admin/training_datasets/update_datum', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  updateDatumStatus(
+    body: TrainingDatasetUpdateDatumStatusParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/admin/training_datasets/update_datum_status', {
       body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
@@ -441,12 +440,6 @@ export interface TrainingDatasetListDatumsParams {
   dataset_name: string;
 }
 
-export interface TrainingDatasetMarkSuspiciousDatumParams {
-  reason: string;
-
-  step_id: string;
-}
-
 export interface TrainingDatasetRemoveDatumParams {
   step_id: string;
 }
@@ -657,6 +650,14 @@ export namespace TrainingDatasetUpdateDatumParams {
   }
 }
 
+export interface TrainingDatasetUpdateDatumStatusParams {
+  id: string;
+
+  status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
+
+  review_message?: string | null;
+}
+
 export interface TrainingDatasetUploadDatumParams {
   dataset_name: Core.Uploadable;
 
@@ -678,11 +679,11 @@ export declare namespace TrainingDatasets {
     type TrainingDatasetGetNextUnverifiedParams as TrainingDatasetGetNextUnverifiedParams,
     type TrainingDatasetGetStepByIDParams as TrainingDatasetGetStepByIDParams,
     type TrainingDatasetListDatumsParams as TrainingDatasetListDatumsParams,
-    type TrainingDatasetMarkSuspiciousDatumParams as TrainingDatasetMarkSuspiciousDatumParams,
     type TrainingDatasetRemoveDatumParams as TrainingDatasetRemoveDatumParams,
     type TrainingDatasetResetPendingParams as TrainingDatasetResetPendingParams,
     type TrainingDatasetSizeParams as TrainingDatasetSizeParams,
     type TrainingDatasetUpdateDatumParams as TrainingDatasetUpdateDatumParams,
+    type TrainingDatasetUpdateDatumStatusParams as TrainingDatasetUpdateDatumStatusParams,
     type TrainingDatasetUploadDatumParams as TrainingDatasetUploadDatumParams,
   };
 }
