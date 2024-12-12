@@ -18,6 +18,20 @@ export class Structure extends APIResource {
   }
 
   /**
+   * Returns a job id that can be waited on until the request is finished.
+   */
+  enhanceRelationship(
+    body: StructureEnhanceRelationshipParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<string> {
+    return this._client.post('/structure/enhance_relationship', {
+      body,
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
    * Wait for all specified async tasks to be completed.
    */
   isComplete(body: StructureIsCompleteParams, options?: Core.RequestOptions): Core.APIPromise<string> {
@@ -494,6 +508,8 @@ export interface ToolMetadata {
 
 export type StructureEnhanceResponse = string;
 
+export type StructureEnhanceRelationshipResponse = string;
+
 export type StructureIsCompleteResponse = string;
 
 export interface StructureJobStatusResponse {
@@ -512,6 +528,16 @@ export interface StructureEnhanceParams {
   property_name?: string | null;
 
   relationship_name?: string | null;
+}
+
+export interface StructureEnhanceRelationshipParams {
+  relationship_name: string;
+
+  allow_new_entities?: boolean;
+
+  source_id?: string | null;
+
+  target_id?: string | null;
 }
 
 export type StructureIsCompleteParams = Array<string>;
@@ -804,10 +830,12 @@ export declare namespace Structure {
     type ExtractionCriteria as ExtractionCriteria,
     type ToolMetadata as ToolMetadata,
     type StructureEnhanceResponse as StructureEnhanceResponse,
+    type StructureEnhanceRelationshipResponse as StructureEnhanceRelationshipResponse,
     type StructureIsCompleteResponse as StructureIsCompleteResponse,
     type StructureJobStatusResponse as StructureJobStatusResponse,
     type StructureRunAsyncResponse as StructureRunAsyncResponse,
     type StructureEnhanceParams as StructureEnhanceParams,
+    type StructureEnhanceRelationshipParams as StructureEnhanceRelationshipParams,
     type StructureIsCompleteParams as StructureIsCompleteParams,
     type StructureJobStatusParams as StructureJobStatusParams,
     type StructureRunAsyncParams as StructureRunAsyncParams,
