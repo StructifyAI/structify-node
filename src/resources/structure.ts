@@ -237,19 +237,7 @@ export interface ExecutionStep {
 
 export namespace ExecutionStep {
   export interface Response {
-    completion_tokens: number;
-
-    /**
-     * Cost in dollars
-     */
-    cost: number;
-
     llm: string;
-
-    /**
-     * New tokens
-     */
-    prompt_tokens: number;
 
     text: string;
 
