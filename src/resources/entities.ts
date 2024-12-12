@@ -526,6 +526,8 @@ export interface EntityMergeParams {
   entity_1_id: string;
 
   entity_2_id: string;
+
+  debug?: boolean;
 }
 
 export interface EntitySearchParams {
