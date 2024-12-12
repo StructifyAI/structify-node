@@ -65,7 +65,10 @@ describe('resource entities', () => {
   });
 
   test('get: required and optional params', async () => {
-    const response = await client.entities.get({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
+    const response = await client.entities.get({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      resolve_id: true,
+    });
   });
 
   test('getLocalSubgraph: only required params', async () => {
@@ -245,6 +248,9 @@ describe('resource entities', () => {
   });
 
   test('view: required and optional params', async () => {
-    const response = await client.entities.view({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
+    const response = await client.entities.view({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      resolve_id: true,
+    });
   });
 });
