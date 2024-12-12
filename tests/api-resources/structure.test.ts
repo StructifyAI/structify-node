@@ -29,6 +29,26 @@ describe('resource structure', () => {
     });
   });
 
+  test('enhanceRelationship: only required params', async () => {
+    const responsePromise = client.structure.enhanceRelationship({ relationship_name: 'relationship_name' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('enhanceRelationship: required and optional params', async () => {
+    const response = await client.structure.enhanceRelationship({
+      relationship_name: 'relationship_name',
+      allow_new_entities: true,
+      source_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      target_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+  });
+
   test('isComplete: only required params', async () => {
     const responsePromise = client.structure.isComplete(['string']);
     const rawResponse = await responsePromise.asResponse();
