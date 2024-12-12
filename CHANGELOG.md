@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.61.0 (2024-12-12)
+
+Full Changelog: [v1.60.0...v1.61.0](https://github.com/StructifyAI/structify-node/compare/v1.60.0...v1.61.0)
+
+### Features
+
+* **api:** api update ([#701](https://github.com/StructifyAI/structify-node/issues/701)) ([e5e9246](https://github.com/StructifyAI/structify-node/commit/e5e9246bd701759be6d98e5733e1b88f4e715c14))
+* **api:** api update ([#703](https://github.com/StructifyAI/structify-node/issues/703)) ([42d4112](https://github.com/StructifyAI/structify-node/commit/42d4112e810ee83aeab4d906373e3033ef1a75d2))
+* **api:** api update ([#705](https://github.com/StructifyAI/structify-node/issues/705)) ([2256fed](https://github.com/StructifyAI/structify-node/commit/2256feddd68ec0271dc1d32910056da65150bfd5))
+* **api:** api update ([#706](https://github.com/StructifyAI/structify-node/issues/706)) ([20afb12](https://github.com/StructifyAI/structify-node/commit/20afb126dba551644e88c2c6138aa28d9befd1e6))
+
+
+### Chores
+
+* **internal:** codegen related update ([#699](https://github.com/StructifyAI/structify-node/issues/699)) ([67690c0](https://github.com/StructifyAI/structify-node/commit/67690c022bbe3239476184621f6c20dd59908678))
+* **internal:** codegen related update ([#704](https://github.com/StructifyAI/structify-node/issues/704)) ([3c04ada](https://github.com/StructifyAI/structify-node/commit/3c04adab1aaca233501c7f0d2c4ebfd5f61376ad))
+* **types:** nicer error class types + jsdocs ([#702](https://github.com/StructifyAI/structify-node/issues/702)) ([2b91414](https://github.com/StructifyAI/structify-node/commit/2b91414d80804db2470b994971bdbbad7e72c146))
+
 ## 1.60.0 (2024-12-09)
 
 Full Changelog: [v1.59.0...v1.60.0](https://github.com/StructifyAI/structify-node/compare/v1.59.0...v1.60.0)
