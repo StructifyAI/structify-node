@@ -788,8 +788,6 @@ export namespace StructureRunAsyncParams {
     export namespace WebSearch {
       export interface WebSearch {
         starting_website?: string | null;
-
-        use_local_browser?: boolean;
       }
     }
 
