@@ -101,6 +101,8 @@ export namespace HumanLlmJob {
 
     message?: string | null;
 
+    reason?: string | null;
+
     report_on_complete?: boolean;
 
     /**

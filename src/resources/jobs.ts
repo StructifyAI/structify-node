@@ -91,6 +91,8 @@ export interface JobListResponse {
 
   message?: string | null;
 
+  reason?: string | null;
+
   report_on_complete?: boolean;
 
   /**
@@ -109,6 +111,8 @@ export interface JobCancelResponse {
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
   message?: string | null;
+
+  reason?: string | null;
 
   report_on_complete?: boolean;
 
@@ -133,6 +137,8 @@ export namespace JobGetResponse {
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
     message?: string | null;
+
+    reason?: string | null;
 
     report_on_complete?: boolean;
 
