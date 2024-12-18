@@ -112,21 +112,9 @@ export interface DatasetGetResponse extends SharedAPI.DatasetDescriptor {
 }
 
 export interface DatasetMatchResponse {
-  entity: DatasetMatchResponse.Entity;
+  entity: string;
 
   score: number;
-}
-
-export namespace DatasetMatchResponse {
-  export interface Entity {
-    id: string;
-
-    creation_time: string;
-
-    label: string;
-
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
-  }
 }
 
 export interface DatasetViewRelationshipsResponse {
@@ -318,6 +306,8 @@ export interface DatasetMatchParams {
    * pipeline from raw tool output to being merged into a Neo4j DB
    */
   query_kg: SharedAPI.KnowledgeGraph;
+
+  match_threshold?: number;
 }
 
 export interface DatasetViewRelationshipsParams extends JobsListParams {
