@@ -111,10 +111,14 @@ export interface DatasetGetResponse extends SharedAPI.DatasetDescriptor {
   created_timestamp: string;
 }
 
-export interface DatasetMatchResponse {
-  entity: string;
+export type DatasetMatchResponse = Record<string, DatasetMatchResponse.item>;
 
-  score: number;
+export namespace DatasetMatchResponse {
+  export interface item {
+    entity: string;
+
+    score: number;
+  }
 }
 
 export interface DatasetViewRelationshipsResponse {
