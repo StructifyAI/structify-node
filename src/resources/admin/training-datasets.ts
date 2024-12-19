@@ -199,16 +199,16 @@ export namespace UpdateDatumRequest {
       | UpdatedToolCall.Type;
 
     name:
+      | 'Exit'
       | 'Save'
+      | 'Wait'
+      | 'Type'
       | 'Scroll'
       | 'ScrollToBottom'
-      | 'Exit'
       | 'Click'
       | 'Hover'
-      | 'Wait'
       | 'Error'
-      | 'Google'
-      | 'Type';
+      | 'Google';
 
     result?:
       | UpdatedToolCall.ToolQueued
@@ -481,16 +481,16 @@ export namespace TrainingDatasetUpdateDatumParams {
       | UpdatedToolCall.Type;
 
     name:
+      | 'Exit'
       | 'Save'
+      | 'Wait'
+      | 'Type'
       | 'Scroll'
       | 'ScrollToBottom'
-      | 'Exit'
       | 'Click'
       | 'Hover'
-      | 'Wait'
       | 'Error'
-      | 'Google'
-      | 'Type';
+      | 'Google';
 
     result?:
       | UpdatedToolCall.ToolQueued
