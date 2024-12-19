@@ -18,9 +18,9 @@ export class Users extends APIResource {
     if (isRequestOptions(params)) {
       return this.create({}, params);
     }
-    const { credit_count, email, is_admin, test } = params;
+    const { credit_count, email, feature_flags, is_admin, test } = params;
     return this._client.post('/admin/users/create', {
-      query: { credit_count, email, is_admin, test },
+      query: { credit_count, email, feature_flags, is_admin, test },
       ...options,
     });
   }
@@ -36,6 +36,8 @@ export class Users extends APIResource {
 export interface User {
   email: string;
 
+  feature_flags?: Array<string> | null;
+
   user_type?: 'Admin' | 'Public' | 'EndUser';
 }
 
@@ -45,6 +47,8 @@ export interface UserCreateParams {
   credit_count?: number | null;
 
   email?: string | null;
+
+  feature_flags?: Array<string> | null;
 
   is_admin?: boolean;
 
