@@ -259,16 +259,16 @@ export namespace ExecutionStep {
         | ToolCall.Type;
 
       name:
+        | 'Exit'
         | 'Save'
+        | 'Wait'
+        | 'Type'
         | 'Scroll'
         | 'ScrollToBottom'
-        | 'Exit'
         | 'Click'
         | 'Hover'
-        | 'Wait'
         | 'Error'
-        | 'Google'
-        | 'Type';
+        | 'Google';
 
       result?: ToolCall.ToolQueued | ToolCall.ToolFail | ToolCall.InputParseFail | ToolCall.Success | null;
     }
@@ -478,16 +478,16 @@ export interface ToolMetadata {
   description: string;
 
   name:
+    | 'Exit'
     | 'Save'
+    | 'Wait'
+    | 'Type'
     | 'Scroll'
     | 'ScrollToBottom'
-    | 'Exit'
     | 'Click'
     | 'Hover'
-    | 'Wait'
     | 'Error'
-    | 'Google'
-    | 'Type';
+    | 'Google';
 
   regex_validator: string;
 
