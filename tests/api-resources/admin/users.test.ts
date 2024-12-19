@@ -31,7 +31,7 @@ describe('resource users', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.admin.users.create(
-        { credit_count: 0, email: 'email', is_admin: true, test: true },
+        { credit_count: 0, email: 'email', feature_flags: ['string'], is_admin: true, test: true },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Structify.NotFoundError);
