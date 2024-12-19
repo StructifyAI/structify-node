@@ -111,29 +111,13 @@ export interface DatasetGetResponse extends SharedAPI.DatasetDescriptor {
   created_timestamp: string;
 }
 
-export interface DatasetMatchResponse {
-  entity: DatasetMatchResponse.Entity;
-
-  score: number;
-}
+export type DatasetMatchResponse = Record<string, DatasetMatchResponse.item>;
 
 export namespace DatasetMatchResponse {
-  export interface Entity {
-    id: string;
+  export interface item {
+    entity: string;
 
-    creation_time: string;
-
-    label: string;
-
-    properties: Record<string, string | boolean | number | Entity.Image>;
-  }
-
-  export namespace Entity {
-    export interface Image {
-      number: number;
-
-      hash?: string;
-    }
+    score: number;
   }
 }
 
@@ -142,17 +126,9 @@ export interface DatasetViewRelationshipsResponse {
 
   label: string;
 
-  properties: Record<string, string | boolean | number | DatasetViewRelationshipsResponse.Image>;
+  properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
   to_id: string;
-}
-
-export namespace DatasetViewRelationshipsResponse {
-  export interface Image {
-    number: number;
-
-    hash?: string;
-  }
 }
 
 export interface DatasetViewTableResponse {
@@ -162,15 +138,7 @@ export interface DatasetViewTableResponse {
 
   label: string;
 
-  properties: Record<string, string | boolean | number | DatasetViewTableResponse.Image>;
-}
-
-export namespace DatasetViewTableResponse {
-  export interface Image {
-    number: number;
-
-    hash?: string;
-  }
+  properties: Record<string, string | boolean | number | SharedAPI.Image>;
 }
 
 export interface DatasetViewTablesWithRelationshipsResponse {
@@ -189,15 +157,7 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     label: string;
 
-    properties: Record<string, string | boolean | number | ConnectedEntity.Image>;
-  }
-
-  export namespace ConnectedEntity {
-    export interface Image {
-      number: number;
-
-      hash?: string;
-    }
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
   }
 
   export interface Entity {
@@ -207,15 +167,7 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     label: string;
 
-    properties: Record<string, string | boolean | number | Entity.Image>;
-  }
-
-  export namespace Entity {
-    export interface Image {
-      number: number;
-
-      hash?: string;
-    }
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
   }
 
   export interface Relationship {
@@ -223,17 +175,9 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     label: string;
 
-    properties: Record<string, string | boolean | number | Relationship.Image>;
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
     to_id: string;
-  }
-
-  export namespace Relationship {
-    export interface Image {
-      number: number;
-
-      hash?: string;
-    }
   }
 }
 
@@ -366,6 +310,8 @@ export interface DatasetMatchParams {
    * pipeline from raw tool output to being merged into a Neo4j DB
    */
   query_kg: SharedAPI.KnowledgeGraph;
+
+  match_threshold?: number;
 }
 
 export interface DatasetViewRelationshipsParams extends JobsListParams {

@@ -190,7 +190,7 @@ describe('instantiate client', () => {
     expect(client.apiKey).toBe('My API Key');
   });
 
-  test('with overriden environment variable arguments', () => {
+  test('with overridden environment variable arguments', () => {
     // set options via env var
     process.env['STRUCTIFY_API_TOKEN'] = 'another My API Key';
     const client = new Structify({ apiKey: 'My API Key' });

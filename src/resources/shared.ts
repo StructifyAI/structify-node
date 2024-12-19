@@ -117,17 +117,15 @@ export namespace DatasetDescriptor {
 export interface Entity {
   id: number;
 
-  properties: Record<string, string | boolean | number | Entity.Image>;
+  properties: Record<string, string | boolean | number | Image>;
 
   type: string;
 }
 
-export namespace Entity {
-  export interface Image {
-    number: number;
+export interface Image {
+  number: number;
 
-    hash?: string;
-  }
+  hash?: string;
 }
 
 /**
@@ -165,15 +163,7 @@ export interface Relationship {
 
   type: string;
 
-  properties?: Record<string, string | boolean | number | Relationship.Image>;
-}
-
-export namespace Relationship {
-  export interface Image {
-    number: number;
-
-    hash?: string;
-  }
+  properties?: Record<string, string | boolean | number | Image>;
 }
 
 /**
@@ -251,6 +241,7 @@ export declare namespace Shared {
   export {
     type DatasetDescriptor as DatasetDescriptor,
     type Entity as Entity,
+    type Image as Image,
     type KnowledgeGraph as KnowledgeGraph,
     type PropertyType as PropertyType,
     type Relationship as Relationship,
