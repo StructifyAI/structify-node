@@ -196,7 +196,7 @@ describe('resource trainingDatasets', () => {
     const responsePromise = client.admin.trainingDatasets.updateDatum({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       status: 'Unlabeled',
-      updated_tool_calls: [{ input: { Save: {} }, name: 'Save' }],
+      updated_tool_calls: [{ input: { Save: {} }, name: 'Exit' }],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -219,7 +219,7 @@ describe('resource trainingDatasets', () => {
               relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
             },
           },
-          name: 'Save',
+          name: 'Exit',
           result: { ToolQueued: 'ToolQueued' },
         },
       ],

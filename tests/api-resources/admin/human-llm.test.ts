@@ -149,7 +149,7 @@ describe('resource humanLlm', () => {
     const responsePromise = client.admin.humanLlm.updateStep({
       job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      tool_calls: [{ input: { Save: {} }, name: 'Save' }],
+      tool_calls: [{ input: { Save: {} }, name: 'Exit' }],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -172,7 +172,7 @@ describe('resource humanLlm', () => {
               relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
             },
           },
-          name: 'Save',
+          name: 'Exit',
           result: { ToolQueued: 'ToolQueued' },
         },
       ],
