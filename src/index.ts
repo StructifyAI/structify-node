@@ -88,6 +88,7 @@ import { Server, ServerInformation } from './resources/server';
 import {
   DatasetDescriptor,
   Entity,
+  Image as SharedAPIImage,
   KnowledgeGraph,
   PropertyType,
   Relationship,
@@ -459,6 +460,7 @@ export declare namespace Structify {
     Shared as Shared,
     type DatasetDescriptor as DatasetDescriptor,
     type Entity as Entity,
+    type SharedAPIImage as Image,
     type KnowledgeGraph as KnowledgeGraph,
     type PropertyType as PropertyType,
     type Relationship as Relationship,
