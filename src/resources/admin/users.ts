@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as UserAPI from '../user';
 
@@ -8,8 +9,20 @@ export class Users extends APIResource {
   /**
    * Create a user, returing their API token.
    */
-  create(body: UserCreateParams, options?: Core.RequestOptions): Core.APIPromise<UserAPI.TokenResponse> {
-    return this._client.post('/admin/users/create', { body, ...options });
+  create(params?: UserCreateParams, options?: Core.RequestOptions): Core.APIPromise<UserAPI.TokenResponse>;
+  create(options?: Core.RequestOptions): Core.APIPromise<UserAPI.TokenResponse>;
+  create(
+    params: UserCreateParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<UserAPI.TokenResponse> {
+    if (isRequestOptions(params)) {
+      return this.create({}, params);
+    }
+    const { credit_count, email, feature_flags, is_admin, test } = params;
+    return this._client.post('/admin/users/create', {
+      query: { credit_count, email, feature_flags, is_admin, test },
+      ...options,
+    });
   }
 
   /**
