@@ -72,6 +72,7 @@ Methods:
 - <code title="delete /admin/training_datasets/remove_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">removeDatum</a>({ ...params }) -> void</code>
 - <code title="post /admin/training_datasets/reset_pending">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">resetPending</a>({ ...params }) -> void</code>
 - <code title="post /admin/training_datasets/size">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">size</a>({ ...params }) -> TrainingDatasetSizeResponse</code>
+- <code title="post /admin/training_datasets/switch_dataset">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">switchDataset</a>({ ...params }) -> void</code>
 - <code title="put /admin/training_datasets/update_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">updateDatum</a>({ ...params }) -> void</code>
 - <code title="post /admin/training_datasets/update_datum_status">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">updateDatumStatus</a>({ ...params }) -> void</code>
 - <code title="post /admin/training_datasets/upload_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">uploadDatum</a>({ ...params }) -> void</code>

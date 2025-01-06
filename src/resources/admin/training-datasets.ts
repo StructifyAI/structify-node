@@ -118,6 +118,21 @@ export class TrainingDatasets extends APIResource {
   }
 
   /**
+   * Removes a training datum from the specified dataset.
+   */
+  switchDataset(
+    params: TrainingDatasetSwitchDatasetParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    const { dataset_name, step_id } = params;
+    return this._client.post('/admin/training_datasets/switch_dataset', {
+      query: { dataset_name, step_id },
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
    * Updates the status and content of an existing training datum.
    */
   updateDatum(body: TrainingDatasetUpdateDatumParams, options?: Core.RequestOptions): Core.APIPromise<void> {
@@ -458,6 +473,12 @@ export interface TrainingDatasetSizeParams {
   status?: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious' | null;
 }
 
+export interface TrainingDatasetSwitchDatasetParams {
+  dataset_name: string;
+
+  step_id: string;
+}
+
 export interface TrainingDatasetUpdateDatumParams {
   id: string;
 
@@ -682,6 +703,7 @@ export declare namespace TrainingDatasets {
     type TrainingDatasetRemoveDatumParams as TrainingDatasetRemoveDatumParams,
     type TrainingDatasetResetPendingParams as TrainingDatasetResetPendingParams,
     type TrainingDatasetSizeParams as TrainingDatasetSizeParams,
+    type TrainingDatasetSwitchDatasetParams as TrainingDatasetSwitchDatasetParams,
     type TrainingDatasetUpdateDatumParams as TrainingDatasetUpdateDatumParams,
     type TrainingDatasetUpdateDatumStatusParams as TrainingDatasetUpdateDatumStatusParams,
     type TrainingDatasetUploadDatumParams as TrainingDatasetUploadDatumParams,
