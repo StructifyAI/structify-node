@@ -33,6 +33,7 @@ export {
   type TrainingDatasetRemoveDatumParams,
   type TrainingDatasetResetPendingParams,
   type TrainingDatasetSizeParams,
+  type TrainingDatasetSwitchDatasetParams,
   type TrainingDatasetUpdateDatumParams,
   type TrainingDatasetUpdateDatumStatusParams,
   type TrainingDatasetUploadDatumParams,
