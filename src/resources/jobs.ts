@@ -161,7 +161,7 @@ export namespace JobGetStepGraphResponse {
 
     creation_time: string;
 
-    status: 'Queued' | 'Ignored' | 'Executed';
+    status: 'Queued' | 'Ignored' | 'Started' | 'Executed';
 
     prompt?: string | null;
 
