@@ -128,6 +128,7 @@ const environments = {
   deployment: 'http://localhost:8080',
 };
 type Environment = keyof typeof environments;
+
 export interface ClientOptions {
   /**
    * Defaults to process.env['STRUCTIFY_API_TOKEN'].
