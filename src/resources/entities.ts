@@ -76,6 +76,17 @@ export class Entities extends APIResource {
   }
 
   /**
+   * Trigger our merge process for a given entity
+   */
+  triggerMerge(
+    params: EntityTriggerMergeParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<EntityTriggerMergeResponse> {
+    const { entity_id } = params;
+    return this._client.post('/entity/trigger_merge', { query: { entity_id }, ...options });
+  }
+
+  /**
    * update an entity manually
    */
   updateProperty(
@@ -223,13 +234,23 @@ export namespace EntityListJobsResponse {
 }
 
 export interface EntityMergeResponse {
-  id: string;
+  match_object?: EntityMergeResponse.MatchObject | null;
 
-  creation_time: string;
+  merged_entity_id?: string | null;
+}
 
-  label: string;
+export namespace EntityMergeResponse {
+  export interface MatchObject {
+    a_id: string;
 
-  properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    b_id: string;
+
+    info: string;
+
+    p_match: number;
+
+    p_match_threshold: number;
+  }
 }
 
 export type EntitySearchResponse = Array<EntitySearchResponse.EntitySearchResponseItem>;
@@ -258,6 +279,16 @@ export namespace EntitySummarizeResponse {
 
     properties: Record<string, string | boolean | number | SharedAPI.Image>;
   }
+}
+
+export interface EntityTriggerMergeResponse {
+  id: string;
+
+  creation_time: string;
+
+  label: string;
+
+  properties: Record<string, string | boolean | number | SharedAPI.Image>;
 }
 
 export interface EntityUpdatePropertyResponse {
@@ -461,6 +492,10 @@ export interface EntitySummarizeParams {
   extra_instructions?: Array<string> | null;
 }
 
+export interface EntityTriggerMergeParams {
+  entity_id: string;
+}
+
 export interface EntityUpdatePropertyParams {
   dataset_name: string;
 
@@ -527,6 +562,7 @@ export declare namespace Entities {
     type EntityMergeResponse as EntityMergeResponse,
     type EntitySearchResponse as EntitySearchResponse,
     type EntitySummarizeResponse as EntitySummarizeResponse,
+    type EntityTriggerMergeResponse as EntityTriggerMergeResponse,
     type EntityUpdatePropertyResponse as EntityUpdatePropertyResponse,
     type EntityViewResponse as EntityViewResponse,
     type EntityDeleteParams as EntityDeleteParams,
@@ -538,6 +574,7 @@ export declare namespace Entities {
     type EntityMergeParams as EntityMergeParams,
     type EntitySearchParams as EntitySearchParams,
     type EntitySummarizeParams as EntitySummarizeParams,
+    type EntityTriggerMergeParams as EntityTriggerMergeParams,
     type EntityUpdatePropertyParams as EntityUpdatePropertyParams,
     type EntityVerifyParams as EntityVerifyParams,
     type EntityViewParams as EntityViewParams,
