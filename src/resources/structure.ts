@@ -841,13 +841,9 @@ export namespace StructureRunAsyncParams {
 
     export namespace ImageDocument {
       export interface ImageDocument {
-        content: Core.Uploadable;
-
         document_name: string;
 
         document_page: number;
-
-        ocr_content?: string | null;
       }
     }
   }
