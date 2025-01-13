@@ -69,6 +69,9 @@ export interface ChatPrompt {
 
   messages: Array<ChatPrompt.Message>;
 
+  /**
+   * All metadata required to generate a prompt for the LLM
+   */
   metadata: ChatPrompt.Metadata;
 }
 
@@ -171,6 +174,9 @@ export namespace ChatPrompt {
     }
   }
 
+  /**
+   * All metadata required to generate a prompt for the LLM
+   */
   export interface Metadata {
     /**
      * A dataset is where you put multiple referential schemas.
@@ -184,45 +190,83 @@ export namespace ChatPrompt {
 
     extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
 
+    formatter_specific: Metadata.Image | Metadata.Web | Metadata.Text;
+
     tool_metadata: Array<StructureAPI.ToolMetadata>;
-
-    ocr_content?: string | null;
-
-    screenshot?: Core.Uploadable | null;
-
-    url?: string | null;
-
-    web_flags?: Array<Metadata.WebFlag> | null;
   }
 
   export namespace Metadata {
-    export interface WebFlag {
-      ariaLabel: string;
+    export interface Image {
+      Image: Image.Image;
+    }
 
-      type: string;
+    export namespace Image {
+      export interface Image {
+        document_name?: string | null;
 
-      x: number;
+        document_page?: number | null;
 
-      y: number;
+        image?: Core.Uploadable | null;
 
-      height?: number;
+        ocr_content?: string | null;
+      }
+    }
 
-      href?: string | null;
+    export interface Web {
+      Web: Web.Web;
+    }
 
-      isInteractive?: boolean | null;
+    export namespace Web {
+      export interface Web {
+        flags: Array<Web.Flag>;
 
-      /**
-       * The number by which the flag is referred in image, prompt, and tool calls.
-       */
-      number?: number | null;
+        url: string;
 
-      text?: string;
+        ocr_content?: string | null;
 
-      /**
-       * The serde default here is to give us backwards compatibility it's fine for these
-       * to be anything as long as the image isn't given since it won't regenerate.
-       */
-      width?: number;
+        screenshot?: Core.Uploadable | null;
+      }
+
+      export namespace Web {
+        export interface Flag {
+          ariaLabel: string;
+
+          type: string;
+
+          x: number;
+
+          y: number;
+
+          height?: number;
+
+          href?: string | null;
+
+          isInteractive?: boolean | null;
+
+          /**
+           * The number by which the flag is referred in image, prompt, and tool calls.
+           */
+          number?: number | null;
+
+          text?: string;
+
+          /**
+           * The serde default here is to give us backwards compatibility it's fine for these
+           * to be anything as long as the image isn't given since it won't regenerate.
+           */
+          width?: number;
+        }
+      }
+    }
+
+    export interface Text {
+      Text: Text.Text;
+    }
+
+    export namespace Text {
+      export interface Text {
+        text: string;
+      }
     }
   }
 }
