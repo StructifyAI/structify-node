@@ -23,7 +23,7 @@ export class Users extends APIResource {
 export interface User {
   email: string;
 
-  feature_flags?: Array<string> | null;
+  feature_flags?: Array<'PDFParsing' | 'Labeler' | 'None'> | null;
 
   user_type?: 'Admin' | 'Public' | 'EndUser';
 }
@@ -35,7 +35,7 @@ export interface UserCreateParams {
 
   email?: string | null;
 
-  feature_flags?: Array<string> | null;
+  feature_flags?: Array<'PDFParsing' | 'Labeler' | 'None'> | null;
 
   is_admin?: boolean;
 
