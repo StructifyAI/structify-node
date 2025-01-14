@@ -69,9 +69,6 @@ export interface ChatPrompt {
 
   messages: Array<ChatPrompt.Message>;
 
-  /**
-   * All metadata required to generate a prompt for the LLM
-   */
   metadata: ChatPrompt.Metadata;
 }
 
@@ -174,9 +171,6 @@ export namespace ChatPrompt {
     }
   }
 
-  /**
-   * All metadata required to generate a prompt for the LLM
-   */
   export interface Metadata {
     /**
      * A dataset is where you put multiple referential schemas.
@@ -190,83 +184,45 @@ export namespace ChatPrompt {
 
     extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
 
-    formatter_specific: Metadata.ImageMeta | Metadata.WebMeta | Metadata.TextMeta;
-
     tool_metadata: Array<StructureAPI.ToolMetadata>;
+
+    ocr_content?: string | null;
+
+    screenshot?: Core.Uploadable | null;
+
+    url?: string | null;
+
+    web_flags?: Array<Metadata.WebFlag> | null;
   }
 
   export namespace Metadata {
-    export interface ImageMeta {
-      ImageMeta: ImageMeta.ImageMeta;
-    }
+    export interface WebFlag {
+      ariaLabel: string;
 
-    export namespace ImageMeta {
-      export interface ImageMeta {
-        document_name?: string | null;
+      type: string;
 
-        document_page?: number | null;
+      x: number;
 
-        image?: Core.Uploadable | null;
+      y: number;
 
-        ocr_content?: string | null;
-      }
-    }
+      height?: number;
 
-    export interface WebMeta {
-      WebMeta: WebMeta.WebMeta;
-    }
+      href?: string | null;
 
-    export namespace WebMeta {
-      export interface WebMeta {
-        flags: Array<WebMeta.Flag>;
+      isInteractive?: boolean | null;
 
-        url: string;
+      /**
+       * The number by which the flag is referred in image, prompt, and tool calls.
+       */
+      number?: number | null;
 
-        ocr_content?: string | null;
+      text?: string;
 
-        screenshot?: Core.Uploadable | null;
-      }
-
-      export namespace WebMeta {
-        export interface Flag {
-          ariaLabel: string;
-
-          type: string;
-
-          x: number;
-
-          y: number;
-
-          height?: number;
-
-          href?: string | null;
-
-          isInteractive?: boolean | null;
-
-          /**
-           * The number by which the flag is referred in image, prompt, and tool calls.
-           */
-          number?: number | null;
-
-          text?: string;
-
-          /**
-           * The serde default here is to give us backwards compatibility it's fine for these
-           * to be anything as long as the image isn't given since it won't regenerate.
-           */
-          width?: number;
-        }
-      }
-    }
-
-    export interface TextMeta {
-      TextMeta: TextMeta.TextMeta;
-    }
-
-    export namespace TextMeta {
-      export interface TextMeta {
-        text: string;
-      }
+      /**
+       * The serde default here is to give us backwards compatibility it's fine for these
+       * to be anything as long as the image isn't given since it won't regenerate.
+       */
+      width?: number;
     }
   }
 }
@@ -841,9 +797,13 @@ export namespace StructureRunAsyncParams {
 
     export namespace ImageDocument {
       export interface ImageDocument {
+        content: Core.Uploadable;
+
         document_name: string;
 
         document_page: number;
+
+        ocr_content?: string | null;
       }
     }
   }
