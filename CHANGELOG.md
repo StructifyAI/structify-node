@@ -1,5 +1,51 @@
 # Changelog
 
+## 1.63.0 (2025-01-14)
+
+Full Changelog: [v1.62.0...v1.63.0](https://github.com/StructifyAI/structify-node/compare/v1.62.0...v1.63.0)
+
+### Features
+
+* **api:** api update ([#713](https://github.com/StructifyAI/structify-node/issues/713)) ([1b68f19](https://github.com/StructifyAI/structify-node/commit/1b68f19320ed3606d065054d03f0db003d10e19d))
+* **api:** api update ([#715](https://github.com/StructifyAI/structify-node/issues/715)) ([ae0b9e7](https://github.com/StructifyAI/structify-node/commit/ae0b9e74173ea18514d69476f71985c148830e9e))
+* **api:** api update ([#717](https://github.com/StructifyAI/structify-node/issues/717)) ([d310da8](https://github.com/StructifyAI/structify-node/commit/d310da89799446a26fb14137f47dee4f8d41acb0))
+* **api:** api update ([#718](https://github.com/StructifyAI/structify-node/issues/718)) ([b0f01de](https://github.com/StructifyAI/structify-node/commit/b0f01de5d73c3bea599fc3d15566f74ee41bb186))
+* **api:** api update ([#719](https://github.com/StructifyAI/structify-node/issues/719)) ([cb4619d](https://github.com/StructifyAI/structify-node/commit/cb4619d80d99388aef4d1b6a8a8a71ff35132a48))
+* **api:** api update ([#720](https://github.com/StructifyAI/structify-node/issues/720)) ([baf6eeb](https://github.com/StructifyAI/structify-node/commit/baf6eeb1e7575d8e6df0962ba298ea42f2acf719))
+* **api:** api update ([#721](https://github.com/StructifyAI/structify-node/issues/721)) ([c5bb32d](https://github.com/StructifyAI/structify-node/commit/c5bb32d9365b3b51a2c722b9c5a9d873a7d4ddd4))
+* **api:** api update ([#722](https://github.com/StructifyAI/structify-node/issues/722)) ([6416c68](https://github.com/StructifyAI/structify-node/commit/6416c684ac331a55ab4f12ca04cede5ac3195115))
+* **api:** api update ([#723](https://github.com/StructifyAI/structify-node/issues/723)) ([94ab2f8](https://github.com/StructifyAI/structify-node/commit/94ab2f81190f895e5ae51a7a5e7572af1db0a5b1))
+* **api:** api update ([#727](https://github.com/StructifyAI/structify-node/issues/727)) ([1696f60](https://github.com/StructifyAI/structify-node/commit/1696f600adf8e48bf2da0588b41f6b1dc3f3e5d9))
+* **api:** api update ([#728](https://github.com/StructifyAI/structify-node/issues/728)) ([52ae0e7](https://github.com/StructifyAI/structify-node/commit/52ae0e7dae2952d73a12bda82405c8aa107cd3bb))
+* **api:** api update ([#731](https://github.com/StructifyAI/structify-node/issues/731)) ([1f2bfd9](https://github.com/StructifyAI/structify-node/commit/1f2bfd90c3fdb1b2c7ce48da4d19c80dcb641d62))
+* **api:** api update ([#732](https://github.com/StructifyAI/structify-node/issues/732)) ([8b93272](https://github.com/StructifyAI/structify-node/commit/8b93272fd21003907ba82c19bcbfcb5d84a23801))
+* **api:** api update ([#733](https://github.com/StructifyAI/structify-node/issues/733)) ([5381586](https://github.com/StructifyAI/structify-node/commit/538158683377e8662d2c6b72b5ba925b4885d700))
+* **api:** api update ([#734](https://github.com/StructifyAI/structify-node/issues/734)) ([d3f348a](https://github.com/StructifyAI/structify-node/commit/d3f348a7899477d70a72451c5882b92fe2bd9b53))
+* **api:** api update ([#735](https://github.com/StructifyAI/structify-node/issues/735)) ([04060ea](https://github.com/StructifyAI/structify-node/commit/04060ea64c384f6ab6cb35991ce9e9750f32fa47))
+* **api:** api update ([#736](https://github.com/StructifyAI/structify-node/issues/736)) ([bd773b5](https://github.com/StructifyAI/structify-node/commit/bd773b57fa9dbaee22cec6de3bbb6e8b25100af3))
+* **api:** manual updates ([#737](https://github.com/StructifyAI/structify-node/issues/737)) ([15d7f28](https://github.com/StructifyAI/structify-node/commit/15d7f2872c77fc815f87f8b732995083cc821bc0))
+* **api:** manual updates ([#738](https://github.com/StructifyAI/structify-node/issues/738)) ([958c58b](https://github.com/StructifyAI/structify-node/commit/958c58b46e414dd2428214b4d85fe327c5973856))
+* **api:** manual updates ([#739](https://github.com/StructifyAI/structify-node/issues/739)) ([39fe187](https://github.com/StructifyAI/structify-node/commit/39fe187cf9f0d66a82a9c4e60832777682a038b0))
+* **api:** manual updates ([#740](https://github.com/StructifyAI/structify-node/issues/740)) ([f7789bc](https://github.com/StructifyAI/structify-node/commit/f7789bc78fe92bc90fb8c0daf0823de3a147fa50))
+
+
+### Bug Fixes
+
+* **client:** normalize method ([#724](https://github.com/StructifyAI/structify-node/issues/724)) ([cb3a0c9](https://github.com/StructifyAI/structify-node/commit/cb3a0c9145b4e93f3f605adb9e99fd7fa4611ebc))
+
+
+### Chores
+
+* **internal:** change formatting ([#730](https://github.com/StructifyAI/structify-node/issues/730)) ([4bd19a1](https://github.com/StructifyAI/structify-node/commit/4bd19a1b089bd69690ceb951c2b8f47baebdf167))
+* **internal:** codegen related update ([#726](https://github.com/StructifyAI/structify-node/issues/726)) ([106198c](https://github.com/StructifyAI/structify-node/commit/106198cb30931eb1265a43ebd9d92555771f2241))
+* **internal:** codegen related update ([#729](https://github.com/StructifyAI/structify-node/issues/729)) ([3cfb178](https://github.com/StructifyAI/structify-node/commit/3cfb178af435253daa191becf5ab18b9f6305d2b))
+* **internal:** fix some typos ([#716](https://github.com/StructifyAI/structify-node/issues/716)) ([0de1809](https://github.com/StructifyAI/structify-node/commit/0de18099a5abfdfcd2aebb704a6fafbe60b1269f))
+
+
+### Documentation
+
+* minor formatting changes ([#725](https://github.com/StructifyAI/structify-node/issues/725)) ([9d4d94d](https://github.com/StructifyAI/structify-node/commit/9d4d94d1569210adeda5262d7e7ecd30ad3d07b5))
+
 ## 1.62.0 (2024-12-13)
 
 Full Changelog: [v1.61.0...v1.62.0](https://github.com/StructifyAI/structify-node/compare/v1.61.0...v1.62.0)
