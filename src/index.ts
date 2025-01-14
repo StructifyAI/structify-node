@@ -54,15 +54,13 @@ import {
   EntitySearchResponse,
   EntitySummarizeParams,
   EntitySummarizeResponse,
-  EntityTriggerMergeParams,
-  EntityTriggerMergeResponse,
   EntityUpdatePropertyParams,
   EntityUpdatePropertyResponse,
   EntityVerifyParams,
   EntityViewParams,
   EntityViewResponse,
 } from './resources/entities';
-import { Image, ImageGetResponse } from './resources/image';
+import { ImageGetResponse, Images } from './resources/images';
 import {
   JobCancelResponse,
   JobDeleteResponse,
@@ -90,7 +88,7 @@ import { Server, ServerInformation } from './resources/server';
 import {
   DatasetDescriptor,
   Entity,
-  Image as SharedAPIImage,
+  Image,
   KnowledgeGraph,
   PropertyType,
   Relationship,
@@ -269,7 +267,7 @@ export class Structify extends Core.APIClient {
   server: API.Server = new API.Server(this);
   sources: API.Sources = new API.Sources(this);
   entities: API.Entities = new API.Entities(this);
-  image: API.Image = new API.Image(this);
+  images: API.Images = new API.Images(this);
   report: API.Report = new API.Report(this);
   structure: API.Structure = new API.Structure(this);
   label: API.Label = new API.Label(this);
@@ -322,7 +320,7 @@ Structify.JobListResponsesJobsList = JobListResponsesJobsList;
 Structify.Server = Server;
 Structify.Sources = Sources;
 Structify.Entities = Entities;
-Structify.Image = Image;
+Structify.Images = Images;
 Structify.Report = Report;
 Structify.Structure = Structure;
 Structify.Label = Label;
@@ -405,7 +403,6 @@ export declare namespace Structify {
     type EntityMergeResponse as EntityMergeResponse,
     type EntitySearchResponse as EntitySearchResponse,
     type EntitySummarizeResponse as EntitySummarizeResponse,
-    type EntityTriggerMergeResponse as EntityTriggerMergeResponse,
     type EntityUpdatePropertyResponse as EntityUpdatePropertyResponse,
     type EntityViewResponse as EntityViewResponse,
     type EntityDeleteParams as EntityDeleteParams,
@@ -417,13 +414,12 @@ export declare namespace Structify {
     type EntityMergeParams as EntityMergeParams,
     type EntitySearchParams as EntitySearchParams,
     type EntitySummarizeParams as EntitySummarizeParams,
-    type EntityTriggerMergeParams as EntityTriggerMergeParams,
     type EntityUpdatePropertyParams as EntityUpdatePropertyParams,
     type EntityVerifyParams as EntityVerifyParams,
     type EntityViewParams as EntityViewParams,
   };
 
-  export { Image as Image, type ImageGetResponse as ImageGetResponse };
+  export { Images as Images, type ImageGetResponse as ImageGetResponse };
 
   export {
     Report as Report,
@@ -465,7 +461,7 @@ export declare namespace Structify {
     Shared as Shared,
     type DatasetDescriptor as DatasetDescriptor,
     type Entity as Entity,
-    type SharedAPIImage as Image,
+    type Image as Image,
     type KnowledgeGraph as KnowledgeGraph,
     type PropertyType as PropertyType,
     type Relationship as Relationship,
