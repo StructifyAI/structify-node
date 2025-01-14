@@ -190,18 +190,18 @@ export namespace ChatPrompt {
 
     extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
 
-    formatter_specific: Metadata.Image | Metadata.Web | Metadata.Text;
+    formatter_specific: Metadata.ImageMeta | Metadata.WebMeta | Metadata.TextMeta;
 
     tool_metadata: Array<StructureAPI.ToolMetadata>;
   }
 
   export namespace Metadata {
-    export interface Image {
-      Image: Image.Image;
+    export interface ImageMeta {
+      ImageMeta: ImageMeta.ImageMeta;
     }
 
-    export namespace Image {
-      export interface Image {
+    export namespace ImageMeta {
+      export interface ImageMeta {
         document_name?: string | null;
 
         document_page?: number | null;
@@ -212,13 +212,13 @@ export namespace ChatPrompt {
       }
     }
 
-    export interface Web {
-      Web: Web.Web;
+    export interface WebMeta {
+      WebMeta: WebMeta.WebMeta;
     }
 
-    export namespace Web {
-      export interface Web {
-        flags: Array<Web.Flag>;
+    export namespace WebMeta {
+      export interface WebMeta {
+        flags: Array<WebMeta.Flag>;
 
         url: string;
 
@@ -227,7 +227,7 @@ export namespace ChatPrompt {
         screenshot?: Core.Uploadable | null;
       }
 
-      export namespace Web {
+      export namespace WebMeta {
         export interface Flag {
           ariaLabel: string;
 
@@ -259,12 +259,12 @@ export namespace ChatPrompt {
       }
     }
 
-    export interface Text {
-      Text: Text.Text;
+    export interface TextMeta {
+      TextMeta: TextMeta.TextMeta;
     }
 
-    export namespace Text {
-      export interface Text {
+    export namespace TextMeta {
+      export interface TextMeta {
         text: string;
       }
     }
