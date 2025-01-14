@@ -39,7 +39,6 @@ export {
   type EntityMergeResponse,
   type EntitySearchResponse,
   type EntitySummarizeResponse,
-  type EntityTriggerMergeResponse,
   type EntityUpdatePropertyResponse,
   type EntityViewResponse,
   type EntityDeleteParams,
@@ -51,12 +50,11 @@ export {
   type EntityMergeParams,
   type EntitySearchParams,
   type EntitySummarizeParams,
-  type EntityTriggerMergeParams,
   type EntityUpdatePropertyParams,
   type EntityVerifyParams,
   type EntityViewParams,
 } from './entities';
-export { Image, type ImageGetResponse } from './image';
+export { Images, type ImageGetResponse } from './images';
 export {
   JobListResponsesJobsList,
   Jobs,
