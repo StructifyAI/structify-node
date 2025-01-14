@@ -169,6 +169,7 @@ Types:
 - <code><a href="./src/resources/entities.ts">EntityMergeResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntitySearchResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntitySummarizeResponse</a></code>
+- <code><a href="./src/resources/entities.ts">EntityTriggerMergeResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityUpdatePropertyResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityViewResponse</a></code>
 
@@ -183,6 +184,7 @@ Methods:
 - <code title="post /entity/merge">client.entities.<a href="./src/resources/entities.ts">merge</a>({ ...params }) -> EntityMergeResponse</code>
 - <code title="post /entity/search">client.entities.<a href="./src/resources/entities.ts">search</a>({ ...params }) -> EntitySearchResponse</code>
 - <code title="post /entity/summarize">client.entities.<a href="./src/resources/entities.ts">summarize</a>({ ...params }) -> EntitySummarizeResponse</code>
+- <code title="post /entity/trigger_merge">client.entities.<a href="./src/resources/entities.ts">triggerMerge</a>({ ...params }) -> EntityTriggerMergeResponse</code>
 - <code title="post /entity/update">client.entities.<a href="./src/resources/entities.ts">updateProperty</a>({ ...params }) -> EntityUpdatePropertyResponse</code>
 - <code title="post /entity/verify">client.entities.<a href="./src/resources/entities.ts">verify</a>({ ...params }) -> KnowledgeGraph</code>
 - <code title="get /entity/view">client.entities.<a href="./src/resources/entities.ts">view</a>({ ...params }) -> EntityViewResponse</code>

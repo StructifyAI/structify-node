@@ -188,6 +188,25 @@ describe('resource entities', () => {
     });
   });
 
+  test('triggerMerge: only required params', async () => {
+    const responsePromise = client.entities.triggerMerge({
+      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('triggerMerge: required and optional params', async () => {
+    const response = await client.entities.triggerMerge({
+      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+  });
+
   test('updateProperty: only required params', async () => {
     const responsePromise = client.entities.updateProperty({
       dataset_name: 'dataset_name',
