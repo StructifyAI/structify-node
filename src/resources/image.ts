@@ -3,7 +3,7 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 
-export class Images extends APIResource {
+export class Image extends APIResource {
   /**
    * Returns an object containing the image bytes
    */
@@ -16,6 +16,6 @@ export interface ImageGetResponse {
   bytes: Core.Uploadable;
 }
 
-export declare namespace Images {
+export declare namespace Image {
   export { type ImageGetResponse as ImageGetResponse };
 }
