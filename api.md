@@ -187,15 +187,15 @@ Methods:
 - <code title="post /entity/verify">client.entities.<a href="./src/resources/entities.ts">verify</a>({ ...params }) -> KnowledgeGraph</code>
 - <code title="get /entity/view">client.entities.<a href="./src/resources/entities.ts">view</a>({ ...params }) -> EntityViewResponse</code>
 
-# Images
+# Image
 
 Types:
 
-- <code><a href="./src/resources/images.ts">ImageGetResponse</a></code>
+- <code><a href="./src/resources/image.ts">ImageGetResponse</a></code>
 
 Methods:
 
-- <code title="get /images/{hash}">client.images.<a href="./src/resources/images.ts">get</a>(hash) -> ImageGetResponse</code>
+- <code title="get /images/{hash}">client.image.<a href="./src/resources/image.ts">get</a>(hash) -> ImageGetResponse</code>
 
 # Report
 
