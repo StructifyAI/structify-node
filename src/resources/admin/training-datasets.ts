@@ -118,7 +118,7 @@ export class TrainingDatasets extends APIResource {
   }
 
   /**
-   * Removes a training datum from the specified dataset.
+   * Switches a training datum to a new dataset.
    */
   switchDataset(
     params: TrainingDatasetSwitchDatasetParams,
