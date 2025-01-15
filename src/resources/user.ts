@@ -53,6 +53,8 @@ export class User extends APIResource {
 
 export interface TokenResponse {
   token: string;
+
+  permissions: Array<'pdf_parsing' | 'labeler' | 'none'>;
 }
 
 export interface UserInfo {
