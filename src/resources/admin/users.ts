@@ -23,7 +23,7 @@ export class Users extends APIResource {
 export interface User {
   email: string;
 
-  permissions?: Array<'pdf_parsing' | 'labeler' | 'none'> | null;
+  permissions?: Array<'pdf_parsing' | 'labeler' | 'debug' | 'none'> | null;
 
   user_type?: 'Admin' | 'Public' | 'EndUser';
 }
@@ -37,7 +37,7 @@ export interface UserCreateParams {
 
   is_admin?: boolean;
 
-  permission?: Array<'pdf_parsing' | 'labeler' | 'none'> | null;
+  permission?: Array<'pdf_parsing' | 'labeler' | 'debug' | 'none'> | null;
 
   test?: boolean;
 }
