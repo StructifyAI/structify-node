@@ -54,7 +54,7 @@ export class User extends APIResource {
 export interface TokenResponse {
   token: string;
 
-  permissions: Array<'pdf_parsing' | 'labeler' | 'none'>;
+  permissions: Array<'pdf_parsing' | 'labeler' | 'debug' | 'none'>;
 }
 
 export interface UserInfo {
@@ -63,6 +63,8 @@ export interface UserInfo {
   credits_used: number;
 
   is_admin: boolean;
+
+  permissions: Array<'pdf_parsing' | 'labeler' | 'debug' | 'none'>;
 
   username: string;
 }
