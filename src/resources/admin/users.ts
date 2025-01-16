@@ -37,7 +37,7 @@ export interface UserCreateParams {
 
   is_admin?: boolean;
 
-  permission?: Array<'pdf_parsing' | 'labeler' | 'debug' | 'none'> | null;
+  permissions?: Array<'pdf_parsing' | 'labeler' | 'debug' | 'none'> | null;
 
   test?: boolean;
 }
