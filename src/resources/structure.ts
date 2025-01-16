@@ -831,7 +831,11 @@ export namespace StructureRunAsyncParams {
 
     export namespace WebSearch {
       export interface WebSearch {
+        description?: string | null;
+
         starting_website?: string;
+
+        title?: string | null;
       }
     }
 
