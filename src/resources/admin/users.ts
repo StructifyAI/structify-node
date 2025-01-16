@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as UserAPI from '../user';
 
@@ -24,17 +23,9 @@ export class Users extends APIResource {
    * get the credit balance of a user by email.
    */
   getCredits(
-    query?: UserGetCreditsParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<UserGetCreditsResponse>;
-  getCredits(options?: Core.RequestOptions): Core.APIPromise<UserGetCreditsResponse>;
-  getCredits(
-    query: UserGetCreditsParams | Core.RequestOptions = {},
+    query: UserGetCreditsParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<UserGetCreditsResponse> {
-    if (isRequestOptions(query)) {
-      return this.getCredits({}, query);
-    }
     return this._client.get('/admin/users/get_credits', { query, ...options });
   }
 
@@ -77,9 +68,9 @@ export interface UserCreateParams {
 }
 
 export interface UserGetCreditsParams {
-  user_email?: string | null;
+  user_email: string;
 
-  user_token?: string | null;
+  user_token: string;
 }
 
 export interface UserSetCreditsParams {
