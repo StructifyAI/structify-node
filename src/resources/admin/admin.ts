@@ -41,7 +41,16 @@ import {
   UpdateDatumRequest,
 } from './training-datasets';
 import * as UsersAPI from './users';
-import { User, UserCreateParams, UserListResponse, Users } from './users';
+import {
+  User,
+  UserCreateParams,
+  UserGetCreditsParams,
+  UserGetCreditsResponse,
+  UserListResponse,
+  UserSetCreditsParams,
+  UserSetCreditsResponse,
+  Users,
+} from './users';
 
 export class Admin extends APIResource {
   humanLlm: HumanLlmAPI.HumanLlm = new HumanLlmAPI.HumanLlm(this._client);
@@ -75,7 +84,11 @@ export declare namespace Admin {
     Users as Users,
     type User as User,
     type UserListResponse as UserListResponse,
+    type UserGetCreditsResponse as UserGetCreditsResponse,
+    type UserSetCreditsResponse as UserSetCreditsResponse,
     type UserCreateParams as UserCreateParams,
+    type UserGetCreditsParams as UserGetCreditsParams,
+    type UserSetCreditsParams as UserSetCreditsParams,
   };
 
   export {

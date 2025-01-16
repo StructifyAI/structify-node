@@ -18,6 +18,27 @@ export class Users extends APIResource {
   list(options?: Core.RequestOptions): Core.APIPromise<UserListResponse> {
     return this._client.get('/admin/users/list', options);
   }
+
+  /**
+   * get the credit balance of a user by email.
+   */
+  getCredits(
+    query: UserGetCreditsParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<UserGetCreditsResponse> {
+    return this._client.get('/admin/users/get_credits', { query, ...options });
+  }
+
+  /**
+   * set the credit balance of a user, returing that new credit balance.
+   */
+  setCredits(
+    params: UserSetCreditsParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<UserSetCreditsResponse> {
+    const { credit_count, user_email } = params;
+    return this._client.post('/admin/users/set_credits', { query: { credit_count, user_email }, ...options });
+  }
 }
 
 export interface User {
@@ -29,6 +50,10 @@ export interface User {
 }
 
 export type UserListResponse = Array<User>;
+
+export type UserGetCreditsResponse = number;
+
+export type UserSetCreditsResponse = number;
 
 export interface UserCreateParams {
   credit_count?: number | null;
@@ -42,10 +67,24 @@ export interface UserCreateParams {
   test?: boolean;
 }
 
+export interface UserGetCreditsParams {
+  user_email: string;
+}
+
+export interface UserSetCreditsParams {
+  credit_count: number;
+
+  user_email: string;
+}
+
 export declare namespace Users {
   export {
     type User as User,
     type UserListResponse as UserListResponse,
+    type UserGetCreditsResponse as UserGetCreditsResponse,
+    type UserSetCreditsResponse as UserSetCreditsResponse,
     type UserCreateParams as UserCreateParams,
+    type UserGetCreditsParams as UserGetCreditsParams,
+    type UserSetCreditsParams as UserSetCreditsParams,
   };
 }
