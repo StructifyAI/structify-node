@@ -75,7 +75,11 @@ export interface UserCreateParams {
 
 export interface UserGetCreditsParams {}
 
-export type UserSetCreditsParams = unknown;
+export interface UserSetCreditsParams {
+  credit_count: number;
+
+  user_email: string;
+}
 
 export declare namespace Users {
   export {
