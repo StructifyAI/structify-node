@@ -58,7 +58,7 @@ describe('resource users', () => {
   });
 
   test('setCredits: only required params', async () => {
-    const responsePromise = client.admin.users.setCredits({ credit_count: 0, user_email: 'user_email' });
+    const responsePromise = client.admin.users.setCredits({});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -69,6 +69,6 @@ describe('resource users', () => {
   });
 
   test('setCredits: required and optional params', async () => {
-    const response = await client.admin.users.setCredits({ credit_count: 0, user_email: 'user_email' });
+    const response = await client.admin.users.setCredits({});
   });
 });
