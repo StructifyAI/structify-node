@@ -39,7 +39,7 @@ describe('resource users', () => {
   });
 
   test('getCredits', async () => {
-    const responsePromise = client.admin.users.getCredits();
+    const responsePromise = client.admin.users.getCredits({});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -49,25 +49,8 @@ describe('resource users', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('getCredits: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.admin.users.getCredits({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Structify.NotFoundError,
-    );
-  });
-
-  test('getCredits: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.admin.users.getCredits(
-        { user_email: 'user_email', user_token: 'user_token' },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Structify.NotFoundError);
-  });
-
   test('setCredits: only required params', async () => {
-    const responsePromise = client.admin.users.setCredits({ credit_count: 0, user_email: 'user_email' });
+    const responsePromise = client.admin.users.setCredits({});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -78,6 +61,6 @@ describe('resource users', () => {
   });
 
   test('setCredits: required and optional params', async () => {
-    const response = await client.admin.users.setCredits({ credit_count: 0, user_email: 'user_email' });
+    const response = await client.admin.users.setCredits({});
   });
 });
