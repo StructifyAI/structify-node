@@ -26,7 +26,11 @@ export class Users extends APIResource {
     query: UserGetCreditsParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<UserGetCreditsResponse> {
-    return this._client.get('/admin/users/get_credits', { query, ...options });
+    return this._client.get('/admin/users/get_credits', {
+      query,
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
   }
 
   /**
@@ -37,7 +41,11 @@ export class Users extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<UserSetCreditsResponse> {
     const { credit_count, user_email } = params;
-    return this._client.post('/admin/users/set_credits', { query: { credit_count, user_email }, ...options });
+    return this._client.post('/admin/users/set_credits', {
+      query: { credit_count, user_email },
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
   }
 }
 
