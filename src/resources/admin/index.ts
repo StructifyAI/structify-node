@@ -42,9 +42,8 @@ export {
   Users,
   type User,
   type UserListResponse,
-  type UserGetCreditsResponse,
   type UserSetCreditsResponse,
   type UserCreateParams,
-  type UserGetCreditsParams,
+  type UserUpdateParams,
   type UserSetCreditsParams,
 } from './users';

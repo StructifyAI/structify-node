@@ -13,23 +13,17 @@ export class Users extends APIResource {
   }
 
   /**
+   * Update a user's permissions and type.
+   */
+  update(body: UserUpdateParams, options?: Core.RequestOptions): Core.APIPromise<User> {
+    return this._client.put('/admin/users/update', { body, ...options });
+  }
+
+  /**
    * Lists all the users in the system.
    */
   list(options?: Core.RequestOptions): Core.APIPromise<UserListResponse> {
     return this._client.get('/admin/users/list', options);
-  }
-
-  /**
-   * get the credit balance of a user by email.
-   */
-  getCredits(
-    query: UserGetCreditsParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<UserGetCreditsResponse> {
-    return this._client.get('/admin/users/get_credits', {
-      ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
-    });
   }
 
   /**
@@ -53,8 +47,6 @@ export interface User {
 
 export type UserListResponse = Array<User>;
 
-export type UserGetCreditsResponse = number;
-
 export interface UserSetCreditsResponse {
   credit_count: number;
 }
@@ -71,7 +63,13 @@ export interface UserCreateParams {
   test?: boolean;
 }
 
-export interface UserGetCreditsParams {}
+export interface UserUpdateParams {
+  current_email: string;
+
+  new_email?: string | null;
+
+  new_permissions?: Array<'pdf_parsing' | 'labeler' | 'debug' | 'none'> | null;
+}
 
 export interface UserSetCreditsParams {
   credit_count: number;
@@ -83,10 +81,9 @@ export declare namespace Users {
   export {
     type User as User,
     type UserListResponse as UserListResponse,
-    type UserGetCreditsResponse as UserGetCreditsResponse,
     type UserSetCreditsResponse as UserSetCreditsResponse,
     type UserCreateParams as UserCreateParams,
-    type UserGetCreditsParams as UserGetCreditsParams,
+    type UserUpdateParams as UserUpdateParams,
     type UserSetCreditsParams as UserSetCreditsParams,
   };
 }
