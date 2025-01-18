@@ -38,4 +38,12 @@ export {
   type TrainingDatasetUpdateDatumStatusParams,
   type TrainingDatasetUploadDatumParams,
 } from './training-datasets';
-export { Users, type User, type UserListResponse, type UserCreateParams } from './users';
+export {
+  Users,
+  type User,
+  type UserListResponse,
+  type UserSetCreditsResponse,
+  type UserCreateParams,
+  type UserUpdateParams,
+  type UserSetCreditsParams,
+} from './users';
