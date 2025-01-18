@@ -13,13 +13,6 @@ export class Users extends APIResource {
   }
 
   /**
-   * Update a user's permissions and type.
-   */
-  update(body: UserUpdateParams, options?: Core.RequestOptions): Core.APIPromise<User> {
-    return this._client.put('/admin/users/update', { body, ...options });
-  }
-
-  /**
    * Lists all the users in the system.
    */
   list(options?: Core.RequestOptions): Core.APIPromise<UserListResponse> {
@@ -77,14 +70,6 @@ export interface UserCreateParams {
   test?: boolean;
 }
 
-export interface UserUpdateParams {
-  current_email: string;
-
-  new_email?: string | null;
-
-  new_permissions?: Array<'pdf_parsing' | 'labeler' | 'debug' | 'none'> | null;
-}
-
 export interface UserGetCreditsParams {}
 
 export interface UserSetCreditsParams {
@@ -100,7 +85,6 @@ export declare namespace Users {
     type UserGetCreditsResponse as UserGetCreditsResponse,
     type UserSetCreditsResponse as UserSetCreditsResponse,
     type UserCreateParams as UserCreateParams,
-    type UserUpdateParams as UserUpdateParams,
     type UserGetCreditsParams as UserGetCreditsParams,
     type UserSetCreditsParams as UserSetCreditsParams,
   };
