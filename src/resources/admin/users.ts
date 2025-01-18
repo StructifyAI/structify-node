@@ -39,11 +39,7 @@ export class Users extends APIResource {
     body: UserSetCreditsParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<UserSetCreditsResponse> {
-    return this._client.post('/admin/users/set_credits', {
-      body,
-      ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
-    });
+    return this._client.post('/admin/users/set_credits', { body, ...options });
   }
 }
 
@@ -59,7 +55,9 @@ export type UserListResponse = Array<User>;
 
 export type UserGetCreditsResponse = number;
 
-export type UserSetCreditsResponse = number;
+export interface UserSetCreditsResponse {
+  credit_count: number;
+}
 
 export interface UserCreateParams {
   credit_count?: number | null;
