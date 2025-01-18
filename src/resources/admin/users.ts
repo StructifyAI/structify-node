@@ -27,6 +27,16 @@ export class Users extends APIResource {
   }
 
   /**
+   * get the credit balance of a user by email.
+   */
+  getCredits(
+    query: UserGetCreditsParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<UserGetCreditsResponse> {
+    return this._client.get('/admin/users/get_credits', options);
+  }
+
+  /**
    * set the credit balance of a user, returing that new credit balance.
    */
   setCredits(
@@ -46,6 +56,10 @@ export interface User {
 }
 
 export type UserListResponse = Array<User>;
+
+export interface UserGetCreditsResponse {
+  credit_count: number;
+}
 
 export interface UserSetCreditsResponse {
   credit_count: number;
@@ -71,6 +85,8 @@ export interface UserUpdateParams {
   new_permissions?: Array<'pdf_parsing' | 'labeler' | 'debug' | 'none'> | null;
 }
 
+export interface UserGetCreditsParams {}
+
 export interface UserSetCreditsParams {
   credit_count: number;
 
@@ -81,9 +97,11 @@ export declare namespace Users {
   export {
     type User as User,
     type UserListResponse as UserListResponse,
+    type UserGetCreditsResponse as UserGetCreditsResponse,
     type UserSetCreditsResponse as UserSetCreditsResponse,
     type UserCreateParams as UserCreateParams,
     type UserUpdateParams as UserUpdateParams,
+    type UserGetCreditsParams as UserGetCreditsParams,
     type UserSetCreditsParams as UserSetCreditsParams,
   };
 }
