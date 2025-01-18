@@ -57,6 +57,17 @@ describe('resource users', () => {
     );
   });
 
+  test('getCredits', async () => {
+    const responsePromise = client.admin.users.getCredits({});
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
   test('setCredits: only required params', async () => {
     const responsePromise = client.admin.users.setCredits({ credit_count: 0, user_email: 'user_email' });
     const rawResponse = await responsePromise.asResponse();
