@@ -42,14 +42,13 @@ Types:
 
 - <code><a href="./src/resources/admin/users.ts">User</a></code>
 - <code><a href="./src/resources/admin/users.ts">UserListResponse</a></code>
-- <code><a href="./src/resources/admin/users.ts">UserGetCreditsResponse</a></code>
 - <code><a href="./src/resources/admin/users.ts">UserSetCreditsResponse</a></code>
 
 Methods:
 
 - <code title="post /admin/users/create">client.admin.users.<a href="./src/resources/admin/users.ts">create</a>({ ...params }) -> TokenResponse</code>
+- <code title="put /admin/users/update">client.admin.users.<a href="./src/resources/admin/users.ts">update</a>({ ...params }) -> User</code>
 - <code title="get /admin/users/list">client.admin.users.<a href="./src/resources/admin/users.ts">list</a>() -> UserListResponse</code>
-- <code title="get /admin/users/get_credits">client.admin.users.<a href="./src/resources/admin/users.ts">getCredits</a>() -> UserGetCreditsResponse</code>
 - <code title="post /admin/users/set_credits">client.admin.users.<a href="./src/resources/admin/users.ts">setCredits</a>({ ...params }) -> UserSetCreditsResponse</code>
 
 ## TrainingDatasets
