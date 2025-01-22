@@ -20,25 +20,6 @@ describe('resource users', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('update: only required params', async () => {
-    const responsePromise = client.admin.users.update({ current_email: 'current_email' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('update: required and optional params', async () => {
-    const response = await client.admin.users.update({
-      current_email: 'current_email',
-      new_email: 'new_email',
-      new_permissions: ['pdf_parsing'],
-    });
-  });
-
   test('list', async () => {
     const responsePromise = client.admin.users.list();
     const rawResponse = await responsePromise.asResponse();
@@ -55,6 +36,17 @@ describe('resource users', () => {
     await expect(client.admin.users.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       Structify.NotFoundError,
     );
+  });
+
+  test('getCredits', async () => {
+    const responsePromise = client.admin.users.getCredits({});
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('setCredits: only required params', async () => {
