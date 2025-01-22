@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as SharedAPI from './shared';
 import * as StructureAPI from './structure';
 import { JobsList, type JobsListParams } from '../pagination';
 
@@ -163,18 +162,9 @@ export namespace JobGetStepGraphResponse {
 
     status: 'Queued' | 'Ignored' | 'Started' | 'Executed';
 
-    prompt?: string | null;
+    execution_step?: StructureAPI.ExecutionStep | null;
 
     queued_message?: string | null;
-
-    /**
-     * Knowledge graph info structured to deserialize and display in the same format
-     * that the LLM outputs. Also the first representation of an LLM output in the
-     * pipeline from raw tool output to being merged into a Neo4j DB
-     */
-    save?: SharedAPI.KnowledgeGraph | null;
-
-    screenshot?: Core.Uploadable | null;
 
     skipped_reason?: string | null;
 
