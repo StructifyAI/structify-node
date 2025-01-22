@@ -23,10 +23,10 @@ export class Users extends APIResource {
    * get the credit balance of a user by email.
    */
   getCredits(
-    query: UserGetCreditsParams,
+    body: UserGetCreditsParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<UserGetCreditsResponse> {
-    return this._client.get('/admin/users/get_credits', options);
+    return this._client.post('/admin/users/get_credits', { body, ...options });
   }
 
   /**
@@ -70,7 +70,11 @@ export interface UserCreateParams {
   test?: boolean;
 }
 
-export interface UserGetCreditsParams {}
+export interface UserGetCreditsParams {
+  user_email?: string | null;
+
+  user_token?: string | null;
+}
 
 export interface UserSetCreditsParams {
   credit_count: number;
