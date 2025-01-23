@@ -20,8 +20,8 @@ import * as TrainingDatasetsAPI from './training-datasets';
 import {
   AddDatumRequest,
   TrainingDatasetAddDatumParams,
-  TrainingDatasetAddParams,
   TrainingDatasetDownloadDatumParams,
+  TrainingDatasetGetDatumInfoParams,
   TrainingDatasetGetLabellerStatsParams,
   TrainingDatasetGetLabellerStatsResponse,
   TrainingDatasetGetNextUnverifiedParams,
@@ -50,7 +50,6 @@ import {
   UserListResponse,
   UserSetCreditsParams,
   UserSetCreditsResponse,
-  UserUpdateParams,
   Users,
 } from './users';
 
@@ -90,7 +89,6 @@ export declare namespace Admin {
     type UserGetStatsResponse as UserGetStatsResponse,
     type UserSetCreditsResponse as UserSetCreditsResponse,
     type UserCreateParams as UserCreateParams,
-    type UserUpdateParams as UserUpdateParams,
     type UserGetCreditsParams as UserGetCreditsParams,
     type UserGetStatsParams as UserGetStatsParams,
     type UserSetCreditsParams as UserSetCreditsParams,
@@ -105,9 +103,9 @@ export declare namespace Admin {
     type TrainingDatasetGetLabellerStatsResponse as TrainingDatasetGetLabellerStatsResponse,
     type TrainingDatasetListDatumsResponse as TrainingDatasetListDatumsResponse,
     type TrainingDatasetSizeResponse as TrainingDatasetSizeResponse,
-    type TrainingDatasetAddParams as TrainingDatasetAddParams,
     type TrainingDatasetAddDatumParams as TrainingDatasetAddDatumParams,
     type TrainingDatasetDownloadDatumParams as TrainingDatasetDownloadDatumParams,
+    type TrainingDatasetGetDatumInfoParams as TrainingDatasetGetDatumInfoParams,
     type TrainingDatasetGetLabellerStatsParams as TrainingDatasetGetLabellerStatsParams,
     type TrainingDatasetGetNextUnverifiedParams as TrainingDatasetGetNextUnverifiedParams,
     type TrainingDatasetLabelDatumParams as TrainingDatasetLabelDatumParams,
