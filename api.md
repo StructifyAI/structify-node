@@ -58,7 +58,6 @@ Types:
 
 - <code><a href="./src/resources/admin/training-datasets.ts">AddDatumRequest</a></code>
 - <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatumResponse</a></code>
-- <code><a href="./src/resources/admin/training-datasets.ts">UpdateDatumRequest</a></code>
 - <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatasetListResponse</a></code>
 - <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatasetGetLabellerStatsResponse</a></code>
 - <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatasetListDatumsResponse</a></code>
@@ -67,19 +66,13 @@ Types:
 Methods:
 
 - <code title="get /admin/training_datasets/list">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">list</a>() -> TrainingDatasetListResponse</code>
-- <code title="post /admin/training_datasets/add_dataset">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">add</a>({ ...params }) -> void</code>
 - <code title="post /admin/training_datasets/add_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">addDatum</a>({ ...params }) -> void</code>
 - <code title="get /admin/training_datasets/labeller_stats">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getLabellerStats</a>({ ...params }) -> TrainingDatasetGetLabellerStatsResponse</code>
 - <code title="get /admin/training_datasets/next_unverified">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getNextUnverified</a>({ ...params }) -> TrainingDatumResponse</code>
-- <code title="get /admin/training_datasets/get_step_by_id">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getStepById</a>({ ...params }) -> TrainingDatumResponse</code>
 - <code title="get /admin/training_datasets/list_datums">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">listDatums</a>({ ...params }) -> TrainingDatasetListDatumsResponse</code>
-- <code title="delete /admin/training_datasets/remove_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">removeDatum</a>({ ...params }) -> void</code>
-- <code title="post /admin/training_datasets/reset_pending">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">resetPending</a>({ ...params }) -> void</code>
 - <code title="post /admin/training_datasets/size">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">size</a>({ ...params }) -> TrainingDatasetSizeResponse</code>
 - <code title="post /admin/training_datasets/switch_dataset">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">switchDataset</a>({ ...params }) -> void</code>
-- <code title="put /admin/training_datasets/update_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">updateDatum</a>({ ...params }) -> void</code>
 - <code title="post /admin/training_datasets/update_datum_status">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">updateDatumStatus</a>({ ...params }) -> void</code>
-- <code title="post /admin/training_datasets/upload_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">uploadDatum</a>({ ...params }) -> void</code>
 
 # Datasets
 
@@ -242,14 +235,6 @@ Methods:
 - <code title="post /structure/run_async">client.structure.<a href="./src/resources/structure.ts">runAsync</a>({ ...params }) -> string</code>
 
 # Label
-
-Types:
-
-- <code><a href="./src/resources/label.ts">LabelVerifyResponse</a></code>
-
-Methods:
-
-- <code title="post /label/verify">client.label.<a href="./src/resources/label.ts">verify</a>({ ...params }) -> LabelVerifyResponse</code>
 
 # Shared
 
