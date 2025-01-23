@@ -68,6 +68,7 @@ export {
   type JobGetStepsResponse,
   type JobListParams,
 } from './jobs';
+export { Label } from './label';
 export {
   Report,
   type ReportMissingResponse,
