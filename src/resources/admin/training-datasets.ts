@@ -2,7 +2,9 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
+import * as SharedAPI from '../shared';
 import * as StructureAPI from '../structure';
+import { type Response } from '../../_shims/index';
 
 export class TrainingDatasets extends APIResource {
   /**
@@ -24,6 +26,21 @@ export class TrainingDatasets extends APIResource {
   }
 
   /**
+   * Lists all training datums for a dataset.
+   */
+  downloadDatum(
+    query: TrainingDatasetDownloadDatumParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Response> {
+    return this._client.get('/admin/training_datasets/download_datum_step', {
+      query,
+      ...options,
+      headers: { Accept: 'application/octet-stream', ...options?.headers },
+      __binaryResponse: true,
+    });
+  }
+
+  /**
    * Gets statistics about labellers' work on a dataset.
    */
   getLabellerStats(
@@ -41,6 +58,17 @@ export class TrainingDatasets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<TrainingDatumResponse> {
     return this._client.get('/admin/training_datasets/next_unverified', { query, ...options });
+  }
+
+  /**
+   * Updates the status and content of an existing training datum.
+   */
+  labelDatum(body: TrainingDatasetLabelDatumParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.put('/admin/training_datasets/label_datum', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 
   /**
@@ -174,6 +202,10 @@ export interface TrainingDatasetAddDatumParams {
   step_id: string;
 }
 
+export interface TrainingDatasetDownloadDatumParams {
+  step_id: string;
+}
+
 export interface TrainingDatasetGetLabellerStatsParams {
   status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
 
@@ -188,6 +220,196 @@ export interface TrainingDatasetGetNextUnverifiedParams {
   dataset_name: string;
 
   status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
+}
+
+export interface TrainingDatasetLabelDatumParams {
+  id: string;
+
+  updated_tool_calls: Array<TrainingDatasetLabelDatumParams.UpdatedToolCall>;
+}
+
+export namespace TrainingDatasetLabelDatumParams {
+  export interface UpdatedToolCall {
+    input:
+      | UpdatedToolCall.Save
+      | UpdatedToolCall.Scroll
+      | UpdatedToolCall.ScrollToBottom
+      | UpdatedToolCall.Exit
+      | UpdatedToolCall.Click
+      | UpdatedToolCall.Hover
+      | UpdatedToolCall.Wait
+      | UpdatedToolCall.Error
+      | UpdatedToolCall.Google
+      | UpdatedToolCall.Type;
+
+    name:
+      | 'Exit'
+      | 'Save'
+      | 'Wait'
+      | 'Type'
+      | 'Scroll'
+      | 'ScrollToBottom'
+      | 'Click'
+      | 'Hover'
+      | 'Error'
+      | 'Google';
+
+    result?:
+      | UpdatedToolCall.ToolQueued
+      | UpdatedToolCall.ToolFail
+      | UpdatedToolCall.InputParseFail
+      | UpdatedToolCall.Success
+      | null;
+  }
+
+  export namespace UpdatedToolCall {
+    export interface Save {
+      /**
+       * Knowledge graph info structured to deserialize and display in the same format
+       * that the LLM outputs. Also the first representation of an LLM output in the
+       * pipeline from raw tool output to being merged into a Neo4j DB
+       */
+      Save: SharedAPI.KnowledgeGraph;
+    }
+
+    export interface Scroll {
+      /**
+       * For tools with no inputs.
+       */
+      Scroll: Scroll.Scroll;
+    }
+
+    export namespace Scroll {
+      /**
+       * For tools with no inputs.
+       */
+      export interface Scroll {
+        /**
+         * Dummy argument
+         */
+        reason: string;
+      }
+    }
+
+    export interface ScrollToBottom {
+      /**
+       * For tools with no inputs.
+       */
+      ScrollToBottom: ScrollToBottom.ScrollToBottom;
+    }
+
+    export namespace ScrollToBottom {
+      /**
+       * For tools with no inputs.
+       */
+      export interface ScrollToBottom {
+        /**
+         * Dummy argument
+         */
+        reason: string;
+      }
+    }
+
+    export interface Exit {
+      /**
+       * For tools with no inputs.
+       */
+      Exit: Exit.Exit;
+    }
+
+    export namespace Exit {
+      /**
+       * For tools with no inputs.
+       */
+      export interface Exit {
+        /**
+         * Dummy argument
+         */
+        reason: string;
+      }
+    }
+
+    export interface Click {
+      Click: Click.Click;
+    }
+
+    export namespace Click {
+      export interface Click {
+        flag: number;
+      }
+    }
+
+    export interface Hover {
+      Hover: Hover.Hover;
+    }
+
+    export namespace Hover {
+      export interface Hover {
+        flag: number;
+      }
+    }
+
+    export interface Wait {
+      Wait: Wait.Wait;
+    }
+
+    export namespace Wait {
+      export interface Wait {
+        /**
+         * Time in seconds to wait
+         */
+        seconds?: number;
+      }
+    }
+
+    export interface Error {
+      Error: Error.Error;
+    }
+
+    export namespace Error {
+      export interface Error {
+        error: string;
+      }
+    }
+
+    export interface Google {
+      Google: Google.Google;
+    }
+
+    export namespace Google {
+      export interface Google {
+        query: string;
+      }
+    }
+
+    export interface Type {
+      Type: Type.Type;
+    }
+
+    export namespace Type {
+      export interface Type {
+        flag: number;
+
+        input: string;
+      }
+    }
+
+    export interface ToolQueued {
+      ToolQueued: string;
+    }
+
+    export interface ToolFail {
+      ToolFail: string;
+    }
+
+    export interface InputParseFail {
+      InputParseFail: string;
+    }
+
+    export interface Success {
+      Success: string;
+    }
+  }
 }
 
 export interface TrainingDatasetListDatumsParams {
@@ -238,8 +460,10 @@ export declare namespace TrainingDatasets {
     type TrainingDatasetListDatumsResponse as TrainingDatasetListDatumsResponse,
     type TrainingDatasetSizeResponse as TrainingDatasetSizeResponse,
     type TrainingDatasetAddDatumParams as TrainingDatasetAddDatumParams,
+    type TrainingDatasetDownloadDatumParams as TrainingDatasetDownloadDatumParams,
     type TrainingDatasetGetLabellerStatsParams as TrainingDatasetGetLabellerStatsParams,
     type TrainingDatasetGetNextUnverifiedParams as TrainingDatasetGetNextUnverifiedParams,
+    type TrainingDatasetLabelDatumParams as TrainingDatasetLabelDatumParams,
     type TrainingDatasetListDatumsParams as TrainingDatasetListDatumsParams,
     type TrainingDatasetRemoveDatumParams as TrainingDatasetRemoveDatumParams,
     type TrainingDatasetSizeParams as TrainingDatasetSizeParams,

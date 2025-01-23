@@ -48,6 +48,12 @@ describe('resource trainingDatasets', () => {
     });
   });
 
+  test('downloadDatum: required and optional params', async () => {
+    const response = await client.admin.trainingDatasets.downloadDatum({
+      step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+  });
+
   test('getLabellerStats: only required params', async () => {
     const responsePromise = client.admin.trainingDatasets.getLabellerStats({ status: 'Unlabeled' });
     const rawResponse = await responsePromise.asResponse();
@@ -86,6 +92,38 @@ describe('resource trainingDatasets', () => {
     const response = await client.admin.trainingDatasets.getNextUnverified({
       dataset_name: 'dataset_name',
       status: 'Unlabeled',
+    });
+  });
+
+  test('labelDatum: only required params', async () => {
+    const responsePromise = client.admin.trainingDatasets.labelDatum({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      updated_tool_calls: [{ input: { Save: {} }, name: 'Exit' }],
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('labelDatum: required and optional params', async () => {
+    const response = await client.admin.trainingDatasets.labelDatum({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      updated_tool_calls: [
+        {
+          input: {
+            Save: {
+              entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
+              relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
+            },
+          },
+          name: 'Exit',
+          result: { ToolQueued: 'ToolQueued' },
+        },
+      ],
     });
   });
 
