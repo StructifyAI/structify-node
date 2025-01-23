@@ -54,6 +54,21 @@ export class TrainingDatasets extends APIResource {
   }
 
   /**
+   * Removes a training datum from the specified dataset.
+   */
+  removeDatum(
+    params: TrainingDatasetRemoveDatumParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    const { step_id } = params;
+    return this._client.delete('/admin/training_datasets/remove_from_dataset', {
+      query: { step_id },
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
    * Returns the number of training data in the specified dataset, filtered by
    * status.
    */
@@ -89,6 +104,16 @@ export class TrainingDatasets extends APIResource {
       headers: { Accept: '*/*', ...options?.headers },
     });
   }
+
+  /**
+   * Uploads a new training datum to the specified dataset.
+   */
+  uploadDatum(body: TrainingDatasetUploadDatumParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post(
+      '/admin/training_datasets/upload_labeled_step',
+      Core.multipartFormRequestOptions({ body, ...options, headers: { Accept: '*/*', ...options?.headers } }),
+    );
+  }
 }
 
 export interface AddDatumRequest {
@@ -105,6 +130,14 @@ export interface TrainingDatumResponse {
   status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
 
   step: StructureAPI.ExecutionStep;
+}
+
+export interface UpdateDatumStatusRequest {
+  id: string;
+
+  status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
+
+  review_message?: string | null;
 }
 
 export type TrainingDatasetListResponse = Array<string>;
@@ -161,6 +194,10 @@ export interface TrainingDatasetListDatumsParams {
   dataset_name: string;
 }
 
+export interface TrainingDatasetRemoveDatumParams {
+  step_id: string;
+}
+
 export interface TrainingDatasetSizeParams {
   dataset_name: string;
 
@@ -177,12 +214,25 @@ export interface TrainingDatasetSwitchDatasetParams {
   step_id: string;
 }
 
-export type TrainingDatasetUpdateDatumStatusParams = unknown;
+export interface TrainingDatasetUpdateDatumStatusParams {
+  id: string;
+
+  status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
+
+  review_message?: string | null;
+}
+
+export interface TrainingDatasetUploadDatumParams {
+  dataset_name: Core.Uploadable;
+
+  step_bytes: Core.Uploadable;
+}
 
 export declare namespace TrainingDatasets {
   export {
     type AddDatumRequest as AddDatumRequest,
     type TrainingDatumResponse as TrainingDatumResponse,
+    type UpdateDatumStatusRequest as UpdateDatumStatusRequest,
     type TrainingDatasetListResponse as TrainingDatasetListResponse,
     type TrainingDatasetGetLabellerStatsResponse as TrainingDatasetGetLabellerStatsResponse,
     type TrainingDatasetListDatumsResponse as TrainingDatasetListDatumsResponse,
@@ -191,8 +241,10 @@ export declare namespace TrainingDatasets {
     type TrainingDatasetGetLabellerStatsParams as TrainingDatasetGetLabellerStatsParams,
     type TrainingDatasetGetNextUnverifiedParams as TrainingDatasetGetNextUnverifiedParams,
     type TrainingDatasetListDatumsParams as TrainingDatasetListDatumsParams,
+    type TrainingDatasetRemoveDatumParams as TrainingDatasetRemoveDatumParams,
     type TrainingDatasetSizeParams as TrainingDatasetSizeParams,
     type TrainingDatasetSwitchDatasetParams as TrainingDatasetSwitchDatasetParams,
     type TrainingDatasetUpdateDatumStatusParams as TrainingDatasetUpdateDatumStatusParams,
+    type TrainingDatasetUploadDatumParams as TrainingDatasetUploadDatumParams,
   };
 }
