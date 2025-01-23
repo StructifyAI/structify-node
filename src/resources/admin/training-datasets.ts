@@ -15,6 +15,18 @@ export class TrainingDatasets extends APIResource {
   }
 
   /**
+   * Creates a new training dataset with the given name.
+   */
+  add(params: TrainingDatasetAddParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { dataset_name } = params;
+    return this._client.post('/admin/training_datasets/add_dataset', {
+      query: { dataset_name },
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
    * Adds a new training datum to the specified dataset.
    */
   addDatum(body: TrainingDatasetAddDatumParams, options?: Core.RequestOptions): Core.APIPromise<void> {
@@ -409,6 +421,10 @@ export namespace TrainingDatasetListDatumsResponse {
 
 export type TrainingDatasetSizeResponse = number;
 
+export interface TrainingDatasetAddParams {
+  dataset_name: string;
+}
+
 export interface TrainingDatasetAddDatumParams {
   dataset_name: string;
 
@@ -672,6 +688,7 @@ export declare namespace TrainingDatasets {
     type TrainingDatasetGetLabellerStatsResponse as TrainingDatasetGetLabellerStatsResponse,
     type TrainingDatasetListDatumsResponse as TrainingDatasetListDatumsResponse,
     type TrainingDatasetSizeResponse as TrainingDatasetSizeResponse,
+    type TrainingDatasetAddParams as TrainingDatasetAddParams,
     type TrainingDatasetAddDatumParams as TrainingDatasetAddDatumParams,
     type TrainingDatasetDownloadDatumParams as TrainingDatasetDownloadDatumParams,
     type TrainingDatasetGetLabellerStatsParams as TrainingDatasetGetLabellerStatsParams,
