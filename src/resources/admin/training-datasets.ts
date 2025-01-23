@@ -15,18 +15,6 @@ export class TrainingDatasets extends APIResource {
   }
 
   /**
-   * Creates a new training dataset with the given name.
-   */
-  add(params: TrainingDatasetAddParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { dataset_name } = params;
-    return this._client.post('/admin/training_datasets/add_dataset', {
-      query: { dataset_name },
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Adds a new training datum to the specified dataset.
    */
   addDatum(body: TrainingDatasetAddDatumParams, options?: Core.RequestOptions): Core.APIPromise<void> {
@@ -50,6 +38,17 @@ export class TrainingDatasets extends APIResource {
       headers: { Accept: 'application/octet-stream', ...options?.headers },
       __binaryResponse: true,
     });
+  }
+
+  /**
+   * This includes the status, step, last updated time, and all updates. If the datum
+   * does not exist, a 204 status is returned.
+   */
+  getDatumInfo(
+    query: TrainingDatasetGetDatumInfoParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<TrainingDatumResponse> {
+    return this._client.get('/admin/training_datasets/get_datum_info', { query, ...options });
   }
 
   /**
@@ -421,10 +420,6 @@ export namespace TrainingDatasetListDatumsResponse {
 
 export type TrainingDatasetSizeResponse = number;
 
-export interface TrainingDatasetAddParams {
-  dataset_name: string;
-}
-
 export interface TrainingDatasetAddDatumParams {
   dataset_name: string;
 
@@ -433,6 +428,10 @@ export interface TrainingDatasetAddDatumParams {
 
 export interface TrainingDatasetDownloadDatumParams {
   step_id: string;
+}
+
+export interface TrainingDatasetGetDatumInfoParams {
+  id: string;
 }
 
 export interface TrainingDatasetGetLabellerStatsParams {
@@ -688,9 +687,9 @@ export declare namespace TrainingDatasets {
     type TrainingDatasetGetLabellerStatsResponse as TrainingDatasetGetLabellerStatsResponse,
     type TrainingDatasetListDatumsResponse as TrainingDatasetListDatumsResponse,
     type TrainingDatasetSizeResponse as TrainingDatasetSizeResponse,
-    type TrainingDatasetAddParams as TrainingDatasetAddParams,
     type TrainingDatasetAddDatumParams as TrainingDatasetAddDatumParams,
     type TrainingDatasetDownloadDatumParams as TrainingDatasetDownloadDatumParams,
+    type TrainingDatasetGetDatumInfoParams as TrainingDatasetGetDatumInfoParams,
     type TrainingDatasetGetLabellerStatsParams as TrainingDatasetGetLabellerStatsParams,
     type TrainingDatasetGetNextUnverifiedParams as TrainingDatasetGetNextUnverifiedParams,
     type TrainingDatasetLabelDatumParams as TrainingDatasetLabelDatumParams,
