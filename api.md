@@ -49,6 +49,7 @@ Types:
 Methods:
 
 - <code title="post /admin/users/create">client.admin.users.<a href="./src/resources/admin/users.ts">create</a>({ ...params }) -> TokenResponse</code>
+- <code title="put /admin/users/update">client.admin.users.<a href="./src/resources/admin/users.ts">update</a>({ ...params }) -> User</code>
 - <code title="get /admin/users/list">client.admin.users.<a href="./src/resources/admin/users.ts">list</a>() -> UserListResponse</code>
 - <code title="post /admin/users/get_credits">client.admin.users.<a href="./src/resources/admin/users.ts">getCredits</a>({ ...params }) -> UserGetCreditsResponse</code>
 - <code title="post /admin/users/get_stats">client.admin.users.<a href="./src/resources/admin/users.ts">getStats</a>({ ...params }) -> UserGetStatsResponse</code>
@@ -69,6 +70,7 @@ Types:
 Methods:
 
 - <code title="get /admin/training_datasets/list">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">list</a>() -> TrainingDatasetListResponse</code>
+- <code title="post /admin/training_datasets/add_dataset">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">add</a>({ ...params }) -> void</code>
 - <code title="post /admin/training_datasets/add_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">addDatum</a>({ ...params }) -> void</code>
 - <code title="get /admin/training_datasets/download_datum_step">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">downloadDatum</a>({ ...params }) -> Response</code>
 - <code title="get /admin/training_datasets/labeller_stats">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getLabellerStats</a>({ ...params }) -> TrainingDatasetGetLabellerStatsResponse</code>
@@ -240,8 +242,6 @@ Methods:
 - <code title="post /structure/is_complete">client.structure.<a href="./src/resources/structure.ts">isComplete</a>([ ...job ]) -> string</code>
 - <code title="post /structure/job_status">client.structure.<a href="./src/resources/structure.ts">jobStatus</a>([ ...job ]) -> StructureJobStatusResponse</code>
 - <code title="post /structure/run_async">client.structure.<a href="./src/resources/structure.ts">runAsync</a>({ ...params }) -> string</code>
-
-# Label
 
 # Shared
 
