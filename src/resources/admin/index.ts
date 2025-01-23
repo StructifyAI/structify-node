@@ -19,6 +19,7 @@ export {
   TrainingDatasets,
   type AddDatumRequest,
   type TrainingDatumResponse,
+  type UpdateDatumStatusRequest,
   type TrainingDatasetListResponse,
   type TrainingDatasetGetLabellerStatsResponse,
   type TrainingDatasetListDatumsResponse,
@@ -27,9 +28,11 @@ export {
   type TrainingDatasetGetLabellerStatsParams,
   type TrainingDatasetGetNextUnverifiedParams,
   type TrainingDatasetListDatumsParams,
+  type TrainingDatasetRemoveDatumParams,
   type TrainingDatasetSizeParams,
   type TrainingDatasetSwitchDatasetParams,
   type TrainingDatasetUpdateDatumStatusParams,
+  type TrainingDatasetUploadDatumParams,
 } from './training-datasets';
 export {
   Users,

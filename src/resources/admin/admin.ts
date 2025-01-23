@@ -26,12 +26,15 @@ import {
   TrainingDatasetListDatumsParams,
   TrainingDatasetListDatumsResponse,
   TrainingDatasetListResponse,
+  TrainingDatasetRemoveDatumParams,
   TrainingDatasetSizeParams,
   TrainingDatasetSizeResponse,
   TrainingDatasetSwitchDatasetParams,
   TrainingDatasetUpdateDatumStatusParams,
+  TrainingDatasetUploadDatumParams,
   TrainingDatasets,
   TrainingDatumResponse,
+  UpdateDatumStatusRequest,
 } from './training-datasets';
 import * as UsersAPI from './users';
 import {
@@ -88,6 +91,7 @@ export declare namespace Admin {
     TrainingDatasets as TrainingDatasets,
     type AddDatumRequest as AddDatumRequest,
     type TrainingDatumResponse as TrainingDatumResponse,
+    type UpdateDatumStatusRequest as UpdateDatumStatusRequest,
     type TrainingDatasetListResponse as TrainingDatasetListResponse,
     type TrainingDatasetGetLabellerStatsResponse as TrainingDatasetGetLabellerStatsResponse,
     type TrainingDatasetListDatumsResponse as TrainingDatasetListDatumsResponse,
@@ -96,8 +100,10 @@ export declare namespace Admin {
     type TrainingDatasetGetLabellerStatsParams as TrainingDatasetGetLabellerStatsParams,
     type TrainingDatasetGetNextUnverifiedParams as TrainingDatasetGetNextUnverifiedParams,
     type TrainingDatasetListDatumsParams as TrainingDatasetListDatumsParams,
+    type TrainingDatasetRemoveDatumParams as TrainingDatasetRemoveDatumParams,
     type TrainingDatasetSizeParams as TrainingDatasetSizeParams,
     type TrainingDatasetSwitchDatasetParams as TrainingDatasetSwitchDatasetParams,
     type TrainingDatasetUpdateDatumStatusParams as TrainingDatasetUpdateDatumStatusParams,
+    type TrainingDatasetUploadDatumParams as TrainingDatasetUploadDatumParams,
   };
 }

@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Structify from 'structifyai';
+import Structify, { toFile } from 'structifyai';
 import { Response } from 'node-fetch';
 
 const client = new Structify({
@@ -104,6 +104,25 @@ describe('resource trainingDatasets', () => {
     const response = await client.admin.trainingDatasets.listDatums({ dataset_name: 'dataset_name' });
   });
 
+  test('removeDatum: only required params', async () => {
+    const responsePromise = client.admin.trainingDatasets.removeDatum({
+      step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('removeDatum: required and optional params', async () => {
+    const response = await client.admin.trainingDatasets.removeDatum({
+      step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+  });
+
   test('size: only required params', async () => {
     const responsePromise = client.admin.trainingDatasets.size({ dataset_name: 'dataset_name' });
     const rawResponse = await responsePromise.asResponse();
@@ -146,7 +165,10 @@ describe('resource trainingDatasets', () => {
   });
 
   test('updateDatumStatus: only required params', async () => {
-    const responsePromise = client.admin.trainingDatasets.updateDatumStatus({});
+    const responsePromise = client.admin.trainingDatasets.updateDatumStatus({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      status: 'Unlabeled',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -157,6 +179,31 @@ describe('resource trainingDatasets', () => {
   });
 
   test('updateDatumStatus: required and optional params', async () => {
-    const response = await client.admin.trainingDatasets.updateDatumStatus({});
+    const response = await client.admin.trainingDatasets.updateDatumStatus({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      status: 'Unlabeled',
+      review_message: 'review_message',
+    });
+  });
+
+  test('uploadDatum: only required params', async () => {
+    const responsePromise = client.admin.trainingDatasets.uploadDatum({
+      dataset_name: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      step_bytes: await toFile(Buffer.from('# my file contents'), 'README.md'),
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('uploadDatum: required and optional params', async () => {
+    const response = await client.admin.trainingDatasets.uploadDatum({
+      dataset_name: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      step_bytes: await toFile(Buffer.from('# my file contents'), 'README.md'),
+    });
   });
 });
