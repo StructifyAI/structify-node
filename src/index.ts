@@ -74,7 +74,6 @@ import {
   JobListResponsesJobsList,
   Jobs,
 } from './resources/jobs';
-import { Label } from './resources/label';
 import {
   Report,
   ReportMissingParams,
@@ -272,7 +271,6 @@ export class Structify extends Core.APIClient {
   images: API.Images = new API.Images(this);
   report: API.Report = new API.Report(this);
   structure: API.Structure = new API.Structure(this);
-  label: API.Label = new API.Label(this);
   shared: API.Shared = new API.Shared(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
@@ -325,7 +323,6 @@ Structify.Entities = Entities;
 Structify.Images = Images;
 Structify.Report = Report;
 Structify.Structure = Structure;
-Structify.Label = Label;
 Structify.Shared = Shared;
 export declare namespace Structify {
   export type RequestOptions = Core.RequestOptions;
@@ -454,8 +451,6 @@ export declare namespace Structify {
     type StructureJobStatusParams as StructureJobStatusParams,
     type StructureRunAsyncParams as StructureRunAsyncParams,
   };
-
-  export { Label as Label };
 
   export {
     Shared as Shared,
