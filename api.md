@@ -43,6 +43,7 @@ Types:
 - <code><a href="./src/resources/admin/users.ts">User</a></code>
 - <code><a href="./src/resources/admin/users.ts">UserListResponse</a></code>
 - <code><a href="./src/resources/admin/users.ts">UserGetCreditsResponse</a></code>
+- <code><a href="./src/resources/admin/users.ts">UserGetStatsResponse</a></code>
 - <code><a href="./src/resources/admin/users.ts">UserSetCreditsResponse</a></code>
 
 Methods:
@@ -50,6 +51,7 @@ Methods:
 - <code title="post /admin/users/create">client.admin.users.<a href="./src/resources/admin/users.ts">create</a>({ ...params }) -> TokenResponse</code>
 - <code title="get /admin/users/list">client.admin.users.<a href="./src/resources/admin/users.ts">list</a>() -> UserListResponse</code>
 - <code title="post /admin/users/get_credits">client.admin.users.<a href="./src/resources/admin/users.ts">getCredits</a>({ ...params }) -> UserGetCreditsResponse</code>
+- <code title="post /admin/users/get_stats">client.admin.users.<a href="./src/resources/admin/users.ts">getStats</a>({ ...params }) -> UserGetStatsResponse</code>
 - <code title="post /admin/users/set_credits">client.admin.users.<a href="./src/resources/admin/users.ts">setCredits</a>({ ...params }) -> UserSetCreditsResponse</code>
 
 ## TrainingDatasets
@@ -68,8 +70,10 @@ Methods:
 
 - <code title="get /admin/training_datasets/list">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">list</a>() -> TrainingDatasetListResponse</code>
 - <code title="post /admin/training_datasets/add_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">addDatum</a>({ ...params }) -> void</code>
+- <code title="get /admin/training_datasets/download_datum_step">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">downloadDatum</a>({ ...params }) -> Response</code>
 - <code title="get /admin/training_datasets/labeller_stats">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getLabellerStats</a>({ ...params }) -> TrainingDatasetGetLabellerStatsResponse</code>
 - <code title="get /admin/training_datasets/next_unverified">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getNextUnverified</a>({ ...params }) -> TrainingDatumResponse</code>
+- <code title="put /admin/training_datasets/label_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">labelDatum</a>({ ...params }) -> void</code>
 - <code title="get /admin/training_datasets/list_datums">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">listDatums</a>({ ...params }) -> TrainingDatasetListDatumsResponse</code>
 - <code title="delete /admin/training_datasets/remove_from_dataset">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">removeDatum</a>({ ...params }) -> void</code>
 - <code title="post /admin/training_datasets/size">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">size</a>({ ...params }) -> TrainingDatasetSizeResponse</code>
