@@ -74,7 +74,7 @@ import {
   JobListResponsesJobsList,
   Jobs,
 } from './resources/jobs';
-import { Label, LabelVerifyParams, LabelVerifyResponse } from './resources/label';
+import { Label } from './resources/label';
 import {
   Report,
   ReportMissingParams,
@@ -455,11 +455,7 @@ export declare namespace Structify {
     type StructureRunAsyncParams as StructureRunAsyncParams,
   };
 
-  export {
-    Label as Label,
-    type LabelVerifyResponse as LabelVerifyResponse,
-    type LabelVerifyParams as LabelVerifyParams,
-  };
+  export { Label as Label };
 
   export {
     Shared as Shared,
