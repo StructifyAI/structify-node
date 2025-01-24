@@ -100,6 +100,8 @@ export interface UserUpdateParams {
 
   new_email?: string | null;
 
+  new_feature_flags?: Array<'test' | 'pdf_parsing' | 'none'> | null;
+
   new_permissions?: Array<'labeler' | 'debug' | 'none'> | null;
 }
 
