@@ -159,7 +159,10 @@ export class TrainingDatasets extends APIResource {
   /**
    * Uploads a new training datum to the specified dataset.
    */
-  uploadDatum(body: TrainingDatasetUploadDatumParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  uploadLabeledStep(
+    body: TrainingDatasetUploadLabeledStepParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
     return this._client.post(
       '/admin/training_datasets/upload_labeled_step',
       Core.multipartFormRequestOptions({ body, ...options, headers: { Accept: '*/*', ...options?.headers } }),
@@ -688,7 +691,7 @@ export interface TrainingDatasetUpdateDatumStatusParams {
   review_message?: string | null;
 }
 
-export interface TrainingDatasetUploadDatumParams {
+export interface TrainingDatasetUploadLabeledStepParams {
   dataset_name: Core.Uploadable;
 
   step_bytes: Core.Uploadable;
@@ -715,6 +718,6 @@ export declare namespace TrainingDatasets {
     type TrainingDatasetSizeParams as TrainingDatasetSizeParams,
     type TrainingDatasetSwitchDatasetParams as TrainingDatasetSwitchDatasetParams,
     type TrainingDatasetUpdateDatumStatusParams as TrainingDatasetUpdateDatumStatusParams,
-    type TrainingDatasetUploadDatumParams as TrainingDatasetUploadDatumParams,
+    type TrainingDatasetUploadLabeledStepParams as TrainingDatasetUploadLabeledStepParams,
   };
 }
