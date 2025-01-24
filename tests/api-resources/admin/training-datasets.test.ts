@@ -258,8 +258,8 @@ describe('resource trainingDatasets', () => {
     });
   });
 
-  test('uploadDatum: only required params', async () => {
-    const responsePromise = client.admin.trainingDatasets.uploadDatum({
+  test('uploadLabeledStep: only required params', async () => {
+    const responsePromise = client.admin.trainingDatasets.uploadLabeledStep({
       dataset_name: await toFile(Buffer.from('# my file contents'), 'README.md'),
       step_bytes: await toFile(Buffer.from('# my file contents'), 'README.md'),
     });
@@ -272,8 +272,8 @@ describe('resource trainingDatasets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('uploadDatum: required and optional params', async () => {
-    const response = await client.admin.trainingDatasets.uploadDatum({
+  test('uploadLabeledStep: required and optional params', async () => {
+    const response = await client.admin.trainingDatasets.uploadLabeledStep({
       dataset_name: await toFile(Buffer.from('# my file contents'), 'README.md'),
       step_bytes: await toFile(Buffer.from('# my file contents'), 'README.md'),
     });
