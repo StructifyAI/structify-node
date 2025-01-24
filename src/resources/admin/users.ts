@@ -54,7 +54,9 @@ export class Users extends APIResource {
 export interface User {
   email: string;
 
-  permissions?: Array<'pdf_parsing' | 'labeler' | 'debug' | 'none'>;
+  feature_flags?: Array<'test' | 'pdf_parsing' | 'none'>;
+
+  permissions?: Array<'labeler' | 'debug' | 'none'>;
 
   user_type?: 'Admin' | 'Public' | 'EndUser';
 }
@@ -84,9 +86,11 @@ export interface UserCreateParams {
 
   email?: string | null;
 
+  feature_flags?: Array<'test' | 'pdf_parsing' | 'none'>;
+
   is_admin?: boolean;
 
-  permissions?: Array<'pdf_parsing' | 'labeler' | 'debug' | 'none'>;
+  permissions?: Array<'labeler' | 'debug' | 'none'>;
 
   test?: boolean;
 }
@@ -96,7 +100,7 @@ export interface UserUpdateParams {
 
   new_email?: string | null;
 
-  new_permissions?: Array<'pdf_parsing' | 'labeler' | 'debug' | 'none'> | null;
+  new_permissions?: Array<'labeler' | 'debug' | 'none'> | null;
 }
 
 export interface UserGetCreditsParams {
