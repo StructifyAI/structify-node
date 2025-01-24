@@ -36,7 +36,7 @@ export {
   type TrainingDatasetSizeParams,
   type TrainingDatasetSwitchDatasetParams,
   type TrainingDatasetUpdateDatumStatusParams,
-  type TrainingDatasetUploadDatumParams,
+  type TrainingDatasetUploadLabeledStepParams,
 } from './training-datasets';
 export {
   Users,
