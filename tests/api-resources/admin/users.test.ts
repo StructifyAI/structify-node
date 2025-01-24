@@ -35,7 +35,7 @@ describe('resource users', () => {
     const response = await client.admin.users.update({
       current_email: 'current_email',
       new_email: 'new_email',
-      new_permissions: ['pdf_parsing'],
+      new_permissions: ['labeler'],
     });
   });
 
