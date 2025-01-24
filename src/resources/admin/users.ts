@@ -2,6 +2,7 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
+import * as UsersAPI from './users';
 import * as UserAPI from '../user';
 
 export class Users extends APIResource {
@@ -20,7 +21,7 @@ export class Users extends APIResource {
   }
 
   /**
-   * Lists all the users in the system.
+   * Lists all the users in the system along with their associated API tokens.
    */
   list(options?: Core.RequestOptions): Core.APIPromise<UserListResponse> {
     return this._client.get('/admin/users/list', options);
@@ -61,7 +62,13 @@ export interface User {
   user_type?: 'Admin' | 'Public' | 'EndUser';
 }
 
-export type UserListResponse = Array<User>;
+export type UserListResponse = Array<UserListResponse.UserListResponseItem>;
+
+export namespace UserListResponse {
+  export interface UserListResponseItem extends UsersAPI.User {
+    tokens: Array<string>;
+  }
+}
 
 export interface UserGetCreditsResponse {
   credit_count: number;
