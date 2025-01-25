@@ -181,7 +181,15 @@ export interface TrainingDatumResponse {
 
   last_updated: string;
 
-  status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
+  status:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'Verified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave';
 
   step: StructureAPI.ExecutionStep;
 
@@ -194,7 +202,15 @@ export namespace TrainingDatumResponse {
 
     author: string;
 
-    status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
+    status:
+      | 'Unlabeled'
+      | 'NavLabeled'
+      | 'SaveLabeled'
+      | 'Verified'
+      | 'Pending'
+      | 'Skipped'
+      | 'SuspiciousNav'
+      | 'SuspiciousSave';
 
     timestamp: string;
 
@@ -398,7 +414,15 @@ export namespace TrainingDatumResponse {
 export interface UpdateDatumStatusRequest {
   id: string;
 
-  status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
+  status:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'Verified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave';
 
   review_message?: string | null;
 }
@@ -423,11 +447,21 @@ export namespace TrainingDatasetListDatumsResponse {
   export interface TrainingDatasetListDatumsResponseItem {
     id: string;
 
-    labelers: Array<string>;
-
     last_updated: string;
 
-    status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
+    nav_labelers: Array<string>;
+
+    save_labelers: Array<string>;
+
+    status:
+      | 'Unlabeled'
+      | 'NavLabeled'
+      | 'SaveLabeled'
+      | 'Verified'
+      | 'Pending'
+      | 'Skipped'
+      | 'SuspiciousNav'
+      | 'SuspiciousSave';
 
     verifiers: Array<string>;
   }
@@ -454,7 +488,15 @@ export interface TrainingDatasetGetDatumInfoParams {
 }
 
 export interface TrainingDatasetGetLabellerStatsParams {
-  status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
+  status:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'Verified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave';
 
   dataset_name?: string | null;
 
@@ -466,7 +508,15 @@ export interface TrainingDatasetGetLabellerStatsParams {
 export interface TrainingDatasetGetNextUnverifiedParams {
   dataset_name: string;
 
-  status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
+  status:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'Verified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave';
 }
 
 export interface TrainingDatasetLabelDatumParams {
@@ -674,7 +724,16 @@ export interface TrainingDatasetSizeParams {
 
   start_date?: string | null;
 
-  status?: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious' | null;
+  status?:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'Verified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave'
+    | null;
 }
 
 export interface TrainingDatasetSwitchDatasetParams {
@@ -686,7 +745,15 @@ export interface TrainingDatasetSwitchDatasetParams {
 export interface TrainingDatasetUpdateDatumStatusParams {
   id: string;
 
-  status: 'Unlabeled' | 'Labeled' | 'Verified' | 'Pending' | 'Skipped' | 'Suspicious';
+  status:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'Verified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave';
 
   review_message?: string | null;
 }
