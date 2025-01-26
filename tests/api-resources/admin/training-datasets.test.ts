@@ -132,6 +132,7 @@ describe('resource trainingDatasets', () => {
   test('labelDatum: only required params', async () => {
     const responsePromise = client.admin.trainingDatasets.labelDatum({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      status: 'Unlabeled',
       updated_tool_calls: [{ input: { Save: {} }, name: 'Exit' }],
     });
     const rawResponse = await responsePromise.asResponse();
@@ -146,6 +147,7 @@ describe('resource trainingDatasets', () => {
   test('labelDatum: required and optional params', async () => {
     const response = await client.admin.trainingDatasets.labelDatum({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      status: 'Unlabeled',
       updated_tool_calls: [
         {
           input: {
@@ -276,6 +278,29 @@ describe('resource trainingDatasets', () => {
     const response = await client.admin.trainingDatasets.uploadLabeledStep({
       dataset_name: await toFile(Buffer.from('# my file contents'), 'README.md'),
       step_bytes: await toFile(Buffer.from('# my file contents'), 'README.md'),
+    });
+  });
+
+  test('verifyDatum: only required params', async () => {
+    const responsePromise = client.admin.trainingDatasets.verifyDatum({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      verified_nav_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      verified_save_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('verifyDatum: required and optional params', async () => {
+    const response = await client.admin.trainingDatasets.verifyDatum({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      verified_nav_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      verified_save_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 });

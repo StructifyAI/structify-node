@@ -168,6 +168,17 @@ export class TrainingDatasets extends APIResource {
       Core.multipartFormRequestOptions({ body, ...options, headers: { Accept: '*/*', ...options?.headers } }),
     );
   }
+
+  /**
+   * Verifies a training datum update.
+   */
+  verifyDatum(body: TrainingDatasetVerifyDatumParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.put('/admin/training_datasets/verify_datum', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
 }
 
 export interface AddDatumRequest {
@@ -522,6 +533,16 @@ export interface TrainingDatasetGetNextUnverifiedParams {
 export interface TrainingDatasetLabelDatumParams {
   id: string;
 
+  status:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'Verified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave';
+
   updated_tool_calls: Array<TrainingDatasetLabelDatumParams.UpdatedToolCall>;
 }
 
@@ -764,6 +785,14 @@ export interface TrainingDatasetUploadLabeledStepParams {
   step_bytes: Core.Uploadable;
 }
 
+export interface TrainingDatasetVerifyDatumParams {
+  id: string;
+
+  verified_nav_id: string;
+
+  verified_save_id: string;
+}
+
 export declare namespace TrainingDatasets {
   export {
     type AddDatumRequest as AddDatumRequest,
@@ -786,5 +815,6 @@ export declare namespace TrainingDatasets {
     type TrainingDatasetSwitchDatasetParams as TrainingDatasetSwitchDatasetParams,
     type TrainingDatasetUpdateDatumStatusParams as TrainingDatasetUpdateDatumStatusParams,
     type TrainingDatasetUploadLabeledStepParams as TrainingDatasetUploadLabeledStepParams,
+    type TrainingDatasetVerifyDatumParams as TrainingDatasetVerifyDatumParams,
   };
 }
