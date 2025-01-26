@@ -36,6 +36,7 @@ import {
   TrainingDatasetSwitchDatasetParams,
   TrainingDatasetUpdateDatumStatusParams,
   TrainingDatasetUploadLabeledStepParams,
+  TrainingDatasetVerifyDatumParams,
   TrainingDatasets,
   TrainingDatumResponse,
   UpdateDatumStatusRequest,
@@ -119,5 +120,6 @@ export declare namespace Admin {
     type TrainingDatasetSwitchDatasetParams as TrainingDatasetSwitchDatasetParams,
     type TrainingDatasetUpdateDatumStatusParams as TrainingDatasetUpdateDatumStatusParams,
     type TrainingDatasetUploadLabeledStepParams as TrainingDatasetUploadLabeledStepParams,
+    type TrainingDatasetVerifyDatumParams as TrainingDatasetVerifyDatumParams,
   };
 }
