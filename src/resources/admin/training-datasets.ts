@@ -74,16 +74,6 @@ export class TrainingDatasets extends APIResource {
   }
 
   /**
-   * Retrieves the next unverified training datum from the specified dataset.
-   */
-  getNextUnverified(
-    query: TrainingDatasetGetNextUnverifiedParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TrainingDatumResponse> {
-    return this._client.get('/admin/training_datasets/next_unverified', { query, ...options });
-  }
-
-  /**
    * Updates the status and content of an existing training datum.
    */
   labelDatum(body: TrainingDatasetLabelDatumParams, options?: Core.RequestOptions): Core.APIPromise<void> {
@@ -516,20 +506,6 @@ export interface TrainingDatasetGetLabellerStatsParams {
   start_date?: string | null;
 }
 
-export interface TrainingDatasetGetNextUnverifiedParams {
-  dataset_name: string;
-
-  status:
-    | 'Unlabeled'
-    | 'NavLabeled'
-    | 'SaveLabeled'
-    | 'Verified'
-    | 'Pending'
-    | 'Skipped'
-    | 'SuspiciousNav'
-    | 'SuspiciousSave';
-}
-
 export interface TrainingDatasetLabelDatumParams {
   id: string;
 
@@ -807,7 +783,6 @@ export declare namespace TrainingDatasets {
     type TrainingDatasetDownloadDatumParams as TrainingDatasetDownloadDatumParams,
     type TrainingDatasetGetDatumInfoParams as TrainingDatasetGetDatumInfoParams,
     type TrainingDatasetGetLabellerStatsParams as TrainingDatasetGetLabellerStatsParams,
-    type TrainingDatasetGetNextUnverifiedParams as TrainingDatasetGetNextUnverifiedParams,
     type TrainingDatasetLabelDatumParams as TrainingDatasetLabelDatumParams,
     type TrainingDatasetListDatumsParams as TrainingDatasetListDatumsParams,
     type TrainingDatasetRemoveDatumParams as TrainingDatasetRemoveDatumParams,
