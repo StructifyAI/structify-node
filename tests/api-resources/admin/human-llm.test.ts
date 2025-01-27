@@ -30,6 +30,42 @@ describe('resource humanLlm', () => {
     });
   });
 
+  test('addToDataset: only required params', async () => {
+    const responsePromise = client.admin.humanLlm.addToDataset({
+      extraction_criteria_met: true,
+      job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      tool_calls: [{ input: { Save: {} }, name: 'Exit' }],
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('addToDataset: required and optional params', async () => {
+    const response = await client.admin.humanLlm.addToDataset({
+      extraction_criteria_met: true,
+      job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      tool_calls: [
+        {
+          input: {
+            Save: {
+              entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
+              relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
+            },
+          },
+          name: 'Exit',
+          result: { ToolQueued: 'ToolQueued' },
+        },
+      ],
+    });
+  });
+
   test('finishJob: only required params', async () => {
     const responsePromise = client.admin.humanLlm.finishJob({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -147,6 +183,7 @@ describe('resource humanLlm', () => {
 
   test('updateStep: only required params', async () => {
     const responsePromise = client.admin.humanLlm.updateStep({
+      extraction_criteria_met: true,
       job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       tool_calls: [{ input: { Save: {} }, name: 'Exit' }],
@@ -162,6 +199,7 @@ describe('resource humanLlm', () => {
 
   test('updateStep: required and optional params', async () => {
     const response = await client.admin.humanLlm.updateStep({
+      extraction_criteria_met: true,
       job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       tool_calls: [
@@ -176,7 +214,6 @@ describe('resource humanLlm', () => {
           result: { ToolQueued: 'ToolQueued' },
         },
       ],
-      add_to_training_datum: true,
     });
   });
 });
