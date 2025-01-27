@@ -148,9 +148,9 @@ export namespace StepChoices {
   export interface StepOption {
     id: string;
 
-    action_name: string;
+    action_name?: string;
 
-    metadata: Record<string, string>;
+    metadata?: Record<string, string>;
   }
 }
 
