@@ -75,6 +75,7 @@ Methods:
 - <code title="get /admin/training_datasets/download_datum_step">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">downloadDatum</a>({ ...params }) -> Response</code>
 - <code title="get /admin/training_datasets/get_datum_info">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getDatumInfo</a>({ ...params }) -> TrainingDatumResponse</code>
 - <code title="get /admin/training_datasets/labeller_stats">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getLabellerStats</a>({ ...params }) -> TrainingDatasetGetLabellerStatsResponse</code>
+- <code title="get /admin/training_datasets/get_next_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getNextDatum</a>({ ...params }) -> TrainingDatumResponse | null</code>
 - <code title="put /admin/training_datasets/label_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">labelDatum</a>({ ...params }) -> void</code>
 - <code title="get /admin/training_datasets/list_datums">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">listDatums</a>({ ...params }) -> TrainingDatasetListDatumsResponse</code>
 - <code title="delete /admin/training_datasets/remove_from_dataset">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">removeDatum</a>({ ...params }) -> void</code>

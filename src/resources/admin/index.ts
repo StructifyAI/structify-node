@@ -29,6 +29,7 @@ export {
   type TrainingDatasetDownloadDatumParams,
   type TrainingDatasetGetDatumInfoParams,
   type TrainingDatasetGetLabellerStatsParams,
+  type TrainingDatasetGetNextDatumParams,
   type TrainingDatasetLabelDatumParams,
   type TrainingDatasetListDatumsParams,
   type TrainingDatasetRemoveDatumParams,
