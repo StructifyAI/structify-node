@@ -560,6 +560,8 @@ export interface StructureEnhanceParams {
   property_name?: string | null;
 
   relationship_name?: string | null;
+
+  special_job_type?: 'HumanLLM' | null;
 }
 
 export interface StructureEnhanceRelationshipParams {
@@ -568,6 +570,8 @@ export interface StructureEnhanceRelationshipParams {
   allow_new_entities?: boolean;
 
   source_id?: string | null;
+
+  special_job_type?: 'HumanLLM' | null;
 
   target_id?: string | null;
 }
