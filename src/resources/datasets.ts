@@ -189,6 +189,8 @@ export interface DatasetCreateParams {
   relationships: Array<DatasetCreateParams.Relationship>;
 
   tables: Array<SharedAPI.Table>;
+
+  model_override?: string | null;
 }
 
 export namespace DatasetCreateParams {

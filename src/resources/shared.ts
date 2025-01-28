@@ -19,6 +19,8 @@ export interface DatasetDescriptor {
   relationships: Array<DatasetDescriptor.Relationship>;
 
   tables: Array<Table>;
+
+  model_override?: string | null;
 }
 
 export namespace DatasetDescriptor {
