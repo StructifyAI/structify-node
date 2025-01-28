@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.77.0 (2025-01-28)
+
+Full Changelog: [v1.76.0...v1.77.0](https://github.com/StructifyAI/structify-node/compare/v1.76.0...v1.77.0)
+
+### Features
+
+* **api:** api update ([#808](https://github.com/StructifyAI/structify-node/issues/808)) ([2a25378](https://github.com/StructifyAI/structify-node/commit/2a25378cd11b048a44635f95357ed4dacb8f3ea3))
+* **api:** api update ([#811](https://github.com/StructifyAI/structify-node/issues/811)) ([0a695ac](https://github.com/StructifyAI/structify-node/commit/0a695acca70bd7953e71fcd8cdf0544db5b3efef))
+
+
+### Chores
+
+* **internal:** reorder model constants ([#810](https://github.com/StructifyAI/structify-node/issues/810)) ([a51c190](https://github.com/StructifyAI/structify-node/commit/a51c1902cfd16277f7083b4fe154242238793a1b))
+* **internal:** update models used in tests ([a51c190](https://github.com/StructifyAI/structify-node/commit/a51c1902cfd16277f7083b4fe154242238793a1b))
+
 ## 1.76.0 (2025-01-27)
 
 Full Changelog: [v1.75.0...v1.76.0](https://github.com/StructifyAI/structify-node/compare/v1.75.0...v1.76.0)
