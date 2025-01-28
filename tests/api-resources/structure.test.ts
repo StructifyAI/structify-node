@@ -26,6 +26,7 @@ describe('resource structure', () => {
       allow_new_entities: true,
       property_name: 'property_name',
       relationship_name: 'relationship_name',
+      special_job_type: 'HumanLLM',
     });
   });
 
@@ -45,6 +46,7 @@ describe('resource structure', () => {
       relationship_name: 'relationship_name',
       allow_new_entities: true,
       source_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      special_job_type: 'HumanLLM',
       target_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
