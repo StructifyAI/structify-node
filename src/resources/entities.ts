@@ -13,9 +13,6 @@ export class Entities extends APIResource {
     return this._client.delete('/entity/delete', { body, ...options });
   }
 
-  /**
-   * Add an entity manually
-   */
   add(body: EntityAddParams, options?: Core.RequestOptions): Core.APIPromise<EntityAddResponse> {
     return this._client.post('/entity/add', { body, ...options });
   }
