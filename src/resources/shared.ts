@@ -72,12 +72,7 @@ export namespace DatasetDescriptor {
 
       name: string;
 
-      /**
-       * Property with unique 1:1 correspondence to its parent.
-       *
-       * Merge based on this property 100% of the time
-       */
-      merge_strategy?: 'Unique' | Property.Probabilistic | 'NoSignal';
+      merge_strategy?: 'Unique' | 'NoSignal' | Property.Probabilistic;
 
       prop_type?: SharedAPI.PropertyType;
     }
@@ -142,13 +137,13 @@ export interface KnowledgeGraph {
 export type PropertyType =
   | 'String'
   | 'Boolean'
-  | PropertyType.Enum
   | 'Integer'
   | 'Float'
   | 'Date'
   | 'URL'
   | 'Money'
-  | 'Image';
+  | 'Image'
+  | PropertyType.Enum;
 
 export namespace PropertyType {
   export interface Enum {
@@ -196,12 +191,7 @@ export namespace Table {
 
     name: string;
 
-    /**
-     * Property with unique 1:1 correspondence to its parent.
-     *
-     * Merge based on this property 100% of the time
-     */
-    merge_strategy?: 'Unique' | Property.Probabilistic | 'NoSignal';
+    merge_strategy?: 'Unique' | 'NoSignal' | Property.Probabilistic;
 
     prop_type?: SharedAPI.PropertyType;
   }
