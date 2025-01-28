@@ -69,6 +69,7 @@ describe('resource datasets', () => {
           expected_cardinality: 0,
         },
       ],
+      model_override: 'model_override',
     });
   });
 
