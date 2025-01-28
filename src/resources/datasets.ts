@@ -317,6 +317,16 @@ export interface DatasetViewRelationshipsParams extends JobsListParams {
   job_id?: string | null;
 
   last_updated?: string | null;
+
+  sort_by?: DatasetViewRelationshipsParams.SortBy | null;
+}
+
+export namespace DatasetViewRelationshipsParams {
+  export interface SortBy {
+    col_id: 'creation_time';
+
+    sort: 'asc' | 'desc';
+  }
 }
 
 export interface DatasetViewTableParams extends JobsListParams {
@@ -327,6 +337,16 @@ export interface DatasetViewTableParams extends JobsListParams {
   job_id?: string | null;
 
   last_updated?: string | null;
+
+  sort_by?: DatasetViewTableParams.SortBy | null;
+}
+
+export namespace DatasetViewTableParams {
+  export interface SortBy {
+    col_id: 'creation_time';
+
+    sort: 'asc' | 'desc';
+  }
 }
 
 export interface DatasetViewTablesWithRelationshipsParams {
@@ -341,6 +361,16 @@ export interface DatasetViewTablesWithRelationshipsParams {
   limit?: number;
 
   offset?: number;
+
+  sort_by?: DatasetViewTablesWithRelationshipsParams.SortBy | null;
+}
+
+export namespace DatasetViewTablesWithRelationshipsParams {
+  export interface SortBy {
+    col_id: 'creation_time';
+
+    sort: 'asc' | 'desc';
+  }
 }
 
 Datasets.DatasetViewRelationshipsResponsesJobsList = DatasetViewRelationshipsResponsesJobsList;
