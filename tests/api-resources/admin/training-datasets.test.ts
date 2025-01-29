@@ -197,8 +197,8 @@ describe('resource trainingDatasets', () => {
     });
   });
 
-  test('size: only required params', async () => {
-    const responsePromise = client.admin.trainingDatasets.size({ dataset_name: 'dataset_name' });
+  test('size', async () => {
+    const responsePromise = client.admin.trainingDatasets.size({});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -206,15 +206,6 @@ describe('resource trainingDatasets', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('size: required and optional params', async () => {
-    const response = await client.admin.trainingDatasets.size({
-      dataset_name: 'dataset_name',
-      end_date: '2019-12-27T18:11:19.117Z',
-      start_date: '2019-12-27T18:11:19.117Z',
-      status: 'Unlabeled',
-    });
   });
 
   test('switchDataset: only required params', async () => {
