@@ -17,13 +17,6 @@ export class Entities extends APIResource {
     return this._client.post('/entity/add', { body, ...options });
   }
 
-  addBatch(
-    body: EntityAddBatchParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EntityAddBatchResponse> {
-    return this._client.post('/entity/add_batch', { body, ...options });
-  }
-
   /**
    * Get entity with a given id
    */
@@ -115,8 +108,6 @@ export class Entities extends APIResource {
 export type EntityDeleteResponse = Array<string>;
 
 export type EntityAddResponse = Array<string>;
-
-export type EntityAddBatchResponse = Array<string>;
 
 export interface EntityGetResponse {
   id: string;
@@ -449,37 +440,6 @@ export namespace EntityAddParams {
   }
 }
 
-export interface EntityAddBatchParams {
-  dataset_name: string;
-
-  kgs: Array<SharedAPI.KnowledgeGraph>;
-
-  /**
-   * If true, attempt to merge with existing entities in the dataset
-   */
-  attempt_merge?: boolean;
-
-  source?:
-    | 'None'
-    | EntityAddBatchParams.Web
-    | EntityAddBatchParams.DocumentPage
-    | EntityAddBatchParams.SecFiling;
-}
-
-export namespace EntityAddBatchParams {
-  export interface Web {
-    Web: string;
-  }
-
-  export interface DocumentPage {
-    DocumentPage: Array<unknown>;
-  }
-
-  export interface SecFiling {
-    SecFiling: Array<unknown>;
-  }
-}
-
 export interface EntityGetParams {
   id: string;
 
@@ -592,7 +552,6 @@ export declare namespace Entities {
   export {
     type EntityDeleteResponse as EntityDeleteResponse,
     type EntityAddResponse as EntityAddResponse,
-    type EntityAddBatchResponse as EntityAddBatchResponse,
     type EntityGetResponse as EntityGetResponse,
     type EntityGetLocalSubgraphResponse as EntityGetLocalSubgraphResponse,
     type EntityGetSourceEntitiesResponse as EntityGetSourceEntitiesResponse,
@@ -605,7 +564,6 @@ export declare namespace Entities {
     type EntityViewResponse as EntityViewResponse,
     type EntityDeleteParams as EntityDeleteParams,
     type EntityAddParams as EntityAddParams,
-    type EntityAddBatchParams as EntityAddBatchParams,
     type EntityGetParams as EntityGetParams,
     type EntityGetLocalSubgraphParams as EntityGetLocalSubgraphParams,
     type EntityGetSourceEntitiesParams as EntityGetSourceEntitiesParams,
