@@ -478,7 +478,25 @@ export namespace TrainingDatasetListDatumsResponse {
   }
 }
 
-export type TrainingDatasetSizeResponse = number;
+export type TrainingDatasetSizeResponse = Array<TrainingDatasetSizeResponse.TrainingDatasetSizeResponseItem>;
+
+export namespace TrainingDatasetSizeResponse {
+  export interface TrainingDatasetSizeResponseItem {
+    count: number;
+
+    name: string;
+
+    status:
+      | 'Unlabeled'
+      | 'NavLabeled'
+      | 'SaveLabeled'
+      | 'Verified'
+      | 'Pending'
+      | 'Skipped'
+      | 'SuspiciousNav'
+      | 'SuspiciousSave';
+  }
+}
 
 export interface TrainingDatasetAddParams {
   dataset_name: string;
@@ -739,7 +757,7 @@ export interface TrainingDatasetRemoveDatumParams {
 }
 
 export interface TrainingDatasetSizeParams {
-  dataset_name: string;
+  dataset_names?: Array<string> | null;
 
   end_date?: string | null;
 
