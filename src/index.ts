@@ -37,6 +37,8 @@ import {
 } from './resources/documents';
 import {
   Entities,
+  EntityAddBatchParams,
+  EntityAddBatchResponse,
   EntityAddParams,
   EntityAddResponse,
   EntityDeleteParams,
@@ -400,6 +402,7 @@ export declare namespace Structify {
     Entities as Entities,
     type EntityDeleteResponse as EntityDeleteResponse,
     type EntityAddResponse as EntityAddResponse,
+    type EntityAddBatchResponse as EntityAddBatchResponse,
     type EntityGetResponse as EntityGetResponse,
     type EntityGetLocalSubgraphResponse as EntityGetLocalSubgraphResponse,
     type EntityGetSourceEntitiesResponse as EntityGetSourceEntitiesResponse,
@@ -412,6 +415,7 @@ export declare namespace Structify {
     type EntityViewResponse as EntityViewResponse,
     type EntityDeleteParams as EntityDeleteParams,
     type EntityAddParams as EntityAddParams,
+    type EntityAddBatchParams as EntityAddBatchParams,
     type EntityGetParams as EntityGetParams,
     type EntityGetLocalSubgraphParams as EntityGetLocalSubgraphParams,
     type EntityGetSourceEntitiesParams as EntityGetSourceEntitiesParams,
