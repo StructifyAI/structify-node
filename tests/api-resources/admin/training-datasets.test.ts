@@ -175,7 +175,10 @@ describe('resource trainingDatasets', () => {
   });
 
   test('listDatums: required and optional params', async () => {
-    const response = await client.admin.trainingDatasets.listDatums({ dataset_name: 'dataset_name' });
+    const response = await client.admin.trainingDatasets.listDatums({
+      dataset_name: 'dataset_name',
+      last_updated: '2019-12-27T18:11:19.117Z',
+    });
   });
 
   test('removeDatum: only required params', async () => {

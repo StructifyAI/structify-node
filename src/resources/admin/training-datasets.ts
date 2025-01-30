@@ -750,6 +750,8 @@ export namespace TrainingDatasetLabelDatumParams {
 
 export interface TrainingDatasetListDatumsParams {
   dataset_name: string;
+
+  last_updated?: string | null;
 }
 
 export interface TrainingDatasetRemoveDatumParams {
