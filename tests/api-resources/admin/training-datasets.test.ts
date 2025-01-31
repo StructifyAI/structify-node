@@ -108,8 +108,8 @@ describe('resource trainingDatasets', () => {
     });
   });
 
-  test('getNextDatum: only required params', async () => {
-    const responsePromise = client.admin.trainingDatasets.getNextDatum({
+  test('getNextForLabeling: only required params', async () => {
+    const responsePromise = client.admin.trainingDatasets.getNextForLabeling({
       dataset_name: 'dataset_name',
       status: 'Unlabeled',
     });
@@ -122,10 +122,29 @@ describe('resource trainingDatasets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('getNextDatum: required and optional params', async () => {
-    const response = await client.admin.trainingDatasets.getNextDatum({
+  test('getNextForLabeling: required and optional params', async () => {
+    const response = await client.admin.trainingDatasets.getNextForLabeling({
       dataset_name: 'dataset_name',
       status: 'Unlabeled',
+    });
+  });
+
+  test('getNextSuspicious: only required params', async () => {
+    const responsePromise = client.admin.trainingDatasets.getNextSuspicious({ status: 'Unlabeled' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('getNextSuspicious: required and optional params', async () => {
+    const response = await client.admin.trainingDatasets.getNextSuspicious({
+      status: 'Unlabeled',
+      dataset_name: 'dataset_name',
+      user_restriction: true,
     });
   });
 
