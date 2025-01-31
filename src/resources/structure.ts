@@ -645,8 +645,6 @@ export namespace StructureRunAsyncParams {
     export interface EnhanceIngestor {
       central_entity: SharedAPI.Entity;
 
-      extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
-
       /**
        * Knowledge graph info structured to deserialize and display in the same format
        * that the LLM outputs. Also the first representation of an LLM output in the
@@ -828,8 +826,6 @@ export namespace StructureRunAsyncParams {
     export namespace WebSearch {
       export interface WebSearch {
         description?: string | null;
-
-        query?: string | null;
 
         starting_website?: string;
 
