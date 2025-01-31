@@ -76,11 +76,21 @@ export class TrainingDatasets extends APIResource {
   /**
    * Returns None if no datum is available.
    */
-  getNextDatum(
-    query: TrainingDatasetGetNextDatumParams,
+  getNextForLabeling(
+    query: TrainingDatasetGetNextForLabelingParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<TrainingDatumResponse | null> {
-    return this._client.get('/admin/training_datasets/get_next_datum', { query, ...options });
+    return this._client.get('/admin/training_datasets/get_next_for_labeling', { query, ...options });
+  }
+
+  /**
+   * Returns None if no datum is available.
+   */
+  getNextSuspicious(
+    query: TrainingDatasetGetNextSuspiciousParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<TrainingDatumResponse | null> {
+    return this._client.get('/admin/training_datasets/get_next_suspicious', { query, ...options });
   }
 
   /**
@@ -536,7 +546,7 @@ export interface TrainingDatasetGetLabellerStatsParams {
   start_date?: string | null;
 }
 
-export interface TrainingDatasetGetNextDatumParams {
+export interface TrainingDatasetGetNextForLabelingParams {
   dataset_name: string;
 
   status:
@@ -548,6 +558,22 @@ export interface TrainingDatasetGetNextDatumParams {
     | 'Skipped'
     | 'SuspiciousNav'
     | 'SuspiciousSave';
+}
+
+export interface TrainingDatasetGetNextSuspiciousParams {
+  status:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'Verified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave';
+
+  dataset_name?: string | null;
+
+  user_restriction?: boolean;
 }
 
 export interface TrainingDatasetLabelDatumParams {
@@ -829,7 +855,8 @@ export declare namespace TrainingDatasets {
     type TrainingDatasetDownloadDatumParams as TrainingDatasetDownloadDatumParams,
     type TrainingDatasetGetDatumInfoParams as TrainingDatasetGetDatumInfoParams,
     type TrainingDatasetGetLabellerStatsParams as TrainingDatasetGetLabellerStatsParams,
-    type TrainingDatasetGetNextDatumParams as TrainingDatasetGetNextDatumParams,
+    type TrainingDatasetGetNextForLabelingParams as TrainingDatasetGetNextForLabelingParams,
+    type TrainingDatasetGetNextSuspiciousParams as TrainingDatasetGetNextSuspiciousParams,
     type TrainingDatasetLabelDatumParams as TrainingDatasetLabelDatumParams,
     type TrainingDatasetListDatumsParams as TrainingDatasetListDatumsParams,
     type TrainingDatasetRemoveDatumParams as TrainingDatasetRemoveDatumParams,
