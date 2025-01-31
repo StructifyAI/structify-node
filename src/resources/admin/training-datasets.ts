@@ -475,6 +475,8 @@ export namespace TrainingDatasetListDatumsResponse {
       | 'SuspiciousSave';
 
     verifiers: Array<string>;
+
+    origin?: 'HumanLLM' | 'UserReported' | 'ManualUpload' | 'ManualTransfer' | null;
   }
 }
 
