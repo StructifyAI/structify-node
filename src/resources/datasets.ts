@@ -320,7 +320,7 @@ export interface DatasetViewRelationshipsParams extends JobsListParams {
 
   last_updated?: string | null;
 
-  sort_by?: DatasetViewRelationshipsParams.SortBy | null;
+  sort_by?: DatasetViewRelationshipsParams.SortBy;
 }
 
 export namespace DatasetViewRelationshipsParams {
@@ -340,7 +340,7 @@ export interface DatasetViewTableParams extends JobsListParams {
 
   last_updated?: string | null;
 
-  sort_by?: DatasetViewTableParams.SortBy | null;
+  sort_by?: DatasetViewTableParams.SortBy;
 }
 
 export namespace DatasetViewTableParams {
@@ -364,7 +364,7 @@ export interface DatasetViewTablesWithRelationshipsParams {
 
   offset?: number;
 
-  sort_by?: DatasetViewTablesWithRelationshipsParams.SortBy | null;
+  sort_by?: DatasetViewTablesWithRelationshipsParams.SortBy;
 }
 
 export namespace DatasetViewTablesWithRelationshipsParams {
