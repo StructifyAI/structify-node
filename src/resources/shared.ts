@@ -20,7 +20,7 @@ export interface DatasetDescriptor {
 
   tables: Array<Table>;
 
-  model_override?: string | null;
+  model_override_field?: string | null;
 }
 
 export namespace DatasetDescriptor {
