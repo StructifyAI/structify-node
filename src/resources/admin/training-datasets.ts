@@ -147,11 +147,7 @@ export class TrainingDatasets extends APIResource {
     query: TrainingDatasetSuspiciousCountParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<TrainingDatasetSuspiciousCountResponse> {
-    return this._client.get('/admin/training_datasets/suspicious_count', {
-      query,
-      ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
-    });
+    return this._client.get('/admin/training_datasets/suspicious_count', { query, ...options });
   }
 
   /**
@@ -524,7 +520,9 @@ export namespace TrainingDatasetSizeResponse {
   }
 }
 
-export type TrainingDatasetSuspiciousCountResponse = number;
+export interface TrainingDatasetSuspiciousCountResponse {
+  count: number;
+}
 
 export interface TrainingDatasetAddParams {
   dataset_name: string;
