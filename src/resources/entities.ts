@@ -538,12 +538,7 @@ export interface EntityUpdatePropertyParams {
 
   entity_id: string;
 
-  /**
-   * The name of the property to update
-   */
-  prop_name: string;
-
-  prop_value: string | boolean | number | SharedAPI.Image;
+  properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
   source?:
     | 'None'
