@@ -236,7 +236,8 @@ describe('resource entities', () => {
     const responsePromise = client.entities.updateProperty({
       dataset_name: 'dataset_name',
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      properties: { foo: 'string' },
+      prop_name: 'prop_name',
+      prop_value: 'string',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -251,7 +252,8 @@ describe('resource entities', () => {
     const response = await client.entities.updateProperty({
       dataset_name: 'dataset_name',
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      properties: { foo: 'string' },
+      prop_name: 'prop_name',
+      prop_value: 'string',
       source: 'None',
     });
   });

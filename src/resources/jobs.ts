@@ -201,6 +201,11 @@ export interface JobListParams extends JobsListParams {
   dataset_name?: string | null;
 
   /**
+   * List since a specific timestamp
+   */
+  since?: string | null;
+
+  /**
    * Status to optionally filter jobs by
    */
   status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
