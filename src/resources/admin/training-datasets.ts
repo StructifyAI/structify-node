@@ -141,6 +141,20 @@ export class TrainingDatasets extends APIResource {
   }
 
   /**
+   * Returns the number of suspicious training datums for the current user's labels.
+   */
+  suspiciousCount(
+    query: TrainingDatasetSuspiciousCountParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<TrainingDatasetSuspiciousCountResponse> {
+    return this._client.get('/admin/training_datasets/suspicious_count', {
+      query,
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
    * Switches a training datum to a new dataset.
    */
   switchDataset(
@@ -510,6 +524,8 @@ export namespace TrainingDatasetSizeResponse {
   }
 }
 
+export type TrainingDatasetSuspiciousCountResponse = number;
+
 export interface TrainingDatasetAddParams {
   dataset_name: string;
 }
@@ -805,6 +821,18 @@ export interface TrainingDatasetSizeParams {
     | null;
 }
 
+export interface TrainingDatasetSuspiciousCountParams {
+  status:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'Verified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave';
+}
+
 export interface TrainingDatasetSwitchDatasetParams {
   dataset_name: string;
 
@@ -850,6 +878,7 @@ export declare namespace TrainingDatasets {
     type TrainingDatasetGetLabellerStatsResponse as TrainingDatasetGetLabellerStatsResponse,
     type TrainingDatasetListDatumsResponse as TrainingDatasetListDatumsResponse,
     type TrainingDatasetSizeResponse as TrainingDatasetSizeResponse,
+    type TrainingDatasetSuspiciousCountResponse as TrainingDatasetSuspiciousCountResponse,
     type TrainingDatasetAddParams as TrainingDatasetAddParams,
     type TrainingDatasetAddDatumParams as TrainingDatasetAddDatumParams,
     type TrainingDatasetDownloadDatumParams as TrainingDatasetDownloadDatumParams,
@@ -861,6 +890,7 @@ export declare namespace TrainingDatasets {
     type TrainingDatasetListDatumsParams as TrainingDatasetListDatumsParams,
     type TrainingDatasetRemoveDatumParams as TrainingDatasetRemoveDatumParams,
     type TrainingDatasetSizeParams as TrainingDatasetSizeParams,
+    type TrainingDatasetSuspiciousCountParams as TrainingDatasetSuspiciousCountParams,
     type TrainingDatasetSwitchDatasetParams as TrainingDatasetSwitchDatasetParams,
     type TrainingDatasetUpdateDatumStatusParams as TrainingDatasetUpdateDatumStatusParams,
     type TrainingDatasetUploadLabeledStepParams as TrainingDatasetUploadLabeledStepParams,
