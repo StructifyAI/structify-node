@@ -84,7 +84,7 @@ Methods:
 - <code title="get /admin/training_datasets/list_datums">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">listDatums</a>({ ...params }) -> TrainingDatasetListDatumsResponse</code>
 - <code title="delete /admin/training_datasets/remove_from_dataset">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">removeDatum</a>({ ...params }) -> void</code>
 - <code title="post /admin/training_datasets/size">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">size</a>({ ...params }) -> TrainingDatasetSizeResponse</code>
-- <code title="get /admin/training_datasets/suspicious_count">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">suspiciousCount</a>({ ...params }) -> TrainingDatasetSuspiciousCountResponse</code>
+- <code title="get /admin/training_datasets/suspicious_count">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">suspiciousCount</a>() -> TrainingDatasetSuspiciousCountResponse</code>
 - <code title="post /admin/training_datasets/switch_dataset">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">switchDataset</a>({ ...params }) -> void</code>
 - <code title="post /admin/training_datasets/update_datum_status">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">updateDatumStatus</a>({ ...params }) -> void</code>
 - <code title="post /admin/training_datasets/upload_labeled_step">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">uploadLabeledStep</a>({ ...params }) -> void</code>

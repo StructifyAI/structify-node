@@ -148,7 +148,6 @@ export class TrainingDatasets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<TrainingDatasetSuspiciousCountResponse> {
     return this._client.get('/admin/training_datasets/suspicious_count', {
-      query,
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
     });
@@ -821,17 +820,7 @@ export interface TrainingDatasetSizeParams {
     | null;
 }
 
-export interface TrainingDatasetSuspiciousCountParams {
-  status:
-    | 'Unlabeled'
-    | 'NavLabeled'
-    | 'SaveLabeled'
-    | 'Verified'
-    | 'Pending'
-    | 'Skipped'
-    | 'SuspiciousNav'
-    | 'SuspiciousSave';
-}
+export interface TrainingDatasetSuspiciousCountParams {}
 
 export interface TrainingDatasetSwitchDatasetParams {
   dataset_name: string;

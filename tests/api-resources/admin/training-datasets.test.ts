@@ -230,8 +230,8 @@ describe('resource trainingDatasets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('suspiciousCount: only required params', async () => {
-    const responsePromise = client.admin.trainingDatasets.suspiciousCount({ status: 'Unlabeled' });
+  test('suspiciousCount', async () => {
+    const responsePromise = client.admin.trainingDatasets.suspiciousCount({});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -239,10 +239,6 @@ describe('resource trainingDatasets', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('suspiciousCount: required and optional params', async () => {
-    const response = await client.admin.trainingDatasets.suspiciousCount({ status: 'Unlabeled' });
   });
 
   test('switchDataset: only required params', async () => {
