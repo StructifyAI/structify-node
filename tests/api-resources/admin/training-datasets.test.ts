@@ -244,7 +244,8 @@ describe('resource trainingDatasets', () => {
   test('suspiciousCount: required and optional params', async () => {
     const response = await client.admin.trainingDatasets.suspiciousCount({
       status: 'Unlabeled',
-      user_restrict: true,
+      dataset_name: 'dataset_name',
+      user_restriction: true,
     });
   });
 

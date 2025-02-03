@@ -832,7 +832,9 @@ export interface TrainingDatasetSuspiciousCountParams {
     | 'SuspiciousNav'
     | 'SuspiciousSave';
 
-  user_restrict?: boolean;
+  dataset_name?: string | null;
+
+  user_restriction?: boolean;
 }
 
 export interface TrainingDatasetSwitchDatasetParams {
