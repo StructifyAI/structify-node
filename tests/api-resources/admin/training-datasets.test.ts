@@ -66,6 +66,7 @@ describe('resource trainingDatasets', () => {
   test('downloadDatum: required and optional params', async () => {
     const response = await client.admin.trainingDatasets.downloadDatum({
       step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      require_labels: true,
     });
   });
 
