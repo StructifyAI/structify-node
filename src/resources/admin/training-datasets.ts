@@ -536,6 +536,8 @@ export interface TrainingDatasetAddDatumParams {
 
 export interface TrainingDatasetDownloadDatumParams {
   step_id: string;
+
+  require_labels?: boolean;
 }
 
 export interface TrainingDatasetGetDatumInfoParams {
