@@ -496,7 +496,7 @@ export namespace TrainingDatasetListDatumsResponse {
 
     verifiers: Array<string>;
 
-    origin?: 'HumanLLM' | 'UserReported' | 'ManualUpload' | 'ManualTransfer' | null;
+    origin?: 'HumanLLM' | 'UserReported' | 'ManualUpload' | 'ManualTransfer' | 'ToolParseFailure' | null;
   }
 }
 
