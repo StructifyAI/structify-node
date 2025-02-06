@@ -562,6 +562,10 @@ export interface StructureEnhanceParams {
   relationship_name?: string | null;
 
   special_job_type?: 'HumanLLM' | null;
+
+  starting_searches?: Array<string>;
+
+  starting_urls?: Array<string>;
 }
 
 export interface StructureEnhanceRelationshipParams {
@@ -572,6 +576,10 @@ export interface StructureEnhanceRelationshipParams {
   source_id?: string | null;
 
   special_job_type?: 'HumanLLM' | null;
+
+  starting_searches?: Array<string>;
+
+  starting_urls?: Array<string>;
 
   target_id?: string | null;
 }
@@ -586,11 +594,7 @@ export interface StructureRunAsyncParams {
   /**
    * These are all the types that can be converted into a BasicInputType
    */
-  structure_input:
-    | StructureRunAsyncParams.SecIngestor
-    | StructureRunAsyncParams.PdfIngestor
-    | StructureRunAsyncParams.EnhanceIngestor
-    | StructureRunAsyncParams.Basic;
+  structure_input: StructureRunAsyncParams.PdfIngestor | StructureRunAsyncParams.WebSearch;
 
   extraction_criteria?: Array<ExtractionCriteria>;
 
@@ -605,248 +609,31 @@ export interface StructureRunAsyncParams {
 }
 
 export namespace StructureRunAsyncParams {
-  export interface SecIngestor {
-    SECIngestor: SecIngestor.SecIngestor;
-  }
-
-  export namespace SecIngestor {
-    export interface SecIngestor {
-      accession_number?: string | null;
-
-      quarter?: number | null;
-
-      year?: number | null;
-    }
-  }
-
   export interface PdfIngestor {
     /**
-     * This is currently a very simple ingestor. It converts everything to an image and
-     * processes them independently.
+     * Ingest all pages of a PDF and process them independently.
      */
     PDFIngestor: PdfIngestor.PdfIngestor;
   }
 
   export namespace PdfIngestor {
     /**
-     * This is currently a very simple ingestor. It converts everything to an image and
-     * processes them independently.
+     * Ingest all pages of a PDF and process them independently.
      */
     export interface PdfIngestor {
       path: string;
     }
   }
 
-  export interface EnhanceIngestor {
-    EnhanceIngestor: EnhanceIngestor.EnhanceIngestor;
+  export interface WebSearch {
+    WebSearch: WebSearch.WebSearch;
   }
 
-  export namespace EnhanceIngestor {
-    export interface EnhanceIngestor {
-      central_entity: SharedAPI.Entity;
-
-      extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
-
-      /**
-       * Knowledge graph info structured to deserialize and display in the same format
-       * that the LLM outputs. Also the first representation of an LLM output in the
-       * pipeline from raw tool output to being merged into a Neo4j DB
-       */
-      surrounding_kg: SharedAPI.KnowledgeGraph;
-
-      target_descriptor: EnhanceIngestor.Property | EnhanceIngestor.Relationship;
-
-      allow_new_entities?: boolean;
-    }
-
-    export namespace EnhanceIngestor {
-      export interface Property {
-        Property: Property.Property;
-      }
-
-      export namespace Property {
-        export interface Property {
-          description: string;
-
-          name: string;
-
-          merge_strategy?: 'Unique' | 'NoSignal' | Property.Probabilistic;
-
-          prop_type?: SharedAPI.PropertyType;
-        }
-
-        export namespace Property {
-          export interface Probabilistic {
-            Probabilistic: Probabilistic.Probabilistic;
-          }
-
-          export namespace Probabilistic {
-            export interface Probabilistic {
-              /**
-               * The number of unique values that are expected to be present in the complete
-               * dataset
-               *
-               * This is used for merging to determine how significant a match is. (i.e. if there
-               * are only 2 possible values, a match gives less confidence than if there are 100)
-               */
-              baseline_cardinality: number;
-
-              /**
-               * The estimated probability that, given an entity match, the properties also match
-               *
-               * For a person's full name, this would be quite high. For a person's job title, it
-               * would be lower because people can have multiple job titles over time or at
-               * different companies at the same time.
-               */
-              match_transfer_probability: number;
-
-              comparison_strategy?: 'Default' | 'EnforceUniqueness';
-            }
-          }
-        }
-      }
-
-      export interface Relationship {
-        Relationship: Relationship.Relationship;
-      }
-
-      export namespace Relationship {
-        export interface Relationship {
-          description: string;
-
-          name: string;
-
-          source_table: string;
-
-          target_table: string;
-
-          merge_strategy?: Relationship.MergeStrategy | null;
-
-          properties?: Array<Relationship.Property>;
-        }
-
-        export namespace Relationship {
-          export interface MergeStrategy {
-            Probabilistic: MergeStrategy.Probabilistic;
-          }
-
-          export namespace MergeStrategy {
-            export interface Probabilistic {
-              /**
-               * Describes the expected cardinality of the source table when a match is found in
-               * the target table
-               *
-               * For example, if we have a source company and a target funding round, we expect
-               * the source company to appear in multiple funding rounds, but not _too_ many. So
-               * if we have a funding round match, the expected number of unique companies is
-               * relatively small. This is an estimate of that number.
-               */
-              source_cardinality_given_target_match?: number | null;
-
-              /**
-               * Describes the expected cardinality of the target table when a match is found in
-               * the source table
-               *
-               * For example, if we have a source company and a target funding round, we usually
-               * expect some number of funding rounds to be associated with a single company but
-               * not _too_ many. So if we have a company match, the expected number of unique
-               * funding rounds is relatively small. This is an estimate of that number.
-               */
-              target_cardinality_given_source_match?: number | null;
-            }
-          }
-
-          export interface Property {
-            description: string;
-
-            name: string;
-
-            merge_strategy?: 'Unique' | 'NoSignal' | Property.Probabilistic;
-
-            prop_type?: SharedAPI.PropertyType;
-          }
-
-          export namespace Property {
-            export interface Probabilistic {
-              Probabilistic: Probabilistic.Probabilistic;
-            }
-
-            export namespace Probabilistic {
-              export interface Probabilistic {
-                /**
-                 * The number of unique values that are expected to be present in the complete
-                 * dataset
-                 *
-                 * This is used for merging to determine how significant a match is. (i.e. if there
-                 * are only 2 possible values, a match gives less confidence than if there are 100)
-                 */
-                baseline_cardinality: number;
-
-                /**
-                 * The estimated probability that, given an entity match, the properties also match
-                 *
-                 * For a person's full name, this would be quite high. For a person's job title, it
-                 * would be lower because people can have multiple job titles over time or at
-                 * different companies at the same time.
-                 */
-                match_transfer_probability: number;
-
-                comparison_strategy?: 'Default' | 'EnforceUniqueness';
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  export interface Basic {
-    /**
-     * These are all the types for which we have an agent that is directly capable of
-     * navigating. There should be a one to one mapping between them.
-     */
-    Basic: Basic.TextDocument | Basic.WebSearch | Basic.ImageDocument;
-  }
-
-  export namespace Basic {
-    export interface TextDocument {
-      TextDocument: TextDocument.TextDocument;
-    }
-
-    export namespace TextDocument {
-      export interface TextDocument {
-        content?: string | null;
-
-        path?: string | null;
-      }
-    }
-
+  export namespace WebSearch {
     export interface WebSearch {
-      WebSearch: WebSearch.WebSearch;
-    }
+      starting_searches?: Array<string>;
 
-    export namespace WebSearch {
-      export interface WebSearch {
-        description?: string | null;
-
-        query?: string | null;
-
-        starting_website?: string;
-
-        title?: string | null;
-      }
-    }
-
-    export interface ImageDocument {
-      ImageDocument: ImageDocument.ImageDocument;
-    }
-
-    export namespace ImageDocument {
-      export interface ImageDocument {
-        document_name: string;
-
-        document_page: number;
-      }
+      starting_urls?: Array<string>;
     }
   }
 }
