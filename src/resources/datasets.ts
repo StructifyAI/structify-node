@@ -190,7 +190,7 @@ export interface DatasetCreateParams {
 
   tables: Array<SharedAPI.Table>;
 
-  model_override_field?: string | null;
+  llm_override_field?: string | null;
 }
 
 export namespace DatasetCreateParams {
