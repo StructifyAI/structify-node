@@ -38,6 +38,21 @@ Methods:
 - <code title="post /admin/human_llm/start_next_job">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">startNextJob</a>({ ...params }) -> StepChoices</code>
 - <code title="post /admin/human_llm/update_step">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">updateStep</a>({ ...params }) -> StepChoices</code>
 
+## NextAction
+
+Types:
+
+- <code><a href="./src/resources/admin/next-action.ts">ActionTrainingDataEntry</a></code>
+- <code><a href="./src/resources/admin/next-action.ts">ActionTrainingDataResponse</a></code>
+- <code><a href="./src/resources/admin/next-action.ts">AddActionTrainingDatumRequest</a></code>
+- <code><a href="./src/resources/admin/next-action.ts">LabelActionTrainingDatumRequest</a></code>
+
+Methods:
+
+- <code title="post /admin/next_action/add_action_training_datum">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">addTrainingDatum</a>({ ...params }) -> void</code>
+- <code title="get /admin/next_action/get_action_training_data">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">getTrainingData</a>() -> ActionTrainingDataResponse</code>
+- <code title="put /admin/next_action/label_action_training_datum">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">labelTrainingDatum</a>({ ...params }) -> void</code>
+
 ## Users
 
 Types:
