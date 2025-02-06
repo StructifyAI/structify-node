@@ -27,8 +27,6 @@ describe('resource structure', () => {
       property_name: 'property_name',
       relationship_name: 'relationship_name',
       special_job_type: 'HumanLLM',
-      starting_searches: ['string'],
-      starting_urls: ['string'],
     });
   });
 
@@ -49,8 +47,6 @@ describe('resource structure', () => {
       allow_new_entities: true,
       source_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       special_job_type: 'HumanLLM',
-      starting_searches: ['string'],
-      starting_urls: ['string'],
       target_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
@@ -86,10 +82,7 @@ describe('resource structure', () => {
   });
 
   test('runAsync: only required params', async () => {
-    const responsePromise = client.structure.runAsync({
-      name: 'name',
-      structure_input: { PDFIngestor: { path: 'path' } },
-    });
+    const responsePromise = client.structure.runAsync({ name: 'name', structure_input: { SECIngestor: {} } });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -102,7 +95,7 @@ describe('resource structure', () => {
   test('runAsync: required and optional params', async () => {
     const response = await client.structure.runAsync({
       name: 'name',
-      structure_input: { PDFIngestor: { path: 'path' } },
+      structure_input: { SECIngestor: { accession_number: 'accession_number', quarter: 0, year: 0 } },
       extraction_criteria: [{ RelationshipExtraction: { relationship_name: 'relationship_name' } }],
       seeded_entity: {
         entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
