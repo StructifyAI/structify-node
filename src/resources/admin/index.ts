@@ -18,6 +18,15 @@ export {
   type HumanLlmUpdateStepParams,
 } from './human-llm';
 export {
+  NextAction,
+  type ActionTrainingDataEntry,
+  type ActionTrainingDataResponse,
+  type AddActionTrainingDatumRequest,
+  type LabelActionTrainingDatumRequest,
+  type NextActionAddTrainingDatumParams,
+  type NextActionLabelTrainingDatumParams,
+} from './next-action';
+export {
   TrainingDatasets,
   type AddDatumRequest,
   type TrainingDatumResponse,

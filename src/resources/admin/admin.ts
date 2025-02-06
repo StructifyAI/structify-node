@@ -18,6 +18,16 @@ import {
   HumanLlmUpdateStepParams,
   StepChoices,
 } from './human-llm';
+import * as NextActionAPI from './next-action';
+import {
+  ActionTrainingDataEntry,
+  ActionTrainingDataResponse,
+  AddActionTrainingDatumRequest,
+  LabelActionTrainingDatumRequest,
+  NextAction,
+  NextActionAddTrainingDatumParams,
+  NextActionLabelTrainingDatumParams,
+} from './next-action';
 import * as TrainingDatasetsAPI from './training-datasets';
 import {
   AddDatumRequest,
@@ -63,6 +73,7 @@ import {
 
 export class Admin extends APIResource {
   humanLlm: HumanLlmAPI.HumanLlm = new HumanLlmAPI.HumanLlm(this._client);
+  nextAction: NextActionAPI.NextAction = new NextActionAPI.NextAction(this._client);
   users: UsersAPI.Users = new UsersAPI.Users(this._client);
   trainingDatasets: TrainingDatasetsAPI.TrainingDatasets = new TrainingDatasetsAPI.TrainingDatasets(
     this._client,
@@ -70,6 +81,7 @@ export class Admin extends APIResource {
 }
 
 Admin.HumanLlm = HumanLlm;
+Admin.NextAction = NextAction;
 Admin.Users = Users;
 Admin.TrainingDatasets = TrainingDatasets;
 
@@ -89,6 +101,16 @@ export declare namespace Admin {
     type HumanLlmGetNextStepParams as HumanLlmGetNextStepParams,
     type HumanLlmStartNextJobParams as HumanLlmStartNextJobParams,
     type HumanLlmUpdateStepParams as HumanLlmUpdateStepParams,
+  };
+
+  export {
+    NextAction as NextAction,
+    type ActionTrainingDataEntry as ActionTrainingDataEntry,
+    type ActionTrainingDataResponse as ActionTrainingDataResponse,
+    type AddActionTrainingDatumRequest as AddActionTrainingDatumRequest,
+    type LabelActionTrainingDatumRequest as LabelActionTrainingDatumRequest,
+    type NextActionAddTrainingDatumParams as NextActionAddTrainingDatumParams,
+    type NextActionLabelTrainingDatumParams as NextActionLabelTrainingDatumParams,
   };
 
   export {
