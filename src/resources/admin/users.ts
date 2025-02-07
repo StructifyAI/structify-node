@@ -56,7 +56,7 @@ export interface User {
   email: string;
 
   feature_flags?: Array<
-    'test' | 'pdf_parsing' | 'boredm_construction_hack' | 'boredm_construction_model' | 'none'
+    'functional_test' | 'pdf_parsing' | 'boredm_construction_hack' | 'boredm_construction_model' | 'none'
   >;
 
   permissions?: Array<'labeler' | 'debug' | 'human_llm' | 'none'>;
@@ -96,7 +96,7 @@ export interface UserCreateParams {
   email?: string | null;
 
   feature_flags?: Array<
-    'test' | 'pdf_parsing' | 'boredm_construction_hack' | 'boredm_construction_model' | 'none'
+    'functional_test' | 'pdf_parsing' | 'boredm_construction_hack' | 'boredm_construction_model' | 'none'
   >;
 
   is_admin?: boolean;
@@ -112,7 +112,7 @@ export interface UserUpdateParams {
   new_email?: string | null;
 
   new_feature_flags?: Array<
-    'test' | 'pdf_parsing' | 'boredm_construction_hack' | 'boredm_construction_model' | 'none'
+    'functional_test' | 'pdf_parsing' | 'boredm_construction_hack' | 'boredm_construction_model' | 'none'
   > | null;
 
   new_permissions?: Array<'labeler' | 'debug' | 'human_llm' | 'none'> | null;
