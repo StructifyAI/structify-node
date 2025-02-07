@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as SharedAPI from '../shared';
 import * as StructureAPI from '../structure';
@@ -20,11 +21,19 @@ export class NextAction extends APIResource {
     });
   }
 
-  /**
-   * Get all action training data
-   */
-  getTrainingData(options?: Core.RequestOptions): Core.APIPromise<ActionTrainingDataResponse> {
-    return this._client.get('/admin/next_action/get_action_training_data', options);
+  getTrainingData(
+    query?: NextActionGetTrainingDataParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ActionTrainingDataResponse>;
+  getTrainingData(options?: Core.RequestOptions): Core.APIPromise<ActionTrainingDataResponse>;
+  getTrainingData(
+    query: NextActionGetTrainingDataParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ActionTrainingDataResponse> {
+    if (isRequestOptions(query)) {
+      return this.getTrainingData({}, query);
+    }
+    return this._client.get('/admin/next_action/get_action_training_data', { query, ...options });
   }
 
   /**
@@ -318,6 +327,13 @@ export namespace NextActionAddTrainingDatumParams {
   }
 }
 
+export interface NextActionGetTrainingDataParams {
+  /**
+   * Optional job ID to filter training data
+   */
+  job_id?: string | null;
+}
+
 export interface NextActionLabelTrainingDatumParams {
   id: string;
 
@@ -370,6 +386,7 @@ export declare namespace NextAction {
     type AddActionTrainingDatumRequest as AddActionTrainingDatumRequest,
     type LabelActionTrainingDatumRequest as LabelActionTrainingDatumRequest,
     type NextActionAddTrainingDatumParams as NextActionAddTrainingDatumParams,
+    type NextActionGetTrainingDataParams as NextActionGetTrainingDataParams,
     type NextActionLabelTrainingDatumParams as NextActionLabelTrainingDatumParams,
   };
 }
