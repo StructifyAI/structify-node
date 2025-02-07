@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.85.0 (2025-02-07)
+
+Full Changelog: [v1.84.0...v1.85.0](https://github.com/StructifyAI/structify-node/compare/v1.84.0...v1.85.0)
+
+### Features
+
+* **api:** api update ([#859](https://github.com/StructifyAI/structify-node/issues/859)) ([e8a155d](https://github.com/StructifyAI/structify-node/commit/e8a155dee96b64216f30522bf63a91cff93f1f49))
+* **api:** api update ([#860](https://github.com/StructifyAI/structify-node/issues/860)) ([ac8d2b9](https://github.com/StructifyAI/structify-node/commit/ac8d2b97c66f77a7424f5642d18a923e504f1947))
+* **api:** api update ([#861](https://github.com/StructifyAI/structify-node/issues/861)) ([9193045](https://github.com/StructifyAI/structify-node/commit/919304590c76a9ffadcf4b3066c5ce0af26d8122))
+* **api:** api update ([#862](https://github.com/StructifyAI/structify-node/issues/862)) ([2185db5](https://github.com/StructifyAI/structify-node/commit/2185db5a4314d8d7afff81d872ef05c712c007a2))
+* **api:** api update ([#863](https://github.com/StructifyAI/structify-node/issues/863)) ([179d35d](https://github.com/StructifyAI/structify-node/commit/179d35d6d8bb10203ab5bd304baf150894e48b47))
+* **api:** api update ([#864](https://github.com/StructifyAI/structify-node/issues/864)) ([5a66ad4](https://github.com/StructifyAI/structify-node/commit/5a66ad447c2492ae2c4c9e5dc4b4e7d1bab3e6e0))
+* **api:** api update ([#865](https://github.com/StructifyAI/structify-node/issues/865)) ([28e9240](https://github.com/StructifyAI/structify-node/commit/28e924001a8a914c81835126fb9fbc5e24fd018b))
+* **client:** send `X-Stainless-Timeout` header ([#857](https://github.com/StructifyAI/structify-node/issues/857)) ([98dfe0b](https://github.com/StructifyAI/structify-node/commit/98dfe0bbc1e97237c2919c58720b436af37ef49d))
+
 ## 1.84.0 (2025-02-04)
 
 Full Changelog: [v1.83.0...v1.84.0](https://github.com/StructifyAI/structify-node/compare/v1.83.0...v1.84.0)
