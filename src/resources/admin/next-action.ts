@@ -87,7 +87,7 @@ export namespace ActionTrainingDataEntry {
 
     label: string;
 
-    output: Output.SelectedStep | Output.SearchStep;
+    output: Output.SelectedStep | Output.SearchStep | Output.InvalidAction;
   }
 
   export namespace Output {
@@ -110,6 +110,18 @@ export namespace ActionTrainingDataEntry {
         search_query: string;
       }
     }
+
+    export interface InvalidAction {
+      InvalidAction: InvalidAction.InvalidAction;
+    }
+
+    export namespace InvalidAction {
+      export interface InvalidAction {
+        error: string;
+
+        llm_output: string;
+      }
+    }
   }
 }
 
@@ -122,9 +134,12 @@ export interface AddActionTrainingDatumRequest {
 
   label: string;
 
-  output: AddActionTrainingDatumRequest.SelectedStep | AddActionTrainingDatumRequest.SearchStep;
+  output:
+    | AddActionTrainingDatumRequest.SelectedStep
+    | AddActionTrainingDatumRequest.SearchStep
+    | AddActionTrainingDatumRequest.InvalidAction;
 
-  dataset_name?: string | null;
+  job_id?: string | null;
 }
 
 export namespace AddActionTrainingDatumRequest {
@@ -172,6 +187,18 @@ export namespace AddActionTrainingDatumRequest {
       search_query: string;
     }
   }
+
+  export interface InvalidAction {
+    InvalidAction: InvalidAction.InvalidAction;
+  }
+
+  export namespace InvalidAction {
+    export interface InvalidAction {
+      error: string;
+
+      llm_output: string;
+    }
+  }
 }
 
 export interface LabelActionTrainingDatumRequest {
@@ -179,7 +206,10 @@ export interface LabelActionTrainingDatumRequest {
 
   label: string;
 
-  output: LabelActionTrainingDatumRequest.SelectedStep | LabelActionTrainingDatumRequest.SearchStep;
+  output:
+    | LabelActionTrainingDatumRequest.SelectedStep
+    | LabelActionTrainingDatumRequest.SearchStep
+    | LabelActionTrainingDatumRequest.InvalidAction;
 }
 
 export namespace LabelActionTrainingDatumRequest {
@@ -202,6 +232,18 @@ export namespace LabelActionTrainingDatumRequest {
       search_query: string;
     }
   }
+
+  export interface InvalidAction {
+    InvalidAction: InvalidAction.InvalidAction;
+  }
+
+  export namespace InvalidAction {
+    export interface InvalidAction {
+      error: string;
+
+      llm_output: string;
+    }
+  }
 }
 
 export interface NextActionAddTrainingDatumParams {
@@ -209,9 +251,12 @@ export interface NextActionAddTrainingDatumParams {
 
   label: string;
 
-  output: NextActionAddTrainingDatumParams.SelectedStep | NextActionAddTrainingDatumParams.SearchStep;
+  output:
+    | NextActionAddTrainingDatumParams.SelectedStep
+    | NextActionAddTrainingDatumParams.SearchStep
+    | NextActionAddTrainingDatumParams.InvalidAction;
 
-  dataset_name?: string | null;
+  job_id?: string | null;
 }
 
 export namespace NextActionAddTrainingDatumParams {
@@ -259,6 +304,18 @@ export namespace NextActionAddTrainingDatumParams {
       search_query: string;
     }
   }
+
+  export interface InvalidAction {
+    InvalidAction: InvalidAction.InvalidAction;
+  }
+
+  export namespace InvalidAction {
+    export interface InvalidAction {
+      error: string;
+
+      llm_output: string;
+    }
+  }
 }
 
 export interface NextActionLabelTrainingDatumParams {
@@ -266,7 +323,10 @@ export interface NextActionLabelTrainingDatumParams {
 
   label: string;
 
-  output: NextActionLabelTrainingDatumParams.SelectedStep | NextActionLabelTrainingDatumParams.SearchStep;
+  output:
+    | NextActionLabelTrainingDatumParams.SelectedStep
+    | NextActionLabelTrainingDatumParams.SearchStep
+    | NextActionLabelTrainingDatumParams.InvalidAction;
 }
 
 export namespace NextActionLabelTrainingDatumParams {
@@ -287,6 +347,18 @@ export namespace NextActionLabelTrainingDatumParams {
   export namespace SearchStep {
     export interface SearchStep {
       search_query: string;
+    }
+  }
+
+  export interface InvalidAction {
+    InvalidAction: InvalidAction.InvalidAction;
+  }
+
+  export namespace InvalidAction {
+    export interface InvalidAction {
+      error: string;
+
+      llm_output: string;
     }
   }
 }
