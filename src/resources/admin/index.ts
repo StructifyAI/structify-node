@@ -24,6 +24,7 @@ export {
   type AddActionTrainingDatumRequest,
   type LabelActionTrainingDatumRequest,
   type NextActionAddTrainingDatumParams,
+  type NextActionGetTrainingDataParams,
   type NextActionLabelTrainingDatumParams,
 } from './next-action';
 export {
