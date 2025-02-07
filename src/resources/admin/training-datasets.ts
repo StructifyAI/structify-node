@@ -216,7 +216,8 @@ export interface TrainingDatumResponse {
     | 'Unlabeled'
     | 'NavLabeled'
     | 'SaveLabeled'
-    | 'Verified'
+    | 'NavVerified'
+    | 'SaveVerified'
     | 'Pending'
     | 'Skipped'
     | 'SuspiciousNav'
@@ -237,7 +238,8 @@ export namespace TrainingDatumResponse {
       | 'Unlabeled'
       | 'NavLabeled'
       | 'SaveLabeled'
-      | 'Verified'
+      | 'NavVerified'
+      | 'SaveVerified'
       | 'Pending'
       | 'Skipped'
       | 'SuspiciousNav'
@@ -249,7 +251,7 @@ export namespace TrainingDatumResponse {
 
     review_message?: string | null;
 
-    verified_update_id?: string | null;
+    target_id?: string | null;
   }
 
   export namespace Update {
@@ -449,7 +451,8 @@ export interface UpdateDatumStatusRequest {
     | 'Unlabeled'
     | 'NavLabeled'
     | 'SaveLabeled'
-    | 'Verified'
+    | 'NavVerified'
+    | 'SaveVerified'
     | 'Pending'
     | 'Skipped'
     | 'SuspiciousNav'
@@ -482,19 +485,22 @@ export namespace TrainingDatasetListDatumsResponse {
 
     nav_labelers: Array<string>;
 
+    nav_verifiers: Array<string>;
+
     save_labelers: Array<string>;
+
+    save_verifiers: Array<string>;
 
     status:
       | 'Unlabeled'
       | 'NavLabeled'
       | 'SaveLabeled'
-      | 'Verified'
+      | 'NavVerified'
+      | 'SaveVerified'
       | 'Pending'
       | 'Skipped'
       | 'SuspiciousNav'
       | 'SuspiciousSave';
-
-    verifiers: Array<string>;
 
     origin?: 'HumanLLM' | 'UserReported' | 'ManualUpload' | 'ManualTransfer' | 'ToolParseFailure' | null;
   }
@@ -512,7 +518,8 @@ export namespace TrainingDatasetSizeResponse {
       | 'Unlabeled'
       | 'NavLabeled'
       | 'SaveLabeled'
-      | 'Verified'
+      | 'NavVerified'
+      | 'SaveVerified'
       | 'Pending'
       | 'Skipped'
       | 'SuspiciousNav'
@@ -549,7 +556,8 @@ export interface TrainingDatasetGetLabellerStatsParams {
     | 'Unlabeled'
     | 'NavLabeled'
     | 'SaveLabeled'
-    | 'Verified'
+    | 'NavVerified'
+    | 'SaveVerified'
     | 'Pending'
     | 'Skipped'
     | 'SuspiciousNav'
@@ -569,7 +577,8 @@ export interface TrainingDatasetGetNextForLabelingParams {
     | 'Unlabeled'
     | 'NavLabeled'
     | 'SaveLabeled'
-    | 'Verified'
+    | 'NavVerified'
+    | 'SaveVerified'
     | 'Pending'
     | 'Skipped'
     | 'SuspiciousNav'
@@ -581,7 +590,8 @@ export interface TrainingDatasetGetNextSuspiciousParams {
     | 'Unlabeled'
     | 'NavLabeled'
     | 'SaveLabeled'
-    | 'Verified'
+    | 'NavVerified'
+    | 'SaveVerified'
     | 'Pending'
     | 'Skipped'
     | 'SuspiciousNav'
@@ -599,7 +609,8 @@ export interface TrainingDatasetLabelDatumParams {
     | 'Unlabeled'
     | 'NavLabeled'
     | 'SaveLabeled'
-    | 'Verified'
+    | 'NavVerified'
+    | 'SaveVerified'
     | 'Pending'
     | 'Skipped'
     | 'SuspiciousNav'
@@ -813,7 +824,8 @@ export interface TrainingDatasetSizeParams {
     | 'Unlabeled'
     | 'NavLabeled'
     | 'SaveLabeled'
-    | 'Verified'
+    | 'NavVerified'
+    | 'SaveVerified'
     | 'Pending'
     | 'Skipped'
     | 'SuspiciousNav'
@@ -826,7 +838,8 @@ export interface TrainingDatasetSuspiciousCountParams {
     | 'Unlabeled'
     | 'NavLabeled'
     | 'SaveLabeled'
-    | 'Verified'
+    | 'NavVerified'
+    | 'SaveVerified'
     | 'Pending'
     | 'Skipped'
     | 'SuspiciousNav'
@@ -850,7 +863,8 @@ export interface TrainingDatasetUpdateDatumStatusParams {
     | 'Unlabeled'
     | 'NavLabeled'
     | 'SaveLabeled'
-    | 'Verified'
+    | 'NavVerified'
+    | 'SaveVerified'
     | 'Pending'
     | 'Skipped'
     | 'SuspiciousNav'
@@ -868,9 +882,18 @@ export interface TrainingDatasetUploadLabeledStepParams {
 export interface TrainingDatasetVerifyDatumParams {
   id: string;
 
-  verified_nav_id: string;
+  status:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'NavVerified'
+    | 'SaveVerified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave';
 
-  verified_save_id: string;
+  verified_id: string;
 }
 
 export declare namespace TrainingDatasets {
