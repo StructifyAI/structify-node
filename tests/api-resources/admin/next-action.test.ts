@@ -48,7 +48,7 @@ describe('resource nextAction', () => {
       },
       label: 'label',
       output: { SelectedStep: { step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' } },
-      dataset_name: 'dataset_name',
+      job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 
