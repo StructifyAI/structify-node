@@ -46,6 +46,7 @@ export {
   type TrainingDatasetGetNextSuspiciousParams,
   type TrainingDatasetLabelDatumParams,
   type TrainingDatasetListDatumsParams,
+  type TrainingDatasetMarkDatumSuspiciousParams,
   type TrainingDatasetRemoveDatumParams,
   type TrainingDatasetSizeParams,
   type TrainingDatasetSuspiciousCountParams,
