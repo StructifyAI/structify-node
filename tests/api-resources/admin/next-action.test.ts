@@ -70,6 +70,16 @@ describe('resource nextAction', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
+  test('getTrainingData: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.admin.nextAction.getTrainingData(
+        { job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
   test('labelTrainingDatum: only required params', async () => {
     const responsePromise = client.admin.nextAction.labelTrainingDatum({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
