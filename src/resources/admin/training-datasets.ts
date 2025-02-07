@@ -115,6 +115,20 @@ export class TrainingDatasets extends APIResource {
   }
 
   /**
+   * Marks a training datum update as suspicious.
+   */
+  markDatumSuspicious(
+    body: TrainingDatasetMarkDatumSuspiciousParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.put('/admin/training_datasets/mark_datum_suspicious', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
    * Removes a training datum from the specified dataset.
    */
   removeDatum(
@@ -809,6 +823,25 @@ export interface TrainingDatasetListDatumsParams {
   last_updated?: string | null;
 }
 
+export interface TrainingDatasetMarkDatumSuspiciousParams {
+  id: string;
+
+  message: string;
+
+  status:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'NavVerified'
+    | 'SaveVerified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave';
+
+  suspicious_id: string;
+}
+
 export interface TrainingDatasetRemoveDatumParams {
   step_id: string;
 }
@@ -915,6 +948,7 @@ export declare namespace TrainingDatasets {
     type TrainingDatasetGetNextSuspiciousParams as TrainingDatasetGetNextSuspiciousParams,
     type TrainingDatasetLabelDatumParams as TrainingDatasetLabelDatumParams,
     type TrainingDatasetListDatumsParams as TrainingDatasetListDatumsParams,
+    type TrainingDatasetMarkDatumSuspiciousParams as TrainingDatasetMarkDatumSuspiciousParams,
     type TrainingDatasetRemoveDatumParams as TrainingDatasetRemoveDatumParams,
     type TrainingDatasetSizeParams as TrainingDatasetSizeParams,
     type TrainingDatasetSuspiciousCountParams as TrainingDatasetSuspiciousCountParams,
