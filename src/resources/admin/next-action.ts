@@ -332,6 +332,21 @@ export interface NextActionGetTrainingDataParams {
    * Optional job ID to filter training data
    */
   job_id?: string | null;
+
+  /**
+   * Optional limit to filter training data
+   */
+  limit?: number | null;
+
+  /**
+   * Optional offset to filter training data
+   */
+  offset?: number | null;
+
+  /**
+   * Optional status to filter training data
+   */
+  status?: string | null;
 }
 
 export interface NextActionLabelTrainingDatumParams {
