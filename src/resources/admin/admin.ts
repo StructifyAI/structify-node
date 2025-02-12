@@ -21,11 +21,15 @@ import {
 import * as NextActionAPI from './next-action';
 import {
   ActionTrainingDataEntry,
+  ActionTrainingDataMetadataResponse,
   ActionTrainingDataResponse,
+  ActionTrainingDatumMetadata,
   AddActionTrainingDatumRequest,
+  GetActionTrainingDataParams,
   LabelActionTrainingDatumRequest,
   NextAction,
   NextActionAddTrainingDatumParams,
+  NextActionGetTrainingDataMetadataParams,
   NextActionGetTrainingDataParams,
   NextActionLabelTrainingDatumParams,
 } from './next-action';
@@ -108,11 +112,15 @@ export declare namespace Admin {
   export {
     NextAction as NextAction,
     type ActionTrainingDataEntry as ActionTrainingDataEntry,
+    type ActionTrainingDataMetadataResponse as ActionTrainingDataMetadataResponse,
     type ActionTrainingDataResponse as ActionTrainingDataResponse,
+    type ActionTrainingDatumMetadata as ActionTrainingDatumMetadata,
     type AddActionTrainingDatumRequest as AddActionTrainingDatumRequest,
+    type GetActionTrainingDataParams as GetActionTrainingDataParams,
     type LabelActionTrainingDatumRequest as LabelActionTrainingDatumRequest,
     type NextActionAddTrainingDatumParams as NextActionAddTrainingDatumParams,
     type NextActionGetTrainingDataParams as NextActionGetTrainingDataParams,
+    type NextActionGetTrainingDataMetadataParams as NextActionGetTrainingDataMetadataParams,
     type NextActionLabelTrainingDatumParams as NextActionLabelTrainingDatumParams,
   };
 

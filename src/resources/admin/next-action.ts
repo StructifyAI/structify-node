@@ -36,6 +36,21 @@ export class NextAction extends APIResource {
     return this._client.get('/admin/next_action/get_action_training_data', { query, ...options });
   }
 
+  getTrainingDataMetadata(
+    query?: NextActionGetTrainingDataMetadataParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ActionTrainingDataMetadataResponse>;
+  getTrainingDataMetadata(options?: Core.RequestOptions): Core.APIPromise<ActionTrainingDataMetadataResponse>;
+  getTrainingDataMetadata(
+    query: NextActionGetTrainingDataMetadataParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ActionTrainingDataMetadataResponse> {
+    if (isRequestOptions(query)) {
+      return this.getTrainingDataMetadata({}, query);
+    }
+    return this._client.get('/admin/next_action/get_action_training_data_metadata', { query, ...options });
+  }
+
   /**
    * Label an existing action training datum
    */
@@ -134,8 +149,26 @@ export namespace ActionTrainingDataEntry {
   }
 }
 
+export interface ActionTrainingDataMetadataResponse {
+  data: Array<ActionTrainingDatumMetadata>;
+}
+
 export interface ActionTrainingDataResponse {
   data: Array<ActionTrainingDataEntry>;
+}
+
+export interface ActionTrainingDatumMetadata {
+  id: string;
+
+  author: string;
+
+  created_at: string;
+
+  label_count: number;
+
+  latest_label?: string | null;
+
+  latest_label_at?: string | null;
 }
 
 export interface AddActionTrainingDatumRequest {
@@ -208,6 +241,16 @@ export namespace AddActionTrainingDatumRequest {
       llm_output: string;
     }
   }
+}
+
+export interface GetActionTrainingDataParams {
+  job_id?: string | null;
+
+  limit?: number;
+
+  offset?: number;
+
+  status?: string | null;
 }
 
 export interface LabelActionTrainingDatumRequest {
@@ -328,24 +371,22 @@ export namespace NextActionAddTrainingDatumParams {
 }
 
 export interface NextActionGetTrainingDataParams {
-  /**
-   * Optional job ID to filter training data
-   */
   job_id?: string | null;
 
-  /**
-   * Optional limit to filter training data
-   */
-  limit?: number | null;
+  limit?: number;
 
-  /**
-   * Optional offset to filter training data
-   */
-  offset?: number | null;
+  offset?: number;
 
-  /**
-   * Optional status to filter training data
-   */
+  status?: string | null;
+}
+
+export interface NextActionGetTrainingDataMetadataParams {
+  job_id?: string | null;
+
+  limit?: number;
+
+  offset?: number;
+
   status?: string | null;
 }
 
@@ -397,11 +438,15 @@ export namespace NextActionLabelTrainingDatumParams {
 export declare namespace NextAction {
   export {
     type ActionTrainingDataEntry as ActionTrainingDataEntry,
+    type ActionTrainingDataMetadataResponse as ActionTrainingDataMetadataResponse,
     type ActionTrainingDataResponse as ActionTrainingDataResponse,
+    type ActionTrainingDatumMetadata as ActionTrainingDatumMetadata,
     type AddActionTrainingDatumRequest as AddActionTrainingDatumRequest,
+    type GetActionTrainingDataParams as GetActionTrainingDataParams,
     type LabelActionTrainingDatumRequest as LabelActionTrainingDatumRequest,
     type NextActionAddTrainingDatumParams as NextActionAddTrainingDatumParams,
     type NextActionGetTrainingDataParams as NextActionGetTrainingDataParams,
+    type NextActionGetTrainingDataMetadataParams as NextActionGetTrainingDataMetadataParams,
     type NextActionLabelTrainingDatumParams as NextActionLabelTrainingDatumParams,
   };
 }

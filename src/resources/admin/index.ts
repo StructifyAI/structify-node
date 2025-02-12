@@ -20,11 +20,15 @@ export {
 export {
   NextAction,
   type ActionTrainingDataEntry,
+  type ActionTrainingDataMetadataResponse,
   type ActionTrainingDataResponse,
+  type ActionTrainingDatumMetadata,
   type AddActionTrainingDatumRequest,
+  type GetActionTrainingDataParams,
   type LabelActionTrainingDatumRequest,
   type NextActionAddTrainingDatumParams,
   type NextActionGetTrainingDataParams,
+  type NextActionGetTrainingDataMetadataParams,
   type NextActionLabelTrainingDatumParams,
 } from './next-action';
 export {
