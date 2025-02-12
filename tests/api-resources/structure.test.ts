@@ -9,31 +9,11 @@ const client = new Structify({
 });
 
 describe('resource structure', () => {
-  test('enhance: only required params', async () => {
-    const responsePromise = client.structure.enhance({ entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('enhance: required and optional params', async () => {
-    const response = await client.structure.enhance({
-      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      allow_new_entities: true,
-      property_name: 'property_name',
-      relationship_name: 'relationship_name',
-      special_job_type: 'HumanLLM',
-      starting_searches: ['string'],
-      starting_urls: ['string'],
-    });
-  });
-
   test('enhanceRelationship: only required params', async () => {
-    const responsePromise = client.structure.enhanceRelationship({ relationship_name: 'relationship_name' });
+    const responsePromise = client.structure.enhanceRelationship({
+      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      relationship_name: 'relationship_name',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -45,13 +25,12 @@ describe('resource structure', () => {
 
   test('enhanceRelationship: required and optional params', async () => {
     const response = await client.structure.enhanceRelationship({
+      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       relationship_name: 'relationship_name',
       allow_new_entities: true,
-      source_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       special_job_type: 'HumanLLM',
       starting_searches: ['string'],
       starting_urls: ['string'],
-      target_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 

@@ -9,17 +9,6 @@ export class Structure extends APIResource {
   /**
    * Returns a job id that can be waited on until the request is finished.
    */
-  enhance(body: StructureEnhanceParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    return this._client.post('/structure/enhance', {
-      body,
-      ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
-    });
-  }
-
-  /**
-   * Returns a job id that can be waited on until the request is finished.
-   */
   enhanceRelationship(
     body: StructureEnhanceRelationshipParams,
     options?: Core.RequestOptions,
@@ -538,8 +527,6 @@ export interface ToolMetadata {
   tool_validator: Record<string, unknown>;
 }
 
-export type StructureEnhanceResponse = string;
-
 export type StructureEnhanceRelationshipResponse = string;
 
 export type StructureIsCompleteResponse = string;
@@ -552,36 +539,18 @@ export interface StructureJobStatusResponse {
 
 export type StructureRunAsyncResponse = string;
 
-export interface StructureEnhanceParams {
+export interface StructureEnhanceRelationshipParams {
   entity_id: string;
 
-  allow_new_entities?: boolean;
-
-  property_name?: string | null;
-
-  relationship_name?: string | null;
-
-  special_job_type?: 'HumanLLM' | null;
-
-  starting_searches?: Array<string>;
-
-  starting_urls?: Array<string>;
-}
-
-export interface StructureEnhanceRelationshipParams {
   relationship_name: string;
 
   allow_new_entities?: boolean;
 
-  source_id?: string | null;
-
   special_job_type?: 'HumanLLM' | null;
 
   starting_searches?: Array<string>;
 
   starting_urls?: Array<string>;
-
-  target_id?: string | null;
 }
 
 export type StructureIsCompleteParams = Array<string>;
@@ -644,12 +613,10 @@ export declare namespace Structure {
     type ExecutionStep as ExecutionStep,
     type ExtractionCriteria as ExtractionCriteria,
     type ToolMetadata as ToolMetadata,
-    type StructureEnhanceResponse as StructureEnhanceResponse,
     type StructureEnhanceRelationshipResponse as StructureEnhanceRelationshipResponse,
     type StructureIsCompleteResponse as StructureIsCompleteResponse,
     type StructureJobStatusResponse as StructureJobStatusResponse,
     type StructureRunAsyncResponse as StructureRunAsyncResponse,
-    type StructureEnhanceParams as StructureEnhanceParams,
     type StructureEnhanceRelationshipParams as StructureEnhanceRelationshipParams,
     type StructureIsCompleteParams as StructureIsCompleteParams,
     type StructureJobStatusParams as StructureJobStatusParams,
