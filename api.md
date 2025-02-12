@@ -43,14 +43,18 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/admin/next-action.ts">ActionTrainingDataEntry</a></code>
+- <code><a href="./src/resources/admin/next-action.ts">ActionTrainingDataMetadataResponse</a></code>
 - <code><a href="./src/resources/admin/next-action.ts">ActionTrainingDataResponse</a></code>
+- <code><a href="./src/resources/admin/next-action.ts">ActionTrainingDatumMetadata</a></code>
 - <code><a href="./src/resources/admin/next-action.ts">AddActionTrainingDatumRequest</a></code>
+- <code><a href="./src/resources/admin/next-action.ts">GetActionTrainingDataParams</a></code>
 - <code><a href="./src/resources/admin/next-action.ts">LabelActionTrainingDatumRequest</a></code>
 
 Methods:
 
 - <code title="post /admin/next_action/add_action_training_datum">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">addTrainingDatum</a>({ ...params }) -> void</code>
 - <code title="get /admin/next_action/get_action_training_data">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">getTrainingData</a>({ ...params }) -> ActionTrainingDataResponse</code>
+- <code title="get /admin/next_action/get_action_training_data_metadata">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">getTrainingDataMetadata</a>({ ...params }) -> ActionTrainingDataMetadataResponse</code>
 - <code title="put /admin/next_action/label_action_training_datum">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">labelTrainingDatum</a>({ ...params }) -> void</code>
 
 ## Users
