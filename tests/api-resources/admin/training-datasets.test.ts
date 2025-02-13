@@ -27,6 +27,21 @@ describe('resource trainingDatasets', () => {
     );
   });
 
+  test('delete: only required params', async () => {
+    const responsePromise = client.admin.trainingDatasets.delete({ dataset_name: 'dataset_name' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('delete: required and optional params', async () => {
+    const response = await client.admin.trainingDatasets.delete({ dataset_name: 'dataset_name' });
+  });
+
   test('add: only required params', async () => {
     const responsePromise = client.admin.trainingDatasets.add({ dataset_name: 'dataset_name' });
     const rawResponse = await responsePromise.asResponse();

@@ -14,6 +14,15 @@ export class TrainingDatasets extends APIResource {
     return this._client.get('/admin/training_datasets/list', options);
   }
 
+  delete(params: TrainingDatasetDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { dataset_name } = params;
+    return this._client.delete('/admin/training_datasets/delete_dataset', {
+      query: { dataset_name },
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
   /**
    * Creates a new training dataset with the given name.
    */
@@ -545,6 +554,10 @@ export interface TrainingDatasetSuspiciousCountResponse {
   count: number;
 }
 
+export interface TrainingDatasetDeleteParams {
+  dataset_name: string;
+}
+
 export interface TrainingDatasetAddParams {
   dataset_name: string;
 }
@@ -939,6 +952,7 @@ export declare namespace TrainingDatasets {
     type TrainingDatasetListDatumsResponse as TrainingDatasetListDatumsResponse,
     type TrainingDatasetSizeResponse as TrainingDatasetSizeResponse,
     type TrainingDatasetSuspiciousCountResponse as TrainingDatasetSuspiciousCountResponse,
+    type TrainingDatasetDeleteParams as TrainingDatasetDeleteParams,
     type TrainingDatasetAddParams as TrainingDatasetAddParams,
     type TrainingDatasetAddDatumParams as TrainingDatasetAddDatumParams,
     type TrainingDatasetDownloadDatumParams as TrainingDatasetDownloadDatumParams,
