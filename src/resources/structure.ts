@@ -9,11 +9,39 @@ export class Structure extends APIResource {
   /**
    * Returns a job id that can be waited on until the request is finished.
    */
+  enhanceProperty(
+    body: StructureEnhancePropertyParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<string> {
+    return this._client.post('/structure/enhance_property', {
+      body,
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
+   * Returns a job id that can be waited on until the request is finished.
+   */
   enhanceRelationship(
     body: StructureEnhanceRelationshipParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<string> {
     return this._client.post('/structure/enhance_relationship', {
+      body,
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
+   * Attempt to find the given relation between two entities.
+   */
+  findRelationship(
+    body: StructureFindRelationshipParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<string> {
+    return this._client.post('/structure/find_relationship', {
       body,
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
@@ -527,7 +555,11 @@ export interface ToolMetadata {
   tool_validator: Record<string, unknown>;
 }
 
+export type StructureEnhancePropertyResponse = string;
+
 export type StructureEnhanceRelationshipResponse = string;
+
+export type StructureFindRelationshipResponse = string;
 
 export type StructureIsCompleteResponse = string;
 
@@ -539,10 +571,40 @@ export interface StructureJobStatusResponse {
 
 export type StructureRunAsyncResponse = string;
 
+export interface StructureEnhancePropertyParams {
+  entity_id: string;
+
+  property_name: string;
+
+  allow_new_entities?: boolean;
+
+  special_job_type?: 'HumanLLM' | null;
+
+  starting_searches?: Array<string>;
+
+  starting_urls?: Array<string>;
+}
+
 export interface StructureEnhanceRelationshipParams {
   entity_id: string;
 
   relationship_name: string;
+
+  allow_new_entities?: boolean;
+
+  special_job_type?: 'HumanLLM' | null;
+
+  starting_searches?: Array<string>;
+
+  starting_urls?: Array<string>;
+}
+
+export interface StructureFindRelationshipParams {
+  relation_name: string;
+
+  source_entity_id: string;
+
+  target_entity_id: string;
 
   allow_new_entities?: boolean;
 
@@ -613,11 +675,15 @@ export declare namespace Structure {
     type ExecutionStep as ExecutionStep,
     type ExtractionCriteria as ExtractionCriteria,
     type ToolMetadata as ToolMetadata,
+    type StructureEnhancePropertyResponse as StructureEnhancePropertyResponse,
     type StructureEnhanceRelationshipResponse as StructureEnhanceRelationshipResponse,
+    type StructureFindRelationshipResponse as StructureFindRelationshipResponse,
     type StructureIsCompleteResponse as StructureIsCompleteResponse,
     type StructureJobStatusResponse as StructureJobStatusResponse,
     type StructureRunAsyncResponse as StructureRunAsyncResponse,
+    type StructureEnhancePropertyParams as StructureEnhancePropertyParams,
     type StructureEnhanceRelationshipParams as StructureEnhanceRelationshipParams,
+    type StructureFindRelationshipParams as StructureFindRelationshipParams,
     type StructureIsCompleteParams as StructureIsCompleteParams,
     type StructureJobStatusParams as StructureJobStatusParams,
     type StructureRunAsyncParams as StructureRunAsyncParams,
