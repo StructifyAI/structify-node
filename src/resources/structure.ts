@@ -576,7 +576,7 @@ export interface StructureEnhancePropertyParams {
 
   property_name: string;
 
-  allow_new_entities?: boolean;
+  allow_extra_entities?: boolean;
 
   special_job_type?: 'HumanLLM' | null;
 
@@ -590,7 +590,7 @@ export interface StructureEnhanceRelationshipParams {
 
   relationship_name: string;
 
-  allow_new_entities?: boolean;
+  allow_extra_entities?: boolean;
 
   special_job_type?: 'HumanLLM' | null;
 
@@ -606,7 +606,7 @@ export interface StructureFindRelationshipParams {
 
   target_entity_id: string;
 
-  allow_new_entities?: boolean;
+  allow_extra_entities?: boolean;
 
   special_job_type?: 'HumanLLM' | null;
 
