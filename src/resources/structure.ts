@@ -600,7 +600,7 @@ export interface StructureEnhanceRelationshipParams {
 }
 
 export interface StructureFindRelationshipParams {
-  relation_name: string;
+  relationship_name: string;
 
   source_entity_id: string;
 
