@@ -41,6 +41,7 @@ export {
   type TrainingDatasetListDatumsResponse,
   type TrainingDatasetSizeResponse,
   type TrainingDatasetSuspiciousCountResponse,
+  type TrainingDatasetDeleteParams,
   type TrainingDatasetAddParams,
   type TrainingDatasetAddDatumParams,
   type TrainingDatasetDownloadDatumParams,
