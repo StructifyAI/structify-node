@@ -27,7 +27,7 @@ describe('resource structure', () => {
     const response = await client.structure.enhanceProperty({
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       property_name: 'property_name',
-      allow_new_entities: true,
+      allow_extra_entities: true,
       special_job_type: 'HumanLLM',
       starting_searches: ['string'],
       starting_urls: ['string'],
@@ -52,7 +52,7 @@ describe('resource structure', () => {
     const response = await client.structure.enhanceRelationship({
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       relationship_name: 'relationship_name',
-      allow_new_entities: true,
+      allow_extra_entities: true,
       special_job_type: 'HumanLLM',
       starting_searches: ['string'],
       starting_urls: ['string'],
@@ -79,7 +79,7 @@ describe('resource structure', () => {
       relationship_name: 'relationship_name',
       source_entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       target_entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      allow_new_entities: true,
+      allow_extra_entities: true,
       special_job_type: 'HumanLLM',
       starting_searches: ['string'],
       starting_urls: ['string'],
