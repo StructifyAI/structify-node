@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.91.0 (2025-02-14)
+
+Full Changelog: [v1.90.0...v1.91.0](https://github.com/StructifyAI/structify-node/compare/v1.90.0...v1.91.0)
+
+### Features
+
+* **api:** api update ([#885](https://github.com/StructifyAI/structify-node/issues/885)) ([71b159c](https://github.com/StructifyAI/structify-node/commit/71b159c41ede321be6b653675a532a0a7bba99a6))
+* **api:** api update ([#888](https://github.com/StructifyAI/structify-node/issues/888)) ([9aa448b](https://github.com/StructifyAI/structify-node/commit/9aa448bd07535340397b022f088c46c060add748))
+* **api:** api update ([#889](https://github.com/StructifyAI/structify-node/issues/889)) ([0c554b0](https://github.com/StructifyAI/structify-node/commit/0c554b09a7146af2e7e48d944ad451a5fb32e7f4))
+* **api:** api update ([#890](https://github.com/StructifyAI/structify-node/issues/890)) ([5f4e7e4](https://github.com/StructifyAI/structify-node/commit/5f4e7e420a555d10707d44ddcb3e9c890c045249))
+* **api:** api update ([#892](https://github.com/StructifyAI/structify-node/issues/892)) ([98d350d](https://github.com/StructifyAI/structify-node/commit/98d350de8cb14b1d8731891828877c1024c83115))
+* **api:** api update ([#894](https://github.com/StructifyAI/structify-node/issues/894)) ([9ab83e0](https://github.com/StructifyAI/structify-node/commit/9ab83e06ff869969042ce169a8ff5d24e763fd0f))
+* **api:** api update ([#895](https://github.com/StructifyAI/structify-node/issues/895)) ([f6d6ef4](https://github.com/StructifyAI/structify-node/commit/f6d6ef4b8f5dee9ba5f9caf4d08070f94346a0a9))
+* **api:** api update ([#896](https://github.com/StructifyAI/structify-node/issues/896)) ([2c6e9c0](https://github.com/StructifyAI/structify-node/commit/2c6e9c0936e9a88d468fb77715890f07f9918581))
+* **api:** manual updates ([#887](https://github.com/StructifyAI/structify-node/issues/887)) ([035bacf](https://github.com/StructifyAI/structify-node/commit/035bacfe473837aaeea4ecb6582914dfd87f3606))
+* **api:** manual updates ([#891](https://github.com/StructifyAI/structify-node/issues/891)) ([ff6802c](https://github.com/StructifyAI/structify-node/commit/ff6802c57df4dc7231fd7042498ebc9dde298376))
+
+
+### Bug Fixes
+
+* **client:** fix export map for index exports ([#893](https://github.com/StructifyAI/structify-node/issues/893)) ([d0808fc](https://github.com/StructifyAI/structify-node/commit/d0808fcef93b72cae26fc6775bac7080e7a575ad))
+
 ## 1.90.0 (2025-02-13)
 
 Full Changelog: [v1.89.0...v1.90.0](https://github.com/StructifyAI/structify-node/compare/v1.89.0...v1.90.0)
