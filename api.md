@@ -261,7 +261,7 @@ Types:
 - <code><a href="./src/resources/structure.ts">ExecutionStep</a></code>
 - <code><a href="./src/resources/structure.ts">ExtractionCriteria</a></code>
 - <code><a href="./src/resources/structure.ts">FindRelationship</a></code>
-- <code><a href="./src/resources/structure.ts">PlanStep</a></code>
+- <code><a href="./src/resources/structure.ts">Plan</a></code>
 - <code><a href="./src/resources/structure.ts">ToolMetadata</a></code>
 - <code><a href="./src/resources/structure.ts">StructureCreatePlanResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureEnhancePropertyResponse</a></code>
