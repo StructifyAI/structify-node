@@ -37,6 +37,13 @@ export class Datasets extends APIResource {
   }
 
   /**
+   * Evaluate two datasets
+   */
+  evaluate(options?: Core.RequestOptions): Core.APIPromise<DatasetEvaluateResponse> {
+    return this._client.post('/dataset/evaluate', options);
+  }
+
+  /**
    * Grab a dataset by its name.
    */
   get(query: DatasetGetParams, options?: Core.RequestOptions): Core.APIPromise<DatasetGetResponse> {
@@ -98,6 +105,66 @@ export namespace DatasetListResponse {
     description: string;
 
     name: string;
+  }
+}
+
+export interface DatasetEvaluateResponse {
+  id: string;
+
+  iou: number;
+
+  matched: number;
+
+  stats: DatasetEvaluateResponse.Stats;
+
+  unmatched: number;
+}
+
+export namespace DatasetEvaluateResponse {
+  export interface Stats {
+    tables: Record<string, Stats.Tables>;
+  }
+
+  export namespace Stats {
+    export interface Tables {
+      matched_entities: Array<Tables.MatchedEntity>;
+
+      unmatched_1: Array<string>;
+
+      unmatched_2: Array<string>;
+    }
+
+    export namespace Tables {
+      export interface MatchedEntity {
+        e1_id: string;
+
+        e2_id: string;
+
+        match_score: number;
+
+        property_matches: MatchedEntity.PropertyMatches;
+      }
+
+      export namespace MatchedEntity {
+        export interface PropertyMatches {
+          matched_properties: Record<string, PropertyMatches.MatchedProperties>;
+
+          unmatched_properties_1: Record<string, string | boolean | number | SharedAPI.Image>;
+
+          unmatched_properties_2: Record<string, string | boolean | number | SharedAPI.Image>;
+        }
+
+        export namespace PropertyMatches {
+          export interface MatchedProperties {
+            match_score: number;
+
+            value1: string | boolean | number | SharedAPI.Image;
+
+            value2: string | boolean | number | SharedAPI.Image;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -381,6 +448,7 @@ Datasets.DatasetViewTableResponsesJobsList = DatasetViewTableResponsesJobsList;
 export declare namespace Datasets {
   export {
     type DatasetListResponse as DatasetListResponse,
+    type DatasetEvaluateResponse as DatasetEvaluateResponse,
     type DatasetGetResponse as DatasetGetResponse,
     type DatasetMatchResponse as DatasetMatchResponse,
     type DatasetViewRelationshipsResponse as DatasetViewRelationshipsResponse,
