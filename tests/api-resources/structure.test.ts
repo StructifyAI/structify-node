@@ -10,7 +10,7 @@ const client = new Structify({
 
 describe('resource structure', () => {
   test('createPlan: only required params', async () => {
-    const responsePromise = client.structure.createPlan({ dataset: 'dataset', plan: { steps: [[{}]] } });
+    const responsePromise = client.structure.createPlan({ dataset: 'dataset', plan: { steps: [[]] } });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,7 +21,7 @@ describe('resource structure', () => {
   });
 
   test('createPlan: required and optional params', async () => {
-    const response = await client.structure.createPlan({ dataset: 'dataset', plan: { steps: [[{}]] } });
+    const response = await client.structure.createPlan({ dataset: 'dataset', plan: { steps: [[]] } });
   });
 
   test('enhanceProperty: only required params', async () => {

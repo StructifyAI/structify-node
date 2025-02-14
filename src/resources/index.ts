@@ -96,8 +96,12 @@ export { Sources, type Source, type SourceListResponse, type SourceListParams } 
 export {
   Structure,
   type ChatPrompt,
+  type EnhanceProperty,
+  type EnhanceRelationship,
   type ExecutionStep,
   type ExtractionCriteria,
+  type FindRelationship,
+  type PlanStep,
   type ToolMetadata,
   type StructureCreatePlanResponse,
   type StructureEnhancePropertyResponse,
