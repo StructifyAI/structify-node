@@ -39,8 +39,15 @@ export class Datasets extends APIResource {
   /**
    * Evaluate two datasets
    */
-  evaluate(options?: Core.RequestOptions): Core.APIPromise<DatasetEvaluateResponse> {
-    return this._client.post('/dataset/evaluate', options);
+  evaluate(
+    params: DatasetEvaluateParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<DatasetEvaluateResponse> {
+    const { dataset_1, dataset_2, email_1, email_2 } = params;
+    return this._client.post('/dataset/evaluate', {
+      query: { dataset_1, dataset_2, email_1, email_2 },
+      ...options,
+    });
   }
 
   /**
@@ -355,6 +362,16 @@ export interface DatasetDeleteParams {
   name: string;
 }
 
+export interface DatasetEvaluateParams {
+  dataset_1: string;
+
+  dataset_2: string;
+
+  email_1: string;
+
+  email_2: string;
+}
+
 export interface DatasetGetParams {
   /**
    * Information about the dataset
@@ -458,6 +475,7 @@ export declare namespace Datasets {
     DatasetViewTableResponsesJobsList as DatasetViewTableResponsesJobsList,
     type DatasetCreateParams as DatasetCreateParams,
     type DatasetDeleteParams as DatasetDeleteParams,
+    type DatasetEvaluateParams as DatasetEvaluateParams,
     type DatasetGetParams as DatasetGetParams,
     type DatasetMatchParams as DatasetMatchParams,
     type DatasetViewRelationshipsParams as DatasetViewRelationshipsParams,

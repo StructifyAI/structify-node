@@ -14,6 +14,7 @@ export {
   type DatasetViewTablesWithRelationshipsResponse,
   type DatasetCreateParams,
   type DatasetDeleteParams,
+  type DatasetEvaluateParams,
   type DatasetGetParams,
   type DatasetMatchParams,
   type DatasetViewRelationshipsParams,
