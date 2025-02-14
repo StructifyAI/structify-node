@@ -594,6 +594,10 @@ export interface TrainingDatasetGetLabellerStatsParams {
 
   end_date?: string | null;
 
+  labeled_status?: 'NonSuspicious' | 'SuspiciousOnly' | 'VerifiedOnly';
+
+  return_prop_count?: boolean;
+
   start_date?: string | null;
 }
 
