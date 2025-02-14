@@ -10,7 +10,12 @@ const client = new Structify({
 
 describe('resource structure', () => {
   test('createPlan: only required params', async () => {
-    const responsePromise = client.structure.createPlan({ dataset: 'dataset', plan: { steps: [[]] } });
+    const responsePromise = client.structure.createPlan({
+      dataset: 'dataset',
+      plan: {
+        steps: [{ entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', property_name: 'property_name' }],
+      },
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,7 +26,20 @@ describe('resource structure', () => {
   });
 
   test('createPlan: required and optional params', async () => {
-    const response = await client.structure.createPlan({ dataset: 'dataset', plan: { steps: [[]] } });
+    const response = await client.structure.createPlan({
+      dataset: 'dataset',
+      plan: {
+        steps: [
+          {
+            entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+            property_name: 'property_name',
+            allow_extra_entities: true,
+            starting_searches: ['string'],
+            starting_urls: ['string'],
+          },
+        ],
+      },
+    });
   });
 
   test('enhanceProperty: only required params', async () => {

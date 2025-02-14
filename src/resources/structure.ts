@@ -591,7 +591,14 @@ export interface FindRelationship {
   starting_urls?: Array<string>;
 }
 
-export type PlanStep = Array<PlanStep> | EnhanceProperty | EnhanceRelationship | FindRelationship;
+export interface Plan {
+  steps: Array<
+    | EnhanceProperty
+    | EnhanceRelationship
+    | FindRelationship
+    | Array<EnhanceProperty | EnhanceRelationship | FindRelationship>
+  >;
+}
 
 export interface ToolMetadata {
   description: string;
@@ -633,19 +640,13 @@ export type StructureListPlansResponse = Array<StructureListPlansResponse.Struct
 
 export namespace StructureListPlansResponse {
   export interface StructureListPlansResponseItem {
-    plan: StructureListPlansResponseItem.Plan;
+    plan: StructureAPI.Plan;
 
     plan_id: string;
 
     status: 'Running' | 'StartingNextStep' | 'Completed' | 'Canceled';
 
     step: number;
-  }
-
-  export namespace StructureListPlansResponseItem {
-    export interface Plan {
-      steps: Array<StructureAPI.PlanStep>;
-    }
   }
 }
 
@@ -654,13 +655,7 @@ export type StructureRunAsyncResponse = string;
 export interface StructureCreatePlanParams {
   dataset: string;
 
-  plan: StructureCreatePlanParams.Plan;
-}
-
-export namespace StructureCreatePlanParams {
-  export interface Plan {
-    steps: Array<StructureAPI.PlanStep>;
-  }
+  plan: Plan;
 }
 
 export interface StructureEnhancePropertyParams {
@@ -769,7 +764,7 @@ export declare namespace Structure {
     type ExecutionStep as ExecutionStep,
     type ExtractionCriteria as ExtractionCriteria,
     type FindRelationship as FindRelationship,
-    type PlanStep as PlanStep,
+    type Plan as Plan,
     type ToolMetadata as ToolMetadata,
     type StructureCreatePlanResponse as StructureCreatePlanResponse,
     type StructureEnhancePropertyResponse as StructureEnhancePropertyResponse,
