@@ -6,6 +6,7 @@ export {
   DatasetViewTableResponsesJobsList,
   Datasets,
   type DatasetListResponse,
+  type DatasetEvaluateResponse,
   type DatasetGetResponse,
   type DatasetMatchResponse,
   type DatasetViewRelationshipsResponse,
