@@ -644,7 +644,7 @@ export namespace StructureListPlansResponse {
 
     plan_id: string;
 
-    status: 'Running' | 'StartingNextStep' | 'Completed' | 'Canceled';
+    status: 'Running' | 'StartingNextStep' | 'Completed' | 'Failed';
 
     step: number;
   }
