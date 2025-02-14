@@ -7,6 +7,17 @@ import * as SharedAPI from './shared';
 
 export class Structure extends APIResource {
   /**
+   * Create a plan to run consecutive jobs as each step finishes.
+   */
+  createPlan(body: StructureCreatePlanParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.post('/structure/create_plan', {
+      body,
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
    * Returns a job id that can be waited on until the request is finished.
    */
   enhanceProperty(
@@ -67,6 +78,13 @@ export class Structure extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<StructureJobStatusResponse> {
     return this._client.post('/structure/job_status', { body, ...options });
+  }
+
+  /**
+   * List all plans for your user account in the database.
+   */
+  listPlans(options?: Core.RequestOptions): Core.APIPromise<StructureListPlansResponse> {
+    return this._client.get('/structure/list_plans', options);
   }
 
   /**
@@ -555,6 +573,8 @@ export interface ToolMetadata {
   tool_validator: Record<string, unknown>;
 }
 
+export type StructureCreatePlanResponse = string;
+
 export type StructureEnhancePropertyResponse = string;
 
 export type StructureEnhanceRelationshipResponse = string;
@@ -569,7 +589,163 @@ export interface StructureJobStatusResponse {
   log_nodes: Array<string>;
 }
 
+export type StructureListPlansResponse = Array<StructureListPlansResponse.StructureListPlansResponseItem>;
+
+export namespace StructureListPlansResponse {
+  export interface StructureListPlansResponseItem {
+    plan: StructureListPlansResponseItem.Plan;
+
+    plan_id: string;
+
+    status: 'Running' | 'StartingNextStep' | 'Completed' | 'Canceled';
+
+    step: number;
+  }
+
+  export namespace StructureListPlansResponseItem {
+    export interface Plan {
+      steps: Array<Plan.Parallel | Plan.EnhanceProperty | Plan.EnhanceRelationship | Plan.FindRelationship>;
+    }
+
+    export namespace Plan {
+      export interface Parallel {
+        Parallel: Array<unknown>;
+      }
+
+      export interface EnhanceProperty {
+        EnhanceProperty: EnhanceProperty.EnhanceProperty;
+      }
+
+      export namespace EnhanceProperty {
+        export interface EnhanceProperty {
+          entity_id: string;
+
+          property_name: string;
+
+          allow_extra_entities?: boolean;
+
+          starting_searches?: Array<string>;
+
+          starting_urls?: Array<string>;
+        }
+      }
+
+      export interface EnhanceRelationship {
+        EnhanceRelationship: EnhanceRelationship.EnhanceRelationship;
+      }
+
+      export namespace EnhanceRelationship {
+        export interface EnhanceRelationship {
+          entity_id: string;
+
+          relationship_name: string;
+
+          allow_extra_entities?: boolean;
+
+          starting_searches?: Array<string>;
+
+          starting_urls?: Array<string>;
+        }
+      }
+
+      export interface FindRelationship {
+        FindRelationship: FindRelationship.FindRelationship;
+      }
+
+      export namespace FindRelationship {
+        export interface FindRelationship {
+          relationship_name: string;
+
+          source_entity_id: string;
+
+          target_entity_id: string;
+
+          allow_extra_entities?: boolean;
+
+          starting_searches?: Array<string>;
+
+          starting_urls?: Array<string>;
+        }
+      }
+    }
+  }
+}
+
 export type StructureRunAsyncResponse = string;
+
+export interface StructureCreatePlanParams {
+  dataset: string;
+
+  plan: StructureCreatePlanParams.Plan;
+}
+
+export namespace StructureCreatePlanParams {
+  export interface Plan {
+    steps: Array<Plan.Parallel | Plan.EnhanceProperty | Plan.EnhanceRelationship | Plan.FindRelationship>;
+  }
+
+  export namespace Plan {
+    export interface Parallel {
+      Parallel: Array<unknown>;
+    }
+
+    export interface EnhanceProperty {
+      EnhanceProperty: EnhanceProperty.EnhanceProperty;
+    }
+
+    export namespace EnhanceProperty {
+      export interface EnhanceProperty {
+        entity_id: string;
+
+        property_name: string;
+
+        allow_extra_entities?: boolean;
+
+        starting_searches?: Array<string>;
+
+        starting_urls?: Array<string>;
+      }
+    }
+
+    export interface EnhanceRelationship {
+      EnhanceRelationship: EnhanceRelationship.EnhanceRelationship;
+    }
+
+    export namespace EnhanceRelationship {
+      export interface EnhanceRelationship {
+        entity_id: string;
+
+        relationship_name: string;
+
+        allow_extra_entities?: boolean;
+
+        starting_searches?: Array<string>;
+
+        starting_urls?: Array<string>;
+      }
+    }
+
+    export interface FindRelationship {
+      FindRelationship: FindRelationship.FindRelationship;
+    }
+
+    export namespace FindRelationship {
+      export interface FindRelationship {
+        relationship_name: string;
+
+        source_entity_id: string;
+
+        target_entity_id: string;
+
+        allow_extra_entities?: boolean;
+
+        starting_searches?: Array<string>;
+
+        starting_urls?: Array<string>;
+      }
+    }
+  }
+}
 
 export interface StructureEnhancePropertyParams {
   entity_id: string;
@@ -675,12 +851,15 @@ export declare namespace Structure {
     type ExecutionStep as ExecutionStep,
     type ExtractionCriteria as ExtractionCriteria,
     type ToolMetadata as ToolMetadata,
+    type StructureCreatePlanResponse as StructureCreatePlanResponse,
     type StructureEnhancePropertyResponse as StructureEnhancePropertyResponse,
     type StructureEnhanceRelationshipResponse as StructureEnhanceRelationshipResponse,
     type StructureFindRelationshipResponse as StructureFindRelationshipResponse,
     type StructureIsCompleteResponse as StructureIsCompleteResponse,
     type StructureJobStatusResponse as StructureJobStatusResponse,
+    type StructureListPlansResponse as StructureListPlansResponse,
     type StructureRunAsyncResponse as StructureRunAsyncResponse,
+    type StructureCreatePlanParams as StructureCreatePlanParams,
     type StructureEnhancePropertyParams as StructureEnhancePropertyParams,
     type StructureEnhanceRelationshipParams as StructureEnhanceRelationshipParams,
     type StructureFindRelationshipParams as StructureFindRelationshipParams,
