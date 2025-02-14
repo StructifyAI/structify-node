@@ -101,7 +101,7 @@ export {
   type ExecutionStep,
   type ExtractionCriteria,
   type FindRelationship,
-  type PlanStep,
+  type Plan,
   type ToolMetadata,
   type StructureCreatePlanResponse,
   type StructureEnhancePropertyResponse,
