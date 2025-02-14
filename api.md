@@ -128,7 +128,7 @@ Methods:
 - <code title="post /dataset/create">client.datasets.<a href="./src/resources/datasets.ts">create</a>({ ...params }) -> void</code>
 - <code title="get /dataset/list">client.datasets.<a href="./src/resources/datasets.ts">list</a>() -> DatasetListResponse</code>
 - <code title="delete /dataset/delete">client.datasets.<a href="./src/resources/datasets.ts">delete</a>({ ...params }) -> void</code>
-- <code title="post /dataset/evaluate">client.datasets.<a href="./src/resources/datasets.ts">evaluate</a>() -> DatasetEvaluateResponse</code>
+- <code title="post /dataset/evaluate">client.datasets.<a href="./src/resources/datasets.ts">evaluate</a>({ ...params }) -> DatasetEvaluateResponse</code>
 - <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets.ts">get</a>({ ...params }) -> DatasetGetResponse</code>
 - <code title="post /dataset/match">client.datasets.<a href="./src/resources/datasets.ts">match</a>({ ...params }) -> DatasetMatchResponse</code>
 - <code title="get /dataset/view_relationships">client.datasets.<a href="./src/resources/datasets.ts">viewRelationships</a>({ ...params }) -> DatasetViewRelationshipsResponsesJobsList</code>
