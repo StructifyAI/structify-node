@@ -102,8 +102,12 @@ import {
 import { Source, SourceListParams, SourceListResponse, Sources } from './resources/sources';
 import {
   ChatPrompt,
+  EnhanceProperty,
+  EnhanceRelationship,
   ExecutionStep,
   ExtractionCriteria,
+  FindRelationship,
+  PlanStep,
   Structure,
   StructureCreatePlanParams,
   StructureCreatePlanResponse,
@@ -451,8 +455,12 @@ export declare namespace Structify {
   export {
     Structure as Structure,
     type ChatPrompt as ChatPrompt,
+    type EnhanceProperty as EnhanceProperty,
+    type EnhanceRelationship as EnhanceRelationship,
     type ExecutionStep as ExecutionStep,
     type ExtractionCriteria as ExtractionCriteria,
+    type FindRelationship as FindRelationship,
+    type PlanStep as PlanStep,
     type ToolMetadata as ToolMetadata,
     type StructureCreatePlanResponse as StructureCreatePlanResponse,
     type StructureEnhancePropertyResponse as StructureEnhancePropertyResponse,
