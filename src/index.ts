@@ -11,6 +11,7 @@ import * as API from './resources/index';
 import {
   DatasetCreateParams,
   DatasetDeleteParams,
+  DatasetEvaluateParams,
   DatasetEvaluateResponse,
   DatasetGetParams,
   DatasetGetResponse,
@@ -371,6 +372,7 @@ export declare namespace Structify {
     DatasetViewTableResponsesJobsList as DatasetViewTableResponsesJobsList,
     type DatasetCreateParams as DatasetCreateParams,
     type DatasetDeleteParams as DatasetDeleteParams,
+    type DatasetEvaluateParams as DatasetEvaluateParams,
     type DatasetGetParams as DatasetGetParams,
     type DatasetMatchParams as DatasetMatchParams,
     type DatasetViewRelationshipsParams as DatasetViewRelationshipsParams,
