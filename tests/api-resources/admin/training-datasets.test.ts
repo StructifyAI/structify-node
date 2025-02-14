@@ -120,6 +120,8 @@ describe('resource trainingDatasets', () => {
       status: 'Unlabeled',
       dataset_name: 'dataset_name',
       end_date: '2019-12-27T18:11:19.117Z',
+      labeled_status: 'NonSuspicious',
+      return_prop_count: true,
       start_date: '2019-12-27T18:11:19.117Z',
     });
   });
