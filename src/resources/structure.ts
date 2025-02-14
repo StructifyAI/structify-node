@@ -306,6 +306,30 @@ export namespace ChatPrompt {
   }
 }
 
+export interface EnhanceProperty {
+  entity_id: string;
+
+  property_name: string;
+
+  allow_extra_entities?: boolean;
+
+  starting_searches?: Array<string>;
+
+  starting_urls?: Array<string>;
+}
+
+export interface EnhanceRelationship {
+  entity_id: string;
+
+  relationship_name: string;
+
+  allow_extra_entities?: boolean;
+
+  starting_searches?: Array<string>;
+
+  starting_urls?: Array<string>;
+}
+
 export interface ExecutionStep {
   id: string;
 
@@ -553,6 +577,22 @@ export namespace ExtractionCriteria {
   }
 }
 
+export interface FindRelationship {
+  relationship_name: string;
+
+  source_entity_id: string;
+
+  target_entity_id: string;
+
+  allow_extra_entities?: boolean;
+
+  starting_searches?: Array<string>;
+
+  starting_urls?: Array<string>;
+}
+
+export type PlanStep = Array<PlanStep> | EnhanceProperty | EnhanceRelationship | FindRelationship;
+
 export interface ToolMetadata {
   description: string;
 
@@ -604,49 +644,7 @@ export namespace StructureListPlansResponse {
 
   export namespace StructureListPlansResponseItem {
     export interface Plan {
-      steps: Array<
-        Array<unknown> | Plan.EnhancePropertyArgs | Plan.EnhanceRelationshipArgs | Plan.FindRelationshipArgs
-      >;
-    }
-
-    export namespace Plan {
-      export interface EnhancePropertyArgs {
-        entity_id: string;
-
-        property_name: string;
-
-        allow_extra_entities?: boolean;
-
-        starting_searches?: Array<string>;
-
-        starting_urls?: Array<string>;
-      }
-
-      export interface EnhanceRelationshipArgs {
-        entity_id: string;
-
-        relationship_name: string;
-
-        allow_extra_entities?: boolean;
-
-        starting_searches?: Array<string>;
-
-        starting_urls?: Array<string>;
-      }
-
-      export interface FindRelationshipArgs {
-        relationship_name: string;
-
-        source_entity_id: string;
-
-        target_entity_id: string;
-
-        allow_extra_entities?: boolean;
-
-        starting_searches?: Array<string>;
-
-        starting_urls?: Array<string>;
-      }
+      steps: Array<StructureAPI.PlanStep>;
     }
   }
 }
@@ -661,49 +659,7 @@ export interface StructureCreatePlanParams {
 
 export namespace StructureCreatePlanParams {
   export interface Plan {
-    steps: Array<
-      Array<unknown> | Plan.EnhancePropertyArgs | Plan.EnhanceRelationshipArgs | Plan.FindRelationshipArgs
-    >;
-  }
-
-  export namespace Plan {
-    export interface EnhancePropertyArgs {
-      entity_id: string;
-
-      property_name: string;
-
-      allow_extra_entities?: boolean;
-
-      starting_searches?: Array<string>;
-
-      starting_urls?: Array<string>;
-    }
-
-    export interface EnhanceRelationshipArgs {
-      entity_id: string;
-
-      relationship_name: string;
-
-      allow_extra_entities?: boolean;
-
-      starting_searches?: Array<string>;
-
-      starting_urls?: Array<string>;
-    }
-
-    export interface FindRelationshipArgs {
-      relationship_name: string;
-
-      source_entity_id: string;
-
-      target_entity_id: string;
-
-      allow_extra_entities?: boolean;
-
-      starting_searches?: Array<string>;
-
-      starting_urls?: Array<string>;
-    }
+    steps: Array<StructureAPI.PlanStep>;
   }
 }
 
@@ -808,8 +764,12 @@ export namespace StructureRunAsyncParams {
 export declare namespace Structure {
   export {
     type ChatPrompt as ChatPrompt,
+    type EnhanceProperty as EnhanceProperty,
+    type EnhanceRelationship as EnhanceRelationship,
     type ExecutionStep as ExecutionStep,
     type ExtractionCriteria as ExtractionCriteria,
+    type FindRelationship as FindRelationship,
+    type PlanStep as PlanStep,
     type ToolMetadata as ToolMetadata,
     type StructureCreatePlanResponse as StructureCreatePlanResponse,
     type StructureEnhancePropertyResponse as StructureEnhancePropertyResponse,
