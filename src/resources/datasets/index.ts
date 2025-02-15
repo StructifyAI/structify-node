@@ -22,9 +22,11 @@ export {
   Evaluate,
   type EvaluateListResponse,
   type EvaluateGetResponse,
+  type EvaluateRunResponse,
   type EvaluateStatusResponse,
   type EvaluateListParams,
   type EvaluateDeleteParams,
   type EvaluateGetParams,
+  type EvaluateRunParams,
   type EvaluateStatusParams,
 } from './evaluate';

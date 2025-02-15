@@ -64,6 +64,31 @@ describe('resource evaluate', () => {
     const response = await client.datasets.evaluate.get({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
   });
 
+  test('run: only required params', async () => {
+    const responsePromise = client.datasets.evaluate.run({
+      dataset_1: 'dataset_1',
+      dataset_2: 'dataset_2',
+      email_1: 'email_1',
+      email_2: 'email_2',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('run: required and optional params', async () => {
+    const response = await client.datasets.evaluate.run({
+      dataset_1: 'dataset_1',
+      dataset_2: 'dataset_2',
+      email_1: 'email_1',
+      email_2: 'email_2',
+    });
+  });
+
   test('status: only required params', async () => {
     const responsePromise = client.datasets.evaluate.status({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
