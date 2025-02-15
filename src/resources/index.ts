@@ -6,7 +6,6 @@ export {
   DatasetViewTableResponsesJobsList,
   Datasets,
   type DatasetListResponse,
-  type DatasetEvaluateResponse,
   type DatasetGetResponse,
   type DatasetMatchResponse,
   type DatasetViewRelationshipsResponse,
@@ -14,13 +13,12 @@ export {
   type DatasetViewTablesWithRelationshipsResponse,
   type DatasetCreateParams,
   type DatasetDeleteParams,
-  type DatasetEvaluateParams,
   type DatasetGetParams,
   type DatasetMatchParams,
   type DatasetViewRelationshipsParams,
   type DatasetViewTableParams,
   type DatasetViewTablesWithRelationshipsParams,
-} from './datasets';
+} from './datasets/datasets';
 export {
   Documents,
   type DocumentListResponse,
