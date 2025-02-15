@@ -139,6 +139,7 @@ Types:
 
 - <code><a href="./src/resources/datasets/evaluate.ts">EvaluateListResponse</a></code>
 - <code><a href="./src/resources/datasets/evaluate.ts">EvaluateGetResponse</a></code>
+- <code><a href="./src/resources/datasets/evaluate.ts">EvaluateRunResponse</a></code>
 - <code><a href="./src/resources/datasets/evaluate.ts">EvaluateStatusResponse</a></code>
 
 Methods:
@@ -146,6 +147,7 @@ Methods:
 - <code title="get /dataset/evaluate/list">client.datasets.evaluate.<a href="./src/resources/datasets/evaluate.ts">list</a>({ ...params }) -> EvaluateListResponse</code>
 - <code title="delete /dataset/evaluate/delete">client.datasets.evaluate.<a href="./src/resources/datasets/evaluate.ts">delete</a>({ ...params }) -> void</code>
 - <code title="get /dataset/evaluate/get">client.datasets.evaluate.<a href="./src/resources/datasets/evaluate.ts">get</a>({ ...params }) -> EvaluateGetResponse</code>
+- <code title="post /dataset/evaluate/run">client.datasets.evaluate.<a href="./src/resources/datasets/evaluate.ts">run</a>({ ...params }) -> EvaluateRunResponse</code>
 - <code title="get /dataset/evaluate/status">client.datasets.evaluate.<a href="./src/resources/datasets/evaluate.ts">status</a>({ ...params }) -> EvaluateStatusResponse</code>
 
 # Documents
