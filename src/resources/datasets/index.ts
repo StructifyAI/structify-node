@@ -19,6 +19,7 @@ export {
   type DatasetViewTablesWithRelationshipsParams,
 } from './datasets';
 export {
+  EvaluateListResponsesJobsList,
   Evaluate,
   type EvaluateListResponse,
   type EvaluateGetResponse,

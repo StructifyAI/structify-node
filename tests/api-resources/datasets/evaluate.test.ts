@@ -30,7 +30,7 @@ describe('resource evaluate', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.datasets.evaluate.list({ limit: 1, skip: 0 }, { path: '/_stainless_unknown_path' }),
+      client.datasets.evaluate.list({ limit: 1, offset: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
@@ -68,6 +68,7 @@ describe('resource evaluate', () => {
     const responsePromise = client.datasets.evaluate.run({
       dataset_1: 'dataset_1',
       dataset_2: 'dataset_2',
+      dataset_2_is_ground_truth: true,
       email_1: 'email_1',
       email_2: 'email_2',
     });
@@ -84,6 +85,7 @@ describe('resource evaluate', () => {
     const response = await client.datasets.evaluate.run({
       dataset_1: 'dataset_1',
       dataset_2: 'dataset_2',
+      dataset_2_is_ground_truth: true,
       email_1: 'email_1',
       email_2: 'email_2',
     });

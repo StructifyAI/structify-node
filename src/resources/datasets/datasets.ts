@@ -11,6 +11,7 @@ import {
   EvaluateGetResponse,
   EvaluateListParams,
   EvaluateListResponse,
+  EvaluateListResponsesJobsList,
   EvaluateRunParams,
   EvaluateRunResponse,
   EvaluateStatusParams,
@@ -393,6 +394,7 @@ export namespace DatasetViewTablesWithRelationshipsParams {
 Datasets.DatasetViewRelationshipsResponsesJobsList = DatasetViewRelationshipsResponsesJobsList;
 Datasets.DatasetViewTableResponsesJobsList = DatasetViewTableResponsesJobsList;
 Datasets.Evaluate = Evaluate;
+Datasets.EvaluateListResponsesJobsList = EvaluateListResponsesJobsList;
 
 export declare namespace Datasets {
   export {
@@ -419,6 +421,7 @@ export declare namespace Datasets {
     type EvaluateGetResponse as EvaluateGetResponse,
     type EvaluateRunResponse as EvaluateRunResponse,
     type EvaluateStatusResponse as EvaluateStatusResponse,
+    EvaluateListResponsesJobsList as EvaluateListResponsesJobsList,
     type EvaluateListParams as EvaluateListParams,
     type EvaluateDeleteParams as EvaluateDeleteParams,
     type EvaluateGetParams as EvaluateGetParams,
