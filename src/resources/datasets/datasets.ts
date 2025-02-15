@@ -11,6 +11,8 @@ import {
   EvaluateGetResponse,
   EvaluateListParams,
   EvaluateListResponse,
+  EvaluateRunParams,
+  EvaluateRunResponse,
   EvaluateStatusParams,
   EvaluateStatusResponse,
 } from './evaluate';
@@ -415,10 +417,12 @@ export declare namespace Datasets {
     Evaluate as Evaluate,
     type EvaluateListResponse as EvaluateListResponse,
     type EvaluateGetResponse as EvaluateGetResponse,
+    type EvaluateRunResponse as EvaluateRunResponse,
     type EvaluateStatusResponse as EvaluateStatusResponse,
     type EvaluateListParams as EvaluateListParams,
     type EvaluateDeleteParams as EvaluateDeleteParams,
     type EvaluateGetParams as EvaluateGetParams,
+    type EvaluateRunParams as EvaluateRunParams,
     type EvaluateStatusParams as EvaluateStatusParams,
   };
 }
