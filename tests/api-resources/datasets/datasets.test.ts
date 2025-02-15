@@ -106,31 +106,6 @@ describe('resource datasets', () => {
     const response = await client.datasets.delete({ name: 'name' });
   });
 
-  test('evaluate: only required params', async () => {
-    const responsePromise = client.datasets.evaluate({
-      dataset_1: 'dataset_1',
-      dataset_2: 'dataset_2',
-      email_1: 'email_1',
-      email_2: 'email_2',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('evaluate: required and optional params', async () => {
-    const response = await client.datasets.evaluate({
-      dataset_1: 'dataset_1',
-      dataset_2: 'dataset_2',
-      email_1: 'email_1',
-      email_2: 'email_2',
-    });
-  });
-
   test('get: only required params', async () => {
     const responsePromise = client.datasets.get({ name: 'name' });
     const rawResponse = await responsePromise.asResponse();
