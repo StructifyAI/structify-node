@@ -4,21 +4,28 @@ import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as SharedAPI from '../shared';
+import { JobsList, type JobsListParams } from '../../pagination';
 
 export class Evaluate extends APIResource {
   /**
    * List all dataset evaluation results with pagination
    */
-  list(query?: EvaluateListParams, options?: Core.RequestOptions): Core.APIPromise<EvaluateListResponse>;
-  list(options?: Core.RequestOptions): Core.APIPromise<EvaluateListResponse>;
+  list(
+    query?: EvaluateListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<EvaluateListResponsesJobsList, EvaluateListResponse>;
+  list(options?: Core.RequestOptions): Core.PagePromise<EvaluateListResponsesJobsList, EvaluateListResponse>;
   list(
     query: EvaluateListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.APIPromise<EvaluateListResponse> {
+  ): Core.PagePromise<EvaluateListResponsesJobsList, EvaluateListResponse> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.get('/dataset/evaluate/list', { query, ...options });
+    return this._client.getAPIList('/dataset/evaluate/list', EvaluateListResponsesJobsList, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -44,9 +51,9 @@ export class Evaluate extends APIResource {
    * Evaluate two datasets
    */
   run(params: EvaluateRunParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    const { dataset_1, dataset_2, email_1, email_2 } = params;
+    const { dataset_1, dataset_2, dataset_2_is_ground_truth, email_1, email_2 } = params;
     return this._client.post('/dataset/evaluate/run', {
-      query: { dataset_1, dataset_2, email_1, email_2 },
+      query: { dataset_1, dataset_2, dataset_2_is_ground_truth, email_1, email_2 },
       ...options,
     });
   }
@@ -62,22 +69,20 @@ export class Evaluate extends APIResource {
   }
 }
 
-export type EvaluateListResponse = Array<EvaluateListResponse.EvaluateListResponseItem>;
+export class EvaluateListResponsesJobsList extends JobsList<EvaluateListResponse> {}
 
-export namespace EvaluateListResponse {
-  export interface EvaluateListResponseItem {
-    id: string;
+export interface EvaluateListResponse {
+  id: string;
 
-    dataset_1: string;
+  dataset_1: string;
 
-    dataset_2: string;
+  dataset_2: string;
 
-    email_1: string;
+  email_1: string;
 
-    email_2: string;
+  email_2: string;
 
-    started_at: string;
-  }
+  started_at: string;
 }
 
 export interface EvaluateGetResponse {
@@ -150,11 +155,7 @@ export namespace EvaluateStatusResponse {
   }
 }
 
-export interface EvaluateListParams {
-  limit?: number | null;
-
-  skip?: number | null;
-}
+export interface EvaluateListParams extends JobsListParams {}
 
 export interface EvaluateDeleteParams {
   id: string;
@@ -169,6 +170,8 @@ export interface EvaluateRunParams {
 
   dataset_2: string;
 
+  dataset_2_is_ground_truth: boolean;
+
   email_1: string;
 
   email_2: string;
@@ -178,12 +181,15 @@ export interface EvaluateStatusParams {
   id: string;
 }
 
+Evaluate.EvaluateListResponsesJobsList = EvaluateListResponsesJobsList;
+
 export declare namespace Evaluate {
   export {
     type EvaluateListResponse as EvaluateListResponse,
     type EvaluateGetResponse as EvaluateGetResponse,
     type EvaluateRunResponse as EvaluateRunResponse,
     type EvaluateStatusResponse as EvaluateStatusResponse,
+    EvaluateListResponsesJobsList as EvaluateListResponsesJobsList,
     type EvaluateListParams as EvaluateListParams,
     type EvaluateDeleteParams as EvaluateDeleteParams,
     type EvaluateGetParams as EvaluateGetParams,
