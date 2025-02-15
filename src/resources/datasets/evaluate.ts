@@ -82,7 +82,21 @@ export interface EvaluateListResponse {
 
   email_2: string;
 
+  iou: number;
+
+  matched: number;
+
   started_at: string;
+
+  status: 'Running' | 'Completed' | EvaluateListResponse.Failed;
+
+  unmatched: number;
+}
+
+export namespace EvaluateListResponse {
+  export interface Failed {
+    Failed: string;
+  }
 }
 
 export interface EvaluateGetResponse {
