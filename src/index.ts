@@ -9,26 +9,6 @@ import { type JobsListParams, JobsListResponse } from './pagination';
 import * as Uploads from './uploads';
 import * as API from './resources/index';
 import {
-  DatasetCreateParams,
-  DatasetDeleteParams,
-  DatasetEvaluateParams,
-  DatasetEvaluateResponse,
-  DatasetGetParams,
-  DatasetGetResponse,
-  DatasetListResponse,
-  DatasetMatchParams,
-  DatasetMatchResponse,
-  DatasetViewRelationshipsParams,
-  DatasetViewRelationshipsResponse,
-  DatasetViewRelationshipsResponsesJobsList,
-  DatasetViewTableParams,
-  DatasetViewTableResponse,
-  DatasetViewTableResponsesJobsList,
-  DatasetViewTablesWithRelationshipsParams,
-  DatasetViewTablesWithRelationshipsResponse,
-  Datasets,
-} from './resources/datasets';
-import {
   DocumentDeleteParams,
   DocumentDownloadParams,
   DocumentDownloadResponse,
@@ -137,6 +117,24 @@ import {
   UserUsageResponse,
 } from './resources/user';
 import { Admin } from './resources/admin/admin';
+import {
+  DatasetCreateParams,
+  DatasetDeleteParams,
+  DatasetGetParams,
+  DatasetGetResponse,
+  DatasetListResponse,
+  DatasetMatchParams,
+  DatasetMatchResponse,
+  DatasetViewRelationshipsParams,
+  DatasetViewRelationshipsResponse,
+  DatasetViewRelationshipsResponsesJobsList,
+  DatasetViewTableParams,
+  DatasetViewTableResponse,
+  DatasetViewTableResponsesJobsList,
+  DatasetViewTablesWithRelationshipsParams,
+  DatasetViewTablesWithRelationshipsResponse,
+  Datasets,
+} from './resources/datasets/datasets';
 
 const environments = {
   production: 'https://api.structify.ai',
@@ -362,7 +360,6 @@ export declare namespace Structify {
   export {
     Datasets as Datasets,
     type DatasetListResponse as DatasetListResponse,
-    type DatasetEvaluateResponse as DatasetEvaluateResponse,
     type DatasetGetResponse as DatasetGetResponse,
     type DatasetMatchResponse as DatasetMatchResponse,
     type DatasetViewRelationshipsResponse as DatasetViewRelationshipsResponse,
@@ -372,7 +369,6 @@ export declare namespace Structify {
     DatasetViewTableResponsesJobsList as DatasetViewTableResponsesJobsList,
     type DatasetCreateParams as DatasetCreateParams,
     type DatasetDeleteParams as DatasetDeleteParams,
-    type DatasetEvaluateParams as DatasetEvaluateParams,
     type DatasetGetParams as DatasetGetParams,
     type DatasetMatchParams as DatasetMatchParams,
     type DatasetViewRelationshipsParams as DatasetViewRelationshipsParams,
