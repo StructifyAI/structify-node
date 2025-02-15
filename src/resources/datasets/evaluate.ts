@@ -43,7 +43,7 @@ export class Evaluate extends APIResource {
   /**
    * Evaluate two datasets
    */
-  run(params: EvaluateRunParams, options?: Core.RequestOptions): Core.APIPromise<EvaluateRunResponse> {
+  run(params: EvaluateRunParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     const { dataset_1, dataset_2, email_1, email_2 } = params;
     return this._client.post('/dataset/evaluate/run', {
       query: { dataset_1, dataset_2, email_1, email_2 },
@@ -140,72 +140,14 @@ export namespace EvaluateGetResponse {
   }
 }
 
-export interface EvaluateRunResponse {
-  id: string;
+export type EvaluateRunResponse = string;
 
-  iou: number;
+export type EvaluateStatusResponse = 'Running' | 'Completed' | EvaluateStatusResponse.Failed;
 
-  matched: number;
-
-  stats: EvaluateRunResponse.Stats;
-
-  unmatched: number;
-}
-
-export namespace EvaluateRunResponse {
-  export interface Stats {
-    tables: Record<string, Stats.Tables>;
+export namespace EvaluateStatusResponse {
+  export interface Failed {
+    Failed: string;
   }
-
-  export namespace Stats {
-    export interface Tables {
-      matched_entities: Array<Tables.MatchedEntity>;
-
-      unmatched_1: Array<string>;
-
-      unmatched_2: Array<string>;
-    }
-
-    export namespace Tables {
-      export interface MatchedEntity {
-        e1_id: string;
-
-        e2_id: string;
-
-        match_score: number;
-
-        property_matches: MatchedEntity.PropertyMatches;
-      }
-
-      export namespace MatchedEntity {
-        export interface PropertyMatches {
-          matched_properties: Record<string, PropertyMatches.MatchedProperties>;
-
-          unmatched_properties_1: Record<string, string | boolean | number | SharedAPI.Image>;
-
-          unmatched_properties_2: Record<string, string | boolean | number | SharedAPI.Image>;
-        }
-
-        export namespace PropertyMatches {
-          export interface MatchedProperties {
-            match_score: number;
-
-            value1: string | boolean | number | SharedAPI.Image;
-
-            value2: string | boolean | number | SharedAPI.Image;
-          }
-        }
-      }
-    }
-  }
-}
-
-export interface EvaluateStatusResponse {
-  id: string;
-
-  progress: number;
-
-  status: string;
 }
 
 export interface EvaluateListParams {
