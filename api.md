@@ -115,25 +115,38 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/datasets.ts">DatasetListResponse</a></code>
-- <code><a href="./src/resources/datasets.ts">DatasetEvaluateResponse</a></code>
-- <code><a href="./src/resources/datasets.ts">DatasetGetResponse</a></code>
-- <code><a href="./src/resources/datasets.ts">DatasetMatchResponse</a></code>
-- <code><a href="./src/resources/datasets.ts">DatasetViewRelationshipsResponse</a></code>
-- <code><a href="./src/resources/datasets.ts">DatasetViewTableResponse</a></code>
-- <code><a href="./src/resources/datasets.ts">DatasetViewTablesWithRelationshipsResponse</a></code>
+- <code><a href="./src/resources/datasets/datasets.ts">DatasetListResponse</a></code>
+- <code><a href="./src/resources/datasets/datasets.ts">DatasetGetResponse</a></code>
+- <code><a href="./src/resources/datasets/datasets.ts">DatasetMatchResponse</a></code>
+- <code><a href="./src/resources/datasets/datasets.ts">DatasetViewRelationshipsResponse</a></code>
+- <code><a href="./src/resources/datasets/datasets.ts">DatasetViewTableResponse</a></code>
+- <code><a href="./src/resources/datasets/datasets.ts">DatasetViewTablesWithRelationshipsResponse</a></code>
 
 Methods:
 
-- <code title="post /dataset/create">client.datasets.<a href="./src/resources/datasets.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /dataset/list">client.datasets.<a href="./src/resources/datasets.ts">list</a>() -> DatasetListResponse</code>
-- <code title="delete /dataset/delete">client.datasets.<a href="./src/resources/datasets.ts">delete</a>({ ...params }) -> void</code>
-- <code title="post /dataset/evaluate">client.datasets.<a href="./src/resources/datasets.ts">evaluate</a>({ ...params }) -> DatasetEvaluateResponse</code>
-- <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets.ts">get</a>({ ...params }) -> DatasetGetResponse</code>
-- <code title="post /dataset/match">client.datasets.<a href="./src/resources/datasets.ts">match</a>({ ...params }) -> DatasetMatchResponse</code>
-- <code title="get /dataset/view_relationships">client.datasets.<a href="./src/resources/datasets.ts">viewRelationships</a>({ ...params }) -> DatasetViewRelationshipsResponsesJobsList</code>
-- <code title="get /dataset/view_table">client.datasets.<a href="./src/resources/datasets.ts">viewTable</a>({ ...params }) -> DatasetViewTableResponsesJobsList</code>
-- <code title="get /dataset/view_tables_with_relationships">client.datasets.<a href="./src/resources/datasets.ts">viewTablesWithRelationships</a>({ ...params }) -> DatasetViewTablesWithRelationshipsResponse</code>
+- <code title="post /dataset/create">client.datasets.<a href="./src/resources/datasets/datasets.ts">create</a>({ ...params }) -> void</code>
+- <code title="get /dataset/list">client.datasets.<a href="./src/resources/datasets/datasets.ts">list</a>() -> DatasetListResponse</code>
+- <code title="delete /dataset/delete">client.datasets.<a href="./src/resources/datasets/datasets.ts">delete</a>({ ...params }) -> void</code>
+- <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets/datasets.ts">get</a>({ ...params }) -> DatasetGetResponse</code>
+- <code title="post /dataset/match">client.datasets.<a href="./src/resources/datasets/datasets.ts">match</a>({ ...params }) -> DatasetMatchResponse</code>
+- <code title="get /dataset/view_relationships">client.datasets.<a href="./src/resources/datasets/datasets.ts">viewRelationships</a>({ ...params }) -> DatasetViewRelationshipsResponsesJobsList</code>
+- <code title="get /dataset/view_table">client.datasets.<a href="./src/resources/datasets/datasets.ts">viewTable</a>({ ...params }) -> DatasetViewTableResponsesJobsList</code>
+- <code title="get /dataset/view_tables_with_relationships">client.datasets.<a href="./src/resources/datasets/datasets.ts">viewTablesWithRelationships</a>({ ...params }) -> DatasetViewTablesWithRelationshipsResponse</code>
+
+## Evaluate
+
+Types:
+
+- <code><a href="./src/resources/datasets/evaluate.ts">EvaluateListResponse</a></code>
+- <code><a href="./src/resources/datasets/evaluate.ts">EvaluateGetResponse</a></code>
+- <code><a href="./src/resources/datasets/evaluate.ts">EvaluateStatusResponse</a></code>
+
+Methods:
+
+- <code title="get /dataset/evaluate/list">client.datasets.evaluate.<a href="./src/resources/datasets/evaluate.ts">list</a>({ ...params }) -> EvaluateListResponse</code>
+- <code title="delete /dataset/evaluate/delete">client.datasets.evaluate.<a href="./src/resources/datasets/evaluate.ts">delete</a>({ ...params }) -> void</code>
+- <code title="get /dataset/evaluate/get">client.datasets.evaluate.<a href="./src/resources/datasets/evaluate.ts">get</a>({ ...params }) -> EvaluateGetResponse</code>
+- <code title="get /dataset/evaluate/status">client.datasets.evaluate.<a href="./src/resources/datasets/evaluate.ts">status</a>({ ...params }) -> EvaluateStatusResponse</code>
 
 # Documents
 
