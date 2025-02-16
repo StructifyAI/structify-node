@@ -88,15 +88,9 @@ export interface EvaluateListResponse {
 
   started_at: string;
 
-  status: 'Running' | 'Completed' | EvaluateListResponse.Failed;
+  status: 'Running' | 'Completed' | 'Failed';
 
   unmatched: number;
-}
-
-export namespace EvaluateListResponse {
-  export interface Failed {
-    Failed: string;
-  }
 }
 
 export interface EvaluateGetResponse {
@@ -161,13 +155,7 @@ export namespace EvaluateGetResponse {
 
 export type EvaluateRunResponse = string;
 
-export type EvaluateStatusResponse = 'Running' | 'Completed' | EvaluateStatusResponse.Failed;
-
-export namespace EvaluateStatusResponse {
-  export interface Failed {
-    Failed: string;
-  }
-}
+export type EvaluateStatusResponse = 'Running' | 'Completed' | 'Failed';
 
 export interface EvaluateListParams extends JobsListParams {}
 

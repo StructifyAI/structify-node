@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.97.0 (2025-02-16)
+
+Full Changelog: [v1.96.0...v1.97.0](https://github.com/StructifyAI/structify-node/compare/v1.96.0...v1.97.0)
+
+### Features
+
+* **api:** api update ([#914](https://github.com/StructifyAI/structify-node/issues/914)) ([3773f19](https://github.com/StructifyAI/structify-node/commit/3773f19525437f172d3a474f93a6fa569799340a))
+
 ## 1.96.0 (2025-02-15)
 
 Full Changelog: [v1.95.0...v1.96.0](https://github.com/StructifyAI/structify-node/compare/v1.95.0...v1.96.0)
