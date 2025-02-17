@@ -116,9 +116,13 @@ export namespace EvaluateGetResponse {
     export interface Tables {
       matched_entities: Array<Tables.MatchedEntity>;
 
-      unmatched_1: Array<string>;
+      /**
+       * We don't want to make the assumption that the dataset is static after eval, so
+       * it's useful to save the full entities.
+       */
+      unmatched_1: Array<Tables.Unmatched1>;
 
-      unmatched_2: Array<string>;
+      unmatched_2: Array<Tables.Unmatched2>;
     }
 
     export namespace Tables {
@@ -150,6 +154,22 @@ export namespace EvaluateGetResponse {
             value2: string | boolean | number | SharedAPI.Image;
           }
         }
+      }
+
+      export interface Unmatched1 {
+        id: string;
+
+        properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+        type: string;
+      }
+
+      export interface Unmatched2 {
+        id: string;
+
+        properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+        type: string;
       }
     }
   }
