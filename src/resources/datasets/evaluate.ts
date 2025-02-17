@@ -91,6 +91,8 @@ export interface EvaluateListResponse {
   status: 'Running' | 'Completed' | 'Failed';
 
   unmatched: number;
+
+  run_message?: string | null;
 }
 
 export interface EvaluateGetResponse {
