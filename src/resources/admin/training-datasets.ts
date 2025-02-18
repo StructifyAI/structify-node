@@ -244,7 +244,9 @@ export interface TrainingDatumResponse {
     | 'Pending'
     | 'Skipped'
     | 'SuspiciousNav'
-    | 'SuspiciousSave';
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave';
 
   step: StructureAPI.ExecutionStep;
 
@@ -266,7 +268,9 @@ export namespace TrainingDatumResponse {
       | 'Pending'
       | 'Skipped'
       | 'SuspiciousNav'
-      | 'SuspiciousSave';
+      | 'SuspiciousSave'
+      | 'PotentialSuspiciousNav'
+      | 'PotentialSuspiciousSave';
 
     timestamp: string;
 
@@ -479,7 +483,9 @@ export interface UpdateDatumStatusRequest {
     | 'Pending'
     | 'Skipped'
     | 'SuspiciousNav'
-    | 'SuspiciousSave';
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave';
 
   review_message?: string | null;
 }
@@ -523,7 +529,9 @@ export namespace TrainingDatasetListDatumsResponse {
       | 'Pending'
       | 'Skipped'
       | 'SuspiciousNav'
-      | 'SuspiciousSave';
+      | 'SuspiciousSave'
+      | 'PotentialSuspiciousNav'
+      | 'PotentialSuspiciousSave';
 
     origin?: 'HumanLLM' | 'UserReported' | 'ManualUpload' | 'ManualTransfer' | 'ToolParseFailure' | null;
   }
@@ -546,7 +554,9 @@ export namespace TrainingDatasetSizeResponse {
       | 'Pending'
       | 'Skipped'
       | 'SuspiciousNav'
-      | 'SuspiciousSave';
+      | 'SuspiciousSave'
+      | 'PotentialSuspiciousNav'
+      | 'PotentialSuspiciousSave';
   }
 }
 
@@ -588,7 +598,9 @@ export interface TrainingDatasetGetLabellerStatsParams {
     | 'Pending'
     | 'Skipped'
     | 'SuspiciousNav'
-    | 'SuspiciousSave';
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave';
 
   dataset_name?: string | null;
 
@@ -613,7 +625,9 @@ export interface TrainingDatasetGetNextForLabelingParams {
     | 'Pending'
     | 'Skipped'
     | 'SuspiciousNav'
-    | 'SuspiciousSave';
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave';
 }
 
 export interface TrainingDatasetGetNextSuspiciousParams {
@@ -626,7 +640,9 @@ export interface TrainingDatasetGetNextSuspiciousParams {
     | 'Pending'
     | 'Skipped'
     | 'SuspiciousNav'
-    | 'SuspiciousSave';
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave';
 
   dataset_name?: string | null;
 
@@ -645,7 +661,9 @@ export interface TrainingDatasetLabelDatumParams {
     | 'Pending'
     | 'Skipped'
     | 'SuspiciousNav'
-    | 'SuspiciousSave';
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave';
 
   updated_tool_calls: Array<TrainingDatasetLabelDatumParams.UpdatedToolCall>;
 }
@@ -854,7 +872,9 @@ export interface TrainingDatasetMarkDatumSuspiciousParams {
     | 'Pending'
     | 'Skipped'
     | 'SuspiciousNav'
-    | 'SuspiciousSave';
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave';
 
   suspicious_id: string;
 }
@@ -880,6 +900,8 @@ export interface TrainingDatasetSizeParams {
     | 'Skipped'
     | 'SuspiciousNav'
     | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave'
     | null;
 }
 
@@ -893,7 +915,9 @@ export interface TrainingDatasetSuspiciousCountParams {
     | 'Pending'
     | 'Skipped'
     | 'SuspiciousNav'
-    | 'SuspiciousSave';
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave';
 
   dataset_name?: string | null;
 
@@ -918,7 +942,9 @@ export interface TrainingDatasetUpdateDatumStatusParams {
     | 'Pending'
     | 'Skipped'
     | 'SuspiciousNav'
-    | 'SuspiciousSave';
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave';
 
   review_message?: string | null;
 }
@@ -941,7 +967,9 @@ export interface TrainingDatasetVerifyDatumParams {
     | 'Pending'
     | 'Skipped'
     | 'SuspiciousNav'
-    | 'SuspiciousSave';
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave';
 
   verified_id: string;
 }
