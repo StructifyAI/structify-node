@@ -98,13 +98,29 @@ export interface EvaluateListResponse {
 export interface EvaluateGetResponse {
   id: string;
 
+  dataset_1: string;
+
+  dataset_2: string;
+
+  dataset_2_is_ground_truth: boolean;
+
+  email_1: string;
+
+  email_2: string;
+
   iou: number;
 
   matched: number;
 
+  started_at: string;
+
   stats: EvaluateGetResponse.Stats;
 
+  status: 'Running' | 'Completed' | 'Failed';
+
   unmatched: number;
+
+  run_message?: string | null;
 }
 
 export namespace EvaluateGetResponse {
