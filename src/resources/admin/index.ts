@@ -48,6 +48,7 @@ export {
   type TrainingDatasetGetDatumInfoParams,
   type TrainingDatasetGetLabellerStatsParams,
   type TrainingDatasetGetNextForLabelingParams,
+  type TrainingDatasetGetNextForQaParams,
   type TrainingDatasetGetNextSuspiciousParams,
   type TrainingDatasetLabelDatumParams,
   type TrainingDatasetListDatumsParams,
