@@ -71,7 +71,8 @@ export class Structure extends APIResource {
   }
 
   /**
-   * and any associated LogNodes that have been added to them
+   * Wait for all specified async tasks to be completed. Returns the state of the job
+   * tasks
    */
   jobStatus(
     body: StructureJobStatusParams,
@@ -630,11 +631,7 @@ export type StructureFindRelationshipResponse = string;
 
 export type StructureIsCompleteResponse = string;
 
-export interface StructureJobStatusResponse {
-  job_status: Array<'Queued' | 'Running' | 'Completed' | 'Failed'>;
-
-  log_nodes: Array<string>;
-}
+export type StructureJobStatusResponse = Array<'Queued' | 'Running' | 'Completed' | 'Failed'>;
 
 export type StructureListPlansResponse = Array<StructureListPlansResponse.StructureListPlansResponseItem>;
 
