@@ -59,7 +59,7 @@ export interface User {
     'functional_test' | 'pdf_parsing' | 'boredm_construction_hack' | 'boredm_construction_model' | 'none'
   >;
 
-  permissions?: Array<'labeler' | 'debug' | 'human_llm' | 'none'>;
+  permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'>;
 
   user_type?: 'Admin' | 'Public' | 'EndUser';
 }
@@ -101,7 +101,7 @@ export interface UserCreateParams {
 
   is_admin?: boolean;
 
-  permissions?: Array<'labeler' | 'debug' | 'human_llm' | 'none'>;
+  permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'>;
 
   test?: boolean;
 }
@@ -115,7 +115,7 @@ export interface UserUpdateParams {
     'functional_test' | 'pdf_parsing' | 'boredm_construction_hack' | 'boredm_construction_model' | 'none'
   > | null;
 
-  new_permissions?: Array<'labeler' | 'debug' | 'human_llm' | 'none'> | null;
+  new_permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'> | null;
 }
 
 export interface UserGetCreditsParams {

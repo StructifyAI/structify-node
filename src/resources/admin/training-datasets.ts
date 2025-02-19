@@ -95,6 +95,16 @@ export class TrainingDatasets extends APIResource {
   /**
    * Returns None if no datum is available.
    */
+  getNextForQa(
+    query: TrainingDatasetGetNextForQaParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<TrainingDatumResponse | null> {
+    return this._client.get('/admin/training_datasets/get_next_for_qa', { query, ...options });
+  }
+
+  /**
+   * Returns None if no datum is available.
+   */
   getNextSuspicious(
     query: TrainingDatasetGetNextSuspiciousParams,
     options?: Core.RequestOptions,
@@ -630,6 +640,23 @@ export interface TrainingDatasetGetNextForLabelingParams {
     | 'PotentialSuspiciousSave';
 }
 
+export interface TrainingDatasetGetNextForQaParams {
+  dataset_name: string;
+
+  status:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'NavVerified'
+    | 'SaveVerified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave';
+}
+
 export interface TrainingDatasetGetNextSuspiciousParams {
   status:
     | 'Unlabeled'
@@ -991,6 +1018,7 @@ export declare namespace TrainingDatasets {
     type TrainingDatasetGetDatumInfoParams as TrainingDatasetGetDatumInfoParams,
     type TrainingDatasetGetLabellerStatsParams as TrainingDatasetGetLabellerStatsParams,
     type TrainingDatasetGetNextForLabelingParams as TrainingDatasetGetNextForLabelingParams,
+    type TrainingDatasetGetNextForQaParams as TrainingDatasetGetNextForQaParams,
     type TrainingDatasetGetNextSuspiciousParams as TrainingDatasetGetNextSuspiciousParams,
     type TrainingDatasetLabelDatumParams as TrainingDatasetLabelDatumParams,
     type TrainingDatasetListDatumsParams as TrainingDatasetListDatumsParams,

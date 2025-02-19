@@ -147,6 +147,27 @@ describe('resource trainingDatasets', () => {
     });
   });
 
+  test('getNextForQa: only required params', async () => {
+    const responsePromise = client.admin.trainingDatasets.getNextForQa({
+      dataset_name: 'dataset_name',
+      status: 'Unlabeled',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('getNextForQa: required and optional params', async () => {
+    const response = await client.admin.trainingDatasets.getNextForQa({
+      dataset_name: 'dataset_name',
+      status: 'Unlabeled',
+    });
+  });
+
   test('getNextSuspicious: only required params', async () => {
     const responsePromise = client.admin.trainingDatasets.getNextSuspicious({ status: 'Unlabeled' });
     const rawResponse = await responsePromise.asResponse();
