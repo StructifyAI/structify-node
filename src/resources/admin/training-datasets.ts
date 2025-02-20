@@ -260,6 +260,9 @@ export interface TrainingDatumResponse {
 
   step: StructureAPI.ExecutionStep;
 
+  /**
+   * All updates for the datum, sorted by ascending timestamp.
+   */
   updates: Array<TrainingDatumResponse.Update>;
 }
 
