@@ -143,6 +143,8 @@ export namespace EvaluateGetResponse {
 
     export namespace Tables {
       export interface MatchedEntity {
+        alternative_matches: Array<unknown>;
+
         e1_id: string;
 
         e2_id: string;
