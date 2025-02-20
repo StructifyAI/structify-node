@@ -193,7 +193,9 @@ export namespace EvaluateGetResponse {
 
 export type EvaluateRunResponse = string;
 
-export type EvaluateStatusResponse = 'Running' | 'Completed' | 'Failed';
+export interface EvaluateStatusResponse {
+  status: 'Running' | 'Completed' | 'Failed';
+}
 
 export interface EvaluateListParams extends JobsListParams {}
 
