@@ -49,7 +49,8 @@ describe('resource evaluate', () => {
     const response = await client.datasets.evaluate.delete({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
   });
 
-  test('get: only required params', async () => {
+  // infinite array recursion unsupported in prism
+  test.skip('get: only required params', async () => {
     const responsePromise = client.datasets.evaluate.get({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -60,7 +61,8 @@ describe('resource evaluate', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('get: required and optional params', async () => {
+  // infinite array recursion unsupported in prism
+  test.skip('get: required and optional params', async () => {
     const response = await client.datasets.evaluate.get({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
   });
 
