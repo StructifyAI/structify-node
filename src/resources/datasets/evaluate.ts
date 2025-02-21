@@ -130,7 +130,7 @@ export namespace EvaluateGetResponse {
 
   export namespace Stats {
     export interface Tables {
-      matched_entities: Array<Tables.MatchedEntity>;
+      matched_entities: Array<SharedAPI.MatchedEntity>;
 
       /**
        * We don't want to make the assumption that the dataset is static after eval, so
@@ -142,38 +142,6 @@ export namespace EvaluateGetResponse {
     }
 
     export namespace Tables {
-      export interface MatchedEntity {
-        alternative_matches: Array<unknown>;
-
-        e1_id: string;
-
-        e2_id: string;
-
-        match_score: number;
-
-        property_matches: MatchedEntity.PropertyMatches;
-      }
-
-      export namespace MatchedEntity {
-        export interface PropertyMatches {
-          matched_properties: Record<string, PropertyMatches.MatchedProperties>;
-
-          unmatched_properties_1: Record<string, string | boolean | number | SharedAPI.Image>;
-
-          unmatched_properties_2: Record<string, string | boolean | number | SharedAPI.Image>;
-        }
-
-        export namespace PropertyMatches {
-          export interface MatchedProperties {
-            match_score: number;
-
-            value1: string | boolean | number | SharedAPI.Image;
-
-            value2: string | boolean | number | SharedAPI.Image;
-          }
-        }
-      }
-
       export interface Unmatched1 {
         id: string;
 

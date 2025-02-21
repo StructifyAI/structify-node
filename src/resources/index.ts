@@ -88,6 +88,7 @@ export {
   type Entity,
   type Image,
   type KnowledgeGraph,
+  type MatchedEntity,
   type PropertyType,
   type Relationship,
   type Table,
