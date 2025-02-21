@@ -136,6 +136,38 @@ export interface KnowledgeGraph {
   relationships?: Array<Relationship>;
 }
 
+export interface MatchedEntity {
+  alternative_matches: Array<MatchedEntity>;
+
+  e1_id: string;
+
+  e2_id: string;
+
+  match_score: number;
+
+  property_matches: MatchedEntity.PropertyMatches;
+}
+
+export namespace MatchedEntity {
+  export interface PropertyMatches {
+    matched_properties: Record<string, PropertyMatches.MatchedProperties>;
+
+    unmatched_properties_1: Record<string, string | boolean | number | SharedAPI.Image>;
+
+    unmatched_properties_2: Record<string, string | boolean | number | SharedAPI.Image>;
+  }
+
+  export namespace PropertyMatches {
+    export interface MatchedProperties {
+      match_score: number;
+
+      value1: string | boolean | number | SharedAPI.Image;
+
+      value2: string | boolean | number | SharedAPI.Image;
+    }
+  }
+}
+
 export type PropertyType =
   | 'String'
   | 'Boolean'
@@ -235,6 +267,7 @@ export declare namespace Shared {
     type Entity as Entity,
     type Image as Image,
     type KnowledgeGraph as KnowledgeGraph,
+    type MatchedEntity as MatchedEntity,
     type PropertyType as PropertyType,
     type Relationship as Relationship,
     type Table as Table,
