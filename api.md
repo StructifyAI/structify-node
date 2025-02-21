@@ -309,6 +309,7 @@ Types:
 - <code><a href="./src/resources/shared.ts">Entity</a></code>
 - <code><a href="./src/resources/shared.ts">Image</a></code>
 - <code><a href="./src/resources/shared.ts">KnowledgeGraph</a></code>
+- <code><a href="./src/resources/shared.ts">MatchedEntity</a></code>
 - <code><a href="./src/resources/shared.ts">PropertyType</a></code>
 - <code><a href="./src/resources/shared.ts">Relationship</a></code>
 - <code><a href="./src/resources/shared.ts">Table</a></code>
