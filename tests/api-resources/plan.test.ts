@@ -60,8 +60,8 @@ describe('resource plan', () => {
     );
   });
 
-  test('pause: only required params', async () => {
-    const responsePromise = client.plan.pause({ dataset_name: 'dataset_name' });
+  test('pauseAll: only required params', async () => {
+    const responsePromise = client.plan.pauseAll({ dataset_name: 'dataset_name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -71,12 +71,12 @@ describe('resource plan', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('pause: required and optional params', async () => {
-    const response = await client.plan.pause({ dataset_name: 'dataset_name' });
+  test('pauseAll: required and optional params', async () => {
+    const response = await client.plan.pauseAll({ dataset_name: 'dataset_name' });
   });
 
-  test('resume: only required params', async () => {
-    const responsePromise = client.plan.resume({ dataset_name: 'dataset_name' });
+  test('resumeAll: only required params', async () => {
+    const responsePromise = client.plan.resumeAll({ dataset_name: 'dataset_name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -86,7 +86,7 @@ describe('resource plan', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('resume: required and optional params', async () => {
-    const response = await client.plan.resume({ dataset_name: 'dataset_name' });
+  test('resumeAll: required and optional params', async () => {
+    const response = await client.plan.resumeAll({ dataset_name: 'dataset_name' });
   });
 });
