@@ -36,6 +36,8 @@ import {
 import * as TrainingDatasetsAPI from './training-datasets';
 import {
   AddDatumRequest,
+  DatumStatus,
+  LabelingStats,
   TrainingDatasetAddDatumParams,
   TrainingDatasetAddParams,
   TrainingDatasetDeleteParams,
@@ -143,6 +145,8 @@ export declare namespace Admin {
   export {
     TrainingDatasets as TrainingDatasets,
     type AddDatumRequest as AddDatumRequest,
+    type DatumStatus as DatumStatus,
+    type LabelingStats as LabelingStats,
     type TrainingDatumResponse as TrainingDatumResponse,
     type UpdateDatumStatusRequest as UpdateDatumStatusRequest,
     type TrainingDatasetListResponse as TrainingDatasetListResponse,
