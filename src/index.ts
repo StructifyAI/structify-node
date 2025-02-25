@@ -60,20 +60,6 @@ import {
   Jobs,
 } from './resources/jobs';
 import {
-  EnhanceProperty,
-  EnhanceRelationship,
-  FindRelationship,
-  Plan,
-  PlanCreateParams,
-  PlanCreateResponse,
-  PlanListResponse,
-  PlanPauseParams,
-  PlanPauseResponse,
-  PlanResource,
-  PlanResumeParams,
-  PlanResumeResponse,
-} from './resources/plan';
-import {
   Report,
   ReportMissingParams,
   ReportMissingResponse,
@@ -99,9 +85,15 @@ import {
 import { Source, SourceListParams, SourceListResponse, Sources } from './resources/sources';
 import {
   ChatPrompt,
+  EnhanceProperty,
+  EnhanceRelationship,
   ExecutionStep,
   ExtractionCriteria,
+  FindRelationship,
+  Plan,
   Structure,
+  StructureCreatePlanParams,
+  StructureCreatePlanResponse,
   StructureEnhancePropertyParams,
   StructureEnhancePropertyResponse,
   StructureEnhanceRelationshipParams,
@@ -112,6 +104,7 @@ import {
   StructureIsCompleteResponse,
   StructureJobStatusParams,
   StructureJobStatusResponse,
+  StructureListPlansResponse,
   StructureRunAsyncParams,
   StructureRunAsyncResponse,
   ToolMetadata,
@@ -289,7 +282,6 @@ export class Structify extends Core.APIClient {
   sources: API.Sources = new API.Sources(this);
   entities: API.Entities = new API.Entities(this);
   images: API.Images = new API.Images(this);
-  plan: API.PlanResource = new API.PlanResource(this);
   report: API.Report = new API.Report(this);
   structure: API.Structure = new API.Structure(this);
   shared: API.Shared = new API.Shared(this);
@@ -346,7 +338,6 @@ Structify.Server = Server;
 Structify.Sources = Sources;
 Structify.Entities = Entities;
 Structify.Images = Images;
-Structify.PlanResource = PlanResource;
 Structify.Report = Report;
 Structify.Structure = Structure;
 Structify.Shared = Shared;
@@ -451,21 +442,6 @@ export declare namespace Structify {
   export { Images as Images, type ImageGetResponse as ImageGetResponse };
 
   export {
-    PlanResource as PlanResource,
-    type EnhanceProperty as EnhanceProperty,
-    type EnhanceRelationship as EnhanceRelationship,
-    type FindRelationship as FindRelationship,
-    type Plan as Plan,
-    type PlanCreateResponse as PlanCreateResponse,
-    type PlanListResponse as PlanListResponse,
-    type PlanPauseResponse as PlanPauseResponse,
-    type PlanResumeResponse as PlanResumeResponse,
-    type PlanCreateParams as PlanCreateParams,
-    type PlanPauseParams as PlanPauseParams,
-    type PlanResumeParams as PlanResumeParams,
-  };
-
-  export {
     Report as Report,
     type ReportMissingResponse as ReportMissingResponse,
     type ReportRelationshipResponse as ReportRelationshipResponse,
@@ -480,15 +456,22 @@ export declare namespace Structify {
   export {
     Structure as Structure,
     type ChatPrompt as ChatPrompt,
+    type EnhanceProperty as EnhanceProperty,
+    type EnhanceRelationship as EnhanceRelationship,
     type ExecutionStep as ExecutionStep,
     type ExtractionCriteria as ExtractionCriteria,
+    type FindRelationship as FindRelationship,
+    type Plan as Plan,
     type ToolMetadata as ToolMetadata,
+    type StructureCreatePlanResponse as StructureCreatePlanResponse,
     type StructureEnhancePropertyResponse as StructureEnhancePropertyResponse,
     type StructureEnhanceRelationshipResponse as StructureEnhanceRelationshipResponse,
     type StructureFindRelationshipResponse as StructureFindRelationshipResponse,
     type StructureIsCompleteResponse as StructureIsCompleteResponse,
     type StructureJobStatusResponse as StructureJobStatusResponse,
+    type StructureListPlansResponse as StructureListPlansResponse,
     type StructureRunAsyncResponse as StructureRunAsyncResponse,
+    type StructureCreatePlanParams as StructureCreatePlanParams,
     type StructureEnhancePropertyParams as StructureEnhancePropertyParams,
     type StructureEnhanceRelationshipParams as StructureEnhanceRelationshipParams,
     type StructureFindRelationshipParams as StructureFindRelationshipParams,
