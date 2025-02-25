@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as TrainingDatasetsAPI from './training-datasets';
 import * as SharedAPI from '../shared';
 import * as StructureAPI from '../structure';
 import { type Response as FetchResponse } from '../../_shims/index';
@@ -250,37 +249,23 @@ export interface AddDatumRequest {
   step_id: string;
 }
 
-export type DatumStatus =
-  | 'Unlabeled'
-  | 'NavLabeled'
-  | 'SaveLabeled'
-  | 'NavVerified'
-  | 'SaveVerified'
-  | 'Pending'
-  | 'Skipped'
-  | 'SuspiciousNav'
-  | 'SuspiciousSave'
-  | 'PotentialSuspiciousNav'
-  | 'PotentialSuspiciousSave';
-
-export interface LabelingStats {
-  author: string;
-
-  count: number;
-
-  dataset: string;
-
-  period: string;
-
-  status: DatumStatus;
-}
-
 export interface TrainingDatumResponse {
   id: string;
 
   last_updated: string;
 
-  status: DatumStatus;
+  status:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'NavVerified'
+    | 'SaveVerified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave';
 
   step: StructureAPI.ExecutionStep;
 
@@ -296,7 +281,18 @@ export namespace TrainingDatumResponse {
 
     author: string;
 
-    status: TrainingDatasetsAPI.DatumStatus;
+    status:
+      | 'Unlabeled'
+      | 'NavLabeled'
+      | 'SaveLabeled'
+      | 'NavVerified'
+      | 'SaveVerified'
+      | 'Pending'
+      | 'Skipped'
+      | 'SuspiciousNav'
+      | 'SuspiciousSave'
+      | 'PotentialSuspiciousNav'
+      | 'PotentialSuspiciousSave';
 
     timestamp: string;
 
@@ -500,14 +496,51 @@ export namespace TrainingDatumResponse {
 export interface UpdateDatumStatusRequest {
   id: string;
 
-  status: DatumStatus;
+  status:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'NavVerified'
+    | 'SaveVerified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave';
 
   review_message?: string | null;
 }
 
 export type TrainingDatasetListResponse = Array<string>;
 
-export type TrainingDatasetGetLabellerStatsResponse = Array<LabelingStats>;
+export type TrainingDatasetGetLabellerStatsResponse =
+  Array<TrainingDatasetGetLabellerStatsResponse.TrainingDatasetGetLabellerStatsResponseItem>;
+
+export namespace TrainingDatasetGetLabellerStatsResponse {
+  export interface TrainingDatasetGetLabellerStatsResponseItem {
+    author: string;
+
+    count: number;
+
+    dataset: string;
+
+    period: string;
+
+    status:
+      | 'Unlabeled'
+      | 'NavLabeled'
+      | 'SaveLabeled'
+      | 'NavVerified'
+      | 'SaveVerified'
+      | 'Pending'
+      | 'Skipped'
+      | 'SuspiciousNav'
+      | 'SuspiciousSave'
+      | 'PotentialSuspiciousNav'
+      | 'PotentialSuspiciousSave';
+  }
+}
 
 export type TrainingDatasetListDatumsResponse =
   Array<TrainingDatasetListDatumsResponse.TrainingDatasetListDatumsResponseItem>;
@@ -526,7 +559,18 @@ export namespace TrainingDatasetListDatumsResponse {
 
     save_verifiers: Array<string>;
 
-    status: TrainingDatasetsAPI.DatumStatus;
+    status:
+      | 'Unlabeled'
+      | 'NavLabeled'
+      | 'SaveLabeled'
+      | 'NavVerified'
+      | 'SaveVerified'
+      | 'Pending'
+      | 'Skipped'
+      | 'SuspiciousNav'
+      | 'SuspiciousSave'
+      | 'PotentialSuspiciousNav'
+      | 'PotentialSuspiciousSave';
 
     origin?: 'HumanLLM' | 'UserReported' | 'ManualUpload' | 'ManualTransfer' | 'ToolParseFailure' | null;
   }
@@ -540,7 +584,18 @@ export namespace TrainingDatasetSizeResponse {
 
     name: string;
 
-    status: TrainingDatasetsAPI.DatumStatus;
+    status:
+      | 'Unlabeled'
+      | 'NavLabeled'
+      | 'SaveLabeled'
+      | 'NavVerified'
+      | 'SaveVerified'
+      | 'Pending'
+      | 'Skipped'
+      | 'SuspiciousNav'
+      | 'SuspiciousSave'
+      | 'PotentialSuspiciousNav'
+      | 'PotentialSuspiciousSave';
   }
 }
 
@@ -587,17 +642,50 @@ export interface TrainingDatasetGetLabellerStatsParams {
 export interface TrainingDatasetGetNextForLabelingParams {
   dataset_name: string;
 
-  status: DatumStatus;
+  status:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'NavVerified'
+    | 'SaveVerified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave';
 }
 
 export interface TrainingDatasetGetNextForQaParams {
   dataset_name: string;
 
-  status: DatumStatus;
+  status:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'NavVerified'
+    | 'SaveVerified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave';
 }
 
 export interface TrainingDatasetGetNextSuspiciousParams {
-  status: DatumStatus;
+  status:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'NavVerified'
+    | 'SaveVerified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave';
 
   dataset_name?: string | null;
 
@@ -607,7 +695,18 @@ export interface TrainingDatasetGetNextSuspiciousParams {
 export interface TrainingDatasetLabelDatumParams {
   id: string;
 
-  status: DatumStatus;
+  status:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'NavVerified'
+    | 'SaveVerified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave';
 
   updated_tool_calls: Array<TrainingDatasetLabelDatumParams.UpdatedToolCall>;
 }
@@ -807,7 +906,18 @@ export interface TrainingDatasetMarkDatumSuspiciousParams {
 
   message: string;
 
-  status: DatumStatus;
+  status:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'NavVerified'
+    | 'SaveVerified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave';
 
   suspicious_id: string;
 }
@@ -823,11 +933,34 @@ export interface TrainingDatasetSizeParams {
 
   start_date?: string | null;
 
-  status?: DatumStatus | null;
+  status?:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'NavVerified'
+    | 'SaveVerified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave'
+    | null;
 }
 
 export interface TrainingDatasetSuspiciousCountParams {
-  status: DatumStatus;
+  status:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'NavVerified'
+    | 'SaveVerified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave';
 
   dataset_name?: string | null;
 
@@ -843,7 +976,18 @@ export interface TrainingDatasetSwitchDatasetParams {
 export interface TrainingDatasetUpdateDatumStatusParams {
   id: string;
 
-  status: DatumStatus;
+  status:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'NavVerified'
+    | 'SaveVerified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave';
 
   review_message?: string | null;
 }
@@ -857,7 +1001,18 @@ export interface TrainingDatasetUploadLabeledStepParams {
 export interface TrainingDatasetVerifyDatumParams {
   id: string;
 
-  status: DatumStatus;
+  status:
+    | 'Unlabeled'
+    | 'NavLabeled'
+    | 'SaveLabeled'
+    | 'NavVerified'
+    | 'SaveVerified'
+    | 'Pending'
+    | 'Skipped'
+    | 'SuspiciousNav'
+    | 'SuspiciousSave'
+    | 'PotentialSuspiciousNav'
+    | 'PotentialSuspiciousSave';
 
   verified_id: string;
 }
@@ -865,8 +1020,6 @@ export interface TrainingDatasetVerifyDatumParams {
 export declare namespace TrainingDatasets {
   export {
     type AddDatumRequest as AddDatumRequest,
-    type DatumStatus as DatumStatus,
-    type LabelingStats as LabelingStats,
     type TrainingDatumResponse as TrainingDatumResponse,
     type UpdateDatumStatusRequest as UpdateDatumStatusRequest,
     type TrainingDatasetListResponse as TrainingDatasetListResponse,
