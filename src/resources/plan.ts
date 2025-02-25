@@ -26,15 +26,18 @@ export class PlanResource extends APIResource {
   /**
    * Pause all running plans for your user account in the database.
    */
-  pause(query: PlanPauseParams, options?: Core.RequestOptions): Core.APIPromise<PlanPauseResponse> {
-    return this._client.get('/plan/pause', { query, ...options });
+  pauseAll(query: PlanPauseAllParams, options?: Core.RequestOptions): Core.APIPromise<PlanPauseAllResponse> {
+    return this._client.get('/plan/pause_all', { query, ...options });
   }
 
   /**
    * Resume all paused plans for your user account in the database.
    */
-  resume(query: PlanResumeParams, options?: Core.RequestOptions): Core.APIPromise<PlanResumeResponse> {
-    return this._client.get('/plan/resume', { query, ...options });
+  resumeAll(
+    query: PlanResumeAllParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<PlanResumeAllResponse> {
+    return this._client.get('/plan/resume_all', { query, ...options });
   }
 }
 
@@ -101,9 +104,9 @@ export namespace PlanListResponse {
   }
 }
 
-export type PlanPauseResponse = Array<string>;
+export type PlanPauseAllResponse = Array<string>;
 
-export type PlanResumeResponse = Array<string>;
+export type PlanResumeAllResponse = Array<string>;
 
 export interface PlanCreateParams {
   dataset: string;
@@ -111,14 +114,14 @@ export interface PlanCreateParams {
   plan: Plan;
 }
 
-export interface PlanPauseParams {
+export interface PlanPauseAllParams {
   /**
    * Name of the dataset to pause plans for
    */
   dataset_name: string;
 }
 
-export interface PlanResumeParams {
+export interface PlanResumeAllParams {
   /**
    * Name of the dataset to resume plans for
    */
@@ -133,10 +136,10 @@ export declare namespace PlanResource {
     type Plan as Plan,
     type PlanCreateResponse as PlanCreateResponse,
     type PlanListResponse as PlanListResponse,
-    type PlanPauseResponse as PlanPauseResponse,
-    type PlanResumeResponse as PlanResumeResponse,
+    type PlanPauseAllResponse as PlanPauseAllResponse,
+    type PlanResumeAllResponse as PlanResumeAllResponse,
     type PlanCreateParams as PlanCreateParams,
-    type PlanPauseParams as PlanPauseParams,
-    type PlanResumeParams as PlanResumeParams,
+    type PlanPauseAllParams as PlanPauseAllParams,
+    type PlanResumeAllParams as PlanResumeAllParams,
   };
 }
