@@ -78,11 +78,11 @@ export {
   type Plan,
   type PlanCreateResponse,
   type PlanListResponse,
-  type PlanPauseResponse,
-  type PlanResumeResponse,
+  type PlanPauseAllResponse,
+  type PlanResumeAllResponse,
   type PlanCreateParams,
-  type PlanPauseParams,
-  type PlanResumeParams,
+  type PlanPauseAllParams,
+  type PlanResumeAllParams,
 } from './plan';
 export {
   Report,
