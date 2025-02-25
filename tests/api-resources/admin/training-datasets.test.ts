@@ -104,8 +104,8 @@ describe('resource trainingDatasets', () => {
     });
   });
 
-  test('getLabellerStats: only required params', async () => {
-    const responsePromise = client.admin.trainingDatasets.getLabellerStats({ status: 'Unlabeled' });
+  test('getLabellerStats', async () => {
+    const responsePromise = client.admin.trainingDatasets.getLabellerStats();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -115,15 +115,27 @@ describe('resource trainingDatasets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('getLabellerStats: required and optional params', async () => {
-    const response = await client.admin.trainingDatasets.getLabellerStats({
-      status: 'Unlabeled',
-      dataset_name: 'dataset_name',
-      end_date: '2019-12-27T18:11:19.117Z',
-      labeled_status: 'NonSuspicious',
-      return_prop_count: true,
-      start_date: '2019-12-27T18:11:19.117Z',
-    });
+  test('getLabellerStats: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.admin.trainingDatasets.getLabellerStats({ path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
+  test('getLabellerStats: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.admin.trainingDatasets.getLabellerStats(
+        {
+          end_date: '2019-12-27T18:11:19.117Z',
+          labeled_status: 'None',
+          return_prop_count: true,
+          start_date: '2019-12-27T18:11:19.117Z',
+          time_bucket: 'Second',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Structify.NotFoundError);
   });
 
   test('getNextForLabeling: only required params', async () => {

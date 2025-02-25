@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as SharedAPI from '../shared';
 import * as StructureAPI from '../structure';
@@ -76,9 +77,17 @@ export class TrainingDatasets extends APIResource {
    * Gets statistics about labellers' work on a dataset.
    */
   getLabellerStats(
-    query: TrainingDatasetGetLabellerStatsParams,
+    query?: TrainingDatasetGetLabellerStatsParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<TrainingDatasetGetLabellerStatsResponse>;
+  getLabellerStats(options?: Core.RequestOptions): Core.APIPromise<TrainingDatasetGetLabellerStatsResponse>;
+  getLabellerStats(
+    query: TrainingDatasetGetLabellerStatsParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<TrainingDatasetGetLabellerStatsResponse> {
+    if (isRequestOptions(query)) {
+      return this.getLabellerStats({}, query);
+    }
     return this._client.get('/admin/training_datasets/labeller_stats', { query, ...options });
   }
 
@@ -510,9 +519,26 @@ export type TrainingDatasetGetLabellerStatsResponse =
 
 export namespace TrainingDatasetGetLabellerStatsResponse {
   export interface TrainingDatasetGetLabellerStatsResponseItem {
+    author: string;
+
     count: number;
 
-    labeller: string;
+    dataset: string;
+
+    period: string;
+
+    status:
+      | 'Unlabeled'
+      | 'NavLabeled'
+      | 'SaveLabeled'
+      | 'NavVerified'
+      | 'SaveVerified'
+      | 'Pending'
+      | 'Skipped'
+      | 'SuspiciousNav'
+      | 'SuspiciousSave'
+      | 'PotentialSuspiciousNav'
+      | 'PotentialSuspiciousSave';
   }
 }
 
@@ -602,28 +628,15 @@ export interface TrainingDatasetGetDatumInfoParams {
 }
 
 export interface TrainingDatasetGetLabellerStatsParams {
-  status:
-    | 'Unlabeled'
-    | 'NavLabeled'
-    | 'SaveLabeled'
-    | 'NavVerified'
-    | 'SaveVerified'
-    | 'Pending'
-    | 'Skipped'
-    | 'SuspiciousNav'
-    | 'SuspiciousSave'
-    | 'PotentialSuspiciousNav'
-    | 'PotentialSuspiciousSave';
-
-  dataset_name?: string | null;
-
   end_date?: string | null;
 
-  labeled_status?: 'NonSuspicious' | 'SuspiciousOnly' | 'VerifiedOnly';
+  labeled_status?: 'None' | 'SuspiciousOnly' | 'VerifiedOnly';
 
   return_prop_count?: boolean;
 
   start_date?: string | null;
+
+  time_bucket?: 'Second' | 'Minute' | 'Hour' | 'Day' | 'Week' | 'Month' | 'Quarter' | 'Year' | 'Decade';
 }
 
 export interface TrainingDatasetGetNextForLabelingParams {
