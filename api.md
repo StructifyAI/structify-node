@@ -253,26 +253,6 @@ Methods:
 
 - <code title="get /images/{hash}">client.images.<a href="./src/resources/images.ts">get</a>(hash) -> ImageGetResponse</code>
 
-# Plan
-
-Types:
-
-- <code><a href="./src/resources/plan.ts">EnhanceProperty</a></code>
-- <code><a href="./src/resources/plan.ts">EnhanceRelationship</a></code>
-- <code><a href="./src/resources/plan.ts">FindRelationship</a></code>
-- <code><a href="./src/resources/plan.ts">Plan</a></code>
-- <code><a href="./src/resources/plan.ts">PlanCreateResponse</a></code>
-- <code><a href="./src/resources/plan.ts">PlanListResponse</a></code>
-- <code><a href="./src/resources/plan.ts">PlanPauseResponse</a></code>
-- <code><a href="./src/resources/plan.ts">PlanResumeResponse</a></code>
-
-Methods:
-
-- <code title="post /plan/create">client.plan.<a href="./src/resources/plan.ts">create</a>({ ...params }) -> string</code>
-- <code title="get /plan/list">client.plan.<a href="./src/resources/plan.ts">list</a>() -> PlanListResponse</code>
-- <code title="get /plan/pause">client.plan.<a href="./src/resources/plan.ts">pause</a>({ ...params }) -> PlanPauseResponse</code>
-- <code title="get /plan/resume">client.plan.<a href="./src/resources/plan.ts">resume</a>({ ...params }) -> PlanResumeResponse</code>
-
 # Report
 
 Types:
@@ -294,23 +274,31 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/structure.ts">ChatPrompt</a></code>
+- <code><a href="./src/resources/structure.ts">EnhanceProperty</a></code>
+- <code><a href="./src/resources/structure.ts">EnhanceRelationship</a></code>
 - <code><a href="./src/resources/structure.ts">ExecutionStep</a></code>
 - <code><a href="./src/resources/structure.ts">ExtractionCriteria</a></code>
+- <code><a href="./src/resources/structure.ts">FindRelationship</a></code>
+- <code><a href="./src/resources/structure.ts">Plan</a></code>
 - <code><a href="./src/resources/structure.ts">ToolMetadata</a></code>
+- <code><a href="./src/resources/structure.ts">StructureCreatePlanResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureEnhancePropertyResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureEnhanceRelationshipResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureFindRelationshipResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureIsCompleteResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureJobStatusResponse</a></code>
+- <code><a href="./src/resources/structure.ts">StructureListPlansResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureRunAsyncResponse</a></code>
 
 Methods:
 
+- <code title="post /structure/create_plan">client.structure.<a href="./src/resources/structure.ts">createPlan</a>({ ...params }) -> string</code>
 - <code title="post /structure/enhance_property">client.structure.<a href="./src/resources/structure.ts">enhanceProperty</a>({ ...params }) -> string</code>
 - <code title="post /structure/enhance_relationship">client.structure.<a href="./src/resources/structure.ts">enhanceRelationship</a>({ ...params }) -> string</code>
 - <code title="post /structure/find_relationship">client.structure.<a href="./src/resources/structure.ts">findRelationship</a>({ ...params }) -> string</code>
 - <code title="post /structure/is_complete">client.structure.<a href="./src/resources/structure.ts">isComplete</a>([ ...job ]) -> string</code>
 - <code title="post /structure/job_status">client.structure.<a href="./src/resources/structure.ts">jobStatus</a>([ ...job ]) -> StructureJobStatusResponse</code>
+- <code title="get /structure/list_plans">client.structure.<a href="./src/resources/structure.ts">listPlans</a>() -> StructureListPlansResponse</code>
 - <code title="post /structure/run_async">client.structure.<a href="./src/resources/structure.ts">runAsync</a>({ ...params }) -> string</code>
 
 # Shared
