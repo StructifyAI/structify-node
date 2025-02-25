@@ -9,39 +9,6 @@ const client = new Structify({
 });
 
 describe('resource structure', () => {
-  test('createPlan: only required params', async () => {
-    const responsePromise = client.structure.createPlan({
-      dataset: 'dataset',
-      plan: {
-        steps: [{ entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', property_name: 'property_name' }],
-      },
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('createPlan: required and optional params', async () => {
-    const response = await client.structure.createPlan({
-      dataset: 'dataset',
-      plan: {
-        steps: [
-          {
-            entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-            property_name: 'property_name',
-            allow_extra_entities: true,
-            starting_searches: ['string'],
-            starting_urls: ['string'],
-          },
-        ],
-      },
-    });
-  });
-
   test('enhanceProperty: only required params', async () => {
     const responsePromise = client.structure.enhanceProperty({
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -147,24 +114,6 @@ describe('resource structure', () => {
 
   test('jobStatus: required and optional params', async () => {
     const response = await client.structure.jobStatus(['string']);
-  });
-
-  test('listPlans', async () => {
-    const responsePromise = client.structure.listPlans();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('listPlans: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.structure.listPlans({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Structify.NotFoundError,
-    );
   });
 
   test('runAsync: only required params', async () => {
