@@ -67,11 +67,11 @@ import {
   PlanCreateParams,
   PlanCreateResponse,
   PlanListResponse,
-  PlanPauseParams,
-  PlanPauseResponse,
+  PlanPauseAllParams,
+  PlanPauseAllResponse,
   PlanResource,
-  PlanResumeParams,
-  PlanResumeResponse,
+  PlanResumeAllParams,
+  PlanResumeAllResponse,
 } from './resources/plan';
 import {
   Report,
@@ -458,11 +458,11 @@ export declare namespace Structify {
     type Plan as Plan,
     type PlanCreateResponse as PlanCreateResponse,
     type PlanListResponse as PlanListResponse,
-    type PlanPauseResponse as PlanPauseResponse,
-    type PlanResumeResponse as PlanResumeResponse,
+    type PlanPauseAllResponse as PlanPauseAllResponse,
+    type PlanResumeAllResponse as PlanResumeAllResponse,
     type PlanCreateParams as PlanCreateParams,
-    type PlanPauseParams as PlanPauseParams,
-    type PlanResumeParams as PlanResumeParams,
+    type PlanPauseAllParams as PlanPauseAllParams,
+    type PlanResumeAllParams as PlanResumeAllParams,
   };
 
   export {
