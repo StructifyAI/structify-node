@@ -81,6 +81,8 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/admin/training-datasets.ts">AddDatumRequest</a></code>
+- <code><a href="./src/resources/admin/training-datasets.ts">DatumStatus</a></code>
+- <code><a href="./src/resources/admin/training-datasets.ts">LabelingStats</a></code>
 - <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatumResponse</a></code>
 - <code><a href="./src/resources/admin/training-datasets.ts">UpdateDatumStatusRequest</a></code>
 - <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatasetListResponse</a></code>
