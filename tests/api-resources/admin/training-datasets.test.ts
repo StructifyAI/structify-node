@@ -129,6 +129,7 @@ describe('resource trainingDatasets', () => {
         {
           end_date: '2019-12-27T18:11:19.117Z',
           labeled_status: 'None',
+          max_prop_count: 0,
           return_prop_count: true,
           start_date: '2019-12-27T18:11:19.117Z',
           time_bucket: 'Second',

@@ -539,6 +539,8 @@ export namespace TrainingDatasetGetLabellerStatsResponse {
       | 'SuspiciousSave'
       | 'PotentialSuspiciousNav'
       | 'PotentialSuspiciousSave';
+
+    capped_count?: number | null;
   }
 }
 
@@ -631,6 +633,8 @@ export interface TrainingDatasetGetLabellerStatsParams {
   end_date?: string | null;
 
   labeled_status?: 'None' | 'SuspiciousOnly' | 'VerifiedOnly';
+
+  max_prop_count?: number | null;
 
   return_prop_count?: boolean;
 
