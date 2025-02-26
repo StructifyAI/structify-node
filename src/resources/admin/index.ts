@@ -34,6 +34,8 @@ export {
 export {
   TrainingDatasets,
   type AddDatumRequest,
+  type DatumStatus,
+  type LabelingStats,
   type TrainingDatumResponse,
   type UpdateDatumStatusRequest,
   type TrainingDatasetListResponse,
