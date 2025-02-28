@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.104.0 (2025-02-28)
+
+Full Changelog: [v1.103.0...v1.104.0](https://github.com/StructifyAI/structify-node/compare/v1.103.0...v1.104.0)
+
+### Features
+
+* **api:** api update ([#956](https://github.com/StructifyAI/structify-node/issues/956)) ([7daaf5f](https://github.com/StructifyAI/structify-node/commit/7daaf5f3b04ee524c13f28b072c462ac1287cc91))
+* **api:** api update ([#957](https://github.com/StructifyAI/structify-node/issues/957)) ([a17ac0d](https://github.com/StructifyAI/structify-node/commit/a17ac0d2e631c0d096b0c54c72f59452260dedbe))
+
+
+### Documentation
+
+* update URLs from stainlessapi.com to stainless.com ([#954](https://github.com/StructifyAI/structify-node/issues/954)) ([e4ad73a](https://github.com/StructifyAI/structify-node/commit/e4ad73a2b7061e788adb5a93b07d1185ea9b6e8f))
+
 ## 1.103.0 (2025-02-26)
 
 Full Changelog: [v1.102.0...v1.103.0](https://github.com/StructifyAI/structify-node/compare/v1.102.0...v1.103.0)
