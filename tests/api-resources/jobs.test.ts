@@ -31,7 +31,13 @@ describe('resource jobs', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.jobs.list(
-        { dataset_name: 'dataset_name', limit: 0, offset: 0, since: '2019-12-27T18:11:19.117Z', status: {} },
+        {
+          dataset_name: 'dataset_name',
+          limit: 0,
+          offset: 0,
+          since: '2019-12-27T18:11:19.117Z',
+          status: 'Queued',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Structify.NotFoundError);
