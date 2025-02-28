@@ -69,7 +69,7 @@ describe('resource humanLlm', () => {
   test('finishJob: only required params', async () => {
     const responsePromise = client.admin.humanLlm.finishJob({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      status: 'Queued',
+      status: {},
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -83,7 +83,7 @@ describe('resource humanLlm', () => {
   test('finishJob: required and optional params', async () => {
     const response = await client.admin.humanLlm.finishJob({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      status: 'Queued',
+      status: {},
     });
   });
 
@@ -108,7 +108,7 @@ describe('resource humanLlm', () => {
   test('getJobs: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.admin.humanLlm.getJobs({ status: 'Queued' }, { path: '/_stainless_unknown_path' }),
+      client.admin.humanLlm.getJobs({ status: {} }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Structify.NotFoundError);
   });
 

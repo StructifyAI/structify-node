@@ -28,7 +28,7 @@ describe('resource structure', () => {
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       property_name: 'property_name',
       allow_extra_entities: true,
-      special_job_type: 'HumanLLM',
+      special_job_type: {},
       starting_searches: ['string'],
       starting_urls: ['string'],
     });
@@ -53,7 +53,7 @@ describe('resource structure', () => {
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       relationship_name: 'relationship_name',
       allow_extra_entities: true,
-      special_job_type: 'HumanLLM',
+      special_job_type: {},
       starting_searches: ['string'],
       starting_urls: ['string'],
     });
@@ -80,7 +80,7 @@ describe('resource structure', () => {
       source_entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       target_entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       allow_extra_entities: true,
-      special_job_type: 'HumanLLM',
+      special_job_type: {},
       starting_searches: ['string'],
       starting_urls: ['string'],
     });
@@ -139,7 +139,7 @@ describe('resource structure', () => {
         entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
         relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
       },
-      special_job_type: 'HumanLLM',
+      special_job_type: {},
     });
   });
 });

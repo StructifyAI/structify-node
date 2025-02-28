@@ -86,7 +86,7 @@ export interface JobListResponse {
 
   creation_time: string;
 
-  status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+  status: unknown | null;
 
   message?: string | null;
 
@@ -107,7 +107,7 @@ export interface JobCancelResponse {
 
   creation_time: string;
 
-  status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+  status: unknown | null;
 
   message?: string | null;
 
@@ -133,7 +133,7 @@ export namespace JobGetResponse {
 
     creation_time: string;
 
-    status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+    status: unknown | null;
 
     message?: string | null;
 
@@ -208,7 +208,7 @@ export interface JobListParams extends JobsListParams {
   /**
    * Status to optionally filter jobs by
    */
-  status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
+  status?: unknown | null;
 }
 
 Jobs.JobListResponsesJobsList = JobListResponsesJobsList;
