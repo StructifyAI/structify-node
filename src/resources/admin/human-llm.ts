@@ -104,7 +104,7 @@ export namespace HumanLlmJob {
 
     creation_time: string;
 
-    status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+    status: unknown | null;
 
     message?: string | null;
 
@@ -545,11 +545,11 @@ export namespace HumanLlmAddToDatasetParams {
 export interface HumanLlmFinishJobParams {
   id: string;
 
-  status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+  status: unknown | null;
 }
 
 export interface HumanLlmGetJobsParams {
-  status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
+  status?: unknown | null;
 }
 
 export interface HumanLlmGetNextStepParams {
