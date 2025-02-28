@@ -224,7 +224,7 @@ export namespace EntityListJobsResponse {
 
     creation_time: string;
 
-    status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+    status: unknown | null;
 
     message?: string | null;
 
