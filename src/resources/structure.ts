@@ -564,7 +564,7 @@ export type StructureFindRelationshipResponse = string;
 
 export type StructureIsCompleteResponse = string;
 
-export type StructureJobStatusResponse = Array<unknown>;
+export type StructureJobStatusResponse = Array<'Queued' | 'Running' | 'Completed' | 'Failed'>;
 
 export type StructureRunAsyncResponse = string;
 
@@ -575,7 +575,7 @@ export interface StructureEnhancePropertyParams {
 
   allow_extra_entities?: boolean;
 
-  special_job_type?: unknown | null;
+  special_job_type?: 'HumanLLM' | null;
 
   starting_searches?: Array<string>;
 
@@ -589,7 +589,7 @@ export interface StructureEnhanceRelationshipParams {
 
   allow_extra_entities?: boolean;
 
-  special_job_type?: unknown | null;
+  special_job_type?: 'HumanLLM' | null;
 
   starting_searches?: Array<string>;
 
@@ -605,7 +605,7 @@ export interface StructureFindRelationshipParams {
 
   allow_extra_entities?: boolean;
 
-  special_job_type?: unknown | null;
+  special_job_type?: 'HumanLLM' | null;
 
   starting_searches?: Array<string>;
 
@@ -633,7 +633,7 @@ export interface StructureRunAsyncParams {
    */
   seeded_entity?: SharedAPI.KnowledgeGraph;
 
-  special_job_type?: unknown | null;
+  special_job_type?: 'HumanLLM' | null;
 }
 
 export namespace StructureRunAsyncParams {
