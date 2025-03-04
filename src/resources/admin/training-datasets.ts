@@ -538,11 +538,21 @@ export type TrainingDatasetSizeResponse = Array<TrainingDatasetSizeResponse.Trai
 
 export namespace TrainingDatasetSizeResponse {
   export interface TrainingDatasetSizeResponseItem {
-    count: number;
+    complete_labels: number;
 
     name: string;
 
-    status: TrainingDatasetsAPI.DatumStatus;
+    nav_labels: number;
+
+    save_labels: number;
+
+    sus_nav_datums: number;
+
+    sus_save_datums: number;
+
+    total_datums: number;
+
+    unlabeled_datums: number;
   }
 }
 
@@ -826,8 +836,6 @@ export interface TrainingDatasetSizeParams {
   end_date?: string | null;
 
   start_date?: string | null;
-
-  status?: DatumStatus | null;
 }
 
 export interface TrainingDatasetSuspiciousCountParams {
