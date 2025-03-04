@@ -21,6 +21,17 @@ export class NextAction extends APIResource {
     });
   }
 
+  deleteTrainingData(
+    params: NextActionDeleteTrainingDataParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<DeleteActionTrainingDataResponse> {
+    const { id } = params;
+    return this._client.delete('/admin/next_action/delete_action_training_data', {
+      query: { id },
+      ...options,
+    });
+  }
+
   getTrainingData(
     query?: NextActionGetTrainingDataParams,
     options?: Core.RequestOptions,
@@ -243,6 +254,14 @@ export namespace AddActionTrainingDatumRequest {
   }
 }
 
+export interface DeleteActionTrainingDataParams {
+  id: string;
+}
+
+export interface DeleteActionTrainingDataResponse {
+  deleted_count: number;
+}
+
 export interface GetActionTrainingDataParams {
   job_id?: string | null;
 
@@ -370,6 +389,13 @@ export namespace NextActionAddTrainingDatumParams {
   }
 }
 
+export interface NextActionDeleteTrainingDataParams {
+  /**
+   * ID of the training datum to delete
+   */
+  id: string;
+}
+
 export interface NextActionGetTrainingDataParams {
   job_id?: string | null;
 
@@ -442,9 +468,12 @@ export declare namespace NextAction {
     type ActionTrainingDataResponse as ActionTrainingDataResponse,
     type ActionTrainingDatumMetadata as ActionTrainingDatumMetadata,
     type AddActionTrainingDatumRequest as AddActionTrainingDatumRequest,
+    type DeleteActionTrainingDataParams as DeleteActionTrainingDataParams,
+    type DeleteActionTrainingDataResponse as DeleteActionTrainingDataResponse,
     type GetActionTrainingDataParams as GetActionTrainingDataParams,
     type LabelActionTrainingDatumRequest as LabelActionTrainingDatumRequest,
     type NextActionAddTrainingDatumParams as NextActionAddTrainingDatumParams,
+    type NextActionDeleteTrainingDataParams as NextActionDeleteTrainingDataParams,
     type NextActionGetTrainingDataParams as NextActionGetTrainingDataParams,
     type NextActionGetTrainingDataMetadataParams as NextActionGetTrainingDataMetadataParams,
     type NextActionLabelTrainingDatumParams as NextActionLabelTrainingDatumParams,
