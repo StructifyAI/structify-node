@@ -174,7 +174,7 @@ export namespace EntityGetSourceEntitiesResponse {
 
     llm_id: number;
 
-    location: SourceEntity.Text | SourceEntity.Visual | SourceEntity.Page | 'None';
+    location: SourceEntity.ByteOffset | SourceEntity.UnionMember1 | SourceEntity.PageNumber | unknown;
 
     properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
@@ -182,36 +182,18 @@ export namespace EntityGetSourceEntitiesResponse {
   }
 
   export namespace SourceEntity {
-    export interface Text {
-      Text: Text.Text;
+    export interface ByteOffset {
+      byte_offset: number;
     }
 
-    export namespace Text {
-      export interface Text {
-        byte_offset: number;
-      }
+    export interface UnionMember1 {
+      x: number;
+
+      y: number;
     }
 
-    export interface Visual {
-      Visual: Visual.Visual;
-    }
-
-    export namespace Visual {
-      export interface Visual {
-        x: number;
-
-        y: number;
-      }
-    }
-
-    export interface Page {
-      Page: Page.Page;
-    }
-
-    export namespace Page {
-      export interface Page {
-        page_number: number;
-      }
+    export interface PageNumber {
+      page_number: number;
     }
   }
 }
@@ -371,42 +353,24 @@ export namespace EntityViewResponse {
 
     link: SourcesAPI.Source;
 
-    location: Source.Text | Source.Visual | Source.Page | 'None';
+    location: Source.ByteOffset | Source.UnionMember1 | Source.PageNumber | unknown;
 
     user_specified: boolean;
   }
 
   export namespace Source {
-    export interface Text {
-      Text: Text.Text;
+    export interface ByteOffset {
+      byte_offset: number;
     }
 
-    export namespace Text {
-      export interface Text {
-        byte_offset: number;
-      }
+    export interface UnionMember1 {
+      x: number;
+
+      y: number;
     }
 
-    export interface Visual {
-      Visual: Visual.Visual;
-    }
-
-    export namespace Visual {
-      export interface Visual {
-        x: number;
-
-        y: number;
-      }
-    }
-
-    export interface Page {
-      Page: Page.Page;
-    }
-
-    export namespace Page {
-      export interface Page {
-        page_number: number;
-      }
+    export interface PageNumber {
+      page_number: number;
     }
   }
 }
@@ -432,21 +396,7 @@ export interface EntityAddParams {
    */
   attempt_merge?: boolean;
 
-  source?: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage | EntityAddParams.SecFiling;
-}
-
-export namespace EntityAddParams {
-  export interface Web {
-    Web: string;
-  }
-
-  export interface DocumentPage {
-    DocumentPage: Array<unknown>;
-  }
-
-  export interface SecFiling {
-    SecFiling: Array<unknown>;
-  }
+  source?: unknown | string | Array<unknown> | Array<unknown>;
 }
 
 export interface EntityAddBatchParams {
@@ -459,25 +409,7 @@ export interface EntityAddBatchParams {
    */
   attempt_merge?: boolean;
 
-  source?:
-    | 'None'
-    | EntityAddBatchParams.Web
-    | EntityAddBatchParams.DocumentPage
-    | EntityAddBatchParams.SecFiling;
-}
-
-export namespace EntityAddBatchParams {
-  export interface Web {
-    Web: string;
-  }
-
-  export interface DocumentPage {
-    DocumentPage: Array<unknown>;
-  }
-
-  export interface SecFiling {
-    SecFiling: Array<unknown>;
-  }
+  source?: unknown | string | Array<unknown> | Array<unknown>;
 }
 
 export interface EntityGetParams {
@@ -540,25 +472,7 @@ export interface EntityUpdatePropertyParams {
 
   properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
-  source?:
-    | 'None'
-    | EntityUpdatePropertyParams.Web
-    | EntityUpdatePropertyParams.DocumentPage
-    | EntityUpdatePropertyParams.SecFiling;
-}
-
-export namespace EntityUpdatePropertyParams {
-  export interface Web {
-    Web: string;
-  }
-
-  export interface DocumentPage {
-    DocumentPage: Array<unknown>;
-  }
-
-  export interface SecFiling {
-    SecFiling: Array<unknown>;
-  }
+  source?: unknown | string | Array<unknown> | Array<unknown>;
 }
 
 export interface EntityVerifyParams {
