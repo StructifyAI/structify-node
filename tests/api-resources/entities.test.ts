@@ -11,7 +11,7 @@ const client = new Structify({
 describe('resource entities', () => {
   test('delete: only required params', async () => {
     const responsePromise = client.entities.delete({
-      dataset: 'dataset',
+      dataset_name: 'dataset_name',
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -25,13 +25,13 @@ describe('resource entities', () => {
 
   test('delete: required and optional params', async () => {
     const response = await client.entities.delete({
-      dataset: 'dataset',
+      dataset_name: 'dataset_name',
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 
   test('add: only required params', async () => {
-    const responsePromise = client.entities.add({ dataset: 'dataset', kg: {} });
+    const responsePromise = client.entities.add({ dataset_name: 'dataset_name', kg: {} });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -43,7 +43,7 @@ describe('resource entities', () => {
 
   test('add: required and optional params', async () => {
     const response = await client.entities.add({
-      dataset: 'dataset',
+      dataset_name: 'dataset_name',
       kg: {
         entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
         relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
@@ -54,7 +54,7 @@ describe('resource entities', () => {
   });
 
   test('addBatch: only required params', async () => {
-    const responsePromise = client.entities.addBatch({ dataset: 'dataset', kgs: [{}] });
+    const responsePromise = client.entities.addBatch({ dataset_name: 'dataset_name', kgs: [{}] });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -66,7 +66,7 @@ describe('resource entities', () => {
 
   test('addBatch: required and optional params', async () => {
     const response = await client.entities.addBatch({
-      dataset: 'dataset',
+      dataset_name: 'dataset_name',
       kgs: [
         {
           entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
@@ -168,7 +168,7 @@ describe('resource entities', () => {
 
   test('search: only required params', async () => {
     const responsePromise = client.entities.search({
-      dataset: 'dataset',
+      dataset_name: 'dataset_name',
       query: 'query',
       table_name: 'table_name',
     });
@@ -183,7 +183,7 @@ describe('resource entities', () => {
 
   test('search: required and optional params', async () => {
     const response = await client.entities.search({
-      dataset: 'dataset',
+      dataset_name: 'dataset_name',
       query: 'query',
       table_name: 'table_name',
     });
@@ -191,7 +191,7 @@ describe('resource entities', () => {
 
   test('summarize: only required params', async () => {
     const responsePromise = client.entities.summarize({
-      dataset: 'dataset',
+      dataset_name: 'dataset_name',
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       properties: ['string'],
     });
@@ -206,7 +206,7 @@ describe('resource entities', () => {
 
   test('summarize: required and optional params', async () => {
     const response = await client.entities.summarize({
-      dataset: 'dataset',
+      dataset_name: 'dataset_name',
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       properties: ['string'],
       extra_instructions: ['string'],
@@ -234,7 +234,7 @@ describe('resource entities', () => {
 
   test('updateProperty: only required params', async () => {
     const responsePromise = client.entities.updateProperty({
-      dataset: 'dataset',
+      dataset_name: 'dataset_name',
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       properties: { foo: 'string' },
     });
@@ -249,7 +249,7 @@ describe('resource entities', () => {
 
   test('updateProperty: required and optional params', async () => {
     const response = await client.entities.updateProperty({
-      dataset: 'dataset',
+      dataset_name: 'dataset_name',
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       properties: { foo: 'string' },
       source: 'None',
@@ -257,7 +257,7 @@ describe('resource entities', () => {
   });
 
   test('verify: only required params', async () => {
-    const responsePromise = client.entities.verify({ dataset: 'dataset', kg: {} });
+    const responsePromise = client.entities.verify({ dataset_name: 'dataset_name', kg: {} });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -269,7 +269,7 @@ describe('resource entities', () => {
 
   test('verify: required and optional params', async () => {
     const response = await client.entities.verify({
-      dataset: 'dataset',
+      dataset_name: 'dataset_name',
       kg: {
         entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
         relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
