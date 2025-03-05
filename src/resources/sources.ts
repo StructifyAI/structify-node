@@ -13,21 +13,39 @@ export class Sources extends APIResource {
   }
 }
 
-export type Source = Source.URL | Source.Name | Source.UnionMember2 | unknown;
+export type Source = Source.Web | Source.Document | Source.SecFiling | 'None';
 
 export namespace Source {
-  export interface URL {
-    url: string;
+  export interface Web {
+    Web: Web.Web;
   }
 
-  export interface Name {
-    name: string;
+  export namespace Web {
+    export interface Web {
+      url: string;
+    }
   }
 
-  export interface UnionMember2 {
-    accession_number: string;
+  export interface Document {
+    Document: Document.Document;
+  }
 
-    cik_number: string;
+  export namespace Document {
+    export interface Document {
+      name: string;
+    }
+  }
+
+  export interface SecFiling {
+    SecFiling: SecFiling.SecFiling;
+  }
+
+  export namespace SecFiling {
+    export interface SecFiling {
+      accession_number: string;
+
+      cik_number: string;
+    }
   }
 }
 
@@ -44,27 +62,45 @@ export namespace SourceListResponse {
     link: SourcesAPI.Source;
 
     location:
-      | SourceListResponseItem.ByteOffset
-      | SourceListResponseItem.UnionMember1
-      | SourceListResponseItem.PageNumber
-      | unknown;
+      | SourceListResponseItem.Text
+      | SourceListResponseItem.Visual
+      | SourceListResponseItem.Page
+      | 'None';
 
     user_specified: boolean;
   }
 
   export namespace SourceListResponseItem {
-    export interface ByteOffset {
-      byte_offset: number;
+    export interface Text {
+      Text: Text.Text;
     }
 
-    export interface UnionMember1 {
-      x: number;
-
-      y: number;
+    export namespace Text {
+      export interface Text {
+        byte_offset: number;
+      }
     }
 
-    export interface PageNumber {
-      page_number: number;
+    export interface Visual {
+      Visual: Visual.Visual;
+    }
+
+    export namespace Visual {
+      export interface Visual {
+        x: number;
+
+        y: number;
+      }
+    }
+
+    export interface Page {
+      Page: Page.Page;
+    }
+
+    export namespace Page {
+      export interface Page {
+        page_number: number;
+      }
     }
   }
 }
