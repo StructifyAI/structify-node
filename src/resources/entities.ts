@@ -174,7 +174,7 @@ export namespace EntityGetSourceEntitiesResponse {
 
     llm_id: number;
 
-    location: SourceEntity.ByteOffset | SourceEntity.UnionMember1 | SourceEntity.PageNumber | unknown;
+    location: SourceEntity.Text | SourceEntity.Visual | SourceEntity.Page | 'None';
 
     properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
@@ -182,18 +182,36 @@ export namespace EntityGetSourceEntitiesResponse {
   }
 
   export namespace SourceEntity {
-    export interface ByteOffset {
-      byte_offset: number;
+    export interface Text {
+      Text: Text.Text;
     }
 
-    export interface UnionMember1 {
-      x: number;
-
-      y: number;
+    export namespace Text {
+      export interface Text {
+        byte_offset: number;
+      }
     }
 
-    export interface PageNumber {
-      page_number: number;
+    export interface Visual {
+      Visual: Visual.Visual;
+    }
+
+    export namespace Visual {
+      export interface Visual {
+        x: number;
+
+        y: number;
+      }
+    }
+
+    export interface Page {
+      Page: Page.Page;
+    }
+
+    export namespace Page {
+      export interface Page {
+        page_number: number;
+      }
     }
   }
 }
@@ -353,36 +371,54 @@ export namespace EntityViewResponse {
 
     link: SourcesAPI.Source;
 
-    location: Source.ByteOffset | Source.UnionMember1 | Source.PageNumber | unknown;
+    location: Source.Text | Source.Visual | Source.Page | 'None';
 
     user_specified: boolean;
   }
 
   export namespace Source {
-    export interface ByteOffset {
-      byte_offset: number;
+    export interface Text {
+      Text: Text.Text;
     }
 
-    export interface UnionMember1 {
-      x: number;
-
-      y: number;
+    export namespace Text {
+      export interface Text {
+        byte_offset: number;
+      }
     }
 
-    export interface PageNumber {
-      page_number: number;
+    export interface Visual {
+      Visual: Visual.Visual;
+    }
+
+    export namespace Visual {
+      export interface Visual {
+        x: number;
+
+        y: number;
+      }
+    }
+
+    export interface Page {
+      Page: Page.Page;
+    }
+
+    export namespace Page {
+      export interface Page {
+        page_number: number;
+      }
     }
   }
 }
 
 export interface EntityDeleteParams {
-  dataset_name: string;
+  dataset: string;
 
   entity_id: string;
 }
 
 export interface EntityAddParams {
-  dataset_name: string;
+  dataset: string;
 
   /**
    * Knowledge graph info structured to deserialize and display in the same format
@@ -396,11 +432,25 @@ export interface EntityAddParams {
    */
   attempt_merge?: boolean;
 
-  source?: unknown | string | Array<unknown> | Array<unknown>;
+  source?: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage | EntityAddParams.SecFiling;
+}
+
+export namespace EntityAddParams {
+  export interface Web {
+    Web: string;
+  }
+
+  export interface DocumentPage {
+    DocumentPage: Array<unknown>;
+  }
+
+  export interface SecFiling {
+    SecFiling: Array<unknown>;
+  }
 }
 
 export interface EntityAddBatchParams {
-  dataset_name: string;
+  dataset: string;
 
   kgs: Array<SharedAPI.KnowledgeGraph>;
 
@@ -409,7 +459,25 @@ export interface EntityAddBatchParams {
    */
   attempt_merge?: boolean;
 
-  source?: unknown | string | Array<unknown> | Array<unknown>;
+  source?:
+    | 'None'
+    | EntityAddBatchParams.Web
+    | EntityAddBatchParams.DocumentPage
+    | EntityAddBatchParams.SecFiling;
+}
+
+export namespace EntityAddBatchParams {
+  export interface Web {
+    Web: string;
+  }
+
+  export interface DocumentPage {
+    DocumentPage: Array<unknown>;
+  }
+
+  export interface SecFiling {
+    SecFiling: Array<unknown>;
+  }
 }
 
 export interface EntityGetParams {
@@ -441,7 +509,7 @@ export interface EntityMergeParams {
 }
 
 export interface EntitySearchParams {
-  dataset_name: string;
+  dataset: string;
 
   query: string;
 
@@ -449,7 +517,7 @@ export interface EntitySearchParams {
 }
 
 export interface EntitySummarizeParams {
-  dataset_name: string;
+  dataset: string;
 
   entity_id: string;
 
@@ -466,17 +534,35 @@ export interface EntityTriggerMergeParams {
 }
 
 export interface EntityUpdatePropertyParams {
-  dataset_name: string;
+  dataset: string;
 
   entity_id: string;
 
   properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
-  source?: unknown | string | Array<unknown> | Array<unknown>;
+  source?:
+    | 'None'
+    | EntityUpdatePropertyParams.Web
+    | EntityUpdatePropertyParams.DocumentPage
+    | EntityUpdatePropertyParams.SecFiling;
+}
+
+export namespace EntityUpdatePropertyParams {
+  export interface Web {
+    Web: string;
+  }
+
+  export interface DocumentPage {
+    DocumentPage: Array<unknown>;
+  }
+
+  export interface SecFiling {
+    SecFiling: Array<unknown>;
+  }
 }
 
 export interface EntityVerifyParams {
-  dataset_name: string;
+  dataset: string;
 
   /**
    * Knowledge graph info structured to deserialize and display in the same format
