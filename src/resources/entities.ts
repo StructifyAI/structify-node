@@ -412,13 +412,13 @@ export namespace EntityViewResponse {
 }
 
 export interface EntityDeleteParams {
-  dataset_name: string;
+  dataset: string;
 
   entity_id: string;
 }
 
 export interface EntityAddParams {
-  dataset_name: string;
+  dataset: string;
 
   /**
    * Knowledge graph info structured to deserialize and display in the same format
@@ -450,7 +450,7 @@ export namespace EntityAddParams {
 }
 
 export interface EntityAddBatchParams {
-  dataset_name: string;
+  dataset: string;
 
   kgs: Array<SharedAPI.KnowledgeGraph>;
 
@@ -509,7 +509,7 @@ export interface EntityMergeParams {
 }
 
 export interface EntitySearchParams {
-  dataset_name: string;
+  dataset: string;
 
   query: string;
 
@@ -517,7 +517,7 @@ export interface EntitySearchParams {
 }
 
 export interface EntitySummarizeParams {
-  dataset_name: string;
+  dataset: string;
 
   entity_id: string;
 
@@ -534,7 +534,7 @@ export interface EntityTriggerMergeParams {
 }
 
 export interface EntityUpdatePropertyParams {
-  dataset_name: string;
+  dataset: string;
 
   entity_id: string;
 
@@ -562,7 +562,7 @@ export namespace EntityUpdatePropertyParams {
 }
 
 export interface EntityVerifyParams {
-  dataset_name: string;
+  dataset: string;
 
   /**
    * Knowledge graph info structured to deserialize and display in the same format
