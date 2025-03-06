@@ -315,7 +315,186 @@ export namespace TrainingDatumResponse {
 
       text: string;
 
-      tool_calls: Array<SharedAPI.ToolCall>;
+      tool_calls: Array<Response.ToolCall>;
+    }
+
+    export namespace Response {
+      export interface ToolCall {
+        input:
+          | ToolCall.Save
+          | ToolCall.Scroll
+          | ToolCall.ScrollToBottom
+          | ToolCall.Exit
+          | ToolCall.Click
+          | ToolCall.Hover
+          | ToolCall.Wait
+          | ToolCall.Error
+          | ToolCall.Google
+          | ToolCall.Type;
+
+        name:
+          | 'Exit'
+          | 'Save'
+          | 'Wait'
+          | 'Type'
+          | 'Scroll'
+          | 'ScrollToBottom'
+          | 'Click'
+          | 'Hover'
+          | 'Error'
+          | 'Google';
+
+        result?: ToolCall.ToolQueued | ToolCall.ToolFail | ToolCall.InputParseFail | ToolCall.Success | null;
+      }
+
+      export namespace ToolCall {
+        export interface Save {
+          /**
+           * Knowledge graph info structured to deserialize and display in the same format
+           * that the LLM outputs. Also the first representation of an LLM output in the
+           * pipeline from raw tool output to being merged into a Neo4j DB
+           */
+          Save: SharedAPI.KnowledgeGraph;
+        }
+
+        export interface Scroll {
+          /**
+           * For tools with no inputs.
+           */
+          Scroll: Scroll.Scroll;
+        }
+
+        export namespace Scroll {
+          /**
+           * For tools with no inputs.
+           */
+          export interface Scroll {
+            /**
+             * Dummy argument
+             */
+            reason: string;
+          }
+        }
+
+        export interface ScrollToBottom {
+          /**
+           * For tools with no inputs.
+           */
+          ScrollToBottom: ScrollToBottom.ScrollToBottom;
+        }
+
+        export namespace ScrollToBottom {
+          /**
+           * For tools with no inputs.
+           */
+          export interface ScrollToBottom {
+            /**
+             * Dummy argument
+             */
+            reason: string;
+          }
+        }
+
+        export interface Exit {
+          /**
+           * For tools with no inputs.
+           */
+          Exit: Exit.Exit;
+        }
+
+        export namespace Exit {
+          /**
+           * For tools with no inputs.
+           */
+          export interface Exit {
+            /**
+             * Dummy argument
+             */
+            reason: string;
+          }
+        }
+
+        export interface Click {
+          Click: Click.Click;
+        }
+
+        export namespace Click {
+          export interface Click {
+            flag: number;
+          }
+        }
+
+        export interface Hover {
+          Hover: Hover.Hover;
+        }
+
+        export namespace Hover {
+          export interface Hover {
+            flag: number;
+          }
+        }
+
+        export interface Wait {
+          Wait: Wait.Wait;
+        }
+
+        export namespace Wait {
+          export interface Wait {
+            /**
+             * Time in seconds to wait
+             */
+            seconds?: number;
+          }
+        }
+
+        export interface Error {
+          Error: Error.Error;
+        }
+
+        export namespace Error {
+          export interface Error {
+            error: string;
+          }
+        }
+
+        export interface Google {
+          Google: Google.Google;
+        }
+
+        export namespace Google {
+          export interface Google {
+            query: string;
+          }
+        }
+
+        export interface Type {
+          Type: Type.Type;
+        }
+
+        export namespace Type {
+          export interface Type {
+            flag: number;
+
+            input: string;
+          }
+        }
+
+        export interface ToolQueued {
+          ToolQueued: string;
+        }
+
+        export interface ToolFail {
+          ToolFail: string;
+        }
+
+        export interface InputParseFail {
+          InputParseFail: string;
+        }
+
+        export interface Success {
+          Success: string;
+        }
+      }
     }
   }
 }
@@ -452,7 +631,191 @@ export interface TrainingDatasetLabelDatumParams {
 
   status: DatumStatus;
 
-  updated_tool_calls: Array<SharedAPI.ToolCall>;
+  updated_tool_calls: Array<TrainingDatasetLabelDatumParams.UpdatedToolCall>;
+}
+
+export namespace TrainingDatasetLabelDatumParams {
+  export interface UpdatedToolCall {
+    input:
+      | UpdatedToolCall.Save
+      | UpdatedToolCall.Scroll
+      | UpdatedToolCall.ScrollToBottom
+      | UpdatedToolCall.Exit
+      | UpdatedToolCall.Click
+      | UpdatedToolCall.Hover
+      | UpdatedToolCall.Wait
+      | UpdatedToolCall.Error
+      | UpdatedToolCall.Google
+      | UpdatedToolCall.Type;
+
+    name:
+      | 'Exit'
+      | 'Save'
+      | 'Wait'
+      | 'Type'
+      | 'Scroll'
+      | 'ScrollToBottom'
+      | 'Click'
+      | 'Hover'
+      | 'Error'
+      | 'Google';
+
+    result?:
+      | UpdatedToolCall.ToolQueued
+      | UpdatedToolCall.ToolFail
+      | UpdatedToolCall.InputParseFail
+      | UpdatedToolCall.Success
+      | null;
+  }
+
+  export namespace UpdatedToolCall {
+    export interface Save {
+      /**
+       * Knowledge graph info structured to deserialize and display in the same format
+       * that the LLM outputs. Also the first representation of an LLM output in the
+       * pipeline from raw tool output to being merged into a Neo4j DB
+       */
+      Save: SharedAPI.KnowledgeGraph;
+    }
+
+    export interface Scroll {
+      /**
+       * For tools with no inputs.
+       */
+      Scroll: Scroll.Scroll;
+    }
+
+    export namespace Scroll {
+      /**
+       * For tools with no inputs.
+       */
+      export interface Scroll {
+        /**
+         * Dummy argument
+         */
+        reason: string;
+      }
+    }
+
+    export interface ScrollToBottom {
+      /**
+       * For tools with no inputs.
+       */
+      ScrollToBottom: ScrollToBottom.ScrollToBottom;
+    }
+
+    export namespace ScrollToBottom {
+      /**
+       * For tools with no inputs.
+       */
+      export interface ScrollToBottom {
+        /**
+         * Dummy argument
+         */
+        reason: string;
+      }
+    }
+
+    export interface Exit {
+      /**
+       * For tools with no inputs.
+       */
+      Exit: Exit.Exit;
+    }
+
+    export namespace Exit {
+      /**
+       * For tools with no inputs.
+       */
+      export interface Exit {
+        /**
+         * Dummy argument
+         */
+        reason: string;
+      }
+    }
+
+    export interface Click {
+      Click: Click.Click;
+    }
+
+    export namespace Click {
+      export interface Click {
+        flag: number;
+      }
+    }
+
+    export interface Hover {
+      Hover: Hover.Hover;
+    }
+
+    export namespace Hover {
+      export interface Hover {
+        flag: number;
+      }
+    }
+
+    export interface Wait {
+      Wait: Wait.Wait;
+    }
+
+    export namespace Wait {
+      export interface Wait {
+        /**
+         * Time in seconds to wait
+         */
+        seconds?: number;
+      }
+    }
+
+    export interface Error {
+      Error: Error.Error;
+    }
+
+    export namespace Error {
+      export interface Error {
+        error: string;
+      }
+    }
+
+    export interface Google {
+      Google: Google.Google;
+    }
+
+    export namespace Google {
+      export interface Google {
+        query: string;
+      }
+    }
+
+    export interface Type {
+      Type: Type.Type;
+    }
+
+    export namespace Type {
+      export interface Type {
+        flag: number;
+
+        input: string;
+      }
+    }
+
+    export interface ToolQueued {
+      ToolQueued: string;
+    }
+
+    export interface ToolFail {
+      ToolFail: string;
+    }
+
+    export interface InputParseFail {
+      InputParseFail: string;
+    }
+
+    export interface Success {
+      Success: string;
+    }
+  }
 }
 
 export interface TrainingDatasetListDatumsParams {

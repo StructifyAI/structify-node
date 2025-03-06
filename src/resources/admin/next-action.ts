@@ -5,7 +5,6 @@ import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as SharedAPI from '../shared';
 import * as StructureAPI from '../structure';
-import * as HumanLlmAPI from './human-llm';
 
 export class NextAction extends APIResource {
   /**
@@ -63,13 +62,6 @@ export class NextAction extends APIResource {
     return this._client.get('/admin/next_action/get_action_training_data_metadata', { query, ...options });
   }
 
-  getTrainingDatum(
-    query: NextActionGetTrainingDatumParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ActionTrainingDataEntry> {
-    return this._client.get('/admin/next_action/get_action_training_datum', { query, ...options });
-  }
-
   /**
    * Label an existing action training datum
    */
@@ -92,12 +84,37 @@ export interface ActionTrainingDataEntry {
 
   created_at: string;
 
-  input: NextActionInput;
+  input: ActionTrainingDataEntry.Input;
 
   outputs: Array<ActionTrainingDataEntry.Output>;
 }
 
 export namespace ActionTrainingDataEntry {
+  export interface Input {
+    all_steps: Array<Input.AllStep>;
+
+    extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+
+    previous_queries: Array<string>;
+
+    /**
+     * Knowledge graph info structured to deserialize and display in the same format
+     * that the LLM outputs. Also the first representation of an LLM output in the
+     * pipeline from raw tool output to being merged into a Neo4j DB
+     */
+    seeded_kg: SharedAPI.KnowledgeGraph;
+  }
+
+  export namespace Input {
+    export interface AllStep {
+      id: string;
+
+      action_name?: string;
+
+      metadata?: Record<string, string>;
+    }
+  }
+
   export interface Output {
     id: string;
 
@@ -166,7 +183,7 @@ export interface ActionTrainingDatumMetadata {
 }
 
 export interface AddActionTrainingDatumRequest {
-  input: NextActionInput;
+  input: AddActionTrainingDatumRequest.Input;
 
   label: string;
 
@@ -179,6 +196,31 @@ export interface AddActionTrainingDatumRequest {
 }
 
 export namespace AddActionTrainingDatumRequest {
+  export interface Input {
+    all_steps: Array<Input.AllStep>;
+
+    extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+
+    previous_queries: Array<string>;
+
+    /**
+     * Knowledge graph info structured to deserialize and display in the same format
+     * that the LLM outputs. Also the first representation of an LLM output in the
+     * pipeline from raw tool output to being merged into a Neo4j DB
+     */
+    seeded_kg: SharedAPI.KnowledgeGraph;
+  }
+
+  export namespace Input {
+    export interface AllStep {
+      id: string;
+
+      action_name?: string;
+
+      metadata?: Record<string, string>;
+    }
+  }
+
   export interface SelectedStep {
     SelectedStep: SelectedStep.SelectedStep;
   }
@@ -275,23 +317,8 @@ export namespace LabelActionTrainingDatumRequest {
   }
 }
 
-export interface NextActionInput {
-  all_steps: Array<HumanLlmAPI.StepChoiceInfo>;
-
-  extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
-
-  previous_queries: Array<string>;
-
-  /**
-   * Knowledge graph info structured to deserialize and display in the same format
-   * that the LLM outputs. Also the first representation of an LLM output in the
-   * pipeline from raw tool output to being merged into a Neo4j DB
-   */
-  seeded_kg: SharedAPI.EntityGraph;
-}
-
 export interface NextActionAddTrainingDatumParams {
-  input: NextActionInput;
+  input: NextActionAddTrainingDatumParams.Input;
 
   label: string;
 
@@ -304,6 +331,31 @@ export interface NextActionAddTrainingDatumParams {
 }
 
 export namespace NextActionAddTrainingDatumParams {
+  export interface Input {
+    all_steps: Array<Input.AllStep>;
+
+    extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+
+    previous_queries: Array<string>;
+
+    /**
+     * Knowledge graph info structured to deserialize and display in the same format
+     * that the LLM outputs. Also the first representation of an LLM output in the
+     * pipeline from raw tool output to being merged into a Neo4j DB
+     */
+    seeded_kg: SharedAPI.KnowledgeGraph;
+  }
+
+  export namespace Input {
+    export interface AllStep {
+      id: string;
+
+      action_name?: string;
+
+      metadata?: Record<string, string>;
+    }
+  }
+
   export interface SelectedStep {
     SelectedStep: SelectedStep.SelectedStep;
   }
@@ -364,13 +416,6 @@ export interface NextActionGetTrainingDataMetadataParams {
   status?: string | null;
 }
 
-export interface NextActionGetTrainingDatumParams {
-  /**
-   * ID of the training datum to get
-   */
-  id: string;
-}
-
 export interface NextActionLabelTrainingDatumParams {
   id: string;
 
@@ -427,12 +472,10 @@ export declare namespace NextAction {
     type DeleteActionTrainingDataResponse as DeleteActionTrainingDataResponse,
     type GetActionTrainingDataParams as GetActionTrainingDataParams,
     type LabelActionTrainingDatumRequest as LabelActionTrainingDatumRequest,
-    type NextActionInput as NextActionInput,
     type NextActionAddTrainingDatumParams as NextActionAddTrainingDatumParams,
     type NextActionDeleteTrainingDataParams as NextActionDeleteTrainingDataParams,
     type NextActionGetTrainingDataParams as NextActionGetTrainingDataParams,
     type NextActionGetTrainingDataMetadataParams as NextActionGetTrainingDataMetadataParams,
-    type NextActionGetTrainingDatumParams as NextActionGetTrainingDatumParams,
     type NextActionLabelTrainingDatumParams as NextActionLabelTrainingDatumParams,
   };
 }
