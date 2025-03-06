@@ -16,6 +16,7 @@ import {
   HumanLlmPrelabelStepResponse,
   HumanLlmStartNextJobParams,
   HumanLlmUpdateStepParams,
+  StepChoiceInfo,
   StepChoices,
 } from './human-llm';
 import * as NextActionAPI from './next-action';
@@ -34,6 +35,8 @@ import {
   NextActionDeleteTrainingDataParams,
   NextActionGetTrainingDataMetadataParams,
   NextActionGetTrainingDataParams,
+  NextActionGetTrainingDatumParams,
+  NextActionInput,
   NextActionLabelTrainingDatumParams,
 } from './next-action';
 import * as TrainingDatasetsAPI from './training-datasets';
@@ -102,6 +105,7 @@ export declare namespace Admin {
   export {
     HumanLlm as HumanLlm,
     type HumanLlmJob as HumanLlmJob,
+    type StepChoiceInfo as StepChoiceInfo,
     type StepChoices as StepChoices,
     type HumanLlmAddToDatasetResponse as HumanLlmAddToDatasetResponse,
     type HumanLlmFinishJobResponse as HumanLlmFinishJobResponse,
@@ -127,10 +131,12 @@ export declare namespace Admin {
     type DeleteActionTrainingDataResponse as DeleteActionTrainingDataResponse,
     type GetActionTrainingDataParams as GetActionTrainingDataParams,
     type LabelActionTrainingDatumRequest as LabelActionTrainingDatumRequest,
+    type NextActionInput as NextActionInput,
     type NextActionAddTrainingDatumParams as NextActionAddTrainingDatumParams,
     type NextActionDeleteTrainingDataParams as NextActionDeleteTrainingDataParams,
     type NextActionGetTrainingDataParams as NextActionGetTrainingDataParams,
     type NextActionGetTrainingDataMetadataParams as NextActionGetTrainingDataMetadataParams,
+    type NextActionGetTrainingDatumParams as NextActionGetTrainingDatumParams,
     type NextActionLabelTrainingDatumParams as NextActionLabelTrainingDatumParams,
   };
 

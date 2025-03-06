@@ -2,13 +2,12 @@
 
 export {
   DatasetViewRelationshipsResponsesJobsList,
-  DatasetViewTableResponsesJobsList,
   Datasets,
+  type SortBy,
   type DatasetListResponse,
   type DatasetGetResponse,
   type DatasetMatchResponse,
   type DatasetViewRelationshipsResponse,
-  type DatasetViewTableResponse,
   type DatasetViewTablesWithRelationshipsResponse,
   type DatasetCreateParams,
   type DatasetDeleteParams,

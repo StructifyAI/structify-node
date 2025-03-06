@@ -13,10 +13,18 @@ export class Entities extends APIResource {
     return this._client.delete('/entity/delete', { body, ...options });
   }
 
+  /**
+   * Add an entity (or entities) to a dataset given a graph representation of the
+   * entity (or entities).
+   */
   add(body: EntityAddParams, options?: Core.RequestOptions): Core.APIPromise<EntityAddResponse> {
     return this._client.post('/entity/add', { body, ...options });
   }
 
+  /**
+   * Add a batch of entities to a dataset given a list of graph representations of
+   * the entities.
+   */
   addBatch(
     body: EntityAddBatchParams,
     options?: Core.RequestOptions,
@@ -27,7 +35,7 @@ export class Entities extends APIResource {
   /**
    * Get entity with a given id
    */
-  get(query: EntityGetParams, options?: Core.RequestOptions): Core.APIPromise<EntityGetResponse> {
+  get(query: EntityGetParams, options?: Core.RequestOptions): Core.APIPromise<SharedAPI.StructifyEntity> {
     return this._client.get('/entity/get', { query, ...options });
   }
 
@@ -85,7 +93,7 @@ export class Entities extends APIResource {
   triggerMerge(
     params: EntityTriggerMergeParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<EntityTriggerMergeResponse> {
+  ): Core.APIPromise<SharedAPI.StructifyEntity> {
     const { entity_id } = params;
     return this._client.post('/entity/trigger_merge', { query: { entity_id }, ...options });
   }
@@ -96,14 +104,14 @@ export class Entities extends APIResource {
   updateProperty(
     body: EntityUpdatePropertyParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<EntityUpdatePropertyResponse> {
+  ): Core.APIPromise<SharedAPI.StructifyEntity> {
     return this._client.post('/entity/update', { body, ...options });
   }
 
   /**
    * verify a kg against the dataset
    */
-  verify(body: EntityVerifyParams, options?: Core.RequestOptions): Core.APIPromise<SharedAPI.KnowledgeGraph> {
+  verify(body: EntityVerifyParams, options?: Core.RequestOptions): Core.APIPromise<SharedAPI.EntityGraph> {
     return this._client.post('/entity/verify', { body, ...options });
   }
 
@@ -112,39 +120,29 @@ export class Entities extends APIResource {
   }
 }
 
+export interface UserDocumentSource {
+  name: string;
+
+  page: number;
+}
+
+export interface UserWebSource {
+  url: string;
+}
+
 export type EntityDeleteResponse = Array<string>;
 
 export type EntityAddResponse = Array<string>;
 
 export type EntityAddBatchResponse = Array<string>;
 
-export interface EntityGetResponse {
-  id: string;
-
-  creation_time: string;
-
-  label: string;
-
-  properties: Record<string, string | boolean | number | SharedAPI.Image>;
-}
-
 export interface EntityGetLocalSubgraphResponse {
-  neighbors: Array<EntityGetLocalSubgraphResponse.Neighbor>;
+  neighbors: Array<SharedAPI.StructifyEntity>;
 
   relationships: Array<EntityGetLocalSubgraphResponse.Relationship>;
 }
 
 export namespace EntityGetLocalSubgraphResponse {
-  export interface Neighbor {
-    id: string;
-
-    creation_time: string;
-
-    label: string;
-
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
-  }
-
   export interface Relationship {
     from_id: string;
 
@@ -174,7 +172,7 @@ export namespace EntityGetSourceEntitiesResponse {
 
     llm_id: number;
 
-    location: SourceEntity.Text | SourceEntity.Visual | SourceEntity.Page | 'None';
+    location: SourceEntity.ByteOffset | SourceEntity.UnionMember1 | SourceEntity.PageNumber | unknown;
 
     properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
@@ -182,36 +180,18 @@ export namespace EntityGetSourceEntitiesResponse {
   }
 
   export namespace SourceEntity {
-    export interface Text {
-      Text: Text.Text;
+    export interface ByteOffset {
+      byte_offset: number;
     }
 
-    export namespace Text {
-      export interface Text {
-        byte_offset: number;
-      }
+    export interface UnionMember1 {
+      x: number;
+
+      y: number;
     }
 
-    export interface Visual {
-      Visual: Visual.Visual;
-    }
-
-    export namespace Visual {
-      export interface Visual {
-        x: number;
-
-        y: number;
-      }
-    }
-
-    export interface Page {
-      Page: Page.Page;
-    }
-
-    export namespace Page {
-      export interface Page {
-        page_number: number;
-      }
+    export interface PageNumber {
+      page_number: number;
     }
   }
 }
@@ -259,89 +239,25 @@ export namespace EntityMergeResponse {
   }
 }
 
-export type EntitySearchResponse = Array<EntitySearchResponse.EntitySearchResponseItem>;
+export type EntitySearchResponse = Array<SharedAPI.StructifyEntity>;
 
-export namespace EntitySearchResponse {
-  export interface EntitySearchResponseItem {
-    id: string;
-
-    creation_time: string;
-
-    label: string;
-
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
-  }
-}
-
-export type EntitySummarizeResponse = Array<EntitySummarizeResponse.EntitySummarizeResponseItem>;
-
-export namespace EntitySummarizeResponse {
-  export interface EntitySummarizeResponseItem {
-    id: string;
-
-    creation_time: string;
-
-    label: string;
-
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
-  }
-}
-
-export interface EntityTriggerMergeResponse {
-  id: string;
-
-  creation_time: string;
-
-  label: string;
-
-  properties: Record<string, string | boolean | number | SharedAPI.Image>;
-}
-
-export interface EntityUpdatePropertyResponse {
-  id: string;
-
-  creation_time: string;
-
-  label: string;
-
-  properties: Record<string, string | boolean | number | SharedAPI.Image>;
-}
+export type EntitySummarizeResponse = Array<SharedAPI.StructifyEntity>;
 
 export interface EntityViewResponse {
-  connected_entities: Array<EntityViewResponse.ConnectedEntity>;
+  connected_entities: Array<SharedAPI.StructifyEntity>;
 
-  entity: EntityViewResponse.Entity;
+  entity: SharedAPI.StructifyEntity;
 
   last_updated: string;
 
   relationships: Array<EntityViewResponse.Relationship>;
 
-  similar_entities: Array<EntityViewResponse.SimilarEntity>;
+  similar_entities: Array<SharedAPI.StructifyEntity>;
 
   sources: Array<EntityViewResponse.Source>;
 }
 
 export namespace EntityViewResponse {
-  export interface ConnectedEntity {
-    id: string;
-
-    creation_time: string;
-
-    label: string;
-
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
-  }
-
-  export interface Entity {
-    id: string;
-
-    creation_time: string;
-
-    label: string;
-
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
-  }
-
   export interface Relationship {
     from_id: string;
 
@@ -350,16 +266,6 @@ export namespace EntityViewResponse {
     properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
     to_id: string;
-  }
-
-  export interface SimilarEntity {
-    id: string;
-
-    creation_time: string;
-
-    label: string;
-
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
   }
 
   export interface Source {
@@ -371,113 +277,63 @@ export namespace EntityViewResponse {
 
     link: SourcesAPI.Source;
 
-    location: Source.Text | Source.Visual | Source.Page | 'None';
+    location: Source.ByteOffset | Source.UnionMember1 | Source.PageNumber | unknown;
 
     user_specified: boolean;
   }
 
   export namespace Source {
-    export interface Text {
-      Text: Text.Text;
+    export interface ByteOffset {
+      byte_offset: number;
     }
 
-    export namespace Text {
-      export interface Text {
-        byte_offset: number;
-      }
+    export interface UnionMember1 {
+      x: number;
+
+      y: number;
     }
 
-    export interface Visual {
-      Visual: Visual.Visual;
-    }
-
-    export namespace Visual {
-      export interface Visual {
-        x: number;
-
-        y: number;
-      }
-    }
-
-    export interface Page {
-      Page: Page.Page;
-    }
-
-    export namespace Page {
-      export interface Page {
-        page_number: number;
-      }
+    export interface PageNumber {
+      page_number: number;
     }
   }
 }
 
 export interface EntityDeleteParams {
-  dataset_name: string;
+  dataset: string;
 
   entity_id: string;
 }
 
 export interface EntityAddParams {
-  dataset_name: string;
+  dataset: string;
 
   /**
    * Knowledge graph info structured to deserialize and display in the same format
    * that the LLM outputs. Also the first representation of an LLM output in the
    * pipeline from raw tool output to being merged into a Neo4j DB
    */
-  kg: SharedAPI.KnowledgeGraph;
+  entity_graph: SharedAPI.EntityGraph;
 
   /**
    * If true, attempt to merge with existing entities in the dataset
    */
   attempt_merge?: boolean;
 
-  source?: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage | EntityAddParams.SecFiling;
-}
-
-export namespace EntityAddParams {
-  export interface Web {
-    Web: string;
-  }
-
-  export interface DocumentPage {
-    DocumentPage: Array<unknown>;
-  }
-
-  export interface SecFiling {
-    SecFiling: Array<unknown>;
-  }
+  source?: UserWebSource | UserDocumentSource;
 }
 
 export interface EntityAddBatchParams {
-  dataset_name: string;
+  dataset: string;
 
-  kgs: Array<SharedAPI.KnowledgeGraph>;
+  entity_graphs: Array<SharedAPI.EntityGraph>;
 
   /**
    * If true, attempt to merge with existing entities in the dataset
    */
   attempt_merge?: boolean;
 
-  source?:
-    | 'None'
-    | EntityAddBatchParams.Web
-    | EntityAddBatchParams.DocumentPage
-    | EntityAddBatchParams.SecFiling;
-}
-
-export namespace EntityAddBatchParams {
-  export interface Web {
-    Web: string;
-  }
-
-  export interface DocumentPage {
-    DocumentPage: Array<unknown>;
-  }
-
-  export interface SecFiling {
-    SecFiling: Array<unknown>;
-  }
+  source?: UserWebSource | UserDocumentSource;
 }
 
 export interface EntityGetParams {
@@ -509,7 +365,7 @@ export interface EntityMergeParams {
 }
 
 export interface EntitySearchParams {
-  dataset_name: string;
+  dataset: string;
 
   query: string;
 
@@ -517,7 +373,7 @@ export interface EntitySearchParams {
 }
 
 export interface EntitySummarizeParams {
-  dataset_name: string;
+  dataset: string;
 
   entity_id: string;
 
@@ -534,42 +390,24 @@ export interface EntityTriggerMergeParams {
 }
 
 export interface EntityUpdatePropertyParams {
-  dataset_name: string;
+  dataset: string;
 
   entity_id: string;
 
   properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
-  source?:
-    | 'None'
-    | EntityUpdatePropertyParams.Web
-    | EntityUpdatePropertyParams.DocumentPage
-    | EntityUpdatePropertyParams.SecFiling;
-}
-
-export namespace EntityUpdatePropertyParams {
-  export interface Web {
-    Web: string;
-  }
-
-  export interface DocumentPage {
-    DocumentPage: Array<unknown>;
-  }
-
-  export interface SecFiling {
-    SecFiling: Array<unknown>;
-  }
+  source?: UserWebSource | UserDocumentSource;
 }
 
 export interface EntityVerifyParams {
-  dataset_name: string;
+  dataset: string;
 
   /**
    * Knowledge graph info structured to deserialize and display in the same format
    * that the LLM outputs. Also the first representation of an LLM output in the
    * pipeline from raw tool output to being merged into a Neo4j DB
    */
-  kg: SharedAPI.KnowledgeGraph;
+  kg: SharedAPI.EntityGraph;
 
   /**
    * Whether to apply fixes to the dataset
@@ -585,18 +423,17 @@ export interface EntityViewParams {
 
 export declare namespace Entities {
   export {
+    type UserDocumentSource as UserDocumentSource,
+    type UserWebSource as UserWebSource,
     type EntityDeleteResponse as EntityDeleteResponse,
     type EntityAddResponse as EntityAddResponse,
     type EntityAddBatchResponse as EntityAddBatchResponse,
-    type EntityGetResponse as EntityGetResponse,
     type EntityGetLocalSubgraphResponse as EntityGetLocalSubgraphResponse,
     type EntityGetSourceEntitiesResponse as EntityGetSourceEntitiesResponse,
     type EntityListJobsResponse as EntityListJobsResponse,
     type EntityMergeResponse as EntityMergeResponse,
     type EntitySearchResponse as EntitySearchResponse,
     type EntitySummarizeResponse as EntitySummarizeResponse,
-    type EntityTriggerMergeResponse as EntityTriggerMergeResponse,
-    type EntityUpdatePropertyResponse as EntityUpdatePropertyResponse,
     type EntityViewResponse as EntityViewResponse,
     type EntityDeleteParams as EntityDeleteParams,
     type EntityAddParams as EntityAddParams,
