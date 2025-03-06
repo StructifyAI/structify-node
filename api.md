@@ -21,7 +21,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/admin/human-llm.ts">HumanLlmJob</a></code>
-- <code><a href="./src/resources/admin/human-llm.ts">StepChoiceInfo</a></code>
 - <code><a href="./src/resources/admin/human-llm.ts">StepChoices</a></code>
 - <code><a href="./src/resources/admin/human-llm.ts">HumanLlmAddToDatasetResponse</a></code>
 - <code><a href="./src/resources/admin/human-llm.ts">HumanLlmFinishJobResponse</a></code>
@@ -52,7 +51,6 @@ Types:
 - <code><a href="./src/resources/admin/next-action.ts">DeleteActionTrainingDataResponse</a></code>
 - <code><a href="./src/resources/admin/next-action.ts">GetActionTrainingDataParams</a></code>
 - <code><a href="./src/resources/admin/next-action.ts">LabelActionTrainingDatumRequest</a></code>
-- <code><a href="./src/resources/admin/next-action.ts">NextActionInput</a></code>
 
 Methods:
 
@@ -60,7 +58,6 @@ Methods:
 - <code title="delete /admin/next_action/delete_action_training_data">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">deleteTrainingData</a>({ ...params }) -> DeleteActionTrainingDataResponse</code>
 - <code title="get /admin/next_action/get_action_training_data">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">getTrainingData</a>({ ...params }) -> ActionTrainingDataResponse</code>
 - <code title="get /admin/next_action/get_action_training_data_metadata">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">getTrainingDataMetadata</a>({ ...params }) -> ActionTrainingDataMetadataResponse</code>
-- <code title="get /admin/next_action/get_action_training_datum">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">getTrainingDatum</a>({ ...params }) -> ActionTrainingDataEntry</code>
 - <code title="put /admin/next_action/label_action_training_datum">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">labelTrainingDatum</a>({ ...params }) -> void</code>
 
 ## Users
@@ -124,11 +121,11 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/datasets/datasets.ts">SortBy</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">DatasetListResponse</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">DatasetGetResponse</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">DatasetMatchResponse</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">DatasetViewRelationshipsResponse</a></code>
+- <code><a href="./src/resources/datasets/datasets.ts">DatasetViewTableResponse</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">DatasetViewTablesWithRelationshipsResponse</a></code>
 
 Methods:
@@ -139,7 +136,7 @@ Methods:
 - <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets/datasets.ts">get</a>({ ...params }) -> DatasetGetResponse</code>
 - <code title="post /dataset/match">client.datasets.<a href="./src/resources/datasets/datasets.ts">match</a>({ ...params }) -> DatasetMatchResponse</code>
 - <code title="get /dataset/view_relationships">client.datasets.<a href="./src/resources/datasets/datasets.ts">viewRelationships</a>({ ...params }) -> DatasetViewRelationshipsResponsesJobsList</code>
-- <code title="get /dataset/view_table">client.datasets.<a href="./src/resources/datasets/datasets.ts">viewTable</a>({ ...params }) -> StructifyEntitiesJobsList</code>
+- <code title="get /dataset/view_table">client.datasets.<a href="./src/resources/datasets/datasets.ts">viewTable</a>({ ...params }) -> DatasetViewTableResponsesJobsList</code>
 - <code title="get /dataset/view_tables_with_relationships">client.datasets.<a href="./src/resources/datasets/datasets.ts">viewTablesWithRelationships</a>({ ...params }) -> DatasetViewTablesWithRelationshipsResponse</code>
 
 ## Evaluate
@@ -220,17 +217,18 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/entities.ts">UserDocumentSource</a></code>
-- <code><a href="./src/resources/entities.ts">UserWebSource</a></code>
 - <code><a href="./src/resources/entities.ts">EntityDeleteResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityAddResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityAddBatchResponse</a></code>
+- <code><a href="./src/resources/entities.ts">EntityGetResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityGetLocalSubgraphResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityGetSourceEntitiesResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityListJobsResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityMergeResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntitySearchResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntitySummarizeResponse</a></code>
+- <code><a href="./src/resources/entities.ts">EntityTriggerMergeResponse</a></code>
+- <code><a href="./src/resources/entities.ts">EntityUpdatePropertyResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityViewResponse</a></code>
 
 Methods:
@@ -238,16 +236,16 @@ Methods:
 - <code title="delete /entity/delete">client.entities.<a href="./src/resources/entities.ts">delete</a>({ ...params }) -> EntityDeleteResponse</code>
 - <code title="post /entity/add">client.entities.<a href="./src/resources/entities.ts">add</a>({ ...params }) -> EntityAddResponse</code>
 - <code title="post /entity/add_batch">client.entities.<a href="./src/resources/entities.ts">addBatch</a>({ ...params }) -> EntityAddBatchResponse</code>
-- <code title="get /entity/get">client.entities.<a href="./src/resources/entities.ts">get</a>({ ...params }) -> StructifyEntity</code>
+- <code title="get /entity/get">client.entities.<a href="./src/resources/entities.ts">get</a>({ ...params }) -> EntityGetResponse</code>
 - <code title="get /entity/get_local_subgraph">client.entities.<a href="./src/resources/entities.ts">getLocalSubgraph</a>({ ...params }) -> EntityGetLocalSubgraphResponse</code>
 - <code title="get /entity/get_source_entities">client.entities.<a href="./src/resources/entities.ts">getSourceEntities</a>({ ...params }) -> EntityGetSourceEntitiesResponse</code>
 - <code title="get /entity/list_jobs">client.entities.<a href="./src/resources/entities.ts">listJobs</a>({ ...params }) -> EntityListJobsResponse</code>
 - <code title="post /entity/merge">client.entities.<a href="./src/resources/entities.ts">merge</a>({ ...params }) -> EntityMergeResponse</code>
 - <code title="post /entity/search">client.entities.<a href="./src/resources/entities.ts">search</a>({ ...params }) -> EntitySearchResponse</code>
 - <code title="post /entity/summarize">client.entities.<a href="./src/resources/entities.ts">summarize</a>({ ...params }) -> EntitySummarizeResponse</code>
-- <code title="post /entity/trigger_merge">client.entities.<a href="./src/resources/entities.ts">triggerMerge</a>({ ...params }) -> StructifyEntity</code>
-- <code title="post /entity/update">client.entities.<a href="./src/resources/entities.ts">updateProperty</a>({ ...params }) -> StructifyEntity</code>
-- <code title="post /entity/verify">client.entities.<a href="./src/resources/entities.ts">verify</a>({ ...params }) -> EntityGraph</code>
+- <code title="post /entity/trigger_merge">client.entities.<a href="./src/resources/entities.ts">triggerMerge</a>({ ...params }) -> EntityTriggerMergeResponse</code>
+- <code title="post /entity/update">client.entities.<a href="./src/resources/entities.ts">updateProperty</a>({ ...params }) -> EntityUpdatePropertyResponse</code>
+- <code title="post /entity/verify">client.entities.<a href="./src/resources/entities.ts">verify</a>({ ...params }) -> KnowledgeGraph</code>
 - <code title="get /entity/view">client.entities.<a href="./src/resources/entities.ts">view</a>({ ...params }) -> EntityViewResponse</code>
 
 # Images
@@ -326,17 +324,9 @@ Types:
 
 - <code><a href="./src/resources/shared.ts">DatasetDescriptor</a></code>
 - <code><a href="./src/resources/shared.ts">Entity</a></code>
-- <code><a href="./src/resources/shared.ts">EntityGraph</a></code>
-- <code><a href="./src/resources/shared.ts">ErrorMessage</a></code>
-- <code><a href="./src/resources/shared.ts">FlagSelector</a></code>
 - <code><a href="./src/resources/shared.ts">Image</a></code>
+- <code><a href="./src/resources/shared.ts">KnowledgeGraph</a></code>
 - <code><a href="./src/resources/shared.ts">MatchedEntity</a></code>
-- <code><a href="./src/resources/shared.ts">NoArgInput</a></code>
 - <code><a href="./src/resources/shared.ts">PropertyType</a></code>
 - <code><a href="./src/resources/shared.ts">Relationship</a></code>
-- <code><a href="./src/resources/shared.ts">SearchInput</a></code>
-- <code><a href="./src/resources/shared.ts">StructifyEntity</a></code>
-- <code><a href="./src/resources/shared.ts">TableDescriptor</a></code>
-- <code><a href="./src/resources/shared.ts">ToolCall</a></code>
-- <code><a href="./src/resources/shared.ts">TypeInput</a></code>
-- <code><a href="./src/resources/shared.ts">WaitInput</a></code>
+- <code><a href="./src/resources/shared.ts">Table</a></code>
