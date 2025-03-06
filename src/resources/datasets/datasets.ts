@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
 import * as SharedAPI from '../shared';
-import { StructifyEntitiesJobsList } from '../shared';
 import * as EvaluateAPI from './evaluate';
 import {
   Evaluate,
@@ -86,8 +85,11 @@ export class Datasets extends APIResource {
   viewTable(
     query: DatasetViewTableParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<StructifyEntitiesJobsList, SharedAPI.StructifyEntity> {
-    return this._client.getAPIList('/dataset/view_table', StructifyEntitiesJobsList, { query, ...options });
+  ): Core.PagePromise<DatasetViewTableResponsesJobsList, DatasetViewTableResponse> {
+    return this._client.getAPIList('/dataset/view_table', DatasetViewTableResponsesJobsList, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -103,11 +105,7 @@ export class Datasets extends APIResource {
 
 export class DatasetViewRelationshipsResponsesJobsList extends JobsList<DatasetViewRelationshipsResponse> {}
 
-export interface SortBy {
-  col_id: 'creation_time';
-
-  sort: 'asc' | 'desc';
-}
+export class DatasetViewTableResponsesJobsList extends JobsList<DatasetViewTableResponse> {}
 
 export type DatasetListResponse = Array<DatasetListResponse.DatasetListResponseItem>;
 
@@ -149,15 +147,45 @@ export interface DatasetViewRelationshipsResponse {
   to_id: string;
 }
 
-export interface DatasetViewTablesWithRelationshipsResponse {
-  connected_entities: Array<SharedAPI.StructifyEntity>;
+export interface DatasetViewTableResponse {
+  id: string;
 
-  entities: Array<SharedAPI.StructifyEntity>;
+  creation_time: string;
+
+  label: string;
+
+  properties: Record<string, string | boolean | number | SharedAPI.Image>;
+}
+
+export interface DatasetViewTablesWithRelationshipsResponse {
+  connected_entities: Array<DatasetViewTablesWithRelationshipsResponse.ConnectedEntity>;
+
+  entities: Array<DatasetViewTablesWithRelationshipsResponse.Entity>;
 
   relationships: Array<DatasetViewTablesWithRelationshipsResponse.Relationship>;
 }
 
 export namespace DatasetViewTablesWithRelationshipsResponse {
+  export interface ConnectedEntity {
+    id: string;
+
+    creation_time: string;
+
+    label: string;
+
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+  }
+
+  export interface Entity {
+    id: string;
+
+    creation_time: string;
+
+    label: string;
+
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+  }
+
   export interface Relationship {
     from_id: string;
 
@@ -176,7 +204,7 @@ export interface DatasetCreateParams {
 
   relationships: Array<DatasetCreateParams.Relationship>;
 
-  tables: Array<SharedAPI.TableDescriptor>;
+  tables: Array<SharedAPI.Table>;
 
   llm_override_field?: string | null;
 }
@@ -294,7 +322,7 @@ export interface DatasetMatchParams {
    * that the LLM outputs. Also the first representation of an LLM output in the
    * pipeline from raw tool output to being merged into a Neo4j DB
    */
-  query_kg: SharedAPI.EntityGraph;
+  query_kg: SharedAPI.KnowledgeGraph;
 
   match_threshold?: number;
 }
@@ -308,7 +336,15 @@ export interface DatasetViewRelationshipsParams extends JobsListParams {
 
   last_updated?: string | null;
 
-  sort_by?: SortBy;
+  sort_by?: DatasetViewRelationshipsParams.SortBy;
+}
+
+export namespace DatasetViewRelationshipsParams {
+  export interface SortBy {
+    col_id: 'creation_time';
+
+    sort: 'asc' | 'desc';
+  }
 }
 
 export interface DatasetViewTableParams extends JobsListParams {
@@ -320,7 +356,15 @@ export interface DatasetViewTableParams extends JobsListParams {
 
   last_updated?: string | null;
 
-  sort_by?: SortBy;
+  sort_by?: DatasetViewTableParams.SortBy;
+}
+
+export namespace DatasetViewTableParams {
+  export interface SortBy {
+    col_id: 'creation_time';
+
+    sort: 'asc' | 'desc';
+  }
 }
 
 export interface DatasetViewTablesWithRelationshipsParams {
@@ -336,22 +380,32 @@ export interface DatasetViewTablesWithRelationshipsParams {
 
   offset?: number;
 
-  sort_by?: SortBy;
+  sort_by?: DatasetViewTablesWithRelationshipsParams.SortBy;
+}
+
+export namespace DatasetViewTablesWithRelationshipsParams {
+  export interface SortBy {
+    col_id: 'creation_time';
+
+    sort: 'asc' | 'desc';
+  }
 }
 
 Datasets.DatasetViewRelationshipsResponsesJobsList = DatasetViewRelationshipsResponsesJobsList;
+Datasets.DatasetViewTableResponsesJobsList = DatasetViewTableResponsesJobsList;
 Datasets.Evaluate = Evaluate;
 Datasets.EvaluateListResponsesJobsList = EvaluateListResponsesJobsList;
 
 export declare namespace Datasets {
   export {
-    type SortBy as SortBy,
     type DatasetListResponse as DatasetListResponse,
     type DatasetGetResponse as DatasetGetResponse,
     type DatasetMatchResponse as DatasetMatchResponse,
     type DatasetViewRelationshipsResponse as DatasetViewRelationshipsResponse,
+    type DatasetViewTableResponse as DatasetViewTableResponse,
     type DatasetViewTablesWithRelationshipsResponse as DatasetViewTablesWithRelationshipsResponse,
     DatasetViewRelationshipsResponsesJobsList as DatasetViewRelationshipsResponsesJobsList,
+    DatasetViewTableResponsesJobsList as DatasetViewTableResponsesJobsList,
     type DatasetCreateParams as DatasetCreateParams,
     type DatasetDeleteParams as DatasetDeleteParams,
     type DatasetGetParams as DatasetGetParams,
@@ -375,5 +429,3 @@ export declare namespace Datasets {
     type EvaluateStatusParams as EvaluateStatusParams,
   };
 }
-
-export { StructifyEntitiesJobsList };
