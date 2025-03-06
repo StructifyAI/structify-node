@@ -490,27 +490,27 @@ export namespace ExecutionStep {
  * It's an OR statement across these.
  */
 export type ExtractionCriteria =
-  | ExtractionCriteria.RelationshipExtraction
-  | ExtractionCriteria.EntityExtraction
-  | ExtractionCriteria.GenericProperty;
+  | ExtractionCriteria.Relationship
+  | ExtractionCriteria.Entity
+  | ExtractionCriteria.Property;
 
 export namespace ExtractionCriteria {
-  export interface RelationshipExtraction {
-    RelationshipExtraction: RelationshipExtraction.RelationshipExtraction;
+  export interface Relationship {
+    Relationship: Relationship.Relationship;
   }
 
-  export namespace RelationshipExtraction {
-    export interface RelationshipExtraction {
+  export namespace Relationship {
+    export interface Relationship {
       relationship_name: string;
     }
   }
 
-  export interface EntityExtraction {
-    EntityExtraction: EntityExtraction.EntityExtraction;
+  export interface Entity {
+    Entity: Entity.Entity;
   }
 
-  export namespace EntityExtraction {
-    export interface EntityExtraction {
+  export namespace Entity {
+    export interface Entity {
       /**
        * The integer id corresponding to an entity in the seeded kg
        */
@@ -520,12 +520,12 @@ export namespace ExtractionCriteria {
     }
   }
 
-  export interface GenericProperty {
-    GenericProperty: GenericProperty.GenericProperty;
+  export interface Property {
+    Property: Property.Property;
   }
 
-  export namespace GenericProperty {
-    export interface GenericProperty {
+  export namespace Property {
+    export interface Property {
       property_names: Array<string>;
 
       /**
@@ -617,12 +617,12 @@ export type StructureIsCompleteParams = Array<string>;
 export type StructureJobStatusParams = Array<string>;
 
 export interface StructureRunAsyncParams {
-  name: string;
+  dataset: string;
 
   /**
    * These are all the types that can be converted into a BasicInputType
    */
-  structure_input: StructureRunAsyncParams.PdfIngestor | StructureRunAsyncParams.WebSearch;
+  source: StructureRunAsyncParams.PdfIngestor | StructureRunAsyncParams.WebSearch;
 
   extraction_criteria?: Array<ExtractionCriteria>;
 
@@ -637,32 +637,17 @@ export interface StructureRunAsyncParams {
 }
 
 export namespace StructureRunAsyncParams {
+  /**
+   * Ingest all pages of a PDF and process them independently.
+   */
   export interface PdfIngestor {
-    /**
-     * Ingest all pages of a PDF and process them independently.
-     */
-    PDFIngestor: PdfIngestor.PdfIngestor;
-  }
-
-  export namespace PdfIngestor {
-    /**
-     * Ingest all pages of a PDF and process them independently.
-     */
-    export interface PdfIngestor {
-      path: string;
-    }
+    path: string;
   }
 
   export interface WebSearch {
-    WebSearch: WebSearch.WebSearch;
-  }
+    starting_searches?: Array<string>;
 
-  export namespace WebSearch {
-    export interface WebSearch {
-      starting_searches?: Array<string>;
-
-      starting_urls?: Array<string>;
-    }
+    starting_urls?: Array<string>;
   }
 }
 
