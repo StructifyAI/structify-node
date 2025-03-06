@@ -13,10 +13,18 @@ export class Entities extends APIResource {
     return this._client.delete('/entity/delete', { body, ...options });
   }
 
+  /**
+   * Add an entity (or entities) to a dataset given a graph representation of the
+   * entity (or entities).
+   */
   add(body: EntityAddParams, options?: Core.RequestOptions): Core.APIPromise<EntityAddResponse> {
     return this._client.post('/entity/add', { body, ...options });
   }
 
+  /**
+   * Add a batch of entities to a dataset given a list of graph representations of
+   * the entities.
+   */
   addBatch(
     body: EntityAddBatchParams,
     options?: Core.RequestOptions,
@@ -174,7 +182,7 @@ export namespace EntityGetSourceEntitiesResponse {
 
     llm_id: number;
 
-    location: SourceEntity.Text | SourceEntity.Visual | SourceEntity.Page | 'None';
+    location: SourceEntity.ByteOffset | SourceEntity.UnionMember1 | SourceEntity.PageNumber | unknown;
 
     properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
@@ -182,36 +190,18 @@ export namespace EntityGetSourceEntitiesResponse {
   }
 
   export namespace SourceEntity {
-    export interface Text {
-      Text: Text.Text;
+    export interface ByteOffset {
+      byte_offset: number;
     }
 
-    export namespace Text {
-      export interface Text {
-        byte_offset: number;
-      }
+    export interface UnionMember1 {
+      x: number;
+
+      y: number;
     }
 
-    export interface Visual {
-      Visual: Visual.Visual;
-    }
-
-    export namespace Visual {
-      export interface Visual {
-        x: number;
-
-        y: number;
-      }
-    }
-
-    export interface Page {
-      Page: Page.Page;
-    }
-
-    export namespace Page {
-      export interface Page {
-        page_number: number;
-      }
+    export interface PageNumber {
+      page_number: number;
     }
   }
 }
@@ -371,113 +361,63 @@ export namespace EntityViewResponse {
 
     link: SourcesAPI.Source;
 
-    location: Source.Text | Source.Visual | Source.Page | 'None';
+    location: Source.ByteOffset | Source.UnionMember1 | Source.PageNumber | unknown;
 
     user_specified: boolean;
   }
 
   export namespace Source {
-    export interface Text {
-      Text: Text.Text;
+    export interface ByteOffset {
+      byte_offset: number;
     }
 
-    export namespace Text {
-      export interface Text {
-        byte_offset: number;
-      }
+    export interface UnionMember1 {
+      x: number;
+
+      y: number;
     }
 
-    export interface Visual {
-      Visual: Visual.Visual;
-    }
-
-    export namespace Visual {
-      export interface Visual {
-        x: number;
-
-        y: number;
-      }
-    }
-
-    export interface Page {
-      Page: Page.Page;
-    }
-
-    export namespace Page {
-      export interface Page {
-        page_number: number;
-      }
+    export interface PageNumber {
+      page_number: number;
     }
   }
 }
 
 export interface EntityDeleteParams {
-  dataset_name: string;
+  dataset: string;
 
   entity_id: string;
 }
 
 export interface EntityAddParams {
-  dataset_name: string;
+  dataset: string;
 
   /**
    * Knowledge graph info structured to deserialize and display in the same format
    * that the LLM outputs. Also the first representation of an LLM output in the
    * pipeline from raw tool output to being merged into a Neo4j DB
    */
-  kg: SharedAPI.KnowledgeGraph;
+  entity_graph: SharedAPI.KnowledgeGraph;
 
   /**
    * If true, attempt to merge with existing entities in the dataset
    */
   attempt_merge?: boolean;
 
-  source?: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage | EntityAddParams.SecFiling;
-}
-
-export namespace EntityAddParams {
-  export interface Web {
-    Web: string;
-  }
-
-  export interface DocumentPage {
-    DocumentPage: Array<unknown>;
-  }
-
-  export interface SecFiling {
-    SecFiling: Array<unknown>;
-  }
+  source?: unknown | string | Array<unknown> | Array<unknown>;
 }
 
 export interface EntityAddBatchParams {
-  dataset_name: string;
+  dataset: string;
 
-  kgs: Array<SharedAPI.KnowledgeGraph>;
+  entity_graphs: Array<SharedAPI.KnowledgeGraph>;
 
   /**
    * If true, attempt to merge with existing entities in the dataset
    */
   attempt_merge?: boolean;
 
-  source?:
-    | 'None'
-    | EntityAddBatchParams.Web
-    | EntityAddBatchParams.DocumentPage
-    | EntityAddBatchParams.SecFiling;
-}
-
-export namespace EntityAddBatchParams {
-  export interface Web {
-    Web: string;
-  }
-
-  export interface DocumentPage {
-    DocumentPage: Array<unknown>;
-  }
-
-  export interface SecFiling {
-    SecFiling: Array<unknown>;
-  }
+  source?: unknown | string | Array<unknown> | Array<unknown>;
 }
 
 export interface EntityGetParams {
@@ -509,7 +449,7 @@ export interface EntityMergeParams {
 }
 
 export interface EntitySearchParams {
-  dataset_name: string;
+  dataset: string;
 
   query: string;
 
@@ -517,7 +457,7 @@ export interface EntitySearchParams {
 }
 
 export interface EntitySummarizeParams {
-  dataset_name: string;
+  dataset: string;
 
   entity_id: string;
 
@@ -534,35 +474,17 @@ export interface EntityTriggerMergeParams {
 }
 
 export interface EntityUpdatePropertyParams {
-  dataset_name: string;
+  dataset: string;
 
   entity_id: string;
 
   properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
-  source?:
-    | 'None'
-    | EntityUpdatePropertyParams.Web
-    | EntityUpdatePropertyParams.DocumentPage
-    | EntityUpdatePropertyParams.SecFiling;
-}
-
-export namespace EntityUpdatePropertyParams {
-  export interface Web {
-    Web: string;
-  }
-
-  export interface DocumentPage {
-    DocumentPage: Array<unknown>;
-  }
-
-  export interface SecFiling {
-    SecFiling: Array<unknown>;
-  }
+  source?: unknown | string | Array<unknown> | Array<unknown>;
 }
 
 export interface EntityVerifyParams {
-  dataset_name: string;
+  dataset: string;
 
   /**
    * Knowledge graph info structured to deserialize and display in the same format
