@@ -3,13 +3,12 @@
 export { Admin } from './admin/admin';
 export {
   DatasetViewRelationshipsResponsesJobsList,
-  DatasetViewTableResponsesJobsList,
   Datasets,
+  type SortBy,
   type DatasetListResponse,
   type DatasetGetResponse,
   type DatasetMatchResponse,
   type DatasetViewRelationshipsResponse,
-  type DatasetViewTableResponse,
   type DatasetViewTablesWithRelationshipsResponse,
   type DatasetCreateParams,
   type DatasetDeleteParams,
@@ -30,18 +29,17 @@ export {
 } from './documents';
 export {
   Entities,
+  type UserDocumentSource,
+  type UserWebSource,
   type EntityDeleteResponse,
   type EntityAddResponse,
   type EntityAddBatchResponse,
-  type EntityGetResponse,
   type EntityGetLocalSubgraphResponse,
   type EntityGetSourceEntitiesResponse,
   type EntityListJobsResponse,
   type EntityMergeResponse,
   type EntitySearchResponse,
   type EntitySummarizeResponse,
-  type EntityTriggerMergeResponse,
-  type EntityUpdatePropertyResponse,
   type EntityViewResponse,
   type EntityDeleteParams,
   type EntityAddParams,
@@ -96,18 +94,27 @@ export {
   type ReportWrongParams,
 } from './report';
 export { Server, type ServerInformation } from './server';
+export { Sources, type Source, type SourceListResponse, type SourceListParams } from './sources';
 export {
+  StructifyEntitiesJobsList,
   Shared,
   type DatasetDescriptor,
   type Entity,
+  type EntityGraph,
+  type ErrorMessage,
+  type FlagSelector,
   type Image,
-  type KnowledgeGraph,
   type MatchedEntity,
+  type NoArgInput,
   type PropertyType,
   type Relationship,
-  type Table,
+  type SearchInput,
+  type StructifyEntity,
+  type TableDescriptor,
+  type ToolCall,
+  type TypeInput,
+  type WaitInput,
 } from './shared';
-export { Sources, type Source, type SourceListResponse, type SourceListParams } from './sources';
 export {
   Structure,
   type ChatPrompt,

@@ -4,6 +4,7 @@ export { Admin } from './admin';
 export {
   HumanLlm,
   type HumanLlmJob,
+  type StepChoiceInfo,
   type StepChoices,
   type HumanLlmAddToDatasetResponse,
   type HumanLlmFinishJobResponse,
@@ -28,10 +29,12 @@ export {
   type DeleteActionTrainingDataResponse,
   type GetActionTrainingDataParams,
   type LabelActionTrainingDatumRequest,
+  type NextActionInput,
   type NextActionAddTrainingDatumParams,
   type NextActionDeleteTrainingDataParams,
   type NextActionGetTrainingDataParams,
   type NextActionGetTrainingDataMetadataParams,
+  type NextActionGetTrainingDatumParams,
   type NextActionLabelTrainingDatumParams,
 } from './next-action';
 export {

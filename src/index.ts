@@ -28,7 +28,6 @@ import {
   EntityGetLocalSubgraphParams,
   EntityGetLocalSubgraphResponse,
   EntityGetParams,
-  EntityGetResponse,
   EntityGetSourceEntitiesParams,
   EntityGetSourceEntitiesResponse,
   EntityListJobsParams,
@@ -40,12 +39,12 @@ import {
   EntitySummarizeParams,
   EntitySummarizeResponse,
   EntityTriggerMergeParams,
-  EntityTriggerMergeResponse,
   EntityUpdatePropertyParams,
-  EntityUpdatePropertyResponse,
   EntityVerifyParams,
   EntityViewParams,
   EntityViewResponse,
+  UserDocumentSource,
+  UserWebSource,
 } from './resources/entities';
 import { ImageGetResponse, Images } from './resources/images';
 import {
@@ -88,13 +87,21 @@ import { Server, ServerInformation } from './resources/server';
 import {
   DatasetDescriptor,
   Entity,
+  EntityGraph,
+  ErrorMessage,
+  FlagSelector,
   Image,
-  KnowledgeGraph,
   MatchedEntity,
+  NoArgInput,
   PropertyType,
   Relationship,
+  SearchInput,
   Shared,
-  Table,
+  StructifyEntity,
+  TableDescriptor,
+  ToolCall,
+  TypeInput,
+  WaitInput,
 } from './resources/shared';
 import { Source, SourceListParams, SourceListResponse, Sources } from './resources/sources';
 import {
@@ -137,11 +144,10 @@ import {
   DatasetViewRelationshipsResponse,
   DatasetViewRelationshipsResponsesJobsList,
   DatasetViewTableParams,
-  DatasetViewTableResponse,
-  DatasetViewTableResponsesJobsList,
   DatasetViewTablesWithRelationshipsParams,
   DatasetViewTablesWithRelationshipsResponse,
   Datasets,
+  SortBy,
 } from './resources/datasets/datasets';
 
 const environments = {
@@ -338,7 +344,6 @@ Structify.User = User;
 Structify.Admin = Admin;
 Structify.Datasets = Datasets;
 Structify.DatasetViewRelationshipsResponsesJobsList = DatasetViewRelationshipsResponsesJobsList;
-Structify.DatasetViewTableResponsesJobsList = DatasetViewTableResponsesJobsList;
 Structify.Documents = Documents;
 Structify.Jobs = Jobs;
 Structify.JobListResponsesJobsList = JobListResponsesJobsList;
@@ -369,14 +374,13 @@ export declare namespace Structify {
 
   export {
     Datasets as Datasets,
+    type SortBy as SortBy,
     type DatasetListResponse as DatasetListResponse,
     type DatasetGetResponse as DatasetGetResponse,
     type DatasetMatchResponse as DatasetMatchResponse,
     type DatasetViewRelationshipsResponse as DatasetViewRelationshipsResponse,
-    type DatasetViewTableResponse as DatasetViewTableResponse,
     type DatasetViewTablesWithRelationshipsResponse as DatasetViewTablesWithRelationshipsResponse,
     DatasetViewRelationshipsResponsesJobsList as DatasetViewRelationshipsResponsesJobsList,
-    DatasetViewTableResponsesJobsList as DatasetViewTableResponsesJobsList,
     type DatasetCreateParams as DatasetCreateParams,
     type DatasetDeleteParams as DatasetDeleteParams,
     type DatasetGetParams as DatasetGetParams,
@@ -419,18 +423,17 @@ export declare namespace Structify {
 
   export {
     Entities as Entities,
+    type UserDocumentSource as UserDocumentSource,
+    type UserWebSource as UserWebSource,
     type EntityDeleteResponse as EntityDeleteResponse,
     type EntityAddResponse as EntityAddResponse,
     type EntityAddBatchResponse as EntityAddBatchResponse,
-    type EntityGetResponse as EntityGetResponse,
     type EntityGetLocalSubgraphResponse as EntityGetLocalSubgraphResponse,
     type EntityGetSourceEntitiesResponse as EntityGetSourceEntitiesResponse,
     type EntityListJobsResponse as EntityListJobsResponse,
     type EntityMergeResponse as EntityMergeResponse,
     type EntitySearchResponse as EntitySearchResponse,
     type EntitySummarizeResponse as EntitySummarizeResponse,
-    type EntityTriggerMergeResponse as EntityTriggerMergeResponse,
-    type EntityUpdatePropertyResponse as EntityUpdatePropertyResponse,
     type EntityViewResponse as EntityViewResponse,
     type EntityDeleteParams as EntityDeleteParams,
     type EntityAddParams as EntityAddParams,
@@ -501,12 +504,20 @@ export declare namespace Structify {
     Shared as Shared,
     type DatasetDescriptor as DatasetDescriptor,
     type Entity as Entity,
+    type EntityGraph as EntityGraph,
+    type ErrorMessage as ErrorMessage,
+    type FlagSelector as FlagSelector,
     type Image as Image,
-    type KnowledgeGraph as KnowledgeGraph,
     type MatchedEntity as MatchedEntity,
+    type NoArgInput as NoArgInput,
     type PropertyType as PropertyType,
     type Relationship as Relationship,
-    type Table as Table,
+    type SearchInput as SearchInput,
+    type StructifyEntity as StructifyEntity,
+    type TableDescriptor as TableDescriptor,
+    type ToolCall as ToolCall,
+    type TypeInput as TypeInput,
+    type WaitInput as WaitInput,
   };
 }
 

@@ -2,8 +2,11 @@
 
 import { APIResource } from '../resource';
 import * as SharedAPI from './shared';
+import { JobsList } from '../pagination';
 
 export class Shared extends APIResource {}
+
+export class StructifyEntitiesJobsList extends JobsList<StructifyEntity> {}
 
 /**
  * A dataset is where you put multiple referential schemas.
@@ -18,7 +21,7 @@ export interface DatasetDescriptor {
 
   relationships: Array<DatasetDescriptor.Relationship>;
 
-  tables: Array<Table>;
+  tables: Array<TableDescriptor>;
 
   llm_override_field?: string | null;
 }
@@ -119,21 +122,29 @@ export interface Entity {
   type: string;
 }
 
-export interface Image {
-  number: number;
-
-  hash?: string;
-}
-
 /**
  * Knowledge graph info structured to deserialize and display in the same format
  * that the LLM outputs. Also the first representation of an LLM output in the
  * pipeline from raw tool output to being merged into a Neo4j DB
  */
-export interface KnowledgeGraph {
+export interface EntityGraph {
   entities?: Array<Entity>;
 
   relationships?: Array<Relationship>;
+}
+
+export interface ErrorMessage {
+  error: string;
+}
+
+export interface FlagSelector {
+  flag: number;
+}
+
+export interface Image {
+  number: number;
+
+  hash?: string;
 }
 
 export interface MatchedEntity {
@@ -168,6 +179,16 @@ export namespace MatchedEntity {
   }
 }
 
+/**
+ * For tools with no inputs.
+ */
+export interface NoArgInput {
+  /**
+   * Dummy argument
+   */
+  reason: string;
+}
+
 export type PropertyType =
   | 'String'
   | 'Boolean'
@@ -195,10 +216,24 @@ export interface Relationship {
   properties?: Record<string, string | boolean | number | Image>;
 }
 
+export interface SearchInput {
+  query: string;
+}
+
+export interface StructifyEntity {
+  id: string;
+
+  creation_time: string;
+
+  label: string;
+
+  properties: Record<string, string | boolean | number | Image>;
+}
+
 /**
  * The full definition of what a schema is - without duplicate information.
  */
-export interface Table {
+export interface TableDescriptor {
   description: string;
 
   /**
@@ -209,7 +244,7 @@ export interface Table {
   /**
    * Organized in a name, description format.
    */
-  properties: Array<Table.Property>;
+  properties: Array<TableDescriptor.Property>;
 
   /**
    * Expected number of unique values in the complete dataset.
@@ -219,7 +254,7 @@ export interface Table {
   expected_cardinality?: number | null;
 }
 
-export namespace Table {
+export namespace TableDescriptor {
   export interface Property {
     description: string;
 
@@ -261,15 +296,136 @@ export namespace Table {
   }
 }
 
+export interface ToolCall {
+  input:
+    | ToolCall.Save
+    | ToolCall.Scroll
+    | ToolCall.ScrollToBottom
+    | ToolCall.Exit
+    | ToolCall.Click
+    | ToolCall.Hover
+    | ToolCall.Wait
+    | ToolCall.Error
+    | ToolCall.Google
+    | ToolCall.Type;
+
+  name:
+    | 'Exit'
+    | 'Save'
+    | 'Wait'
+    | 'Type'
+    | 'Scroll'
+    | 'ScrollToBottom'
+    | 'Click'
+    | 'Hover'
+    | 'Error'
+    | 'Google';
+
+  result?: ToolCall.ToolQueued | ToolCall.ToolFail | ToolCall.InputParseFail | ToolCall.Success | null;
+}
+
+export namespace ToolCall {
+  export interface Save {
+    /**
+     * Knowledge graph info structured to deserialize and display in the same format
+     * that the LLM outputs. Also the first representation of an LLM output in the
+     * pipeline from raw tool output to being merged into a Neo4j DB
+     */
+    Save: SharedAPI.EntityGraph;
+  }
+
+  export interface Scroll {
+    /**
+     * For tools with no inputs.
+     */
+    Scroll: SharedAPI.NoArgInput;
+  }
+
+  export interface ScrollToBottom {
+    /**
+     * For tools with no inputs.
+     */
+    ScrollToBottom: SharedAPI.NoArgInput;
+  }
+
+  export interface Exit {
+    /**
+     * For tools with no inputs.
+     */
+    Exit: SharedAPI.NoArgInput;
+  }
+
+  export interface Click {
+    Click: SharedAPI.FlagSelector;
+  }
+
+  export interface Hover {
+    Hover: SharedAPI.FlagSelector;
+  }
+
+  export interface Wait {
+    Wait: SharedAPI.WaitInput;
+  }
+
+  export interface Error {
+    Error: SharedAPI.ErrorMessage;
+  }
+
+  export interface Google {
+    Google: SharedAPI.SearchInput;
+  }
+
+  export interface Type {
+    Type: SharedAPI.TypeInput;
+  }
+
+  export interface ToolQueued {
+    ToolQueued: string;
+  }
+
+  export interface ToolFail {
+    ToolFail: string;
+  }
+
+  export interface InputParseFail {
+    InputParseFail: string;
+  }
+
+  export interface Success {
+    Success: string;
+  }
+}
+
+export interface TypeInput {
+  flag: number;
+
+  input: string;
+}
+
+export interface WaitInput {
+  /**
+   * Time in seconds to wait
+   */
+  seconds?: number;
+}
+
 export declare namespace Shared {
   export {
     type DatasetDescriptor as DatasetDescriptor,
     type Entity as Entity,
+    type EntityGraph as EntityGraph,
+    type ErrorMessage as ErrorMessage,
+    type FlagSelector as FlagSelector,
     type Image as Image,
-    type KnowledgeGraph as KnowledgeGraph,
     type MatchedEntity as MatchedEntity,
+    type NoArgInput as NoArgInput,
     type PropertyType as PropertyType,
     type Relationship as Relationship,
-    type Table as Table,
+    type SearchInput as SearchInput,
+    type StructifyEntity as StructifyEntity,
+    type TableDescriptor as TableDescriptor,
+    type ToolCall as ToolCall,
+    type TypeInput as TypeInput,
+    type WaitInput as WaitInput,
   };
 }
