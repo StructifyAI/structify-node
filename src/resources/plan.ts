@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as PlanAPI from './plan';
+import * as StructureAPI from './structure';
 
 export class PlanResource extends APIResource {
   /**
@@ -41,31 +42,23 @@ export class PlanResource extends APIResource {
   }
 }
 
-export interface EnhanceProperty {
+export interface EnhanceProperty extends StructureAPI.Web {
   entity_id: string;
 
   property_name: string;
 
   allow_extra_entities?: boolean;
-
-  starting_searches?: Array<string>;
-
-  starting_urls?: Array<string>;
 }
 
-export interface EnhanceRelationship {
+export interface EnhanceRelationship extends StructureAPI.Web {
   entity_id: string;
 
   relationship_name: string;
 
   allow_extra_entities?: boolean;
-
-  starting_searches?: Array<string>;
-
-  starting_urls?: Array<string>;
 }
 
-export interface FindRelationship {
+export interface FindRelationship extends StructureAPI.Web {
   relationship_name: string;
 
   source_entity_id: string;
@@ -73,10 +66,6 @@ export interface FindRelationship {
   target_entity_id: string;
 
   allow_extra_entities?: boolean;
-
-  starting_searches?: Array<string>;
-
-  starting_urls?: Array<string>;
 }
 
 export interface Plan {
