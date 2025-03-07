@@ -130,7 +130,7 @@ export namespace HumanLlmJob {
 }
 
 export interface StepChoices {
-  extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+  extraction_criteria: Array<StepChoices.Relationship | StepChoices.Entity | StepChoices.Property>;
 
   job_id: string;
 
@@ -145,6 +145,46 @@ export interface StepChoices {
 }
 
 export namespace StepChoices {
+  export interface Relationship {
+    Relationship: Relationship.Relationship;
+  }
+
+  export namespace Relationship {
+    export interface Relationship {
+      relationship_name: string;
+    }
+  }
+
+  export interface Entity {
+    Entity: Entity.Entity;
+  }
+
+  export namespace Entity {
+    export interface Entity {
+      /**
+       * The integer id corresponding to an entity in the seeded kg
+       */
+      seeded_kg_id: number;
+
+      dataset_entity_id?: string | null;
+    }
+  }
+
+  export interface Property {
+    Property: Property.Property;
+  }
+
+  export namespace Property {
+    export interface Property {
+      property_names: Array<string>;
+
+      /**
+       * Vec<ExtractionCriteria> = it has to meet every one.
+       */
+      table_name: string;
+    }
+  }
+
   export interface StepOption {
     id: string;
 

@@ -300,7 +300,6 @@ Types:
 
 - <code><a href="./src/resources/structure.ts">ChatPrompt</a></code>
 - <code><a href="./src/resources/structure.ts">ExecutionStep</a></code>
-- <code><a href="./src/resources/structure.ts">ExtractionCriteria</a></code>
 - <code><a href="./src/resources/structure.ts">ToolMetadata</a></code>
 - <code><a href="./src/resources/structure.ts">StructureEnhancePropertyResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureEnhanceRelationshipResponse</a></code>
