@@ -85,7 +85,10 @@ describe('resource structure', () => {
   });
 
   test('runAsync: only required params', async () => {
-    const responsePromise = client.structure.runAsync({ dataset: 'dataset', source: { path: 'path' } });
+    const responsePromise = client.structure.runAsync({
+      dataset: 'dataset',
+      source: { PDF: { path: 'path' } },
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -98,7 +101,7 @@ describe('resource structure', () => {
   test('runAsync: required and optional params', async () => {
     const response = await client.structure.runAsync({
       dataset: 'dataset',
-      source: { path: 'path' },
+      source: { PDF: { path: 'path' } },
       save_requirement: [{ relationship_name: 'relationship_name' }],
       seeded_entity: {
         entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
