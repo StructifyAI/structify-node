@@ -206,7 +206,7 @@ export namespace ChatPrompt {
 
     extracted_entities: Array<SharedAPI.KnowledgeGraph>;
 
-    extraction_criteria: Array<StructureAPI.SaveRequirement>;
+    extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
 
     formatter_specific: Metadata.ImageMeta | Metadata.WebMeta | Metadata.TextMeta;
 
@@ -489,36 +489,50 @@ export namespace ExecutionStep {
 /**
  * It's an OR statement across these.
  */
-export type SaveRequirement =
-  | SaveRequirement.RequiredRelationship
-  | SaveRequirement.RequiredEntity
-  | SaveRequirement.RequiredProperty;
+export type ExtractionCriteria =
+  | ExtractionCriteria.RelationshipExtraction
+  | ExtractionCriteria.EntityExtraction
+  | ExtractionCriteria.GenericProperty;
 
-export namespace SaveRequirement {
-  export interface RequiredRelationship {
-    relationship_name: string;
+export namespace ExtractionCriteria {
+  export interface RelationshipExtraction {
+    RelationshipExtraction: RelationshipExtraction.RelationshipExtraction;
   }
 
-  export interface RequiredEntity {
-    /**
-     * The integer id corresponding to an entity in the seeded entity graph (different
-     * from the global dataset entity id)
-     */
-    seeded_entity_id: number;
-
-    entity_id?: string | null;
+  export namespace RelationshipExtraction {
+    export interface RelationshipExtraction {
+      relationship_name: string;
+    }
   }
 
-  export interface RequiredProperty {
-    /**
-     * If there are multiple properties, it can match just one of them
-     */
-    property_names: Array<string>;
+  export interface EntityExtraction {
+    EntityExtraction: EntityExtraction.EntityExtraction;
+  }
 
-    /**
-     * The table name of the entity to update
-     */
-    table_name: string;
+  export namespace EntityExtraction {
+    export interface EntityExtraction {
+      /**
+       * The integer id corresponding to an entity in the seeded kg
+       */
+      seeded_kg_id: number;
+
+      dataset_entity_id?: string | null;
+    }
+  }
+
+  export interface GenericProperty {
+    GenericProperty: GenericProperty.GenericProperty;
+  }
+
+  export namespace GenericProperty {
+    export interface GenericProperty {
+      property_names: Array<string>;
+
+      /**
+       * Vec<ExtractionCriteria> = it has to meet every one.
+       */
+      table_name: string;
+    }
   }
 }
 
@@ -603,14 +617,14 @@ export type StructureIsCompleteParams = Array<string>;
 export type StructureJobStatusParams = Array<string>;
 
 export interface StructureRunAsyncParams {
-  dataset: string;
+  name: string;
 
   /**
    * These are all the types that can be converted into a BasicInputType
    */
-  source: StructureRunAsyncParams.PdfIngestor | StructureRunAsyncParams.WebSearch;
+  structure_input: StructureRunAsyncParams.PdfIngestor | StructureRunAsyncParams.WebSearch;
 
-  save_requirement?: Array<SaveRequirement>;
+  extraction_criteria?: Array<ExtractionCriteria>;
 
   /**
    * Knowledge graph info structured to deserialize and display in the same format
@@ -623,17 +637,32 @@ export interface StructureRunAsyncParams {
 }
 
 export namespace StructureRunAsyncParams {
-  /**
-   * Ingest all pages of a PDF and process them independently.
-   */
   export interface PdfIngestor {
-    path: string;
+    /**
+     * Ingest all pages of a PDF and process them independently.
+     */
+    PDFIngestor: PdfIngestor.PdfIngestor;
+  }
+
+  export namespace PdfIngestor {
+    /**
+     * Ingest all pages of a PDF and process them independently.
+     */
+    export interface PdfIngestor {
+      path: string;
+    }
   }
 
   export interface WebSearch {
-    starting_searches?: Array<string>;
+    WebSearch: WebSearch.WebSearch;
+  }
 
-    starting_urls?: Array<string>;
+  export namespace WebSearch {
+    export interface WebSearch {
+      starting_searches?: Array<string>;
+
+      starting_urls?: Array<string>;
+    }
   }
 }
 
@@ -641,7 +670,7 @@ export declare namespace Structure {
   export {
     type ChatPrompt as ChatPrompt,
     type ExecutionStep as ExecutionStep,
-    type SaveRequirement as SaveRequirement,
+    type ExtractionCriteria as ExtractionCriteria,
     type ToolMetadata as ToolMetadata,
     type StructureEnhancePropertyResponse as StructureEnhancePropertyResponse,
     type StructureEnhanceRelationshipResponse as StructureEnhanceRelationshipResponse,

@@ -121,9 +121,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/datasets/datasets.ts">MergeConfig</a></code>
-- <code><a href="./src/resources/datasets/datasets.ts">MergeStrategy</a></code>
-- <code><a href="./src/resources/datasets/datasets.ts">RelationshipMergeStrategy</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">DatasetListResponse</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">DatasetGetResponse</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">DatasetMatchResponse</a></code>
@@ -303,7 +300,7 @@ Types:
 
 - <code><a href="./src/resources/structure.ts">ChatPrompt</a></code>
 - <code><a href="./src/resources/structure.ts">ExecutionStep</a></code>
-- <code><a href="./src/resources/structure.ts">SaveRequirement</a></code>
+- <code><a href="./src/resources/structure.ts">ExtractionCriteria</a></code>
 - <code><a href="./src/resources/structure.ts">ToolMetadata</a></code>
 - <code><a href="./src/resources/structure.ts">StructureEnhancePropertyResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureEnhanceRelationshipResponse</a></code>
