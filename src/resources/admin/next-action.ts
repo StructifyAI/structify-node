@@ -93,7 +93,7 @@ export namespace ActionTrainingDataEntry {
   export interface Input {
     all_steps: Array<Input.AllStep>;
 
-    extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+    extraction_criteria: Array<StructureAPI.SaveRequirement>;
 
     previous_queries: Array<string>;
 
@@ -199,7 +199,7 @@ export namespace AddActionTrainingDatumRequest {
   export interface Input {
     all_steps: Array<Input.AllStep>;
 
-    extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+    extraction_criteria: Array<StructureAPI.SaveRequirement>;
 
     previous_queries: Array<string>;
 
@@ -334,7 +334,7 @@ export namespace NextActionAddTrainingDatumParams {
   export interface Input {
     all_steps: Array<Input.AllStep>;
 
-    extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+    extraction_criteria: Array<StructureAPI.SaveRequirement>;
 
     previous_queries: Array<string>;
 
