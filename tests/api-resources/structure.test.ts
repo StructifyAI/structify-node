@@ -10,10 +10,7 @@ const client = new Structify({
 
 describe('resource structure', () => {
   test('enhanceProperty: only required params', async () => {
-    const responsePromise = client.structure.enhanceProperty({
-      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      property_name: 'property_name',
-    });
+    const responsePromise = client.structure.enhanceProperty({});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -24,21 +21,11 @@ describe('resource structure', () => {
   });
 
   test('enhanceProperty: required and optional params', async () => {
-    const response = await client.structure.enhanceProperty({
-      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      property_name: 'property_name',
-      allow_extra_entities: true,
-      special_job_type: 'HumanLLM',
-      starting_searches: ['string'],
-      starting_urls: ['string'],
-    });
+    const response = await client.structure.enhanceProperty({ special_job_type: 'HumanLLM' });
   });
 
   test('enhanceRelationship: only required params', async () => {
-    const responsePromise = client.structure.enhanceRelationship({
-      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      relationship_name: 'relationship_name',
-    });
+    const responsePromise = client.structure.enhanceRelationship({});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -49,22 +36,11 @@ describe('resource structure', () => {
   });
 
   test('enhanceRelationship: required and optional params', async () => {
-    const response = await client.structure.enhanceRelationship({
-      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      relationship_name: 'relationship_name',
-      allow_extra_entities: true,
-      special_job_type: 'HumanLLM',
-      starting_searches: ['string'],
-      starting_urls: ['string'],
-    });
+    const response = await client.structure.enhanceRelationship({ special_job_type: 'HumanLLM' });
   });
 
   test('findRelationship: only required params', async () => {
-    const responsePromise = client.structure.findRelationship({
-      relationship_name: 'relationship_name',
-      source_entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      target_entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
+    const responsePromise = client.structure.findRelationship({});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -75,15 +51,7 @@ describe('resource structure', () => {
   });
 
   test('findRelationship: required and optional params', async () => {
-    const response = await client.structure.findRelationship({
-      relationship_name: 'relationship_name',
-      source_entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      target_entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      allow_extra_entities: true,
-      special_job_type: 'HumanLLM',
-      starting_searches: ['string'],
-      starting_urls: ['string'],
-    });
+    const response = await client.structure.findRelationship({ special_job_type: 'HumanLLM' });
   });
 
   test('isComplete: only required params', async () => {
