@@ -182,7 +182,7 @@ export namespace EntityGetSourceEntitiesResponse {
 
     llm_id: number;
 
-    location: SourceEntity.ByteOffset | SourceEntity.UnionMember1 | SourceEntity.PageNumber | unknown;
+    location: SourceEntity.Text | SourceEntity.Visual | SourceEntity.Page | 'None';
 
     properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
@@ -190,18 +190,36 @@ export namespace EntityGetSourceEntitiesResponse {
   }
 
   export namespace SourceEntity {
-    export interface ByteOffset {
-      byte_offset: number;
+    export interface Text {
+      Text: Text.Text;
     }
 
-    export interface UnionMember1 {
-      x: number;
-
-      y: number;
+    export namespace Text {
+      export interface Text {
+        byte_offset: number;
+      }
     }
 
-    export interface PageNumber {
-      page_number: number;
+    export interface Visual {
+      Visual: Visual.Visual;
+    }
+
+    export namespace Visual {
+      export interface Visual {
+        x: number;
+
+        y: number;
+      }
+    }
+
+    export interface Page {
+      Page: Page.Page;
+    }
+
+    export namespace Page {
+      export interface Page {
+        page_number: number;
+      }
     }
   }
 }
@@ -361,24 +379,42 @@ export namespace EntityViewResponse {
 
     link: SourcesAPI.Source;
 
-    location: Source.ByteOffset | Source.UnionMember1 | Source.PageNumber | unknown;
+    location: Source.Text | Source.Visual | Source.Page | 'None';
 
     user_specified: boolean;
   }
 
   export namespace Source {
-    export interface ByteOffset {
-      byte_offset: number;
+    export interface Text {
+      Text: Text.Text;
     }
 
-    export interface UnionMember1 {
-      x: number;
-
-      y: number;
+    export namespace Text {
+      export interface Text {
+        byte_offset: number;
+      }
     }
 
-    export interface PageNumber {
-      page_number: number;
+    export interface Visual {
+      Visual: Visual.Visual;
+    }
+
+    export namespace Visual {
+      export interface Visual {
+        x: number;
+
+        y: number;
+      }
+    }
+
+    export interface Page {
+      Page: Page.Page;
+    }
+
+    export namespace Page {
+      export interface Page {
+        page_number: number;
+      }
     }
   }
 }
