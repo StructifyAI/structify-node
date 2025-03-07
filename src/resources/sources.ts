@@ -13,7 +13,7 @@ export class Sources extends APIResource {
   }
 }
 
-export type Source = Source.URL | Source.Name | unknown | unknown;
+export type Source = Source.URL | Source.Name | Source.SecFilingLink | unknown;
 
 export namespace Source {
   export interface URL {
@@ -22,6 +22,12 @@ export namespace Source {
 
   export interface Name {
     name: string;
+  }
+
+  export interface SecFilingLink {
+    accession_number: string;
+
+    cik_number: string;
   }
 }
 
