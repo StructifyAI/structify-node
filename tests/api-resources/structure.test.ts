@@ -118,8 +118,8 @@ describe('resource structure', () => {
 
   test('runAsync: only required params', async () => {
     const responsePromise = client.structure.runAsync({
-      name: 'name',
-      structure_input: { PDFIngestor: { path: 'path' } },
+      dataset: 'dataset',
+      source: { PDFIngestor: { path: 'path' } },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -132,9 +132,9 @@ describe('resource structure', () => {
 
   test('runAsync: required and optional params', async () => {
     const response = await client.structure.runAsync({
-      name: 'name',
-      structure_input: { PDFIngestor: { path: 'path' } },
-      extraction_criteria: [{ RelationshipExtraction: { relationship_name: 'relationship_name' } }],
+      dataset: 'dataset',
+      source: { PDFIngestor: { path: 'path' } },
+      extraction_criteria: [{ Relationship: { relationship_name: 'relationship_name' } }],
       seeded_entity: {
         entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
         relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
