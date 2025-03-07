@@ -440,7 +440,10 @@ export interface EntityAddParams {
    */
   attempt_merge?: boolean;
 
-  source?: EntityAddParams.UserWebSource | EntityAddParams.UserDocumentSource | unknown;
+  source?:
+    | EntityAddParams.UserWebSource
+    | EntityAddParams.UserDocumentSource
+    | EntityAddParams.UserSecFilingSource;
 }
 
 export namespace EntityAddParams {
@@ -450,6 +453,14 @@ export namespace EntityAddParams {
 
   export interface UserDocumentSource {
     name: string;
+
+    page: number;
+  }
+
+  export interface UserSecFilingSource {
+    accession_number: string;
+
+    cik_number: string;
 
     page: number;
   }
@@ -465,7 +476,10 @@ export interface EntityAddBatchParams {
    */
   attempt_merge?: boolean;
 
-  source?: EntityAddBatchParams.UserWebSource | EntityAddBatchParams.UserDocumentSource | unknown;
+  source?:
+    | EntityAddBatchParams.UserWebSource
+    | EntityAddBatchParams.UserDocumentSource
+    | EntityAddBatchParams.UserSecFilingSource;
 }
 
 export namespace EntityAddBatchParams {
@@ -475,6 +489,14 @@ export namespace EntityAddBatchParams {
 
   export interface UserDocumentSource {
     name: string;
+
+    page: number;
+  }
+
+  export interface UserSecFilingSource {
+    accession_number: string;
+
+    cik_number: string;
 
     page: number;
   }
@@ -540,7 +562,10 @@ export interface EntityUpdatePropertyParams {
 
   properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
-  source?: EntityUpdatePropertyParams.UserWebSource | EntityUpdatePropertyParams.UserDocumentSource | unknown;
+  source?:
+    | EntityUpdatePropertyParams.UserWebSource
+    | EntityUpdatePropertyParams.UserDocumentSource
+    | EntityUpdatePropertyParams.UserSecFilingSource;
 }
 
 export namespace EntityUpdatePropertyParams {
@@ -550,6 +575,14 @@ export namespace EntityUpdatePropertyParams {
 
   export interface UserDocumentSource {
     name: string;
+
+    page: number;
+  }
+
+  export interface UserSecFilingSource {
+    accession_number: string;
+
+    cik_number: string;
 
     page: number;
   }
