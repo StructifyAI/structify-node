@@ -629,17 +629,32 @@ export interface StructureRunAsyncParams {
 }
 
 export namespace StructureRunAsyncParams {
-  /**
-   * Ingest all pages of a PDF and process them independently.
-   */
   export interface PdfIngestor {
-    path: string;
+    /**
+     * Ingest all pages of a PDF and process them independently.
+     */
+    PDFIngestor: PdfIngestor.PdfIngestor;
+  }
+
+  export namespace PdfIngestor {
+    /**
+     * Ingest all pages of a PDF and process them independently.
+     */
+    export interface PdfIngestor {
+      path: string;
+    }
   }
 
   export interface WebSearch {
-    starting_searches?: Array<string>;
+    WebSearch: WebSearch.WebSearch;
+  }
 
-    starting_urls?: Array<string>;
+  export namespace WebSearch {
+    export interface WebSearch {
+      starting_searches?: Array<string>;
+
+      starting_urls?: Array<string>;
+    }
   }
 
   export interface Relationship {
