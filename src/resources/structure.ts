@@ -206,7 +206,7 @@ export namespace ChatPrompt {
 
     extracted_entities: Array<SharedAPI.KnowledgeGraph>;
 
-    extraction_criteria: Array<Metadata.Relationship | Metadata.Entity | Metadata.Property>;
+    extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
 
     formatter_specific: Metadata.ImageMeta | Metadata.WebMeta | Metadata.TextMeta;
 
@@ -214,46 +214,6 @@ export namespace ChatPrompt {
   }
 
   export namespace Metadata {
-    export interface Relationship {
-      Relationship: Relationship.Relationship;
-    }
-
-    export namespace Relationship {
-      export interface Relationship {
-        relationship_name: string;
-      }
-    }
-
-    export interface Entity {
-      Entity: Entity.Entity;
-    }
-
-    export namespace Entity {
-      export interface Entity {
-        /**
-         * The integer id corresponding to an entity in the seeded kg
-         */
-        seeded_kg_id: number;
-
-        dataset_entity_id?: string | null;
-      }
-    }
-
-    export interface Property {
-      Property: Property.Property;
-    }
-
-    export namespace Property {
-      export interface Property {
-        property_names: Array<string>;
-
-        /**
-         * Vec<ExtractionCriteria> = it has to meet every one.
-         */
-        table_name: string;
-      }
-    }
-
     export interface ImageMeta {
       ImageMeta: ImageMeta.ImageMeta;
     }
@@ -526,6 +486,56 @@ export namespace ExecutionStep {
   }
 }
 
+/**
+ * It's an OR statement across these.
+ */
+export type ExtractionCriteria =
+  | ExtractionCriteria.RelationshipExtraction
+  | ExtractionCriteria.EntityExtraction
+  | ExtractionCriteria.GenericProperty;
+
+export namespace ExtractionCriteria {
+  export interface RelationshipExtraction {
+    RelationshipExtraction: RelationshipExtraction.RelationshipExtraction;
+  }
+
+  export namespace RelationshipExtraction {
+    export interface RelationshipExtraction {
+      relationship_name: string;
+    }
+  }
+
+  export interface EntityExtraction {
+    EntityExtraction: EntityExtraction.EntityExtraction;
+  }
+
+  export namespace EntityExtraction {
+    export interface EntityExtraction {
+      /**
+       * The integer id corresponding to an entity in the seeded kg
+       */
+      seeded_kg_id: number;
+
+      dataset_entity_id?: string | null;
+    }
+  }
+
+  export interface GenericProperty {
+    GenericProperty: GenericProperty.GenericProperty;
+  }
+
+  export namespace GenericProperty {
+    export interface GenericProperty {
+      property_names: Array<string>;
+
+      /**
+       * Vec<ExtractionCriteria> = it has to meet every one.
+       */
+      table_name: string;
+    }
+  }
+}
+
 export interface ToolMetadata {
   description: string;
 
@@ -607,16 +617,14 @@ export type StructureIsCompleteParams = Array<string>;
 export type StructureJobStatusParams = Array<string>;
 
 export interface StructureRunAsyncParams {
-  dataset: string;
+  name: string;
 
   /**
    * These are all the types that can be converted into a BasicInputType
    */
-  source: StructureRunAsyncParams.PdfIngestor | StructureRunAsyncParams.WebSearch;
+  structure_input: StructureRunAsyncParams.PdfIngestor | StructureRunAsyncParams.WebSearch;
 
-  extraction_criteria?: Array<
-    StructureRunAsyncParams.Relationship | StructureRunAsyncParams.Entity | StructureRunAsyncParams.Property
-  >;
+  extraction_criteria?: Array<ExtractionCriteria>;
 
   /**
    * Knowledge graph info structured to deserialize and display in the same format
@@ -656,52 +664,13 @@ export namespace StructureRunAsyncParams {
       starting_urls?: Array<string>;
     }
   }
-
-  export interface Relationship {
-    Relationship: Relationship.Relationship;
-  }
-
-  export namespace Relationship {
-    export interface Relationship {
-      relationship_name: string;
-    }
-  }
-
-  export interface Entity {
-    Entity: Entity.Entity;
-  }
-
-  export namespace Entity {
-    export interface Entity {
-      /**
-       * The integer id corresponding to an entity in the seeded kg
-       */
-      seeded_kg_id: number;
-
-      dataset_entity_id?: string | null;
-    }
-  }
-
-  export interface Property {
-    Property: Property.Property;
-  }
-
-  export namespace Property {
-    export interface Property {
-      property_names: Array<string>;
-
-      /**
-       * Vec<ExtractionCriteria> = it has to meet every one.
-       */
-      table_name: string;
-    }
-  }
 }
 
 export declare namespace Structure {
   export {
     type ChatPrompt as ChatPrompt,
     type ExecutionStep as ExecutionStep,
+    type ExtractionCriteria as ExtractionCriteria,
     type ToolMetadata as ToolMetadata,
     type StructureEnhancePropertyResponse as StructureEnhancePropertyResponse,
     type StructureEnhanceRelationshipResponse as StructureEnhanceRelationshipResponse,
