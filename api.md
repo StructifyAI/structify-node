@@ -122,8 +122,8 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/datasets/datasets.ts">MergeConfig</a></code>
-- <code><a href="./src/resources/datasets/datasets.ts">MergeStrategy</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">RelationshipMergeStrategy</a></code>
+- <code><a href="./src/resources/datasets/datasets.ts">Strategy</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">DatasetListResponse</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">DatasetGetResponse</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">DatasetMatchResponse</a></code>

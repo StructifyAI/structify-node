@@ -45,7 +45,7 @@ export namespace DatasetDescriptor {
 
       name: string;
 
-      merge_strategy?: DatasetsAPI.MergeStrategy;
+      merge_strategy?: DatasetsAPI.Strategy;
 
       prop_type?: SharedAPI.PropertyType;
     }
@@ -166,7 +166,7 @@ export namespace Table {
 
     name: string;
 
-    merge_strategy?: DatasetsAPI.MergeStrategy;
+    merge_strategy?: DatasetsAPI.Strategy;
 
     prop_type?: SharedAPI.PropertyType;
   }
