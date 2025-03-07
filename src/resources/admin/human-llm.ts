@@ -130,9 +130,7 @@ export namespace HumanLlmJob {
 }
 
 export interface StepChoices {
-  extraction_criteria: Array<
-    StepChoices.RequiredRelationship | StepChoices.RequiredEntity | StepChoices.RequiredProperty
-  >;
+  extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
 
   job_id: string;
 
@@ -147,32 +145,6 @@ export interface StepChoices {
 }
 
 export namespace StepChoices {
-  export interface RequiredRelationship {
-    relationship_name: string;
-  }
-
-  export interface RequiredEntity {
-    /**
-     * The integer id corresponding to an entity in the seeded entity graph (different
-     * from the global dataset entity id)
-     */
-    seeded_entity_id: number;
-
-    entity_id?: string | null;
-  }
-
-  export interface RequiredProperty {
-    /**
-     * If there are multiple properties, it can match just one of them
-     */
-    property_names: Array<string>;
-
-    /**
-     * The table name of the entity to update
-     */
-    table_name: string;
-  }
-
   export interface StepOption {
     id: string;
 
