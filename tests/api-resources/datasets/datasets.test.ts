@@ -48,7 +48,10 @@ describe('resource datasets', () => {
           name: 'name',
           source_table: 'source_table',
           target_table: 'target_table',
-          merge_strategy: {},
+          merge_strategy: {
+            source_cardinality_given_target_match: 0,
+            target_cardinality_given_source_match: 0,
+          },
           properties: [
             { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
           ],
