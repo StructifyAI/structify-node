@@ -145,8 +145,8 @@ import {
   DatasetViewTablesWithRelationshipsResponse,
   Datasets,
   MergeConfig,
-  MergeStrategy,
   RelationshipMergeStrategy,
+  Strategy,
 } from './resources/datasets/datasets';
 
 const environments = {
@@ -375,8 +375,8 @@ export declare namespace Structify {
   export {
     Datasets as Datasets,
     type MergeConfig as MergeConfig,
-    type MergeStrategy as MergeStrategy,
     type RelationshipMergeStrategy as RelationshipMergeStrategy,
+    type Strategy as Strategy,
     type DatasetListResponse as DatasetListResponse,
     type DatasetGetResponse as DatasetGetResponse,
     type DatasetMatchResponse as DatasetMatchResponse,
