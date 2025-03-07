@@ -133,17 +133,6 @@ export interface MergeConfig {
   comparison_strategy?: 'Default' | 'EnforceUniqueness';
 }
 
-export type MergeStrategy = 'Unique' | 'NoSignal' | MergeStrategy.Probabilistic;
-
-export namespace MergeStrategy {
-  export interface Probabilistic {
-    /**
-     * The configuration for a probabilistic merge strategy
-     */
-    Probabilistic: DatasetsAPI.MergeConfig;
-  }
-}
-
 export interface RelationshipMergeStrategy {
   /**
    * Describes the expected cardinality of the source table when a match is found in
@@ -166,6 +155,17 @@ export interface RelationshipMergeStrategy {
    * funding rounds is relatively small. This is an estimate of that number.
    */
   target_cardinality_given_source_match?: number | null;
+}
+
+export type Strategy = 'Unique' | 'NoSignal' | Strategy.Probabilistic;
+
+export namespace Strategy {
+  export interface Probabilistic {
+    /**
+     * The configuration for a probabilistic merge strategy
+     */
+    Probabilistic: DatasetsAPI.MergeConfig;
+  }
 }
 
 export type DatasetListResponse = Array<DatasetListResponse.DatasetListResponseItem>;
@@ -291,7 +291,7 @@ export namespace DatasetCreateParams {
 
       name: string;
 
-      merge_strategy?: DatasetsAPI.MergeStrategy;
+      merge_strategy?: DatasetsAPI.Strategy;
 
       prop_type?: SharedAPI.PropertyType;
     }
@@ -400,8 +400,8 @@ Datasets.EvaluateListResponsesJobsList = EvaluateListResponsesJobsList;
 export declare namespace Datasets {
   export {
     type MergeConfig as MergeConfig,
-    type MergeStrategy as MergeStrategy,
     type RelationshipMergeStrategy as RelationshipMergeStrategy,
+    type Strategy as Strategy,
     type DatasetListResponse as DatasetListResponse,
     type DatasetGetResponse as DatasetGetResponse,
     type DatasetMatchResponse as DatasetMatchResponse,
