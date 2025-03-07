@@ -13,7 +13,7 @@ describe('resource nextAction', () => {
     const responsePromise = client.admin.nextAction.addTrainingDatum({
       input: {
         all_steps: [{ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' }],
-        extraction_criteria: [{ RelationshipExtraction: { relationship_name: 'relationship_name' } }],
+        extraction_criteria: [{ Relationship: { relationship_name: 'relationship_name' } }],
         previous_queries: ['string'],
         seeded_kg: {},
       },
@@ -39,7 +39,7 @@ describe('resource nextAction', () => {
             metadata: { foo: 'string' },
           },
         ],
-        extraction_criteria: [{ RelationshipExtraction: { relationship_name: 'relationship_name' } }],
+        extraction_criteria: [{ Relationship: { relationship_name: 'relationship_name' } }],
         previous_queries: ['string'],
         seeded_kg: {
           entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
@@ -49,6 +49,25 @@ describe('resource nextAction', () => {
       label: 'label',
       output: { SelectedStep: { step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' } },
       job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+  });
+
+  test('deleteTrainingData: only required params', async () => {
+    const responsePromise = client.admin.nextAction.deleteTrainingData({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('deleteTrainingData: required and optional params', async () => {
+    const response = await client.admin.nextAction.deleteTrainingData({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 

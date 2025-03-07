@@ -4,7 +4,6 @@ import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as SharedAPI from '../shared';
-import * as StructureAPI from '../structure';
 
 export class NextAction extends APIResource {
   /**
@@ -18,6 +17,17 @@ export class NextAction extends APIResource {
       body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  deleteTrainingData(
+    params: NextActionDeleteTrainingDataParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<DeleteActionTrainingDataResponse> {
+    const { id } = params;
+    return this._client.delete('/admin/next_action/delete_action_training_data', {
+      query: { id },
+      ...options,
     });
   }
 
@@ -82,7 +92,7 @@ export namespace ActionTrainingDataEntry {
   export interface Input {
     all_steps: Array<Input.AllStep>;
 
-    extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+    extraction_criteria: Array<Input.Relationship | Input.Entity | Input.Property>;
 
     previous_queries: Array<string>;
 
@@ -101,6 +111,46 @@ export namespace ActionTrainingDataEntry {
       action_name?: string;
 
       metadata?: Record<string, string>;
+    }
+
+    export interface Relationship {
+      Relationship: Relationship.Relationship;
+    }
+
+    export namespace Relationship {
+      export interface Relationship {
+        relationship_name: string;
+      }
+    }
+
+    export interface Entity {
+      Entity: Entity.Entity;
+    }
+
+    export namespace Entity {
+      export interface Entity {
+        /**
+         * The integer id corresponding to an entity in the seeded kg
+         */
+        seeded_kg_id: number;
+
+        dataset_entity_id?: string | null;
+      }
+    }
+
+    export interface Property {
+      Property: Property.Property;
+    }
+
+    export namespace Property {
+      export interface Property {
+        property_names: Array<string>;
+
+        /**
+         * Vec<ExtractionCriteria> = it has to meet every one.
+         */
+        table_name: string;
+      }
     }
   }
 
@@ -188,7 +238,7 @@ export namespace AddActionTrainingDatumRequest {
   export interface Input {
     all_steps: Array<Input.AllStep>;
 
-    extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+    extraction_criteria: Array<Input.Relationship | Input.Entity | Input.Property>;
 
     previous_queries: Array<string>;
 
@@ -207,6 +257,46 @@ export namespace AddActionTrainingDatumRequest {
       action_name?: string;
 
       metadata?: Record<string, string>;
+    }
+
+    export interface Relationship {
+      Relationship: Relationship.Relationship;
+    }
+
+    export namespace Relationship {
+      export interface Relationship {
+        relationship_name: string;
+      }
+    }
+
+    export interface Entity {
+      Entity: Entity.Entity;
+    }
+
+    export namespace Entity {
+      export interface Entity {
+        /**
+         * The integer id corresponding to an entity in the seeded kg
+         */
+        seeded_kg_id: number;
+
+        dataset_entity_id?: string | null;
+      }
+    }
+
+    export interface Property {
+      Property: Property.Property;
+    }
+
+    export namespace Property {
+      export interface Property {
+        property_names: Array<string>;
+
+        /**
+         * Vec<ExtractionCriteria> = it has to meet every one.
+         */
+        table_name: string;
+      }
     }
   }
 
@@ -241,6 +331,14 @@ export namespace AddActionTrainingDatumRequest {
       llm_output: string;
     }
   }
+}
+
+export interface DeleteActionTrainingDataParams {
+  id: string;
+}
+
+export interface DeleteActionTrainingDataResponse {
+  deleted_count: number;
 }
 
 export interface GetActionTrainingDataParams {
@@ -315,7 +413,7 @@ export namespace NextActionAddTrainingDatumParams {
   export interface Input {
     all_steps: Array<Input.AllStep>;
 
-    extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+    extraction_criteria: Array<Input.Relationship | Input.Entity | Input.Property>;
 
     previous_queries: Array<string>;
 
@@ -334,6 +432,46 @@ export namespace NextActionAddTrainingDatumParams {
       action_name?: string;
 
       metadata?: Record<string, string>;
+    }
+
+    export interface Relationship {
+      Relationship: Relationship.Relationship;
+    }
+
+    export namespace Relationship {
+      export interface Relationship {
+        relationship_name: string;
+      }
+    }
+
+    export interface Entity {
+      Entity: Entity.Entity;
+    }
+
+    export namespace Entity {
+      export interface Entity {
+        /**
+         * The integer id corresponding to an entity in the seeded kg
+         */
+        seeded_kg_id: number;
+
+        dataset_entity_id?: string | null;
+      }
+    }
+
+    export interface Property {
+      Property: Property.Property;
+    }
+
+    export namespace Property {
+      export interface Property {
+        property_names: Array<string>;
+
+        /**
+         * Vec<ExtractionCriteria> = it has to meet every one.
+         */
+        table_name: string;
+      }
     }
   }
 
@@ -368,6 +506,13 @@ export namespace NextActionAddTrainingDatumParams {
       llm_output: string;
     }
   }
+}
+
+export interface NextActionDeleteTrainingDataParams {
+  /**
+   * ID of the training datum to delete
+   */
+  id: string;
 }
 
 export interface NextActionGetTrainingDataParams {
@@ -442,9 +587,12 @@ export declare namespace NextAction {
     type ActionTrainingDataResponse as ActionTrainingDataResponse,
     type ActionTrainingDatumMetadata as ActionTrainingDatumMetadata,
     type AddActionTrainingDatumRequest as AddActionTrainingDatumRequest,
+    type DeleteActionTrainingDataParams as DeleteActionTrainingDataParams,
+    type DeleteActionTrainingDataResponse as DeleteActionTrainingDataResponse,
     type GetActionTrainingDataParams as GetActionTrainingDataParams,
     type LabelActionTrainingDatumRequest as LabelActionTrainingDatumRequest,
     type NextActionAddTrainingDatumParams as NextActionAddTrainingDatumParams,
+    type NextActionDeleteTrainingDataParams as NextActionDeleteTrainingDataParams,
     type NextActionGetTrainingDataParams as NextActionGetTrainingDataParams,
     type NextActionGetTrainingDataMetadataParams as NextActionGetTrainingDataMetadataParams,
     type NextActionLabelTrainingDatumParams as NextActionLabelTrainingDatumParams,

@@ -544,7 +544,15 @@ export namespace TrainingDatasetSizeResponse {
 
     nav_labels: number;
 
+    nav_verified: number;
+
+    potential_sus_nav_datums: number;
+
+    potential_sus_save_datums: number;
+
     save_labels: number;
+
+    save_verified: number;
 
     sus_nav_datums: number;
 
