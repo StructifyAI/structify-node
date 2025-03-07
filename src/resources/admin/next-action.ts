@@ -4,7 +4,6 @@ import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as SharedAPI from '../shared';
-import * as StructureAPI from '../structure';
 
 export class NextAction extends APIResource {
   /**
@@ -93,7 +92,7 @@ export namespace ActionTrainingDataEntry {
   export interface Input {
     all_steps: Array<Input.AllStep>;
 
-    extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+    extraction_criteria: Array<Input.RequiredRelationship | Input.RequiredEntity | Input.RequiredProperty>;
 
     previous_queries: Array<string>;
 
@@ -112,6 +111,32 @@ export namespace ActionTrainingDataEntry {
       action_name?: string;
 
       metadata?: Record<string, string>;
+    }
+
+    export interface RequiredRelationship {
+      relationship_name: string;
+    }
+
+    export interface RequiredEntity {
+      /**
+       * The integer id corresponding to an entity in the seeded entity graph (different
+       * from the global dataset entity id)
+       */
+      seeded_entity_id: number;
+
+      entity_id?: string | null;
+    }
+
+    export interface RequiredProperty {
+      /**
+       * If there are multiple properties, it can match just one of them
+       */
+      property_names: Array<string>;
+
+      /**
+       * The table name of the entity to update
+       */
+      table_name: string;
     }
   }
 
@@ -199,7 +224,7 @@ export namespace AddActionTrainingDatumRequest {
   export interface Input {
     all_steps: Array<Input.AllStep>;
 
-    extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+    extraction_criteria: Array<Input.RequiredRelationship | Input.RequiredEntity | Input.RequiredProperty>;
 
     previous_queries: Array<string>;
 
@@ -218,6 +243,32 @@ export namespace AddActionTrainingDatumRequest {
       action_name?: string;
 
       metadata?: Record<string, string>;
+    }
+
+    export interface RequiredRelationship {
+      relationship_name: string;
+    }
+
+    export interface RequiredEntity {
+      /**
+       * The integer id corresponding to an entity in the seeded entity graph (different
+       * from the global dataset entity id)
+       */
+      seeded_entity_id: number;
+
+      entity_id?: string | null;
+    }
+
+    export interface RequiredProperty {
+      /**
+       * If there are multiple properties, it can match just one of them
+       */
+      property_names: Array<string>;
+
+      /**
+       * The table name of the entity to update
+       */
+      table_name: string;
     }
   }
 
@@ -334,7 +385,7 @@ export namespace NextActionAddTrainingDatumParams {
   export interface Input {
     all_steps: Array<Input.AllStep>;
 
-    extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+    extraction_criteria: Array<Input.RequiredRelationship | Input.RequiredEntity | Input.RequiredProperty>;
 
     previous_queries: Array<string>;
 
@@ -353,6 +404,32 @@ export namespace NextActionAddTrainingDatumParams {
       action_name?: string;
 
       metadata?: Record<string, string>;
+    }
+
+    export interface RequiredRelationship {
+      relationship_name: string;
+    }
+
+    export interface RequiredEntity {
+      /**
+       * The integer id corresponding to an entity in the seeded entity graph (different
+       * from the global dataset entity id)
+       */
+      seeded_entity_id: number;
+
+      entity_id?: string | null;
+    }
+
+    export interface RequiredProperty {
+      /**
+       * If there are multiple properties, it can match just one of them
+       */
+      property_names: Array<string>;
+
+      /**
+       * The table name of the entity to update
+       */
+      table_name: string;
     }
   }
 
