@@ -4,7 +4,6 @@ import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as SharedAPI from '../shared';
-import * as StructureAPI from '../structure';
 
 export class NextAction extends APIResource {
   /**
@@ -93,7 +92,7 @@ export namespace ActionTrainingDataEntry {
   export interface Input {
     all_steps: Array<Input.AllStep>;
 
-    extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+    extraction_criteria: Array<Input.Relationship | Input.Entity | Input.Property>;
 
     previous_queries: Array<string>;
 
@@ -112,6 +111,46 @@ export namespace ActionTrainingDataEntry {
       action_name?: string;
 
       metadata?: Record<string, string>;
+    }
+
+    export interface Relationship {
+      Relationship: Relationship.Relationship;
+    }
+
+    export namespace Relationship {
+      export interface Relationship {
+        relationship_name: string;
+      }
+    }
+
+    export interface Entity {
+      Entity: Entity.Entity;
+    }
+
+    export namespace Entity {
+      export interface Entity {
+        /**
+         * The integer id corresponding to an entity in the seeded kg
+         */
+        seeded_kg_id: number;
+
+        dataset_entity_id?: string | null;
+      }
+    }
+
+    export interface Property {
+      Property: Property.Property;
+    }
+
+    export namespace Property {
+      export interface Property {
+        property_names: Array<string>;
+
+        /**
+         * Vec<ExtractionCriteria> = it has to meet every one.
+         */
+        table_name: string;
+      }
     }
   }
 
@@ -199,7 +238,7 @@ export namespace AddActionTrainingDatumRequest {
   export interface Input {
     all_steps: Array<Input.AllStep>;
 
-    extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+    extraction_criteria: Array<Input.Relationship | Input.Entity | Input.Property>;
 
     previous_queries: Array<string>;
 
@@ -218,6 +257,46 @@ export namespace AddActionTrainingDatumRequest {
       action_name?: string;
 
       metadata?: Record<string, string>;
+    }
+
+    export interface Relationship {
+      Relationship: Relationship.Relationship;
+    }
+
+    export namespace Relationship {
+      export interface Relationship {
+        relationship_name: string;
+      }
+    }
+
+    export interface Entity {
+      Entity: Entity.Entity;
+    }
+
+    export namespace Entity {
+      export interface Entity {
+        /**
+         * The integer id corresponding to an entity in the seeded kg
+         */
+        seeded_kg_id: number;
+
+        dataset_entity_id?: string | null;
+      }
+    }
+
+    export interface Property {
+      Property: Property.Property;
+    }
+
+    export namespace Property {
+      export interface Property {
+        property_names: Array<string>;
+
+        /**
+         * Vec<ExtractionCriteria> = it has to meet every one.
+         */
+        table_name: string;
+      }
     }
   }
 
@@ -334,7 +413,7 @@ export namespace NextActionAddTrainingDatumParams {
   export interface Input {
     all_steps: Array<Input.AllStep>;
 
-    extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+    extraction_criteria: Array<Input.Relationship | Input.Entity | Input.Property>;
 
     previous_queries: Array<string>;
 
@@ -353,6 +432,46 @@ export namespace NextActionAddTrainingDatumParams {
       action_name?: string;
 
       metadata?: Record<string, string>;
+    }
+
+    export interface Relationship {
+      Relationship: Relationship.Relationship;
+    }
+
+    export namespace Relationship {
+      export interface Relationship {
+        relationship_name: string;
+      }
+    }
+
+    export interface Entity {
+      Entity: Entity.Entity;
+    }
+
+    export namespace Entity {
+      export interface Entity {
+        /**
+         * The integer id corresponding to an entity in the seeded kg
+         */
+        seeded_kg_id: number;
+
+        dataset_entity_id?: string | null;
+      }
+    }
+
+    export interface Property {
+      Property: Property.Property;
+    }
+
+    export namespace Property {
+      export interface Property {
+        property_names: Array<string>;
+
+        /**
+         * Vec<ExtractionCriteria> = it has to meet every one.
+         */
+        table_name: string;
+      }
     }
   }
 
