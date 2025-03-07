@@ -100,7 +100,6 @@ import { Source, SourceListParams, SourceListResponse, Sources } from './resourc
 import {
   ChatPrompt,
   ExecutionStep,
-  ExtractionCriteria,
   Structure,
   StructureEnhancePropertyParams,
   StructureEnhancePropertyResponse,
@@ -481,7 +480,6 @@ export declare namespace Structify {
     Structure as Structure,
     type ChatPrompt as ChatPrompt,
     type ExecutionStep as ExecutionStep,
-    type ExtractionCriteria as ExtractionCriteria,
     type ToolMetadata as ToolMetadata,
     type StructureEnhancePropertyResponse as StructureEnhancePropertyResponse,
     type StructureEnhanceRelationshipResponse as StructureEnhanceRelationshipResponse,
