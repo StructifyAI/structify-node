@@ -112,7 +112,6 @@ export {
   Structure,
   type ChatPrompt,
   type ExecutionStep,
-  type ExtractionCriteria,
   type ToolMetadata,
   type StructureEnhancePropertyResponse,
   type StructureEnhanceRelationshipResponse,
