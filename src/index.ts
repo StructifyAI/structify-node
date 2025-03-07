@@ -100,6 +100,7 @@ import { Source, SourceListParams, SourceListResponse, Sources } from './resourc
 import {
   ChatPrompt,
   ExecutionStep,
+  Pdf,
   SaveRequirement,
   Structure,
   StructureEnhancePropertyParams,
@@ -115,6 +116,7 @@ import {
   StructureRunAsyncParams,
   StructureRunAsyncResponse,
   ToolMetadata,
+  Web,
 } from './resources/structure';
 import {
   TokenResponse,
@@ -487,8 +489,10 @@ export declare namespace Structify {
     Structure as Structure,
     type ChatPrompt as ChatPrompt,
     type ExecutionStep as ExecutionStep,
+    type Pdf as Pdf,
     type SaveRequirement as SaveRequirement,
     type ToolMetadata as ToolMetadata,
+    type Web as Web,
     type StructureEnhancePropertyResponse as StructureEnhancePropertyResponse,
     type StructureEnhanceRelationshipResponse as StructureEnhanceRelationshipResponse,
     type StructureFindRelationshipResponse as StructureFindRelationshipResponse,
