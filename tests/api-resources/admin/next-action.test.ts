@@ -13,7 +13,7 @@ describe('resource nextAction', () => {
     const responsePromise = client.admin.nextAction.addTrainingDatum({
       input: {
         all_steps: [{ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' }],
-        extraction_criteria: [{ relationship_name: 'relationship_name' }],
+        extraction_criteria: [{ RelationshipExtraction: { relationship_name: 'relationship_name' } }],
         previous_queries: ['string'],
         seeded_kg: {},
       },
@@ -39,7 +39,7 @@ describe('resource nextAction', () => {
             metadata: { foo: 'string' },
           },
         ],
-        extraction_criteria: [{ relationship_name: 'relationship_name' }],
+        extraction_criteria: [{ RelationshipExtraction: { relationship_name: 'relationship_name' } }],
         previous_queries: ['string'],
         seeded_kg: {
           entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],

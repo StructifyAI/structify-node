@@ -13,18 +13,10 @@ export class Entities extends APIResource {
     return this._client.delete('/entity/delete', { body, ...options });
   }
 
-  /**
-   * Add an entity (or entities) to a dataset given a graph representation of the
-   * entity (or entities).
-   */
   add(body: EntityAddParams, options?: Core.RequestOptions): Core.APIPromise<EntityAddResponse> {
     return this._client.post('/entity/add', { body, ...options });
   }
 
-  /**
-   * Add a batch of entities to a dataset given a list of graph representations of
-   * the entities.
-   */
   addBatch(
     body: EntityAddBatchParams,
     options?: Core.RequestOptions,
@@ -420,63 +412,71 @@ export namespace EntityViewResponse {
 }
 
 export interface EntityDeleteParams {
-  dataset: string;
+  dataset_name: string;
 
   entity_id: string;
 }
 
 export interface EntityAddParams {
-  dataset: string;
+  dataset_name: string;
 
   /**
    * Knowledge graph info structured to deserialize and display in the same format
    * that the LLM outputs. Also the first representation of an LLM output in the
    * pipeline from raw tool output to being merged into a Neo4j DB
    */
-  entity_graph: SharedAPI.KnowledgeGraph;
+  kg: SharedAPI.KnowledgeGraph;
 
   /**
    * If true, attempt to merge with existing entities in the dataset
    */
   attempt_merge?: boolean;
 
-  source?: EntityAddParams.UserWebSource | EntityAddParams.UserDocumentSource;
+  source?: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage | EntityAddParams.SecFiling;
 }
 
 export namespace EntityAddParams {
-  export interface UserWebSource {
-    url: string;
+  export interface Web {
+    Web: string;
   }
 
-  export interface UserDocumentSource {
-    name: string;
+  export interface DocumentPage {
+    DocumentPage: Array<unknown>;
+  }
 
-    page: number;
+  export interface SecFiling {
+    SecFiling: Array<unknown>;
   }
 }
 
 export interface EntityAddBatchParams {
-  dataset: string;
+  dataset_name: string;
 
-  entity_graphs: Array<SharedAPI.KnowledgeGraph>;
+  kgs: Array<SharedAPI.KnowledgeGraph>;
 
   /**
    * If true, attempt to merge with existing entities in the dataset
    */
   attempt_merge?: boolean;
 
-  source?: EntityAddBatchParams.UserWebSource | EntityAddBatchParams.UserDocumentSource;
+  source?:
+    | 'None'
+    | EntityAddBatchParams.Web
+    | EntityAddBatchParams.DocumentPage
+    | EntityAddBatchParams.SecFiling;
 }
 
 export namespace EntityAddBatchParams {
-  export interface UserWebSource {
-    url: string;
+  export interface Web {
+    Web: string;
   }
 
-  export interface UserDocumentSource {
-    name: string;
+  export interface DocumentPage {
+    DocumentPage: Array<unknown>;
+  }
 
-    page: number;
+  export interface SecFiling {
+    SecFiling: Array<unknown>;
   }
 }
 
@@ -509,7 +509,7 @@ export interface EntityMergeParams {
 }
 
 export interface EntitySearchParams {
-  dataset: string;
+  dataset_name: string;
 
   query: string;
 
@@ -517,7 +517,7 @@ export interface EntitySearchParams {
 }
 
 export interface EntitySummarizeParams {
-  dataset: string;
+  dataset_name: string;
 
   entity_id: string;
 
@@ -534,36 +534,42 @@ export interface EntityTriggerMergeParams {
 }
 
 export interface EntityUpdatePropertyParams {
-  dataset: string;
+  dataset_name: string;
 
   entity_id: string;
 
   properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
-  source?: EntityUpdatePropertyParams.UserWebSource | EntityUpdatePropertyParams.UserDocumentSource;
+  source?:
+    | 'None'
+    | EntityUpdatePropertyParams.Web
+    | EntityUpdatePropertyParams.DocumentPage
+    | EntityUpdatePropertyParams.SecFiling;
 }
 
 export namespace EntityUpdatePropertyParams {
-  export interface UserWebSource {
-    url: string;
+  export interface Web {
+    Web: string;
   }
 
-  export interface UserDocumentSource {
-    name: string;
+  export interface DocumentPage {
+    DocumentPage: Array<unknown>;
+  }
 
-    page: number;
+  export interface SecFiling {
+    SecFiling: Array<unknown>;
   }
 }
 
 export interface EntityVerifyParams {
-  dataset: string;
+  dataset_name: string;
 
   /**
    * Knowledge graph info structured to deserialize and display in the same format
    * that the LLM outputs. Also the first representation of an LLM output in the
    * pipeline from raw tool output to being merged into a Neo4j DB
    */
-  entity_graph: SharedAPI.KnowledgeGraph;
+  kg: SharedAPI.KnowledgeGraph;
 
   /**
    * Whether to apply fixes to the dataset
