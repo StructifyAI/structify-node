@@ -206,7 +206,9 @@ export namespace ChatPrompt {
 
     extracted_entities: Array<SharedAPI.KnowledgeGraph>;
 
-    extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
+    extraction_criteria: Array<
+      Metadata.RequiredRelationship | Metadata.RequiredEntity | Metadata.RequiredProperty
+    >;
 
     formatter_specific: Metadata.ImageMeta | Metadata.WebMeta | Metadata.TextMeta;
 
@@ -214,6 +216,32 @@ export namespace ChatPrompt {
   }
 
   export namespace Metadata {
+    export interface RequiredRelationship {
+      relationship_name: string;
+    }
+
+    export interface RequiredEntity {
+      /**
+       * The integer id corresponding to an entity in the seeded entity graph (different
+       * from the global dataset entity id)
+       */
+      seeded_entity_id: number;
+
+      entity_id?: string | null;
+    }
+
+    export interface RequiredProperty {
+      /**
+       * If there are multiple properties, it can match just one of them
+       */
+      property_names: Array<string>;
+
+      /**
+       * The table name of the entity to update
+       */
+      table_name: string;
+    }
+
     export interface ImageMeta {
       ImageMeta: ImageMeta.ImageMeta;
     }
@@ -486,56 +514,6 @@ export namespace ExecutionStep {
   }
 }
 
-/**
- * It's an OR statement across these.
- */
-export type ExtractionCriteria =
-  | ExtractionCriteria.RelationshipExtraction
-  | ExtractionCriteria.EntityExtraction
-  | ExtractionCriteria.GenericProperty;
-
-export namespace ExtractionCriteria {
-  export interface RelationshipExtraction {
-    RelationshipExtraction: RelationshipExtraction.RelationshipExtraction;
-  }
-
-  export namespace RelationshipExtraction {
-    export interface RelationshipExtraction {
-      relationship_name: string;
-    }
-  }
-
-  export interface EntityExtraction {
-    EntityExtraction: EntityExtraction.EntityExtraction;
-  }
-
-  export namespace EntityExtraction {
-    export interface EntityExtraction {
-      /**
-       * The integer id corresponding to an entity in the seeded kg
-       */
-      seeded_kg_id: number;
-
-      dataset_entity_id?: string | null;
-    }
-  }
-
-  export interface GenericProperty {
-    GenericProperty: GenericProperty.GenericProperty;
-  }
-
-  export namespace GenericProperty {
-    export interface GenericProperty {
-      property_names: Array<string>;
-
-      /**
-       * Vec<ExtractionCriteria> = it has to meet every one.
-       */
-      table_name: string;
-    }
-  }
-}
-
 export interface ToolMetadata {
   description: string;
 
@@ -617,14 +595,18 @@ export type StructureIsCompleteParams = Array<string>;
 export type StructureJobStatusParams = Array<string>;
 
 export interface StructureRunAsyncParams {
-  name: string;
+  dataset: string;
 
   /**
    * These are all the types that can be converted into a BasicInputType
    */
-  structure_input: StructureRunAsyncParams.PdfIngestor | StructureRunAsyncParams.WebSearch;
+  source: StructureRunAsyncParams.PdfIngestor | StructureRunAsyncParams.WebSearch;
 
-  extraction_criteria?: Array<ExtractionCriteria>;
+  save_requirement?: Array<
+    | StructureRunAsyncParams.RequiredRelationship
+    | StructureRunAsyncParams.RequiredEntity
+    | StructureRunAsyncParams.RequiredProperty
+  >;
 
   /**
    * Knowledge graph info structured to deserialize and display in the same format
@@ -637,32 +619,43 @@ export interface StructureRunAsyncParams {
 }
 
 export namespace StructureRunAsyncParams {
+  /**
+   * Ingest all pages of a PDF and process them independently.
+   */
   export interface PdfIngestor {
-    /**
-     * Ingest all pages of a PDF and process them independently.
-     */
-    PDFIngestor: PdfIngestor.PdfIngestor;
-  }
-
-  export namespace PdfIngestor {
-    /**
-     * Ingest all pages of a PDF and process them independently.
-     */
-    export interface PdfIngestor {
-      path: string;
-    }
+    path: string;
   }
 
   export interface WebSearch {
-    WebSearch: WebSearch.WebSearch;
+    starting_searches?: Array<string>;
+
+    starting_urls?: Array<string>;
   }
 
-  export namespace WebSearch {
-    export interface WebSearch {
-      starting_searches?: Array<string>;
+  export interface RequiredRelationship {
+    relationship_name: string;
+  }
 
-      starting_urls?: Array<string>;
-    }
+  export interface RequiredEntity {
+    /**
+     * The integer id corresponding to an entity in the seeded entity graph (different
+     * from the global dataset entity id)
+     */
+    seeded_entity_id: number;
+
+    entity_id?: string | null;
+  }
+
+  export interface RequiredProperty {
+    /**
+     * If there are multiple properties, it can match just one of them
+     */
+    property_names: Array<string>;
+
+    /**
+     * The table name of the entity to update
+     */
+    table_name: string;
   }
 }
 
@@ -670,7 +663,6 @@ export declare namespace Structure {
   export {
     type ChatPrompt as ChatPrompt,
     type ExecutionStep as ExecutionStep,
-    type ExtractionCriteria as ExtractionCriteria,
     type ToolMetadata as ToolMetadata,
     type StructureEnhancePropertyResponse as StructureEnhancePropertyResponse,
     type StructureEnhanceRelationshipResponse as StructureEnhanceRelationshipResponse,
