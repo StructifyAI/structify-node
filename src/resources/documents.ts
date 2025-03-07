@@ -45,11 +45,11 @@ export class Documents extends APIResource {
    * Add a new file to the database
    */
   upload(params: DocumentUploadParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { dataset_name, ...body } = params;
+    const { dataset, ...body } = params;
     return this._client.post(
       '/documents/upload',
       Core.multipartFormRequestOptions({
-        query: { dataset_name },
+        query: { dataset },
         body,
         ...options,
         headers: { Accept: '*/*', ...options?.headers },
@@ -77,7 +77,7 @@ export interface DocumentDownloadResponse {
 }
 
 export interface DocumentListParams {
-  dataset_name?: string | null;
+  dataset?: string | null;
 }
 
 export interface DocumentDeleteParams {
@@ -113,7 +113,7 @@ export interface DocumentUploadParams {
   /**
    * Query param:
    */
-  dataset_name?: string | null;
+  dataset?: string | null;
 }
 
 export declare namespace Documents {
