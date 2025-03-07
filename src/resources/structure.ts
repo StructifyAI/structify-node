@@ -602,7 +602,7 @@ export interface StructureRunAsyncParams {
   /**
    * These are all the types that can be converted into a BasicInputType
    */
-  source: Pdf | Web;
+  source: StructureRunAsyncParams.Pdf | StructureRunAsyncParams.Web;
 
   save_requirement?: Array<SaveRequirement>;
 
@@ -614,6 +614,19 @@ export interface StructureRunAsyncParams {
   seeded_entity?: SharedAPI.KnowledgeGraph;
 
   special_job_type?: 'HumanLLM' | null;
+}
+
+export namespace StructureRunAsyncParams {
+  export interface Pdf {
+    /**
+     * Ingest all pages of a PDF and process them independently.
+     */
+    PDF: StructureAPI.Pdf;
+  }
+
+  export interface Web {
+    Web: StructureAPI.Web;
+  }
 }
 
 export declare namespace Structure {
