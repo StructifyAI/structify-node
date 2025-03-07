@@ -100,7 +100,7 @@ import { Source, SourceListParams, SourceListResponse, Sources } from './resourc
 import {
   ChatPrompt,
   ExecutionStep,
-  SaveRequirement,
+  ExtractionCriteria,
   Structure,
   StructureEnhancePropertyParams,
   StructureEnhancePropertyResponse,
@@ -142,9 +142,6 @@ import {
   DatasetViewTablesWithRelationshipsParams,
   DatasetViewTablesWithRelationshipsResponse,
   Datasets,
-  MergeConfig,
-  RelationshipMergeStrategy,
-  Strategy,
 } from './resources/datasets/datasets';
 
 const environments = {
@@ -372,9 +369,6 @@ export declare namespace Structify {
 
   export {
     Datasets as Datasets,
-    type MergeConfig as MergeConfig,
-    type RelationshipMergeStrategy as RelationshipMergeStrategy,
-    type Strategy as Strategy,
     type DatasetListResponse as DatasetListResponse,
     type DatasetGetResponse as DatasetGetResponse,
     type DatasetMatchResponse as DatasetMatchResponse,
@@ -487,7 +481,7 @@ export declare namespace Structify {
     Structure as Structure,
     type ChatPrompt as ChatPrompt,
     type ExecutionStep as ExecutionStep,
-    type SaveRequirement as SaveRequirement,
+    type ExtractionCriteria as ExtractionCriteria,
     type ToolMetadata as ToolMetadata,
     type StructureEnhancePropertyResponse as StructureEnhancePropertyResponse,
     type StructureEnhanceRelationshipResponse as StructureEnhanceRelationshipResponse,
