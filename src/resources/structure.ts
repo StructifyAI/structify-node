@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as StructureAPI from './structure';
+import * as PlanAPI from './plan';
 import * as SharedAPI from './shared';
 
 export class Structure extends APIResource {
@@ -487,6 +488,13 @@ export namespace ExecutionStep {
 }
 
 /**
+ * Ingest all pages of a PDF and process them independently.
+ */
+export interface Pdf {
+  path: string;
+}
+
+/**
  * It's an OR statement across these.
  */
 export type SaveRequirement =
@@ -542,6 +550,12 @@ export interface ToolMetadata {
   tool_validator: Record<string, unknown>;
 }
 
+export interface Web {
+  starting_searches?: Array<string>;
+
+  starting_urls?: Array<string>;
+}
+
 export type StructureEnhancePropertyResponse = string;
 
 export type StructureEnhanceRelationshipResponse = string;
@@ -554,48 +568,28 @@ export type StructureJobStatusResponse = Array<'Queued' | 'Running' | 'Completed
 
 export type StructureRunAsyncResponse = string;
 
-export interface StructureEnhancePropertyParams {
-  entity_id: string;
+export type StructureEnhancePropertyParams = StructureEnhancePropertyParams.Body;
 
-  property_name: string;
-
-  allow_extra_entities?: boolean;
-
-  special_job_type?: 'HumanLLM' | null;
-
-  starting_searches?: Array<string>;
-
-  starting_urls?: Array<string>;
+export namespace StructureEnhancePropertyParams {
+  export interface Body extends PlanAPI.EnhanceProperty {
+    special_job_type?: 'HumanLLM' | null;
+  }
 }
 
-export interface StructureEnhanceRelationshipParams {
-  entity_id: string;
+export type StructureEnhanceRelationshipParams = StructureEnhanceRelationshipParams.Body;
 
-  relationship_name: string;
-
-  allow_extra_entities?: boolean;
-
-  special_job_type?: 'HumanLLM' | null;
-
-  starting_searches?: Array<string>;
-
-  starting_urls?: Array<string>;
+export namespace StructureEnhanceRelationshipParams {
+  export interface Body extends PlanAPI.EnhanceRelationship {
+    special_job_type?: 'HumanLLM' | null;
+  }
 }
 
-export interface StructureFindRelationshipParams {
-  relationship_name: string;
+export type StructureFindRelationshipParams = StructureFindRelationshipParams.Body;
 
-  source_entity_id: string;
-
-  target_entity_id: string;
-
-  allow_extra_entities?: boolean;
-
-  special_job_type?: 'HumanLLM' | null;
-
-  starting_searches?: Array<string>;
-
-  starting_urls?: Array<string>;
+export namespace StructureFindRelationshipParams {
+  export interface Body extends PlanAPI.FindRelationship {
+    special_job_type?: 'HumanLLM' | null;
+  }
 }
 
 export type StructureIsCompleteParams = Array<string>;
@@ -608,7 +602,7 @@ export interface StructureRunAsyncParams {
   /**
    * These are all the types that can be converted into a BasicInputType
    */
-  source: StructureRunAsyncParams.PdfIngestor | StructureRunAsyncParams.WebSearch;
+  source: Pdf | Web;
 
   save_requirement?: Array<SaveRequirement>;
 
@@ -622,27 +616,14 @@ export interface StructureRunAsyncParams {
   special_job_type?: 'HumanLLM' | null;
 }
 
-export namespace StructureRunAsyncParams {
-  /**
-   * Ingest all pages of a PDF and process them independently.
-   */
-  export interface PdfIngestor {
-    path: string;
-  }
-
-  export interface WebSearch {
-    starting_searches?: Array<string>;
-
-    starting_urls?: Array<string>;
-  }
-}
-
 export declare namespace Structure {
   export {
     type ChatPrompt as ChatPrompt,
     type ExecutionStep as ExecutionStep,
+    type Pdf as Pdf,
     type SaveRequirement as SaveRequirement,
     type ToolMetadata as ToolMetadata,
+    type Web as Web,
     type StructureEnhancePropertyResponse as StructureEnhancePropertyResponse,
     type StructureEnhanceRelationshipResponse as StructureEnhanceRelationshipResponse,
     type StructureFindRelationshipResponse as StructureFindRelationshipResponse,
