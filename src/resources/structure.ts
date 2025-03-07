@@ -608,7 +608,7 @@ export interface StructureRunAsyncParams {
   /**
    * These are all the types that can be converted into a BasicInputType
    */
-  source: StructureRunAsyncParams.PdfIngestor | StructureRunAsyncParams.WebSearch;
+  source: StructureRunAsyncParams.Pdf | StructureRunAsyncParams.Web;
 
   save_requirement?: Array<SaveRequirement>;
 
@@ -623,17 +623,32 @@ export interface StructureRunAsyncParams {
 }
 
 export namespace StructureRunAsyncParams {
-  /**
-   * Ingest all pages of a PDF and process them independently.
-   */
-  export interface PdfIngestor {
-    path: string;
+  export interface Pdf {
+    /**
+     * Ingest all pages of a PDF and process them independently.
+     */
+    PDF: Pdf.Pdf;
   }
 
-  export interface WebSearch {
-    starting_searches?: Array<string>;
+  export namespace Pdf {
+    /**
+     * Ingest all pages of a PDF and process them independently.
+     */
+    export interface Pdf {
+      path: string;
+    }
+  }
 
-    starting_urls?: Array<string>;
+  export interface Web {
+    Web: Web.Web;
+  }
+
+  export namespace Web {
+    export interface Web {
+      starting_searches?: Array<string>;
+
+      starting_urls?: Array<string>;
+    }
   }
 }
 
