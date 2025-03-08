@@ -440,29 +440,20 @@ export interface EntityAddParams {
    */
   attempt_merge?: boolean;
 
-  source?:
-    | EntityAddParams.UserWebSource
-    | EntityAddParams.UserDocumentSource
-    | EntityAddParams.UserSecFilingSource;
+  source?: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage | EntityAddParams.SecFiling;
 }
 
 export namespace EntityAddParams {
-  export interface UserWebSource {
-    url: string;
+  export interface Web {
+    Web: string;
   }
 
-  export interface UserDocumentSource {
-    name: string;
-
-    page: number;
+  export interface DocumentPage {
+    DocumentPage: Array<unknown>;
   }
 
-  export interface UserSecFilingSource {
-    accession_number: string;
-
-    cik_number: string;
-
-    page: number;
+  export interface SecFiling {
+    SecFiling: Array<unknown>;
   }
 }
 
@@ -477,28 +468,23 @@ export interface EntityAddBatchParams {
   attempt_merge?: boolean;
 
   source?:
-    | EntityAddBatchParams.UserWebSource
-    | EntityAddBatchParams.UserDocumentSource
-    | EntityAddBatchParams.UserSecFilingSource;
+    | 'None'
+    | EntityAddBatchParams.Web
+    | EntityAddBatchParams.DocumentPage
+    | EntityAddBatchParams.SecFiling;
 }
 
 export namespace EntityAddBatchParams {
-  export interface UserWebSource {
-    url: string;
+  export interface Web {
+    Web: string;
   }
 
-  export interface UserDocumentSource {
-    name: string;
-
-    page: number;
+  export interface DocumentPage {
+    DocumentPage: Array<unknown>;
   }
 
-  export interface UserSecFilingSource {
-    accession_number: string;
-
-    cik_number: string;
-
-    page: number;
+  export interface SecFiling {
+    SecFiling: Array<unknown>;
   }
 }
 
@@ -563,28 +549,23 @@ export interface EntityUpdatePropertyParams {
   properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
   source?:
-    | EntityUpdatePropertyParams.UserWebSource
-    | EntityUpdatePropertyParams.UserDocumentSource
-    | EntityUpdatePropertyParams.UserSecFilingSource;
+    | 'None'
+    | EntityUpdatePropertyParams.Web
+    | EntityUpdatePropertyParams.DocumentPage
+    | EntityUpdatePropertyParams.SecFiling;
 }
 
 export namespace EntityUpdatePropertyParams {
-  export interface UserWebSource {
-    url: string;
+  export interface Web {
+    Web: string;
   }
 
-  export interface UserDocumentSource {
-    name: string;
-
-    page: number;
+  export interface DocumentPage {
+    DocumentPage: Array<unknown>;
   }
 
-  export interface UserSecFilingSource {
-    accession_number: string;
-
-    cik_number: string;
-
-    page: number;
+  export interface SecFiling {
+    SecFiling: Array<unknown>;
   }
 }
 
