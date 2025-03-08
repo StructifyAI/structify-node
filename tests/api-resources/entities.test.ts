@@ -49,7 +49,7 @@ describe('resource entities', () => {
         relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
       },
       attempt_merge: true,
-      source: 'None',
+      source: {},
     });
   });
 
@@ -74,7 +74,7 @@ describe('resource entities', () => {
         },
       ],
       attempt_merge: true,
-      source: 'None',
+      source: {},
     });
   });
 
@@ -252,7 +252,7 @@ describe('resource entities', () => {
       dataset: 'dataset',
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       properties: { foo: 'string' },
-      source: 'None',
+      source: {},
     });
   });
 
