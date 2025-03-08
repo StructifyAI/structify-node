@@ -440,21 +440,7 @@ export interface EntityAddParams {
    */
   attempt_merge?: boolean;
 
-  source?: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage | EntityAddParams.SecFiling;
-}
-
-export namespace EntityAddParams {
-  export interface Web {
-    Web: string;
-  }
-
-  export interface DocumentPage {
-    DocumentPage: Array<unknown>;
-  }
-
-  export interface SecFiling {
-    SecFiling: Array<unknown>;
-  }
+  source?: unknown | string | Array<unknown> | Array<unknown>;
 }
 
 export interface EntityAddBatchParams {
@@ -467,25 +453,7 @@ export interface EntityAddBatchParams {
    */
   attempt_merge?: boolean;
 
-  source?:
-    | 'None'
-    | EntityAddBatchParams.Web
-    | EntityAddBatchParams.DocumentPage
-    | EntityAddBatchParams.SecFiling;
-}
-
-export namespace EntityAddBatchParams {
-  export interface Web {
-    Web: string;
-  }
-
-  export interface DocumentPage {
-    DocumentPage: Array<unknown>;
-  }
-
-  export interface SecFiling {
-    SecFiling: Array<unknown>;
-  }
+  source?: unknown | string | Array<unknown> | Array<unknown>;
 }
 
 export interface EntityGetParams {
@@ -548,25 +516,7 @@ export interface EntityUpdatePropertyParams {
 
   properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
-  source?:
-    | 'None'
-    | EntityUpdatePropertyParams.Web
-    | EntityUpdatePropertyParams.DocumentPage
-    | EntityUpdatePropertyParams.SecFiling;
-}
-
-export namespace EntityUpdatePropertyParams {
-  export interface Web {
-    Web: string;
-  }
-
-  export interface DocumentPage {
-    DocumentPage: Array<unknown>;
-  }
-
-  export interface SecFiling {
-    SecFiling: Array<unknown>;
-  }
+  source?: unknown | string | Array<unknown> | Array<unknown>;
 }
 
 export interface EntityVerifyParams {
