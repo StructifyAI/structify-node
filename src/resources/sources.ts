@@ -13,21 +13,39 @@ export class Sources extends APIResource {
   }
 }
 
-export type Source = Source.URL | Source.Name | Source.UnionMember2 | unknown;
+export type Source = Source.Web | Source.Document | Source.SecFiling | 'None';
 
 export namespace Source {
-  export interface URL {
-    url: string;
+  export interface Web {
+    Web: Web.Web;
   }
 
-  export interface Name {
-    name: string;
+  export namespace Web {
+    export interface Web {
+      url: string;
+    }
   }
 
-  export interface UnionMember2 {
-    accession_number: string;
+  export interface Document {
+    Document: Document.Document;
+  }
 
-    cik_number: string;
+  export namespace Document {
+    export interface Document {
+      name: string;
+    }
+  }
+
+  export interface SecFiling {
+    SecFiling: SecFiling.SecFiling;
+  }
+
+  export namespace SecFiling {
+    export interface SecFiling {
+      accession_number: string;
+
+      cik_number: string;
+    }
   }
 }
 
