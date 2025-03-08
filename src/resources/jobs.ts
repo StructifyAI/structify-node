@@ -198,7 +198,7 @@ export interface JobListParams extends JobsListParams {
   /**
    * Dataset name to optionally filter jobs by
    */
-  dataset?: string | null;
+  dataset_name?: string | null;
 
   /**
    * List since a specific timestamp

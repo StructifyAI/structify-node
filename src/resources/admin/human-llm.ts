@@ -130,7 +130,7 @@ export namespace HumanLlmJob {
 }
 
 export interface StepChoices {
-  extraction_criteria: Array<StructureAPI.SaveRequirement>;
+  extraction_criteria: Array<StructureAPI.ExtractionCriteria>;
 
   job_id: string;
 
