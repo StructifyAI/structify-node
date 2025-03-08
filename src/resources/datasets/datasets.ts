@@ -226,33 +226,27 @@ export namespace DatasetCreateParams {
 
   export namespace Relationship {
     export interface MergeStrategy {
-      Probabilistic: MergeStrategy.Probabilistic;
-    }
+      /**
+       * Describes the expected cardinality of the source table when a match is found in
+       * the target table
+       *
+       * For example, if we have a source company and a target funding round, we expect
+       * the source company to appear in multiple funding rounds, but not _too_ many. So
+       * if we have a funding round match, the expected number of unique companies is
+       * relatively small. This is an estimate of that number.
+       */
+      source_cardinality_given_target_match?: number | null;
 
-    export namespace MergeStrategy {
-      export interface Probabilistic {
-        /**
-         * Describes the expected cardinality of the source table when a match is found in
-         * the target table
-         *
-         * For example, if we have a source company and a target funding round, we expect
-         * the source company to appear in multiple funding rounds, but not _too_ many. So
-         * if we have a funding round match, the expected number of unique companies is
-         * relatively small. This is an estimate of that number.
-         */
-        source_cardinality_given_target_match?: number | null;
-
-        /**
-         * Describes the expected cardinality of the target table when a match is found in
-         * the source table
-         *
-         * For example, if we have a source company and a target funding round, we usually
-         * expect some number of funding rounds to be associated with a single company but
-         * not _too_ many. So if we have a company match, the expected number of unique
-         * funding rounds is relatively small. This is an estimate of that number.
-         */
-        target_cardinality_given_source_match?: number | null;
-      }
+      /**
+       * Describes the expected cardinality of the target table when a match is found in
+       * the source table
+       *
+       * For example, if we have a source company and a target funding round, we usually
+       * expect some number of funding rounds to be associated with a single company but
+       * not _too_ many. So if we have a company match, the expected number of unique
+       * funding rounds is relatively small. This is an estimate of that number.
+       */
+      target_cardinality_given_source_match?: number | null;
     }
 
     export interface Property {
@@ -267,10 +261,16 @@ export namespace DatasetCreateParams {
 
     export namespace Property {
       export interface Probabilistic {
+        /**
+         * The configuration for a probabilistic merge strategy
+         */
         Probabilistic: Probabilistic.Probabilistic;
       }
 
       export namespace Probabilistic {
+        /**
+         * The configuration for a probabilistic merge strategy
+         */
         export interface Probabilistic {
           /**
            * The number of unique values that are expected to be present in the complete
