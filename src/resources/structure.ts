@@ -206,9 +206,7 @@ export namespace ChatPrompt {
 
     extracted_entities: Array<SharedAPI.KnowledgeGraph>;
 
-    extraction_criteria: Array<
-      Metadata.RequiredRelationship | Metadata.RequiredEntity | Metadata.RequiredProperty
-    >;
+    extraction_criteria: Array<StructureAPI.SaveRequirement>;
 
     formatter_specific: Metadata.ImageMeta | Metadata.WebMeta | Metadata.TextMeta;
 
@@ -216,32 +214,6 @@ export namespace ChatPrompt {
   }
 
   export namespace Metadata {
-    export interface RequiredRelationship {
-      relationship_name: string;
-    }
-
-    export interface RequiredEntity {
-      /**
-       * The integer id corresponding to an entity in the seeded entity graph (different
-       * from the global dataset entity id)
-       */
-      seeded_entity_id: number;
-
-      entity_id?: string | null;
-    }
-
-    export interface RequiredProperty {
-      /**
-       * If there are multiple properties, it can match just one of them
-       */
-      property_names: Array<string>;
-
-      /**
-       * The table name of the entity to update
-       */
-      table_name: string;
-    }
-
     export interface ImageMeta {
       ImageMeta: ImageMeta.ImageMeta;
     }
@@ -514,6 +486,42 @@ export namespace ExecutionStep {
   }
 }
 
+/**
+ * It's an OR statement across these.
+ */
+export type SaveRequirement =
+  | SaveRequirement.RequiredRelationship
+  | SaveRequirement.RequiredEntity
+  | SaveRequirement.RequiredProperty;
+
+export namespace SaveRequirement {
+  export interface RequiredRelationship {
+    relationship_name: string;
+  }
+
+  export interface RequiredEntity {
+    /**
+     * The integer id corresponding to an entity in the seeded entity graph (different
+     * from the global dataset entity id)
+     */
+    seeded_entity_id: number;
+
+    entity_id?: string | null;
+  }
+
+  export interface RequiredProperty {
+    /**
+     * If there are multiple properties, it can match just one of them
+     */
+    property_names: Array<string>;
+
+    /**
+     * The table name of the entity to update
+     */
+    table_name: string;
+  }
+}
+
 export interface ToolMetadata {
   description: string;
 
@@ -602,11 +610,7 @@ export interface StructureRunAsyncParams {
    */
   source: StructureRunAsyncParams.Pdf | StructureRunAsyncParams.Web;
 
-  save_requirement?: Array<
-    | StructureRunAsyncParams.RequiredRelationship
-    | StructureRunAsyncParams.RequiredEntity
-    | StructureRunAsyncParams.RequiredProperty
-  >;
+  save_requirement?: Array<SaveRequirement>;
 
   /**
    * Knowledge graph info structured to deserialize and display in the same format
@@ -646,38 +650,13 @@ export namespace StructureRunAsyncParams {
       starting_urls?: Array<string>;
     }
   }
-
-  export interface RequiredRelationship {
-    relationship_name: string;
-  }
-
-  export interface RequiredEntity {
-    /**
-     * The integer id corresponding to an entity in the seeded entity graph (different
-     * from the global dataset entity id)
-     */
-    seeded_entity_id: number;
-
-    entity_id?: string | null;
-  }
-
-  export interface RequiredProperty {
-    /**
-     * If there are multiple properties, it can match just one of them
-     */
-    property_names: Array<string>;
-
-    /**
-     * The table name of the entity to update
-     */
-    table_name: string;
-  }
 }
 
 export declare namespace Structure {
   export {
     type ChatPrompt as ChatPrompt,
     type ExecutionStep as ExecutionStep,
+    type SaveRequirement as SaveRequirement,
     type ToolMetadata as ToolMetadata,
     type StructureEnhancePropertyResponse as StructureEnhancePropertyResponse,
     type StructureEnhanceRelationshipResponse as StructureEnhanceRelationshipResponse,
