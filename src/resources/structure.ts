@@ -290,7 +290,7 @@ export namespace ChatPrompt {
 }
 
 export interface ExecutionStep {
-  id: number;
+  id: string;
 
   prompt: ChatPrompt;
 
@@ -506,7 +506,7 @@ export namespace SaveRequirement {
      */
     seeded_entity_id: number;
 
-    entity_id?: number | null;
+    entity_id?: string | null;
   }
 
   export interface RequiredProperty {
@@ -555,7 +555,7 @@ export type StructureJobStatusResponse = Array<'Queued' | 'Running' | 'Completed
 export type StructureRunAsyncResponse = string;
 
 export interface StructureEnhancePropertyParams {
-  entity_id: number;
+  entity_id: string;
 
   property_name: string;
 
@@ -569,7 +569,7 @@ export interface StructureEnhancePropertyParams {
 }
 
 export interface StructureEnhanceRelationshipParams {
-  entity_id: number;
+  entity_id: string;
 
   relationship_name: string;
 
@@ -585,9 +585,9 @@ export interface StructureEnhanceRelationshipParams {
 export interface StructureFindRelationshipParams {
   relationship_name: string;
 
-  source_entity_id: number;
+  source_entity_id: string;
 
-  target_entity_id: number;
+  target_entity_id: string;
 
   allow_extra_entities?: boolean;
 
