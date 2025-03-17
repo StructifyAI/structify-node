@@ -42,7 +42,7 @@ export class PlanResource extends APIResource {
 }
 
 export interface EnhanceProperty {
-  entity_id: number;
+  entity_id: string;
 
   property_name: string;
 
@@ -54,7 +54,7 @@ export interface EnhanceProperty {
 }
 
 export interface EnhanceRelationship {
-  entity_id: number;
+  entity_id: string;
 
   relationship_name: string;
 
@@ -68,9 +68,9 @@ export interface EnhanceRelationship {
 export interface FindRelationship {
   relationship_name: string;
 
-  source_entity_id: number;
+  source_entity_id: string;
 
-  target_entity_id: number;
+  target_entity_id: string;
 
   allow_extra_entities?: boolean;
 
@@ -96,7 +96,7 @@ export namespace PlanListResponse {
   export interface PlanListResponseItem {
     plan: PlanAPI.Plan;
 
-    plan_id: number;
+    plan_id: string;
 
     status: 'Running' | 'StartingNextStep' | 'Completed' | 'Failed' | 'Paused';
 
@@ -104,9 +104,9 @@ export namespace PlanListResponse {
   }
 }
 
-export type PlanPauseAllResponse = Array<number>;
+export type PlanPauseAllResponse = Array<string>;
 
-export type PlanResumeAllResponse = Array<number>;
+export type PlanResumeAllResponse = Array<string>;
 
 export interface PlanCreateParams {
   dataset: string;

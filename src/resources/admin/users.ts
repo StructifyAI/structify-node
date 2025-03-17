@@ -53,24 +53,15 @@ export class Users extends APIResource {
 }
 
 export interface User {
-  id: unknown;
-
-  created_at: string;
-
   email: string;
 
-  feature_flags: Array<
-    | 'functional_test'
-    | 'pdf_parsing'
-    | 'boredm_construction_hack'
-    | 'boredm_construction_model'
-    | 'none'
-    | null
+  feature_flags?: Array<
+    'functional_test' | 'pdf_parsing' | 'boredm_construction_hack' | 'boredm_construction_model' | 'none'
   >;
 
-  permissions: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none' | null>;
+  permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'>;
 
-  user_type: 'admin' | 'public' | 'end_user';
+  user_type?: 'Admin' | 'Public' | 'EndUser';
 }
 
 export type UserListResponse = Array<UserListResponse.UserListResponseItem>;

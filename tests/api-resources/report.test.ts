@@ -10,7 +10,7 @@ const client = new Structify({
 
 describe('resource report', () => {
   test('missing: only required params', async () => {
-    const responsePromise = client.report.missing({ id: 0 });
+    const responsePromise = client.report.missing({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,7 +21,11 @@ describe('resource report', () => {
   });
 
   test('missing: required and optional params', async () => {
-    const response = await client.report.missing({ id: 0, property: 'property', source_url: 'source_url' });
+    const response = await client.report.missing({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      property: 'property',
+      source_url: 'source_url',
+    });
   });
 
   test('relationship: only required params', async () => {
@@ -38,14 +42,14 @@ describe('resource report', () => {
   test('relationship: required and optional params', async () => {
     const response = await client.report.relationship({
       relationship_type: 'relationship_type',
-      source_id: 0,
+      source_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       source_url: 'source_url',
-      target_id: 0,
+      target_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 
   test('step: only required params', async () => {
-    const responsePromise = client.report.step({ step_id: 0 });
+    const responsePromise = client.report.step({ step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -56,11 +60,14 @@ describe('resource report', () => {
   });
 
   test('step: required and optional params', async () => {
-    const response = await client.report.step({ step_id: 0, message: 'message' });
+    const response = await client.report.step({
+      step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      message: 'message',
+    });
   });
 
   test('wrong: only required params', async () => {
-    const responsePromise = client.report.wrong({ id: 0 });
+    const responsePromise = client.report.wrong({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -71,6 +78,10 @@ describe('resource report', () => {
   });
 
   test('wrong: required and optional params', async () => {
-    const response = await client.report.wrong({ id: 0, property: 'property', source_url: 'source_url' });
+    const response = await client.report.wrong({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      property: 'property',
+      source_url: 'source_url',
+    });
   });
 });

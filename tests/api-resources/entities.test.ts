@@ -10,7 +10,10 @@ const client = new Structify({
 
 describe('resource entities', () => {
   test('delete: only required params', async () => {
-    const responsePromise = client.entities.delete({ dataset: 'dataset', entity_id: 0 });
+    const responsePromise = client.entities.delete({
+      dataset: 'dataset',
+      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,7 +24,10 @@ describe('resource entities', () => {
   });
 
   test('delete: required and optional params', async () => {
-    const response = await client.entities.delete({ dataset: 'dataset', entity_id: 0 });
+    const response = await client.entities.delete({
+      dataset: 'dataset',
+      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
   });
 
   test('add: only required params', async () => {
@@ -73,7 +79,7 @@ describe('resource entities', () => {
   });
 
   test('get: only required params', async () => {
-    const responsePromise = client.entities.get({ id: 0 });
+    const responsePromise = client.entities.get({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -84,11 +90,14 @@ describe('resource entities', () => {
   });
 
   test('get: required and optional params', async () => {
-    const response = await client.entities.get({ id: 0, resolve_id: true });
+    const response = await client.entities.get({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      resolve_id: true,
+    });
   });
 
   test('getLocalSubgraph: only required params', async () => {
-    const responsePromise = client.entities.getLocalSubgraph({ id: 0 });
+    const responsePromise = client.entities.getLocalSubgraph({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -99,11 +108,14 @@ describe('resource entities', () => {
   });
 
   test('getLocalSubgraph: required and optional params', async () => {
-    const response = await client.entities.getLocalSubgraph({ id: 0, radius: 0 });
+    const response = await client.entities.getLocalSubgraph({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      radius: 0,
+    });
   });
 
   test('getSourceEntities: only required params', async () => {
-    const responsePromise = client.entities.getSourceEntities({ id: 0 });
+    const responsePromise = client.entities.getSourceEntities({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -114,11 +126,11 @@ describe('resource entities', () => {
   });
 
   test('getSourceEntities: required and optional params', async () => {
-    const response = await client.entities.getSourceEntities({ id: 0 });
+    const response = await client.entities.getSourceEntities({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
   });
 
   test('listJobs: only required params', async () => {
-    const responsePromise = client.entities.listJobs({ id: 0 });
+    const responsePromise = client.entities.listJobs({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -129,11 +141,14 @@ describe('resource entities', () => {
   });
 
   test('listJobs: required and optional params', async () => {
-    const response = await client.entities.listJobs({ id: 0 });
+    const response = await client.entities.listJobs({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
   });
 
   test('merge: only required params', async () => {
-    const responsePromise = client.entities.merge({ entity_1_id: 0, entity_2_id: 0 });
+    const responsePromise = client.entities.merge({
+      entity_1_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      entity_2_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -144,7 +159,11 @@ describe('resource entities', () => {
   });
 
   test('merge: required and optional params', async () => {
-    const response = await client.entities.merge({ entity_1_id: 0, entity_2_id: 0, debug: true });
+    const response = await client.entities.merge({
+      entity_1_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      entity_2_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      debug: true,
+    });
   });
 
   test('search: only required params', async () => {
@@ -173,7 +192,7 @@ describe('resource entities', () => {
   test('summarize: only required params', async () => {
     const responsePromise = client.entities.summarize({
       dataset: 'dataset',
-      entity_id: 0,
+      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       properties: ['string'],
     });
     const rawResponse = await responsePromise.asResponse();
@@ -188,14 +207,16 @@ describe('resource entities', () => {
   test('summarize: required and optional params', async () => {
     const response = await client.entities.summarize({
       dataset: 'dataset',
-      entity_id: 0,
+      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       properties: ['string'],
       extra_instructions: ['string'],
     });
   });
 
   test('triggerMerge: only required params', async () => {
-    const responsePromise = client.entities.triggerMerge({ entity_id: 0 });
+    const responsePromise = client.entities.triggerMerge({
+      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -206,13 +227,15 @@ describe('resource entities', () => {
   });
 
   test('triggerMerge: required and optional params', async () => {
-    const response = await client.entities.triggerMerge({ entity_id: 0 });
+    const response = await client.entities.triggerMerge({
+      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
   });
 
   test('updateProperty: only required params', async () => {
     const responsePromise = client.entities.updateProperty({
       dataset: 'dataset',
-      entity_id: 0,
+      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       properties: { foo: 'string' },
     });
     const rawResponse = await responsePromise.asResponse();
@@ -227,7 +250,7 @@ describe('resource entities', () => {
   test('updateProperty: required and optional params', async () => {
     const response = await client.entities.updateProperty({
       dataset: 'dataset',
-      entity_id: 0,
+      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       properties: { foo: 'string' },
       source: 'None',
     });
@@ -256,7 +279,7 @@ describe('resource entities', () => {
   });
 
   test('view: only required params', async () => {
-    const responsePromise = client.entities.view({ id: 0 });
+    const responsePromise = client.entities.view({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -267,6 +290,9 @@ describe('resource entities', () => {
   });
 
   test('view: required and optional params', async () => {
-    const response = await client.entities.view({ id: 0, resolve_id: true });
+    const response = await client.entities.view({
+      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      resolve_id: true,
+    });
   });
 });

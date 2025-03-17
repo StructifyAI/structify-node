@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as SharedAPI from './shared';
+import * as SourcesAPI from './sources';
 
 export class Entities extends APIResource {
   /**
@@ -119,22 +120,20 @@ export class Entities extends APIResource {
   }
 }
 
-export type EntityDeleteResponse = Array<number>;
+export type EntityDeleteResponse = Array<string>;
 
-export type EntityAddResponse = Array<number>;
+export type EntityAddResponse = Array<string>;
 
-export type EntityAddBatchResponse = Array<number>;
+export type EntityAddBatchResponse = Array<string>;
 
 export interface EntityGetResponse {
-  id: number;
+  id: string;
 
   creation_time: string;
 
-  dataset_id: unknown;
-
   label: string;
 
-  properties: unknown;
+  properties: Record<string, string | boolean | number | SharedAPI.Image>;
 }
 
 export interface EntityGetLocalSubgraphResponse {
@@ -145,25 +144,23 @@ export interface EntityGetLocalSubgraphResponse {
 
 export namespace EntityGetLocalSubgraphResponse {
   export interface Neighbor {
-    id: number;
+    id: string;
 
     creation_time: string;
 
-    dataset_id: unknown;
-
     label: string;
 
-    properties: unknown;
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
   }
 
   export interface Relationship {
-    from_id: number;
+    from_id: string;
 
     label: string;
 
     properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
-    to_id: number;
+    to_id: string;
   }
 }
 
@@ -173,31 +170,57 @@ export interface EntityGetSourceEntitiesResponse {
 
 export namespace EntityGetSourceEntitiesResponse {
   export interface SourceEntity {
-    id: number;
+    id: string;
 
-    created_at: string;
+    creation_time: string;
 
     is_summary: boolean;
 
     label: string;
 
-    link: unknown;
+    link: SourcesAPI.Source;
 
     llm_id: number;
 
-    location: unknown;
+    location: SourceEntity.Text | SourceEntity.Visual | SourceEntity.Page | 'None';
 
-    properties: unknown;
-
-    source_id: number;
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
     user_specified: boolean;
+  }
 
-    entity_id?: number | null;
+  export namespace SourceEntity {
+    export interface Text {
+      Text: Text.Text;
+    }
 
-    job_id?: number | null;
+    export namespace Text {
+      export interface Text {
+        byte_offset: number;
+      }
+    }
 
-    step_id?: number | null;
+    export interface Visual {
+      Visual: Visual.Visual;
+    }
+
+    export namespace Visual {
+      export interface Visual {
+        x: number;
+
+        y: number;
+      }
+    }
+
+    export interface Page {
+      Page: Page.Page;
+    }
+
+    export namespace Page {
+      export interface Page {
+        page_number: number;
+      }
+    }
   }
 }
 
@@ -205,21 +228,13 @@ export type EntityListJobsResponse = Array<EntityListJobsResponse.EntityListJobs
 
 export namespace EntityListJobsResponse {
   export interface EntityListJobsResponseItem {
-    id: number;
+    id: string;
 
-    created_at: string;
-
-    dataset_id: unknown;
-
-    parameters: unknown;
+    creation_time: string;
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
-    user_id: unknown;
-
     message?: string | null;
-
-    plan_id?: number | null;
 
     reason?: string | null;
 
@@ -235,14 +250,14 @@ export namespace EntityListJobsResponse {
 export interface EntityMergeResponse {
   match_object?: EntityMergeResponse.MatchObject | null;
 
-  merged_entity_id?: number | null;
+  merged_entity_id?: string | null;
 }
 
 export namespace EntityMergeResponse {
   export interface MatchObject {
-    a_id: number;
+    a_id: string;
 
-    b_id: number;
+    b_id: string;
 
     info: string;
 
@@ -256,15 +271,13 @@ export type EntitySearchResponse = Array<EntitySearchResponse.EntitySearchRespon
 
 export namespace EntitySearchResponse {
   export interface EntitySearchResponseItem {
-    id: number;
+    id: string;
 
     creation_time: string;
 
-    dataset_id: unknown;
-
     label: string;
 
-    properties: unknown;
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
   }
 }
 
@@ -272,40 +285,34 @@ export type EntitySummarizeResponse = Array<EntitySummarizeResponse.EntitySummar
 
 export namespace EntitySummarizeResponse {
   export interface EntitySummarizeResponseItem {
-    id: number;
+    id: string;
 
     creation_time: string;
 
-    dataset_id: unknown;
-
     label: string;
 
-    properties: unknown;
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
   }
 }
 
 export interface EntityTriggerMergeResponse {
-  id: number;
+  id: string;
 
   creation_time: string;
 
-  dataset_id: unknown;
-
   label: string;
 
-  properties: unknown;
+  properties: Record<string, string | boolean | number | SharedAPI.Image>;
 }
 
 export interface EntityUpdatePropertyResponse {
-  id: number;
+  id: string;
 
   creation_time: string;
 
-  dataset_id: unknown;
-
   label: string;
 
-  properties: unknown;
+  properties: Record<string, string | boolean | number | SharedAPI.Image>;
 }
 
 export interface EntityViewResponse {
@@ -324,72 +331,98 @@ export interface EntityViewResponse {
 
 export namespace EntityViewResponse {
   export interface ConnectedEntity {
-    id: number;
+    id: string;
 
     creation_time: string;
 
-    dataset_id: unknown;
-
     label: string;
 
-    properties: unknown;
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
   }
 
   export interface Entity {
-    id: number;
+    id: string;
 
     creation_time: string;
 
-    dataset_id: unknown;
-
     label: string;
 
-    properties: unknown;
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
   }
 
   export interface Relationship {
-    from_id: number;
+    from_id: string;
 
     label: string;
 
     properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
-    to_id: number;
+    to_id: string;
   }
 
   export interface SimilarEntity {
-    id: number;
+    id: string;
 
     creation_time: string;
 
-    dataset_id: unknown;
-
     label: string;
 
-    properties: unknown;
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
   }
 
   export interface Source {
-    id: number;
+    id: string;
 
-    created_at: string;
+    creation_time: string;
 
     is_summary: boolean;
 
-    link: unknown;
+    link: SourcesAPI.Source;
 
-    location: unknown;
+    location: Source.Text | Source.Visual | Source.Page | 'None';
 
     user_specified: boolean;
+  }
 
-    step_id?: number | null;
+  export namespace Source {
+    export interface Text {
+      Text: Text.Text;
+    }
+
+    export namespace Text {
+      export interface Text {
+        byte_offset: number;
+      }
+    }
+
+    export interface Visual {
+      Visual: Visual.Visual;
+    }
+
+    export namespace Visual {
+      export interface Visual {
+        x: number;
+
+        y: number;
+      }
+    }
+
+    export interface Page {
+      Page: Page.Page;
+    }
+
+    export namespace Page {
+      export interface Page {
+        page_number: number;
+      }
+    }
   }
 }
 
 export interface EntityDeleteParams {
   dataset: string;
 
-  entity_id: number;
+  entity_id: string;
 }
 
 export interface EntityAddParams {
@@ -456,29 +489,29 @@ export namespace EntityAddBatchParams {
 }
 
 export interface EntityGetParams {
-  id: number;
+  id: string;
 
   resolve_id?: boolean;
 }
 
 export interface EntityGetLocalSubgraphParams {
-  id: number;
+  id: string;
 
   radius?: number;
 }
 
 export interface EntityGetSourceEntitiesParams {
-  id: number;
+  id: string;
 }
 
 export interface EntityListJobsParams {
-  id: number;
+  id: string;
 }
 
 export interface EntityMergeParams {
-  entity_1_id: number;
+  entity_1_id: string;
 
-  entity_2_id: number;
+  entity_2_id: string;
 
   debug?: boolean;
 }
@@ -494,7 +527,7 @@ export interface EntitySearchParams {
 export interface EntitySummarizeParams {
   dataset: string;
 
-  entity_id: number;
+  entity_id: string;
 
   properties: Array<string>;
 
@@ -505,13 +538,13 @@ export interface EntitySummarizeParams {
 }
 
 export interface EntityTriggerMergeParams {
-  entity_id: number;
+  entity_id: string;
 }
 
 export interface EntityUpdatePropertyParams {
   dataset: string;
 
-  entity_id: number;
+  entity_id: string;
 
   properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
@@ -553,7 +586,7 @@ export interface EntityVerifyParams {
 }
 
 export interface EntityViewParams {
-  id: number;
+  id: string;
 
   resolve_id?: boolean;
 }
