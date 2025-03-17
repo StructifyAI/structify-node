@@ -75,31 +75,36 @@ import Structify, { toFile } from 'structifyai';
 const client = new Structify();
 
 // If you have access to Node `fs` we recommend using `fs.createReadStream()`:
-await client.admin.trainingDatasets.uploadLabeledStep({
-  dataset_name: fs.createReadStream('/path/to/file'),
-  step_bytes: fs.createReadStream('path/to/file'),
+await client.documents.upload({
+  content: fs.createReadStream('/path/to/file'),
+  file_type: 'Text',
+  path: fs.createReadStream('path/to/file'),
 });
 
 // Or if you have the web `File` API you can pass a `File` instance:
-await client.admin.trainingDatasets.uploadLabeledStep({
-  dataset_name: new File(['my bytes'], 'file'),
-  step_bytes: fs.createReadStream('path/to/file'),
+await client.documents.upload({
+  content: new File(['my bytes'], 'file'),
+  file_type: 'Text',
+  path: fs.createReadStream('path/to/file'),
 });
 
 // You can also pass a `fetch` `Response`:
-await client.admin.trainingDatasets.uploadLabeledStep({
-  dataset_name: await fetch('https://somesite/file'),
-  step_bytes: fs.createReadStream('path/to/file'),
+await client.documents.upload({
+  content: await fetch('https://somesite/file'),
+  file_type: 'Text',
+  path: fs.createReadStream('path/to/file'),
 });
 
 // Finally, if none of the above are convenient, you can use our `toFile` helper:
-await client.admin.trainingDatasets.uploadLabeledStep({
-  dataset_name: await toFile(Buffer.from('my bytes'), 'file'),
-  step_bytes: fs.createReadStream('path/to/file'),
+await client.documents.upload({
+  content: await toFile(Buffer.from('my bytes'), 'file'),
+  file_type: 'Text',
+  path: fs.createReadStream('path/to/file'),
 });
-await client.admin.trainingDatasets.uploadLabeledStep({
-  dataset_name: await toFile(new Uint8Array([0, 1, 2]), 'file'),
-  step_bytes: fs.createReadStream('path/to/file'),
+await client.documents.upload({
+  content: await toFile(new Uint8Array([0, 1, 2]), 'file'),
+  file_type: 'Text',
+  path: fs.createReadStream('path/to/file'),
 });
 ```
 

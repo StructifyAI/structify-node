@@ -59,7 +59,7 @@ export type ReportStepResponse = string;
 export type ReportWrongResponse = string;
 
 export interface ReportMissingParams {
-  id: string;
+  id: number;
 
   /**
    * A property that is being reported
@@ -75,15 +75,15 @@ export interface ReportMissingParams {
 export interface ReportRelationshipParams {
   relationship_type: string;
 
-  source_id?: string | null;
+  source_id?: number | null;
 
   source_url?: string | null;
 
-  target_id?: string | null;
+  target_id?: number | null;
 }
 
 export interface ReportStepParams {
-  step_id: string;
+  step_id: number;
 
   /**
    * A short message about why the step is being reported
@@ -92,7 +92,7 @@ export interface ReportStepParams {
 }
 
 export interface ReportWrongParams {
-  id: string;
+  id: number;
 
   /**
    * A property that is being reported

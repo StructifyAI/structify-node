@@ -62,13 +62,19 @@ export type DocumentListResponse = Array<DocumentListResponse.DocumentListRespon
 
 export namespace DocumentListResponse {
   export interface DocumentListResponseItem {
-    created_time: string;
+    id: unknown;
 
-    document_type: 'Text' | 'PDF' | 'SEC';
+    created_at: string;
+
+    file_hash: unknown;
+
+    file_type: 'Text' | 'PDF' | 'SEC';
 
     name: string;
 
-    content?: Core.Uploadable | null;
+    user_id: unknown;
+
+    dataset_id?: unknown;
   }
 }
 

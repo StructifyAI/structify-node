@@ -21,16 +21,4 @@ export {
   type DatasetViewTableParams,
   type DatasetViewTablesWithRelationshipsParams,
 } from './datasets';
-export {
-  EvaluateListResponsesJobsList,
-  Evaluate,
-  type EvaluateListResponse,
-  type EvaluateGetResponse,
-  type EvaluateRunResponse,
-  type EvaluateStatusResponse,
-  type EvaluateListParams,
-  type EvaluateDeleteParams,
-  type EvaluateGetParams,
-  type EvaluateRunParams,
-  type EvaluateStatusParams,
-} from './evaluate';
+export { Evaluate } from './evaluate';

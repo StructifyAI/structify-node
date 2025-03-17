@@ -80,9 +80,9 @@ export interface KnowledgeGraph {
 export interface MatchedEntity {
   alternative_matches: Array<MatchedEntity>;
 
-  e1_id: string;
+  e1_id: number;
 
-  e2_id: string;
+  e2_id: number;
 
   match_score: number;
 

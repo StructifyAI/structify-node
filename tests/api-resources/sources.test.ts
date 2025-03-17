@@ -10,7 +10,7 @@ const client = new Structify({
 
 describe('resource sources', () => {
   test('list: only required params', async () => {
-    const responsePromise = client.sources.list({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
+    const responsePromise = client.sources.list({ id: 0 });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,9 +21,6 @@ describe('resource sources', () => {
   });
 
   test('list: required and optional params', async () => {
-    const response = await client.sources.list({
-      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      property: 'property',
-    });
+    const response = await client.sources.list({ id: 0, property: 'property' });
   });
 });
