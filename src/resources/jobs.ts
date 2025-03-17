@@ -28,7 +28,7 @@ export class Jobs extends APIResource {
   /**
    * Delete a job
    */
-  delete(jobId: number, options?: Core.RequestOptions): Core.APIPromise<string> {
+  delete(jobId: string, options?: Core.RequestOptions): Core.APIPromise<string> {
     return this._client.post(`/jobs/delete/${jobId}`, {
       ...options,
       headers: { Accept: 'text/plain', ...options?.headers },
@@ -45,14 +45,14 @@ export class Jobs extends APIResource {
   /**
    * Retrieve a job from structify.
    */
-  get(jobId: number, options?: Core.RequestOptions): Core.APIPromise<JobGetResponse> {
+  get(jobId: string, options?: Core.RequestOptions): Core.APIPromise<JobGetResponse> {
     return this._client.get(`/jobs/get/${jobId}`, options);
   }
 
   /**
    * Retrieve a step from structify.
    */
-  getStep(stepId: number, options?: Core.RequestOptions): Core.APIPromise<StructureAPI.ExecutionStep> {
+  getStep(stepId: string, options?: Core.RequestOptions): Core.APIPromise<StructureAPI.ExecutionStep> {
     return this._client.get(`/jobs/get_step/${stepId}`, options);
   }
 
@@ -82,21 +82,13 @@ export class Jobs extends APIResource {
 export class JobListResponsesJobsList extends JobsList<JobListResponse> {}
 
 export interface JobListResponse {
-  id: number;
+  id: string;
 
-  created_at: string;
-
-  dataset_id: unknown;
-
-  parameters: unknown;
+  creation_time: string;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
-  user_id: unknown;
-
   message?: string | null;
-
-  plan_id?: number | null;
 
   reason?: string | null;
 
@@ -111,21 +103,13 @@ export interface JobListResponse {
 export type JobDeleteResponse = string;
 
 export interface JobCancelResponse {
-  id: number;
+  id: string;
 
-  created_at: string;
-
-  dataset_id: unknown;
-
-  parameters: unknown;
+  creation_time: string;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
-  user_id: unknown;
-
   message?: string | null;
-
-  plan_id?: number | null;
 
   reason?: string | null;
 
@@ -145,21 +129,13 @@ export interface JobGetResponse {
 
 export namespace JobGetResponse {
   export interface Job {
-    id: number;
+    id: string;
 
-    created_at: string;
-
-    dataset_id: unknown;
-
-    parameters: unknown;
+    creation_time: string;
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
-    user_id: unknown;
-
     message?: string | null;
-
-    plan_id?: number | null;
 
     reason?: string | null;
 
@@ -180,11 +156,11 @@ export interface JobGetStepGraphResponse {
 
 export namespace JobGetStepGraphResponse {
   export interface Step {
-    id: number;
+    id: string;
 
     creation_time: string;
 
-    status: 'queued' | 'started' | 'executed' | 'skipped';
+    status: 'Queued' | 'Ignored' | 'Started' | 'Executed';
 
     execution_step?: StructureAPI.ExecutionStep | null;
 
@@ -198,15 +174,21 @@ export namespace JobGetStepGraphResponse {
   }
 
   export interface Transition {
-    id: unknown;
+    from: string;
 
-    from_step_id: number;
+    to: string;
 
-    to_step_id: number;
+    tool_call: Transition.ToolCall;
+  }
 
-    transition_time: string;
+  export namespace Transition {
+    export interface ToolCall {
+      action: string;
 
-    tool_call?: unknown;
+      formatted_input: string;
+
+      name: string;
+    }
   }
 }
 

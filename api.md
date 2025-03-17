@@ -18,19 +18,46 @@ Methods:
 
 ## HumanLlm
 
+Types:
+
+- <code><a href="./src/resources/admin/human-llm.ts">HumanLlmJob</a></code>
+- <code><a href="./src/resources/admin/human-llm.ts">StepChoices</a></code>
+- <code><a href="./src/resources/admin/human-llm.ts">HumanLlmAddToDatasetResponse</a></code>
+- <code><a href="./src/resources/admin/human-llm.ts">HumanLlmFinishJobResponse</a></code>
+- <code><a href="./src/resources/admin/human-llm.ts">HumanLlmGetJobsResponse</a></code>
+- <code><a href="./src/resources/admin/human-llm.ts">HumanLlmPrelabelStepResponse</a></code>
+
+Methods:
+
+- <code title="post /admin/human_llm/add_search_for_job">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">addSearchForJob</a>({ ...params }) -> StepChoices</code>
+- <code title="post /admin/human_llm/add_to_dataset">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">addToDataset</a>({ ...params }) -> unknown</code>
+- <code title="post /admin/human_llm/finish_job">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">finishJob</a>({ ...params }) -> unknown</code>
+- <code title="post /admin/human_llm/get_jobs">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">getJobs</a>({ ...params }) -> HumanLlmGetJobsResponse</code>
+- <code title="post /admin/human_llm/get_next_step">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">getNextStep</a>({ ...params }) -> ExecutionStep</code>
+- <code title="post /admin/human_llm/prelabel_step/{step_id}">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">prelabelStep</a>(stepId) -> HumanLlmPrelabelStepResponse</code>
+- <code title="post /admin/human_llm/start_next_job">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">startNextJob</a>({ ...params }) -> StepChoices</code>
+- <code title="post /admin/human_llm/update_step">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">updateStep</a>({ ...params }) -> StepChoices</code>
+
 ## NextAction
 
 Types:
 
 - <code><a href="./src/resources/admin/next-action.ts">ActionTrainingDataEntry</a></code>
-- <code><a href="./src/resources/admin/next-action.ts">NextActionDeleteTrainingDataResponse</a></code>
-- <code><a href="./src/resources/admin/next-action.ts">NextActionGetTrainingDataResponse</a></code>
+- <code><a href="./src/resources/admin/next-action.ts">ActionTrainingDataMetadataResponse</a></code>
+- <code><a href="./src/resources/admin/next-action.ts">ActionTrainingDataResponse</a></code>
+- <code><a href="./src/resources/admin/next-action.ts">ActionTrainingDatumMetadata</a></code>
+- <code><a href="./src/resources/admin/next-action.ts">AddActionTrainingDatumRequest</a></code>
+- <code><a href="./src/resources/admin/next-action.ts">DeleteActionTrainingDataParams</a></code>
+- <code><a href="./src/resources/admin/next-action.ts">DeleteActionTrainingDataResponse</a></code>
+- <code><a href="./src/resources/admin/next-action.ts">GetActionTrainingDataParams</a></code>
+- <code><a href="./src/resources/admin/next-action.ts">LabelActionTrainingDatumRequest</a></code>
 
 Methods:
 
 - <code title="post /admin/next_action/add_action_training_datum">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">addTrainingDatum</a>({ ...params }) -> void</code>
-- <code title="delete /admin/next_action/delete_action_training_data">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">deleteTrainingData</a>({ ...params }) -> unknown</code>
-- <code title="get /admin/next_action/get_action_training_data">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">getTrainingData</a>({ ...params }) -> unknown</code>
+- <code title="delete /admin/next_action/delete_action_training_data">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">deleteTrainingData</a>({ ...params }) -> DeleteActionTrainingDataResponse</code>
+- <code title="get /admin/next_action/get_action_training_data">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">getTrainingData</a>({ ...params }) -> ActionTrainingDataResponse</code>
+- <code title="get /admin/next_action/get_action_training_data_metadata">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">getTrainingDataMetadata</a>({ ...params }) -> ActionTrainingDataMetadataResponse</code>
 - <code title="put /admin/next_action/label_action_training_datum">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">labelTrainingDatum</a>({ ...params }) -> void</code>
 
 ## Users
@@ -56,8 +83,39 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/admin/training-datasets.ts">AddDatumRequest</a></code>
 - <code><a href="./src/resources/admin/training-datasets.ts">DatumStatus</a></code>
 - <code><a href="./src/resources/admin/training-datasets.ts">LabelingStats</a></code>
+- <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatumResponse</a></code>
+- <code><a href="./src/resources/admin/training-datasets.ts">UpdateDatumStatusRequest</a></code>
+- <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatasetListResponse</a></code>
+- <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatasetGetLabellerStatsResponse</a></code>
+- <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatasetListDatumsResponse</a></code>
+- <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatasetSizeResponse</a></code>
+- <code><a href="./src/resources/admin/training-datasets.ts">TrainingDatasetSuspiciousCountResponse</a></code>
+
+Methods:
+
+- <code title="get /admin/training_datasets/list">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">list</a>() -> TrainingDatasetListResponse</code>
+- <code title="delete /admin/training_datasets/delete_dataset">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">delete</a>({ ...params }) -> void</code>
+- <code title="post /admin/training_datasets/add_dataset">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">add</a>({ ...params }) -> void</code>
+- <code title="post /admin/training_datasets/add_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">addDatum</a>({ ...params }) -> void</code>
+- <code title="get /admin/training_datasets/download_datum_step">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">downloadDatum</a>({ ...params }) -> Response</code>
+- <code title="get /admin/training_datasets/get_datum_info">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getDatumInfo</a>({ ...params }) -> TrainingDatumResponse</code>
+- <code title="get /admin/training_datasets/labeller_stats">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getLabellerStats</a>({ ...params }) -> TrainingDatasetGetLabellerStatsResponse</code>
+- <code title="get /admin/training_datasets/get_next_for_labeling">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getNextForLabeling</a>({ ...params }) -> TrainingDatumResponse | null</code>
+- <code title="get /admin/training_datasets/get_next_for_qa">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getNextForQa</a>({ ...params }) -> TrainingDatumResponse | null</code>
+- <code title="get /admin/training_datasets/get_next_suspicious">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">getNextSuspicious</a>({ ...params }) -> TrainingDatumResponse | null</code>
+- <code title="put /admin/training_datasets/label_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">labelDatum</a>({ ...params }) -> void</code>
+- <code title="get /admin/training_datasets/list_datums">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">listDatums</a>({ ...params }) -> TrainingDatasetListDatumsResponse</code>
+- <code title="put /admin/training_datasets/mark_datum_suspicious">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">markDatumSuspicious</a>({ ...params }) -> void</code>
+- <code title="delete /admin/training_datasets/remove_from_dataset">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">removeDatum</a>({ ...params }) -> void</code>
+- <code title="post /admin/training_datasets/size">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">size</a>({ ...params }) -> TrainingDatasetSizeResponse</code>
+- <code title="get /admin/training_datasets/suspicious_count">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">suspiciousCount</a>({ ...params }) -> TrainingDatasetSuspiciousCountResponse</code>
+- <code title="post /admin/training_datasets/switch_dataset">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">switchDataset</a>({ ...params }) -> void</code>
+- <code title="post /admin/training_datasets/update_datum_status">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">updateDatumStatus</a>({ ...params }) -> void</code>
+- <code title="post /admin/training_datasets/upload_labeled_step">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">uploadLabeledStep</a>({ ...params }) -> void</code>
+- <code title="put /admin/training_datasets/verify_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">verifyDatum</a>({ ...params }) -> void</code>
 
 # Datasets
 
@@ -85,6 +143,21 @@ Methods:
 - <code title="get /dataset/view_tables_with_relationships">client.datasets.<a href="./src/resources/datasets/datasets.ts">viewTablesWithRelationships</a>({ ...params }) -> DatasetViewTablesWithRelationshipsResponse</code>
 
 ## Evaluate
+
+Types:
+
+- <code><a href="./src/resources/datasets/evaluate.ts">EvaluateListResponse</a></code>
+- <code><a href="./src/resources/datasets/evaluate.ts">EvaluateGetResponse</a></code>
+- <code><a href="./src/resources/datasets/evaluate.ts">EvaluateRunResponse</a></code>
+- <code><a href="./src/resources/datasets/evaluate.ts">EvaluateStatusResponse</a></code>
+
+Methods:
+
+- <code title="get /dataset/evaluate/list">client.datasets.evaluate.<a href="./src/resources/datasets/evaluate.ts">list</a>({ ...params }) -> EvaluateListResponsesJobsList</code>
+- <code title="delete /dataset/evaluate/delete">client.datasets.evaluate.<a href="./src/resources/datasets/evaluate.ts">delete</a>({ ...params }) -> void</code>
+- <code title="get /dataset/evaluate/get">client.datasets.evaluate.<a href="./src/resources/datasets/evaluate.ts">get</a>({ ...params }) -> EvaluateGetResponse</code>
+- <code title="post /dataset/evaluate/run">client.datasets.evaluate.<a href="./src/resources/datasets/evaluate.ts">run</a>({ ...params }) -> string</code>
+- <code title="get /dataset/evaluate/status">client.datasets.evaluate.<a href="./src/resources/datasets/evaluate.ts">status</a>({ ...params }) -> EvaluateStatusResponse</code>
 
 # Documents
 
