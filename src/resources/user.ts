@@ -76,11 +76,15 @@ export namespace UserTransactionsResponse {
    * Represents a transaction in our database.
    */
   export interface UserTransactionsResponseItem {
-    amount: number;
+    id: number;
+
+    amount: unknown;
 
     timestamp: string;
 
-    transaction_id: string;
+    token_id: unknown;
+
+    job_id?: number | null;
   }
 }
 
