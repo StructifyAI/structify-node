@@ -5,19 +5,7 @@ import * as Core from '../../core';
 import * as DatasetsAPI from './datasets';
 import * as SharedAPI from '../shared';
 import * as EvaluateAPI from './evaluate';
-import {
-  Evaluate,
-  EvaluateDeleteParams,
-  EvaluateGetParams,
-  EvaluateGetResponse,
-  EvaluateListParams,
-  EvaluateListResponse,
-  EvaluateListResponsesJobsList,
-  EvaluateRunParams,
-  EvaluateRunResponse,
-  EvaluateStatusParams,
-  EvaluateStatusResponse,
-} from './evaluate';
+import { Evaluate } from './evaluate';
 import { JobsList, type JobsListParams } from '../../pagination';
 
 export class Datasets extends APIResource {
@@ -192,30 +180,32 @@ export type DatasetMatchResponse = Record<string, DatasetMatchResponse.item>;
 
 export namespace DatasetMatchResponse {
   export interface item {
-    entity: string;
+    entity: number;
 
     score: number;
   }
 }
 
 export interface DatasetViewRelationshipsResponse {
-  from_id: string;
+  from_id: number;
 
   label: string;
 
   properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
-  to_id: string;
+  to_id: number;
 }
 
 export interface DatasetViewTableResponse {
-  id: string;
+  id: number;
 
   creation_time: string;
 
+  dataset_id: unknown;
+
   label: string;
 
-  properties: Record<string, string | boolean | number | SharedAPI.Image>;
+  properties: unknown;
 }
 
 export interface DatasetViewTablesWithRelationshipsResponse {
@@ -228,33 +218,37 @@ export interface DatasetViewTablesWithRelationshipsResponse {
 
 export namespace DatasetViewTablesWithRelationshipsResponse {
   export interface ConnectedEntity {
-    id: string;
+    id: number;
 
     creation_time: string;
 
+    dataset_id: unknown;
+
     label: string;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: unknown;
   }
 
   export interface Entity {
-    id: string;
+    id: number;
 
     creation_time: string;
 
+    dataset_id: unknown;
+
     label: string;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: unknown;
   }
 
   export interface Relationship {
-    from_id: string;
+    from_id: number;
 
     label: string;
 
     properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
-    to_id: string;
+    to_id: number;
   }
 }
 
@@ -333,7 +327,7 @@ export interface DatasetViewRelationshipsParams extends JobsListParams {
 
   name: string;
 
-  job_id?: string | null;
+  job_id?: number | null;
 
   last_updated?: string | null;
 
@@ -353,7 +347,7 @@ export interface DatasetViewTableParams extends JobsListParams {
 
   name: string;
 
-  job_id?: string | null;
+  job_id?: number | null;
 
   last_updated?: string | null;
 
@@ -373,7 +367,7 @@ export interface DatasetViewTablesWithRelationshipsParams {
 
   name: string;
 
-  job_id?: string | null;
+  job_id?: number | null;
 
   last_updated?: string | null;
 
@@ -395,7 +389,6 @@ export namespace DatasetViewTablesWithRelationshipsParams {
 Datasets.DatasetViewRelationshipsResponsesJobsList = DatasetViewRelationshipsResponsesJobsList;
 Datasets.DatasetViewTableResponsesJobsList = DatasetViewTableResponsesJobsList;
 Datasets.Evaluate = Evaluate;
-Datasets.EvaluateListResponsesJobsList = EvaluateListResponsesJobsList;
 
 export declare namespace Datasets {
   export {
@@ -419,17 +412,5 @@ export declare namespace Datasets {
     type DatasetViewTablesWithRelationshipsParams as DatasetViewTablesWithRelationshipsParams,
   };
 
-  export {
-    Evaluate as Evaluate,
-    type EvaluateListResponse as EvaluateListResponse,
-    type EvaluateGetResponse as EvaluateGetResponse,
-    type EvaluateRunResponse as EvaluateRunResponse,
-    type EvaluateStatusResponse as EvaluateStatusResponse,
-    EvaluateListResponsesJobsList as EvaluateListResponsesJobsList,
-    type EvaluateListParams as EvaluateListParams,
-    type EvaluateDeleteParams as EvaluateDeleteParams,
-    type EvaluateGetParams as EvaluateGetParams,
-    type EvaluateRunParams as EvaluateRunParams,
-    type EvaluateStatusParams as EvaluateStatusParams,
-  };
+  export { Evaluate as Evaluate };
 }

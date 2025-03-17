@@ -156,7 +156,7 @@ describe('resource datasets', () => {
     const response = await client.datasets.viewRelationships({
       dataset: 'dataset',
       name: 'name',
-      job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      job_id: 0,
       last_updated: '2019-12-27T18:11:19.117Z',
       limit: 0,
       offset: 0,
@@ -179,7 +179,7 @@ describe('resource datasets', () => {
     const response = await client.datasets.viewTable({
       dataset: 'dataset',
       name: 'name',
-      job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      job_id: 0,
       last_updated: '2019-12-27T18:11:19.117Z',
       limit: 0,
       offset: 0,
@@ -202,7 +202,7 @@ describe('resource datasets', () => {
     const response = await client.datasets.viewTablesWithRelationships({
       dataset: 'dataset',
       name: 'name',
-      job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      job_id: 0,
       last_updated: '2019-12-27T18:11:19.117Z',
       limit: 0,
       offset: 0,

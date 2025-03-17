@@ -2,73 +2,20 @@
 
 import { APIResource } from '../../resource';
 import * as HumanLlmAPI from './human-llm';
-import {
-  HumanLlm,
-  HumanLlmAddSearchForJobParams,
-  HumanLlmAddToDatasetParams,
-  HumanLlmAddToDatasetResponse,
-  HumanLlmFinishJobParams,
-  HumanLlmFinishJobResponse,
-  HumanLlmGetJobsParams,
-  HumanLlmGetJobsResponse,
-  HumanLlmGetNextStepParams,
-  HumanLlmJob,
-  HumanLlmPrelabelStepResponse,
-  HumanLlmStartNextJobParams,
-  HumanLlmUpdateStepParams,
-  StepChoices,
-} from './human-llm';
+import { HumanLlm } from './human-llm';
 import * as NextActionAPI from './next-action';
 import {
   ActionTrainingDataEntry,
-  ActionTrainingDataMetadataResponse,
-  ActionTrainingDataResponse,
-  ActionTrainingDatumMetadata,
-  AddActionTrainingDatumRequest,
-  DeleteActionTrainingDataParams,
-  DeleteActionTrainingDataResponse,
-  GetActionTrainingDataParams,
-  LabelActionTrainingDatumRequest,
   NextAction,
   NextActionAddTrainingDatumParams,
   NextActionDeleteTrainingDataParams,
-  NextActionGetTrainingDataMetadataParams,
+  NextActionDeleteTrainingDataResponse,
   NextActionGetTrainingDataParams,
+  NextActionGetTrainingDataResponse,
   NextActionLabelTrainingDatumParams,
 } from './next-action';
 import * as TrainingDatasetsAPI from './training-datasets';
-import {
-  AddDatumRequest,
-  DatumStatus,
-  LabelingStats,
-  TrainingDatasetAddDatumParams,
-  TrainingDatasetAddParams,
-  TrainingDatasetDeleteParams,
-  TrainingDatasetDownloadDatumParams,
-  TrainingDatasetGetDatumInfoParams,
-  TrainingDatasetGetLabellerStatsParams,
-  TrainingDatasetGetLabellerStatsResponse,
-  TrainingDatasetGetNextForLabelingParams,
-  TrainingDatasetGetNextForQaParams,
-  TrainingDatasetGetNextSuspiciousParams,
-  TrainingDatasetLabelDatumParams,
-  TrainingDatasetListDatumsParams,
-  TrainingDatasetListDatumsResponse,
-  TrainingDatasetListResponse,
-  TrainingDatasetMarkDatumSuspiciousParams,
-  TrainingDatasetRemoveDatumParams,
-  TrainingDatasetSizeParams,
-  TrainingDatasetSizeResponse,
-  TrainingDatasetSuspiciousCountParams,
-  TrainingDatasetSuspiciousCountResponse,
-  TrainingDatasetSwitchDatasetParams,
-  TrainingDatasetUpdateDatumStatusParams,
-  TrainingDatasetUploadLabeledStepParams,
-  TrainingDatasetVerifyDatumParams,
-  TrainingDatasets,
-  TrainingDatumResponse,
-  UpdateDatumStatusRequest,
-} from './training-datasets';
+import { DatumStatus, LabelingStats, TrainingDatasets } from './training-datasets';
 import * as UsersAPI from './users';
 import {
   User,
@@ -99,38 +46,16 @@ Admin.Users = Users;
 Admin.TrainingDatasets = TrainingDatasets;
 
 export declare namespace Admin {
-  export {
-    HumanLlm as HumanLlm,
-    type HumanLlmJob as HumanLlmJob,
-    type StepChoices as StepChoices,
-    type HumanLlmAddToDatasetResponse as HumanLlmAddToDatasetResponse,
-    type HumanLlmFinishJobResponse as HumanLlmFinishJobResponse,
-    type HumanLlmGetJobsResponse as HumanLlmGetJobsResponse,
-    type HumanLlmPrelabelStepResponse as HumanLlmPrelabelStepResponse,
-    type HumanLlmAddSearchForJobParams as HumanLlmAddSearchForJobParams,
-    type HumanLlmAddToDatasetParams as HumanLlmAddToDatasetParams,
-    type HumanLlmFinishJobParams as HumanLlmFinishJobParams,
-    type HumanLlmGetJobsParams as HumanLlmGetJobsParams,
-    type HumanLlmGetNextStepParams as HumanLlmGetNextStepParams,
-    type HumanLlmStartNextJobParams as HumanLlmStartNextJobParams,
-    type HumanLlmUpdateStepParams as HumanLlmUpdateStepParams,
-  };
+  export { HumanLlm as HumanLlm };
 
   export {
     NextAction as NextAction,
     type ActionTrainingDataEntry as ActionTrainingDataEntry,
-    type ActionTrainingDataMetadataResponse as ActionTrainingDataMetadataResponse,
-    type ActionTrainingDataResponse as ActionTrainingDataResponse,
-    type ActionTrainingDatumMetadata as ActionTrainingDatumMetadata,
-    type AddActionTrainingDatumRequest as AddActionTrainingDatumRequest,
-    type DeleteActionTrainingDataParams as DeleteActionTrainingDataParams,
-    type DeleteActionTrainingDataResponse as DeleteActionTrainingDataResponse,
-    type GetActionTrainingDataParams as GetActionTrainingDataParams,
-    type LabelActionTrainingDatumRequest as LabelActionTrainingDatumRequest,
+    type NextActionDeleteTrainingDataResponse as NextActionDeleteTrainingDataResponse,
+    type NextActionGetTrainingDataResponse as NextActionGetTrainingDataResponse,
     type NextActionAddTrainingDatumParams as NextActionAddTrainingDatumParams,
     type NextActionDeleteTrainingDataParams as NextActionDeleteTrainingDataParams,
     type NextActionGetTrainingDataParams as NextActionGetTrainingDataParams,
-    type NextActionGetTrainingDataMetadataParams as NextActionGetTrainingDataMetadataParams,
     type NextActionLabelTrainingDatumParams as NextActionLabelTrainingDatumParams,
   };
 
@@ -150,34 +75,7 @@ export declare namespace Admin {
 
   export {
     TrainingDatasets as TrainingDatasets,
-    type AddDatumRequest as AddDatumRequest,
     type DatumStatus as DatumStatus,
     type LabelingStats as LabelingStats,
-    type TrainingDatumResponse as TrainingDatumResponse,
-    type UpdateDatumStatusRequest as UpdateDatumStatusRequest,
-    type TrainingDatasetListResponse as TrainingDatasetListResponse,
-    type TrainingDatasetGetLabellerStatsResponse as TrainingDatasetGetLabellerStatsResponse,
-    type TrainingDatasetListDatumsResponse as TrainingDatasetListDatumsResponse,
-    type TrainingDatasetSizeResponse as TrainingDatasetSizeResponse,
-    type TrainingDatasetSuspiciousCountResponse as TrainingDatasetSuspiciousCountResponse,
-    type TrainingDatasetDeleteParams as TrainingDatasetDeleteParams,
-    type TrainingDatasetAddParams as TrainingDatasetAddParams,
-    type TrainingDatasetAddDatumParams as TrainingDatasetAddDatumParams,
-    type TrainingDatasetDownloadDatumParams as TrainingDatasetDownloadDatumParams,
-    type TrainingDatasetGetDatumInfoParams as TrainingDatasetGetDatumInfoParams,
-    type TrainingDatasetGetLabellerStatsParams as TrainingDatasetGetLabellerStatsParams,
-    type TrainingDatasetGetNextForLabelingParams as TrainingDatasetGetNextForLabelingParams,
-    type TrainingDatasetGetNextForQaParams as TrainingDatasetGetNextForQaParams,
-    type TrainingDatasetGetNextSuspiciousParams as TrainingDatasetGetNextSuspiciousParams,
-    type TrainingDatasetLabelDatumParams as TrainingDatasetLabelDatumParams,
-    type TrainingDatasetListDatumsParams as TrainingDatasetListDatumsParams,
-    type TrainingDatasetMarkDatumSuspiciousParams as TrainingDatasetMarkDatumSuspiciousParams,
-    type TrainingDatasetRemoveDatumParams as TrainingDatasetRemoveDatumParams,
-    type TrainingDatasetSizeParams as TrainingDatasetSizeParams,
-    type TrainingDatasetSuspiciousCountParams as TrainingDatasetSuspiciousCountParams,
-    type TrainingDatasetSwitchDatasetParams as TrainingDatasetSwitchDatasetParams,
-    type TrainingDatasetUpdateDatumStatusParams as TrainingDatasetUpdateDatumStatusParams,
-    type TrainingDatasetUploadLabeledStepParams as TrainingDatasetUploadLabeledStepParams,
-    type TrainingDatasetVerifyDatumParams as TrainingDatasetVerifyDatumParams,
   };
 }

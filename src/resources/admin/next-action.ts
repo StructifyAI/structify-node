@@ -24,7 +24,7 @@ export class NextAction extends APIResource {
   deleteTrainingData(
     params: NextActionDeleteTrainingDataParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<DeleteActionTrainingDataResponse> {
+  ): Core.APIPromise<unknown> {
     const { id } = params;
     return this._client.delete('/admin/next_action/delete_action_training_data', {
       query: { id },
@@ -35,31 +35,16 @@ export class NextAction extends APIResource {
   getTrainingData(
     query?: NextActionGetTrainingDataParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<ActionTrainingDataResponse>;
-  getTrainingData(options?: Core.RequestOptions): Core.APIPromise<ActionTrainingDataResponse>;
+  ): Core.APIPromise<unknown>;
+  getTrainingData(options?: Core.RequestOptions): Core.APIPromise<unknown>;
   getTrainingData(
     query: NextActionGetTrainingDataParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.APIPromise<ActionTrainingDataResponse> {
+  ): Core.APIPromise<unknown> {
     if (isRequestOptions(query)) {
       return this.getTrainingData({}, query);
     }
     return this._client.get('/admin/next_action/get_action_training_data', { query, ...options });
-  }
-
-  getTrainingDataMetadata(
-    query?: NextActionGetTrainingDataMetadataParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ActionTrainingDataMetadataResponse>;
-  getTrainingDataMetadata(options?: Core.RequestOptions): Core.APIPromise<ActionTrainingDataMetadataResponse>;
-  getTrainingDataMetadata(
-    query: NextActionGetTrainingDataMetadataParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ActionTrainingDataMetadataResponse> {
-    if (isRequestOptions(query)) {
-      return this.getTrainingDataMetadata({}, query);
-    }
-    return this._client.get('/admin/next_action/get_action_training_data_metadata', { query, ...options });
   }
 
   /**
@@ -78,7 +63,7 @@ export class NextAction extends APIResource {
 }
 
 export interface ActionTrainingDataEntry {
-  id: string;
+  id: number;
 
   author: string;
 
@@ -107,7 +92,7 @@ export namespace ActionTrainingDataEntry {
 
   export namespace Input {
     export interface AllStep {
-      id: string;
+      id: number;
 
       action_name?: string;
 
@@ -116,11 +101,11 @@ export namespace ActionTrainingDataEntry {
   }
 
   export interface Output {
-    id: string;
+    id: number;
 
     created_at: string;
 
-    label: string;
+    label: unknown;
 
     output: Output.SelectedStep | Output.SearchStep | Output.InvalidAction;
   }
@@ -132,7 +117,7 @@ export namespace ActionTrainingDataEntry {
 
     export namespace SelectedStep {
       export interface SelectedStep {
-        step_id: string;
+        step_id: number;
       }
     }
 
@@ -160,322 +145,39 @@ export namespace ActionTrainingDataEntry {
   }
 }
 
-export interface ActionTrainingDataMetadataResponse {
-  data: Array<ActionTrainingDatumMetadata>;
-}
+export type NextActionDeleteTrainingDataResponse = unknown;
 
-export interface ActionTrainingDataResponse {
-  data: Array<ActionTrainingDataEntry>;
-}
+export type NextActionGetTrainingDataResponse = unknown;
 
-export interface ActionTrainingDatumMetadata {
-  id: string;
-
-  author: string;
-
-  created_at: string;
-
-  label_count: number;
-
-  latest_label?: string | null;
-
-  latest_label_at?: string | null;
-}
-
-export interface AddActionTrainingDatumRequest {
-  input: AddActionTrainingDatumRequest.Input;
-
-  label: string;
-
-  output:
-    | AddActionTrainingDatumRequest.SelectedStep
-    | AddActionTrainingDatumRequest.SearchStep
-    | AddActionTrainingDatumRequest.InvalidAction;
-
-  job_id?: string | null;
-}
-
-export namespace AddActionTrainingDatumRequest {
-  export interface Input {
-    all_steps: Array<Input.AllStep>;
-
-    extraction_criteria: Array<StructureAPI.SaveRequirement>;
-
-    previous_queries: Array<string>;
-
-    /**
-     * Knowledge graph info structured to deserialize and display in the same format
-     * that the LLM outputs. Also the first representation of an LLM output in the
-     * pipeline from raw tool output to being merged into a Neo4j DB
-     */
-    seeded_kg: SharedAPI.KnowledgeGraph;
-  }
-
-  export namespace Input {
-    export interface AllStep {
-      id: string;
-
-      action_name?: string;
-
-      metadata?: Record<string, string>;
-    }
-  }
-
-  export interface SelectedStep {
-    SelectedStep: SelectedStep.SelectedStep;
-  }
-
-  export namespace SelectedStep {
-    export interface SelectedStep {
-      step_id: string;
-    }
-  }
-
-  export interface SearchStep {
-    SearchStep: SearchStep.SearchStep;
-  }
-
-  export namespace SearchStep {
-    export interface SearchStep {
-      search_query: string;
-    }
-  }
-
-  export interface InvalidAction {
-    InvalidAction: InvalidAction.InvalidAction;
-  }
-
-  export namespace InvalidAction {
-    export interface InvalidAction {
-      error: string;
-
-      llm_output: string;
-    }
-  }
-}
-
-export interface DeleteActionTrainingDataParams {
-  id: string;
-}
-
-export interface DeleteActionTrainingDataResponse {
-  deleted_count: number;
-}
-
-export interface GetActionTrainingDataParams {
-  job_id?: string | null;
-
-  limit?: number;
-
-  offset?: number;
-
-  status?: string | null;
-}
-
-export interface LabelActionTrainingDatumRequest {
-  id: string;
-
-  label: string;
-
-  output:
-    | LabelActionTrainingDatumRequest.SelectedStep
-    | LabelActionTrainingDatumRequest.SearchStep
-    | LabelActionTrainingDatumRequest.InvalidAction;
-}
-
-export namespace LabelActionTrainingDatumRequest {
-  export interface SelectedStep {
-    SelectedStep: SelectedStep.SelectedStep;
-  }
-
-  export namespace SelectedStep {
-    export interface SelectedStep {
-      step_id: string;
-    }
-  }
-
-  export interface SearchStep {
-    SearchStep: SearchStep.SearchStep;
-  }
-
-  export namespace SearchStep {
-    export interface SearchStep {
-      search_query: string;
-    }
-  }
-
-  export interface InvalidAction {
-    InvalidAction: InvalidAction.InvalidAction;
-  }
-
-  export namespace InvalidAction {
-    export interface InvalidAction {
-      error: string;
-
-      llm_output: string;
-    }
-  }
-}
-
-export interface NextActionAddTrainingDatumParams {
-  input: NextActionAddTrainingDatumParams.Input;
-
-  label: string;
-
-  output:
-    | NextActionAddTrainingDatumParams.SelectedStep
-    | NextActionAddTrainingDatumParams.SearchStep
-    | NextActionAddTrainingDatumParams.InvalidAction;
-
-  job_id?: string | null;
-}
-
-export namespace NextActionAddTrainingDatumParams {
-  export interface Input {
-    all_steps: Array<Input.AllStep>;
-
-    extraction_criteria: Array<StructureAPI.SaveRequirement>;
-
-    previous_queries: Array<string>;
-
-    /**
-     * Knowledge graph info structured to deserialize and display in the same format
-     * that the LLM outputs. Also the first representation of an LLM output in the
-     * pipeline from raw tool output to being merged into a Neo4j DB
-     */
-    seeded_kg: SharedAPI.KnowledgeGraph;
-  }
-
-  export namespace Input {
-    export interface AllStep {
-      id: string;
-
-      action_name?: string;
-
-      metadata?: Record<string, string>;
-    }
-  }
-
-  export interface SelectedStep {
-    SelectedStep: SelectedStep.SelectedStep;
-  }
-
-  export namespace SelectedStep {
-    export interface SelectedStep {
-      step_id: string;
-    }
-  }
-
-  export interface SearchStep {
-    SearchStep: SearchStep.SearchStep;
-  }
-
-  export namespace SearchStep {
-    export interface SearchStep {
-      search_query: string;
-    }
-  }
-
-  export interface InvalidAction {
-    InvalidAction: InvalidAction.InvalidAction;
-  }
-
-  export namespace InvalidAction {
-    export interface InvalidAction {
-      error: string;
-
-      llm_output: string;
-    }
-  }
-}
+export type NextActionAddTrainingDatumParams = unknown;
 
 export interface NextActionDeleteTrainingDataParams {
   /**
    * ID of the training datum to delete
    */
-  id: string;
+  id: number;
 }
 
 export interface NextActionGetTrainingDataParams {
-  job_id?: string | null;
+  job_id?: number | null;
 
   limit?: number;
 
   offset?: number;
 
-  status?: string | null;
+  status?: unknown;
 }
 
-export interface NextActionGetTrainingDataMetadataParams {
-  job_id?: string | null;
-
-  limit?: number;
-
-  offset?: number;
-
-  status?: string | null;
-}
-
-export interface NextActionLabelTrainingDatumParams {
-  id: string;
-
-  label: string;
-
-  output:
-    | NextActionLabelTrainingDatumParams.SelectedStep
-    | NextActionLabelTrainingDatumParams.SearchStep
-    | NextActionLabelTrainingDatumParams.InvalidAction;
-}
-
-export namespace NextActionLabelTrainingDatumParams {
-  export interface SelectedStep {
-    SelectedStep: SelectedStep.SelectedStep;
-  }
-
-  export namespace SelectedStep {
-    export interface SelectedStep {
-      step_id: string;
-    }
-  }
-
-  export interface SearchStep {
-    SearchStep: SearchStep.SearchStep;
-  }
-
-  export namespace SearchStep {
-    export interface SearchStep {
-      search_query: string;
-    }
-  }
-
-  export interface InvalidAction {
-    InvalidAction: InvalidAction.InvalidAction;
-  }
-
-  export namespace InvalidAction {
-    export interface InvalidAction {
-      error: string;
-
-      llm_output: string;
-    }
-  }
-}
+export type NextActionLabelTrainingDatumParams = unknown;
 
 export declare namespace NextAction {
   export {
     type ActionTrainingDataEntry as ActionTrainingDataEntry,
-    type ActionTrainingDataMetadataResponse as ActionTrainingDataMetadataResponse,
-    type ActionTrainingDataResponse as ActionTrainingDataResponse,
-    type ActionTrainingDatumMetadata as ActionTrainingDatumMetadata,
-    type AddActionTrainingDatumRequest as AddActionTrainingDatumRequest,
-    type DeleteActionTrainingDataParams as DeleteActionTrainingDataParams,
-    type DeleteActionTrainingDataResponse as DeleteActionTrainingDataResponse,
-    type GetActionTrainingDataParams as GetActionTrainingDataParams,
-    type LabelActionTrainingDatumRequest as LabelActionTrainingDatumRequest,
+    type NextActionDeleteTrainingDataResponse as NextActionDeleteTrainingDataResponse,
+    type NextActionGetTrainingDataResponse as NextActionGetTrainingDataResponse,
     type NextActionAddTrainingDatumParams as NextActionAddTrainingDatumParams,
     type NextActionDeleteTrainingDataParams as NextActionDeleteTrainingDataParams,
     type NextActionGetTrainingDataParams as NextActionGetTrainingDataParams,
-    type NextActionGetTrainingDataMetadataParams as NextActionGetTrainingDataMetadataParams,
     type NextActionLabelTrainingDatumParams as NextActionLabelTrainingDatumParams,
   };
 }
