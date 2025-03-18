@@ -20,9 +20,7 @@ export {
 export {
   NextAction,
   type ActionTrainingDataEntry,
-  type ActionTrainingDataMetadataResponse,
   type ActionTrainingDataResponse,
-  type ActionTrainingDatumMetadata,
   type AddActionTrainingDatumRequest,
   type DeleteActionTrainingDataParams,
   type DeleteActionTrainingDataResponse,
@@ -31,7 +29,6 @@ export {
   type NextActionAddTrainingDatumParams,
   type NextActionDeleteTrainingDataParams,
   type NextActionGetTrainingDataParams,
-  type NextActionGetTrainingDataMetadataParams,
   type NextActionLabelTrainingDatumParams,
 } from './next-action';
 export {
