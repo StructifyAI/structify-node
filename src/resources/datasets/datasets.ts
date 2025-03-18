@@ -217,7 +217,7 @@ export interface DatasetViewTableResponse {
 
   label: string;
 
-  properties: unknown;
+  properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
   updated_at: string;
 }
@@ -240,7 +240,7 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     label: string;
 
-    properties: unknown;
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
     updated_at: string;
   }
@@ -254,7 +254,7 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     label: string;
 
-    properties: unknown;
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
     updated_at: string;
   }
