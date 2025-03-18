@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as SharedAPI from './shared';
-import * as SourcesAPI from './sources';
 
 export class Entities extends APIResource {
   /**
@@ -129,11 +128,15 @@ export type EntityAddBatchResponse = Array<string>;
 export interface EntityGetResponse {
   id: string;
 
-  creation_time: string;
+  created_at: string;
+
+  dataset_id: unknown;
 
   label: string;
 
-  properties: Record<string, string | boolean | number | SharedAPI.Image>;
+  properties: unknown;
+
+  updated_at: string;
 }
 
 export interface EntityGetLocalSubgraphResponse {
@@ -146,11 +149,15 @@ export namespace EntityGetLocalSubgraphResponse {
   export interface Neighbor {
     id: string;
 
-    creation_time: string;
+    created_at: string;
+
+    dataset_id: unknown;
 
     label: string;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: unknown;
+
+    updated_at: string;
   }
 
   export interface Relationship {
@@ -172,55 +179,29 @@ export namespace EntityGetSourceEntitiesResponse {
   export interface SourceEntity {
     id: string;
 
-    creation_time: string;
+    created_at: string;
 
     is_summary: boolean;
 
     label: string;
 
-    link: SourcesAPI.Source;
-
     llm_id: number;
 
-    location: SourceEntity.Text | SourceEntity.Visual | SourceEntity.Page | 'None';
+    properties: unknown;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    source_id: string;
 
     user_specified: boolean;
-  }
 
-  export namespace SourceEntity {
-    export interface Text {
-      Text: Text.Text;
-    }
+    job_id?: string | null;
 
-    export namespace Text {
-      export interface Text {
-        byte_offset: number;
-      }
-    }
+    kg_entity_id?: string | null;
 
-    export interface Visual {
-      Visual: Visual.Visual;
-    }
+    link?: unknown;
 
-    export namespace Visual {
-      export interface Visual {
-        x: number;
+    location?: unknown;
 
-        y: number;
-      }
-    }
-
-    export interface Page {
-      Page: Page.Page;
-    }
-
-    export namespace Page {
-      export interface Page {
-        page_number: number;
-      }
-    }
+    step_id?: string | null;
   }
 }
 
@@ -230,15 +211,27 @@ export namespace EntityListJobsResponse {
   export interface EntityListJobsResponseItem {
     id: string;
 
-    creation_time: string;
+    created_at: string;
+
+    dataset_id: unknown;
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
+    user_id: unknown;
+
+    /**
+     * A message about the status of the job at completion
+     */
     message?: string | null;
 
-    reason?: string | null;
+    parameters?: Core.Uploadable | null;
 
-    report_on_complete?: boolean;
+    plan_id?: string | null;
+
+    /**
+     * A reason for the job's existence
+     */
+    reason?: string | null;
 
     /**
      * What time did the job start running?
@@ -273,11 +266,15 @@ export namespace EntitySearchResponse {
   export interface EntitySearchResponseItem {
     id: string;
 
-    creation_time: string;
+    created_at: string;
+
+    dataset_id: unknown;
 
     label: string;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: unknown;
+
+    updated_at: string;
   }
 }
 
@@ -287,32 +284,44 @@ export namespace EntitySummarizeResponse {
   export interface EntitySummarizeResponseItem {
     id: string;
 
-    creation_time: string;
+    created_at: string;
+
+    dataset_id: unknown;
 
     label: string;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: unknown;
+
+    updated_at: string;
   }
 }
 
 export interface EntityTriggerMergeResponse {
   id: string;
 
-  creation_time: string;
+  created_at: string;
+
+  dataset_id: unknown;
 
   label: string;
 
-  properties: Record<string, string | boolean | number | SharedAPI.Image>;
+  properties: unknown;
+
+  updated_at: string;
 }
 
 export interface EntityUpdatePropertyResponse {
   id: string;
 
-  creation_time: string;
+  created_at: string;
+
+  dataset_id: unknown;
 
   label: string;
 
-  properties: Record<string, string | boolean | number | SharedAPI.Image>;
+  properties: unknown;
+
+  updated_at: string;
 }
 
 export interface EntityViewResponse {
@@ -333,21 +342,29 @@ export namespace EntityViewResponse {
   export interface ConnectedEntity {
     id: string;
 
-    creation_time: string;
+    created_at: string;
+
+    dataset_id: unknown;
 
     label: string;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: unknown;
+
+    updated_at: string;
   }
 
   export interface Entity {
     id: string;
 
-    creation_time: string;
+    created_at: string;
+
+    dataset_id: unknown;
 
     label: string;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: unknown;
+
+    updated_at: string;
   }
 
   export interface Relationship {
@@ -363,59 +380,31 @@ export namespace EntityViewResponse {
   export interface SimilarEntity {
     id: string;
 
-    creation_time: string;
+    created_at: string;
+
+    dataset_id: unknown;
 
     label: string;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: unknown;
+
+    updated_at: string;
   }
 
   export interface Source {
     id: string;
 
-    creation_time: string;
+    created_at: string;
 
     is_summary: boolean;
 
-    link: SourcesAPI.Source;
-
-    location: Source.Text | Source.Visual | Source.Page | 'None';
-
     user_specified: boolean;
-  }
 
-  export namespace Source {
-    export interface Text {
-      Text: Text.Text;
-    }
+    link?: unknown;
 
-    export namespace Text {
-      export interface Text {
-        byte_offset: number;
-      }
-    }
+    location?: unknown;
 
-    export interface Visual {
-      Visual: Visual.Visual;
-    }
-
-    export namespace Visual {
-      export interface Visual {
-        x: number;
-
-        y: number;
-      }
-    }
-
-    export interface Page {
-      Page: Page.Page;
-    }
-
-    export namespace Page {
-      export interface Page {
-        page_number: number;
-      }
-    }
+    step_id?: string | null;
   }
 }
 
