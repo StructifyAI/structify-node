@@ -53,7 +53,7 @@ export class Users extends APIResource {
 }
 
 export interface User {
-  id: unknown;
+  id: string;
 
   created_at: string;
 
