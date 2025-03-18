@@ -213,7 +213,7 @@ export interface DatasetViewTableResponse {
 
   created_at: string;
 
-  dataset_id: unknown;
+  dataset_id: string;
 
   label: string;
 
@@ -236,7 +236,7 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     created_at: string;
 
-    dataset_id: unknown;
+    dataset_id: string;
 
     label: string;
 
@@ -250,7 +250,7 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     created_at: string;
 
-    dataset_id: unknown;
+    dataset_id: string;
 
     label: string;
 

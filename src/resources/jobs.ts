@@ -86,11 +86,11 @@ export interface JobListResponse {
 
   created_at: string;
 
-  dataset_id: unknown;
+  dataset_id: string;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
-  user_id: unknown;
+  user_id: string;
 
   /**
    * A message about the status of the job at completion
@@ -119,11 +119,11 @@ export interface JobCancelResponse {
 
   created_at: string;
 
-  dataset_id: unknown;
+  dataset_id: string;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
-  user_id: unknown;
+  user_id: string;
 
   /**
    * A message about the status of the job at completion
@@ -157,11 +157,11 @@ export namespace JobGetResponse {
 
     created_at: string;
 
-    dataset_id: unknown;
+    dataset_id: string;
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
-    user_id: unknown;
+    user_id: string;
 
     /**
      * A message about the status of the job at completion

@@ -62,7 +62,7 @@ export type DocumentListResponse = Array<DocumentListResponse.DocumentListRespon
 
 export namespace DocumentListResponse {
   export interface DocumentListResponseItem {
-    id: unknown;
+    id: string;
 
     created_at: string;
 
@@ -72,9 +72,9 @@ export namespace DocumentListResponse {
 
     name: string;
 
-    user_id: unknown;
+    user_id: string;
 
-    dataset_id?: unknown;
+    dataset_id?: string | null;
   }
 }
 
