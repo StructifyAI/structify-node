@@ -196,7 +196,7 @@ export namespace JobGetStepGraphResponse {
 
     execution_step?: StructureAPI.ExecutionStep | null;
 
-    parent_transition?: unknown;
+    parent_transition?: JobGetStepGraphResponseItem.ParentTransition | null;
 
     queued_message?: string | null;
 
@@ -205,6 +205,16 @@ export namespace JobGetStepGraphResponse {
     state_change_message?: string | null;
 
     step_index?: number | null;
+  }
+
+  export namespace JobGetStepGraphResponseItem {
+    export interface ParentTransition {
+      parent_id: string;
+
+      tool_input: string;
+
+      tool_name: string;
+    }
   }
 }
 
