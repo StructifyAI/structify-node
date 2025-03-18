@@ -105,7 +105,7 @@ export namespace ActionTrainingDataEntry {
 
     created_at: string;
 
-    label: unknown;
+    label: unknown | null;
 
     output: Output.SelectedStep | Output.SearchStep | Output.InvalidAction;
   }
@@ -370,7 +370,7 @@ export interface NextActionGetTrainingDataParams {
 
   offset?: number;
 
-  status?: unknown;
+  status?: unknown | null;
 }
 
 export interface NextActionLabelTrainingDatumParams {
