@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as SharedAPI from './shared';
+import * as SourcesAPI from './sources';
 
 export class Entities extends APIResource {
   /**
@@ -134,7 +135,7 @@ export interface EntityGetResponse {
 
   label: string;
 
-  properties: unknown;
+  properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
   updated_at: string;
 }
@@ -155,7 +156,7 @@ export namespace EntityGetLocalSubgraphResponse {
 
     label: string;
 
-    properties: unknown;
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
     updated_at: string;
   }
@@ -187,7 +188,7 @@ export namespace EntityGetSourceEntitiesResponse {
 
     llm_id: number;
 
-    properties: unknown;
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
     source_id: string;
 
@@ -197,11 +198,45 @@ export namespace EntityGetSourceEntitiesResponse {
 
     kg_entity_id?: string | null;
 
-    link?: unknown;
+    link?: SourcesAPI.Source | null;
 
-    location?: unknown;
+    location?: SourceEntity.Text | SourceEntity.Visual | SourceEntity.Page | null;
 
     step_id?: string | null;
+  }
+
+  export namespace SourceEntity {
+    export interface Text {
+      Text: Text.Text;
+    }
+
+    export namespace Text {
+      export interface Text {
+        byte_offset: number;
+      }
+    }
+
+    export interface Visual {
+      Visual: Visual.Visual;
+    }
+
+    export namespace Visual {
+      export interface Visual {
+        x: number;
+
+        y: number;
+      }
+    }
+
+    export interface Page {
+      Page: Page.Page;
+    }
+
+    export namespace Page {
+      export interface Page {
+        page_number: number;
+      }
+    }
   }
 }
 
@@ -272,7 +307,7 @@ export namespace EntitySearchResponse {
 
     label: string;
 
-    properties: unknown;
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
     updated_at: string;
   }
@@ -290,7 +325,7 @@ export namespace EntitySummarizeResponse {
 
     label: string;
 
-    properties: unknown;
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
     updated_at: string;
   }
@@ -305,7 +340,7 @@ export interface EntityTriggerMergeResponse {
 
   label: string;
 
-  properties: unknown;
+  properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
   updated_at: string;
 }
@@ -319,7 +354,7 @@ export interface EntityUpdatePropertyResponse {
 
   label: string;
 
-  properties: unknown;
+  properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
   updated_at: string;
 }
@@ -348,7 +383,7 @@ export namespace EntityViewResponse {
 
     label: string;
 
-    properties: unknown;
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
     updated_at: string;
   }
@@ -362,7 +397,7 @@ export namespace EntityViewResponse {
 
     label: string;
 
-    properties: unknown;
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
     updated_at: string;
   }
@@ -386,7 +421,7 @@ export namespace EntityViewResponse {
 
     label: string;
 
-    properties: unknown;
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
     updated_at: string;
   }
@@ -400,11 +435,45 @@ export namespace EntityViewResponse {
 
     user_specified: boolean;
 
-    link?: unknown;
+    link?: SourcesAPI.Source | null;
 
-    location?: unknown;
+    location?: Source.Text | Source.Visual | Source.Page | null;
 
     step_id?: string | null;
+  }
+
+  export namespace Source {
+    export interface Text {
+      Text: Text.Text;
+    }
+
+    export namespace Text {
+      export interface Text {
+        byte_offset: number;
+      }
+    }
+
+    export interface Visual {
+      Visual: Visual.Visual;
+    }
+
+    export namespace Visual {
+      export interface Visual {
+        x: number;
+
+        y: number;
+      }
+    }
+
+    export interface Page {
+      Page: Page.Page;
+    }
+
+    export namespace Page {
+      export interface Page {
+        page_number: number;
+      }
+    }
   }
 }
 

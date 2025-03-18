@@ -2,6 +2,7 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
+import * as SourcesAPI from './sources';
 
 export class Sources extends APIResource {
   /**
@@ -60,11 +61,49 @@ export namespace SourceListResponse {
 
     user_specified: boolean;
 
-    link?: unknown;
+    link?: SourcesAPI.Source | null;
 
-    location?: unknown;
+    location?:
+      | SourceListResponseItem.Text
+      | SourceListResponseItem.Visual
+      | SourceListResponseItem.Page
+      | null;
 
     step_id?: string | null;
+  }
+
+  export namespace SourceListResponseItem {
+    export interface Text {
+      Text: Text.Text;
+    }
+
+    export namespace Text {
+      export interface Text {
+        byte_offset: number;
+      }
+    }
+
+    export interface Visual {
+      Visual: Visual.Visual;
+    }
+
+    export namespace Visual {
+      export interface Visual {
+        x: number;
+
+        y: number;
+      }
+    }
+
+    export interface Page {
+      Page: Page.Page;
+    }
+
+    export namespace Page {
+      export interface Page {
+        page_number: number;
+      }
+    }
   }
 }
 
