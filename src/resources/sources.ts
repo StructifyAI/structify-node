@@ -2,7 +2,6 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
-import * as SourcesAPI from './sources';
 
 export class Sources extends APIResource {
   /**
@@ -13,7 +12,7 @@ export class Sources extends APIResource {
   }
 }
 
-export type Source = Source.Web | Source.Document | Source.SecFiling | 'None';
+export type Source = Source.Web | Source.Document | Source.SecFiling;
 
 export namespace Source {
   export interface Web {
@@ -55,53 +54,17 @@ export namespace SourceListResponse {
   export interface SourceListResponseItem {
     id: string;
 
-    creation_time: string;
+    created_at: string;
 
     is_summary: boolean;
 
-    link: SourcesAPI.Source;
-
-    location:
-      | SourceListResponseItem.Text
-      | SourceListResponseItem.Visual
-      | SourceListResponseItem.Page
-      | 'None';
-
     user_specified: boolean;
-  }
 
-  export namespace SourceListResponseItem {
-    export interface Text {
-      Text: Text.Text;
-    }
+    link?: unknown;
 
-    export namespace Text {
-      export interface Text {
-        byte_offset: number;
-      }
-    }
+    location?: unknown;
 
-    export interface Visual {
-      Visual: Visual.Visual;
-    }
-
-    export namespace Visual {
-      export interface Visual {
-        x: number;
-
-        y: number;
-      }
-    }
-
-    export interface Page {
-      Page: Page.Page;
-    }
-
-    export namespace Page {
-      export interface Page {
-        page_number: number;
-      }
-    }
+    step_id?: string | null;
   }
 }
 

@@ -84,15 +84,27 @@ export class JobListResponsesJobsList extends JobsList<JobListResponse> {}
 export interface JobListResponse {
   id: string;
 
-  creation_time: string;
+  created_at: string;
+
+  dataset_id: unknown;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
+  user_id: unknown;
+
+  /**
+   * A message about the status of the job at completion
+   */
   message?: string | null;
 
-  reason?: string | null;
+  parameters?: Core.Uploadable | null;
 
-  report_on_complete?: boolean;
+  plan_id?: string | null;
+
+  /**
+   * A reason for the job's existence
+   */
+  reason?: string | null;
 
   /**
    * What time did the job start running?
@@ -105,15 +117,27 @@ export type JobDeleteResponse = string;
 export interface JobCancelResponse {
   id: string;
 
-  creation_time: string;
+  created_at: string;
+
+  dataset_id: unknown;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
+  user_id: unknown;
+
+  /**
+   * A message about the status of the job at completion
+   */
   message?: string | null;
 
-  reason?: string | null;
+  parameters?: Core.Uploadable | null;
 
-  report_on_complete?: boolean;
+  plan_id?: string | null;
+
+  /**
+   * A reason for the job's existence
+   */
+  reason?: string | null;
 
   /**
    * What time did the job start running?
@@ -131,15 +155,27 @@ export namespace JobGetResponse {
   export interface Job {
     id: string;
 
-    creation_time: string;
+    created_at: string;
+
+    dataset_id: unknown;
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
+    user_id: unknown;
+
+    /**
+     * A message about the status of the job at completion
+     */
     message?: string | null;
 
-    reason?: string | null;
+    parameters?: Core.Uploadable | null;
 
-    report_on_complete?: boolean;
+    plan_id?: string | null;
+
+    /**
+     * A reason for the job's existence
+     */
+    reason?: string | null;
 
     /**
      * What time did the job start running?
@@ -148,21 +184,19 @@ export namespace JobGetResponse {
   }
 }
 
-export interface JobGetStepGraphResponse {
-  steps: Array<JobGetStepGraphResponse.Step>;
-
-  transitions: Array<JobGetStepGraphResponse.Transition>;
-}
+export type JobGetStepGraphResponse = Array<JobGetStepGraphResponse.JobGetStepGraphResponseItem>;
 
 export namespace JobGetStepGraphResponse {
-  export interface Step {
+  export interface JobGetStepGraphResponseItem {
     id: string;
 
     creation_time: string;
 
-    status: 'Queued' | 'Ignored' | 'Started' | 'Executed';
+    status: 'queued' | 'started' | 'executed' | 'skipped';
 
     execution_step?: StructureAPI.ExecutionStep | null;
+
+    parent_transition?: unknown;
 
     queued_message?: string | null;
 
@@ -171,24 +205,6 @@ export namespace JobGetStepGraphResponse {
     state_change_message?: string | null;
 
     step_index?: number | null;
-  }
-
-  export interface Transition {
-    from: string;
-
-    to: string;
-
-    tool_call: Transition.ToolCall;
-  }
-
-  export namespace Transition {
-    export interface ToolCall {
-      action: string;
-
-      formatted_input: string;
-
-      name: string;
-    }
   }
 }
 
