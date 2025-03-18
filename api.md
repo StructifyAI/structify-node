@@ -43,7 +43,9 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/admin/next-action.ts">ActionTrainingDataEntry</a></code>
+- <code><a href="./src/resources/admin/next-action.ts">ActionTrainingDataMetadataResponse</a></code>
 - <code><a href="./src/resources/admin/next-action.ts">ActionTrainingDataResponse</a></code>
+- <code><a href="./src/resources/admin/next-action.ts">ActionTrainingDatumMetadata</a></code>
 - <code><a href="./src/resources/admin/next-action.ts">AddActionTrainingDatumRequest</a></code>
 - <code><a href="./src/resources/admin/next-action.ts">DeleteActionTrainingDataParams</a></code>
 - <code><a href="./src/resources/admin/next-action.ts">DeleteActionTrainingDataResponse</a></code>
@@ -55,6 +57,7 @@ Methods:
 - <code title="post /admin/next_action/add_action_training_datum">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">addTrainingDatum</a>({ ...params }) -> void</code>
 - <code title="delete /admin/next_action/delete_action_training_data">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">deleteTrainingData</a>({ ...params }) -> DeleteActionTrainingDataResponse</code>
 - <code title="get /admin/next_action/get_action_training_data">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">getTrainingData</a>({ ...params }) -> ActionTrainingDataResponse</code>
+- <code title="get /admin/next_action/get_action_training_data_metadata">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">getTrainingDataMetadata</a>({ ...params }) -> ActionTrainingDataMetadataResponse</code>
 - <code title="put /admin/next_action/label_action_training_datum">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">labelTrainingDatum</a>({ ...params }) -> void</code>
 
 ## Users
@@ -249,6 +252,14 @@ Methods:
 - <code title="get /entity/view">client.entities.<a href="./src/resources/entities.ts">view</a>({ ...params }) -> EntityViewResponse</code>
 
 # Images
+
+Types:
+
+- <code><a href="./src/resources/images.ts">ImageGetResponse</a></code>
+
+Methods:
+
+- <code title="get /images/{hash}">client.images.<a href="./src/resources/images.ts">get</a>(hash) -> ImageGetResponse</code>
 
 # Plan
 
