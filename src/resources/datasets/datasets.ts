@@ -211,15 +211,11 @@ export interface DatasetViewRelationshipsResponse {
 export interface DatasetViewTableResponse {
   id: string;
 
-  created_at: string;
-
-  dataset_id: string;
+  creation_time: string;
 
   label: string;
 
   properties: Record<string, string | boolean | number | SharedAPI.Image>;
-
-  updated_at: string;
 }
 
 export interface DatasetViewTablesWithRelationshipsResponse {
@@ -234,29 +230,21 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
   export interface ConnectedEntity {
     id: string;
 
-    created_at: string;
-
-    dataset_id: string;
+    creation_time: string;
 
     label: string;
 
     properties: Record<string, string | boolean | number | SharedAPI.Image>;
-
-    updated_at: string;
   }
 
   export interface Entity {
     id: string;
 
-    created_at: string;
-
-    dataset_id: string;
+    creation_time: string;
 
     label: string;
 
     properties: Record<string, string | boolean | number | SharedAPI.Image>;
-
-    updated_at: string;
   }
 
   export interface Relationship {
