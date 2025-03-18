@@ -78,7 +78,7 @@ export namespace UserTransactionsResponse {
   export interface UserTransactionsResponseItem {
     id: string;
 
-    amount: unknown;
+    amount: number;
 
     timestamp: string;
 
