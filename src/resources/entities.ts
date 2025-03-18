@@ -130,7 +130,7 @@ export interface EntityGetResponse {
 
   created_at: string;
 
-  dataset_id: unknown;
+  dataset_id: string;
 
   label: string;
 
@@ -151,7 +151,7 @@ export namespace EntityGetLocalSubgraphResponse {
 
     created_at: string;
 
-    dataset_id: unknown;
+    dataset_id: string;
 
     label: string;
 
@@ -213,11 +213,11 @@ export namespace EntityListJobsResponse {
 
     created_at: string;
 
-    dataset_id: unknown;
+    dataset_id: string;
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
-    user_id: unknown;
+    user_id: string;
 
     /**
      * A message about the status of the job at completion
@@ -268,7 +268,7 @@ export namespace EntitySearchResponse {
 
     created_at: string;
 
-    dataset_id: unknown;
+    dataset_id: string;
 
     label: string;
 
@@ -286,7 +286,7 @@ export namespace EntitySummarizeResponse {
 
     created_at: string;
 
-    dataset_id: unknown;
+    dataset_id: string;
 
     label: string;
 
@@ -301,7 +301,7 @@ export interface EntityTriggerMergeResponse {
 
   created_at: string;
 
-  dataset_id: unknown;
+  dataset_id: string;
 
   label: string;
 
@@ -315,7 +315,7 @@ export interface EntityUpdatePropertyResponse {
 
   created_at: string;
 
-  dataset_id: unknown;
+  dataset_id: string;
 
   label: string;
 
@@ -344,7 +344,7 @@ export namespace EntityViewResponse {
 
     created_at: string;
 
-    dataset_id: unknown;
+    dataset_id: string;
 
     label: string;
 
@@ -358,7 +358,7 @@ export namespace EntityViewResponse {
 
     created_at: string;
 
-    dataset_id: unknown;
+    dataset_id: string;
 
     label: string;
 
@@ -382,7 +382,7 @@ export namespace EntityViewResponse {
 
     created_at: string;
 
-    dataset_id: unknown;
+    dataset_id: string;
 
     label: string;
 

@@ -82,7 +82,7 @@ export namespace UserTransactionsResponse {
 
     timestamp: string;
 
-    token_id: unknown;
+    token_id: string;
 
     job_id?: string | null;
   }
