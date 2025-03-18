@@ -587,7 +587,7 @@ export interface StructureFindRelationshipParams {
 
   source_entity_id: string;
 
-  target_entity_id: string;
+  to_id: string;
 
   allow_extra_entities?: boolean;
 

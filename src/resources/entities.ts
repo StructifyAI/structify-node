@@ -129,11 +129,15 @@ export type EntityAddBatchResponse = Array<string>;
 export interface EntityGetResponse {
   id: string;
 
-  creation_time: string;
+  created_at: string;
+
+  dataset_id: string;
 
   label: string;
 
   properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+  updated_at: string;
 }
 
 export interface EntityGetLocalSubgraphResponse {
@@ -146,11 +150,15 @@ export namespace EntityGetLocalSubgraphResponse {
   export interface Neighbor {
     id: string;
 
-    creation_time: string;
+    created_at: string;
+
+    dataset_id: string;
 
     label: string;
 
     properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+    updated_at: string;
   }
 
   export interface Relationship {
@@ -172,21 +180,29 @@ export namespace EntityGetSourceEntitiesResponse {
   export interface SourceEntity {
     id: string;
 
-    creation_time: string;
+    created_at: string;
 
     is_summary: boolean;
 
     label: string;
 
-    link: SourcesAPI.Source;
-
     llm_id: number;
-
-    location: SourceEntity.Text | SourceEntity.Visual | SourceEntity.Page | 'None';
 
     properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
+    source_id: string;
+
     user_specified: boolean;
+
+    job_id?: string | null;
+
+    kg_entity_id?: string | null;
+
+    link?: SourcesAPI.Source | null;
+
+    location?: SourceEntity.Text | SourceEntity.Visual | SourceEntity.Page | null;
+
+    step_id?: string | null;
   }
 
   export namespace SourceEntity {
@@ -230,15 +246,27 @@ export namespace EntityListJobsResponse {
   export interface EntityListJobsResponseItem {
     id: string;
 
-    creation_time: string;
+    created_at: string;
+
+    dataset_id: string;
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
+    user_id: string;
+
+    /**
+     * A message about the status of the job at completion
+     */
     message?: string | null;
 
-    reason?: string | null;
+    parameters?: Core.Uploadable | null;
 
-    report_on_complete?: boolean;
+    plan_id?: string | null;
+
+    /**
+     * A reason for the job's existence
+     */
+    reason?: string | null;
 
     /**
      * What time did the job start running?
@@ -273,11 +301,15 @@ export namespace EntitySearchResponse {
   export interface EntitySearchResponseItem {
     id: string;
 
-    creation_time: string;
+    created_at: string;
+
+    dataset_id: string;
 
     label: string;
 
     properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+    updated_at: string;
   }
 }
 
@@ -287,32 +319,44 @@ export namespace EntitySummarizeResponse {
   export interface EntitySummarizeResponseItem {
     id: string;
 
-    creation_time: string;
+    created_at: string;
+
+    dataset_id: string;
 
     label: string;
 
     properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+    updated_at: string;
   }
 }
 
 export interface EntityTriggerMergeResponse {
   id: string;
 
-  creation_time: string;
+  created_at: string;
+
+  dataset_id: string;
 
   label: string;
 
   properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+  updated_at: string;
 }
 
 export interface EntityUpdatePropertyResponse {
   id: string;
 
-  creation_time: string;
+  created_at: string;
+
+  dataset_id: string;
 
   label: string;
 
   properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+  updated_at: string;
 }
 
 export interface EntityViewResponse {
@@ -333,21 +377,29 @@ export namespace EntityViewResponse {
   export interface ConnectedEntity {
     id: string;
 
-    creation_time: string;
+    created_at: string;
+
+    dataset_id: string;
 
     label: string;
 
     properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+    updated_at: string;
   }
 
   export interface Entity {
     id: string;
 
-    creation_time: string;
+    created_at: string;
+
+    dataset_id: string;
 
     label: string;
 
     properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+    updated_at: string;
   }
 
   export interface Relationship {
@@ -363,25 +415,31 @@ export namespace EntityViewResponse {
   export interface SimilarEntity {
     id: string;
 
-    creation_time: string;
+    created_at: string;
+
+    dataset_id: string;
 
     label: string;
 
     properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+    updated_at: string;
   }
 
   export interface Source {
     id: string;
 
-    creation_time: string;
+    created_at: string;
 
     is_summary: boolean;
 
-    link: SourcesAPI.Source;
-
-    location: Source.Text | Source.Visual | Source.Page | 'None';
-
     user_specified: boolean;
+
+    link?: SourcesAPI.Source | null;
+
+    location?: Source.Text | Source.Visual | Source.Page | null;
+
+    step_id?: string | null;
   }
 
   export namespace Source {
