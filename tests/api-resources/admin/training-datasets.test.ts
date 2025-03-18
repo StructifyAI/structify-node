@@ -142,7 +142,7 @@ describe('resource trainingDatasets', () => {
   test('getNextForLabeling: only required params', async () => {
     const responsePromise = client.admin.trainingDatasets.getNextForLabeling({
       dataset_name: 'dataset_name',
-      status: 'unlabeled',
+      status: 'Unlabeled',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -156,14 +156,14 @@ describe('resource trainingDatasets', () => {
   test('getNextForLabeling: required and optional params', async () => {
     const response = await client.admin.trainingDatasets.getNextForLabeling({
       dataset_name: 'dataset_name',
-      status: 'unlabeled',
+      status: 'Unlabeled',
     });
   });
 
   test('getNextForQa: only required params', async () => {
     const responsePromise = client.admin.trainingDatasets.getNextForQa({
       dataset_name: 'dataset_name',
-      status: 'unlabeled',
+      status: 'Unlabeled',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -177,12 +177,12 @@ describe('resource trainingDatasets', () => {
   test('getNextForQa: required and optional params', async () => {
     const response = await client.admin.trainingDatasets.getNextForQa({
       dataset_name: 'dataset_name',
-      status: 'unlabeled',
+      status: 'Unlabeled',
     });
   });
 
   test('getNextSuspicious: only required params', async () => {
-    const responsePromise = client.admin.trainingDatasets.getNextSuspicious({ status: 'unlabeled' });
+    const responsePromise = client.admin.trainingDatasets.getNextSuspicious({ status: 'Unlabeled' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -194,7 +194,7 @@ describe('resource trainingDatasets', () => {
 
   test('getNextSuspicious: required and optional params', async () => {
     const response = await client.admin.trainingDatasets.getNextSuspicious({
-      status: 'unlabeled',
+      status: 'Unlabeled',
       dataset_name: 'dataset_name',
       user_restriction: true,
     });
@@ -203,7 +203,7 @@ describe('resource trainingDatasets', () => {
   test('labelDatum: only required params', async () => {
     const responsePromise = client.admin.trainingDatasets.labelDatum({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      status: 'unlabeled',
+      status: 'Unlabeled',
       updated_tool_calls: [{ input: { Save: {} }, name: 'Exit' }],
     });
     const rawResponse = await responsePromise.asResponse();
@@ -218,7 +218,7 @@ describe('resource trainingDatasets', () => {
   test('labelDatum: required and optional params', async () => {
     const response = await client.admin.trainingDatasets.labelDatum({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      status: 'unlabeled',
+      status: 'Unlabeled',
       updated_tool_calls: [
         {
           input: {
@@ -256,7 +256,7 @@ describe('resource trainingDatasets', () => {
     const responsePromise = client.admin.trainingDatasets.markDatumSuspicious({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       message: 'message',
-      status: 'unlabeled',
+      status: 'Unlabeled',
       suspicious_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -272,7 +272,7 @@ describe('resource trainingDatasets', () => {
     const response = await client.admin.trainingDatasets.markDatumSuspicious({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       message: 'message',
-      status: 'unlabeled',
+      status: 'Unlabeled',
       suspicious_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
@@ -308,7 +308,7 @@ describe('resource trainingDatasets', () => {
   });
 
   test('suspiciousCount: only required params', async () => {
-    const responsePromise = client.admin.trainingDatasets.suspiciousCount({ status: 'unlabeled' });
+    const responsePromise = client.admin.trainingDatasets.suspiciousCount({ status: 'Unlabeled' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -320,7 +320,7 @@ describe('resource trainingDatasets', () => {
 
   test('suspiciousCount: required and optional params', async () => {
     const response = await client.admin.trainingDatasets.suspiciousCount({
-      status: 'unlabeled',
+      status: 'Unlabeled',
       dataset_name: 'dataset_name',
       user_restriction: true,
     });
@@ -350,7 +350,7 @@ describe('resource trainingDatasets', () => {
   test('updateDatumStatus: only required params', async () => {
     const responsePromise = client.admin.trainingDatasets.updateDatumStatus({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      status: 'unlabeled',
+      status: 'Unlabeled',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -364,7 +364,7 @@ describe('resource trainingDatasets', () => {
   test('updateDatumStatus: required and optional params', async () => {
     const response = await client.admin.trainingDatasets.updateDatumStatus({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      status: 'unlabeled',
+      status: 'Unlabeled',
       review_message: 'review_message',
     });
   });
@@ -393,7 +393,7 @@ describe('resource trainingDatasets', () => {
   test('verifyDatum: only required params', async () => {
     const responsePromise = client.admin.trainingDatasets.verifyDatum({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      status: 'unlabeled',
+      status: 'Unlabeled',
       verified_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -408,7 +408,7 @@ describe('resource trainingDatasets', () => {
   test('verifyDatum: required and optional params', async () => {
     const response = await client.admin.trainingDatasets.verifyDatum({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      status: 'unlabeled',
+      status: 'Unlabeled',
       verified_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
