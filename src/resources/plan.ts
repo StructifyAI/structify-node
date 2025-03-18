@@ -70,7 +70,7 @@ export interface FindRelationship {
 
   source_entity_id: string;
 
-  to_id: string;
+  target_entity_id: string;
 
   allow_extra_entities?: boolean;
 
@@ -98,7 +98,7 @@ export namespace PlanListResponse {
 
     plan_id: string;
 
-    status: 'Queued' | 'Running' | 'Completed' | 'Failed' | 'Paused';
+    status: 'Running' | 'StartingNextStep' | 'Completed' | 'Failed' | 'Paused';
 
     step: number;
   }

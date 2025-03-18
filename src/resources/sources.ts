@@ -13,7 +13,7 @@ export class Sources extends APIResource {
   }
 }
 
-export type Source = Source.Web | Source.Document | Source.SecFiling;
+export type Source = Source.Web | Source.Document | Source.SecFiling | 'None';
 
 export namespace Source {
   export interface Web {
@@ -55,21 +55,19 @@ export namespace SourceListResponse {
   export interface SourceListResponseItem {
     id: string;
 
-    created_at: string;
+    creation_time: string;
 
     is_summary: boolean;
 
-    user_specified: boolean;
+    link: SourcesAPI.Source;
 
-    link?: SourcesAPI.Source | null;
-
-    location?:
+    location:
       | SourceListResponseItem.Text
       | SourceListResponseItem.Visual
       | SourceListResponseItem.Page
-      | null;
+      | 'None';
 
-    step_id?: string | null;
+    user_specified: boolean;
   }
 
   export namespace SourceListResponseItem {

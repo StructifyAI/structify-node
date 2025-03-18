@@ -251,17 +251,17 @@ export interface AddDatumRequest {
 }
 
 export type DatumStatus =
-  | 'unlabeled'
-  | 'nav_labeled'
-  | 'save_labeled'
-  | 'nav_verified'
-  | 'save_verified'
-  | 'pending'
-  | 'skipped'
-  | 'suspicious_nav'
-  | 'suspicious_save'
-  | 'potential_suspicious_nav'
-  | 'potential_suspicious_save';
+  | 'Unlabeled'
+  | 'NavLabeled'
+  | 'SaveLabeled'
+  | 'NavVerified'
+  | 'SaveVerified'
+  | 'Pending'
+  | 'Skipped'
+  | 'SuspiciousNav'
+  | 'SuspiciousSave'
+  | 'PotentialSuspiciousNav'
+  | 'PotentialSuspiciousSave';
 
 export interface LabelingStats {
   author: string;
@@ -306,7 +306,7 @@ export namespace TrainingDatumResponse {
 
     review_message?: string | null;
 
-    to_id?: string | null;
+    target_id?: string | null;
   }
 
   export namespace Update {
@@ -530,13 +530,7 @@ export namespace TrainingDatasetListDatumsResponse {
 
     status: TrainingDatasetsAPI.DatumStatus;
 
-    origin?:
-      | 'human_l_l_m'
-      | 'user_reported'
-      | 'manual_upload'
-      | 'manual_transfer'
-      | 'tool_parse_failure'
-      | null;
+    origin?: 'HumanLLM' | 'UserReported' | 'ManualUpload' | 'ManualTransfer' | 'ToolParseFailure' | null;
   }
 }
 
