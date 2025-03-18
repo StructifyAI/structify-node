@@ -1,5 +1,34 @@
 # Changelog
 
+## 1.109.0-alpha.1 (2025-03-18)
+
+Full Changelog: [v1.108.0...v1.109.0-alpha.1](https://github.com/StructifyAI/structify-node/compare/v1.108.0...v1.109.0-alpha.1)
+
+### Features
+
+* add SKIP_BREW env var to ./scripts/bootstrap ([#1009](https://github.com/StructifyAI/structify-node/issues/1009)) ([25d6676](https://github.com/StructifyAI/structify-node/commit/25d66764a0a4ceff3ff288a70a3764ca5a025fb8))
+* **api:** api update ([#1014](https://github.com/StructifyAI/structify-node/issues/1014)) ([b77569d](https://github.com/StructifyAI/structify-node/commit/b77569d3931edbf28d2821adfa0749cfb1457d9b))
+* **api:** api update ([#1015](https://github.com/StructifyAI/structify-node/issues/1015)) ([fa64915](https://github.com/StructifyAI/structify-node/commit/fa64915fc166f4ff164cf4bc4a3e0717e1dc9692))
+* **api:** api update ([#1016](https://github.com/StructifyAI/structify-node/issues/1016)) ([8ab43bf](https://github.com/StructifyAI/structify-node/commit/8ab43bf2cfa102b351867356c2dbfdad08a10d11))
+* **api:** api update ([#1017](https://github.com/StructifyAI/structify-node/issues/1017)) ([6453030](https://github.com/StructifyAI/structify-node/commit/6453030c6c02063d32e715457531203ffc5b3430))
+* **api:** api update ([#1018](https://github.com/StructifyAI/structify-node/issues/1018)) ([bc74b18](https://github.com/StructifyAI/structify-node/commit/bc74b183f8ae4162031d67fe3379a757a5071bf8))
+* **api:** api update ([#1019](https://github.com/StructifyAI/structify-node/issues/1019)) ([68b94d2](https://github.com/StructifyAI/structify-node/commit/68b94d2af1e5ec7d4eabc71e188eef3b3767a94f))
+* **api:** api update ([#1020](https://github.com/StructifyAI/structify-node/issues/1020)) ([5d5e62c](https://github.com/StructifyAI/structify-node/commit/5d5e62c888088176ea1f025f7b7bf2963bb4cff8))
+* **api:** api update ([#1021](https://github.com/StructifyAI/structify-node/issues/1021)) ([6cf0e71](https://github.com/StructifyAI/structify-node/commit/6cf0e717fa8fb9e7e2f80bcf47a407e67c81d62b))
+* **api:** api update ([#1022](https://github.com/StructifyAI/structify-node/issues/1022)) ([9d5a91e](https://github.com/StructifyAI/structify-node/commit/9d5a91e52cc28a5ba67133ea9dffe16e8b3eabea))
+* **client:** accept RFC6838 JSON content types ([#1011](https://github.com/StructifyAI/structify-node/issues/1011)) ([9f73480](https://github.com/StructifyAI/structify-node/commit/9f734803281234ee09f06ec43ba7c777b674953c))
+
+
+### Bug Fixes
+
+* **exports:** ensure resource imports don't require /index ([#1013](https://github.com/StructifyAI/structify-node/issues/1013)) ([0dddd40](https://github.com/StructifyAI/structify-node/commit/0dddd40ec27862332582846bb457396e04a4db3e))
+
+
+### Chores
+
+* **internal:** remove extra empty newlines ([#1012](https://github.com/StructifyAI/structify-node/issues/1012)) ([347f8b8](https://github.com/StructifyAI/structify-node/commit/347f8b8174b741aa49335b3a4da08e62b7f70f55))
+* remove custom code ([dea461b](https://github.com/StructifyAI/structify-node/commit/dea461b90a77a77fba6694c30ea67fc916937b2b))
+
 ## 1.108.0 (2025-03-08)
 
 Full Changelog: [v1.107.0...v1.108.0](https://github.com/StructifyAI/structify-node/compare/v1.107.0...v1.108.0)
