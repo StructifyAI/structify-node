@@ -102,27 +102,15 @@ export namespace HumanLlmJob {
   export interface Job {
     id: string;
 
-    created_at: string;
-
-    dataset_id: string;
+    creation_time: string;
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
-    user_id: string;
-
-    /**
-     * A message about the status of the job at completion
-     */
     message?: string | null;
 
-    parameters?: Core.Uploadable | null;
-
-    plan_id?: string | null;
-
-    /**
-     * A reason for the job's existence
-     */
     reason?: string | null;
+
+    report_on_complete?: boolean;
 
     /**
      * What time did the job start running?
@@ -131,15 +119,13 @@ export namespace HumanLlmJob {
   }
 
   export interface Metadata {
-    id: string;
+    dataset_name: string;
 
-    description: string;
+    property_name: string;
 
-    job_id: string;
+    user_email: string;
 
-    entity_id?: string | null;
-
-    property_name?: string | null;
+    entity_name?: string | null;
   }
 }
 

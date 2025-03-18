@@ -61,7 +61,7 @@ export {
   type EntityVerifyParams,
   type EntityViewParams,
 } from './entities';
-export { Images } from './images';
+export { Images, type ImageGetResponse } from './images';
 export {
   JobListResponsesJobsList,
   Jobs,
