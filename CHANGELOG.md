@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.109.0-alpha.4 (2025-03-19)
+
+Full Changelog: [v1.109.0-alpha.3...v1.109.0-alpha.4](https://github.com/StructifyAI/structify-node/compare/v1.109.0-alpha.3...v1.109.0-alpha.4)
+
+### Features
+
+* **api:** api update ([#1032](https://github.com/StructifyAI/structify-node/issues/1032)) ([546441f](https://github.com/StructifyAI/structify-node/commit/546441f2471f03d4fd3205190a0f636d81479d76))
+
 ## 1.109.0-alpha.3 (2025-03-19)
 
 Full Changelog: [v1.109.0-alpha.2...v1.109.0-alpha.3](https://github.com/StructifyAI/structify-node/compare/v1.109.0-alpha.2...v1.109.0-alpha.3)
