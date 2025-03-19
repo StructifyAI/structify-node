@@ -73,13 +73,13 @@ export interface ReportMissingParams {
 }
 
 export interface ReportRelationshipParams {
-  relationship_type: string;
+  label: string;
 
   source_id?: string | null;
 
   source_url?: string | null;
 
-  target_id?: string | null;
+  to_id?: string | null;
 }
 
 export interface ReportStepParams {
