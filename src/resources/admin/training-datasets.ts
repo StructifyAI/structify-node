@@ -164,9 +164,9 @@ export class TrainingDatasets extends APIResource {
     params: TrainingDatasetRemoveDatumParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
-    const { step_id } = params;
+    const { datum_id } = params;
     return this._client.delete('/admin/training_datasets/remove_from_dataset', {
-      query: { step_id },
+      query: { datum_id },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -200,9 +200,9 @@ export class TrainingDatasets extends APIResource {
     params: TrainingDatasetSwitchDatasetParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
-    const { dataset_name, step_id } = params;
+    const { dataset_name, datum_id } = params;
     return this._client.post('/admin/training_datasets/switch_dataset', {
-      query: { dataset_name, step_id },
+      query: { dataset_name, datum_id },
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -251,30 +251,32 @@ export interface AddDatumRequest {
 }
 
 export type DatumStatus =
-  | 'Unlabeled'
-  | 'NavLabeled'
-  | 'SaveLabeled'
-  | 'NavVerified'
-  | 'SaveVerified'
-  | 'Pending'
-  | 'Skipped'
-  | 'SuspiciousNav'
-  | 'SuspiciousSave'
-  | 'PotentialSuspiciousNav'
-  | 'PotentialSuspiciousSave';
+  | 'unlabeled'
+  | 'nav_labeled'
+  | 'save_labeled'
+  | 'nav_verified'
+  | 'save_verified'
+  | 'pending'
+  | 'skipped'
+  | 'suspicious_nav'
+  | 'suspicious_save'
+  | 'potential_suspicious_nav'
+  | 'potential_suspicious_save';
 
 export interface LabelingStats {
   author: string;
+
+  capped_prop_count: number;
 
   count: number;
 
   dataset: string;
 
-  period: string;
+  prop_count: number;
 
   status: DatumStatus;
 
-  capped_count?: number | null;
+  window_start: string;
 }
 
 export interface TrainingDatumResponse {
@@ -306,7 +308,7 @@ export namespace TrainingDatumResponse {
 
     review_message?: string | null;
 
-    target_id?: string | null;
+    to_id?: string | null;
   }
 
   export namespace Update {
@@ -518,8 +520,6 @@ export namespace TrainingDatasetListDatumsResponse {
   export interface TrainingDatasetListDatumsResponseItem {
     id: string;
 
-    last_updated: string;
-
     nav_labelers: Array<string>;
 
     nav_verifiers: Array<string>;
@@ -530,7 +530,15 @@ export namespace TrainingDatasetListDatumsResponse {
 
     status: TrainingDatasetsAPI.DatumStatus;
 
-    origin?: 'HumanLLM' | 'UserReported' | 'ManualUpload' | 'ManualTransfer' | 'ToolParseFailure' | null;
+    updated_at: string;
+
+    origin?:
+      | 'human_l_l_m'
+      | 'user_reported'
+      | 'manual_upload'
+      | 'manual_transfer'
+      | 'tool_parse_failure'
+      | null;
   }
 }
 
@@ -583,7 +591,7 @@ export interface TrainingDatasetAddDatumParams {
 }
 
 export interface TrainingDatasetDownloadDatumParams {
-  step_id: string;
+  datum_id: string;
 
   require_labels?: boolean;
 }
@@ -598,8 +606,6 @@ export interface TrainingDatasetGetLabellerStatsParams {
   labeled_status?: 'None' | 'SuspiciousOnly' | 'VerifiedOnly';
 
   max_prop_count?: number | null;
-
-  return_prop_count?: boolean;
 
   start_date?: string | null;
 
@@ -835,11 +841,11 @@ export interface TrainingDatasetMarkDatumSuspiciousParams {
 }
 
 export interface TrainingDatasetRemoveDatumParams {
-  step_id: string;
+  datum_id: string;
 }
 
 export interface TrainingDatasetSizeParams {
-  dataset_names?: Array<string> | null;
+  dataset_name?: string | null;
 
   end_date?: string | null;
 
@@ -857,7 +863,7 @@ export interface TrainingDatasetSuspiciousCountParams {
 export interface TrainingDatasetSwitchDatasetParams {
   dataset_name: string;
 
-  step_id: string;
+  datum_id: string;
 }
 
 export interface TrainingDatasetUpdateDatumStatusParams {
