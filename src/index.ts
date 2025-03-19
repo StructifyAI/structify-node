@@ -47,7 +47,7 @@ import {
   EntityViewParams,
   EntityViewResponse,
 } from './resources/entities';
-import { ImageGetResponse, Images } from './resources/images';
+import { Images } from './resources/images';
 import {
   JobCancelResponse,
   JobDeleteResponse,
@@ -454,7 +454,7 @@ export declare namespace Structify {
     type EntityViewParams as EntityViewParams,
   };
 
-  export { Images as Images, type ImageGetResponse as ImageGetResponse };
+  export { Images as Images };
 
   export {
     PlanResource as PlanResource,
