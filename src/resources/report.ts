@@ -75,7 +75,7 @@ export interface ReportMissingParams {
 export interface ReportRelationshipParams {
   label: string;
 
-  source_id?: string | null;
+  from_id?: string | null;
 
   source_url?: string | null;
 

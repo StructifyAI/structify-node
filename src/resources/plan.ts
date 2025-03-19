@@ -66,9 +66,9 @@ export interface EnhanceRelationship {
 }
 
 export interface FindRelationship {
-  relationship_name: string;
+  from_id: string;
 
-  source_entity_id: string;
+  relationship_name: string;
 
   to_id: string;
 
