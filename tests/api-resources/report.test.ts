@@ -42,7 +42,7 @@ describe('resource report', () => {
   test('relationship: required and optional params', async () => {
     const response = await client.report.relationship({
       label: 'label',
-      source_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      from_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       source_url: 'source_url',
       to_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
