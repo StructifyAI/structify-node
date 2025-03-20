@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
+import * as SharedAPI from './shared';
 import * as StructureAPI from './structure';
 import { JobsList, type JobsListParams } from '../pagination';
 
@@ -52,7 +53,7 @@ export class Jobs extends APIResource {
   /**
    * Retrieve a step from structify.
    */
-  getStep(stepId: string, options?: Core.RequestOptions): Core.APIPromise<StructureAPI.ExecutionStep> {
+  getStep(stepId: string, options?: Core.RequestOptions): Core.APIPromise<JobGetStepResponse> {
     return this._client.get(`/jobs/get_step/${stepId}`, options);
   }
 
@@ -184,6 +185,201 @@ export namespace JobGetResponse {
   }
 }
 
+export interface JobGetStepResponse {
+  prompt: StructureAPI.ChatPrompt;
+
+  response: JobGetStepResponse.Response;
+}
+
+export namespace JobGetStepResponse {
+  export interface Response {
+    llm: string;
+
+    text: string;
+
+    tool_calls: Array<Response.ToolCall>;
+  }
+
+  export namespace Response {
+    export interface ToolCall {
+      input:
+        | ToolCall.Save
+        | ToolCall.Scroll
+        | ToolCall.ScrollToBottom
+        | ToolCall.Exit
+        | ToolCall.Click
+        | ToolCall.Hover
+        | ToolCall.Wait
+        | ToolCall.Error
+        | ToolCall.Google
+        | ToolCall.Type;
+
+      name:
+        | 'Exit'
+        | 'Save'
+        | 'Wait'
+        | 'Type'
+        | 'Scroll'
+        | 'ScrollToBottom'
+        | 'Click'
+        | 'Hover'
+        | 'Error'
+        | 'Google';
+
+      result?: ToolCall.ToolQueued | ToolCall.ToolFail | ToolCall.InputParseFail | ToolCall.Success | null;
+    }
+
+    export namespace ToolCall {
+      export interface Save {
+        /**
+         * Knowledge graph info structured to deserialize and display in the same format
+         * that the LLM outputs. Also the first representation of an LLM output in the
+         * pipeline from raw tool output to being merged into a Neo4j DB
+         */
+        Save: SharedAPI.KnowledgeGraph;
+      }
+
+      export interface Scroll {
+        /**
+         * For tools with no inputs.
+         */
+        Scroll: Scroll.Scroll;
+      }
+
+      export namespace Scroll {
+        /**
+         * For tools with no inputs.
+         */
+        export interface Scroll {
+          /**
+           * Dummy argument
+           */
+          reason: string;
+        }
+      }
+
+      export interface ScrollToBottom {
+        /**
+         * For tools with no inputs.
+         */
+        ScrollToBottom: ScrollToBottom.ScrollToBottom;
+      }
+
+      export namespace ScrollToBottom {
+        /**
+         * For tools with no inputs.
+         */
+        export interface ScrollToBottom {
+          /**
+           * Dummy argument
+           */
+          reason: string;
+        }
+      }
+
+      export interface Exit {
+        /**
+         * For tools with no inputs.
+         */
+        Exit: Exit.Exit;
+      }
+
+      export namespace Exit {
+        /**
+         * For tools with no inputs.
+         */
+        export interface Exit {
+          /**
+           * Dummy argument
+           */
+          reason: string;
+        }
+      }
+
+      export interface Click {
+        Click: Click.Click;
+      }
+
+      export namespace Click {
+        export interface Click {
+          flag: number;
+        }
+      }
+
+      export interface Hover {
+        Hover: Hover.Hover;
+      }
+
+      export namespace Hover {
+        export interface Hover {
+          flag: number;
+        }
+      }
+
+      export interface Wait {
+        Wait: Wait.Wait;
+      }
+
+      export namespace Wait {
+        export interface Wait {
+          /**
+           * Time in seconds to wait
+           */
+          seconds?: number;
+        }
+      }
+
+      export interface Error {
+        Error: Error.Error;
+      }
+
+      export namespace Error {
+        export interface Error {
+          error: string;
+        }
+      }
+
+      export interface Google {
+        Google: Google.Google;
+      }
+
+      export namespace Google {
+        export interface Google {
+          query: string;
+        }
+      }
+
+      export interface Type {
+        Type: Type.Type;
+      }
+
+      export namespace Type {
+        export interface Type {
+          flag: number;
+
+          input: string;
+        }
+      }
+
+      export interface ToolQueued {
+        ToolQueued: string;
+      }
+
+      export interface ToolFail {
+        ToolFail: string;
+      }
+
+      export interface InputParseFail {
+        InputParseFail: string;
+      }
+
+      export interface Success {
+        Success: string;
+      }
+    }
+  }
+}
+
 export type JobGetStepGraphResponse = Array<JobGetStepGraphResponse.JobGetStepGraphResponseItem>;
 
 export namespace JobGetStepGraphResponse {
@@ -194,7 +390,7 @@ export namespace JobGetStepGraphResponse {
 
     status: 'queued' | 'started' | 'executed' | 'skipped';
 
-    execution_step?: StructureAPI.ExecutionStep | null;
+    execution_step?: JobGetStepGraphResponseItem.ExecutionStep | null;
 
     parent_transition?: JobGetStepGraphResponseItem.ParentTransition | null;
 
@@ -208,6 +404,206 @@ export namespace JobGetStepGraphResponse {
   }
 
   export namespace JobGetStepGraphResponseItem {
+    export interface ExecutionStep {
+      prompt: StructureAPI.ChatPrompt;
+
+      response: ExecutionStep.Response;
+    }
+
+    export namespace ExecutionStep {
+      export interface Response {
+        llm: string;
+
+        text: string;
+
+        tool_calls: Array<Response.ToolCall>;
+      }
+
+      export namespace Response {
+        export interface ToolCall {
+          input:
+            | ToolCall.Save
+            | ToolCall.Scroll
+            | ToolCall.ScrollToBottom
+            | ToolCall.Exit
+            | ToolCall.Click
+            | ToolCall.Hover
+            | ToolCall.Wait
+            | ToolCall.Error
+            | ToolCall.Google
+            | ToolCall.Type;
+
+          name:
+            | 'Exit'
+            | 'Save'
+            | 'Wait'
+            | 'Type'
+            | 'Scroll'
+            | 'ScrollToBottom'
+            | 'Click'
+            | 'Hover'
+            | 'Error'
+            | 'Google';
+
+          result?:
+            | ToolCall.ToolQueued
+            | ToolCall.ToolFail
+            | ToolCall.InputParseFail
+            | ToolCall.Success
+            | null;
+        }
+
+        export namespace ToolCall {
+          export interface Save {
+            /**
+             * Knowledge graph info structured to deserialize and display in the same format
+             * that the LLM outputs. Also the first representation of an LLM output in the
+             * pipeline from raw tool output to being merged into a Neo4j DB
+             */
+            Save: SharedAPI.KnowledgeGraph;
+          }
+
+          export interface Scroll {
+            /**
+             * For tools with no inputs.
+             */
+            Scroll: Scroll.Scroll;
+          }
+
+          export namespace Scroll {
+            /**
+             * For tools with no inputs.
+             */
+            export interface Scroll {
+              /**
+               * Dummy argument
+               */
+              reason: string;
+            }
+          }
+
+          export interface ScrollToBottom {
+            /**
+             * For tools with no inputs.
+             */
+            ScrollToBottom: ScrollToBottom.ScrollToBottom;
+          }
+
+          export namespace ScrollToBottom {
+            /**
+             * For tools with no inputs.
+             */
+            export interface ScrollToBottom {
+              /**
+               * Dummy argument
+               */
+              reason: string;
+            }
+          }
+
+          export interface Exit {
+            /**
+             * For tools with no inputs.
+             */
+            Exit: Exit.Exit;
+          }
+
+          export namespace Exit {
+            /**
+             * For tools with no inputs.
+             */
+            export interface Exit {
+              /**
+               * Dummy argument
+               */
+              reason: string;
+            }
+          }
+
+          export interface Click {
+            Click: Click.Click;
+          }
+
+          export namespace Click {
+            export interface Click {
+              flag: number;
+            }
+          }
+
+          export interface Hover {
+            Hover: Hover.Hover;
+          }
+
+          export namespace Hover {
+            export interface Hover {
+              flag: number;
+            }
+          }
+
+          export interface Wait {
+            Wait: Wait.Wait;
+          }
+
+          export namespace Wait {
+            export interface Wait {
+              /**
+               * Time in seconds to wait
+               */
+              seconds?: number;
+            }
+          }
+
+          export interface Error {
+            Error: Error.Error;
+          }
+
+          export namespace Error {
+            export interface Error {
+              error: string;
+            }
+          }
+
+          export interface Google {
+            Google: Google.Google;
+          }
+
+          export namespace Google {
+            export interface Google {
+              query: string;
+            }
+          }
+
+          export interface Type {
+            Type: Type.Type;
+          }
+
+          export namespace Type {
+            export interface Type {
+              flag: number;
+
+              input: string;
+            }
+          }
+
+          export interface ToolQueued {
+            ToolQueued: string;
+          }
+
+          export interface ToolFail {
+            ToolFail: string;
+          }
+
+          export interface InputParseFail {
+            InputParseFail: string;
+          }
+
+          export interface Success {
+            Success: string;
+          }
+        }
+      }
+    }
+
     export interface ParentTransition {
       parent_id: string;
 
@@ -245,6 +641,7 @@ export declare namespace Jobs {
     type JobDeleteResponse as JobDeleteResponse,
     type JobCancelResponse as JobCancelResponse,
     type JobGetResponse as JobGetResponse,
+    type JobGetStepResponse as JobGetStepResponse,
     type JobGetStepGraphResponse as JobGetStepGraphResponse,
     type JobGetStepsResponse as JobGetStepsResponse,
     JobListResponsesJobsList as JobListResponsesJobsList,
