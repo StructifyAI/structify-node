@@ -11,8 +11,11 @@ export class HumanLlm extends APIResource {
     params: HumanLlmAddSearchForJobParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<StepChoices> {
-    const { job_id, url } = params;
-    return this._client.post('/admin/human_llm/add_search_for_job', { query: { job_id, url }, ...options });
+    const { job_id, search_query } = params;
+    return this._client.post('/admin/human_llm/add_search_for_job', {
+      query: { job_id, search_query },
+      ...options,
+    });
   }
 
   /**
@@ -364,7 +367,7 @@ export namespace HumanLlmPrelabelStepResponse {
 export interface HumanLlmAddSearchForJobParams {
   job_id: string;
 
-  url: string;
+  search_query: string;
 }
 
 export interface HumanLlmAddToDatasetParams {
