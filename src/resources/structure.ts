@@ -290,6 +290,8 @@ export namespace ChatPrompt {
 }
 
 export interface ExecutionStep {
+  id: string;
+
   prompt: ChatPrompt;
 
   response: ExecutionStep.Response;
