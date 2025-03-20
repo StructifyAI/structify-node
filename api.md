@@ -25,6 +25,7 @@ Types:
 - <code><a href="./src/resources/admin/human-llm.ts">HumanLlmAddToDatasetResponse</a></code>
 - <code><a href="./src/resources/admin/human-llm.ts">HumanLlmFinishJobResponse</a></code>
 - <code><a href="./src/resources/admin/human-llm.ts">HumanLlmGetJobsResponse</a></code>
+- <code><a href="./src/resources/admin/human-llm.ts">HumanLlmGetNextStepResponse</a></code>
 - <code><a href="./src/resources/admin/human-llm.ts">HumanLlmPrelabelStepResponse</a></code>
 
 Methods:
@@ -33,7 +34,7 @@ Methods:
 - <code title="post /admin/human_llm/add_to_dataset">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">addToDataset</a>({ ...params }) -> unknown</code>
 - <code title="post /admin/human_llm/finish_job">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">finishJob</a>({ ...params }) -> unknown</code>
 - <code title="post /admin/human_llm/get_jobs">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">getJobs</a>({ ...params }) -> HumanLlmGetJobsResponse</code>
-- <code title="post /admin/human_llm/get_next_step">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">getNextStep</a>({ ...params }) -> ExecutionStep</code>
+- <code title="post /admin/human_llm/get_next_step">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">getNextStep</a>({ ...params }) -> HumanLlmGetNextStepResponse</code>
 - <code title="post /admin/human_llm/prelabel_step/{step_id}">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">prelabelStep</a>(stepId) -> HumanLlmPrelabelStepResponse</code>
 - <code title="post /admin/human_llm/start_next_job">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">startNextJob</a>({ ...params }) -> StepChoices</code>
 - <code title="post /admin/human_llm/update_step">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">updateStep</a>({ ...params }) -> StepChoices</code>
@@ -178,6 +179,7 @@ Types:
 - <code><a href="./src/resources/jobs.ts">JobDeleteResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobCancelResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobGetResponse</a></code>
+- <code><a href="./src/resources/jobs.ts">JobGetStepResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobGetStepGraphResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobGetStepsResponse</a></code>
 
@@ -187,7 +189,7 @@ Methods:
 - <code title="post /jobs/delete/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">delete</a>(jobId) -> string</code>
 - <code title="post /jobs/cancel/{uuid}">client.jobs.<a href="./src/resources/jobs.ts">cancel</a>(uuid) -> JobCancelResponse</code>
 - <code title="get /jobs/get/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">get</a>(jobId) -> JobGetResponse</code>
-- <code title="get /jobs/get_step/{step_id}">client.jobs.<a href="./src/resources/jobs.ts">getStep</a>(stepId) -> ExecutionStep</code>
+- <code title="get /jobs/get_step/{step_id}">client.jobs.<a href="./src/resources/jobs.ts">getStep</a>(stepId) -> JobGetStepResponse</code>
 - <code title="get /jobs/get_step_graph/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">getStepGraph</a>(jobId) -> JobGetStepGraphResponse</code>
 - <code title="get /jobs/get_steps/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">getSteps</a>(jobId) -> JobGetStepsResponse</code>
 - <code title="post /jobs/schedule">client.jobs.<a href="./src/resources/jobs.ts">schedule</a>() -> void</code>
