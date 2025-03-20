@@ -8,6 +8,7 @@ export {
   type HumanLlmAddToDatasetResponse,
   type HumanLlmFinishJobResponse,
   type HumanLlmGetJobsResponse,
+  type HumanLlmGetNextStepResponse,
   type HumanLlmPrelabelStepResponse,
   type HumanLlmAddSearchForJobParams,
   type HumanLlmAddToDatasetParams,
