@@ -74,6 +74,8 @@ export {
   type JobListParams,
 } from './jobs';
 export {
+  PlanListResponsesJobsList,
+  PlanListWithJobsResponsesJobsList,
   PlanResource,
   type EnhanceProperty,
   type EnhanceRelationship,
@@ -81,9 +83,12 @@ export {
   type Plan,
   type PlanCreateResponse,
   type PlanListResponse,
+  type PlanListWithJobsResponse,
   type PlanPauseAllResponse,
   type PlanResumeAllResponse,
   type PlanCreateParams,
+  type PlanListParams,
+  type PlanListWithJobsParams,
   type PlanPauseAllParams,
   type PlanResumeAllParams,
 } from './plan';

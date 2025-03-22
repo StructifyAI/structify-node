@@ -66,7 +66,12 @@ import {
   Plan,
   PlanCreateParams,
   PlanCreateResponse,
+  PlanListParams,
   PlanListResponse,
+  PlanListResponsesJobsList,
+  PlanListWithJobsParams,
+  PlanListWithJobsResponse,
+  PlanListWithJobsResponsesJobsList,
   PlanPauseAllParams,
   PlanPauseAllResponse,
   PlanResource,
@@ -348,6 +353,8 @@ Structify.Server = Server;
 Structify.Sources = Sources;
 Structify.Entities = Entities;
 Structify.PlanResource = PlanResource;
+Structify.PlanListResponsesJobsList = PlanListResponsesJobsList;
+Structify.PlanListWithJobsResponsesJobsList = PlanListWithJobsResponsesJobsList;
 Structify.Report = Report;
 Structify.Structure = Structure;
 Structify.Shared = Shared;
@@ -461,9 +468,14 @@ export declare namespace Structify {
     type Plan as Plan,
     type PlanCreateResponse as PlanCreateResponse,
     type PlanListResponse as PlanListResponse,
+    type PlanListWithJobsResponse as PlanListWithJobsResponse,
     type PlanPauseAllResponse as PlanPauseAllResponse,
     type PlanResumeAllResponse as PlanResumeAllResponse,
+    PlanListResponsesJobsList as PlanListResponsesJobsList,
+    PlanListWithJobsResponsesJobsList as PlanListWithJobsResponsesJobsList,
     type PlanCreateParams as PlanCreateParams,
+    type PlanListParams as PlanListParams,
+    type PlanListWithJobsParams as PlanListWithJobsParams,
     type PlanPauseAllParams as PlanPauseAllParams,
     type PlanResumeAllParams as PlanResumeAllParams,
   };
