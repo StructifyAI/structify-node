@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.109.0-alpha.5 (2025-03-22)
+
+Full Changelog: [v1.109.0-alpha.4...v1.109.0-alpha.5](https://github.com/StructifyAI/structify-node/compare/v1.109.0-alpha.4...v1.109.0-alpha.5)
+
+### Features
+
+* **api:** api update ([#1038](https://github.com/StructifyAI/structify-node/issues/1038)) ([7dacb73](https://github.com/StructifyAI/structify-node/commit/7dacb7355132d71df92ab202e3cd8a2dfcf5b40e))
+* **api:** api update ([#1039](https://github.com/StructifyAI/structify-node/issues/1039)) ([a4eb3d9](https://github.com/StructifyAI/structify-node/commit/a4eb3d93df1b909b3c5c5e57cebb25100bfb4c16))
+* **api:** api update ([#1041](https://github.com/StructifyAI/structify-node/issues/1041)) ([d9171e5](https://github.com/StructifyAI/structify-node/commit/d9171e5c3d43081d9cbe5f783f1d1474ee5c6cdb))
+
+
+### Bug Fixes
+
+* avoid type error in certain environments ([#1040](https://github.com/StructifyAI/structify-node/issues/1040)) ([5c66a4c](https://github.com/StructifyAI/structify-node/commit/5c66a4c27f9239f377993ab1729154b18a90de5d))
+
+
+### Chores
+
+* **exports:** cleaner resource index imports ([#1035](https://github.com/StructifyAI/structify-node/issues/1035)) ([a713eb4](https://github.com/StructifyAI/structify-node/commit/a713eb4b41bfde89fdeca248f247563dfef41c34))
+* **exports:** stop using path fallbacks ([#1037](https://github.com/StructifyAI/structify-node/issues/1037)) ([4a6668d](https://github.com/StructifyAI/structify-node/commit/4a6668dd99af62387b83654c0c95d4b80690012d))
+
 ## 1.109.0-alpha.4 (2025-03-19)
 
 Full Changelog: [v1.109.0-alpha.3...v1.109.0-alpha.4](https://github.com/StructifyAI/structify-node/compare/v1.109.0-alpha.3...v1.109.0-alpha.4)
