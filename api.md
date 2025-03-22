@@ -260,13 +260,15 @@ Types:
 - <code><a href="./src/resources/plan.ts">Plan</a></code>
 - <code><a href="./src/resources/plan.ts">PlanCreateResponse</a></code>
 - <code><a href="./src/resources/plan.ts">PlanListResponse</a></code>
+- <code><a href="./src/resources/plan.ts">PlanListWithJobsResponse</a></code>
 - <code><a href="./src/resources/plan.ts">PlanPauseAllResponse</a></code>
 - <code><a href="./src/resources/plan.ts">PlanResumeAllResponse</a></code>
 
 Methods:
 
 - <code title="post /plan/create">client.plan.<a href="./src/resources/plan.ts">create</a>({ ...params }) -> string</code>
-- <code title="get /plan/list">client.plan.<a href="./src/resources/plan.ts">list</a>() -> PlanListResponse</code>
+- <code title="get /plan/list">client.plan.<a href="./src/resources/plan.ts">list</a>({ ...params }) -> PlanListResponsesJobsList</code>
+- <code title="get /plan/list_with_jobs">client.plan.<a href="./src/resources/plan.ts">listWithJobs</a>({ ...params }) -> PlanListWithJobsResponsesJobsList</code>
 - <code title="get /plan/pause_all">client.plan.<a href="./src/resources/plan.ts">pauseAll</a>({ ...params }) -> PlanPauseAllResponse</code>
 - <code title="get /plan/resume_all">client.plan.<a href="./src/resources/plan.ts">resumeAll</a>({ ...params }) -> PlanResumeAllResponse</code>
 
