@@ -60,6 +60,56 @@ describe('resource plan', () => {
     );
   });
 
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.plan.list(
+        {
+          created_since: '2019-12-27T18:11:19.117Z',
+          limit: 0,
+          offset: 0,
+          status: 'Queued',
+          updated_since: '2019-12-27T18:11:19.117Z',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
+  test('listWithJobs', async () => {
+    const responsePromise = client.plan.listWithJobs();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('listWithJobs: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.plan.listWithJobs({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Structify.NotFoundError,
+    );
+  });
+
+  test('listWithJobs: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.plan.listWithJobs(
+        {
+          created_since: '2019-12-27T18:11:19.117Z',
+          limit: 0,
+          offset: 0,
+          status: 'Queued',
+          updated_since: '2019-12-27T18:11:19.117Z',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
   test('pauseAll: only required params', async () => {
     const responsePromise = client.plan.pauseAll({ dataset_name: 'dataset_name' });
     const rawResponse = await responsePromise.asResponse();
