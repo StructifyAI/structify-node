@@ -141,6 +141,8 @@ export interface PlanListResponse {
 }
 
 export interface PlanListWithJobsResponse {
+  created_at: string;
+
   jobs: Array<PlanListWithJobsResponse.Job>;
 
   plan: Plan;
@@ -150,6 +152,8 @@ export interface PlanListWithJobsResponse {
   status: 'Queued' | 'Running' | 'Completed' | 'Failed' | 'Paused';
 
   step: number;
+
+  updated_at: string;
 }
 
 export namespace PlanListWithJobsResponse {
