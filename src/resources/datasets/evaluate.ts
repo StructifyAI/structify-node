@@ -125,37 +125,106 @@ export interface EvaluateGetResponse {
 
 export namespace EvaluateGetResponse {
   export interface Stats {
-    tables: Record<string, Stats.Tables>;
+    table_matches: Record<string, Stats.TableMatches>;
   }
 
   export namespace Stats {
-    export interface Tables {
-      matched_entities: Array<SharedAPI.MatchedEntity>;
+    export interface TableMatches {
+      entity_matches: Array<TableMatches.EntityMatch>;
 
-      /**
-       * We don't want to make the assumption that the dataset is static after eval, so
-       * it's useful to save the full entities.
-       */
-      unmatched_1: Array<Tables.Unmatched1>;
+      unmatched_a: Array<TableMatches.UnmatchedA>;
 
-      unmatched_2: Array<Tables.Unmatched2>;
+      unmatched_b: Array<TableMatches.UnmatchedB>;
     }
 
-    export namespace Tables {
-      export interface Unmatched1 {
-        id: string;
+    export namespace TableMatches {
+      export interface EntityMatch {
+        /**
+         * Alternate matches for entity a - just used for dataset eval
+         */
+        alternate_matches: Array<unknown>;
 
-        properties: Record<string, string | boolean | number | SharedAPI.Image>;
+        baseline_cardinality: number;
 
-        type: string;
+        entity_a: EntityMatch.EntityA;
+
+        entity_b: EntityMatch.EntityB;
+
+        matched_properties: Array<EntityMatch.MatchedProperty>;
+
+        p_match: number;
+
+        p_match_threshold: number;
       }
 
-      export interface Unmatched2 {
+      export namespace EntityMatch {
+        export interface EntityA {
+          id: string;
+
+          created_at: string;
+
+          dataset_id: string;
+
+          label: string;
+
+          properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+          updated_at: string;
+        }
+
+        export interface EntityB {
+          id: string;
+
+          created_at: string;
+
+          dataset_id: string;
+
+          label: string;
+
+          properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+          updated_at: string;
+        }
+
+        export interface MatchedProperty {
+          match_prob: number;
+
+          match_transfer_prob: number;
+
+          name: string;
+
+          property_cardinality: number;
+
+          unique: boolean;
+        }
+      }
+
+      export interface UnmatchedA {
         id: string;
+
+        created_at: string;
+
+        dataset_id: string;
+
+        label: string;
 
         properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
-        type: string;
+        updated_at: string;
+      }
+
+      export interface UnmatchedB {
+        id: string;
+
+        created_at: string;
+
+        dataset_id: string;
+
+        label: string;
+
+        properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+        updated_at: string;
       }
     }
   }
