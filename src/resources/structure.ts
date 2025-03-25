@@ -538,8 +538,6 @@ export interface ToolMetadata {
     | 'Google';
 
   regex_validator: string;
-
-  tool_validator: Record<string, unknown>;
 }
 
 export type StructureEnhancePropertyResponse = string;
