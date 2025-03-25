@@ -283,15 +283,64 @@ export interface EntityMergeResponse {
 
 export namespace EntityMergeResponse {
   export interface MatchObject {
-    a_id: string;
+    /**
+     * Alternate matches for entity a - just used for dataset eval
+     */
+    alternate_matches: Array<unknown>;
 
-    b_id: string;
+    baseline_cardinality: number;
 
-    info: string;
+    entity_a: MatchObject.EntityA;
+
+    entity_b: MatchObject.EntityB;
+
+    matched_properties: Array<MatchObject.MatchedProperty>;
 
     p_match: number;
 
     p_match_threshold: number;
+  }
+
+  export namespace MatchObject {
+    export interface EntityA {
+      id: string;
+
+      created_at: string;
+
+      dataset_id: string;
+
+      label: string;
+
+      properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+      updated_at: string;
+    }
+
+    export interface EntityB {
+      id: string;
+
+      created_at: string;
+
+      dataset_id: string;
+
+      label: string;
+
+      properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+      updated_at: string;
+    }
+
+    export interface MatchedProperty {
+      match_prob: number;
+
+      match_transfer_prob: number;
+
+      name: string;
+
+      property_cardinality: number;
+
+      unique: boolean;
+    }
   }
 }
 
