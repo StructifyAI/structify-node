@@ -46,6 +46,16 @@ export class Entities extends APIResource {
     return this._client.get('/entity/get_local_subgraph', { query, ...options });
   }
 
+  /**
+   * Get all historical merges for a given entity
+   */
+  getMerges(
+    query: EntityGetMergesParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<EntityGetMergesResponse> {
+    return this._client.get('/entity/get_merges', { query, ...options });
+  }
+
   getSourceEntities(
     query: EntityGetSourceEntitiesParams,
     options?: Core.RequestOptions,
@@ -169,6 +179,71 @@ export namespace EntityGetLocalSubgraphResponse {
     properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
     to_id: string;
+  }
+}
+
+export type EntityGetMergesResponse = Array<EntityGetMergesResponse.EntityGetMergesResponseItem>;
+
+export namespace EntityGetMergesResponse {
+  export interface EntityGetMergesResponseItem {
+    /**
+     * Alternate matches for entity a - just used for dataset eval
+     */
+    alternate_matches: Array<unknown>;
+
+    baseline_cardinality: number;
+
+    entity_a: EntityGetMergesResponseItem.EntityA;
+
+    entity_b: EntityGetMergesResponseItem.EntityB;
+
+    matched_properties: Array<EntityGetMergesResponseItem.MatchedProperty>;
+
+    p_match: number;
+
+    p_match_threshold: number;
+  }
+
+  export namespace EntityGetMergesResponseItem {
+    export interface EntityA {
+      id: string;
+
+      created_at: string;
+
+      dataset_id: string;
+
+      label: string;
+
+      properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+      updated_at: string;
+    }
+
+    export interface EntityB {
+      id: string;
+
+      created_at: string;
+
+      dataset_id: string;
+
+      label: string;
+
+      properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+      updated_at: string;
+    }
+
+    export interface MatchedProperty {
+      match_prob: number;
+
+      match_transfer_prob: number;
+
+      name: string;
+
+      property_cardinality: number;
+
+      unique: boolean;
+    }
   }
 }
 
@@ -607,6 +682,10 @@ export interface EntityGetLocalSubgraphParams {
   radius?: number;
 }
 
+export interface EntityGetMergesParams {
+  entity_id: string;
+}
+
 export interface EntityGetSourceEntitiesParams {
   id: string;
 }
@@ -705,6 +784,7 @@ export declare namespace Entities {
     type EntityAddBatchResponse as EntityAddBatchResponse,
     type EntityGetResponse as EntityGetResponse,
     type EntityGetLocalSubgraphResponse as EntityGetLocalSubgraphResponse,
+    type EntityGetMergesResponse as EntityGetMergesResponse,
     type EntityGetSourceEntitiesResponse as EntityGetSourceEntitiesResponse,
     type EntityListJobsResponse as EntityListJobsResponse,
     type EntityMergeResponse as EntityMergeResponse,
@@ -718,6 +798,7 @@ export declare namespace Entities {
     type EntityAddBatchParams as EntityAddBatchParams,
     type EntityGetParams as EntityGetParams,
     type EntityGetLocalSubgraphParams as EntityGetLocalSubgraphParams,
+    type EntityGetMergesParams as EntityGetMergesParams,
     type EntityGetSourceEntitiesParams as EntityGetSourceEntitiesParams,
     type EntityListJobsParams as EntityListJobsParams,
     type EntityMergeParams as EntityMergeParams,
