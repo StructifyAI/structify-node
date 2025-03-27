@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.109.0-alpha.8 (2025-03-27)
+
+Full Changelog: [v1.109.0-alpha.7...v1.109.0-alpha.8](https://github.com/StructifyAI/structify-node/compare/v1.109.0-alpha.7...v1.109.0-alpha.8)
+
+### Features
+
+* **api:** api update ([07295bb](https://github.com/StructifyAI/structify-node/commit/07295bbb33b5500cda32e1d84f441e72730264fe))
+* **api:** api update ([18c444e](https://github.com/StructifyAI/structify-node/commit/18c444ea600fd0d5f5f1a478d7e82f75a97d4df8))
+* **api:** api update ([#1052](https://github.com/StructifyAI/structify-node/issues/1052)) ([4500025](https://github.com/StructifyAI/structify-node/commit/45000259fb4f193b93d129956db1f7b0e527d0fc))
+* **api:** api update ([#1053](https://github.com/StructifyAI/structify-node/issues/1053)) ([6ef32d0](https://github.com/StructifyAI/structify-node/commit/6ef32d08a36b8377fbcfa772a50c4ef34dc8686e))
+* **api:** manual updates ([#1054](https://github.com/StructifyAI/structify-node/issues/1054)) ([d99b81e](https://github.com/StructifyAI/structify-node/commit/d99b81e6163e6453a5942424eab77c9bc181588d))
+* **api:** manual updates ([#1055](https://github.com/StructifyAI/structify-node/issues/1055)) ([1daba14](https://github.com/StructifyAI/structify-node/commit/1daba14989ecefe60b49c042233be8b69a1b1771))
+
+
+### Chores
+
+* add hash of OpenAPI spec/config inputs to .stats.yml ([b8b38b4](https://github.com/StructifyAI/structify-node/commit/b8b38b41fa7e9f64feabbc5497e917a18ccebd0a))
+
 ## 1.109.0-alpha.7 (2025-03-26)
 
 Full Changelog: [v1.109.0-alpha.6...v1.109.0-alpha.7](https://github.com/StructifyAI/structify-node/compare/v1.109.0-alpha.6...v1.109.0-alpha.7)
