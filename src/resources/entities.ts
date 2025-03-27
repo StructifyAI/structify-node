@@ -182,7 +182,7 @@ export namespace EntityGetLocalSubgraphResponse {
   }
 }
 
-export type EntityGetMergesResponse = Array<SharedAPI.EntityMatch>;
+export type EntityGetMergesResponse = Array<SharedAPI.MatchedEntity>;
 
 export interface EntityGetSourceEntitiesResponse {
   source_entities: Array<Array<EntityGetSourceEntitiesResponse.SourceEntity>>;
@@ -288,7 +288,7 @@ export namespace EntityListJobsResponse {
 }
 
 export interface EntityMergeResponse {
-  match_object?: SharedAPI.EntityMatch | null;
+  match_object?: SharedAPI.MatchedEntity | null;
 
   merged_entity_id?: string | null;
 }
