@@ -26,12 +26,8 @@ export class Datasets extends APIResource {
   /**
    * Creates a dataset.
    */
-  create(body: DatasetCreateParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/dataset/create', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
+  create(body: DatasetCreateParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.post('/dataset/create', { body, ...options });
   }
 
   /**
@@ -167,6 +163,8 @@ export namespace Strategy {
     Probabilistic: DatasetsAPI.MergeConfig;
   }
 }
+
+export type DatasetCreateResponse = string;
 
 export type DatasetListResponse = Array<DatasetListResponse.DatasetListResponseItem>;
 
@@ -414,6 +412,7 @@ export declare namespace Datasets {
     type MergeConfig as MergeConfig,
     type RelationshipMergeStrategy as RelationshipMergeStrategy,
     type Strategy as Strategy,
+    type DatasetCreateResponse as DatasetCreateResponse,
     type DatasetListResponse as DatasetListResponse,
     type DatasetGetResponse as DatasetGetResponse,
     type DatasetMatchResponse as DatasetMatchResponse,

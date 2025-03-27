@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as SharedAPI from '../shared';
 import { JobsList, type JobsListParams } from '../../pagination';
@@ -11,17 +10,9 @@ export class Evaluate extends APIResource {
    * List all dataset evaluation results with pagination
    */
   list(
-    query?: EvaluateListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<EvaluateListResponsesJobsList, EvaluateListResponse>;
-  list(options?: Core.RequestOptions): Core.PagePromise<EvaluateListResponsesJobsList, EvaluateListResponse>;
-  list(
-    query: EvaluateListParams | Core.RequestOptions = {},
+    query: EvaluateListParams,
     options?: Core.RequestOptions,
   ): Core.PagePromise<EvaluateListResponsesJobsList, EvaluateListResponse> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
     return this._client.getAPIList('/dataset/evaluate/list', EvaluateListResponsesJobsList, {
       query,
       ...options,
@@ -51,9 +42,9 @@ export class Evaluate extends APIResource {
    * Evaluate two datasets
    */
   run(params: EvaluateRunParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    const { dataset_1, dataset_2, dataset_2_is_ground_truth, email_1, email_2 } = params;
+    const { dataset_1, dataset_2, dataset_2_is_ground_truth } = params;
     return this._client.post('/dataset/evaluate/run', {
-      query: { dataset_1, dataset_2, dataset_2_is_ground_truth, email_1, email_2 },
+      query: { dataset_1, dataset_2, dataset_2_is_ground_truth },
       ...options,
     });
   }
@@ -78,10 +69,6 @@ export interface EvaluateListResponse {
 
   dataset_2: string;
 
-  email_1: string;
-
-  email_2: string;
-
   iou: number;
 
   matched: number;
@@ -103,10 +90,6 @@ export interface EvaluateGetResponse {
   dataset_2: string;
 
   dataset_2_is_ground_truth: boolean;
-
-  email_1: string;
-
-  email_2: string;
 
   iou: number;
 
@@ -252,10 +235,6 @@ export interface EvaluateRunParams {
   dataset_2: string;
 
   dataset_2_is_ground_truth: boolean;
-
-  email_1: string;
-
-  email_2: string;
 }
 
 export interface EvaluateStatusParams {

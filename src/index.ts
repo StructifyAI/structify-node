@@ -133,6 +133,7 @@ import {
 import { Admin } from './resources/admin/admin';
 import {
   DatasetCreateParams,
+  DatasetCreateResponse,
   DatasetDeleteParams,
   DatasetGetParams,
   DatasetGetResponse,
@@ -381,6 +382,7 @@ export declare namespace Structify {
     type MergeConfig as MergeConfig,
     type RelationshipMergeStrategy as RelationshipMergeStrategy,
     type Strategy as Strategy,
+    type DatasetCreateResponse as DatasetCreateResponse,
     type DatasetListResponse as DatasetListResponse,
     type DatasetGetResponse as DatasetGetResponse,
     type DatasetMatchResponse as DatasetMatchResponse,
