@@ -113,7 +113,7 @@ export namespace EvaluateGetResponse {
 
   export namespace Stats {
     export interface TableMatches {
-      entity_matches: Array<SharedAPI.MatchedEntity>;
+      entity_matches: Array<TableMatches.EntityMatch>;
 
       unmatched_a: Array<TableMatches.UnmatchedA>;
 
@@ -121,6 +121,67 @@ export namespace EvaluateGetResponse {
     }
 
     export namespace TableMatches {
+      export interface EntityMatch {
+        /**
+         * Alternate matches for entity a - just used for dataset eval
+         */
+        alternate_matches: Array<unknown>;
+
+        baseline_cardinality: number;
+
+        entity_a: EntityMatch.EntityA;
+
+        entity_b: EntityMatch.EntityB;
+
+        matched_properties: Array<EntityMatch.MatchedProperty>;
+
+        p_match: number;
+
+        p_match_threshold: number;
+      }
+
+      export namespace EntityMatch {
+        export interface EntityA {
+          id: string;
+
+          created_at: string;
+
+          dataset_id: string;
+
+          label: string;
+
+          properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+          updated_at: string;
+        }
+
+        export interface EntityB {
+          id: string;
+
+          created_at: string;
+
+          dataset_id: string;
+
+          label: string;
+
+          properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+          updated_at: string;
+        }
+
+        export interface MatchedProperty {
+          match_prob: number;
+
+          match_transfer_prob: number;
+
+          name: string;
+
+          property_cardinality: number;
+
+          unique: boolean;
+        }
+      }
+
       export interface UnmatchedA {
         id: string;
 
