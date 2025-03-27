@@ -77,6 +77,67 @@ export interface KnowledgeGraph {
   relationships?: Array<Relationship>;
 }
 
+export interface MatchedEntity {
+  /**
+   * Alternate matches for entity a - just used for dataset eval
+   */
+  alternate_matches: Array<MatchedEntity>;
+
+  baseline_cardinality: number;
+
+  entity_a: MatchedEntity.EntityA;
+
+  entity_b: MatchedEntity.EntityB;
+
+  matched_properties: Array<MatchedEntity.MatchedProperty>;
+
+  p_match: number;
+
+  p_match_threshold: number;
+}
+
+export namespace MatchedEntity {
+  export interface EntityA {
+    id: string;
+
+    created_at: string;
+
+    dataset_id: string;
+
+    label: string;
+
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+    updated_at: string;
+  }
+
+  export interface EntityB {
+    id: string;
+
+    created_at: string;
+
+    dataset_id: string;
+
+    label: string;
+
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+    updated_at: string;
+  }
+
+  export interface MatchedProperty {
+    match_prob: number;
+
+    match_transfer_prob: number;
+
+    name: string;
+
+    property_cardinality: number;
+
+    unique: boolean;
+  }
+}
+
 export type PropertyType =
   | 'String'
   | 'Boolean'
@@ -147,6 +208,7 @@ export declare namespace Shared {
     type Entity as Entity,
     type Image as Image,
     type KnowledgeGraph as KnowledgeGraph,
+    type MatchedEntity as MatchedEntity,
     type PropertyType as PropertyType,
     type Relationship as Relationship,
     type Table as Table,
