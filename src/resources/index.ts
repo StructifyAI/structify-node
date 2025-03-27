@@ -8,6 +8,7 @@ export {
   type MergeConfig,
   type RelationshipMergeStrategy,
   type Strategy,
+  type DatasetCreateResponse,
   type DatasetListResponse,
   type DatasetGetResponse,
   type DatasetMatchResponse,

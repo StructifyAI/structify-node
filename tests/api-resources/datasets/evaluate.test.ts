@@ -9,8 +9,8 @@ const client = new Structify({
 });
 
 describe('resource evaluate', () => {
-  test('list', async () => {
-    const responsePromise = client.datasets.evaluate.list();
+  test('list: only required params', async () => {
+    const responsePromise = client.datasets.evaluate.list({ limit: 1, offset: 0 });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -20,18 +20,8 @@ describe('resource evaluate', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.datasets.evaluate.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Structify.NotFoundError,
-    );
-  });
-
-  test('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.datasets.evaluate.list({ limit: 1, offset: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Structify.NotFoundError);
+  test('list: required and optional params', async () => {
+    const response = await client.datasets.evaluate.list({ limit: 1, offset: 0 });
   });
 
   test('delete: only required params', async () => {
@@ -66,11 +56,9 @@ describe('resource evaluate', () => {
 
   test('run: only required params', async () => {
     const responsePromise = client.datasets.evaluate.run({
-      dataset_1: 'dataset_1',
-      dataset_2: 'dataset_2',
+      dataset_1: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      dataset_2: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       dataset_2_is_ground_truth: true,
-      email_1: 'email_1',
-      email_2: 'email_2',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -83,11 +71,9 @@ describe('resource evaluate', () => {
 
   test('run: required and optional params', async () => {
     const response = await client.datasets.evaluate.run({
-      dataset_1: 'dataset_1',
-      dataset_2: 'dataset_2',
+      dataset_1: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      dataset_2: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       dataset_2_is_ground_truth: true,
-      email_1: 'email_1',
-      email_2: 'email_2',
     });
   });
 

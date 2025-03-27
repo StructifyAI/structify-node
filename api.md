@@ -122,6 +122,7 @@ Types:
 - <code><a href="./src/resources/datasets/datasets.ts">MergeConfig</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">RelationshipMergeStrategy</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">Strategy</a></code>
+- <code><a href="./src/resources/datasets/datasets.ts">DatasetCreateResponse</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">DatasetListResponse</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">DatasetGetResponse</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">DatasetMatchResponse</a></code>
@@ -131,7 +132,7 @@ Types:
 
 Methods:
 
-- <code title="post /dataset/create">client.datasets.<a href="./src/resources/datasets/datasets.ts">create</a>({ ...params }) -> void</code>
+- <code title="post /dataset/create">client.datasets.<a href="./src/resources/datasets/datasets.ts">create</a>({ ...params }) -> string</code>
 - <code title="get /dataset/list">client.datasets.<a href="./src/resources/datasets/datasets.ts">list</a>() -> DatasetListResponse</code>
 - <code title="delete /dataset/delete">client.datasets.<a href="./src/resources/datasets/datasets.ts">delete</a>({ ...params }) -> void</code>
 - <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets/datasets.ts">get</a>({ ...params }) -> DatasetGetResponse</code>
