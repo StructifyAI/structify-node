@@ -113,7 +113,7 @@ export namespace EvaluateGetResponse {
 
   export namespace Stats {
     export interface TableMatches {
-      entity_matches: Array<SharedAPI.MatchedEntity>;
+      entity_matches: Array<SharedAPI.EntityMatch>;
 
       unmatched_a: Array<TableMatches.UnmatchedA>;
 
