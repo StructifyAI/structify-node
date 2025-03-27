@@ -182,7 +182,70 @@ export namespace EntityGetLocalSubgraphResponse {
   }
 }
 
-export type EntityGetMergesResponse = Array<SharedAPI.MatchedEntity>;
+export type EntityGetMergesResponse = Array<EntityGetMergesResponse.EntityGetMergesResponseItem>;
+
+export namespace EntityGetMergesResponse {
+  export interface EntityGetMergesResponseItem {
+    /**
+     * Alternate matches for entity a - just used for dataset eval
+     */
+    alternate_matches: Array<unknown>;
+
+    baseline_cardinality: number;
+
+    entity_a: EntityGetMergesResponseItem.EntityA;
+
+    entity_b: EntityGetMergesResponseItem.EntityB;
+
+    matched_properties: Array<EntityGetMergesResponseItem.MatchedProperty>;
+
+    p_match: number;
+
+    p_match_threshold: number;
+  }
+
+  export namespace EntityGetMergesResponseItem {
+    export interface EntityA {
+      id: string;
+
+      created_at: string;
+
+      dataset_id: string;
+
+      label: string;
+
+      properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+      updated_at: string;
+    }
+
+    export interface EntityB {
+      id: string;
+
+      created_at: string;
+
+      dataset_id: string;
+
+      label: string;
+
+      properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+      updated_at: string;
+    }
+
+    export interface MatchedProperty {
+      match_prob: number;
+
+      match_transfer_prob: number;
+
+      name: string;
+
+      property_cardinality: number;
+
+      unique: boolean;
+    }
+  }
+}
 
 export interface EntityGetSourceEntitiesResponse {
   source_entities: Array<Array<EntityGetSourceEntitiesResponse.SourceEntity>>;
@@ -288,9 +351,72 @@ export namespace EntityListJobsResponse {
 }
 
 export interface EntityMergeResponse {
-  match_object?: SharedAPI.MatchedEntity | null;
+  match_object?: EntityMergeResponse.MatchObject | null;
 
   merged_entity_id?: string | null;
+}
+
+export namespace EntityMergeResponse {
+  export interface MatchObject {
+    /**
+     * Alternate matches for entity a - just used for dataset eval
+     */
+    alternate_matches: Array<unknown>;
+
+    baseline_cardinality: number;
+
+    entity_a: MatchObject.EntityA;
+
+    entity_b: MatchObject.EntityB;
+
+    matched_properties: Array<MatchObject.MatchedProperty>;
+
+    p_match: number;
+
+    p_match_threshold: number;
+  }
+
+  export namespace MatchObject {
+    export interface EntityA {
+      id: string;
+
+      created_at: string;
+
+      dataset_id: string;
+
+      label: string;
+
+      properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+      updated_at: string;
+    }
+
+    export interface EntityB {
+      id: string;
+
+      created_at: string;
+
+      dataset_id: string;
+
+      label: string;
+
+      properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+      updated_at: string;
+    }
+
+    export interface MatchedProperty {
+      match_prob: number;
+
+      match_transfer_prob: number;
+
+      name: string;
+
+      property_cardinality: number;
+
+      unique: boolean;
+    }
+  }
 }
 
 export type EntitySearchResponse = Array<EntitySearchResponse.EntitySearchResponseItem>;
