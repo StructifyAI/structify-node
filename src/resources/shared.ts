@@ -60,6 +60,67 @@ export interface Entity {
   type: string;
 }
 
+export interface EntityMatch {
+  /**
+   * Alternate matches for entity a - just used for dataset eval
+   */
+  alternate_matches: Array<EntityMatch>;
+
+  baseline_cardinality: number;
+
+  entity_a: EntityMatch.EntityA;
+
+  entity_b: EntityMatch.EntityB;
+
+  matched_properties: Array<EntityMatch.MatchedProperty>;
+
+  p_match: number;
+
+  p_match_threshold: number;
+}
+
+export namespace EntityMatch {
+  export interface EntityA {
+    id: string;
+
+    created_at: string;
+
+    dataset_id: string;
+
+    label: string;
+
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+    updated_at: string;
+  }
+
+  export interface EntityB {
+    id: string;
+
+    created_at: string;
+
+    dataset_id: string;
+
+    label: string;
+
+    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+    updated_at: string;
+  }
+
+  export interface MatchedProperty {
+    match_prob: number;
+
+    match_transfer_prob: number;
+
+    name: string;
+
+    property_cardinality: number;
+
+    unique: boolean;
+  }
+}
+
 export interface Image {
   number: number;
 
@@ -145,6 +206,7 @@ export declare namespace Shared {
   export {
     type DatasetDescriptor as DatasetDescriptor,
     type Entity as Entity,
+    type EntityMatch as EntityMatch,
     type Image as Image,
     type KnowledgeGraph as KnowledgeGraph,
     type PropertyType as PropertyType,
