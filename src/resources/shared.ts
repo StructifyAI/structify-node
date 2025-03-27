@@ -60,26 +60,43 @@ export interface Entity {
   type: string;
 }
 
-export interface EntityMatch {
+export interface Image {
+  number: number;
+
+  hash?: string;
+}
+
+/**
+ * Knowledge graph info structured to deserialize and display in the same format
+ * that the LLM outputs. Also the first representation of an LLM output in the
+ * pipeline from raw tool output to being merged into a Neo4j DB
+ */
+export interface KnowledgeGraph {
+  entities?: Array<Entity>;
+
+  relationships?: Array<Relationship>;
+}
+
+export interface MatchedEntity {
   /**
    * Alternate matches for entity a - just used for dataset eval
    */
-  alternate_matches: Array<EntityMatch>;
+  alternate_matches: Array<MatchedEntity>;
 
   baseline_cardinality: number;
 
-  entity_a: EntityMatch.EntityA;
+  entity_a: MatchedEntity.EntityA;
 
-  entity_b: EntityMatch.EntityB;
+  entity_b: MatchedEntity.EntityB;
 
-  matched_properties: Array<EntityMatch.MatchedProperty>;
+  matched_properties: Array<MatchedEntity.MatchedProperty>;
 
   p_match: number;
 
   p_match_threshold: number;
 }
 
-export namespace EntityMatch {
+export namespace MatchedEntity {
   export interface EntityA {
     id: string;
 
@@ -119,23 +136,6 @@ export namespace EntityMatch {
 
     unique: boolean;
   }
-}
-
-export interface Image {
-  number: number;
-
-  hash?: string;
-}
-
-/**
- * Knowledge graph info structured to deserialize and display in the same format
- * that the LLM outputs. Also the first representation of an LLM output in the
- * pipeline from raw tool output to being merged into a Neo4j DB
- */
-export interface KnowledgeGraph {
-  entities?: Array<Entity>;
-
-  relationships?: Array<Relationship>;
 }
 
 export type PropertyType =
@@ -206,9 +206,9 @@ export declare namespace Shared {
   export {
     type DatasetDescriptor as DatasetDescriptor,
     type Entity as Entity,
-    type EntityMatch as EntityMatch,
     type Image as Image,
     type KnowledgeGraph as KnowledgeGraph,
+    type MatchedEntity as MatchedEntity,
     type PropertyType as PropertyType,
     type Relationship as Relationship,
     type Table as Table,
