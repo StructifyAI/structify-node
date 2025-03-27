@@ -95,6 +95,7 @@ import { Server, ServerInformation } from './resources/server';
 import {
   DatasetDescriptor,
   Entity,
+  EntityMatch,
   Image,
   KnowledgeGraph,
   PropertyType,
@@ -521,6 +522,7 @@ export declare namespace Structify {
     Shared as Shared,
     type DatasetDescriptor as DatasetDescriptor,
     type Entity as Entity,
+    type EntityMatch as EntityMatch,
     type Image as Image,
     type KnowledgeGraph as KnowledgeGraph,
     type PropertyType as PropertyType,
