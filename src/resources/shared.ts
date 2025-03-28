@@ -148,6 +148,7 @@ export type PropertyType =
   | 'Money'
   | 'Image'
   | 'PersonName'
+  | 'Address'
   | PropertyType.Enum;
 
 export namespace PropertyType {
