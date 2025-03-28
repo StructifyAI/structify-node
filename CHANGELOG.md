@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.109.0-alpha.9 (2025-03-28)
+
+Full Changelog: [v1.109.0-alpha.8...v1.109.0-alpha.9](https://github.com/StructifyAI/structify-node/compare/v1.109.0-alpha.8...v1.109.0-alpha.9)
+
+### Features
+
+* **api:** api update ([#1057](https://github.com/StructifyAI/structify-node/issues/1057)) ([ad0de35](https://github.com/StructifyAI/structify-node/commit/ad0de35f99086cf30713aecc94ff3a900760b3b1))
+* **api:** api update ([#1059](https://github.com/StructifyAI/structify-node/issues/1059)) ([538b67a](https://github.com/StructifyAI/structify-node/commit/538b67a36312be61be3d65dcf1c1993dee38881b))
+* **api:** api update ([#1061](https://github.com/StructifyAI/structify-node/issues/1061)) ([736a928](https://github.com/StructifyAI/structify-node/commit/736a9280469c1803a8c2310ebe31830894621852))
+
+
+### Bug Fixes
+
+* **internal:** work around https://github.com/vercel/next.js/issues/76881 ([#1060](https://github.com/StructifyAI/structify-node/issues/1060)) ([d11f40d](https://github.com/StructifyAI/structify-node/commit/d11f40dce1b0eac014986af7e83c3a1661cdddd8))
+
 ## 1.109.0-alpha.8 (2025-03-27)
 
 Full Changelog: [v1.109.0-alpha.7...v1.109.0-alpha.8](https://github.com/StructifyAI/structify-node/compare/v1.109.0-alpha.7...v1.109.0-alpha.8)
