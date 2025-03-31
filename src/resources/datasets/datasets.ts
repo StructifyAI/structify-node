@@ -170,6 +170,8 @@ export type DatasetListResponse = Array<DatasetListResponse.DatasetListResponseI
 
 export namespace DatasetListResponse {
   export interface DatasetListResponseItem {
+    id: string;
+
     description: string;
 
     name: string;
@@ -183,6 +185,8 @@ export namespace DatasetListResponse {
  * within the dataset.
  */
 export interface DatasetGetResponse extends SharedAPI.DatasetDescriptor {
+  id: string;
+
   created_timestamp: string;
 }
 
