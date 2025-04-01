@@ -77,6 +77,8 @@ export interface EntityMatch {
   p_match: number;
 
   p_match_threshold: number;
+
+  cardinality_override?: EntityMatch.CardinalityOverride | null;
 }
 
 export namespace EntityMatch {
@@ -119,6 +121,14 @@ export namespace EntityMatch {
 
     unique: boolean;
   }
+
+  export interface CardinalityOverride {
+    cardinality: number;
+
+    entity_id: string;
+
+    relationship_name: string;
+  }
 }
 
 export interface Image {
@@ -148,6 +158,7 @@ export type PropertyType =
   | 'Money'
   | 'Image'
   | 'PersonName'
+  | 'Address'
   | PropertyType.Enum;
 
 export namespace PropertyType {
