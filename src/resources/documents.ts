@@ -74,6 +74,8 @@ export namespace DocumentListResponse {
 
     user_id: string;
 
+    created_from_job?: string | null;
+
     dataset_id?: string | null;
   }
 }
