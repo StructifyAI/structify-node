@@ -50,17 +50,6 @@ export class Datasets extends APIResource {
   }
 
   /**
-   * Add a property descriptor to a table in the dataset schema
-   */
-  addProperty(body: DatasetAddPropertyParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/dataset/add_property', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  /**
    * Grab a dataset by its name.
    */
   get(query: DatasetGetParams, options?: Core.RequestOptions): Core.APIPromise<DatasetGetResponse> {
@@ -72,17 +61,6 @@ export class Datasets extends APIResource {
    */
   match(body: DatasetMatchParams, options?: Core.RequestOptions): Core.APIPromise<DatasetMatchResponse> {
     return this._client.post('/dataset/match', { body, ...options });
-  }
-
-  /**
-   * Remove a property descriptor from a table in the dataset schema
-   */
-  removeProperty(body: DatasetRemovePropertyParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/dataset/remove_property', {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
   }
 
   /**
@@ -192,6 +170,8 @@ export type DatasetListResponse = Array<DatasetListResponse.DatasetListResponseI
 
 export namespace DatasetListResponse {
   export interface DatasetListResponseItem {
+    id: string;
+
     description: string;
 
     name: string;
@@ -205,6 +185,8 @@ export namespace DatasetListResponse {
  * within the dataset.
  */
 export interface DatasetGetResponse extends SharedAPI.DatasetDescriptor {
+  id: string;
+
   created_timestamp: string;
 }
 
@@ -337,26 +319,6 @@ export interface DatasetDeleteParams {
   name: string;
 }
 
-export interface DatasetAddPropertyParams {
-  dataset_name: string;
-
-  property: DatasetAddPropertyParams.Property;
-
-  table_name: string;
-}
-
-export namespace DatasetAddPropertyParams {
-  export interface Property {
-    description: string;
-
-    name: string;
-
-    merge_strategy?: DatasetsAPI.Strategy;
-
-    prop_type?: SharedAPI.PropertyType;
-  }
-}
-
 export interface DatasetGetParams {
   /**
    * Information about the dataset
@@ -378,14 +340,6 @@ export interface DatasetMatchParams {
   query_kg: SharedAPI.KnowledgeGraph;
 
   match_threshold?: number;
-}
-
-export interface DatasetRemovePropertyParams {
-  dataset_name: string;
-
-  property_name: string;
-
-  table_name: string;
 }
 
 export interface DatasetViewRelationshipsParams extends JobsListParams {
@@ -473,10 +427,8 @@ export declare namespace Datasets {
     DatasetViewTableResponsesJobsList as DatasetViewTableResponsesJobsList,
     type DatasetCreateParams as DatasetCreateParams,
     type DatasetDeleteParams as DatasetDeleteParams,
-    type DatasetAddPropertyParams as DatasetAddPropertyParams,
     type DatasetGetParams as DatasetGetParams,
     type DatasetMatchParams as DatasetMatchParams,
-    type DatasetRemovePropertyParams as DatasetRemovePropertyParams,
     type DatasetViewRelationshipsParams as DatasetViewRelationshipsParams,
     type DatasetViewTableParams as DatasetViewTableParams,
     type DatasetViewTablesWithRelationshipsParams as DatasetViewTablesWithRelationshipsParams,
