@@ -109,6 +109,7 @@ export namespace ChatPrompt {
       | DecodingParams.ContextFreeGrammar
       | DecodingParams.NumBeams
       | DecodingParams.Crop
+      | DecodingParams.Thinking
     >;
   }
 
@@ -163,6 +164,13 @@ export namespace ChatPrompt {
 
     export interface Crop {
       Crop: boolean;
+    }
+
+    export interface Thinking {
+      /**
+       * Thinking tokens for Claude 3.7. Contains the budget in tokens for thinking.
+       */
+      Thinking: number;
     }
   }
 
