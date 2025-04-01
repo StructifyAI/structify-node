@@ -104,29 +104,6 @@ describe('resource datasets', () => {
     const response = await client.datasets.delete({ name: 'name' });
   });
 
-  test('addProperty: only required params', async () => {
-    const responsePromise = client.datasets.addProperty({
-      dataset_name: 'dataset_name',
-      property: { description: 'description', name: 'name' },
-      table_name: 'table_name',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('addProperty: required and optional params', async () => {
-    const response = await client.datasets.addProperty({
-      dataset_name: 'dataset_name',
-      property: { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
-      table_name: 'table_name',
-    });
-  });
-
   test('get: only required params', async () => {
     const responsePromise = client.datasets.get({ name: 'name' });
     const rawResponse = await responsePromise.asResponse();
@@ -161,29 +138,6 @@ describe('resource datasets', () => {
         relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
       },
       match_threshold: 0,
-    });
-  });
-
-  test('removeProperty: only required params', async () => {
-    const responsePromise = client.datasets.removeProperty({
-      dataset_name: 'dataset_name',
-      property_name: 'property_name',
-      table_name: 'table_name',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('removeProperty: required and optional params', async () => {
-    const response = await client.datasets.removeProperty({
-      dataset_name: 'dataset_name',
-      property_name: 'property_name',
-      table_name: 'table_name',
     });
   });
 
