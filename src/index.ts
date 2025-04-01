@@ -133,7 +133,6 @@ import {
 } from './resources/user';
 import { Admin } from './resources/admin/admin';
 import {
-  DatasetAddPropertyParams,
   DatasetCreateParams,
   DatasetCreateResponse,
   DatasetDeleteParams,
@@ -142,7 +141,6 @@ import {
   DatasetListResponse,
   DatasetMatchParams,
   DatasetMatchResponse,
-  DatasetRemovePropertyParams,
   DatasetViewRelationshipsParams,
   DatasetViewRelationshipsResponse,
   DatasetViewRelationshipsResponsesJobsList,
@@ -396,10 +394,8 @@ export declare namespace Structify {
     DatasetViewTableResponsesJobsList as DatasetViewTableResponsesJobsList,
     type DatasetCreateParams as DatasetCreateParams,
     type DatasetDeleteParams as DatasetDeleteParams,
-    type DatasetAddPropertyParams as DatasetAddPropertyParams,
     type DatasetGetParams as DatasetGetParams,
     type DatasetMatchParams as DatasetMatchParams,
-    type DatasetRemovePropertyParams as DatasetRemovePropertyParams,
     type DatasetViewRelationshipsParams as DatasetViewRelationshipsParams,
     type DatasetViewTableParams as DatasetViewTableParams,
     type DatasetViewTablesWithRelationshipsParams as DatasetViewTablesWithRelationshipsParams,

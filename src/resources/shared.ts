@@ -77,6 +77,8 @@ export interface EntityMatch {
   p_match: number;
 
   p_match_threshold: number;
+
+  cardinality_override?: EntityMatch.CardinalityOverride | null;
 }
 
 export namespace EntityMatch {
@@ -118,6 +120,14 @@ export namespace EntityMatch {
     property_cardinality: number;
 
     unique: boolean;
+  }
+
+  export interface CardinalityOverride {
+    cardinality: number;
+
+    entity_id: string;
+
+    relationship_name: string;
   }
 }
 
