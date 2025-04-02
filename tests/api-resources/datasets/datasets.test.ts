@@ -187,6 +187,32 @@ describe('resource datasets', () => {
     });
   });
 
+  test('updateProperty: only required params', async () => {
+    const responsePromise = client.datasets.updateProperty({
+      dataset_name: 'dataset_name',
+      property_name: 'property_name',
+      table_name: 'table_name',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('updateProperty: required and optional params', async () => {
+    const response = await client.datasets.updateProperty({
+      dataset_name: 'dataset_name',
+      property_name: 'property_name',
+      table_name: 'table_name',
+      new_property_description: 'new_property_description',
+      new_property_merge_strategy: 'Unique',
+      new_property_type: 'String',
+    });
+  });
+
   test('viewRelationships: only required params', async () => {
     const responsePromise = client.datasets.viewRelationships({ dataset: 'dataset', name: 'name' });
     const rawResponse = await responsePromise.asResponse();

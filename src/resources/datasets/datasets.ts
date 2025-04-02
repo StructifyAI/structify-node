@@ -86,6 +86,17 @@ export class Datasets extends APIResource {
   }
 
   /**
+   * Update a property descriptor in a table in the dataset schema
+   */
+  updateProperty(body: DatasetUpdatePropertyParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/dataset/update_property', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
    * You need to specify a dataset and the name of the relationship
    */
   viewRelationships(
@@ -392,6 +403,20 @@ export interface DatasetRemovePropertyParams {
   table_name: string;
 }
 
+export interface DatasetUpdatePropertyParams {
+  dataset_name: string;
+
+  property_name: string;
+
+  table_name: string;
+
+  new_property_description?: string | null;
+
+  new_property_merge_strategy?: Strategy | null;
+
+  new_property_type?: SharedAPI.PropertyType | null;
+}
+
 export interface DatasetViewRelationshipsParams extends JobsListParams {
   dataset: string;
 
@@ -481,6 +506,7 @@ export declare namespace Datasets {
     type DatasetGetParams as DatasetGetParams,
     type DatasetMatchParams as DatasetMatchParams,
     type DatasetRemovePropertyParams as DatasetRemovePropertyParams,
+    type DatasetUpdatePropertyParams as DatasetUpdatePropertyParams,
     type DatasetViewRelationshipsParams as DatasetViewRelationshipsParams,
     type DatasetViewTableParams as DatasetViewTableParams,
     type DatasetViewTablesWithRelationshipsParams as DatasetViewTablesWithRelationshipsParams,
