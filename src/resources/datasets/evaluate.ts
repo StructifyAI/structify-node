@@ -87,9 +87,13 @@ export interface EvaluateGetResponse {
 
   dataset_1: string;
 
+  dataset_1_name: string;
+
   dataset_2: string;
 
   dataset_2_is_ground_truth: boolean;
+
+  dataset_2_name: string;
 
   iou: number;
 
