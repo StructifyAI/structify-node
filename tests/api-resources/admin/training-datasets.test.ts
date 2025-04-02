@@ -161,7 +161,7 @@ describe('resource trainingDatasets', () => {
 
   test('getNextForQa: only required params', async () => {
     const responsePromise = client.admin.trainingDatasets.getNextForQa({
-      dataset_name: 'dataset_name',
+      is_final_qa: true,
       status: 'unlabeled',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -175,8 +175,9 @@ describe('resource trainingDatasets', () => {
 
   test('getNextForQa: required and optional params', async () => {
     const response = await client.admin.trainingDatasets.getNextForQa({
-      dataset_name: 'dataset_name',
+      is_final_qa: true,
       status: 'unlabeled',
+      dataset_name: 'dataset_name',
     });
   });
 

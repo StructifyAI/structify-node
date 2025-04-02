@@ -42,9 +42,9 @@ export class Evaluate extends APIResource {
    * Evaluate two datasets
    */
   run(params: EvaluateRunParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    const { dataset_1, dataset_2, dataset_2_is_ground_truth } = params;
+    const { dataset_1, dataset_2, dataset_2_is_ground_truth, merge_threshold_override } = params;
     return this._client.post('/dataset/evaluate/run', {
-      query: { dataset_1, dataset_2, dataset_2_is_ground_truth },
+      query: { dataset_1, dataset_2, dataset_2_is_ground_truth, merge_threshold_override },
       ...options,
     });
   }
@@ -174,6 +174,8 @@ export interface EvaluateRunParams {
   dataset_2: string;
 
   dataset_2_is_ground_truth: boolean;
+
+  merge_threshold_override?: number | null;
 }
 
 export interface EvaluateStatusParams {

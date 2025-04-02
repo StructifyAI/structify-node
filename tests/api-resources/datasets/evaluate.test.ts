@@ -74,6 +74,7 @@ describe('resource evaluate', () => {
       dataset_1: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       dataset_2: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       dataset_2_is_ground_truth: true,
+      merge_threshold_override: 0,
     });
   });
 
