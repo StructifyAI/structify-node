@@ -776,6 +776,9 @@ export interface TrainingDatasetDeleteParams {
 }
 
 export interface TrainingDatasetAddParams {
+  /**
+   * The name of the training dataset to add.
+   */
   dataset_name: string;
 }
 
@@ -814,9 +817,11 @@ export interface TrainingDatasetGetNextForLabelingParams {
 }
 
 export interface TrainingDatasetGetNextForQaParams {
-  dataset_name: string;
+  is_final_qa: boolean;
 
   status: DatumStatus;
+
+  dataset_name?: string | null;
 }
 
 export interface TrainingDatasetGetNextSuspiciousParams {
