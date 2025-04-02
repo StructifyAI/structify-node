@@ -20,6 +20,7 @@ export {
   type DatasetGetParams,
   type DatasetMatchParams,
   type DatasetRemovePropertyParams,
+  type DatasetUpdatePropertyParams,
   type DatasetViewRelationshipsParams,
   type DatasetViewTableParams,
   type DatasetViewTablesWithRelationshipsParams,
