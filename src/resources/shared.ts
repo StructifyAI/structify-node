@@ -61,11 +61,6 @@ export interface Entity {
 }
 
 export interface EntityMatch {
-  /**
-   * Alternate matches for entity a - just used for dataset eval
-   */
-  alternate_matches: Array<EntityMatch>;
-
   baseline_cardinality: number;
 
   entity_a: EntityMatch.EntityA;
