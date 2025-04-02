@@ -108,20 +108,44 @@ export interface EvaluateGetResponse {
 
 export namespace EvaluateGetResponse {
   export interface Stats {
+    relationships_a: Array<Stats.RelationshipsA>;
+
+    relationships_b: Array<Stats.RelationshipsB>;
+
     table_matches: Record<string, Stats.TableMatches>;
   }
 
   export namespace Stats {
+    export interface RelationshipsA {
+      from_id: string;
+
+      label: string;
+
+      properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+      to_id: string;
+    }
+
+    export interface RelationshipsB {
+      from_id: string;
+
+      label: string;
+
+      properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+      to_id: string;
+    }
+
     export interface TableMatches {
       entity_matches: Array<SharedAPI.EntityMatch>;
 
-      unmatched_a: Array<TableMatches.UnmatchedA>;
+      unmatched_a: Array<Array<TableMatches.UnmatchedA>>;
 
-      unmatched_b: Array<TableMatches.UnmatchedB>;
+      unmatched_b: Array<Array<TableMatches.UnmatchedB>>;
     }
 
     export namespace TableMatches {
-      export interface UnmatchedA {
+      export interface UnmatchedA extends SharedAPI.EntityMatch {
         id: string;
 
         created_at: string;
@@ -135,7 +159,7 @@ export namespace EvaluateGetResponse {
         updated_at: string;
       }
 
-      export interface UnmatchedB {
+      export interface UnmatchedB extends SharedAPI.EntityMatch {
         id: string;
 
         created_at: string;
