@@ -139,38 +139,54 @@ export namespace EvaluateGetResponse {
     export interface TableMatches {
       entity_matches: Array<SharedAPI.EntityMatch>;
 
-      unmatched_a: Array<Array<TableMatches.UnmatchedA>>;
+      unmatched_a: Array<TableMatches.UnmatchedA>;
 
-      unmatched_b: Array<Array<TableMatches.UnmatchedB>>;
+      unmatched_b: Array<TableMatches.UnmatchedB>;
     }
 
     export namespace TableMatches {
-      export interface UnmatchedA extends SharedAPI.EntityMatch {
-        id: string;
+      export interface UnmatchedA {
+        entity: UnmatchedA.Entity;
 
-        created_at: string;
-
-        dataset_id: string;
-
-        label: string;
-
-        properties: Record<string, string | boolean | number | SharedAPI.Image>;
-
-        updated_at: string;
+        best_match?: SharedAPI.EntityMatch | null;
       }
 
-      export interface UnmatchedB extends SharedAPI.EntityMatch {
-        id: string;
+      export namespace UnmatchedA {
+        export interface Entity {
+          id: string;
 
-        created_at: string;
+          created_at: string;
 
-        dataset_id: string;
+          dataset_id: string;
 
-        label: string;
+          label: string;
 
-        properties: Record<string, string | boolean | number | SharedAPI.Image>;
+          properties: Record<string, string | boolean | number | SharedAPI.Image>;
 
-        updated_at: string;
+          updated_at: string;
+        }
+      }
+
+      export interface UnmatchedB {
+        entity: UnmatchedB.Entity;
+
+        best_match?: SharedAPI.EntityMatch | null;
+      }
+
+      export namespace UnmatchedB {
+        export interface Entity {
+          id: string;
+
+          created_at: string;
+
+          dataset_id: string;
+
+          label: string;
+
+          properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+          updated_at: string;
+        }
       }
     }
   }
