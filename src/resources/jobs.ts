@@ -98,6 +98,9 @@ export interface JobListResponse {
    */
   message?: string | null;
 
+  /**
+   * Proto for JobInput
+   */
   parameters?: Core.Uploadable | null;
 
   plan_id?: string | null;
@@ -131,6 +134,9 @@ export interface JobCancelResponse {
    */
   message?: string | null;
 
+  /**
+   * Proto for JobInput
+   */
   parameters?: Core.Uploadable | null;
 
   plan_id?: string | null;
@@ -169,6 +175,9 @@ export namespace JobGetResponse {
      */
     message?: string | null;
 
+    /**
+     * Proto for JobInput
+     */
     parameters?: Core.Uploadable | null;
 
     plan_id?: string | null;
