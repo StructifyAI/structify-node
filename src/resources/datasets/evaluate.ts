@@ -99,6 +99,8 @@ export interface EvaluateGetResponse {
 
   matched: number;
 
+  matches: EvaluateGetResponse.Matches;
+
   started_at: string;
 
   stats: EvaluateGetResponse.Stats;
@@ -111,15 +113,15 @@ export interface EvaluateGetResponse {
 }
 
 export namespace EvaluateGetResponse {
-  export interface Stats {
-    relationships_a: Array<Stats.RelationshipsA>;
+  export interface Matches {
+    relationships_a: Array<Matches.RelationshipsA>;
 
-    relationships_b: Array<Stats.RelationshipsB>;
+    relationships_b: Array<Matches.RelationshipsB>;
 
-    table_matches: Record<string, Stats.TableMatches>;
+    table_matches: Record<string, Matches.TableMatches>;
   }
 
-  export namespace Stats {
+  export namespace Matches {
     export interface RelationshipsA {
       from_id: string;
 
@@ -191,6 +193,46 @@ export namespace EvaluateGetResponse {
 
           updated_at: string;
         }
+      }
+    }
+  }
+
+  export interface Stats {
+    per_table: Record<string, Stats.PerTable>;
+  }
+
+  export namespace Stats {
+    export interface PerTable {
+      entity_granularity: PerTable.EntityGranularity;
+
+      per_property: Record<string, PerTable.PerProperty>;
+
+      prop_granularity: PerTable.PropGranularity;
+    }
+
+    export namespace PerTable {
+      export interface EntityGranularity {
+        false_negatives: number;
+
+        false_positives: number;
+
+        true_positives: number;
+      }
+
+      export interface PerProperty {
+        false_negatives: number;
+
+        false_positives: number;
+
+        true_positives: number;
+      }
+
+      export interface PropGranularity {
+        false_negatives: number;
+
+        false_positives: number;
+
+        true_positives: number;
       }
     }
   }
