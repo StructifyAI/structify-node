@@ -1,7 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import type { Metadata } from '../';
 import Structify from 'structifyai';
+
+export const metadata: Metadata = {
+  resource: 'report',
+  operation: 'write',
+  tags: [],
+};
 
 export const tool: Tool = {
   name: 'missing_report',
@@ -30,4 +37,4 @@ export const handler = (client: Structify, args: any) => {
   return client.report.missing(body);
 };
 
-export default { tool, handler };
+export default { metadata, tool, handler };

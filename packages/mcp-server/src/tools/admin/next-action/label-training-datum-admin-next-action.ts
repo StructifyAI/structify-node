@@ -1,7 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import type { Metadata } from '../../';
 import Structify from 'structifyai';
+
+export const metadata: Metadata = {
+  resource: 'admin.next_action',
+  operation: 'write',
+  tags: [],
+};
 
 export const tool: Tool = {
   name: 'label_training_datum_admin_next_action',
@@ -76,4 +83,4 @@ export const handler = (client: Structify, args: any) => {
   return client.admin.nextAction.labelTrainingDatum(body);
 };
 
-export default { tool, handler };
+export default { metadata, tool, handler };

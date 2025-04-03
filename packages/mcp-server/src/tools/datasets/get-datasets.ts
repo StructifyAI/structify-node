@@ -1,7 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import type { Metadata } from '../';
 import Structify from 'structifyai';
+
+export const metadata: Metadata = {
+  resource: 'datasets',
+  operation: 'read',
+  tags: [],
+};
 
 export const tool: Tool = {
   name: 'get_datasets',
@@ -22,4 +29,4 @@ export const handler = (client: Structify, args: any) => {
   return client.datasets.get(body);
 };
 
-export default { tool, handler };
+export default { metadata, tool, handler };
