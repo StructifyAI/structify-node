@@ -829,6 +829,11 @@ export interface TrainingDatasetGetNextSuspiciousParams {
 
   dataset_name?: string | null;
 
+  /**
+   * If true, the query will only return datums that are suspicious for the current
+   * user. If false, the query will return datums that are suspicious for any author
+   * that does not have the Labeler permission.
+   */
   user_restriction?: boolean;
 }
 
@@ -1057,6 +1062,11 @@ export interface TrainingDatasetSuspiciousCountParams {
 
   dataset_name?: string | null;
 
+  /**
+   * If true, the query will only return datums that are suspicious for the current
+   * user. If false, the query will return datums that are suspicious for any author
+   * that does not have the Labeler permission.
+   */
   user_restriction?: boolean;
 }
 
