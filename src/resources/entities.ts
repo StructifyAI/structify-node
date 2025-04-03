@@ -271,6 +271,9 @@ export namespace EntityListJobsResponse {
      */
     message?: string | null;
 
+    /**
+     * Proto for JobInput
+     */
     parameters?: Core.Uploadable | null;
 
     plan_id?: string | null;
