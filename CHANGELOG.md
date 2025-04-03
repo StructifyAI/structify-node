@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.113.0 (2025-04-03)
+
+Full Changelog: [v1.112.0...v1.113.0](https://github.com/StructifyAI/structify-node/compare/v1.112.0...v1.113.0)
+
+### Features
+
+* **api:** api update ([#1081](https://github.com/StructifyAI/structify-node/issues/1081)) ([2234f0a](https://github.com/StructifyAI/structify-node/commit/2234f0a7155c3b046db7b3eb210f4e9fb8e253c2))
+* **api:** api update ([#1087](https://github.com/StructifyAI/structify-node/issues/1087)) ([a296bc4](https://github.com/StructifyAI/structify-node/commit/a296bc4c87df40c9077108044451de7c9a49944a))
+* **api:** api update ([#1088](https://github.com/StructifyAI/structify-node/issues/1088)) ([e38c00c](https://github.com/StructifyAI/structify-node/commit/e38c00c34fe9f0fbfade1661afabe2e52c514cc9))
+* **mcp:** support end-user filtering of tools, resources, and tags ([#1085](https://github.com/StructifyAI/structify-node/issues/1085)) ([1fb4caf](https://github.com/StructifyAI/structify-node/commit/1fb4cafdc15b9c700a19ec3e9f5a1071368769ad))
+
+
+### Bug Fixes
+
+* **client:** send `X-Stainless-Timeout` in seconds ([#1084](https://github.com/StructifyAI/structify-node/issues/1084)) ([8d0ce76](https://github.com/StructifyAI/structify-node/commit/8d0ce761d6cb215492f7a8ab993e8171d4a41b55))
+
+
+### Chores
+
+* configure new SDK language ([#1083](https://github.com/StructifyAI/structify-node/issues/1083)) ([2daa9eb](https://github.com/StructifyAI/structify-node/commit/2daa9eb75526b90bb3e161bd3aa2121bcd7cd5df))
+* **internal:** add aliases for Record and Array ([#1086](https://github.com/StructifyAI/structify-node/issues/1086)) ([848faa9](https://github.com/StructifyAI/structify-node/commit/848faa98b04365d5c3236ec44458cb32b5a064af))
+
 ## 1.112.0 (2025-04-02)
 
 Full Changelog: [v1.111.0...v1.112.0](https://github.com/StructifyAI/structify-node/compare/v1.111.0...v1.112.0)
