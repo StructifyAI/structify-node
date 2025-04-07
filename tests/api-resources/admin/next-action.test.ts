@@ -93,7 +93,14 @@ describe('resource nextAction', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.admin.nextAction.getTrainingData(
-        { job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', limit: 0, offset: 0, status: {} },
+        {
+          from_date: '2019-12-27T18:11:19.117Z',
+          job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          limit: 0,
+          offset: 0,
+          status: 'HumanLLMLabel',
+          to_date: '2019-12-27T18:11:19.117Z',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Structify.NotFoundError);

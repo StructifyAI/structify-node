@@ -105,7 +105,7 @@ export namespace ActionTrainingDataEntry {
 
     created_at: string;
 
-    label: unknown | null;
+    label: 'HumanLLMLabel' | 'LLMOutput' | 'Pending' | 'Reviewed' | 'Verified' | 'Others';
 
     output: Output.SelectedStep | Output.SearchStep | Output.InvalidAction;
   }
@@ -232,11 +232,15 @@ export interface DeleteActionTrainingDataResponse {
 export interface GetActionTrainingDataParams {
   status: string;
 
+  from_date?: string | null;
+
   job_id?: string | null;
 
   limit?: number;
 
   offset?: number;
+
+  to_date?: string | null;
 }
 
 export interface LabelActionTrainingDatumRequest {
@@ -364,13 +368,17 @@ export interface NextActionDeleteTrainingDataParams {
 }
 
 export interface NextActionGetTrainingDataParams {
+  from_date?: string | null;
+
   job_id?: string | null;
 
   limit?: number;
 
   offset?: number;
 
-  status?: unknown | null;
+  status?: 'HumanLLMLabel' | 'LLMOutput' | 'Pending' | 'Reviewed' | 'Verified' | 'Others' | null;
+
+  to_date?: string | null;
 }
 
 export interface NextActionLabelTrainingDatumParams {
