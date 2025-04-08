@@ -114,32 +114,82 @@ export interface EvaluateGetResponse {
 
 export namespace EvaluateGetResponse {
   export interface Matches {
-    relationships_a: Array<Matches.RelationshipsA>;
-
-    relationships_b: Array<Matches.RelationshipsB>;
+    relationship_matches: Record<string, Matches.RelationshipMatches>;
 
     table_matches: Record<string, Matches.TableMatches>;
   }
 
   export namespace Matches {
-    export interface RelationshipsA {
-      from_id: string;
+    export interface RelationshipMatches {
+      relationship_matches: Array<RelationshipMatches.RelationshipMatch>;
 
-      label: string;
+      unmatched_a: Array<RelationshipMatches.UnmatchedA>;
 
-      properties: Record<string, string | boolean | number | SharedAPI.Image>;
-
-      to_id: string;
+      unmatched_b: Array<RelationshipMatches.UnmatchedB>;
     }
 
-    export interface RelationshipsB {
-      from_id: string;
+    export namespace RelationshipMatches {
+      export interface RelationshipMatch {
+        matched_properties: Array<RelationshipMatch.MatchedProperty>;
 
-      label: string;
+        relationship_a: RelationshipMatch.RelationshipA;
 
-      properties: Record<string, string | boolean | number | SharedAPI.Image>;
+        relationship_b: RelationshipMatch.RelationshipB;
+      }
 
-      to_id: string;
+      export namespace RelationshipMatch {
+        export interface MatchedProperty {
+          match_prob: number;
+
+          match_transfer_prob: number;
+
+          name: string;
+
+          property_cardinality: number;
+
+          unique: boolean;
+        }
+
+        export interface RelationshipA {
+          from_id: string;
+
+          label: string;
+
+          properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+          to_id: string;
+        }
+
+        export interface RelationshipB {
+          from_id: string;
+
+          label: string;
+
+          properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+          to_id: string;
+        }
+      }
+
+      export interface UnmatchedA {
+        from_id: string;
+
+        label: string;
+
+        properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+        to_id: string;
+      }
+
+      export interface UnmatchedB {
+        from_id: string;
+
+        label: string;
+
+        properties: Record<string, string | boolean | number | SharedAPI.Image>;
+
+        to_id: string;
+      }
     }
 
     export interface TableMatches {
@@ -198,10 +248,46 @@ export namespace EvaluateGetResponse {
   }
 
   export interface Stats {
+    per_relationship: Record<string, Stats.PerRelationship>;
+
     per_table: Record<string, Stats.PerTable>;
   }
 
   export namespace Stats {
+    export interface PerRelationship {
+      per_property: Record<string, PerRelationship.PerProperty>;
+
+      prop_granularity: PerRelationship.PropGranularity;
+
+      relationship_granularity: PerRelationship.RelationshipGranularity;
+    }
+
+    export namespace PerRelationship {
+      export interface PerProperty {
+        false_negatives: number;
+
+        false_positives: number;
+
+        true_positives: number;
+      }
+
+      export interface PropGranularity {
+        false_negatives: number;
+
+        false_positives: number;
+
+        true_positives: number;
+      }
+
+      export interface RelationshipGranularity {
+        false_negatives: number;
+
+        false_positives: number;
+
+        true_positives: number;
+      }
+    }
+
     export interface PerTable {
       entity_granularity: PerTable.EntityGranularity;
 

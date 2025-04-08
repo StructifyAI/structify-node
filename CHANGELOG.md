@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.114.0 (2025-04-08)
+
+Full Changelog: [v1.113.0...v1.114.0](https://github.com/StructifyAI/structify-node/compare/v1.113.0...v1.114.0)
+
+### Features
+
+* **api:** api update ([#1093](https://github.com/StructifyAI/structify-node/issues/1093)) ([e9cd0c6](https://github.com/StructifyAI/structify-node/commit/e9cd0c69a36f20423cfaabf3a2efa295c3548a1e))
+* **api:** api update ([#1094](https://github.com/StructifyAI/structify-node/issues/1094)) ([01deefa](https://github.com/StructifyAI/structify-node/commit/01deefa6640b853902754bcdfe2bd02229e8888a))
+
+
+### Bug Fixes
+
+* **api:** improve type resolution when importing as a package ([#1090](https://github.com/StructifyAI/structify-node/issues/1090)) ([82ad8e1](https://github.com/StructifyAI/structify-node/commit/82ad8e1739423a52109a0126e7f2b6dbb732632a))
+* **mcp:** remove unused tools.ts ([#1092](https://github.com/StructifyAI/structify-node/issues/1092)) ([d08237b](https://github.com/StructifyAI/structify-node/commit/d08237bf39e6e76b7bab4c3af5558c9821ef77e3))
+
 ## 1.113.0 (2025-04-03)
 
 Full Changelog: [v1.112.0...v1.113.0](https://github.com/StructifyAI/structify-node/compare/v1.112.0...v1.113.0)
