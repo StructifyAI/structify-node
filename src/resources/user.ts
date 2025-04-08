@@ -62,6 +62,10 @@ export interface UserInfo {
 
   credits_used: number;
 
+  feature_flags: Array<
+    'functional_test' | 'pdf_parsing' | 'boredm_construction_model' | 'generic_suspicious_queue' | 'none'
+  >;
+
   is_admin: boolean;
 
   permissions: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'>;
