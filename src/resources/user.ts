@@ -63,7 +63,12 @@ export interface UserInfo {
   credits_used: number;
 
   feature_flags: Array<
-    'functional_test' | 'pdf_parsing' | 'boredm_construction_model' | 'generic_suspicious_queue' | 'none'
+    | 'functional_test'
+    | 'pdf_parsing'
+    | 'boredm_construction_model'
+    | 'generic_suspicious_queue'
+    | 'new_use_case_preview'
+    | 'none'
   >;
 
   is_admin: boolean;
