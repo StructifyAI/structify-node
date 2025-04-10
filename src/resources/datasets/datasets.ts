@@ -832,9 +832,15 @@ export interface DatasetViewRelationshipsParams extends JobsListParams {
 
 export namespace DatasetViewRelationshipsParams {
   export interface SortBy {
-    col_id: 'creation_time';
+    col_id: SortBy.UserDefinedColumn | 'creation_time';
 
     sort: 'asc' | 'desc';
+  }
+
+  export namespace SortBy {
+    export interface UserDefinedColumn {
+      user_defined_column: string;
+    }
   }
 }
 
@@ -852,9 +858,15 @@ export interface DatasetViewTableParams extends JobsListParams {
 
 export namespace DatasetViewTableParams {
   export interface SortBy {
-    col_id: 'creation_time';
+    col_id: SortBy.UserDefinedColumn | 'creation_time';
 
     sort: 'asc' | 'desc';
+  }
+
+  export namespace SortBy {
+    export interface UserDefinedColumn {
+      user_defined_column: string;
+    }
   }
 }
 
@@ -876,9 +888,15 @@ export interface DatasetViewTablesWithRelationshipsParams {
 
 export namespace DatasetViewTablesWithRelationshipsParams {
   export interface SortBy {
-    col_id: 'creation_time';
+    col_id: SortBy.UserDefinedColumn | 'creation_time';
 
     sort: 'asc' | 'desc';
+  }
+
+  export namespace SortBy {
+    export interface UserDefinedColumn {
+      user_defined_column: string;
+    }
   }
 }
 

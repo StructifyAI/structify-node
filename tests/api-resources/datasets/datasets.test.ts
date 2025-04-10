@@ -232,7 +232,7 @@ describe('resource datasets', () => {
       last_updated: '2019-12-27T18:11:19.117Z',
       limit: 0,
       offset: 0,
-      sort_by: { col_id: 'creation_time', sort: 'asc' },
+      sort_by: { col_id: { user_defined_column: 'user_defined_column' }, sort: 'asc' },
     });
   });
 
@@ -255,7 +255,7 @@ describe('resource datasets', () => {
       last_updated: '2019-12-27T18:11:19.117Z',
       limit: 0,
       offset: 0,
-      sort_by: { col_id: 'creation_time', sort: 'asc' },
+      sort_by: { col_id: { user_defined_column: 'user_defined_column' }, sort: 'asc' },
     });
   });
 
@@ -278,7 +278,7 @@ describe('resource datasets', () => {
       last_updated: '2019-12-27T18:11:19.117Z',
       limit: 0,
       offset: 0,
-      sort_by: { col_id: 'creation_time', sort: 'asc' },
+      sort_by: { col_id: { user_defined_column: 'user_defined_column' }, sort: 'asc' },
     });
   });
 });
