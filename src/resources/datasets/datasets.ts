@@ -234,13 +234,98 @@ export namespace DatasetMatchResponse {
 }
 
 export interface DatasetViewRelationshipsResponse {
+  id: string;
+
+  created_at: string;
+
+  dataset_id: string;
+
   from_id: string;
 
   label: string;
 
-  properties: Record<string, string | boolean | number | SharedAPI.Image>;
+  properties: Record<
+    string,
+    | string
+    | boolean
+    | number
+    | DatasetViewRelationshipsResponse.PartialDateObject
+    | string
+    | string
+    | DatasetViewRelationshipsResponse.URLObject
+    | string
+    | DatasetViewRelationshipsResponse.MoneyObject
+    | SharedAPI.Image
+    | DatasetViewRelationshipsResponse.PersonName
+    | DatasetViewRelationshipsResponse.AddressObject
+    | string
+  >;
 
   to_id: string;
+
+  updated_at: string;
+}
+
+export namespace DatasetViewRelationshipsResponse {
+  export interface PartialDateObject {
+    original_string: string;
+
+    year: number;
+
+    day?: number | null;
+
+    month?: number | null;
+  }
+
+  export interface URLObject {
+    original_string: string;
+
+    url: string;
+  }
+
+  export interface MoneyObject {
+    amount: number;
+
+    currency_code:
+      | 'USD'
+      | 'EUR'
+      | 'GBP'
+      | 'JPY'
+      | 'CNY'
+      | 'INR'
+      | 'RUB'
+      | 'CAD'
+      | 'AUD'
+      | 'CHF'
+      | 'ILS'
+      | 'NZD'
+      | 'SGD'
+      | 'HKD'
+      | 'NOK'
+      | 'SEK'
+      | 'PLN'
+      | 'TRY'
+      | 'DKK'
+      | 'MXN'
+      | 'ZAR'
+      | 'PHP'
+      | 'VND'
+      | 'THB'
+      | 'BRL'
+      | 'KRW';
+
+    original_string: string;
+  }
+
+  export interface PersonName {
+    name: string;
+  }
+
+  export interface AddressObject {
+    components: Record<string, string>;
+
+    original_address: string;
+  }
 }
 
 export interface DatasetViewTableResponse {
@@ -252,9 +337,86 @@ export interface DatasetViewTableResponse {
 
   label: string;
 
-  properties: Record<string, string | boolean | number | SharedAPI.Image>;
+  properties: Record<
+    string,
+    | string
+    | boolean
+    | number
+    | DatasetViewTableResponse.PartialDateObject
+    | string
+    | string
+    | DatasetViewTableResponse.URLObject
+    | string
+    | DatasetViewTableResponse.MoneyObject
+    | SharedAPI.Image
+    | DatasetViewTableResponse.PersonName
+    | DatasetViewTableResponse.AddressObject
+    | string
+  >;
 
   updated_at: string;
+}
+
+export namespace DatasetViewTableResponse {
+  export interface PartialDateObject {
+    original_string: string;
+
+    year: number;
+
+    day?: number | null;
+
+    month?: number | null;
+  }
+
+  export interface URLObject {
+    original_string: string;
+
+    url: string;
+  }
+
+  export interface MoneyObject {
+    amount: number;
+
+    currency_code:
+      | 'USD'
+      | 'EUR'
+      | 'GBP'
+      | 'JPY'
+      | 'CNY'
+      | 'INR'
+      | 'RUB'
+      | 'CAD'
+      | 'AUD'
+      | 'CHF'
+      | 'ILS'
+      | 'NZD'
+      | 'SGD'
+      | 'HKD'
+      | 'NOK'
+      | 'SEK'
+      | 'PLN'
+      | 'TRY'
+      | 'DKK'
+      | 'MXN'
+      | 'ZAR'
+      | 'PHP'
+      | 'VND'
+      | 'THB'
+      | 'BRL'
+      | 'KRW';
+
+    original_string: string;
+  }
+
+  export interface PersonName {
+    name: string;
+  }
+
+  export interface AddressObject {
+    components: Record<string, string>;
+
+    original_address: string;
+  }
 }
 
 export interface DatasetViewTablesWithRelationshipsResponse {
@@ -275,9 +437,86 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     label: string;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: Record<
+      string,
+      | string
+      | boolean
+      | number
+      | ConnectedEntity.PartialDateObject
+      | string
+      | string
+      | ConnectedEntity.URLObject
+      | string
+      | ConnectedEntity.MoneyObject
+      | SharedAPI.Image
+      | ConnectedEntity.PersonName
+      | ConnectedEntity.AddressObject
+      | string
+    >;
 
     updated_at: string;
+  }
+
+  export namespace ConnectedEntity {
+    export interface PartialDateObject {
+      original_string: string;
+
+      year: number;
+
+      day?: number | null;
+
+      month?: number | null;
+    }
+
+    export interface URLObject {
+      original_string: string;
+
+      url: string;
+    }
+
+    export interface MoneyObject {
+      amount: number;
+
+      currency_code:
+        | 'USD'
+        | 'EUR'
+        | 'GBP'
+        | 'JPY'
+        | 'CNY'
+        | 'INR'
+        | 'RUB'
+        | 'CAD'
+        | 'AUD'
+        | 'CHF'
+        | 'ILS'
+        | 'NZD'
+        | 'SGD'
+        | 'HKD'
+        | 'NOK'
+        | 'SEK'
+        | 'PLN'
+        | 'TRY'
+        | 'DKK'
+        | 'MXN'
+        | 'ZAR'
+        | 'PHP'
+        | 'VND'
+        | 'THB'
+        | 'BRL'
+        | 'KRW';
+
+      original_string: string;
+    }
+
+    export interface PersonName {
+      name: string;
+    }
+
+    export interface AddressObject {
+      components: Record<string, string>;
+
+      original_address: string;
+    }
   }
 
   export interface Entity {
@@ -289,19 +528,181 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     label: string;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: Record<
+      string,
+      | string
+      | boolean
+      | number
+      | Entity.PartialDateObject
+      | string
+      | string
+      | Entity.URLObject
+      | string
+      | Entity.MoneyObject
+      | SharedAPI.Image
+      | Entity.PersonName
+      | Entity.AddressObject
+      | string
+    >;
 
     updated_at: string;
   }
 
+  export namespace Entity {
+    export interface PartialDateObject {
+      original_string: string;
+
+      year: number;
+
+      day?: number | null;
+
+      month?: number | null;
+    }
+
+    export interface URLObject {
+      original_string: string;
+
+      url: string;
+    }
+
+    export interface MoneyObject {
+      amount: number;
+
+      currency_code:
+        | 'USD'
+        | 'EUR'
+        | 'GBP'
+        | 'JPY'
+        | 'CNY'
+        | 'INR'
+        | 'RUB'
+        | 'CAD'
+        | 'AUD'
+        | 'CHF'
+        | 'ILS'
+        | 'NZD'
+        | 'SGD'
+        | 'HKD'
+        | 'NOK'
+        | 'SEK'
+        | 'PLN'
+        | 'TRY'
+        | 'DKK'
+        | 'MXN'
+        | 'ZAR'
+        | 'PHP'
+        | 'VND'
+        | 'THB'
+        | 'BRL'
+        | 'KRW';
+
+      original_string: string;
+    }
+
+    export interface PersonName {
+      name: string;
+    }
+
+    export interface AddressObject {
+      components: Record<string, string>;
+
+      original_address: string;
+    }
+  }
+
   export interface Relationship {
+    id: string;
+
+    created_at: string;
+
+    dataset_id: string;
+
     from_id: string;
 
     label: string;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: Record<
+      string,
+      | string
+      | boolean
+      | number
+      | Relationship.PartialDateObject
+      | string
+      | string
+      | Relationship.URLObject
+      | string
+      | Relationship.MoneyObject
+      | SharedAPI.Image
+      | Relationship.PersonName
+      | Relationship.AddressObject
+      | string
+    >;
 
     to_id: string;
+
+    updated_at: string;
+  }
+
+  export namespace Relationship {
+    export interface PartialDateObject {
+      original_string: string;
+
+      year: number;
+
+      day?: number | null;
+
+      month?: number | null;
+    }
+
+    export interface URLObject {
+      original_string: string;
+
+      url: string;
+    }
+
+    export interface MoneyObject {
+      amount: number;
+
+      currency_code:
+        | 'USD'
+        | 'EUR'
+        | 'GBP'
+        | 'JPY'
+        | 'CNY'
+        | 'INR'
+        | 'RUB'
+        | 'CAD'
+        | 'AUD'
+        | 'CHF'
+        | 'ILS'
+        | 'NZD'
+        | 'SGD'
+        | 'HKD'
+        | 'NOK'
+        | 'SEK'
+        | 'PLN'
+        | 'TRY'
+        | 'DKK'
+        | 'MXN'
+        | 'ZAR'
+        | 'PHP'
+        | 'VND'
+        | 'THB'
+        | 'BRL'
+        | 'KRW';
+
+      original_string: string;
+    }
+
+    export interface PersonName {
+      name: string;
+    }
+
+    export interface AddressObject {
+      components: Record<string, string>;
+
+      original_address: string;
+    }
   }
 }
 
