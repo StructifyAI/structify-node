@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import * as SharedAPI from './shared';
 import * as DatasetsAPI from './datasets/datasets';
+import { type Uploadable } from '../core';
 
 export class Shared extends APIResource {}
 
@@ -55,7 +56,7 @@ export namespace DatasetDescriptor {
 export interface Entity {
   id: number;
 
-  properties: Record<string, string | boolean | number | Image>;
+  properties: Record<string, string | boolean | number>;
 
   type: string;
 }
@@ -86,9 +87,86 @@ export namespace EntityMatch {
 
     label: string;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: Record<
+      string,
+      | string
+      | boolean
+      | number
+      | EntityA.PartialDateObject
+      | string
+      | string
+      | EntityA.URLObject
+      | string
+      | EntityA.MoneyObject
+      | SharedAPI.Image
+      | EntityA.PersonName
+      | EntityA.AddressObject
+      | string
+    >;
 
     updated_at: string;
+  }
+
+  export namespace EntityA {
+    export interface PartialDateObject {
+      original_string: string;
+
+      year: number;
+
+      day?: number | null;
+
+      month?: number | null;
+    }
+
+    export interface URLObject {
+      original_string: string;
+
+      url: string;
+    }
+
+    export interface MoneyObject {
+      amount: number;
+
+      currency_code:
+        | 'USD'
+        | 'EUR'
+        | 'GBP'
+        | 'JPY'
+        | 'CNY'
+        | 'INR'
+        | 'RUB'
+        | 'CAD'
+        | 'AUD'
+        | 'CHF'
+        | 'ILS'
+        | 'NZD'
+        | 'SGD'
+        | 'HKD'
+        | 'NOK'
+        | 'SEK'
+        | 'PLN'
+        | 'TRY'
+        | 'DKK'
+        | 'MXN'
+        | 'ZAR'
+        | 'PHP'
+        | 'VND'
+        | 'THB'
+        | 'BRL'
+        | 'KRW';
+
+      original_string: string;
+    }
+
+    export interface PersonName {
+      name: string;
+    }
+
+    export interface AddressObject {
+      components: Record<string, string>;
+
+      original_address: string;
+    }
   }
 
   export interface EntityB {
@@ -100,9 +178,86 @@ export namespace EntityMatch {
 
     label: string;
 
-    properties: Record<string, string | boolean | number | SharedAPI.Image>;
+    properties: Record<
+      string,
+      | string
+      | boolean
+      | number
+      | EntityB.PartialDateObject
+      | string
+      | string
+      | EntityB.URLObject
+      | string
+      | EntityB.MoneyObject
+      | SharedAPI.Image
+      | EntityB.PersonName
+      | EntityB.AddressObject
+      | string
+    >;
 
     updated_at: string;
+  }
+
+  export namespace EntityB {
+    export interface PartialDateObject {
+      original_string: string;
+
+      year: number;
+
+      day?: number | null;
+
+      month?: number | null;
+    }
+
+    export interface URLObject {
+      original_string: string;
+
+      url: string;
+    }
+
+    export interface MoneyObject {
+      amount: number;
+
+      currency_code:
+        | 'USD'
+        | 'EUR'
+        | 'GBP'
+        | 'JPY'
+        | 'CNY'
+        | 'INR'
+        | 'RUB'
+        | 'CAD'
+        | 'AUD'
+        | 'CHF'
+        | 'ILS'
+        | 'NZD'
+        | 'SGD'
+        | 'HKD'
+        | 'NOK'
+        | 'SEK'
+        | 'PLN'
+        | 'TRY'
+        | 'DKK'
+        | 'MXN'
+        | 'ZAR'
+        | 'PHP'
+        | 'VND'
+        | 'THB'
+        | 'BRL'
+        | 'KRW';
+
+      original_string: string;
+    }
+
+    export interface PersonName {
+      name: string;
+    }
+
+    export interface AddressObject {
+      components: Record<string, string>;
+
+      original_address: string;
+    }
   }
 
   export interface MatchedProperty {
@@ -127,9 +282,9 @@ export namespace EntityMatch {
 }
 
 export interface Image {
-  number: number;
+  flag_number?: number | null;
 
-  hash?: string;
+  image?: Uploadable | null;
 }
 
 /**
@@ -169,7 +324,7 @@ export interface Relationship {
 
   type: string;
 
-  properties?: Record<string, string | boolean | number | Image>;
+  properties?: Record<string, string | boolean | number>;
 }
 
 /**

@@ -151,44 +151,384 @@ export namespace EvaluateGetResponse {
         }
 
         export interface RelationshipA {
+          id: string;
+
+          created_at: string;
+
+          dataset_id: string;
+
           from_id: string;
 
           label: string;
 
-          properties: Record<string, string | boolean | number | SharedAPI.Image>;
+          properties: Record<
+            string,
+            | string
+            | boolean
+            | number
+            | RelationshipA.PartialDateObject
+            | string
+            | string
+            | RelationshipA.URLObject
+            | string
+            | RelationshipA.MoneyObject
+            | SharedAPI.Image
+            | RelationshipA.PersonName
+            | RelationshipA.AddressObject
+            | string
+          >;
 
           to_id: string;
+
+          updated_at: string;
+        }
+
+        export namespace RelationshipA {
+          export interface PartialDateObject {
+            original_string: string;
+
+            year: number;
+
+            day?: number | null;
+
+            month?: number | null;
+          }
+
+          export interface URLObject {
+            original_string: string;
+
+            url: string;
+          }
+
+          export interface MoneyObject {
+            amount: number;
+
+            currency_code:
+              | 'USD'
+              | 'EUR'
+              | 'GBP'
+              | 'JPY'
+              | 'CNY'
+              | 'INR'
+              | 'RUB'
+              | 'CAD'
+              | 'AUD'
+              | 'CHF'
+              | 'ILS'
+              | 'NZD'
+              | 'SGD'
+              | 'HKD'
+              | 'NOK'
+              | 'SEK'
+              | 'PLN'
+              | 'TRY'
+              | 'DKK'
+              | 'MXN'
+              | 'ZAR'
+              | 'PHP'
+              | 'VND'
+              | 'THB'
+              | 'BRL'
+              | 'KRW';
+
+            original_string: string;
+          }
+
+          export interface PersonName {
+            name: string;
+          }
+
+          export interface AddressObject {
+            components: Record<string, string>;
+
+            original_address: string;
+          }
         }
 
         export interface RelationshipB {
+          id: string;
+
+          created_at: string;
+
+          dataset_id: string;
+
           from_id: string;
 
           label: string;
 
-          properties: Record<string, string | boolean | number | SharedAPI.Image>;
+          properties: Record<
+            string,
+            | string
+            | boolean
+            | number
+            | RelationshipB.PartialDateObject
+            | string
+            | string
+            | RelationshipB.URLObject
+            | string
+            | RelationshipB.MoneyObject
+            | SharedAPI.Image
+            | RelationshipB.PersonName
+            | RelationshipB.AddressObject
+            | string
+          >;
 
           to_id: string;
+
+          updated_at: string;
+        }
+
+        export namespace RelationshipB {
+          export interface PartialDateObject {
+            original_string: string;
+
+            year: number;
+
+            day?: number | null;
+
+            month?: number | null;
+          }
+
+          export interface URLObject {
+            original_string: string;
+
+            url: string;
+          }
+
+          export interface MoneyObject {
+            amount: number;
+
+            currency_code:
+              | 'USD'
+              | 'EUR'
+              | 'GBP'
+              | 'JPY'
+              | 'CNY'
+              | 'INR'
+              | 'RUB'
+              | 'CAD'
+              | 'AUD'
+              | 'CHF'
+              | 'ILS'
+              | 'NZD'
+              | 'SGD'
+              | 'HKD'
+              | 'NOK'
+              | 'SEK'
+              | 'PLN'
+              | 'TRY'
+              | 'DKK'
+              | 'MXN'
+              | 'ZAR'
+              | 'PHP'
+              | 'VND'
+              | 'THB'
+              | 'BRL'
+              | 'KRW';
+
+            original_string: string;
+          }
+
+          export interface PersonName {
+            name: string;
+          }
+
+          export interface AddressObject {
+            components: Record<string, string>;
+
+            original_address: string;
+          }
         }
       }
 
       export interface UnmatchedA {
+        id: string;
+
+        created_at: string;
+
+        dataset_id: string;
+
         from_id: string;
 
         label: string;
 
-        properties: Record<string, string | boolean | number | SharedAPI.Image>;
+        properties: Record<
+          string,
+          | string
+          | boolean
+          | number
+          | UnmatchedA.PartialDateObject
+          | string
+          | string
+          | UnmatchedA.URLObject
+          | string
+          | UnmatchedA.MoneyObject
+          | SharedAPI.Image
+          | UnmatchedA.PersonName
+          | UnmatchedA.AddressObject
+          | string
+        >;
 
         to_id: string;
+
+        updated_at: string;
+      }
+
+      export namespace UnmatchedA {
+        export interface PartialDateObject {
+          original_string: string;
+
+          year: number;
+
+          day?: number | null;
+
+          month?: number | null;
+        }
+
+        export interface URLObject {
+          original_string: string;
+
+          url: string;
+        }
+
+        export interface MoneyObject {
+          amount: number;
+
+          currency_code:
+            | 'USD'
+            | 'EUR'
+            | 'GBP'
+            | 'JPY'
+            | 'CNY'
+            | 'INR'
+            | 'RUB'
+            | 'CAD'
+            | 'AUD'
+            | 'CHF'
+            | 'ILS'
+            | 'NZD'
+            | 'SGD'
+            | 'HKD'
+            | 'NOK'
+            | 'SEK'
+            | 'PLN'
+            | 'TRY'
+            | 'DKK'
+            | 'MXN'
+            | 'ZAR'
+            | 'PHP'
+            | 'VND'
+            | 'THB'
+            | 'BRL'
+            | 'KRW';
+
+          original_string: string;
+        }
+
+        export interface PersonName {
+          name: string;
+        }
+
+        export interface AddressObject {
+          components: Record<string, string>;
+
+          original_address: string;
+        }
       }
 
       export interface UnmatchedB {
+        id: string;
+
+        created_at: string;
+
+        dataset_id: string;
+
         from_id: string;
 
         label: string;
 
-        properties: Record<string, string | boolean | number | SharedAPI.Image>;
+        properties: Record<
+          string,
+          | string
+          | boolean
+          | number
+          | UnmatchedB.PartialDateObject
+          | string
+          | string
+          | UnmatchedB.URLObject
+          | string
+          | UnmatchedB.MoneyObject
+          | SharedAPI.Image
+          | UnmatchedB.PersonName
+          | UnmatchedB.AddressObject
+          | string
+        >;
 
         to_id: string;
+
+        updated_at: string;
+      }
+
+      export namespace UnmatchedB {
+        export interface PartialDateObject {
+          original_string: string;
+
+          year: number;
+
+          day?: number | null;
+
+          month?: number | null;
+        }
+
+        export interface URLObject {
+          original_string: string;
+
+          url: string;
+        }
+
+        export interface MoneyObject {
+          amount: number;
+
+          currency_code:
+            | 'USD'
+            | 'EUR'
+            | 'GBP'
+            | 'JPY'
+            | 'CNY'
+            | 'INR'
+            | 'RUB'
+            | 'CAD'
+            | 'AUD'
+            | 'CHF'
+            | 'ILS'
+            | 'NZD'
+            | 'SGD'
+            | 'HKD'
+            | 'NOK'
+            | 'SEK'
+            | 'PLN'
+            | 'TRY'
+            | 'DKK'
+            | 'MXN'
+            | 'ZAR'
+            | 'PHP'
+            | 'VND'
+            | 'THB'
+            | 'BRL'
+            | 'KRW';
+
+          original_string: string;
+        }
+
+        export interface PersonName {
+          name: string;
+        }
+
+        export interface AddressObject {
+          components: Record<string, string>;
+
+          original_address: string;
+        }
       }
     }
 
@@ -217,9 +557,86 @@ export namespace EvaluateGetResponse {
 
           label: string;
 
-          properties: Record<string, string | boolean | number | SharedAPI.Image>;
+          properties: Record<
+            string,
+            | string
+            | boolean
+            | number
+            | Entity.PartialDateObject
+            | string
+            | string
+            | Entity.URLObject
+            | string
+            | Entity.MoneyObject
+            | SharedAPI.Image
+            | Entity.PersonName
+            | Entity.AddressObject
+            | string
+          >;
 
           updated_at: string;
+        }
+
+        export namespace Entity {
+          export interface PartialDateObject {
+            original_string: string;
+
+            year: number;
+
+            day?: number | null;
+
+            month?: number | null;
+          }
+
+          export interface URLObject {
+            original_string: string;
+
+            url: string;
+          }
+
+          export interface MoneyObject {
+            amount: number;
+
+            currency_code:
+              | 'USD'
+              | 'EUR'
+              | 'GBP'
+              | 'JPY'
+              | 'CNY'
+              | 'INR'
+              | 'RUB'
+              | 'CAD'
+              | 'AUD'
+              | 'CHF'
+              | 'ILS'
+              | 'NZD'
+              | 'SGD'
+              | 'HKD'
+              | 'NOK'
+              | 'SEK'
+              | 'PLN'
+              | 'TRY'
+              | 'DKK'
+              | 'MXN'
+              | 'ZAR'
+              | 'PHP'
+              | 'VND'
+              | 'THB'
+              | 'BRL'
+              | 'KRW';
+
+            original_string: string;
+          }
+
+          export interface PersonName {
+            name: string;
+          }
+
+          export interface AddressObject {
+            components: Record<string, string>;
+
+            original_address: string;
+          }
         }
       }
 
@@ -239,9 +656,86 @@ export namespace EvaluateGetResponse {
 
           label: string;
 
-          properties: Record<string, string | boolean | number | SharedAPI.Image>;
+          properties: Record<
+            string,
+            | string
+            | boolean
+            | number
+            | Entity.PartialDateObject
+            | string
+            | string
+            | Entity.URLObject
+            | string
+            | Entity.MoneyObject
+            | SharedAPI.Image
+            | Entity.PersonName
+            | Entity.AddressObject
+            | string
+          >;
 
           updated_at: string;
+        }
+
+        export namespace Entity {
+          export interface PartialDateObject {
+            original_string: string;
+
+            year: number;
+
+            day?: number | null;
+
+            month?: number | null;
+          }
+
+          export interface URLObject {
+            original_string: string;
+
+            url: string;
+          }
+
+          export interface MoneyObject {
+            amount: number;
+
+            currency_code:
+              | 'USD'
+              | 'EUR'
+              | 'GBP'
+              | 'JPY'
+              | 'CNY'
+              | 'INR'
+              | 'RUB'
+              | 'CAD'
+              | 'AUD'
+              | 'CHF'
+              | 'ILS'
+              | 'NZD'
+              | 'SGD'
+              | 'HKD'
+              | 'NOK'
+              | 'SEK'
+              | 'PLN'
+              | 'TRY'
+              | 'DKK'
+              | 'MXN'
+              | 'ZAR'
+              | 'PHP'
+              | 'VND'
+              | 'THB'
+              | 'BRL'
+              | 'KRW';
+
+            original_string: string;
+          }
+
+          export interface PersonName {
+            name: string;
+          }
+
+          export interface AddressObject {
+            components: Record<string, string>;
+
+            original_address: string;
+          }
         }
       }
     }
