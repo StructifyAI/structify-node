@@ -1547,22 +1547,7 @@ export interface EntityUpdatePropertyParams {
 
   entity_id: string;
 
-  properties: Record<
-    string,
-    | string
-    | boolean
-    | number
-    | EntityUpdatePropertyParams.PartialDateObject
-    | string
-    | string
-    | EntityUpdatePropertyParams.URLObject
-    | string
-    | EntityUpdatePropertyParams.MoneyObject
-    | SharedAPI.Image
-    | EntityUpdatePropertyParams.PersonName
-    | EntityUpdatePropertyParams.AddressObject
-    | string
-  >;
+  properties: Record<string, string | boolean | number>;
 
   source?:
     | 'None'
@@ -1572,66 +1557,6 @@ export interface EntityUpdatePropertyParams {
 }
 
 export namespace EntityUpdatePropertyParams {
-  export interface PartialDateObject {
-    original_string: string;
-
-    year: number;
-
-    day?: number | null;
-
-    month?: number | null;
-  }
-
-  export interface URLObject {
-    original_string: string;
-
-    url: string;
-  }
-
-  export interface MoneyObject {
-    amount: number;
-
-    currency_code:
-      | 'USD'
-      | 'EUR'
-      | 'GBP'
-      | 'JPY'
-      | 'CNY'
-      | 'INR'
-      | 'RUB'
-      | 'CAD'
-      | 'AUD'
-      | 'CHF'
-      | 'ILS'
-      | 'NZD'
-      | 'SGD'
-      | 'HKD'
-      | 'NOK'
-      | 'SEK'
-      | 'PLN'
-      | 'TRY'
-      | 'DKK'
-      | 'MXN'
-      | 'ZAR'
-      | 'PHP'
-      | 'VND'
-      | 'THB'
-      | 'BRL'
-      | 'KRW';
-
-    original_string: string;
-  }
-
-  export interface PersonName {
-    name: string;
-  }
-
-  export interface AddressObject {
-    components: Record<string, string>;
-
-    original_address: string;
-  }
-
   export interface Web {
     Web: string;
   }
