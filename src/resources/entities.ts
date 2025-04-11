@@ -33,6 +33,16 @@ export class Entities extends APIResource {
   }
 
   /**
+   * Add a relationship between two entities in a dataset
+   */
+  addRelationship(
+    body: EntityAddRelationshipParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<EntityAddRelationshipResponse> {
+    return this._client.post('/entity/add_relationship', { body, ...options });
+  }
+
+  /**
    * Get entity with a given id
    */
   get(query: EntityGetParams, options?: Core.RequestOptions): Core.APIPromise<EntityGetResponse> {
@@ -135,6 +145,101 @@ export type EntityDeleteResponse = Array<string>;
 export type EntityAddResponse = Array<string>;
 
 export type EntityAddBatchResponse = Array<string>;
+
+export interface EntityAddRelationshipResponse {
+  id: string;
+
+  created_at: string;
+
+  dataset_id: string;
+
+  from_id: string;
+
+  label: string;
+
+  properties: Record<
+    string,
+    | string
+    | boolean
+    | number
+    | EntityAddRelationshipResponse.PartialDateObject
+    | string
+    | string
+    | EntityAddRelationshipResponse.URLObject
+    | string
+    | EntityAddRelationshipResponse.MoneyObject
+    | SharedAPI.Image
+    | EntityAddRelationshipResponse.PersonName
+    | EntityAddRelationshipResponse.AddressObject
+    | string
+  >;
+
+  to_id: string;
+
+  updated_at: string;
+}
+
+export namespace EntityAddRelationshipResponse {
+  export interface PartialDateObject {
+    original_string: string;
+
+    year: number;
+
+    day?: number | null;
+
+    month?: number | null;
+  }
+
+  export interface URLObject {
+    original_string: string;
+
+    url: string;
+  }
+
+  export interface MoneyObject {
+    amount: number;
+
+    currency_code:
+      | 'USD'
+      | 'EUR'
+      | 'GBP'
+      | 'JPY'
+      | 'CNY'
+      | 'INR'
+      | 'RUB'
+      | 'CAD'
+      | 'AUD'
+      | 'CHF'
+      | 'ILS'
+      | 'NZD'
+      | 'SGD'
+      | 'HKD'
+      | 'NOK'
+      | 'SEK'
+      | 'PLN'
+      | 'TRY'
+      | 'DKK'
+      | 'MXN'
+      | 'ZAR'
+      | 'PHP'
+      | 'VND'
+      | 'THB'
+      | 'BRL'
+      | 'KRW';
+
+    original_string: string;
+  }
+
+  export interface PersonName {
+    name: string;
+  }
+
+  export interface AddressObject {
+    components: Record<string, string>;
+
+    original_address: string;
+  }
+}
 
 export interface EntityGetResponse {
   id: string;
@@ -1485,6 +1590,18 @@ export namespace EntityAddBatchParams {
   }
 }
 
+export interface EntityAddRelationshipParams {
+  dataset: string;
+
+  from_id: string;
+
+  relationship_type: string;
+
+  to_id: string;
+
+  properties?: Record<string, string | boolean | number>;
+}
+
 export interface EntityGetParams {
   id: string;
 
@@ -1597,6 +1714,7 @@ export declare namespace Entities {
     type EntityDeleteResponse as EntityDeleteResponse,
     type EntityAddResponse as EntityAddResponse,
     type EntityAddBatchResponse as EntityAddBatchResponse,
+    type EntityAddRelationshipResponse as EntityAddRelationshipResponse,
     type EntityGetResponse as EntityGetResponse,
     type EntityGetLocalSubgraphResponse as EntityGetLocalSubgraphResponse,
     type EntityGetMergesResponse as EntityGetMergesResponse,
@@ -1611,6 +1729,7 @@ export declare namespace Entities {
     type EntityDeleteParams as EntityDeleteParams,
     type EntityAddParams as EntityAddParams,
     type EntityAddBatchParams as EntityAddBatchParams,
+    type EntityAddRelationshipParams as EntityAddRelationshipParams,
     type EntityGetParams as EntityGetParams,
     type EntityGetLocalSubgraphParams as EntityGetLocalSubgraphParams,
     type EntityGetMergesParams as EntityGetMergesParams,
