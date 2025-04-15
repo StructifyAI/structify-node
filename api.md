@@ -139,6 +139,7 @@ Methods:
 - <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets/datasets.ts">get</a>({ ...params }) -> DatasetGetResponse</code>
 - <code title="post /dataset/match">client.datasets.<a href="./src/resources/datasets/datasets.ts">match</a>({ ...params }) -> DatasetMatchResponse</code>
 - <code title="post /dataset/remove_property">client.datasets.<a href="./src/resources/datasets/datasets.ts">removeProperty</a>({ ...params }) -> void</code>
+- <code title="post /dataset/reorder_properties">client.datasets.<a href="./src/resources/datasets/datasets.ts">reorderProperties</a>({ ...params }) -> void</code>
 - <code title="post /dataset/update_property">client.datasets.<a href="./src/resources/datasets/datasets.ts">updateProperty</a>({ ...params }) -> void</code>
 - <code title="get /dataset/view_relationships">client.datasets.<a href="./src/resources/datasets/datasets.ts">viewRelationships</a>({ ...params }) -> DatasetViewRelationshipsResponsesJobsList</code>
 - <code title="get /dataset/view_table">client.datasets.<a href="./src/resources/datasets/datasets.ts">viewTable</a>({ ...params }) -> DatasetViewTableResponsesJobsList</code>
