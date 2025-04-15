@@ -21,6 +21,7 @@ export {
   type DatasetGetParams,
   type DatasetMatchParams,
   type DatasetRemovePropertyParams,
+  type DatasetReorderPropertiesParams,
   type DatasetUpdatePropertyParams,
   type DatasetViewRelationshipsParams,
   type DatasetViewTableParams,

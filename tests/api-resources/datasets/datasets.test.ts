@@ -187,6 +187,29 @@ describe('resource datasets', () => {
     });
   });
 
+  test('reorderProperties: only required params', async () => {
+    const responsePromise = client.datasets.reorderProperties({
+      dataset_name: 'dataset_name',
+      property_names: ['string'],
+      table_name: 'table_name',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('reorderProperties: required and optional params', async () => {
+    const response = await client.datasets.reorderProperties({
+      dataset_name: 'dataset_name',
+      property_names: ['string'],
+      table_name: 'table_name',
+    });
+  });
+
   test('updateProperty: only required params', async () => {
     const responsePromise = client.datasets.updateProperty({
       dataset_name: 'dataset_name',

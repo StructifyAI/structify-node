@@ -85,6 +85,17 @@ export class Datasets extends APIResource {
     });
   }
 
+  reorderProperties(
+    body: DatasetReorderPropertiesParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/dataset/reorder_properties', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
   /**
    * Update a property descriptor in a table in the dataset schema
    */
@@ -804,6 +815,14 @@ export interface DatasetRemovePropertyParams {
   table_name: string;
 }
 
+export interface DatasetReorderPropertiesParams {
+  dataset_name: string;
+
+  property_names: Array<string>;
+
+  table_name: string;
+}
+
 export interface DatasetUpdatePropertyParams {
   dataset_name: string;
 
@@ -925,6 +944,7 @@ export declare namespace Datasets {
     type DatasetGetParams as DatasetGetParams,
     type DatasetMatchParams as DatasetMatchParams,
     type DatasetRemovePropertyParams as DatasetRemovePropertyParams,
+    type DatasetReorderPropertiesParams as DatasetReorderPropertiesParams,
     type DatasetUpdatePropertyParams as DatasetUpdatePropertyParams,
     type DatasetViewRelationshipsParams as DatasetViewRelationshipsParams,
     type DatasetViewTableParams as DatasetViewTableParams,
