@@ -293,9 +293,9 @@ export interface Image {
  * pipeline from raw tool output to being merged into a Neo4j DB
  */
 export interface KnowledgeGraph {
-  entities?: Array<Entity>;
+  entities: Array<Entity>;
 
-  relationships?: Array<Relationship>;
+  relationships: Array<Relationship>;
 }
 
 export type PropertyType =
