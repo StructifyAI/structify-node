@@ -204,7 +204,17 @@ describe('resource trainingDatasets', () => {
     const responsePromise = client.admin.trainingDatasets.labelDatum({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       status: 'unlabeled',
-      updated_tool_calls: [{ input: { Save: {} }, name: 'Exit' }],
+      updated_tool_calls: [
+        {
+          input: {
+            Save: {
+              entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
+              relationships: [{ source: 0, target: 0, type: 'type' }],
+            },
+          },
+          name: 'Exit',
+        },
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
