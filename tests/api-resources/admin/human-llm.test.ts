@@ -35,7 +35,17 @@ describe('resource humanLlm', () => {
       extraction_criteria_met: true,
       job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      tool_calls: [{ input: { Save: {} }, name: 'Exit' }],
+      tool_calls: [
+        {
+          input: {
+            Save: {
+              entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
+              relationships: [{ source: 0, target: 0, type: 'type' }],
+            },
+          },
+          name: 'Exit',
+        },
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -186,7 +196,17 @@ describe('resource humanLlm', () => {
       extraction_criteria_met: true,
       job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      tool_calls: [{ input: { Save: {} }, name: 'Exit' }],
+      tool_calls: [
+        {
+          input: {
+            Save: {
+              entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
+              relationships: [{ source: 0, target: 0, type: 'type' }],
+            },
+          },
+          name: 'Exit',
+        },
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
