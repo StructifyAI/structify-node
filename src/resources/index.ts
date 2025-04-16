@@ -142,6 +142,7 @@ export {
   type StructureFindRelationshipParams,
   type StructureIsCompleteParams,
   type StructureJobStatusParams,
+  type StructureJobStatusWsParams,
   type StructureRunAsyncParams,
 } from './structure';
 export {

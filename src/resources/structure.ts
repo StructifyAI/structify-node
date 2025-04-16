@@ -71,6 +71,17 @@ export class Structure extends APIResource {
   }
 
   /**
+   * WebSocket endpoint for job status updates
+   */
+  jobStatusWs(query: StructureJobStatusWsParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.get('/structure/job_status_ws', {
+      query,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
    * Returns a token that can be waited on until the request is finished.
    */
   runAsync(body: StructureRunAsyncParams, options?: Core.RequestOptions): Core.APIPromise<string> {
@@ -608,6 +619,13 @@ export type StructureIsCompleteParams = Array<string>;
 
 export type StructureJobStatusParams = Array<string>;
 
+export interface StructureJobStatusWsParams {
+  /**
+   * List of job IDs to monitor
+   */
+  job_ids: Array<string>;
+}
+
 export interface StructureRunAsyncParams {
   dataset: string;
 
@@ -675,6 +693,7 @@ export declare namespace Structure {
     type StructureFindRelationshipParams as StructureFindRelationshipParams,
     type StructureIsCompleteParams as StructureIsCompleteParams,
     type StructureJobStatusParams as StructureJobStatusParams,
+    type StructureJobStatusWsParams as StructureJobStatusWsParams,
     type StructureRunAsyncParams as StructureRunAsyncParams,
   };
 }
