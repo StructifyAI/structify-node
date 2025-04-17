@@ -323,6 +323,8 @@ export namespace ExecutionStep {
     text: string;
 
     tool_calls: Array<Response.ToolCall>;
+
+    reasoning?: string | null;
   }
 
   export namespace Response {

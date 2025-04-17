@@ -193,6 +193,8 @@ export namespace HumanLlmGetNextStepResponse {
     text: string;
 
     tool_calls: Array<Response.ToolCall>;
+
+    reasoning?: string | null;
   }
 
   export namespace Response {
@@ -381,6 +383,8 @@ export interface HumanLlmPrelabelStepResponse {
   text: string;
 
   tool_calls: Array<HumanLlmPrelabelStepResponse.ToolCall>;
+
+  reasoning?: string | null;
 }
 
 export namespace HumanLlmPrelabelStepResponse {
