@@ -207,6 +207,8 @@ export namespace JobGetStepResponse {
     text: string;
 
     tool_calls: Array<Response.ToolCall>;
+
+    reasoning?: string | null;
   }
 
   export namespace Response {
@@ -426,6 +428,8 @@ export namespace JobGetStepGraphResponse {
         text: string;
 
         tool_calls: Array<Response.ToolCall>;
+
+        reasoning?: string | null;
       }
 
       export namespace Response {
