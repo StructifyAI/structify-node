@@ -325,6 +325,8 @@ export namespace ExecutionStep {
     tool_calls: Array<Response.ToolCall>;
 
     reasoning?: string | null;
+
+    thinking?: string | null;
   }
 
   export namespace Response {
