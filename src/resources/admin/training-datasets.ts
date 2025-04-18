@@ -308,6 +308,10 @@ export namespace TrainingDatumResponse {
       text: string;
 
       tool_calls: Array<Response.ToolCall>;
+
+      reasoning?: string | null;
+
+      thinking?: string | null;
     }
 
     export namespace Response {
@@ -513,6 +517,10 @@ export namespace TrainingDatumResponse {
       text: string;
 
       tool_calls: Array<Response.ToolCall>;
+
+      reasoning?: string | null;
+
+      thinking?: string | null;
     }
 
     export namespace Response {

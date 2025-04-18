@@ -136,6 +136,7 @@ Methods:
 - <code title="get /dataset/list">client.datasets.<a href="./src/resources/datasets/datasets.ts">list</a>() -> DatasetListResponse</code>
 - <code title="delete /dataset/delete">client.datasets.<a href="./src/resources/datasets/datasets.ts">delete</a>({ ...params }) -> void</code>
 - <code title="post /dataset/add_property">client.datasets.<a href="./src/resources/datasets/datasets.ts">addProperty</a>({ ...params }) -> void</code>
+- <code title="get /dataset/entity_ws">client.datasets.<a href="./src/resources/datasets/datasets.ts">entityWs</a>({ ...params }) -> void</code>
 - <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets/datasets.ts">get</a>({ ...params }) -> DatasetGetResponse</code>
 - <code title="post /dataset/match">client.datasets.<a href="./src/resources/datasets/datasets.ts">match</a>({ ...params }) -> DatasetMatchResponse</code>
 - <code title="post /dataset/remove_property">client.datasets.<a href="./src/resources/datasets/datasets.ts">removeProperty</a>({ ...params }) -> void</code>
@@ -228,6 +229,7 @@ Types:
 - <code><a href="./src/resources/entities.ts">EntityAddResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityAddBatchResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityAddRelationshipResponse</a></code>
+- <code><a href="./src/resources/entities.ts">EntityDeleteRelationshipResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityGetResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityGetLocalSubgraphResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityGetMergesResponse</a></code>
@@ -246,6 +248,7 @@ Methods:
 - <code title="post /entity/add">client.entities.<a href="./src/resources/entities.ts">add</a>({ ...params }) -> EntityAddResponse</code>
 - <code title="post /entity/add_batch">client.entities.<a href="./src/resources/entities.ts">addBatch</a>({ ...params }) -> EntityAddBatchResponse</code>
 - <code title="post /entity/add_relationship">client.entities.<a href="./src/resources/entities.ts">addRelationship</a>({ ...params }) -> EntityAddRelationshipResponse</code>
+- <code title="post /entity/delete_relationship">client.entities.<a href="./src/resources/entities.ts">deleteRelationship</a>({ ...params }) -> unknown</code>
 - <code title="get /entity/get">client.entities.<a href="./src/resources/entities.ts">get</a>({ ...params }) -> EntityGetResponse</code>
 - <code title="get /entity/get_local_subgraph">client.entities.<a href="./src/resources/entities.ts">getLocalSubgraph</a>({ ...params }) -> EntityGetLocalSubgraphResponse</code>
 - <code title="get /entity/get_merges">client.entities.<a href="./src/resources/entities.ts">getMerges</a>({ ...params }) -> EntityGetMergesResponse</code>
@@ -319,6 +322,7 @@ Methods:
 - <code title="post /structure/find_relationship">client.structure.<a href="./src/resources/structure.ts">findRelationship</a>({ ...params }) -> string</code>
 - <code title="post /structure/is_complete">client.structure.<a href="./src/resources/structure.ts">isComplete</a>([ ...job ]) -> string</code>
 - <code title="post /structure/job_status">client.structure.<a href="./src/resources/structure.ts">jobStatus</a>([ ...job ]) -> StructureJobStatusResponse</code>
+- <code title="get /structure/job_status_ws">client.structure.<a href="./src/resources/structure.ts">jobStatusWs</a>({ ...params }) -> void</code>
 - <code title="post /structure/run_async">client.structure.<a href="./src/resources/structure.ts">runAsync</a>({ ...params }) -> string</code>
 
 # Shared

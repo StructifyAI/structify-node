@@ -18,6 +18,7 @@ export {
   type DatasetCreateParams,
   type DatasetDeleteParams,
   type DatasetAddPropertyParams,
+  type DatasetEntityWsParams,
   type DatasetGetParams,
   type DatasetMatchParams,
   type DatasetRemovePropertyParams,
@@ -42,6 +43,7 @@ export {
   type EntityAddResponse,
   type EntityAddBatchResponse,
   type EntityAddRelationshipResponse,
+  type EntityDeleteRelationshipResponse,
   type EntityGetResponse,
   type EntityGetLocalSubgraphResponse,
   type EntityGetMergesResponse,
@@ -57,6 +59,7 @@ export {
   type EntityAddParams,
   type EntityAddBatchParams,
   type EntityAddRelationshipParams,
+  type EntityDeleteRelationshipParams,
   type EntityGetParams,
   type EntityGetLocalSubgraphParams,
   type EntityGetMergesParams,
@@ -142,6 +145,7 @@ export {
   type StructureFindRelationshipParams,
   type StructureIsCompleteParams,
   type StructureJobStatusParams,
+  type StructureJobStatusWsParams,
   type StructureRunAsyncParams,
 } from './structure';
 export {
