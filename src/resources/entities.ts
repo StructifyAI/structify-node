@@ -43,6 +43,16 @@ export class Entities extends APIResource {
   }
 
   /**
+   * delete a relationship between two entities in a dataset
+   */
+  deleteRelationship(
+    body: EntityDeleteRelationshipParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<unknown> {
+    return this._client.post('/entity/delete_relationship', { body, ...options });
+  }
+
+  /**
    * Get entity with a given id
    */
   get(query: EntityGetParams, options?: Core.RequestOptions): Core.APIPromise<EntityGetResponse> {
@@ -240,6 +250,8 @@ export namespace EntityAddRelationshipResponse {
     original_address: string;
   }
 }
+
+export type EntityDeleteRelationshipResponse = unknown;
 
 export interface EntityGetResponse {
   id: string;
@@ -1602,6 +1614,12 @@ export interface EntityAddRelationshipParams {
   properties?: Record<string, string | boolean | number>;
 }
 
+export interface EntityDeleteRelationshipParams {
+  dataset: string;
+
+  relationship_id: string;
+}
+
 export interface EntityGetParams {
   id: string;
 
@@ -1715,6 +1733,7 @@ export declare namespace Entities {
     type EntityAddResponse as EntityAddResponse,
     type EntityAddBatchResponse as EntityAddBatchResponse,
     type EntityAddRelationshipResponse as EntityAddRelationshipResponse,
+    type EntityDeleteRelationshipResponse as EntityDeleteRelationshipResponse,
     type EntityGetResponse as EntityGetResponse,
     type EntityGetLocalSubgraphResponse as EntityGetLocalSubgraphResponse,
     type EntityGetMergesResponse as EntityGetMergesResponse,
@@ -1730,6 +1749,7 @@ export declare namespace Entities {
     type EntityAddParams as EntityAddParams,
     type EntityAddBatchParams as EntityAddBatchParams,
     type EntityAddRelationshipParams as EntityAddRelationshipParams,
+    type EntityDeleteRelationshipParams as EntityDeleteRelationshipParams,
     type EntityGetParams as EntityGetParams,
     type EntityGetLocalSubgraphParams as EntityGetLocalSubgraphParams,
     type EntityGetMergesParams as EntityGetMergesParams,
