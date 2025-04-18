@@ -794,6 +794,11 @@ export namespace DatasetAddPropertyParams {
 
 export interface DatasetEntityWsParams {
   /**
+   * API key for authentication
+   */
+  api_key: string;
+
+  /**
    * The name of the dataset to monitor
    */
   name: string;
