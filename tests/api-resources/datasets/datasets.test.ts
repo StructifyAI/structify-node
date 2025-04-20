@@ -127,21 +127,6 @@ describe('resource datasets', () => {
     });
   });
 
-  test('entityWs: only required params', async () => {
-    const responsePromise = client.datasets.entityWs({ api_key: 'api_key', name: 'name' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('entityWs: required and optional params', async () => {
-    const response = await client.datasets.entityWs({ api_key: 'api_key', name: 'name' });
-  });
-
   test('get: only required params', async () => {
     const responsePromise = client.datasets.get({ name: 'name' });
     const rawResponse = await responsePromise.asResponse();
