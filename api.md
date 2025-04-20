@@ -136,7 +136,6 @@ Methods:
 - <code title="get /dataset/list">client.datasets.<a href="./src/resources/datasets/datasets.ts">list</a>() -> DatasetListResponse</code>
 - <code title="delete /dataset/delete">client.datasets.<a href="./src/resources/datasets/datasets.ts">delete</a>({ ...params }) -> void</code>
 - <code title="post /dataset/add_property">client.datasets.<a href="./src/resources/datasets/datasets.ts">addProperty</a>({ ...params }) -> void</code>
-- <code title="get /dataset/entity_ws">client.datasets.<a href="./src/resources/datasets/datasets.ts">entityWs</a>({ ...params }) -> void</code>
 - <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets/datasets.ts">get</a>({ ...params }) -> DatasetGetResponse</code>
 - <code title="post /dataset/match">client.datasets.<a href="./src/resources/datasets/datasets.ts">match</a>({ ...params }) -> DatasetMatchResponse</code>
 - <code title="post /dataset/remove_property">client.datasets.<a href="./src/resources/datasets/datasets.ts">removeProperty</a>({ ...params }) -> void</code>

@@ -60,14 +60,6 @@ export class Datasets extends APIResource {
     });
   }
 
-  entityWs(query: DatasetEntityWsParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.get('/dataset/entity_ws', {
-      query,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
   /**
    * Grab a dataset by its name.
    */
@@ -792,18 +784,6 @@ export namespace DatasetAddPropertyParams {
   }
 }
 
-export interface DatasetEntityWsParams {
-  /**
-   * API key for authentication
-   */
-  api_key: string;
-
-  /**
-   * The name of the dataset to monitor
-   */
-  name: string;
-}
-
 export interface DatasetGetParams {
   /**
    * Information about the dataset
@@ -961,7 +941,6 @@ export declare namespace Datasets {
     type DatasetCreateParams as DatasetCreateParams,
     type DatasetDeleteParams as DatasetDeleteParams,
     type DatasetAddPropertyParams as DatasetAddPropertyParams,
-    type DatasetEntityWsParams as DatasetEntityWsParams,
     type DatasetGetParams as DatasetGetParams,
     type DatasetMatchParams as DatasetMatchParams,
     type DatasetRemovePropertyParams as DatasetRemovePropertyParams,
