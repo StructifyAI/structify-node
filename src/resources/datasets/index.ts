@@ -17,7 +17,6 @@ export {
   type DatasetCreateParams,
   type DatasetDeleteParams,
   type DatasetAddPropertyParams,
-  type DatasetEntityWsParams,
   type DatasetGetParams,
   type DatasetMatchParams,
   type DatasetRemovePropertyParams,
