@@ -123,7 +123,6 @@ import {
   StructureIsCompleteResponse,
   StructureJobStatusParams,
   StructureJobStatusResponse,
-  StructureJobStatusWsParams,
   StructureRunAsyncParams,
   StructureRunAsyncResponse,
   ToolMetadata,
@@ -529,7 +528,6 @@ export declare namespace Structify {
     type StructureFindRelationshipParams as StructureFindRelationshipParams,
     type StructureIsCompleteParams as StructureIsCompleteParams,
     type StructureJobStatusParams as StructureJobStatusParams,
-    type StructureJobStatusWsParams as StructureJobStatusWsParams,
     type StructureRunAsyncParams as StructureRunAsyncParams,
   };
 
