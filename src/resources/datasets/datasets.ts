@@ -61,6 +61,16 @@ export class Datasets extends APIResource {
   }
 
   /**
+   * Get the enrichment progress for a dataset
+   */
+  enrichmentProgress(
+    query: DatasetEnrichmentProgressParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<DatasetEnrichmentProgressResponse> {
+    return this._client.get('/dataset/enrichment_progress', { query, ...options });
+  }
+
+  /**
    * Grab a dataset by its name.
    */
   get(query: DatasetGetParams, options?: Core.RequestOptions): Core.APIPromise<DatasetGetResponse> {
@@ -231,6 +241,18 @@ export namespace DatasetListResponse {
 
     name: string;
   }
+}
+
+export interface DatasetEnrichmentProgressResponse {
+  completed: number;
+
+  failed: number;
+
+  queued: number;
+
+  running: number;
+
+  total: number;
 }
 
 /**
@@ -797,6 +819,13 @@ export namespace DatasetAddPropertyParams {
   }
 }
 
+export interface DatasetEnrichmentProgressParams {
+  /**
+   * Enrichment progress for the dataset
+   */
+  name: string;
+}
+
 export interface DatasetGetParams {
   /**
    * Information about the dataset
@@ -952,6 +981,7 @@ export declare namespace Datasets {
     type Strategy as Strategy,
     type DatasetCreateResponse as DatasetCreateResponse,
     type DatasetListResponse as DatasetListResponse,
+    type DatasetEnrichmentProgressResponse as DatasetEnrichmentProgressResponse,
     type DatasetGetResponse as DatasetGetResponse,
     type DatasetMatchResponse as DatasetMatchResponse,
     type DatasetViewRelationshipsResponse as DatasetViewRelationshipsResponse,
@@ -962,6 +992,7 @@ export declare namespace Datasets {
     type DatasetCreateParams as DatasetCreateParams,
     type DatasetDeleteParams as DatasetDeleteParams,
     type DatasetAddPropertyParams as DatasetAddPropertyParams,
+    type DatasetEnrichmentProgressParams as DatasetEnrichmentProgressParams,
     type DatasetGetParams as DatasetGetParams,
     type DatasetMatchParams as DatasetMatchParams,
     type DatasetRemovePropertyParams as DatasetRemovePropertyParams,
