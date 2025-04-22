@@ -96,6 +96,17 @@ export class Datasets extends APIResource {
     });
   }
 
+  setPrimaryColumn(
+    body: DatasetSetPrimaryColumnParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/dataset/set_primary_column', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
   /**
    * Update a property descriptor in a table in the dataset schema
    */
@@ -823,6 +834,14 @@ export interface DatasetReorderPropertiesParams {
   table_name: string;
 }
 
+export interface DatasetSetPrimaryColumnParams {
+  dataset_name: string;
+
+  property_name: string;
+
+  table_name: string;
+}
+
 export interface DatasetUpdatePropertyParams {
   dataset_name: string;
 
@@ -945,6 +964,7 @@ export declare namespace Datasets {
     type DatasetMatchParams as DatasetMatchParams,
     type DatasetRemovePropertyParams as DatasetRemovePropertyParams,
     type DatasetReorderPropertiesParams as DatasetReorderPropertiesParams,
+    type DatasetSetPrimaryColumnParams as DatasetSetPrimaryColumnParams,
     type DatasetUpdatePropertyParams as DatasetUpdatePropertyParams,
     type DatasetViewRelationshipsParams as DatasetViewRelationshipsParams,
     type DatasetViewTableParams as DatasetViewTableParams,

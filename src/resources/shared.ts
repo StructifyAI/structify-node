@@ -349,6 +349,8 @@ export interface Table {
    * This is used for our probabilistic merge strategy.
    */
   expected_cardinality?: number | null;
+
+  primary_column?: string | null;
 }
 
 export namespace Table {

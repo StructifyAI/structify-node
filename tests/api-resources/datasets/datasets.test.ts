@@ -65,6 +65,7 @@ describe('resource datasets', () => {
             { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
           ],
           expected_cardinality: 0,
+          primary_column: 'primary_column',
         },
       ],
       llm_override_field: 'llm_override_field',
@@ -212,6 +213,29 @@ describe('resource datasets', () => {
     const response = await client.datasets.reorderProperties({
       dataset_name: 'dataset_name',
       property_names: ['string'],
+      table_name: 'table_name',
+    });
+  });
+
+  test('setPrimaryColumn: only required params', async () => {
+    const responsePromise = client.datasets.setPrimaryColumn({
+      dataset_name: 'dataset_name',
+      property_name: 'property_name',
+      table_name: 'table_name',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('setPrimaryColumn: required and optional params', async () => {
+    const response = await client.datasets.setPrimaryColumn({
+      dataset_name: 'dataset_name',
+      property_name: 'property_name',
       table_name: 'table_name',
     });
   });
