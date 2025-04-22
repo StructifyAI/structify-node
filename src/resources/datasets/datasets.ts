@@ -737,6 +737,8 @@ export interface DatasetCreateParams {
 
   tables: Array<SharedAPI.Table>;
 
+  generate_merge_criteria?: boolean;
+
   llm_override_field?: string | null;
 }
 
