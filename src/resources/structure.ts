@@ -219,6 +219,8 @@ export namespace ChatPrompt {
     formatter_specific: Metadata.ImageMeta | Metadata.WebMeta | Metadata.TextMeta;
 
     tool_metadata: Array<StructureAPI.ToolMetadata>;
+
+    qa_potentially_sus_response?: string | null;
   }
 
   export namespace Metadata {
