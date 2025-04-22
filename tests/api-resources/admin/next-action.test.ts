@@ -13,6 +13,25 @@ describe('resource nextAction', () => {
     const responsePromise = client.admin.nextAction.addTrainingDatum({
       input: {
         all_steps: [{ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' }],
+        descriptor: {
+          description: 'description',
+          name: 'name',
+          relationships: [
+            {
+              description: 'description',
+              name: 'name',
+              source_table: 'source_table',
+              target_table: 'target_table',
+            },
+          ],
+          tables: [
+            {
+              description: 'description',
+              name: 'name',
+              properties: [{ description: 'description', name: 'name' }],
+            },
+          ],
+        },
         extraction_criteria: [{ relationship_name: 'relationship_name' }],
         previous_queries: ['string'],
         seeded_kg: {
@@ -42,6 +61,37 @@ describe('resource nextAction', () => {
             metadata: { foo: 'string' },
           },
         ],
+        descriptor: {
+          description: 'description',
+          name: 'name',
+          relationships: [
+            {
+              description: 'description',
+              name: 'name',
+              source_table: 'source_table',
+              target_table: 'target_table',
+              merge_strategy: {
+                source_cardinality_given_target_match: 0,
+                target_cardinality_given_source_match: 0,
+              },
+              properties: [
+                { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+              ],
+            },
+          ],
+          tables: [
+            {
+              description: 'description',
+              name: 'name',
+              properties: [
+                { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+              ],
+              expected_cardinality: 0,
+              primary_column: 'primary_column',
+            },
+          ],
+          llm_override_field: 'llm_override_field',
+        },
         extraction_criteria: [{ relationship_name: 'relationship_name' }],
         previous_queries: ['string'],
         seeded_kg: {

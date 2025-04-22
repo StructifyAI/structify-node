@@ -78,6 +78,14 @@ export namespace ActionTrainingDataEntry {
   export interface Input {
     all_steps: Array<Input.AllStep>;
 
+    /**
+     * A dataset is where you put multiple referential schemas.
+     *
+     * A dataset is a complete namespace where all references between schemas are held
+     * within the dataset.
+     */
+    descriptor: SharedAPI.DatasetDescriptor;
+
     extraction_criteria: Array<StructureAPI.SaveRequirement>;
 
     previous_queries: Array<string>;
@@ -107,7 +115,7 @@ export namespace ActionTrainingDataEntry {
 
     label: 'HumanLLMLabel' | 'LLMOutput' | 'Pending' | 'Reviewed' | 'Verified' | 'Others';
 
-    output: Output.SelectedStep | Output.SearchStep | Output.InvalidAction;
+    output: Output.SelectedStep | Output.SearchStep | Output.InvalidAction | 'Exit';
   }
 
   export namespace Output {
@@ -157,7 +165,8 @@ export interface AddActionTrainingDatumRequest {
   output:
     | AddActionTrainingDatumRequest.SelectedStep
     | AddActionTrainingDatumRequest.SearchStep
-    | AddActionTrainingDatumRequest.InvalidAction;
+    | AddActionTrainingDatumRequest.InvalidAction
+    | 'Exit';
 
   job_id?: string | null;
 }
@@ -165,6 +174,14 @@ export interface AddActionTrainingDatumRequest {
 export namespace AddActionTrainingDatumRequest {
   export interface Input {
     all_steps: Array<Input.AllStep>;
+
+    /**
+     * A dataset is where you put multiple referential schemas.
+     *
+     * A dataset is a complete namespace where all references between schemas are held
+     * within the dataset.
+     */
+    descriptor: SharedAPI.DatasetDescriptor;
 
     extraction_criteria: Array<StructureAPI.SaveRequirement>;
 
@@ -251,7 +268,8 @@ export interface LabelActionTrainingDatumRequest {
   output:
     | LabelActionTrainingDatumRequest.SelectedStep
     | LabelActionTrainingDatumRequest.SearchStep
-    | LabelActionTrainingDatumRequest.InvalidAction;
+    | LabelActionTrainingDatumRequest.InvalidAction
+    | 'Exit';
 }
 
 export namespace LabelActionTrainingDatumRequest {
@@ -296,7 +314,8 @@ export interface NextActionAddTrainingDatumParams {
   output:
     | NextActionAddTrainingDatumParams.SelectedStep
     | NextActionAddTrainingDatumParams.SearchStep
-    | NextActionAddTrainingDatumParams.InvalidAction;
+    | NextActionAddTrainingDatumParams.InvalidAction
+    | 'Exit';
 
   job_id?: string | null;
 }
@@ -304,6 +323,14 @@ export interface NextActionAddTrainingDatumParams {
 export namespace NextActionAddTrainingDatumParams {
   export interface Input {
     all_steps: Array<Input.AllStep>;
+
+    /**
+     * A dataset is where you put multiple referential schemas.
+     *
+     * A dataset is a complete namespace where all references between schemas are held
+     * within the dataset.
+     */
+    descriptor: SharedAPI.DatasetDescriptor;
 
     extraction_criteria: Array<StructureAPI.SaveRequirement>;
 
@@ -389,7 +416,8 @@ export interface NextActionLabelTrainingDatumParams {
   output:
     | NextActionLabelTrainingDatumParams.SelectedStep
     | NextActionLabelTrainingDatumParams.SearchStep
-    | NextActionLabelTrainingDatumParams.InvalidAction;
+    | NextActionLabelTrainingDatumParams.InvalidAction
+    | 'Exit';
 }
 
 export namespace NextActionLabelTrainingDatumParams {
