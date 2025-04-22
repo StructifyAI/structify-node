@@ -124,6 +124,7 @@ Types:
 - <code><a href="./src/resources/datasets/datasets.ts">Strategy</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">DatasetCreateResponse</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">DatasetListResponse</a></code>
+- <code><a href="./src/resources/datasets/datasets.ts">DatasetEnrichmentProgressResponse</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">DatasetGetResponse</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">DatasetMatchResponse</a></code>
 - <code><a href="./src/resources/datasets/datasets.ts">DatasetViewRelationshipsResponse</a></code>
@@ -136,6 +137,7 @@ Methods:
 - <code title="get /dataset/list">client.datasets.<a href="./src/resources/datasets/datasets.ts">list</a>() -> DatasetListResponse</code>
 - <code title="delete /dataset/delete">client.datasets.<a href="./src/resources/datasets/datasets.ts">delete</a>({ ...params }) -> void</code>
 - <code title="post /dataset/add_property">client.datasets.<a href="./src/resources/datasets/datasets.ts">addProperty</a>({ ...params }) -> void</code>
+- <code title="get /dataset/enrichment_progress">client.datasets.<a href="./src/resources/datasets/datasets.ts">enrichmentProgress</a>({ ...params }) -> DatasetEnrichmentProgressResponse</code>
 - <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets/datasets.ts">get</a>({ ...params }) -> DatasetGetResponse</code>
 - <code title="post /dataset/match">client.datasets.<a href="./src/resources/datasets/datasets.ts">match</a>({ ...params }) -> DatasetMatchResponse</code>
 - <code title="post /dataset/remove_property">client.datasets.<a href="./src/resources/datasets/datasets.ts">removeProperty</a>({ ...params }) -> void</code>
