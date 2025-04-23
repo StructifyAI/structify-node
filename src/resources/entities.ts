@@ -706,6 +706,8 @@ export namespace EntityListJobsResponse {
 
     dataset_id: string;
 
+    selected_next_workflow_step: boolean;
+
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
     user_id: string;
@@ -731,6 +733,10 @@ export namespace EntityListJobsResponse {
      * What time did the job start running?
      */
     run_started_time?: string | null;
+
+    workflow_id?: string | null;
+
+    workflow_step_id?: string | null;
   }
 }
 
