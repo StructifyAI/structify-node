@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.121.0 (2025-04-23)
+
+Full Changelog: [v1.120.0...v1.121.0](https://github.com/StructifyAI/structify-node/compare/v1.120.0...v1.121.0)
+
+### Features
+
+* **api:** api update ([32c74ed](https://github.com/StructifyAI/structify-node/commit/32c74edf991a7a2d033eed4ef79e9f2df196e149))
+
+
+### Chores
+
+* **ci:** add timeout thresholds for CI jobs ([8e53ae0](https://github.com/StructifyAI/structify-node/commit/8e53ae0ec0ea704fe58fcebba4f627686a60c88c))
+
 ## 1.120.0 (2025-04-22)
 
 Full Changelog: [v1.119.0...v1.120.0](https://github.com/StructifyAI/structify-node/compare/v1.119.0...v1.120.0)
