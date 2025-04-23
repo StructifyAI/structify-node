@@ -4,6 +4,7 @@ import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as SharedAPI from './shared';
 import * as SourcesAPI from './sources';
+import * as WorkflowAPI from './datasets/workflow';
 
 export class Entities extends APIResource {
   /**
@@ -734,7 +735,7 @@ export namespace EntityListJobsResponse {
      */
     run_started_time?: string | null;
 
-    workflow_id?: string | null;
+    workflow_id?: WorkflowAPI.ID | null;
 
     workflow_step_id?: string | null;
   }

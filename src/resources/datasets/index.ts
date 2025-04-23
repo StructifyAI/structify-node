@@ -43,8 +43,9 @@ export {
   type EvaluateStatusParams,
 } from './evaluate';
 export {
-  Workflow,
-  type WorkflowCreateResponse,
+  WorkflowResource,
+  type ID,
+  type Workflow,
   type WorkflowListResponse,
   type WorkflowCreateParams,
   type WorkflowListParams,

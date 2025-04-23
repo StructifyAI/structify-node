@@ -5,6 +5,7 @@ import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as SharedAPI from './shared';
 import * as StructureAPI from './structure';
+import * as WorkflowAPI from './datasets/workflow';
 import { JobsList, type JobsListParams } from '../pagination';
 
 export class Jobs extends APIResource {
@@ -117,7 +118,7 @@ export interface JobListResponse {
    */
   run_started_time?: string | null;
 
-  workflow_id?: string | null;
+  workflow_id?: WorkflowAPI.ID | null;
 
   workflow_step_id?: string | null;
 }
@@ -159,7 +160,7 @@ export interface JobCancelResponse {
    */
   run_started_time?: string | null;
 
-  workflow_id?: string | null;
+  workflow_id?: WorkflowAPI.ID | null;
 
   workflow_step_id?: string | null;
 }
@@ -206,7 +207,7 @@ export namespace JobGetResponse {
      */
     run_started_time?: string | null;
 
-    workflow_id?: string | null;
+    workflow_id?: WorkflowAPI.ID | null;
 
     workflow_step_id?: string | null;
   }

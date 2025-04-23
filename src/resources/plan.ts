@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
+import * as WorkflowAPI from './datasets/workflow';
 import { JobsList, type JobsListParams } from '../pagination';
 
 export class PlanResource extends APIResource {
@@ -192,7 +193,7 @@ export namespace PlanListWithJobsResponse {
      */
     run_started_time?: string | null;
 
-    workflow_id?: string | null;
+    workflow_id?: WorkflowAPI.ID | null;
 
     workflow_step_id?: string | null;
   }

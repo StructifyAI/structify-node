@@ -5,6 +5,7 @@ import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as SharedAPI from '../shared';
 import * as StructureAPI from '../structure';
+import * as WorkflowAPI from '../datasets/workflow';
 
 export class HumanLlm extends APIResource {
   addSearchForJob(
@@ -137,7 +138,7 @@ export namespace HumanLlmJob {
      */
     run_started_time?: string | null;
 
-    workflow_id?: string | null;
+    workflow_id?: WorkflowAPI.ID | null;
 
     workflow_step_id?: string | null;
   }
