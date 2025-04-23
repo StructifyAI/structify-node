@@ -148,6 +148,18 @@ Methods:
 - <code title="get /dataset/view_table">client.datasets.<a href="./src/resources/datasets/datasets.ts">viewTable</a>({ ...params }) -> DatasetViewTableResponsesJobsList</code>
 - <code title="get /dataset/view_tables_with_relationships">client.datasets.<a href="./src/resources/datasets/datasets.ts">viewTablesWithRelationships</a>({ ...params }) -> DatasetViewTablesWithRelationshipsResponse</code>
 
+## Workflow
+
+Types:
+
+- <code><a href="./src/resources/datasets/workflow.ts">WorkflowCreateResponse</a></code>
+- <code><a href="./src/resources/datasets/workflow.ts">WorkflowListResponse</a></code>
+
+Methods:
+
+- <code title="post /dataset/workflow/create">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">create</a>({ ...params }) -> unknown</code>
+- <code title="post /dataset/workflow/list">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">list</a>({ ...params }) -> unknown</code>
+
 ## Evaluate
 
 Types:

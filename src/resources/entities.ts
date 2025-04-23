@@ -1574,6 +1574,8 @@ export interface EntityAddParams {
   attempt_merge?: boolean;
 
   source?: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage | EntityAddParams.SecFiling;
+
+  triggering_workflow?: string | null;
 }
 
 export namespace EntityAddParams {

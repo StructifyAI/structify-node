@@ -42,3 +42,10 @@ export {
   type EvaluateRunParams,
   type EvaluateStatusParams,
 } from './evaluate';
+export {
+  Workflow,
+  type WorkflowCreateResponse,
+  type WorkflowListResponse,
+  type WorkflowCreateParams,
+  type WorkflowListParams,
+} from './workflow';
