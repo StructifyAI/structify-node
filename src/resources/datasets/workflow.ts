@@ -38,21 +38,21 @@ export interface Workflow {
 
   starting_table: string;
 
-  steps: Record<string, Workflow.Steps>;
+  steps: Array<Workflow.Step>;
 }
 
 export namespace Workflow {
-  export interface Steps {
+  export interface Step {
     id: string;
 
     children: Array<string>;
 
-    operation: Steps.EnhanceProperties | Steps.EnhanceRelationship | Steps.DeriveProperty | 'IngestData';
+    operation: Step.EnhanceProperties | Step.EnhanceRelationship | Step.DeriveProperty | 'IngestData';
 
     table_name: string;
   }
 
-  export namespace Steps {
+  export namespace Step {
     export interface EnhanceProperties {
       EnhanceProperties: Array<string>;
     }

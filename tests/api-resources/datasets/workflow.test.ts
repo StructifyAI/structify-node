@@ -17,14 +17,14 @@ describe('resource workflow', () => {
         name: 'name',
         starting_step: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         starting_table: 'starting_table',
-        steps: {
-          foo: {
+        steps: [
+          {
             id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
             children: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
             operation: { EnhanceProperties: ['string'] },
             table_name: 'table_name',
           },
-        },
+        ],
       },
     });
     const rawResponse = await responsePromise.asResponse();
@@ -44,14 +44,14 @@ describe('resource workflow', () => {
         name: 'name',
         starting_step: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         starting_table: 'starting_table',
-        steps: {
-          foo: {
+        steps: [
+          {
             id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
             children: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
             operation: { EnhanceProperties: ['string'] },
             table_name: 'table_name',
           },
-        },
+        ],
       },
     });
   });
