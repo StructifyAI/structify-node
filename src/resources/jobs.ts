@@ -89,6 +89,8 @@ export interface JobListResponse {
 
   dataset_id: string;
 
+  selected_next_workflow_step: boolean;
+
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
   user_id: string;
@@ -114,6 +116,10 @@ export interface JobListResponse {
    * What time did the job start running?
    */
   run_started_time?: string | null;
+
+  workflow_id?: string | null;
+
+  workflow_step_id?: string | null;
 }
 
 export type JobDeleteResponse = string;
@@ -125,6 +131,8 @@ export interface JobCancelResponse {
 
   dataset_id: string;
 
+  selected_next_workflow_step: boolean;
+
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
   user_id: string;
@@ -150,6 +158,10 @@ export interface JobCancelResponse {
    * What time did the job start running?
    */
   run_started_time?: string | null;
+
+  workflow_id?: string | null;
+
+  workflow_step_id?: string | null;
 }
 
 export interface JobGetResponse {
@@ -165,6 +177,8 @@ export namespace JobGetResponse {
     created_at: string;
 
     dataset_id: string;
+
+    selected_next_workflow_step: boolean;
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
@@ -191,6 +205,10 @@ export namespace JobGetResponse {
      * What time did the job start running?
      */
     run_started_time?: string | null;
+
+    workflow_id?: string | null;
+
+    workflow_step_id?: string | null;
   }
 }
 
