@@ -4,23 +4,23 @@ import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 
-export class Workflow extends APIResource {
+export class WorkflowResource extends APIResource {
   /**
    * Create a new workflow
    */
-  create(body: WorkflowCreateParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+  create(body: WorkflowCreateParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     return this._client.post('/dataset/workflow/create', { body, ...options });
   }
 
   /**
    * list a new workflow
    */
-  list(params?: WorkflowListParams, options?: Core.RequestOptions): Core.APIPromise<unknown>;
-  list(options?: Core.RequestOptions): Core.APIPromise<unknown>;
+  list(params?: WorkflowListParams, options?: Core.RequestOptions): Core.APIPromise<WorkflowListResponse>;
+  list(options?: Core.RequestOptions): Core.APIPromise<WorkflowListResponse>;
   list(
     params: WorkflowListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.APIPromise<unknown> {
+  ): Core.APIPromise<WorkflowListResponse> {
     if (isRequestOptions(params)) {
       return this.list({}, params);
     }
@@ -29,63 +29,62 @@ export class Workflow extends APIResource {
   }
 }
 
-export type WorkflowCreateResponse = unknown;
+export type ID = string;
 
-export type WorkflowListResponse = unknown;
+export interface Workflow {
+  name: string;
+
+  starting_step: string;
+
+  starting_table: string;
+
+  steps: Record<string, Workflow.Steps>;
+}
+
+export namespace Workflow {
+  export interface Steps {
+    id: string;
+
+    children: Array<string>;
+
+    operation: Steps.EnhanceProperties | Steps.EnhanceRelationship | Steps.DeriveProperty | 'IngestData';
+
+    table_name: string;
+  }
+
+  export namespace Steps {
+    export interface EnhanceProperties {
+      EnhanceProperties: Array<string>;
+    }
+
+    export interface EnhanceRelationship {
+      EnhanceRelationship: string;
+    }
+
+    export interface DeriveProperty {
+      DeriveProperty: Array<string>;
+    }
+  }
+}
+
+export type WorkflowListResponse = Array<Workflow>;
 
 export interface WorkflowCreateParams {
   dataset_name: string;
 
   name: string;
 
-  workflow: WorkflowCreateParams.Workflow;
-}
-
-export namespace WorkflowCreateParams {
-  export interface Workflow {
-    name: string;
-
-    starting_step: string;
-
-    starting_table: string;
-
-    steps: Record<string, Workflow.Steps>;
-  }
-
-  export namespace Workflow {
-    export interface Steps {
-      id: string;
-
-      children: Array<string>;
-
-      operation: Steps.EnhanceProperties | Steps.EnhanceRelationship | Steps.DeriveProperty | 'IngestData';
-
-      table_name: string;
-    }
-
-    export namespace Steps {
-      export interface EnhanceProperties {
-        EnhanceProperties: Array<string>;
-      }
-
-      export interface EnhanceRelationship {
-        EnhanceRelationship: string;
-      }
-
-      export interface DeriveProperty {
-        DeriveProperty: Array<string>;
-      }
-    }
-  }
+  workflow: Workflow;
 }
 
 export interface WorkflowListParams {
   dataset_name?: string | null;
 }
 
-export declare namespace Workflow {
+export declare namespace WorkflowResource {
   export {
-    type WorkflowCreateResponse as WorkflowCreateResponse,
+    type ID as ID,
+    type Workflow as Workflow,
     type WorkflowListResponse as WorkflowListResponse,
     type WorkflowCreateParams as WorkflowCreateParams,
     type WorkflowListParams as WorkflowListParams,
