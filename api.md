@@ -152,13 +152,14 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/datasets/workflow.ts">WorkflowCreateResponse</a></code>
+- <code><a href="./src/resources/datasets/workflow.ts">ID</a></code>
+- <code><a href="./src/resources/datasets/workflow.ts">Workflow</a></code>
 - <code><a href="./src/resources/datasets/workflow.ts">WorkflowListResponse</a></code>
 
 Methods:
 
-- <code title="post /dataset/workflow/create">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">create</a>({ ...params }) -> unknown</code>
-- <code title="post /dataset/workflow/list">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">list</a>({ ...params }) -> unknown</code>
+- <code title="post /dataset/workflow/create">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">create</a>({ ...params }) -> string</code>
+- <code title="post /dataset/workflow/list">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">list</a>({ ...params }) -> WorkflowListResponse</code>
 
 ## Evaluate
 

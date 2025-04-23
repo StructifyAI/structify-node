@@ -20,16 +20,17 @@ import {
 } from './evaluate';
 import * as WorkflowAPI from './workflow';
 import {
+  ID,
   Workflow,
   WorkflowCreateParams,
-  WorkflowCreateResponse,
   WorkflowListParams,
   WorkflowListResponse,
+  WorkflowResource,
 } from './workflow';
 import { JobsList, type JobsListParams } from '../../pagination';
 
 export class Datasets extends APIResource {
-  workflow: WorkflowAPI.Workflow = new WorkflowAPI.Workflow(this._client);
+  workflow: WorkflowAPI.WorkflowResource = new WorkflowAPI.WorkflowResource(this._client);
   evaluate: EvaluateAPI.Evaluate = new EvaluateAPI.Evaluate(this._client);
 
   /**
@@ -980,7 +981,7 @@ export namespace DatasetViewTablesWithRelationshipsParams {
 
 Datasets.DatasetViewRelationshipsResponsesJobsList = DatasetViewRelationshipsResponsesJobsList;
 Datasets.DatasetViewTableResponsesJobsList = DatasetViewTableResponsesJobsList;
-Datasets.Workflow = Workflow;
+Datasets.WorkflowResource = WorkflowResource;
 Datasets.Evaluate = Evaluate;
 Datasets.EvaluateListResponsesJobsList = EvaluateListResponsesJobsList;
 
@@ -1015,8 +1016,9 @@ export declare namespace Datasets {
   };
 
   export {
-    Workflow as Workflow,
-    type WorkflowCreateResponse as WorkflowCreateResponse,
+    WorkflowResource as WorkflowResource,
+    type ID as ID,
+    type Workflow as Workflow,
     type WorkflowListResponse as WorkflowListResponse,
     type WorkflowCreateParams as WorkflowCreateParams,
     type WorkflowListParams as WorkflowListParams,
