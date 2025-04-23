@@ -18,9 +18,18 @@ import {
   EvaluateStatusParams,
   EvaluateStatusResponse,
 } from './evaluate';
+import * as WorkflowAPI from './workflow';
+import {
+  Workflow,
+  WorkflowCreateParams,
+  WorkflowCreateResponse,
+  WorkflowListParams,
+  WorkflowListResponse,
+} from './workflow';
 import { JobsList, type JobsListParams } from '../../pagination';
 
 export class Datasets extends APIResource {
+  workflow: WorkflowAPI.Workflow = new WorkflowAPI.Workflow(this._client);
   evaluate: EvaluateAPI.Evaluate = new EvaluateAPI.Evaluate(this._client);
 
   /**
@@ -971,6 +980,7 @@ export namespace DatasetViewTablesWithRelationshipsParams {
 
 Datasets.DatasetViewRelationshipsResponsesJobsList = DatasetViewRelationshipsResponsesJobsList;
 Datasets.DatasetViewTableResponsesJobsList = DatasetViewTableResponsesJobsList;
+Datasets.Workflow = Workflow;
 Datasets.Evaluate = Evaluate;
 Datasets.EvaluateListResponsesJobsList = EvaluateListResponsesJobsList;
 
@@ -1002,6 +1012,14 @@ export declare namespace Datasets {
     type DatasetViewRelationshipsParams as DatasetViewRelationshipsParams,
     type DatasetViewTableParams as DatasetViewTableParams,
     type DatasetViewTablesWithRelationshipsParams as DatasetViewTablesWithRelationshipsParams,
+  };
+
+  export {
+    Workflow as Workflow,
+    type WorkflowCreateResponse as WorkflowCreateResponse,
+    type WorkflowListResponse as WorkflowListResponse,
+    type WorkflowCreateParams as WorkflowCreateParams,
+    type WorkflowListParams as WorkflowListParams,
   };
 
   export {
