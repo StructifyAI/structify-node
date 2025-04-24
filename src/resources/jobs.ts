@@ -90,6 +90,8 @@ export interface JobListResponse {
 
   dataset_id: string;
 
+  job_type: 'Web' | 'Pdf' | 'Derive';
+
   selected_next_workflow_step: boolean;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
@@ -106,8 +108,6 @@ export interface JobListResponse {
    */
   parameters?: Core.Uploadable | null;
 
-  plan_id?: string | null;
-
   /**
    * A reason for the job's existence
    */
@@ -117,6 +117,8 @@ export interface JobListResponse {
    * What time did the job start running?
    */
   run_started_time?: string | null;
+
+  run_time_milliseconds?: number | null;
 
   workflow_id?: WorkflowAPI.ID | null;
 
@@ -132,6 +134,8 @@ export interface JobCancelResponse {
 
   dataset_id: string;
 
+  job_type: 'Web' | 'Pdf' | 'Derive';
+
   selected_next_workflow_step: boolean;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
@@ -148,8 +152,6 @@ export interface JobCancelResponse {
    */
   parameters?: Core.Uploadable | null;
 
-  plan_id?: string | null;
-
   /**
    * A reason for the job's existence
    */
@@ -159,6 +161,8 @@ export interface JobCancelResponse {
    * What time did the job start running?
    */
   run_started_time?: string | null;
+
+  run_time_milliseconds?: number | null;
 
   workflow_id?: WorkflowAPI.ID | null;
 
@@ -179,6 +183,8 @@ export namespace JobGetResponse {
 
     dataset_id: string;
 
+    job_type: 'Web' | 'Pdf' | 'Derive';
+
     selected_next_workflow_step: boolean;
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
@@ -195,8 +201,6 @@ export namespace JobGetResponse {
      */
     parameters?: Core.Uploadable | null;
 
-    plan_id?: string | null;
-
     /**
      * A reason for the job's existence
      */
@@ -206,6 +210,8 @@ export namespace JobGetResponse {
      * What time did the job start running?
      */
     run_started_time?: string | null;
+
+    run_time_milliseconds?: number | null;
 
     workflow_id?: WorkflowAPI.ID | null;
 
