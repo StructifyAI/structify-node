@@ -23,9 +23,12 @@ import {
   ID,
   Workflow,
   WorkflowCreateParams,
+  WorkflowDeleteParams,
+  WorkflowGetParams,
   WorkflowListParams,
   WorkflowListResponse,
   WorkflowResource,
+  WorkflowUpdateParams,
 } from './workflow';
 import { JobsList, type JobsListParams } from '../../pagination';
 
@@ -1021,7 +1024,10 @@ export declare namespace Datasets {
     type Workflow as Workflow,
     type WorkflowListResponse as WorkflowListResponse,
     type WorkflowCreateParams as WorkflowCreateParams,
+    type WorkflowUpdateParams as WorkflowUpdateParams,
     type WorkflowListParams as WorkflowListParams,
+    type WorkflowDeleteParams as WorkflowDeleteParams,
+    type WorkflowGetParams as WorkflowGetParams,
   };
 
   export {
