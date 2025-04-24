@@ -1605,11 +1605,15 @@ export interface EntityAddBatchParams {
    */
   attempt_merge?: boolean;
 
+  skip_malformed_entities?: boolean;
+
   source?:
     | 'None'
     | EntityAddBatchParams.Web
     | EntityAddBatchParams.DocumentPage
     | EntityAddBatchParams.SecFiling;
+
+  triggering_workflow?: string | null;
 }
 
 export namespace EntityAddBatchParams {
