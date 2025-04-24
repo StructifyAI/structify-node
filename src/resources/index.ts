@@ -90,25 +90,6 @@ export {
   type JobListParams,
 } from './jobs';
 export {
-  PlanListResponsesJobsList,
-  PlanListWithJobsResponsesJobsList,
-  PlanResource,
-  type EnhanceProperty,
-  type EnhanceRelationship,
-  type FindRelationship,
-  type Plan,
-  type PlanCreateResponse,
-  type PlanListResponse,
-  type PlanListWithJobsResponse,
-  type PlanPauseAllResponse,
-  type PlanResumeAllResponse,
-  type PlanCreateParams,
-  type PlanListParams,
-  type PlanListWithJobsParams,
-  type PlanPauseAllParams,
-  type PlanResumeAllParams,
-} from './plan';
-export {
   Report,
   type ReportMissingResponse,
   type ReportRelationshipResponse,
