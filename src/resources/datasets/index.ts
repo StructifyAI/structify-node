@@ -48,5 +48,8 @@ export {
   type Workflow,
   type WorkflowListResponse,
   type WorkflowCreateParams,
+  type WorkflowUpdateParams,
   type WorkflowListParams,
+  type WorkflowDeleteParams,
+  type WorkflowGetParams,
 } from './workflow';

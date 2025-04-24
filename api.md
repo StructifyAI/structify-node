@@ -159,7 +159,10 @@ Types:
 Methods:
 
 - <code title="post /dataset/workflow/create">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">create</a>({ ...params }) -> string</code>
+- <code title="put /dataset/workflow/update">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">update</a>({ ...params }) -> string</code>
 - <code title="post /dataset/workflow/list">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">list</a>({ ...params }) -> WorkflowListResponse</code>
+- <code title="delete /dataset/workflow/delete">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">delete</a>({ ...params }) -> void</code>
+- <code title="get /dataset/workflow/get">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">get</a>({ ...params }) -> Workflow</code>
 
 ## Evaluate
 
