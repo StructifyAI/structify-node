@@ -68,25 +68,6 @@ import {
   Jobs,
 } from './resources/jobs';
 import {
-  EnhanceProperty,
-  EnhanceRelationship,
-  FindRelationship,
-  Plan,
-  PlanCreateParams,
-  PlanCreateResponse,
-  PlanListParams,
-  PlanListResponse,
-  PlanListResponsesJobsList,
-  PlanListWithJobsParams,
-  PlanListWithJobsResponse,
-  PlanListWithJobsResponsesJobsList,
-  PlanPauseAllParams,
-  PlanPauseAllResponse,
-  PlanResource,
-  PlanResumeAllParams,
-  PlanResumeAllResponse,
-} from './resources/plan';
-import {
   Report,
   ReportMissingParams,
   ReportMissingResponse,
@@ -306,7 +287,6 @@ export class Structify extends Core.APIClient {
   server: API.Server = new API.Server(this);
   sources: API.Sources = new API.Sources(this);
   entities: API.Entities = new API.Entities(this);
-  plan: API.PlanResource = new API.PlanResource(this);
   report: API.Report = new API.Report(this);
   structure: API.Structure = new API.Structure(this);
   shared: API.Shared = new API.Shared(this);
@@ -365,9 +345,6 @@ Structify.JobListResponsesJobsList = JobListResponsesJobsList;
 Structify.Server = Server;
 Structify.Sources = Sources;
 Structify.Entities = Entities;
-Structify.PlanResource = PlanResource;
-Structify.PlanListResponsesJobsList = PlanListResponsesJobsList;
-Structify.PlanListWithJobsResponsesJobsList = PlanListWithJobsResponsesJobsList;
 Structify.Report = Report;
 Structify.Structure = Structure;
 Structify.Shared = Shared;
@@ -487,26 +464,6 @@ export declare namespace Structify {
     type EntityUpdatePropertyParams as EntityUpdatePropertyParams,
     type EntityVerifyParams as EntityVerifyParams,
     type EntityViewParams as EntityViewParams,
-  };
-
-  export {
-    PlanResource as PlanResource,
-    type EnhanceProperty as EnhanceProperty,
-    type EnhanceRelationship as EnhanceRelationship,
-    type FindRelationship as FindRelationship,
-    type Plan as Plan,
-    type PlanCreateResponse as PlanCreateResponse,
-    type PlanListResponse as PlanListResponse,
-    type PlanListWithJobsResponse as PlanListWithJobsResponse,
-    type PlanPauseAllResponse as PlanPauseAllResponse,
-    type PlanResumeAllResponse as PlanResumeAllResponse,
-    PlanListResponsesJobsList as PlanListResponsesJobsList,
-    PlanListWithJobsResponsesJobsList as PlanListWithJobsResponsesJobsList,
-    type PlanCreateParams as PlanCreateParams,
-    type PlanListParams as PlanListParams,
-    type PlanListWithJobsParams as PlanListWithJobsParams,
-    type PlanPauseAllParams as PlanPauseAllParams,
-    type PlanResumeAllParams as PlanResumeAllParams,
   };
 
   export {

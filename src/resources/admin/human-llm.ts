@@ -110,6 +110,8 @@ export namespace HumanLlmJob {
 
     dataset_id: string;
 
+    job_type: 'Web' | 'Pdf' | 'Derive';
+
     selected_next_workflow_step: boolean;
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
@@ -126,8 +128,6 @@ export namespace HumanLlmJob {
      */
     parameters?: Core.Uploadable | null;
 
-    plan_id?: string | null;
-
     /**
      * A reason for the job's existence
      */
@@ -137,6 +137,8 @@ export namespace HumanLlmJob {
      * What time did the job start running?
      */
     run_started_time?: string | null;
+
+    run_time_milliseconds?: number | null;
 
     workflow_id?: WorkflowAPI.ID | null;
 

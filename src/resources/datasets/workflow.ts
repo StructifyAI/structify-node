@@ -13,6 +13,13 @@ export class WorkflowResource extends APIResource {
   }
 
   /**
+   * Update an existing workflow
+   */
+  update(body: WorkflowUpdateParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.put('/dataset/workflow/update', { body, ...options });
+  }
+
+  /**
    * list a new workflow
    */
   list(params?: WorkflowListParams, options?: Core.RequestOptions): Core.APIPromise<WorkflowListResponse>;
@@ -26,6 +33,31 @@ export class WorkflowResource extends APIResource {
     }
     const { dataset_name } = params;
     return this._client.post('/dataset/workflow/list', { query: { dataset_name }, ...options });
+  }
+
+  /**
+   * Delete an existing workflow
+   */
+  delete(body: WorkflowDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete('/dataset/workflow/delete', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Get a workflow by ID
+   */
+  get(query: WorkflowGetParams, options?: Core.RequestOptions): Core.APIPromise<Workflow> {
+    return this._client.get('/dataset/workflow/get', { query, ...options });
+  }
+
+  /**
+   * Trigger a workflow on a set of entities
+   */
+  trigger(body: WorkflowTriggerParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+    return this._client.post('/dataset/workflow/trigger', { body, ...options });
   }
 }
 
@@ -69,16 +101,38 @@ export namespace Workflow {
 
 export type WorkflowListResponse = Array<Workflow>;
 
+export type WorkflowTriggerResponse = unknown;
+
 export interface WorkflowCreateParams {
   dataset_name: string;
-
-  name: string;
 
   workflow: Workflow;
 }
 
+export interface WorkflowUpdateParams {
+  dataset_name: string;
+
+  workflow: Workflow;
+
+  workflow_id: ID;
+}
+
 export interface WorkflowListParams {
   dataset_name?: string | null;
+}
+
+export interface WorkflowDeleteParams {
+  workflow_id: ID;
+}
+
+export interface WorkflowGetParams {
+  workflow_id: ID;
+}
+
+export interface WorkflowTriggerParams {
+  entity_ids: Array<string>;
+
+  workflow_id: ID;
 }
 
 export declare namespace WorkflowResource {
@@ -86,7 +140,12 @@ export declare namespace WorkflowResource {
     type ID as ID,
     type Workflow as Workflow,
     type WorkflowListResponse as WorkflowListResponse,
+    type WorkflowTriggerResponse as WorkflowTriggerResponse,
     type WorkflowCreateParams as WorkflowCreateParams,
+    type WorkflowUpdateParams as WorkflowUpdateParams,
     type WorkflowListParams as WorkflowListParams,
+    type WorkflowDeleteParams as WorkflowDeleteParams,
+    type WorkflowGetParams as WorkflowGetParams,
+    type WorkflowTriggerParams as WorkflowTriggerParams,
   };
 }
