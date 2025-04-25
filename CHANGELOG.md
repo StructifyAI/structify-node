@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.123.0 (2025-04-25)
+
+Full Changelog: [v1.122.0...v1.123.0](https://github.com/StructifyAI/structify-node/compare/v1.122.0...v1.123.0)
+
+### Features
+
+* **api:** api update ([ffc65c8](https://github.com/StructifyAI/structify-node/commit/ffc65c870ed5907329643d71a3e96758af06c068))
+* **api:** api update ([8d9682e](https://github.com/StructifyAI/structify-node/commit/8d9682e9750515657cf0b93830aa7d932c34877c))
+* **api:** api update ([c097f80](https://github.com/StructifyAI/structify-node/commit/c097f806ff15a820d3e14bbde4015b81b172864f))
+* **api:** api update ([2736d6c](https://github.com/StructifyAI/structify-node/commit/2736d6c8365dcb1eb5fcb0ce1cf10c1ca481ea04))
+
+
+### Chores
+
+* **ci:** only use depot for staging repos ([06d925e](https://github.com/StructifyAI/structify-node/commit/06d925e1d30b8089c02a0b2fe5eac3a2f86d8e27))
+* **internal:** codegen related update ([1c7a337](https://github.com/StructifyAI/structify-node/commit/1c7a337bcb0765d4718a2370b3c747b15f357384))
+
 ## 1.122.0 (2025-04-23)
 
 Full Changelog: [v1.121.0...v1.122.0](https://github.com/StructifyAI/structify-node/compare/v1.121.0...v1.122.0)
