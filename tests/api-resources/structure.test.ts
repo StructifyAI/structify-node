@@ -102,7 +102,7 @@ describe('resource structure', () => {
   });
 
   test('jobStatus: only required params', async () => {
-    const responsePromise = client.structure.jobStatus(['string']);
+    const responsePromise = client.structure.jobStatus({});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -113,7 +113,10 @@ describe('resource structure', () => {
   });
 
   test('jobStatus: required and optional params', async () => {
-    const response = await client.structure.jobStatus(['string']);
+    const response = await client.structure.jobStatus({
+      dataset_name: 'dataset_name',
+      job_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
+    });
   });
 
   test('runAsync: only required params', async () => {
