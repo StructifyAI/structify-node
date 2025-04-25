@@ -60,8 +60,8 @@ export class Structure extends APIResource {
   }
 
   /**
-   * Wait for all specified async tasks to be completed. Returns the state of the job
-   * tasks
+   * Get status for specified jobs with detailed information similar to websocket
+   * endpoint
    */
   jobStatus(
     body: StructureJobStatusParams,
@@ -562,7 +562,29 @@ export type StructureFindRelationshipResponse = string;
 
 export type StructureIsCompleteResponse = string;
 
-export type StructureJobStatusResponse = Array<'Queued' | 'Running' | 'Completed' | 'Failed'>;
+export type StructureJobStatusResponse = Array<StructureJobStatusResponse.StructureJobStatusResponseItem>;
+
+export namespace StructureJobStatusResponse {
+  export interface StructureJobStatusResponseItem {
+    dataset_name: string;
+
+    job_id: string;
+
+    status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
+
+    target?: StructureJobStatusResponseItem.Target | null;
+  }
+
+  export namespace StructureJobStatusResponseItem {
+    export interface Target {
+      entity_id: string;
+
+      property_names?: Array<string> | null;
+
+      relationship_name?: string | null;
+    }
+  }
+}
 
 export type StructureRunAsyncResponse = string;
 
@@ -612,7 +634,15 @@ export interface StructureFindRelationshipParams {
 
 export type StructureIsCompleteParams = Array<string>;
 
-export type StructureJobStatusParams = Array<string>;
+export type StructureJobStatusParams = StructureJobStatusParams.Job;
+
+export namespace StructureJobStatusParams {
+  export interface Job {
+    dataset_name?: string | null;
+
+    job_ids?: Array<string> | null;
+  }
+}
 
 export interface StructureRunAsyncParams {
   dataset: string;

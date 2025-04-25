@@ -321,7 +321,7 @@ Methods:
 - <code title="post /structure/enhance_relationship">client.structure.<a href="./src/resources/structure.ts">enhanceRelationship</a>({ ...params }) -> string</code>
 - <code title="post /structure/find_relationship">client.structure.<a href="./src/resources/structure.ts">findRelationship</a>({ ...params }) -> string</code>
 - <code title="post /structure/is_complete">client.structure.<a href="./src/resources/structure.ts">isComplete</a>([ ...job ]) -> string</code>
-- <code title="post /structure/job_status">client.structure.<a href="./src/resources/structure.ts">jobStatus</a>([ ...job ]) -> StructureJobStatusResponse</code>
+- <code title="post /structure/job_status">client.structure.<a href="./src/resources/structure.ts">jobStatus</a>({ ...params }) -> StructureJobStatusResponse</code>
 - <code title="post /structure/run_async">client.structure.<a href="./src/resources/structure.ts">runAsync</a>({ ...params }) -> string</code>
 
 # Shared
