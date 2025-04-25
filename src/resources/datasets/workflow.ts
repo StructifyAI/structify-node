@@ -52,6 +52,13 @@ export class WorkflowResource extends APIResource {
   get(query: WorkflowGetParams, options?: Core.RequestOptions): Core.APIPromise<Workflow> {
     return this._client.get('/dataset/workflow/get', { query, ...options });
   }
+
+  /**
+   * Trigger a workflow on a set of entities
+   */
+  trigger(body: WorkflowTriggerParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+    return this._client.post('/dataset/workflow/trigger', { body, ...options });
+  }
 }
 
 export type ID = string;
@@ -94,6 +101,8 @@ export namespace Workflow {
 
 export type WorkflowListResponse = Array<Workflow>;
 
+export type WorkflowTriggerResponse = unknown;
+
 export interface WorkflowCreateParams {
   dataset_name: string;
 
@@ -120,15 +129,23 @@ export interface WorkflowGetParams {
   workflow_id: ID;
 }
 
+export interface WorkflowTriggerParams {
+  entity_ids: Array<string>;
+
+  workflow_id: ID;
+}
+
 export declare namespace WorkflowResource {
   export {
     type ID as ID,
     type Workflow as Workflow,
     type WorkflowListResponse as WorkflowListResponse,
+    type WorkflowTriggerResponse as WorkflowTriggerResponse,
     type WorkflowCreateParams as WorkflowCreateParams,
     type WorkflowUpdateParams as WorkflowUpdateParams,
     type WorkflowListParams as WorkflowListParams,
     type WorkflowDeleteParams as WorkflowDeleteParams,
     type WorkflowGetParams as WorkflowGetParams,
+    type WorkflowTriggerParams as WorkflowTriggerParams,
   };
 }
