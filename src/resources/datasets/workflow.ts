@@ -3,6 +3,7 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
+import * as WorkflowAPI from './workflow';
 
 export class WorkflowResource extends APIResource {
   /**
@@ -49,7 +50,7 @@ export class WorkflowResource extends APIResource {
   /**
    * Get a workflow by ID
    */
-  get(query: WorkflowGetParams, options?: Core.RequestOptions): Core.APIPromise<Workflow> {
+  get(query: WorkflowGetParams, options?: Core.RequestOptions): Core.APIPromise<WorkflowGetResponse> {
     return this._client.get('/dataset/workflow/get', { query, ...options });
   }
 
@@ -99,7 +100,17 @@ export namespace Workflow {
   }
 }
 
-export type WorkflowListResponse = Array<Workflow>;
+export type WorkflowListResponse = Array<WorkflowListResponse.WorkflowListResponseItem>;
+
+export namespace WorkflowListResponse {
+  export interface WorkflowListResponseItem extends WorkflowAPI.Workflow {
+    id: WorkflowAPI.ID;
+  }
+}
+
+export interface WorkflowGetResponse extends Workflow {
+  id: ID;
+}
 
 export type WorkflowTriggerResponse = unknown;
 
@@ -140,6 +151,7 @@ export declare namespace WorkflowResource {
     type ID as ID,
     type Workflow as Workflow,
     type WorkflowListResponse as WorkflowListResponse,
+    type WorkflowGetResponse as WorkflowGetResponse,
     type WorkflowTriggerResponse as WorkflowTriggerResponse,
     type WorkflowCreateParams as WorkflowCreateParams,
     type WorkflowUpdateParams as WorkflowUpdateParams,

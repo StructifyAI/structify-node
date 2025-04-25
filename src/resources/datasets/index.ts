@@ -47,6 +47,7 @@ export {
   type ID,
   type Workflow,
   type WorkflowListResponse,
+  type WorkflowGetResponse,
   type WorkflowTriggerResponse,
   type WorkflowCreateParams,
   type WorkflowUpdateParams,

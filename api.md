@@ -155,6 +155,7 @@ Types:
 - <code><a href="./src/resources/datasets/workflow.ts">ID</a></code>
 - <code><a href="./src/resources/datasets/workflow.ts">Workflow</a></code>
 - <code><a href="./src/resources/datasets/workflow.ts">WorkflowListResponse</a></code>
+- <code><a href="./src/resources/datasets/workflow.ts">WorkflowGetResponse</a></code>
 - <code><a href="./src/resources/datasets/workflow.ts">WorkflowTriggerResponse</a></code>
 
 Methods:
@@ -163,7 +164,7 @@ Methods:
 - <code title="put /dataset/workflow/update">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">update</a>({ ...params }) -> string</code>
 - <code title="post /dataset/workflow/list">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">list</a>({ ...params }) -> WorkflowListResponse</code>
 - <code title="delete /dataset/workflow/delete">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">delete</a>({ ...params }) -> void</code>
-- <code title="get /dataset/workflow/get">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">get</a>({ ...params }) -> Workflow</code>
+- <code title="get /dataset/workflow/get">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">get</a>({ ...params }) -> WorkflowGetResponse</code>
 - <code title="post /dataset/workflow/trigger">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">trigger</a>({ ...params }) -> unknown</code>
 
 ## Evaluate
