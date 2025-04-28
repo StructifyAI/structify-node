@@ -120,6 +120,8 @@ export interface JobListResponse {
 
   run_time_milliseconds?: number | null;
 
+  workflow_group_id?: string | null;
+
   workflow_id?: WorkflowAPI.ID | null;
 
   workflow_step_id?: string | null;
@@ -163,6 +165,8 @@ export interface JobCancelResponse {
   run_started_time?: string | null;
 
   run_time_milliseconds?: number | null;
+
+  workflow_group_id?: string | null;
 
   workflow_id?: WorkflowAPI.ID | null;
 
@@ -212,6 +216,8 @@ export namespace JobGetResponse {
     run_started_time?: string | null;
 
     run_time_milliseconds?: number | null;
+
+    workflow_group_id?: string | null;
 
     workflow_id?: WorkflowAPI.ID | null;
 
