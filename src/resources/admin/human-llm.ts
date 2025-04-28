@@ -140,6 +140,8 @@ export namespace HumanLlmJob {
 
     run_time_milliseconds?: number | null;
 
+    workflow_group_id?: string | null;
+
     workflow_id?: WorkflowAPI.ID | null;
 
     workflow_step_id?: string | null;
