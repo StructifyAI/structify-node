@@ -110,14 +110,6 @@ import {
   StructureRunAsyncResponse,
   ToolMetadata,
 } from './resources/structure';
-import {
-  TokenResponse,
-  User,
-  UserInfo,
-  UserTransactionsResponse,
-  UserUsageParams,
-  UserUsageResponse,
-} from './resources/user';
 import { Admin } from './resources/admin/admin';
 import {
   DatasetAddPropertyParams,
@@ -148,6 +140,14 @@ import {
   RelationshipMergeStrategy,
   Strategy,
 } from './resources/datasets/datasets';
+import {
+  TokenResponse,
+  User,
+  UserInfo,
+  UserTransactionsResponse,
+  UserUsageParams,
+  UserUsageResponse,
+} from './resources/user/user';
 
 const environments = {
   production: 'https://api.structify.ai',
