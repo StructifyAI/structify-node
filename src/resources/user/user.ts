@@ -4,14 +4,7 @@ import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as StripeAPI from './stripe';
-import {
-  CreateSessionRequest,
-  CreateSessionResponse,
-  Stripe,
-  StripeCreateSessionParams,
-  StripeStripeWebhookParams,
-  StripeStripeWebhookResponse,
-} from './stripe';
+import { CreateSessionRequest, CreateSessionResponse, Stripe, StripeCreateSessionParams } from './stripe';
 
 export class User extends APIResource {
   stripe: StripeAPI.Stripe = new StripeAPI.Stripe(this._client);
@@ -137,8 +130,6 @@ export declare namespace User {
     Stripe as Stripe,
     type CreateSessionRequest as CreateSessionRequest,
     type CreateSessionResponse as CreateSessionResponse,
-    type StripeStripeWebhookResponse as StripeStripeWebhookResponse,
     type StripeCreateSessionParams as StripeCreateSessionParams,
-    type StripeStripeWebhookParams as StripeStripeWebhookParams,
   };
 }

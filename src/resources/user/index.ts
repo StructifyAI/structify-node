@@ -4,9 +4,7 @@ export {
   Stripe,
   type CreateSessionRequest,
   type CreateSessionResponse,
-  type StripeStripeWebhookResponse,
   type StripeCreateSessionParams,
-  type StripeStripeWebhookParams,
 } from './stripe';
 export {
   User,
