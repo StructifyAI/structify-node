@@ -139,4 +139,4 @@ export {
   type UserTransactionsResponse,
   type UserUsageResponse,
   type UserUsageParams,
-} from './user';
+} from './user/user';
