@@ -20,12 +20,10 @@ Types:
 
 - <code><a href="./src/resources/user/stripe.ts">CreateSessionRequest</a></code>
 - <code><a href="./src/resources/user/stripe.ts">CreateSessionResponse</a></code>
-- <code><a href="./src/resources/user/stripe.ts">StripeStripeWebhookResponse</a></code>
 
 Methods:
 
 - <code title="post /user/transactions/stripe/create_session">client.user.stripe.<a href="./src/resources/user/stripe.ts">createSession</a>({ ...params }) -> CreateSessionResponse</code>
-- <code title="post /user/transactions/stripe/webhook">client.user.stripe.<a href="./src/resources/user/stripe.ts">stripeWebhook</a>({ ...params }) -> unknown</code>
 
 # Admin
 
