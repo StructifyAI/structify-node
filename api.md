@@ -2,17 +2,30 @@
 
 Types:
 
-- <code><a href="./src/resources/user.ts">TokenResponse</a></code>
-- <code><a href="./src/resources/user.ts">UserInfo</a></code>
-- <code><a href="./src/resources/user.ts">UserTransactionsResponse</a></code>
-- <code><a href="./src/resources/user.ts">UserUsageResponse</a></code>
+- <code><a href="./src/resources/user/user.ts">TokenResponse</a></code>
+- <code><a href="./src/resources/user/user.ts">UserInfo</a></code>
+- <code><a href="./src/resources/user/user.ts">UserTransactionsResponse</a></code>
+- <code><a href="./src/resources/user/user.ts">UserUsageResponse</a></code>
 
 Methods:
 
-- <code title="get /user/info">client.user.<a href="./src/resources/user.ts">info</a>() -> UserInfo</code>
-- <code title="post /user/jwt_to_api_token/{jwt}">client.user.<a href="./src/resources/user.ts">jwtToAPIToken</a>(jwt) -> TokenResponse</code>
-- <code title="get /user/transactions/list">client.user.<a href="./src/resources/user.ts">transactions</a>() -> UserTransactionsResponse</code>
-- <code title="get /user/usage">client.user.<a href="./src/resources/user.ts">usage</a>({ ...params }) -> UserUsageResponse</code>
+- <code title="get /user/info">client.user.<a href="./src/resources/user/user.ts">info</a>() -> UserInfo</code>
+- <code title="post /user/jwt_to_api_token/{jwt}">client.user.<a href="./src/resources/user/user.ts">jwtToAPIToken</a>(jwt) -> TokenResponse</code>
+- <code title="get /user/transactions/list">client.user.<a href="./src/resources/user/user.ts">transactions</a>() -> UserTransactionsResponse</code>
+- <code title="get /user/usage">client.user.<a href="./src/resources/user/user.ts">usage</a>({ ...params }) -> UserUsageResponse</code>
+
+## Stripe
+
+Types:
+
+- <code><a href="./src/resources/user/stripe.ts">CreateSessionRequest</a></code>
+- <code><a href="./src/resources/user/stripe.ts">CreateSessionResponse</a></code>
+- <code><a href="./src/resources/user/stripe.ts">StripeStripeWebhookResponse</a></code>
+
+Methods:
+
+- <code title="post /user/transactions/stripe/create_session">client.user.stripe.<a href="./src/resources/user/stripe.ts">createSession</a>({ ...params }) -> CreateSessionResponse</code>
+- <code title="post /user/transactions/stripe/webhook">client.user.stripe.<a href="./src/resources/user/stripe.ts">stripeWebhook</a>({ ...params }) -> unknown</code>
 
 # Admin
 

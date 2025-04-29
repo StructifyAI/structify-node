@@ -3,7 +3,7 @@
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
 import * as UsersAPI from './users';
-import * as UserAPI from '../user';
+import * as UserAPI from '../user/user';
 
 export class Users extends APIResource {
   /**
