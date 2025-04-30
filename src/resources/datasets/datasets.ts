@@ -87,6 +87,28 @@ export class Datasets extends APIResource {
   }
 
   /**
+   * You need to specify a dataset and a table_name
+   */
+  exportToCsv(query: DatasetExportToCsvParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.get('/dataset/export_to_csv', {
+      query,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Each table and relationship type will be in its own sheet
+   */
+  exportToExcel(query: DatasetExportToExcelParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.get('/dataset/export_to_excel', {
+      query,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
    * Grab a dataset by its name.
    */
   get(query: DatasetGetParams, options?: Core.RequestOptions): Core.APIPromise<DatasetGetResponse> {
@@ -842,6 +864,16 @@ export interface DatasetEnrichmentProgressParams {
   name: string;
 }
 
+export interface DatasetExportToCsvParams {
+  dataset: string;
+
+  name: string;
+}
+
+export interface DatasetExportToExcelParams {
+  dataset: string;
+}
+
 export interface DatasetGetParams {
   /**
    * Information about the dataset
@@ -1010,6 +1042,8 @@ export declare namespace Datasets {
     type DatasetDeleteParams as DatasetDeleteParams,
     type DatasetAddPropertyParams as DatasetAddPropertyParams,
     type DatasetEnrichmentProgressParams as DatasetEnrichmentProgressParams,
+    type DatasetExportToCsvParams as DatasetExportToCsvParams,
+    type DatasetExportToExcelParams as DatasetExportToExcelParams,
     type DatasetGetParams as DatasetGetParams,
     type DatasetMatchParams as DatasetMatchParams,
     type DatasetRemovePropertyParams as DatasetRemovePropertyParams,

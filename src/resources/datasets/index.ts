@@ -19,6 +19,8 @@ export {
   type DatasetDeleteParams,
   type DatasetAddPropertyParams,
   type DatasetEnrichmentProgressParams,
+  type DatasetExportToCsvParams,
+  type DatasetExportToExcelParams,
   type DatasetGetParams,
   type DatasetMatchParams,
   type DatasetRemovePropertyParams,

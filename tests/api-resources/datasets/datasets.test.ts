@@ -144,6 +144,36 @@ describe('resource datasets', () => {
     const response = await client.datasets.enrichmentProgress({ name: 'name' });
   });
 
+  test('exportToCsv: only required params', async () => {
+    const responsePromise = client.datasets.exportToCsv({ dataset: 'dataset', name: 'name' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('exportToCsv: required and optional params', async () => {
+    const response = await client.datasets.exportToCsv({ dataset: 'dataset', name: 'name' });
+  });
+
+  test('exportToExcel: only required params', async () => {
+    const responsePromise = client.datasets.exportToExcel({ dataset: 'dataset' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('exportToExcel: required and optional params', async () => {
+    const response = await client.datasets.exportToExcel({ dataset: 'dataset' });
+  });
+
   test('get: only required params', async () => {
     const responsePromise = client.datasets.get({ name: 'name' });
     const rawResponse = await responsePromise.asResponse();
