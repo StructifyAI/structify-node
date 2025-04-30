@@ -20,10 +20,13 @@ Types:
 
 - <code><a href="./src/resources/user/stripe.ts">CreateSessionRequest</a></code>
 - <code><a href="./src/resources/user/stripe.ts">CreateSessionResponse</a></code>
+- <code><a href="./src/resources/user/stripe.ts">CreateSubscriptionRequest</a></code>
+- <code><a href="./src/resources/user/stripe.ts">SubscriptionPlan</a></code>
 
 Methods:
 
 - <code title="post /user/transactions/stripe/create_session">client.user.stripe.<a href="./src/resources/user/stripe.ts">createSession</a>({ ...params }) -> CreateSessionResponse</code>
+- <code title="post /user/transactions/stripe/create_subscription">client.user.stripe.<a href="./src/resources/user/stripe.ts">createSubscription</a>({ ...params }) -> CreateSessionResponse</code>
 
 # Admin
 
@@ -203,12 +206,14 @@ Types:
 
 - <code><a href="./src/resources/documents.ts">DocumentListResponse</a></code>
 - <code><a href="./src/resources/documents.ts">DocumentDownloadResponse</a></code>
+- <code><a href="./src/resources/documents.ts">DocumentStructureResponse</a></code>
 
 Methods:
 
 - <code title="get /documents/list">client.documents.<a href="./src/resources/documents.ts">list</a>({ ...params }) -> DocumentListResponse</code>
 - <code title="delete /documents/delete">client.documents.<a href="./src/resources/documents.ts">delete</a>({ ...params }) -> void</code>
 - <code title="post /documents/download">client.documents.<a href="./src/resources/documents.ts">download</a>({ ...params }) -> DocumentDownloadResponse</code>
+- <code title="post /documents/structure">client.documents.<a href="./src/resources/documents.ts">structure</a>({ ...params }) -> string</code>
 - <code title="post /documents/upload">client.documents.<a href="./src/resources/documents.ts">upload</a>({ ...params }) -> void</code>
 
 # Jobs

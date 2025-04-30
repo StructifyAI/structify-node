@@ -23,4 +23,19 @@ describe('resource stripe', () => {
   test('createSession: required and optional params', async () => {
     const response = await client.user.stripe.createSession({ credits: 0, origin: 'origin' });
   });
+
+  test('createSubscription: only required params', async () => {
+    const responsePromise = client.user.stripe.createSubscription({ origin: 'origin', plan: 'Pro' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('createSubscription: required and optional params', async () => {
+    const response = await client.user.stripe.createSubscription({ origin: 'origin', plan: 'Pro' });
+  });
 });
