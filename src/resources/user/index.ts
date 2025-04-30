@@ -4,7 +4,10 @@ export {
   Stripe,
   type CreateSessionRequest,
   type CreateSessionResponse,
+  type CreateSubscriptionRequest,
+  type SubscriptionPlan,
   type StripeCreateSessionParams,
+  type StripeCreateSubscriptionParams,
 } from './stripe';
 export {
   User,

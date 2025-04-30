@@ -36,9 +36,11 @@ export {
   Documents,
   type DocumentListResponse,
   type DocumentDownloadResponse,
+  type DocumentStructureResponse,
   type DocumentListParams,
   type DocumentDeleteParams,
   type DocumentDownloadParams,
+  type DocumentStructureParams,
   type DocumentUploadParams,
 } from './documents';
 export {

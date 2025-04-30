@@ -73,7 +73,7 @@ export interface User {
 
   updated_at: string;
 
-  user_type: 'admin' | 'public' | 'end_user';
+  user_type: 'admin' | 'public' | 'end_user' | 'pro';
 }
 
 export type UserListResponse = Array<UserListResponse.UserListResponseItem>;

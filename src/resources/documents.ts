@@ -42,6 +42,17 @@ export class Documents extends APIResource {
   }
 
   /**
+   * Returns a job id that can be waited on until the request is finished.
+   */
+  structure(body: DocumentStructureParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.post('/documents/structure', {
+      body,
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
    * Add a new file to the database
    */
   upload(params: DocumentUploadParams, options?: Core.RequestOptions): Core.APIPromise<void> {
@@ -84,6 +95,8 @@ export interface DocumentDownloadResponse {
   content: Core.Uploadable;
 }
 
+export type DocumentStructureResponse = string;
+
 export interface DocumentListParams {
   dataset?: string | null;
 }
@@ -100,6 +113,12 @@ export interface DocumentDownloadParams {
    * The path of the file to delete
    */
   file_path: string;
+}
+
+export type DocumentStructureParams = DocumentStructureParams.Body;
+
+export namespace DocumentStructureParams {
+  export interface Body {}
 }
 
 export interface DocumentUploadParams {
@@ -128,9 +147,11 @@ export declare namespace Documents {
   export {
     type DocumentListResponse as DocumentListResponse,
     type DocumentDownloadResponse as DocumentDownloadResponse,
+    type DocumentStructureResponse as DocumentStructureResponse,
     type DocumentListParams as DocumentListParams,
     type DocumentDeleteParams as DocumentDeleteParams,
     type DocumentDownloadParams as DocumentDownloadParams,
+    type DocumentStructureParams as DocumentStructureParams,
     type DocumentUploadParams as DocumentUploadParams,
   };
 }
