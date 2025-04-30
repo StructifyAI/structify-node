@@ -115,10 +115,10 @@ export interface DocumentDownloadParams {
   file_path: string;
 }
 
-export type DocumentStructureParams = DocumentStructureParams.Body;
+export interface DocumentStructureParams {
+  dataset: string;
 
-export namespace DocumentStructureParams {
-  export interface Body {}
+  path: string;
 }
 
 export interface DocumentUploadParams {
