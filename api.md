@@ -129,6 +129,25 @@ Methods:
 - <code title="post /admin/training_datasets/upload_labeled_step">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">uploadLabeledStep</a>({ ...params }) -> void</code>
 - <code title="put /admin/training_datasets/verify_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">verifyDatum</a>({ ...params }) -> void</code>
 
+# Workflow
+
+Types:
+
+- <code><a href="./src/resources/workflow.ts">ExistingWorkflow</a></code>
+- <code><a href="./src/resources/workflow.ts">ID</a></code>
+- <code><a href="./src/resources/workflow.ts">Workflow</a></code>
+- <code><a href="./src/resources/workflow.ts">WorkflowListResponse</a></code>
+- <code><a href="./src/resources/workflow.ts">WorkflowTriggerResponse</a></code>
+
+Methods:
+
+- <code title="post /workflow/create">client.workflow.<a href="./src/resources/workflow.ts">create</a>({ ...params }) -> string</code>
+- <code title="put /workflow/update">client.workflow.<a href="./src/resources/workflow.ts">update</a>({ ...params }) -> string</code>
+- <code title="post /workflow/list">client.workflow.<a href="./src/resources/workflow.ts">list</a>({ ...params }) -> WorkflowListResponse</code>
+- <code title="delete /workflow/delete">client.workflow.<a href="./src/resources/workflow.ts">delete</a>({ ...params }) -> void</code>
+- <code title="get /workflow/get">client.workflow.<a href="./src/resources/workflow.ts">get</a>({ ...params }) -> ExistingWorkflow</code>
+- <code title="post /workflow/trigger">client.workflow.<a href="./src/resources/workflow.ts">trigger</a>({ ...params }) -> unknown</code>
+
 # Datasets
 
 Types:
@@ -163,25 +182,6 @@ Methods:
 - <code title="get /dataset/view_relationships">client.datasets.<a href="./src/resources/datasets/datasets.ts">viewRelationships</a>({ ...params }) -> DatasetViewRelationshipsResponsesJobsList</code>
 - <code title="get /dataset/view_table">client.datasets.<a href="./src/resources/datasets/datasets.ts">viewTable</a>({ ...params }) -> DatasetViewTableResponsesJobsList</code>
 - <code title="get /dataset/view_tables_with_relationships">client.datasets.<a href="./src/resources/datasets/datasets.ts">viewTablesWithRelationships</a>({ ...params }) -> DatasetViewTablesWithRelationshipsResponse</code>
-
-## Workflow
-
-Types:
-
-- <code><a href="./src/resources/datasets/workflow.ts">ID</a></code>
-- <code><a href="./src/resources/datasets/workflow.ts">Workflow</a></code>
-- <code><a href="./src/resources/datasets/workflow.ts">WorkflowListResponse</a></code>
-- <code><a href="./src/resources/datasets/workflow.ts">WorkflowGetResponse</a></code>
-- <code><a href="./src/resources/datasets/workflow.ts">WorkflowTriggerResponse</a></code>
-
-Methods:
-
-- <code title="post /dataset/workflow/create">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">create</a>({ ...params }) -> string</code>
-- <code title="put /dataset/workflow/update">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">update</a>({ ...params }) -> string</code>
-- <code title="post /dataset/workflow/list">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">list</a>({ ...params }) -> WorkflowListResponse</code>
-- <code title="delete /dataset/workflow/delete">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">delete</a>({ ...params }) -> void</code>
-- <code title="get /dataset/workflow/get">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">get</a>({ ...params }) -> WorkflowGetResponse</code>
-- <code title="post /dataset/workflow/trigger">client.datasets.workflow.<a href="./src/resources/datasets/workflow.ts">trigger</a>({ ...params }) -> unknown</code>
 
 ## Evaluate
 

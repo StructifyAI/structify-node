@@ -144,3 +144,17 @@ export {
   type UserUsageResponse,
   type UserUsageParams,
 } from './user/user';
+export {
+  WorkflowResource,
+  type ExistingWorkflow,
+  type ID,
+  type Workflow,
+  type WorkflowListResponse,
+  type WorkflowTriggerResponse,
+  type WorkflowCreateParams,
+  type WorkflowUpdateParams,
+  type WorkflowListParams,
+  type WorkflowDeleteParams,
+  type WorkflowGetParams,
+  type WorkflowTriggerParams,
+} from './workflow';

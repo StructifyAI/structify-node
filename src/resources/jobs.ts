@@ -5,7 +5,7 @@ import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as SharedAPI from './shared';
 import * as StructureAPI from './structure';
-import * as WorkflowAPI from './datasets/workflow';
+import * as WorkflowAPI from './workflow';
 import { JobsList, type JobsListParams } from '../pagination';
 
 export class Jobs extends APIResource {

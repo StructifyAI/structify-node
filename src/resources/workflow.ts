@@ -1,23 +1,22 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
-import * as WorkflowAPI from './workflow';
+import { APIResource } from '../resource';
+import { isRequestOptions } from '../core';
+import * as Core from '../core';
 
 export class WorkflowResource extends APIResource {
   /**
    * Create a new workflow
    */
   create(body: WorkflowCreateParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    return this._client.post('/dataset/workflow/create', { body, ...options });
+    return this._client.post('/workflow/create', { body, ...options });
   }
 
   /**
    * Update an existing workflow
    */
   update(body: WorkflowUpdateParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    return this._client.put('/dataset/workflow/update', { body, ...options });
+    return this._client.put('/workflow/update', { body, ...options });
   }
 
   /**
@@ -33,14 +32,14 @@ export class WorkflowResource extends APIResource {
       return this.list({}, params);
     }
     const { dataset_name } = params;
-    return this._client.post('/dataset/workflow/list', { query: { dataset_name }, ...options });
+    return this._client.post('/workflow/list', { query: { dataset_name }, ...options });
   }
 
   /**
    * Delete an existing workflow
    */
   delete(body: WorkflowDeleteParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete('/dataset/workflow/delete', {
+    return this._client.delete('/workflow/delete', {
       body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
@@ -50,16 +49,22 @@ export class WorkflowResource extends APIResource {
   /**
    * Get a workflow by ID
    */
-  get(query: WorkflowGetParams, options?: Core.RequestOptions): Core.APIPromise<WorkflowGetResponse> {
-    return this._client.get('/dataset/workflow/get', { query, ...options });
+  get(query: WorkflowGetParams, options?: Core.RequestOptions): Core.APIPromise<ExistingWorkflow> {
+    return this._client.get('/workflow/get', { query, ...options });
   }
 
   /**
    * Trigger a workflow on a set of entities
    */
   trigger(body: WorkflowTriggerParams, options?: Core.RequestOptions): Core.APIPromise<unknown> {
-    return this._client.post('/dataset/workflow/trigger', { body, ...options });
+    return this._client.post('/workflow/trigger', { body, ...options });
   }
+}
+
+export interface ExistingWorkflow extends Workflow {
+  id: ID;
+
+  dataset_name: string;
 }
 
 export type ID = string;
@@ -100,21 +105,7 @@ export namespace Workflow {
   }
 }
 
-export type WorkflowListResponse = Array<WorkflowListResponse.WorkflowListResponseItem>;
-
-export namespace WorkflowListResponse {
-  export interface WorkflowListResponseItem extends WorkflowAPI.Workflow {
-    id: WorkflowAPI.ID;
-
-    dataset_name: string;
-  }
-}
-
-export interface WorkflowGetResponse extends Workflow {
-  id: ID;
-
-  dataset_name: string;
-}
+export type WorkflowListResponse = Array<ExistingWorkflow>;
 
 export type WorkflowTriggerResponse = unknown;
 
@@ -152,10 +143,10 @@ export interface WorkflowTriggerParams {
 
 export declare namespace WorkflowResource {
   export {
+    type ExistingWorkflow as ExistingWorkflow,
     type ID as ID,
     type Workflow as Workflow,
     type WorkflowListResponse as WorkflowListResponse,
-    type WorkflowGetResponse as WorkflowGetResponse,
     type WorkflowTriggerResponse as WorkflowTriggerResponse,
     type WorkflowCreateParams as WorkflowCreateParams,
     type WorkflowUpdateParams as WorkflowUpdateParams,

@@ -18,25 +18,9 @@ import {
   EvaluateStatusParams,
   EvaluateStatusResponse,
 } from './evaluate';
-import * as WorkflowAPI from './workflow';
-import {
-  ID,
-  Workflow,
-  WorkflowCreateParams,
-  WorkflowDeleteParams,
-  WorkflowGetParams,
-  WorkflowGetResponse,
-  WorkflowListParams,
-  WorkflowListResponse,
-  WorkflowResource,
-  WorkflowTriggerParams,
-  WorkflowTriggerResponse,
-  WorkflowUpdateParams,
-} from './workflow';
 import { JobsList, type JobsListParams } from '../../pagination';
 
 export class Datasets extends APIResource {
-  workflow: WorkflowAPI.WorkflowResource = new WorkflowAPI.WorkflowResource(this._client);
   evaluate: EvaluateAPI.Evaluate = new EvaluateAPI.Evaluate(this._client);
 
   /**
@@ -1019,7 +1003,6 @@ export namespace DatasetViewTablesWithRelationshipsParams {
 
 Datasets.DatasetViewRelationshipsResponsesJobsList = DatasetViewRelationshipsResponsesJobsList;
 Datasets.DatasetViewTableResponsesJobsList = DatasetViewTableResponsesJobsList;
-Datasets.WorkflowResource = WorkflowResource;
 Datasets.Evaluate = Evaluate;
 Datasets.EvaluateListResponsesJobsList = EvaluateListResponsesJobsList;
 
@@ -1053,21 +1036,6 @@ export declare namespace Datasets {
     type DatasetViewRelationshipsParams as DatasetViewRelationshipsParams,
     type DatasetViewTableParams as DatasetViewTableParams,
     type DatasetViewTablesWithRelationshipsParams as DatasetViewTablesWithRelationshipsParams,
-  };
-
-  export {
-    WorkflowResource as WorkflowResource,
-    type ID as ID,
-    type Workflow as Workflow,
-    type WorkflowListResponse as WorkflowListResponse,
-    type WorkflowGetResponse as WorkflowGetResponse,
-    type WorkflowTriggerResponse as WorkflowTriggerResponse,
-    type WorkflowCreateParams as WorkflowCreateParams,
-    type WorkflowUpdateParams as WorkflowUpdateParams,
-    type WorkflowListParams as WorkflowListParams,
-    type WorkflowDeleteParams as WorkflowDeleteParams,
-    type WorkflowGetParams as WorkflowGetParams,
-    type WorkflowTriggerParams as WorkflowTriggerParams,
   };
 
   export {

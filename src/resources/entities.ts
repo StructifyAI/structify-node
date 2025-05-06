@@ -4,7 +4,7 @@ import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as SharedAPI from './shared';
 import * as SourcesAPI from './sources';
-import * as WorkflowAPI from './datasets/workflow';
+import * as WorkflowAPI from './workflow';
 
 export class Entities extends APIResource {
   /**
