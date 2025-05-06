@@ -105,11 +105,15 @@ export type WorkflowListResponse = Array<WorkflowListResponse.WorkflowListRespon
 export namespace WorkflowListResponse {
   export interface WorkflowListResponseItem extends WorkflowAPI.Workflow {
     id: WorkflowAPI.ID;
+
+    dataset_name: string;
   }
 }
 
 export interface WorkflowGetResponse extends Workflow {
   id: ID;
+
+  dataset_name: string;
 }
 
 export type WorkflowTriggerResponse = unknown;
