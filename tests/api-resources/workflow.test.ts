@@ -10,7 +10,7 @@ const client = new Structify({
 
 describe('resource workflow', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.datasets.workflow.create({
+    const responsePromise = client.workflow.create({
       dataset_name: 'dataset_name',
       workflow: {
         name: 'name',
@@ -36,7 +36,7 @@ describe('resource workflow', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.datasets.workflow.create({
+    const response = await client.workflow.create({
       dataset_name: 'dataset_name',
       workflow: {
         name: 'name',
@@ -55,7 +55,7 @@ describe('resource workflow', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.datasets.workflow.update({
+    const responsePromise = client.workflow.update({
       dataset_name: 'dataset_name',
       workflow: {
         name: 'name',
@@ -82,7 +82,7 @@ describe('resource workflow', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await client.datasets.workflow.update({
+    const response = await client.workflow.update({
       dataset_name: 'dataset_name',
       workflow: {
         name: 'name',
@@ -102,7 +102,7 @@ describe('resource workflow', () => {
   });
 
   test('list', async () => {
-    const responsePromise = client.datasets.workflow.list();
+    const responsePromise = client.workflow.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -114,7 +114,7 @@ describe('resource workflow', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.datasets.workflow.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.workflow.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       Structify.NotFoundError,
     );
   });
@@ -122,14 +122,12 @@ describe('resource workflow', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.datasets.workflow.list({ dataset_name: 'dataset_name' }, { path: '/_stainless_unknown_path' }),
+      client.workflow.list({ dataset_name: 'dataset_name' }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
   test('delete: only required params', async () => {
-    const responsePromise = client.datasets.workflow.delete({
-      workflow_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
+    const responsePromise = client.workflow.delete({ workflow_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -140,15 +138,11 @@ describe('resource workflow', () => {
   });
 
   test('delete: required and optional params', async () => {
-    const response = await client.datasets.workflow.delete({
-      workflow_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
+    const response = await client.workflow.delete({ workflow_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
   });
 
   test('get: only required params', async () => {
-    const responsePromise = client.datasets.workflow.get({
-      workflow_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
+    const responsePromise = client.workflow.get({ workflow_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -159,13 +153,11 @@ describe('resource workflow', () => {
   });
 
   test('get: required and optional params', async () => {
-    const response = await client.datasets.workflow.get({
-      workflow_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
+    const response = await client.workflow.get({ workflow_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
   });
 
   test('trigger: only required params', async () => {
-    const responsePromise = client.datasets.workflow.trigger({
+    const responsePromise = client.workflow.trigger({
       entity_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
       workflow_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
@@ -179,7 +171,7 @@ describe('resource workflow', () => {
   });
 
   test('trigger: required and optional params', async () => {
-    const response = await client.datasets.workflow.trigger({
+    const response = await client.workflow.trigger({
       entity_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
       workflow_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
