@@ -112,6 +112,20 @@ import {
   StructureRunAsyncResponse,
   ToolMetadata,
 } from './resources/structure';
+import {
+  ExistingWorkflow,
+  ID,
+  Workflow,
+  WorkflowCreateParams,
+  WorkflowDeleteParams,
+  WorkflowGetParams,
+  WorkflowListParams,
+  WorkflowListResponse,
+  WorkflowResource,
+  WorkflowTriggerParams,
+  WorkflowTriggerResponse,
+  WorkflowUpdateParams,
+} from './resources/workflow';
 import { Admin } from './resources/admin/admin';
 import {
   DatasetAddPropertyParams,
@@ -163,7 +177,7 @@ export interface ClientOptions {
   /**
    * Defaults to process.env['STRUCTIFY_API_TOKEN'].
    */
-  apiKey?: string | null | undefined;
+  apiKey?: string | undefined;
 
   /**
    * Specifies the environment to use for the API.
@@ -235,14 +249,14 @@ export interface ClientOptions {
  * API Client for interfacing with the Structify API.
  */
 export class Structify extends Core.APIClient {
-  apiKey: string | null;
+  apiKey: string;
 
   private _options: ClientOptions;
 
   /**
    * API Client for interfacing with the Structify API.
    *
-   * @param {string | null | undefined} [opts.apiKey=process.env['STRUCTIFY_API_TOKEN'] ?? null]
+   * @param {string | undefined} [opts.apiKey=process.env['STRUCTIFY_API_TOKEN'] ?? undefined]
    * @param {Environment} [opts.environment=production] - Specifies the environment URL to use for the API.
    * @param {string} [opts.baseURL=process.env['STRUCTIFY_BASE_URL'] ?? https://api.structify.ai] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
@@ -254,9 +268,15 @@ export class Structify extends Core.APIClient {
    */
   constructor({
     baseURL = Core.readEnv('STRUCTIFY_BASE_URL'),
-    apiKey = Core.readEnv('STRUCTIFY_API_TOKEN') ?? null,
+    apiKey = Core.readEnv('STRUCTIFY_API_TOKEN'),
     ...opts
   }: ClientOptions = {}) {
+    if (apiKey === undefined) {
+      throw new Errors.StructifyError(
+        "The STRUCTIFY_API_TOKEN environment variable is missing or empty; either provide it, or instantiate the Structify client with an apiKey option, like new Structify({ apiKey: 'My API Key' }).",
+      );
+    }
+
     const options: ClientOptions = {
       apiKey,
       ...opts,
@@ -285,6 +305,7 @@ export class Structify extends Core.APIClient {
 
   user: API.User = new API.User(this);
   admin: API.Admin = new API.Admin(this);
+  workflow: API.WorkflowResource = new API.WorkflowResource(this);
   datasets: API.Datasets = new API.Datasets(this);
   documents: API.Documents = new API.Documents(this);
   jobs: API.Jobs = new API.Jobs(this);
@@ -307,9 +328,6 @@ export class Structify extends Core.APIClient {
   }
 
   protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
-    if (this.apiKey == null) {
-      return {};
-    }
     return { api_key: this.apiKey };
   }
 
@@ -340,6 +358,7 @@ export class Structify extends Core.APIClient {
 
 Structify.User = User;
 Structify.Admin = Admin;
+Structify.WorkflowResource = WorkflowResource;
 Structify.Datasets = Datasets;
 Structify.DatasetViewRelationshipsResponsesJobsList = DatasetViewRelationshipsResponsesJobsList;
 Structify.DatasetViewTableResponsesJobsList = DatasetViewTableResponsesJobsList;
@@ -368,6 +387,21 @@ export declare namespace Structify {
   };
 
   export { Admin as Admin };
+
+  export {
+    WorkflowResource as WorkflowResource,
+    type ExistingWorkflow as ExistingWorkflow,
+    type ID as ID,
+    type Workflow as Workflow,
+    type WorkflowListResponse as WorkflowListResponse,
+    type WorkflowTriggerResponse as WorkflowTriggerResponse,
+    type WorkflowCreateParams as WorkflowCreateParams,
+    type WorkflowUpdateParams as WorkflowUpdateParams,
+    type WorkflowListParams as WorkflowListParams,
+    type WorkflowDeleteParams as WorkflowDeleteParams,
+    type WorkflowGetParams as WorkflowGetParams,
+    type WorkflowTriggerParams as WorkflowTriggerParams,
+  };
 
   export {
     Datasets as Datasets,
