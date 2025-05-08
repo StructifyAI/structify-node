@@ -90,7 +90,7 @@ export interface JobListResponse {
 
   dataset_id: string;
 
-  job_type: 'Web' | 'Pdf' | 'Derive';
+  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
 
   selected_next_workflow_step: boolean;
 
@@ -136,7 +136,7 @@ export interface JobCancelResponse {
 
   dataset_id: string;
 
-  job_type: 'Web' | 'Pdf' | 'Derive';
+  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
 
   selected_next_workflow_step: boolean;
 
@@ -187,7 +187,7 @@ export namespace JobGetResponse {
 
     dataset_id: string;
 
-    job_type: 'Web' | 'Pdf' | 'Derive';
+    job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
 
     selected_next_workflow_step: boolean;
 

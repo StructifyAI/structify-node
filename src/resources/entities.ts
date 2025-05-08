@@ -599,6 +599,8 @@ export namespace EntityGetSourceEntitiesResponse {
 
     location?: SourceEntity.Text | SourceEntity.Visual | SourceEntity.Page | null;
 
+    scraper_id?: string | null;
+
     step_id?: string | null;
   }
 
@@ -707,7 +709,7 @@ export namespace EntityListJobsResponse {
 
     dataset_id: string;
 
-    job_type: 'Web' | 'Pdf' | 'Derive';
+    job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
 
     selected_next_workflow_step: boolean;
 
@@ -1518,6 +1520,8 @@ export namespace EntityViewResponse {
     link?: SourcesAPI.Source | null;
 
     location?: Source.Text | Source.Visual | Source.Page | null;
+
+    scraper_id?: string | null;
 
     step_id?: string | null;
   }
