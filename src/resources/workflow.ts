@@ -85,7 +85,12 @@ export namespace Workflow {
 
     children: Array<string>;
 
-    operation: Step.EnhanceProperties | Step.EnhanceRelationship | Step.DeriveProperty | 'IngestData';
+    operation:
+      | Step.EnhanceProperties
+      | Step.EnhanceRelationship
+      | Step.DeriveProperty
+      | Step.ScrapePage
+      | 'IngestData';
 
     table_name: string;
   }
@@ -101,6 +106,18 @@ export namespace Workflow {
 
     export interface DeriveProperty {
       DeriveProperty: Array<string>;
+    }
+
+    export interface ScrapePage {
+      ScrapePage: ScrapePage.ScrapePage;
+    }
+
+    export namespace ScrapePage {
+      export interface ScrapePage {
+        relationship_name: string;
+
+        starting_url_property_name: string;
+      }
     }
   }
 }
