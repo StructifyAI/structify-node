@@ -110,7 +110,7 @@ export namespace HumanLlmJob {
 
     dataset_id: string;
 
-    job_type: 'Web' | 'Pdf' | 'Derive';
+    job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
 
     selected_next_workflow_step: boolean;
 

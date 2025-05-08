@@ -69,6 +69,8 @@ export namespace SourceListResponse {
       | SourceListResponseItem.Page
       | null;
 
+    scraper_id?: string | null;
+
     step_id?: string | null;
   }
 
