@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.130.0 (2025-05-08)
+
+Full Changelog: [v1.129.0...v1.130.0](https://github.com/StructifyAI/structify-node/compare/v1.129.0...v1.130.0)
+
+### Features
+
+* **api:** api update ([8515f78](https://github.com/StructifyAI/structify-node/commit/8515f78840b314ef8d704b5418753ef9b1ffbdb6))
+
+
+### Chores
+
+* **ci:** bump node version for release workflows ([ad0e65c](https://github.com/StructifyAI/structify-node/commit/ad0e65c81a12c14252d14d998562e4b4a23de998))
+
 ## 1.129.0 (2025-05-06)
 
 Full Changelog: [v1.128.0...v1.129.0](https://github.com/StructifyAI/structify-node/compare/v1.128.0...v1.129.0)
