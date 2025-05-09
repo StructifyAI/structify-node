@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.130.1 (2025-05-09)
+
+Full Changelog: [v1.130.0...v1.130.1](https://github.com/StructifyAI/structify-node/compare/v1.130.0...v1.130.1)
+
+### Chores
+
+* **internal:** codegen related update ([99b4932](https://github.com/StructifyAI/structify-node/commit/99b493280d5aef0475490b1c659c26a95a42bdfd))
+
 ## 1.130.0 (2025-05-08)
 
 Full Changelog: [v1.129.0...v1.130.0](https://github.com/StructifyAI/structify-node/compare/v1.129.0...v1.130.0)
