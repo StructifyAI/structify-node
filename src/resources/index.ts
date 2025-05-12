@@ -82,7 +82,6 @@ export {
   type EntityViewParams,
 } from './entities';
 export {
-  JobListResponsesJobsList,
   Jobs,
   type JobListResponse,
   type JobDeleteResponse,
