@@ -6,21 +6,25 @@ import * as Core from '../core';
 import * as SharedAPI from './shared';
 import * as StructureAPI from './structure';
 import * as WorkflowAPI from './workflow';
+import { JobsList, type JobsListParams } from '../pagination';
 
 export class Jobs extends APIResource {
   /**
    * List all the executions
    */
-  list(query?: JobListParams, options?: Core.RequestOptions): Core.APIPromise<JobListResponse>;
-  list(options?: Core.RequestOptions): Core.APIPromise<JobListResponse>;
+  list(
+    query?: JobListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<JobListResponsesJobsList, JobListResponse>;
+  list(options?: Core.RequestOptions): Core.PagePromise<JobListResponsesJobsList, JobListResponse>;
   list(
     query: JobListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.APIPromise<JobListResponse> {
+  ): Core.PagePromise<JobListResponsesJobsList, JobListResponse> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.get('/jobs/list', { query, ...options });
+    return this._client.getAPIList('/jobs/list', JobListResponsesJobsList, { query, ...options });
   }
 
   /**
@@ -76,6 +80,8 @@ export class Jobs extends APIResource {
     });
   }
 }
+
+export class JobListResponsesJobsList extends JobsList<JobListResponse> {}
 
 export interface JobListResponse {
   id: string;
@@ -710,15 +716,11 @@ export namespace JobGetStepGraphResponse {
 
 export type JobGetStepsResponse = Array<StructureAPI.ExecutionStep>;
 
-export interface JobListParams {
+export interface JobListParams extends JobsListParams {
   /**
    * Dataset name to optionally filter jobs by
    */
   dataset?: string | null;
-
-  limit?: number;
-
-  offset?: number;
 
   /**
    * List since a specific timestamp
@@ -731,6 +733,8 @@ export interface JobListParams {
   status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
 }
 
+Jobs.JobListResponsesJobsList = JobListResponsesJobsList;
+
 export declare namespace Jobs {
   export {
     type JobListResponse as JobListResponse,
@@ -740,6 +744,7 @@ export declare namespace Jobs {
     type JobGetStepResponse as JobGetStepResponse,
     type JobGetStepGraphResponse as JobGetStepGraphResponse,
     type JobGetStepsResponse as JobGetStepsResponse,
+    JobListResponsesJobsList as JobListResponsesJobsList,
     type JobListParams as JobListParams,
   };
 }
