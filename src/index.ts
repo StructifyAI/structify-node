@@ -66,6 +66,7 @@ import {
   JobGetStepsResponse,
   JobListParams,
   JobListResponse,
+  JobListResponsesJobsList,
   Jobs,
 } from './resources/jobs';
 import {
@@ -363,6 +364,7 @@ Structify.DatasetViewRelationshipsResponsesJobsList = DatasetViewRelationshipsRe
 Structify.DatasetViewTableResponsesJobsList = DatasetViewTableResponsesJobsList;
 Structify.Documents = Documents;
 Structify.Jobs = Jobs;
+Structify.JobListResponsesJobsList = JobListResponsesJobsList;
 Structify.Server = Server;
 Structify.Sources = Sources;
 Structify.Entities = Entities;
@@ -454,6 +456,7 @@ export declare namespace Structify {
     type JobGetStepResponse as JobGetStepResponse,
     type JobGetStepGraphResponse as JobGetStepGraphResponse,
     type JobGetStepsResponse as JobGetStepsResponse,
+    JobListResponsesJobsList as JobListResponsesJobsList,
     type JobListParams as JobListParams,
   };
 
