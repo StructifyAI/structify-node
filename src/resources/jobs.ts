@@ -6,25 +6,21 @@ import * as Core from '../core';
 import * as SharedAPI from './shared';
 import * as StructureAPI from './structure';
 import * as WorkflowAPI from './workflow';
-import { JobsList, type JobsListParams } from '../pagination';
 
 export class Jobs extends APIResource {
   /**
    * List all the executions
    */
-  list(
-    query?: JobListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<JobListResponsesJobsList, JobListResponse>;
-  list(options?: Core.RequestOptions): Core.PagePromise<JobListResponsesJobsList, JobListResponse>;
+  list(query?: JobListParams, options?: Core.RequestOptions): Core.APIPromise<JobListResponse>;
+  list(options?: Core.RequestOptions): Core.APIPromise<JobListResponse>;
   list(
     query: JobListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<JobListResponsesJobsList, JobListResponse> {
+  ): Core.APIPromise<JobListResponse> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.getAPIList('/jobs/list', JobListResponsesJobsList, { query, ...options });
+    return this._client.get('/jobs/list', { query, ...options });
   }
 
   /**
@@ -81,8 +77,6 @@ export class Jobs extends APIResource {
   }
 }
 
-export class JobListResponsesJobsList extends JobsList<JobListResponse> {}
-
 export interface JobListResponse {
   id: string;
 
@@ -98,33 +92,85 @@ export interface JobListResponse {
 
   user_id: string;
 
-  /**
-   * A message about the status of the job at completion
-   */
-  message?: string | null;
+  parameters?: JobListResponse.Parameters | null;
 
-  /**
-   * Proto for JobInput
-   */
-  parameters?: Core.Uploadable | null;
-
-  /**
-   * A reason for the job's existence
-   */
   reason?: string | null;
 
-  /**
-   * What time did the job start running?
-   */
   run_started_time?: string | null;
 
   run_time_milliseconds?: number | null;
+
+  special_job_type?: 'HumanLLM' | null;
 
   workflow_group_id?: string | null;
 
   workflow_id?: WorkflowAPI.ID | null;
 
   workflow_step_id?: string | null;
+}
+
+export namespace JobListResponse {
+  export interface Parameters {
+    allow_extra_entities: boolean;
+
+    extraction_criteria: Array<StructureAPI.SaveRequirement>;
+
+    /**
+     * Knowledge graph info structured to deserialize and display in the same format
+     * that the LLM outputs. Also the first representation of an LLM output in the
+     * pipeline from raw tool output to being merged into a Neo4j DB
+     */
+    seeded_kg: SharedAPI.KnowledgeGraph;
+
+    structuring_input: Parameters.Agent | Parameters.TransformationPrompt | Parameters.ScrapePage;
+  }
+
+  export namespace Parameters {
+    export interface Agent {
+      /**
+       * These are all the types that can be converted into a BasicInputType
+       */
+      Agent: Agent.Pdf | Agent.Web;
+    }
+
+    export namespace Agent {
+      export interface Pdf {
+        /**
+         * Ingest all pages of a PDF and process them independently.
+         */
+        PDF: Pdf.Pdf;
+      }
+
+      export namespace Pdf {
+        /**
+         * Ingest all pages of a PDF and process them independently.
+         */
+        export interface Pdf {
+          path: string;
+        }
+      }
+
+      export interface Web {
+        Web: Web.Web;
+      }
+
+      export namespace Web {
+        export interface Web {
+          starting_searches?: Array<string>;
+
+          starting_urls?: Array<string>;
+        }
+      }
+    }
+
+    export interface TransformationPrompt {
+      TransformationPrompt: string;
+    }
+
+    export interface ScrapePage {
+      ScrapePage: string;
+    }
+  }
 }
 
 export type JobDeleteResponse = string;
@@ -664,11 +710,15 @@ export namespace JobGetStepGraphResponse {
 
 export type JobGetStepsResponse = Array<StructureAPI.ExecutionStep>;
 
-export interface JobListParams extends JobsListParams {
+export interface JobListParams {
   /**
    * Dataset name to optionally filter jobs by
    */
   dataset?: string | null;
+
+  limit?: number;
+
+  offset?: number;
 
   /**
    * List since a specific timestamp
@@ -681,8 +731,6 @@ export interface JobListParams extends JobsListParams {
   status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
 }
 
-Jobs.JobListResponsesJobsList = JobListResponsesJobsList;
-
 export declare namespace Jobs {
   export {
     type JobListResponse as JobListResponse,
@@ -692,7 +740,6 @@ export declare namespace Jobs {
     type JobGetStepResponse as JobGetStepResponse,
     type JobGetStepGraphResponse as JobGetStepGraphResponse,
     type JobGetStepsResponse as JobGetStepsResponse,
-    JobListResponsesJobsList as JobListResponsesJobsList,
     type JobListParams as JobListParams,
   };
 }
