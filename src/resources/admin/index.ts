@@ -30,6 +30,7 @@ export {
   type NextActionAddTrainingDatumParams,
   type NextActionDeleteTrainingDataParams,
   type NextActionGetTrainingDataParams,
+  type NextActionGetTrainingDatumParams,
   type NextActionLabelTrainingDatumParams,
 } from './next-action';
 export {
