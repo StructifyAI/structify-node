@@ -32,6 +32,7 @@ import {
   NextActionAddTrainingDatumParams,
   NextActionDeleteTrainingDataParams,
   NextActionGetTrainingDataParams,
+  NextActionGetTrainingDatumParams,
   NextActionLabelTrainingDatumParams,
 } from './next-action';
 import * as TrainingDatasetsAPI from './training-datasets';
@@ -127,6 +128,7 @@ export declare namespace Admin {
     type NextActionAddTrainingDatumParams as NextActionAddTrainingDatumParams,
     type NextActionDeleteTrainingDataParams as NextActionDeleteTrainingDataParams,
     type NextActionGetTrainingDataParams as NextActionGetTrainingDataParams,
+    type NextActionGetTrainingDatumParams as NextActionGetTrainingDatumParams,
     type NextActionLabelTrainingDatumParams as NextActionLabelTrainingDatumParams,
   };
 
