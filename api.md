@@ -70,6 +70,7 @@ Methods:
 - <code title="post /admin/next_action/add_action_training_datum">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">addTrainingDatum</a>({ ...params }) -> void</code>
 - <code title="delete /admin/next_action/delete_action_training_data">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">deleteTrainingData</a>({ ...params }) -> DeleteActionTrainingDataResponse</code>
 - <code title="get /admin/next_action/get_action_training_data">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">getTrainingData</a>({ ...params }) -> ActionTrainingDataResponse</code>
+- <code title="get /admin/next_action/get_action_training_datum">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">getTrainingDatum</a>({ ...params }) -> ActionTrainingDataEntry</code>
 - <code title="put /admin/next_action/label_action_training_datum">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">labelTrainingDatum</a>({ ...params }) -> void</code>
 
 ## Users

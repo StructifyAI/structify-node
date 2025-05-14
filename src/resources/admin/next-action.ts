@@ -47,6 +47,13 @@ export class NextAction extends APIResource {
     return this._client.get('/admin/next_action/get_action_training_data', { query, ...options });
   }
 
+  getTrainingDatum(
+    query: NextActionGetTrainingDatumParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ActionTrainingDataEntry> {
+    return this._client.get('/admin/next_action/get_action_training_datum', { query, ...options });
+  }
+
   /**
    * Label an existing action training datum
    */
@@ -408,6 +415,13 @@ export interface NextActionGetTrainingDataParams {
   to_date?: string | null;
 }
 
+export interface NextActionGetTrainingDatumParams {
+  /**
+   * ID of the training datum to get
+   */
+  id: string;
+}
+
 export interface NextActionLabelTrainingDatumParams {
   id: string;
 
@@ -466,6 +480,7 @@ export declare namespace NextAction {
     type NextActionAddTrainingDatumParams as NextActionAddTrainingDatumParams,
     type NextActionDeleteTrainingDataParams as NextActionDeleteTrainingDataParams,
     type NextActionGetTrainingDataParams as NextActionGetTrainingDataParams,
+    type NextActionGetTrainingDatumParams as NextActionGetTrainingDatumParams,
     type NextActionLabelTrainingDatumParams as NextActionLabelTrainingDatumParams,
   };
 }
