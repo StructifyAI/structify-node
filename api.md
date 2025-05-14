@@ -137,6 +137,8 @@ Types:
 - <code><a href="./src/resources/workflow.ts">ID</a></code>
 - <code><a href="./src/resources/workflow.ts">Workflow</a></code>
 - <code><a href="./src/resources/workflow.ts">WorkflowListResponse</a></code>
+- <code><a href="./src/resources/workflow.ts">WorkflowJobProgressResponse</a></code>
+- <code><a href="./src/resources/workflow.ts">WorkflowJobsResponse</a></code>
 - <code><a href="./src/resources/workflow.ts">WorkflowTriggerResponse</a></code>
 
 Methods:
@@ -146,6 +148,8 @@ Methods:
 - <code title="post /workflow/list">client.workflow.<a href="./src/resources/workflow.ts">list</a>({ ...params }) -> WorkflowListResponse</code>
 - <code title="delete /workflow/delete">client.workflow.<a href="./src/resources/workflow.ts">delete</a>({ ...params }) -> void</code>
 - <code title="get /workflow/get">client.workflow.<a href="./src/resources/workflow.ts">get</a>({ ...params }) -> ExistingWorkflow</code>
+- <code title="get /workflow/job_progress">client.workflow.<a href="./src/resources/workflow.ts">jobProgress</a>({ ...params }) -> WorkflowJobProgressResponse</code>
+- <code title="get /workflow/jobs">client.workflow.<a href="./src/resources/workflow.ts">jobs</a>({ ...params }) -> WorkflowJobsResponse</code>
 - <code title="post /workflow/trigger">client.workflow.<a href="./src/resources/workflow.ts">trigger</a>({ ...params }) -> unknown</code>
 
 # Datasets
