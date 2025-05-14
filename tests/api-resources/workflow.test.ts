@@ -156,6 +156,45 @@ describe('resource workflow', () => {
     const response = await client.workflow.get({ workflow_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
   });
 
+  test('jobProgress: only required params', async () => {
+    const responsePromise = client.workflow.jobProgress({
+      workflow_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('jobProgress: required and optional params', async () => {
+    const response = await client.workflow.jobProgress({
+      workflow_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+  });
+
+  test('jobs: only required params', async () => {
+    const responsePromise = client.workflow.jobs({ workflow_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('jobs: required and optional params', async () => {
+    const response = await client.workflow.jobs({
+      workflow_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      group_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      status: 'Queued',
+      step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+  });
+
   test('trigger: only required params', async () => {
     const responsePromise = client.workflow.trigger({
       entity_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],

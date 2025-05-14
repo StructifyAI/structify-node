@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
+import * as WorkflowAPI from './workflow';
 
 export class WorkflowResource extends APIResource {
   /**
@@ -51,6 +52,20 @@ export class WorkflowResource extends APIResource {
    */
   get(query: WorkflowGetParams, options?: Core.RequestOptions): Core.APIPromise<ExistingWorkflow> {
     return this._client.get('/workflow/get', { query, ...options });
+  }
+
+  /**
+   * Get the job status breakdown of a workflow
+   */
+  jobProgress(
+    query: WorkflowJobProgressParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<WorkflowJobProgressResponse> {
+    return this._client.get('/workflow/job_progress', { query, ...options });
+  }
+
+  jobs(query: WorkflowJobsParams, options?: Core.RequestOptions): Core.APIPromise<WorkflowJobsResponse> {
+    return this._client.get('/workflow/jobs', { query, ...options });
   }
 
   /**
@@ -124,6 +139,56 @@ export namespace Workflow {
 
 export type WorkflowListResponse = Array<ExistingWorkflow>;
 
+export type WorkflowJobProgressResponse = Record<string, Record<string, number>>;
+
+export type WorkflowJobsResponse = Array<WorkflowJobsResponse.WorkflowJobsResponseItem>;
+
+export namespace WorkflowJobsResponse {
+  export interface WorkflowJobsResponseItem {
+    id: string;
+
+    created_at: string;
+
+    dataset_id: string;
+
+    job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
+
+    selected_next_workflow_step: boolean;
+
+    status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+    user_id: string;
+
+    /**
+     * A message about the status of the job at completion
+     */
+    message?: string | null;
+
+    /**
+     * Proto for JobInput
+     */
+    parameters?: Core.Uploadable | null;
+
+    /**
+     * A reason for the job's existence
+     */
+    reason?: string | null;
+
+    /**
+     * What time did the job start running?
+     */
+    run_started_time?: string | null;
+
+    run_time_milliseconds?: number | null;
+
+    workflow_group_id?: string | null;
+
+    workflow_id?: WorkflowAPI.ID | null;
+
+    workflow_step_id?: string | null;
+  }
+}
+
 export type WorkflowTriggerResponse = unknown;
 
 export interface WorkflowCreateParams {
@@ -152,6 +217,20 @@ export interface WorkflowGetParams {
   workflow_id: ID;
 }
 
+export interface WorkflowJobProgressParams {
+  workflow_id: ID;
+}
+
+export interface WorkflowJobsParams {
+  workflow_id: ID;
+
+  group_id?: string | null;
+
+  status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
+
+  step_id?: string | null;
+}
+
 export interface WorkflowTriggerParams {
   entity_ids: Array<string>;
 
@@ -164,12 +243,16 @@ export declare namespace WorkflowResource {
     type ID as ID,
     type Workflow as Workflow,
     type WorkflowListResponse as WorkflowListResponse,
+    type WorkflowJobProgressResponse as WorkflowJobProgressResponse,
+    type WorkflowJobsResponse as WorkflowJobsResponse,
     type WorkflowTriggerResponse as WorkflowTriggerResponse,
     type WorkflowCreateParams as WorkflowCreateParams,
     type WorkflowUpdateParams as WorkflowUpdateParams,
     type WorkflowListParams as WorkflowListParams,
     type WorkflowDeleteParams as WorkflowDeleteParams,
     type WorkflowGetParams as WorkflowGetParams,
+    type WorkflowJobProgressParams as WorkflowJobProgressParams,
+    type WorkflowJobsParams as WorkflowJobsParams,
     type WorkflowTriggerParams as WorkflowTriggerParams,
   };
 }
