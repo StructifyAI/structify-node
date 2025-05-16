@@ -98,6 +98,8 @@ export interface JobListResponse {
 
   user_id: string;
 
+  message?: string | null;
+
   parameters?: JobListResponse.Parameters | null;
 
   reason?: string | null;
