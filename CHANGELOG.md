@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.134.0 (2025-05-16)
+
+Full Changelog: [v1.133.0...v1.134.0](https://github.com/StructifyAI/structify-node/compare/v1.133.0...v1.134.0)
+
+### Features
+
+* **api:** api update ([db3c3be](https://github.com/StructifyAI/structify-node/commit/db3c3bedfae88405b36a2eb2f00c462c65e78e63))
+
 ## 1.133.0 (2025-05-16)
 
 Full Changelog: [v1.132.0...v1.133.0](https://github.com/StructifyAI/structify-node/compare/v1.132.0...v1.133.0)
