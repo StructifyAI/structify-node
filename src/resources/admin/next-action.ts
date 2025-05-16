@@ -78,6 +78,8 @@ export interface ActionTrainingDataEntry {
 
   input: ActionTrainingDataEntry.Input;
 
+  input_prompt: string;
+
   outputs: Array<ActionTrainingDataEntry.Output>;
 }
 
