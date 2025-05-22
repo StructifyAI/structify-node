@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.134.1 (2025-05-22)
+
+Full Changelog: [v1.134.0...v1.134.1](https://github.com/StructifyAI/structify-node/compare/v1.134.0...v1.134.1)
+
+### Chores
+
+* **docs:** grammar improvements ([67e9ae9](https://github.com/StructifyAI/structify-node/commit/67e9ae9514428d9f6bbf11f3b251f2964f9dc079))
+
 ## 1.134.0 (2025-05-16)
 
 Full Changelog: [v1.133.0...v1.134.0](https://github.com/StructifyAI/structify-node/compare/v1.133.0...v1.134.0)
