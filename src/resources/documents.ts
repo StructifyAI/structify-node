@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
+import * as SharedAPI from './shared';
 
 export class Documents extends APIResource {
   /**
@@ -45,10 +46,14 @@ export class Documents extends APIResource {
    * Returns the structured data as JSON.
    */
   structure(
-    body: DocumentStructureParams,
+    params: DocumentStructureParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<DocumentStructureResponse> {
-    return this._client.post('/documents/structure', Core.multipartFormRequestOptions({ body, ...options }));
+    const { dataset_descriptor, ...body } = params;
+    return this._client.post(
+      '/documents/structure',
+      Core.multipartFormRequestOptions({ query: { dataset_descriptor }, body, ...options }),
+    );
   }
 
   /**
@@ -115,6 +120,17 @@ export interface DocumentDownloadParams {
 }
 
 export interface DocumentStructureParams {
+  /**
+   * Query param: A dataset is where you put multiple referential schemas.
+   *
+   * A dataset is a complete namespace where all references between schemas are held
+   * within the dataset.
+   */
+  dataset_descriptor: SharedAPI.DatasetDescriptor;
+
+  /**
+   * Body param:
+   */
   content: Core.Uploadable;
 }
 

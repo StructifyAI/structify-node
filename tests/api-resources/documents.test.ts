@@ -66,6 +66,25 @@ describe('resource documents', () => {
 
   test('structure: only required params', async () => {
     const responsePromise = client.documents.structure({
+      dataset_descriptor: {
+        description: 'description',
+        name: 'name',
+        relationships: [
+          {
+            description: 'description',
+            name: 'name',
+            source_table: 'source_table',
+            target_table: 'target_table',
+          },
+        ],
+        tables: [
+          {
+            description: 'description',
+            name: 'name',
+            properties: [{ description: 'description', name: 'name' }],
+          },
+        ],
+      },
       content: await toFile(Buffer.from('# my file contents'), 'README.md'),
     });
     const rawResponse = await responsePromise.asResponse();
@@ -79,6 +98,37 @@ describe('resource documents', () => {
 
   test('structure: required and optional params', async () => {
     const response = await client.documents.structure({
+      dataset_descriptor: {
+        description: 'description',
+        name: 'name',
+        relationships: [
+          {
+            description: 'description',
+            name: 'name',
+            source_table: 'source_table',
+            target_table: 'target_table',
+            merge_strategy: {
+              source_cardinality_given_target_match: 0,
+              target_cardinality_given_source_match: 0,
+            },
+            properties: [
+              { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+            ],
+          },
+        ],
+        tables: [
+          {
+            description: 'description',
+            name: 'name',
+            properties: [
+              { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+            ],
+            expected_cardinality: 0,
+            primary_column: 'primary_column',
+          },
+        ],
+        llm_override_field: 'llm_override_field',
+      },
       content: await toFile(Buffer.from('# my file contents'), 'README.md'),
     });
   });
