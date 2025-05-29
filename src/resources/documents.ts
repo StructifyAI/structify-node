@@ -42,14 +42,13 @@ export class Documents extends APIResource {
   }
 
   /**
-   * Returns a job id that can be waited on until the request is finished.
+   * Returns the structured data as JSON.
    */
-  structure(body: DocumentStructureParams, options?: Core.RequestOptions): Core.APIPromise<string> {
-    return this._client.post('/documents/structure', {
-      body,
-      ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
-    });
+  structure(
+    body: DocumentStructureParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<DocumentStructureResponse> {
+    return this._client.post('/documents/structure', Core.multipartFormRequestOptions({ body, ...options }));
   }
 
   /**
@@ -95,7 +94,7 @@ export interface DocumentDownloadResponse {
   content: Core.Uploadable;
 }
 
-export type DocumentStructureResponse = string;
+export type DocumentStructureResponse = Record<string, unknown>;
 
 export interface DocumentListParams {
   dataset?: string | null;
@@ -116,9 +115,7 @@ export interface DocumentDownloadParams {
 }
 
 export interface DocumentStructureParams {
-  dataset: string;
-
-  path: string;
+  content: Core.Uploadable;
 }
 
 export interface DocumentUploadParams {

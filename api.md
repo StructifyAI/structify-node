@@ -218,7 +218,7 @@ Methods:
 - <code title="get /documents/list">client.documents.<a href="./src/resources/documents.ts">list</a>({ ...params }) -> DocumentListResponse</code>
 - <code title="delete /documents/delete">client.documents.<a href="./src/resources/documents.ts">delete</a>({ ...params }) -> void</code>
 - <code title="post /documents/download">client.documents.<a href="./src/resources/documents.ts">download</a>({ ...params }) -> DocumentDownloadResponse</code>
-- <code title="post /documents/structure">client.documents.<a href="./src/resources/documents.ts">structure</a>({ ...params }) -> string</code>
+- <code title="post /documents/structure">client.documents.<a href="./src/resources/documents.ts">structure</a>({ ...params }) -> DocumentStructureResponse</code>
 - <code title="post /documents/upload">client.documents.<a href="./src/resources/documents.ts">upload</a>({ ...params }) -> void</code>
 
 # Jobs
