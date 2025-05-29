@@ -24,7 +24,7 @@ import Structify from 'structifyai';
 
 const client = new Structify({
   apiKey: process.env['STRUCTIFY_API_TOKEN'], // This is the default and can be omitted
-  environment: 'deployment', // defaults to 'production'
+  environment: 'development', // defaults to 'production'
 });
 
 async function main() {
@@ -46,7 +46,7 @@ import Structify from 'structifyai';
 
 const client = new Structify({
   apiKey: process.env['STRUCTIFY_API_TOKEN'], // This is the default and can be omitted
-  environment: 'deployment', // defaults to 'production'
+  environment: 'development', // defaults to 'production'
 });
 
 async function main() {

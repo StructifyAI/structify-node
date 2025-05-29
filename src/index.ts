@@ -173,7 +173,7 @@ import {
 
 const environments = {
   production: 'https://api.structify.ai',
-  deployment: 'http://localhost:8080',
+  development: 'http://localhost:8080',
 };
 type Environment = keyof typeof environments;
 
@@ -188,7 +188,7 @@ export interface ClientOptions {
    *
    * Each environment maps to a different base URL:
    * - `production` corresponds to `https://api.structify.ai`
-   * - `deployment` corresponds to `http://localhost:8080`
+   * - `development` corresponds to `http://localhost:8080`
    */
   environment?: Environment | undefined;
 

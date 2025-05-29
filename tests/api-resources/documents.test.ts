@@ -65,7 +65,9 @@ describe('resource documents', () => {
   });
 
   test('structure: only required params', async () => {
-    const responsePromise = client.documents.structure({ dataset: 'dataset', path: 'path' });
+    const responsePromise = client.documents.structure({
+      content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -76,7 +78,9 @@ describe('resource documents', () => {
   });
 
   test('structure: required and optional params', async () => {
-    const response = await client.documents.structure({ dataset: 'dataset', path: 'path' });
+    const response = await client.documents.structure({
+      content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+    });
   });
 
   test('upload: only required params', async () => {
