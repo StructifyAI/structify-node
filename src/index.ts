@@ -9,6 +9,22 @@ import { type JobsListParams, JobsListResponse } from './pagination';
 import * as Uploads from './uploads';
 import * as API from './resources/index';
 import {
+  AddChatMessageRequest,
+  AddChatMessageResponse,
+  Chat,
+  ChatAddMessageParams,
+  ChatCreateSessionParams,
+  ChatListSessionsParams,
+  ChatSession,
+  ChatSessionWithMessages,
+  CreateChatSessionRequest,
+  CreateChatSessionResponse,
+  DeleteChatSessionResponse,
+  ErrorResponse,
+  GetChatSessionResponse,
+  ListChatSessionsResponse,
+} from './resources/chat';
+import {
   DocumentDeleteParams,
   DocumentDownloadParams,
   DocumentDownloadResponse,
@@ -308,6 +324,7 @@ export class Structify extends Core.APIClient {
   }
 
   user: API.User = new API.User(this);
+  chat: API.Chat = new API.Chat(this);
   admin: API.Admin = new API.Admin(this);
   workflow: API.WorkflowResource = new API.WorkflowResource(this);
   datasets: API.Datasets = new API.Datasets(this);
@@ -361,6 +378,7 @@ export class Structify extends Core.APIClient {
 }
 
 Structify.User = User;
+Structify.Chat = Chat;
 Structify.Admin = Admin;
 Structify.WorkflowResource = WorkflowResource;
 Structify.Datasets = Datasets;
@@ -388,6 +406,23 @@ export declare namespace Structify {
     type UserTransactionsResponse as UserTransactionsResponse,
     type UserUsageResponse as UserUsageResponse,
     type UserUsageParams as UserUsageParams,
+  };
+
+  export {
+    Chat as Chat,
+    type AddChatMessageRequest as AddChatMessageRequest,
+    type AddChatMessageResponse as AddChatMessageResponse,
+    type ChatSession as ChatSession,
+    type ChatSessionWithMessages as ChatSessionWithMessages,
+    type CreateChatSessionRequest as CreateChatSessionRequest,
+    type CreateChatSessionResponse as CreateChatSessionResponse,
+    type DeleteChatSessionResponse as DeleteChatSessionResponse,
+    type ErrorResponse as ErrorResponse,
+    type GetChatSessionResponse as GetChatSessionResponse,
+    type ListChatSessionsResponse as ListChatSessionsResponse,
+    type ChatAddMessageParams as ChatAddMessageParams,
+    type ChatCreateSessionParams as ChatCreateSessionParams,
+    type ChatListSessionsParams as ChatListSessionsParams,
   };
 
   export { Admin as Admin };
