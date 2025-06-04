@@ -28,6 +28,29 @@ Methods:
 - <code title="post /user/transactions/stripe/create_session">client.user.stripe.<a href="./src/resources/user/stripe.ts">createSession</a>({ ...params }) -> CreateSessionResponse</code>
 - <code title="post /user/transactions/stripe/create_subscription">client.user.stripe.<a href="./src/resources/user/stripe.ts">createSubscription</a>({ ...params }) -> CreateSessionResponse</code>
 
+# Chat
+
+Types:
+
+- <code><a href="./src/resources/chat.ts">AddChatMessageRequest</a></code>
+- <code><a href="./src/resources/chat.ts">AddChatMessageResponse</a></code>
+- <code><a href="./src/resources/chat.ts">ChatSession</a></code>
+- <code><a href="./src/resources/chat.ts">ChatSessionWithMessages</a></code>
+- <code><a href="./src/resources/chat.ts">CreateChatSessionRequest</a></code>
+- <code><a href="./src/resources/chat.ts">CreateChatSessionResponse</a></code>
+- <code><a href="./src/resources/chat.ts">DeleteChatSessionResponse</a></code>
+- <code><a href="./src/resources/chat.ts">ErrorResponse</a></code>
+- <code><a href="./src/resources/chat.ts">GetChatSessionResponse</a></code>
+- <code><a href="./src/resources/chat.ts">ListChatSessionsResponse</a></code>
+
+Methods:
+
+- <code title="post /chat/sessions/{session_id}/messages">client.chat.<a href="./src/resources/chat.ts">addMessage</a>(sessionId, { ...params }) -> AddChatMessageResponse</code>
+- <code title="post /chat/sessions">client.chat.<a href="./src/resources/chat.ts">createSession</a>({ ...params }) -> CreateChatSessionResponse</code>
+- <code title="delete /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">deleteSession</a>(sessionId) -> DeleteChatSessionResponse</code>
+- <code title="get /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">getSession</a>(sessionId) -> GetChatSessionResponse</code>
+- <code title="get /chat/sessions">client.chat.<a href="./src/resources/chat.ts">listSessions</a>({ ...params }) -> ListChatSessionsResponse</code>
+
 # Admin
 
 ## HumanLlm
