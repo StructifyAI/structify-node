@@ -2,6 +2,22 @@
 
 export { Admin } from './admin/admin';
 export {
+  Chat,
+  type AddChatMessageRequest,
+  type AddChatMessageResponse,
+  type ChatSession,
+  type ChatSessionWithMessages,
+  type CreateChatSessionRequest,
+  type CreateChatSessionResponse,
+  type DeleteChatSessionResponse,
+  type ErrorResponse,
+  type GetChatSessionResponse,
+  type ListChatSessionsResponse,
+  type ChatAddMessageParams,
+  type ChatCreateSessionParams,
+  type ChatListSessionsParams,
+} from './chat';
+export {
   DatasetViewRelationshipsResponsesJobsList,
   DatasetViewTableResponsesJobsList,
   Datasets,
