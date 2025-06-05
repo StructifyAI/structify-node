@@ -27,13 +27,9 @@ const client = new Structify({
   environment: 'development', // defaults to 'production'
 });
 
-async function main() {
-  const serverInformation = await client.server.version();
+const serverInformation = await client.server.version();
 
-  console.log(serverInformation.version);
-}
-
-main();
+console.log(serverInformation.version);
 ```
 
 ### Request & Response types
@@ -49,11 +45,7 @@ const client = new Structify({
   environment: 'development', // defaults to 'production'
 });
 
-async function main() {
-  const serverInformation: Structify.ServerInformation = await client.server.version();
-}
-
-main();
+const serverInformation: Structify.ServerInformation = await client.server.version();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -111,19 +103,15 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-async function main() {
-  const serverInformation = await client.server.version().catch(async (err) => {
-    if (err instanceof Structify.APIError) {
-      console.log(err.status); // 400
-      console.log(err.name); // BadRequestError
-      console.log(err.headers); // {server: 'nginx', ...}
-    } else {
-      throw err;
-    }
-  });
-}
-
-main();
+const serverInformation = await client.server.version().catch(async (err) => {
+  if (err instanceof Structify.APIError) {
+    console.log(err.status); // 400
+    console.log(err.name); // BadRequestError
+    console.log(err.headers); // {server: 'nginx', ...}
+  } else {
+    throw err;
+  }
+});
 ```
 
 Error codes are as follows:
