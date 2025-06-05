@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.135.0 (2025-06-05)
+
+Full Changelog: [v1.134.0...v1.135.0](https://github.com/StructifyAI/structify-node/compare/v1.134.0...v1.135.0)
+
+### Features
+
+* **api:** api update ([9a8807e](https://github.com/StructifyAI/structify-node/commit/9a8807e6b9fc6d0a8cb92cba5e696f53cf7cb51d))
+* **api:** api update ([a54e947](https://github.com/StructifyAI/structify-node/commit/a54e9479b44f5766762cf58436884c86596f0bd6))
+* **api:** manual updates ([b9ccc44](https://github.com/StructifyAI/structify-node/commit/b9ccc44129e7fb24c2f08381cef0eba9c9aaf0d1))
+* **api:** manual updates ([dfa70b3](https://github.com/StructifyAI/structify-node/commit/dfa70b3a78fbbed1b50e92cfd6d545c33047a9ba))
+
+
+### Chores
+
+* **docs:** grammar improvements ([67e9ae9](https://github.com/StructifyAI/structify-node/commit/67e9ae9514428d9f6bbf11f3b251f2964f9dc079))
+* improve publish-npm script --latest tag logic ([28a3f5d](https://github.com/StructifyAI/structify-node/commit/28a3f5d416966ef083a694e0619898a7afd94854))
+
 ## 1.134.0 (2025-05-16)
 
 Full Changelog: [v1.133.0...v1.134.0](https://github.com/StructifyAI/structify-node/compare/v1.133.0...v1.134.0)
