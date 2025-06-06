@@ -98,6 +98,8 @@ export interface ChatSession {
 
   created_at: string;
 
+  project_id: string;
+
   updated_at: string;
 
   user_id: string;
@@ -109,6 +111,8 @@ export interface ChatSessionWithMessages {
   created_at: string;
 
   messages: Array<ChatSessionWithMessages.Message>;
+
+  project_id: string;
 
   updated_at: string;
 
@@ -133,6 +137,8 @@ export namespace ChatSessionWithMessages {
 
 export interface CreateChatSessionRequest {
   initial_message: string;
+
+  project_id: string;
 }
 
 /**
@@ -182,6 +188,8 @@ export interface ChatAddMessageParams {
 
 export interface ChatCreateSessionParams {
   initial_message: string;
+
+  project_id: string;
 }
 
 export interface ChatListSessionsParams {
