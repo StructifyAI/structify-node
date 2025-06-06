@@ -29,7 +29,10 @@ describe('resource chat', () => {
   });
 
   test('createSession: only required params', async () => {
-    const responsePromise = client.chat.createSession({ initial_message: 'initial_message' });
+    const responsePromise = client.chat.createSession({
+      initial_message: 'initial_message',
+      project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -40,7 +43,10 @@ describe('resource chat', () => {
   });
 
   test('createSession: required and optional params', async () => {
-    const response = await client.chat.createSession({ initial_message: 'initial_message' });
+    const response = await client.chat.createSession({
+      initial_message: 'initial_message',
+      project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
   });
 
   test('deleteSession', async () => {

@@ -130,11 +130,7 @@ export namespace JobListResponse {
      */
     seeded_kg: SharedAPI.KnowledgeGraph;
 
-    structuring_input:
-      | Parameters.Agent
-      | Parameters.TransformationPrompt
-      | Parameters.ScrapeFromURLProperty
-      | Parameters.ScrapeURL;
+    structuring_input: Parameters.Agent | Parameters.TransformationPrompt | Parameters.ScrapePage;
   }
 
   export namespace Parameters {
@@ -179,12 +175,8 @@ export namespace JobListResponse {
       TransformationPrompt: string;
     }
 
-    export interface ScrapeFromURLProperty {
-      ScrapeFromUrlProperty: string;
-    }
-
-    export interface ScrapeURL {
-      ScrapeUrl: string;
+    export interface ScrapePage {
+      ScrapePage: string;
     }
   }
 }
