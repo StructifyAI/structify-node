@@ -109,6 +109,7 @@ export {
   type JobGetStepsResponse,
   type JobListParams,
 } from './jobs';
+export { Projects, type DeleteProjectResponse, type GetProjectResponse, type Project } from './projects';
 export {
   Report,
   type ReportMissingResponse,
@@ -120,7 +121,6 @@ export {
   type ReportStepParams,
   type ReportWrongParams,
 } from './report';
-export { Scrape, type ScrapeListRequest, type ScrapeListResponse, type ScrapeListParams } from './scrape';
 export { Server, type ServerInformation } from './server';
 export {
   Shared,
@@ -153,6 +153,31 @@ export {
   type StructureJobStatusParams,
   type StructureRunAsyncParams,
 } from './structure';
+export {
+  Teams,
+  type AddMemberRequest,
+  type AddMemberResponse,
+  type CreateProjectRequest,
+  type CreateProjectResponse,
+  type CreateTeamRequest,
+  type CreateTeamResponse,
+  type DeleteTeamResponse,
+  type GetTeamResponse,
+  type ListMembersResponse,
+  type ListProjectsResponse,
+  type ListTeamsResponse,
+  type RemoveMemberResponse,
+  type Team,
+  type TeamRole,
+  type TeamWithRole,
+  type UpdateTeamRequest,
+  type UpdateTeamResponse,
+  type UserTeam,
+  type TeamCreateParams,
+  type TeamUpdateParams,
+  type TeamAddMemberParams,
+  type TeamCreateProjectParams,
+} from './teams';
 export {
   User,
   type TokenResponse,

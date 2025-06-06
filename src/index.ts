@@ -85,6 +85,7 @@ import {
   JobListResponsesJobsList,
   Jobs,
 } from './resources/jobs';
+import { DeleteProjectResponse, GetProjectResponse, Project, Projects } from './resources/projects';
 import {
   Report,
   ReportMissingParams,
@@ -96,7 +97,6 @@ import {
   ReportWrongParams,
   ReportWrongResponse,
 } from './resources/report';
-import { Scrape, ScrapeListParams, ScrapeListRequest, ScrapeListResponse } from './resources/scrape';
 import { Server, ServerInformation } from './resources/server';
 import {
   DatasetDescriptor,
@@ -129,6 +129,31 @@ import {
   StructureRunAsyncResponse,
   ToolMetadata,
 } from './resources/structure';
+import {
+  AddMemberRequest,
+  AddMemberResponse,
+  CreateProjectRequest,
+  CreateProjectResponse,
+  CreateTeamRequest,
+  CreateTeamResponse,
+  DeleteTeamResponse,
+  GetTeamResponse,
+  ListMembersResponse,
+  ListProjectsResponse,
+  ListTeamsResponse,
+  RemoveMemberResponse,
+  Team,
+  TeamAddMemberParams,
+  TeamCreateParams,
+  TeamCreateProjectParams,
+  TeamRole,
+  TeamUpdateParams,
+  TeamWithRole,
+  Teams,
+  UpdateTeamRequest,
+  UpdateTeamResponse,
+  UserTeam,
+} from './resources/teams';
 import {
   ExistingWorkflow,
   ID,
@@ -326,6 +351,8 @@ export class Structify extends Core.APIClient {
 
   user: API.User = new API.User(this);
   chat: API.Chat = new API.Chat(this);
+  teams: API.Teams = new API.Teams(this);
+  projects: API.Projects = new API.Projects(this);
   admin: API.Admin = new API.Admin(this);
   workflow: API.WorkflowResource = new API.WorkflowResource(this);
   datasets: API.Datasets = new API.Datasets(this);
@@ -335,7 +362,6 @@ export class Structify extends Core.APIClient {
   sources: API.Sources = new API.Sources(this);
   entities: API.Entities = new API.Entities(this);
   report: API.Report = new API.Report(this);
-  scrape: API.Scrape = new API.Scrape(this);
   structure: API.Structure = new API.Structure(this);
   shared: API.Shared = new API.Shared(this);
 
@@ -381,6 +407,8 @@ export class Structify extends Core.APIClient {
 
 Structify.User = User;
 Structify.Chat = Chat;
+Structify.Teams = Teams;
+Structify.Projects = Projects;
 Structify.Admin = Admin;
 Structify.WorkflowResource = WorkflowResource;
 Structify.Datasets = Datasets;
@@ -393,7 +421,6 @@ Structify.Server = Server;
 Structify.Sources = Sources;
 Structify.Entities = Entities;
 Structify.Report = Report;
-Structify.Scrape = Scrape;
 Structify.Structure = Structure;
 Structify.Shared = Shared;
 export declare namespace Structify {
@@ -426,6 +453,39 @@ export declare namespace Structify {
     type ChatAddMessageParams as ChatAddMessageParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
     type ChatListSessionsParams as ChatListSessionsParams,
+  };
+
+  export {
+    Teams as Teams,
+    type AddMemberRequest as AddMemberRequest,
+    type AddMemberResponse as AddMemberResponse,
+    type CreateProjectRequest as CreateProjectRequest,
+    type CreateProjectResponse as CreateProjectResponse,
+    type CreateTeamRequest as CreateTeamRequest,
+    type CreateTeamResponse as CreateTeamResponse,
+    type DeleteTeamResponse as DeleteTeamResponse,
+    type GetTeamResponse as GetTeamResponse,
+    type ListMembersResponse as ListMembersResponse,
+    type ListProjectsResponse as ListProjectsResponse,
+    type ListTeamsResponse as ListTeamsResponse,
+    type RemoveMemberResponse as RemoveMemberResponse,
+    type Team as Team,
+    type TeamRole as TeamRole,
+    type TeamWithRole as TeamWithRole,
+    type UpdateTeamRequest as UpdateTeamRequest,
+    type UpdateTeamResponse as UpdateTeamResponse,
+    type UserTeam as UserTeam,
+    type TeamCreateParams as TeamCreateParams,
+    type TeamUpdateParams as TeamUpdateParams,
+    type TeamAddMemberParams as TeamAddMemberParams,
+    type TeamCreateProjectParams as TeamCreateProjectParams,
+  };
+
+  export {
+    Projects as Projects,
+    type DeleteProjectResponse as DeleteProjectResponse,
+    type GetProjectResponse as GetProjectResponse,
+    type Project as Project,
   };
 
   export { Admin as Admin };
@@ -564,13 +624,6 @@ export declare namespace Structify {
     type ReportRelationshipParams as ReportRelationshipParams,
     type ReportStepParams as ReportStepParams,
     type ReportWrongParams as ReportWrongParams,
-  };
-
-  export {
-    Scrape as Scrape,
-    type ScrapeListRequest as ScrapeListRequest,
-    type ScrapeListResponse as ScrapeListResponse,
-    type ScrapeListParams as ScrapeListParams,
   };
 
   export {

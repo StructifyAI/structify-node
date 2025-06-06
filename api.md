@@ -51,6 +51,55 @@ Methods:
 - <code title="get /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">getSession</a>(sessionId) -> GetChatSessionResponse</code>
 - <code title="get /chat/sessions">client.chat.<a href="./src/resources/chat.ts">listSessions</a>({ ...params }) -> ListChatSessionsResponse</code>
 
+# Teams
+
+Types:
+
+- <code><a href="./src/resources/teams.ts">AddMemberRequest</a></code>
+- <code><a href="./src/resources/teams.ts">AddMemberResponse</a></code>
+- <code><a href="./src/resources/teams.ts">CreateProjectRequest</a></code>
+- <code><a href="./src/resources/teams.ts">CreateProjectResponse</a></code>
+- <code><a href="./src/resources/teams.ts">CreateTeamRequest</a></code>
+- <code><a href="./src/resources/teams.ts">CreateTeamResponse</a></code>
+- <code><a href="./src/resources/teams.ts">DeleteTeamResponse</a></code>
+- <code><a href="./src/resources/teams.ts">GetTeamResponse</a></code>
+- <code><a href="./src/resources/teams.ts">ListMembersResponse</a></code>
+- <code><a href="./src/resources/teams.ts">ListProjectsResponse</a></code>
+- <code><a href="./src/resources/teams.ts">ListTeamsResponse</a></code>
+- <code><a href="./src/resources/teams.ts">RemoveMemberResponse</a></code>
+- <code><a href="./src/resources/teams.ts">Team</a></code>
+- <code><a href="./src/resources/teams.ts">TeamRole</a></code>
+- <code><a href="./src/resources/teams.ts">TeamWithRole</a></code>
+- <code><a href="./src/resources/teams.ts">UpdateTeamRequest</a></code>
+- <code><a href="./src/resources/teams.ts">UpdateTeamResponse</a></code>
+- <code><a href="./src/resources/teams.ts">UserTeam</a></code>
+
+Methods:
+
+- <code title="post /team/create">client.teams.<a href="./src/resources/teams.ts">create</a>({ ...params }) -> CreateTeamResponse</code>
+- <code title="put /team/{team_id}">client.teams.<a href="./src/resources/teams.ts">update</a>(teamId, { ...params }) -> UpdateTeamResponse</code>
+- <code title="get /team/list">client.teams.<a href="./src/resources/teams.ts">list</a>() -> ListTeamsResponse</code>
+- <code title="delete /team/{team_id}">client.teams.<a href="./src/resources/teams.ts">delete</a>(teamId) -> DeleteTeamResponse</code>
+- <code title="post /team/{team_id}/members">client.teams.<a href="./src/resources/teams.ts">addMember</a>(teamId, { ...params }) -> AddMemberResponse</code>
+- <code title="post /team/{team_id}/projects">client.teams.<a href="./src/resources/teams.ts">createProject</a>(teamId, { ...params }) -> CreateProjectResponse</code>
+- <code title="get /team/{team_id}">client.teams.<a href="./src/resources/teams.ts">get</a>(teamId) -> GetTeamResponse</code>
+- <code title="get /team/{team_id}/members">client.teams.<a href="./src/resources/teams.ts">listMembers</a>(teamId) -> ListMembersResponse</code>
+- <code title="get /team/{team_id}/projects">client.teams.<a href="./src/resources/teams.ts">listProjects</a>(teamId) -> ListProjectsResponse</code>
+- <code title="delete /team/{team_id}/members/{user_id}">client.teams.<a href="./src/resources/teams.ts">removeMember</a>(teamId, userId) -> RemoveMemberResponse</code>
+
+# Projects
+
+Types:
+
+- <code><a href="./src/resources/projects.ts">DeleteProjectResponse</a></code>
+- <code><a href="./src/resources/projects.ts">GetProjectResponse</a></code>
+- <code><a href="./src/resources/projects.ts">Project</a></code>
+
+Methods:
+
+- <code title="delete /team/{team_id}/project/{project_id}">client.projects.<a href="./src/resources/projects.ts">delete</a>(teamId, projectId) -> DeleteProjectResponse</code>
+- <code title="get /team/{team_id}/project/{project_id}">client.projects.<a href="./src/resources/projects.ts">get</a>(teamId, projectId) -> GetProjectResponse</code>
+
 # Admin
 
 ## HumanLlm
@@ -346,17 +395,6 @@ Methods:
 - <code title="post /report/relationship/missing">client.report.<a href="./src/resources/report.ts">relationship</a>({ ...params }) -> string</code>
 - <code title="post /report/step">client.report.<a href="./src/resources/report.ts">step</a>({ ...params }) -> string</code>
 - <code title="post /report/entity/wrong">client.report.<a href="./src/resources/report.ts">wrong</a>({ ...params }) -> string</code>
-
-# Scrape
-
-Types:
-
-- <code><a href="./src/resources/scrape.ts">ScrapeListRequest</a></code>
-- <code><a href="./src/resources/scrape.ts">ScrapeListResponse</a></code>
-
-Methods:
-
-- <code title="post /scrape/list">client.scrape.<a href="./src/resources/scrape.ts">list</a>({ ...params }) -> ScrapeListResponse</code>
 
 # Structure
 
