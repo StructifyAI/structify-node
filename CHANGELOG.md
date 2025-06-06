@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.136.0 (2025-06-06)
+
+Full Changelog: [v1.135.0...v1.136.0](https://github.com/StructifyAI/structify-node/compare/v1.135.0...v1.136.0)
+
+### Features
+
+* **api:** manual updates ([0e317ca](https://github.com/StructifyAI/structify-node/commit/0e317ca163f2597db2a50ae13b796e4479691379))
+* scraper functional ([0aa8b21](https://github.com/StructifyAI/structify-node/commit/0aa8b210c5043c6e4ae7953657bdc1339fccd2c2))
+
 ## 1.135.0 (2025-06-05)
 
 Full Changelog: [v1.134.0...v1.135.0](https://github.com/StructifyAI/structify-node/compare/v1.134.0...v1.135.0)
