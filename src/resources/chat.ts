@@ -65,6 +65,8 @@ export class Chat extends APIResource {
 export interface AddChatMessageRequest {
   content: string;
 
+  git_commit_hash: string;
+
   role: string;
 
   timestamp?: string | null;
@@ -87,6 +89,8 @@ export namespace AddChatMessageResponse {
 
     created_at: string;
 
+    git_commit_hash: string;
+
     role: string;
 
     timestamp: string;
@@ -97,6 +101,10 @@ export interface ChatSession {
   id: string;
 
   created_at: string;
+
+  git_branch: string;
+
+  git_repo_id: string;
 
   project_id: string;
 
@@ -109,6 +117,10 @@ export interface ChatSessionWithMessages {
   id: string;
 
   created_at: string;
+
+  git_branch: string;
+
+  git_repo_id: string;
 
   messages: Array<ChatSessionWithMessages.Message>;
 
@@ -129,6 +141,8 @@ export namespace ChatSessionWithMessages {
 
     created_at: string;
 
+    git_commit_hash: string;
+
     role: string;
 
     timestamp: string;
@@ -136,6 +150,12 @@ export namespace ChatSessionWithMessages {
 }
 
 export interface CreateChatSessionRequest {
+  git_branch: string;
+
+  git_commit_hash: string;
+
+  git_repo_id: string;
+
   initial_message: string;
 
   project_id: string;
@@ -181,12 +201,20 @@ export interface ListChatSessionsResponse {
 export interface ChatAddMessageParams {
   content: string;
 
+  git_commit_hash: string;
+
   role: string;
 
   timestamp?: string | null;
 }
 
 export interface ChatCreateSessionParams {
+  git_branch: string;
+
+  git_commit_hash: string;
+
+  git_repo_id: string;
+
   initial_message: string;
 
   project_id: string;
