@@ -121,6 +121,7 @@ export {
   type ReportStepParams,
   type ReportWrongParams,
 } from './report';
+export { Scrape, type ScrapeListRequest, type ScrapeListResponse, type ScrapeListParams } from './scrape';
 export { Server, type ServerInformation } from './server';
 export {
   Shared,

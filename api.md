@@ -399,6 +399,17 @@ Methods:
 - <code title="post /report/step">client.report.<a href="./src/resources/report.ts">step</a>({ ...params }) -> string</code>
 - <code title="post /report/entity/wrong">client.report.<a href="./src/resources/report.ts">wrong</a>({ ...params }) -> string</code>
 
+# Scrape
+
+Types:
+
+- <code><a href="./src/resources/scrape.ts">ScrapeListRequest</a></code>
+- <code><a href="./src/resources/scrape.ts">ScrapeListResponse</a></code>
+
+Methods:
+
+- <code title="post /scrape/list">client.scrape.<a href="./src/resources/scrape.ts">list</a>({ ...params }) -> ScrapeListResponse</code>
+
 # Structure
 
 Types:
