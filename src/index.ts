@@ -205,9 +205,12 @@ import {
   Strategy,
 } from './resources/datasets/datasets';
 import {
+  SurveySubmissionRequest,
+  SurveySubmissionResponse,
   TokenResponse,
   User,
   UserInfo,
+  UserSurveySubmitParams,
   UserTransactionsResponse,
   UserUsageParams,
   UserUsageResponse,
@@ -431,10 +434,13 @@ export declare namespace Structify {
 
   export {
     User as User,
+    type SurveySubmissionRequest as SurveySubmissionRequest,
+    type SurveySubmissionResponse as SurveySubmissionResponse,
     type TokenResponse as TokenResponse,
     type UserInfo as UserInfo,
     type UserTransactionsResponse as UserTransactionsResponse,
     type UserUsageResponse as UserUsageResponse,
+    type UserSurveySubmitParams as UserSurveySubmitParams,
     type UserUsageParams as UserUsageParams,
   };
 

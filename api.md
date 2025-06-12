@@ -2,6 +2,8 @@
 
 Types:
 
+- <code><a href="./src/resources/user/user.ts">SurveySubmissionRequest</a></code>
+- <code><a href="./src/resources/user/user.ts">SurveySubmissionResponse</a></code>
 - <code><a href="./src/resources/user/user.ts">TokenResponse</a></code>
 - <code><a href="./src/resources/user/user.ts">UserInfo</a></code>
 - <code><a href="./src/resources/user/user.ts">UserTransactionsResponse</a></code>
@@ -11,6 +13,7 @@ Methods:
 
 - <code title="get /user/info">client.user.<a href="./src/resources/user/user.ts">info</a>() -> UserInfo</code>
 - <code title="post /user/jwt_to_api_token/{jwt}">client.user.<a href="./src/resources/user/user.ts">jwtToAPIToken</a>(jwt) -> TokenResponse</code>
+- <code title="post /user/survey/submit">client.user.<a href="./src/resources/user/user.ts">surveySubmit</a>({ ...params }) -> SurveySubmissionResponse</code>
 - <code title="get /user/transactions/list">client.user.<a href="./src/resources/user/user.ts">transactions</a>() -> UserTransactionsResponse</code>
 - <code title="get /user/usage">client.user.<a href="./src/resources/user/user.ts">usage</a>({ ...params }) -> UserUsageResponse</code>
 

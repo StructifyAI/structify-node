@@ -45,6 +45,21 @@ describe('resource user', () => {
     );
   });
 
+  test('surveySubmit: only required params', async () => {
+    const responsePromise = client.user.surveySubmit({ survey_response: { foo: 'bar' } });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('surveySubmit: required and optional params', async () => {
+    const response = await client.user.surveySubmit({ survey_response: { foo: 'bar' } });
+  });
+
   test('transactions', async () => {
     const responsePromise = client.user.transactions();
     const rawResponse = await responsePromise.asResponse();

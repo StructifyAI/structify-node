@@ -74,6 +74,10 @@ export interface User {
   updated_at: string;
 
   user_type: 'admin' | 'public' | 'end_user' | 'pro';
+
+  survey_completed_at?: string | null;
+
+  survey_response?: unknown;
 }
 
 export type UserListResponse = Array<UserListResponse.UserListResponseItem>;
