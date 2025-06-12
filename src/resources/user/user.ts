@@ -43,6 +43,16 @@ export class User extends APIResource {
     return this._client.post(`/user/jwt_to_api_token/${jwt}`, options);
   }
 
+  /**
+   * Submit user onboarding survey
+   */
+  surveySubmit(
+    body: UserSurveySubmitParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<SurveySubmissionResponse> {
+    return this._client.post('/user/survey/submit', { body, ...options });
+  }
+
   transactions(options?: Core.RequestOptions): Core.APIPromise<UserTransactionsResponse> {
     return this._client.get('/user/transactions/list', options);
   }
@@ -61,6 +71,16 @@ export class User extends APIResource {
     }
     return this._client.get('/user/usage', { query, ...options });
   }
+}
+
+export interface SurveySubmissionRequest {
+  survey_response: Record<string, unknown>;
+}
+
+export interface SurveySubmissionResponse {
+  message: string;
+
+  success: boolean;
 }
 
 export interface TokenResponse {
@@ -88,6 +108,8 @@ export interface UserInfo {
   user_type: 'admin' | 'public' | 'end_user' | 'pro';
 
   username: string;
+
+  survey_completed_at?: string | null;
 }
 
 export type UserTransactionsResponse = Array<UserTransactionsResponse.UserTransactionsResponseItem>;
@@ -119,6 +141,10 @@ export interface UserUsageResponse {
   num_relationships: number;
 }
 
+export interface UserSurveySubmitParams {
+  survey_response: Record<string, unknown>;
+}
+
 export interface UserUsageParams {
   dataset?: string | null;
 }
@@ -127,10 +153,13 @@ User.Stripe = Stripe;
 
 export declare namespace User {
   export {
+    type SurveySubmissionRequest as SurveySubmissionRequest,
+    type SurveySubmissionResponse as SurveySubmissionResponse,
     type TokenResponse as TokenResponse,
     type UserInfo as UserInfo,
     type UserTransactionsResponse as UserTransactionsResponse,
     type UserUsageResponse as UserUsageResponse,
+    type UserSurveySubmitParams as UserSurveySubmitParams,
     type UserUsageParams as UserUsageParams,
   };
 

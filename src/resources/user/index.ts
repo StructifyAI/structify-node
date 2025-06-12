@@ -11,9 +11,12 @@ export {
 } from './stripe';
 export {
   User,
+  type SurveySubmissionRequest,
+  type SurveySubmissionResponse,
   type TokenResponse,
   type UserInfo,
   type UserTransactionsResponse,
   type UserUsageResponse,
+  type UserSurveySubmitParams,
   type UserUsageParams,
 } from './user';
