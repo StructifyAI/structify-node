@@ -97,6 +97,7 @@ import {
   ReportWrongParams,
   ReportWrongResponse,
 } from './resources/report';
+import { Scrape, ScrapeListParams, ScrapeListRequest, ScrapeListResponse } from './resources/scrape';
 import { Server, ServerInformation } from './resources/server';
 import {
   DatasetDescriptor,
@@ -365,6 +366,7 @@ export class Structify extends Core.APIClient {
   sources: API.Sources = new API.Sources(this);
   entities: API.Entities = new API.Entities(this);
   report: API.Report = new API.Report(this);
+  scrape: API.Scrape = new API.Scrape(this);
   structure: API.Structure = new API.Structure(this);
   shared: API.Shared = new API.Shared(this);
 
@@ -424,6 +426,7 @@ Structify.Server = Server;
 Structify.Sources = Sources;
 Structify.Entities = Entities;
 Structify.Report = Report;
+Structify.Scrape = Scrape;
 Structify.Structure = Structure;
 Structify.Shared = Shared;
 export declare namespace Structify {
@@ -630,6 +633,13 @@ export declare namespace Structify {
     type ReportRelationshipParams as ReportRelationshipParams,
     type ReportStepParams as ReportStepParams,
     type ReportWrongParams as ReportWrongParams,
+  };
+
+  export {
+    Scrape as Scrape,
+    type ScrapeListRequest as ScrapeListRequest,
+    type ScrapeListResponse as ScrapeListResponse,
+    type ScrapeListParams as ScrapeListParams,
   };
 
   export {
