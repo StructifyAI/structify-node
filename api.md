@@ -259,6 +259,7 @@ Methods:
 - <code title="post /dataset/reorder_properties">client.datasets.<a href="./src/resources/datasets/datasets.ts">reorderProperties</a>({ ...params }) -> void</code>
 - <code title="post /dataset/set_primary_column">client.datasets.<a href="./src/resources/datasets/datasets.ts">setPrimaryColumn</a>({ ...params }) -> void</code>
 - <code title="post /dataset/update_property">client.datasets.<a href="./src/resources/datasets/datasets.ts">updateProperty</a>({ ...params }) -> void</code>
+- <code title="post /dataset/update_relationship">client.datasets.<a href="./src/resources/datasets/datasets.ts">updateRelationship</a>({ ...params }) -> void</code>
 - <code title="get /dataset/view_relationships">client.datasets.<a href="./src/resources/datasets/datasets.ts">viewRelationships</a>({ ...params }) -> DatasetViewRelationshipsResponsesJobsList</code>
 - <code title="get /dataset/view_table">client.datasets.<a href="./src/resources/datasets/datasets.ts">viewTable</a>({ ...params }) -> DatasetViewTableResponsesJobsList</code>
 - <code title="get /dataset/view_tables_with_relationships">client.datasets.<a href="./src/resources/datasets/datasets.ts">viewTablesWithRelationships</a>({ ...params }) -> DatasetViewTablesWithRelationshipsResponse</code>
@@ -333,12 +334,18 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/sources.ts">DeleteSourceEntityParams</a></code>
+- <code><a href="./src/resources/sources.ts">DeleteSourceEntityResponse</a></code>
+- <code><a href="./src/resources/sources.ts">DeleteSourceRelationshipParams</a></code>
+- <code><a href="./src/resources/sources.ts">DeleteSourceRelationshipResponse</a></code>
 - <code><a href="./src/resources/sources.ts">Source</a></code>
 - <code><a href="./src/resources/sources.ts">SourceListResponse</a></code>
 
 Methods:
 
 - <code title="get /source/get_sources">client.sources.<a href="./src/resources/sources.ts">list</a>({ ...params }) -> SourceListResponse</code>
+- <code title="delete /source/entity">client.sources.<a href="./src/resources/sources.ts">deleteEntity</a>({ ...params }) -> DeleteSourceEntityResponse</code>
+- <code title="delete /source/relationship">client.sources.<a href="./src/resources/sources.ts">deleteRelationship</a>({ ...params }) -> DeleteSourceRelationshipResponse</code>
 
 # Entities
 
@@ -348,6 +355,7 @@ Types:
 - <code><a href="./src/resources/entities.ts">EntityAddResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityAddBatchResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityAddRelationshipResponse</a></code>
+- <code><a href="./src/resources/entities.ts">EntityAgentMergeResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityDeleteRelationshipResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityDeriveResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityGetResponse</a></code>
@@ -368,6 +376,7 @@ Methods:
 - <code title="post /entity/add">client.entities.<a href="./src/resources/entities.ts">add</a>({ ...params }) -> EntityAddResponse</code>
 - <code title="post /entity/add_batch">client.entities.<a href="./src/resources/entities.ts">addBatch</a>({ ...params }) -> EntityAddBatchResponse</code>
 - <code title="post /entity/add_relationship">client.entities.<a href="./src/resources/entities.ts">addRelationship</a>({ ...params }) -> EntityAddRelationshipResponse</code>
+- <code title="post /entity/agent_merge">client.entities.<a href="./src/resources/entities.ts">agentMerge</a>({ ...params }) -> EntityAgentMergeResponse</code>
 - <code title="post /entity/delete_relationship">client.entities.<a href="./src/resources/entities.ts">deleteRelationship</a>({ ...params }) -> unknown</code>
 - <code title="post /entity/derive">client.entities.<a href="./src/resources/entities.ts">derive</a>({ ...params }) -> string</code>
 - <code title="get /entity/get">client.entities.<a href="./src/resources/entities.ts">get</a>({ ...params }) -> EntityGetResponse</code>

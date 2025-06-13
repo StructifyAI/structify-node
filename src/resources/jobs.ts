@@ -200,6 +200,8 @@ export interface JobCancelResponse {
 
   job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
 
+  max_steps_without_save: number;
+
   selected_next_workflow_step: boolean;
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
@@ -250,6 +252,8 @@ export namespace JobGetResponse {
     dataset_id: string;
 
     job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
+
+    max_steps_without_save: number;
 
     selected_next_workflow_step: boolean;
 

@@ -213,6 +213,7 @@ describe('resource workflow', () => {
     const response = await client.workflow.trigger({
       entity_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
       workflow_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      max_steps_without_save: 0,
     });
   });
 });
