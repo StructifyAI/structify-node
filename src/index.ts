@@ -43,6 +43,8 @@ import {
   EntityAddRelationshipParams,
   EntityAddRelationshipResponse,
   EntityAddResponse,
+  EntityAgentMergeParams,
+  EntityAgentMergeResponse,
   EntityDeleteParams,
   EntityDeleteRelationshipParams,
   EntityDeleteRelationshipResponse,
@@ -110,7 +112,18 @@ import {
   Shared,
   Table,
 } from './resources/shared';
-import { Source, SourceListParams, SourceListResponse, Sources } from './resources/sources';
+import {
+  DeleteSourceEntityParams,
+  DeleteSourceEntityResponse,
+  DeleteSourceRelationshipParams,
+  DeleteSourceRelationshipResponse,
+  Source,
+  SourceDeleteEntityParams,
+  SourceDeleteRelationshipParams,
+  SourceListParams,
+  SourceListResponse,
+  Sources,
+} from './resources/sources';
 import {
   ChatPrompt,
   ExecutionStep,
@@ -192,6 +205,7 @@ import {
   DatasetReorderPropertiesParams,
   DatasetSetPrimaryColumnParams,
   DatasetUpdatePropertyParams,
+  DatasetUpdateRelationshipParams,
   DatasetViewRelationshipsParams,
   DatasetViewRelationshipsResponse,
   DatasetViewRelationshipsResponsesJobsList,
@@ -545,6 +559,7 @@ export declare namespace Structify {
     type DatasetReorderPropertiesParams as DatasetReorderPropertiesParams,
     type DatasetSetPrimaryColumnParams as DatasetSetPrimaryColumnParams,
     type DatasetUpdatePropertyParams as DatasetUpdatePropertyParams,
+    type DatasetUpdateRelationshipParams as DatasetUpdateRelationshipParams,
     type DatasetViewRelationshipsParams as DatasetViewRelationshipsParams,
     type DatasetViewTableParams as DatasetViewTableParams,
     type DatasetViewTablesWithRelationshipsParams as DatasetViewTablesWithRelationshipsParams,
@@ -579,9 +594,15 @@ export declare namespace Structify {
 
   export {
     Sources as Sources,
+    type DeleteSourceEntityParams as DeleteSourceEntityParams,
+    type DeleteSourceEntityResponse as DeleteSourceEntityResponse,
+    type DeleteSourceRelationshipParams as DeleteSourceRelationshipParams,
+    type DeleteSourceRelationshipResponse as DeleteSourceRelationshipResponse,
     type Source as Source,
     type SourceListResponse as SourceListResponse,
     type SourceListParams as SourceListParams,
+    type SourceDeleteEntityParams as SourceDeleteEntityParams,
+    type SourceDeleteRelationshipParams as SourceDeleteRelationshipParams,
   };
 
   export {
@@ -590,6 +611,7 @@ export declare namespace Structify {
     type EntityAddResponse as EntityAddResponse,
     type EntityAddBatchResponse as EntityAddBatchResponse,
     type EntityAddRelationshipResponse as EntityAddRelationshipResponse,
+    type EntityAgentMergeResponse as EntityAgentMergeResponse,
     type EntityDeleteRelationshipResponse as EntityDeleteRelationshipResponse,
     type EntityDeriveResponse as EntityDeriveResponse,
     type EntityGetResponse as EntityGetResponse,
@@ -607,6 +629,7 @@ export declare namespace Structify {
     type EntityAddParams as EntityAddParams,
     type EntityAddBatchParams as EntityAddBatchParams,
     type EntityAddRelationshipParams as EntityAddRelationshipParams,
+    type EntityAgentMergeParams as EntityAgentMergeParams,
     type EntityDeleteRelationshipParams as EntityDeleteRelationshipParams,
     type EntityDeriveParams as EntityDeriveParams,
     type EntityGetParams as EntityGetParams,

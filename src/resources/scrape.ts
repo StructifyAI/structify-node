@@ -28,6 +28,8 @@ export interface ScrapeListRequest {
   table_name: string;
 
   url: string;
+
+  max_steps_without_save?: number;
 }
 
 /**
@@ -54,6 +56,8 @@ export interface ScrapeListParams {
   table_name: string;
 
   url: string;
+
+  max_steps_without_save?: number;
 }
 
 export declare namespace Scrape {

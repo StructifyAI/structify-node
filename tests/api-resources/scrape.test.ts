@@ -77,6 +77,7 @@ describe('resource scrape', () => {
       },
       table_name: 'table_name',
       url: 'url',
+      max_steps_without_save: 0,
     });
   });
 });
