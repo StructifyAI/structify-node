@@ -27,6 +27,7 @@ export {
   type DatasetReorderPropertiesParams,
   type DatasetSetPrimaryColumnParams,
   type DatasetUpdatePropertyParams,
+  type DatasetUpdateRelationshipParams,
   type DatasetViewRelationshipsParams,
   type DatasetViewTableParams,
   type DatasetViewTablesWithRelationshipsParams,

@@ -44,6 +44,7 @@ export {
   type DatasetReorderPropertiesParams,
   type DatasetSetPrimaryColumnParams,
   type DatasetUpdatePropertyParams,
+  type DatasetUpdateRelationshipParams,
   type DatasetViewRelationshipsParams,
   type DatasetViewTableParams,
   type DatasetViewTablesWithRelationshipsParams,
@@ -65,6 +66,7 @@ export {
   type EntityAddResponse,
   type EntityAddBatchResponse,
   type EntityAddRelationshipResponse,
+  type EntityAgentMergeResponse,
   type EntityDeleteRelationshipResponse,
   type EntityDeriveResponse,
   type EntityGetResponse,
@@ -82,6 +84,7 @@ export {
   type EntityAddParams,
   type EntityAddBatchParams,
   type EntityAddRelationshipParams,
+  type EntityAgentMergeParams,
   type EntityDeleteRelationshipParams,
   type EntityDeriveParams,
   type EntityGetParams,
@@ -121,6 +124,7 @@ export {
   type ReportStepParams,
   type ReportWrongParams,
 } from './report';
+export { Scrape, type ScrapeListRequest, type ScrapeListResponse, type ScrapeListParams } from './scrape';
 export { Server, type ServerInformation } from './server';
 export {
   Shared,
@@ -133,7 +137,18 @@ export {
   type Relationship,
   type Table,
 } from './shared';
-export { Sources, type Source, type SourceListResponse, type SourceListParams } from './sources';
+export {
+  Sources,
+  type DeleteSourceEntityParams,
+  type DeleteSourceEntityResponse,
+  type DeleteSourceRelationshipParams,
+  type DeleteSourceRelationshipResponse,
+  type Source,
+  type SourceListResponse,
+  type SourceListParams,
+  type SourceDeleteEntityParams,
+  type SourceDeleteRelationshipParams,
+} from './sources';
 export {
   Structure,
   type ChatPrompt,

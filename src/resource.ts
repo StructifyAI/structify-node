@@ -2,7 +2,7 @@
 
 import type { Structify } from './index';
 
-export class APIResource {
+export abstract class APIResource {
   protected _client: Structify;
 
   constructor(client: Structify) {

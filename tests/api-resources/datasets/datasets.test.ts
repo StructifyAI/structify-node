@@ -313,6 +313,32 @@ describe('resource datasets', () => {
     });
   });
 
+  test('updateRelationship: only required params', async () => {
+    const responsePromise = client.datasets.updateRelationship({
+      dataset_name: 'dataset_name',
+      relationship_name: 'relationship_name',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('updateRelationship: required and optional params', async () => {
+    const response = await client.datasets.updateRelationship({
+      dataset_name: 'dataset_name',
+      relationship_name: 'relationship_name',
+      new_description: 'new_description',
+      new_merge_strategy: {
+        source_cardinality_given_target_match: 0,
+        target_cardinality_given_source_match: 0,
+      },
+    });
+  });
+
   test('viewRelationships: only required params', async () => {
     const responsePromise = client.datasets.viewRelationships({ dataset: 'dataset', name: 'name' });
     const rawResponse = await responsePromise.asResponse();

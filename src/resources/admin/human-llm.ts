@@ -112,6 +112,8 @@ export namespace HumanLlmJob {
 
     job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
 
+    max_steps_without_save: number;
+
     selected_next_workflow_step: boolean;
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';

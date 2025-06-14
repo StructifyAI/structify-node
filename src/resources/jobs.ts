@@ -130,7 +130,11 @@ export namespace JobListResponse {
      */
     seeded_kg: SharedAPI.KnowledgeGraph;
 
-    structuring_input: Parameters.Agent | Parameters.TransformationPrompt | Parameters.ScrapePage;
+    structuring_input:
+      | Parameters.Agent
+      | Parameters.TransformationPrompt
+      | Parameters.ScrapeFromURLProperty
+      | Parameters.ScrapeURL;
   }
 
   export namespace Parameters {
@@ -175,8 +179,12 @@ export namespace JobListResponse {
       TransformationPrompt: string;
     }
 
-    export interface ScrapePage {
-      ScrapePage: string;
+    export interface ScrapeFromURLProperty {
+      ScrapeFromUrlProperty: string;
+    }
+
+    export interface ScrapeURL {
+      ScrapeUrl: string;
     }
   }
 }
@@ -191,6 +199,8 @@ export interface JobCancelResponse {
   dataset_id: string;
 
   job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
+
+  max_steps_without_save: number;
 
   selected_next_workflow_step: boolean;
 
@@ -242,6 +252,8 @@ export namespace JobGetResponse {
     dataset_id: string;
 
     job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
+
+    max_steps_without_save: number;
 
     selected_next_workflow_step: boolean;
 

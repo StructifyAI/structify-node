@@ -43,6 +43,8 @@ import {
   EntityAddRelationshipParams,
   EntityAddRelationshipResponse,
   EntityAddResponse,
+  EntityAgentMergeParams,
+  EntityAgentMergeResponse,
   EntityDeleteParams,
   EntityDeleteRelationshipParams,
   EntityDeleteRelationshipResponse,
@@ -97,6 +99,7 @@ import {
   ReportWrongParams,
   ReportWrongResponse,
 } from './resources/report';
+import { Scrape, ScrapeListParams, ScrapeListRequest, ScrapeListResponse } from './resources/scrape';
 import { Server, ServerInformation } from './resources/server';
 import {
   DatasetDescriptor,
@@ -109,7 +112,18 @@ import {
   Shared,
   Table,
 } from './resources/shared';
-import { Source, SourceListParams, SourceListResponse, Sources } from './resources/sources';
+import {
+  DeleteSourceEntityParams,
+  DeleteSourceEntityResponse,
+  DeleteSourceRelationshipParams,
+  DeleteSourceRelationshipResponse,
+  Source,
+  SourceDeleteEntityParams,
+  SourceDeleteRelationshipParams,
+  SourceListParams,
+  SourceListResponse,
+  Sources,
+} from './resources/sources';
 import {
   ChatPrompt,
   ExecutionStep,
@@ -191,6 +205,7 @@ import {
   DatasetReorderPropertiesParams,
   DatasetSetPrimaryColumnParams,
   DatasetUpdatePropertyParams,
+  DatasetUpdateRelationshipParams,
   DatasetViewRelationshipsParams,
   DatasetViewRelationshipsResponse,
   DatasetViewRelationshipsResponsesJobsList,
@@ -365,6 +380,7 @@ export class Structify extends Core.APIClient {
   sources: API.Sources = new API.Sources(this);
   entities: API.Entities = new API.Entities(this);
   report: API.Report = new API.Report(this);
+  scrape: API.Scrape = new API.Scrape(this);
   structure: API.Structure = new API.Structure(this);
   shared: API.Shared = new API.Shared(this);
 
@@ -424,6 +440,7 @@ Structify.Server = Server;
 Structify.Sources = Sources;
 Structify.Entities = Entities;
 Structify.Report = Report;
+Structify.Scrape = Scrape;
 Structify.Structure = Structure;
 Structify.Shared = Shared;
 export declare namespace Structify {
@@ -542,6 +559,7 @@ export declare namespace Structify {
     type DatasetReorderPropertiesParams as DatasetReorderPropertiesParams,
     type DatasetSetPrimaryColumnParams as DatasetSetPrimaryColumnParams,
     type DatasetUpdatePropertyParams as DatasetUpdatePropertyParams,
+    type DatasetUpdateRelationshipParams as DatasetUpdateRelationshipParams,
     type DatasetViewRelationshipsParams as DatasetViewRelationshipsParams,
     type DatasetViewTableParams as DatasetViewTableParams,
     type DatasetViewTablesWithRelationshipsParams as DatasetViewTablesWithRelationshipsParams,
@@ -576,9 +594,15 @@ export declare namespace Structify {
 
   export {
     Sources as Sources,
+    type DeleteSourceEntityParams as DeleteSourceEntityParams,
+    type DeleteSourceEntityResponse as DeleteSourceEntityResponse,
+    type DeleteSourceRelationshipParams as DeleteSourceRelationshipParams,
+    type DeleteSourceRelationshipResponse as DeleteSourceRelationshipResponse,
     type Source as Source,
     type SourceListResponse as SourceListResponse,
     type SourceListParams as SourceListParams,
+    type SourceDeleteEntityParams as SourceDeleteEntityParams,
+    type SourceDeleteRelationshipParams as SourceDeleteRelationshipParams,
   };
 
   export {
@@ -587,6 +611,7 @@ export declare namespace Structify {
     type EntityAddResponse as EntityAddResponse,
     type EntityAddBatchResponse as EntityAddBatchResponse,
     type EntityAddRelationshipResponse as EntityAddRelationshipResponse,
+    type EntityAgentMergeResponse as EntityAgentMergeResponse,
     type EntityDeleteRelationshipResponse as EntityDeleteRelationshipResponse,
     type EntityDeriveResponse as EntityDeriveResponse,
     type EntityGetResponse as EntityGetResponse,
@@ -604,6 +629,7 @@ export declare namespace Structify {
     type EntityAddParams as EntityAddParams,
     type EntityAddBatchParams as EntityAddBatchParams,
     type EntityAddRelationshipParams as EntityAddRelationshipParams,
+    type EntityAgentMergeParams as EntityAgentMergeParams,
     type EntityDeleteRelationshipParams as EntityDeleteRelationshipParams,
     type EntityDeriveParams as EntityDeriveParams,
     type EntityGetParams as EntityGetParams,
@@ -630,6 +656,13 @@ export declare namespace Structify {
     type ReportRelationshipParams as ReportRelationshipParams,
     type ReportStepParams as ReportStepParams,
     type ReportWrongParams as ReportWrongParams,
+  };
+
+  export {
+    Scrape as Scrape,
+    type ScrapeListRequest as ScrapeListRequest,
+    type ScrapeListResponse as ScrapeListResponse,
+    type ScrapeListParams as ScrapeListParams,
   };
 
   export {

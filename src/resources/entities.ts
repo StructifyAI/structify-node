@@ -44,6 +44,17 @@ export class Entities extends APIResource {
   }
 
   /**
+   * Use LLM to analyze and automatically merge entities based on sources and
+   * properties
+   */
+  agentMerge(
+    body: EntityAgentMergeParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<EntityAgentMergeResponse> {
+    return this._client.post('/entity/agent_merge', { body, ...options });
+  }
+
+  /**
    * delete a relationship between two entities in a dataset
    */
   deleteRelationship(
@@ -261,6 +272,14 @@ export namespace EntityAddRelationshipResponse {
 
     original_address: string;
   }
+}
+
+export interface EntityAgentMergeResponse {
+  final_entity_id: string;
+
+  merged_entities: Array<string>;
+
+  reasoning?: string | null;
 }
 
 export type EntityDeleteRelationshipResponse = unknown;
@@ -710,6 +729,8 @@ export namespace EntityListJobsResponse {
     dataset_id: string;
 
     job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
+
+    max_steps_without_save: number;
 
     selected_next_workflow_step: boolean;
 
@@ -1582,6 +1603,8 @@ export interface EntityAddParams {
    */
   attempt_merge?: boolean;
 
+  max_steps_without_save?: number;
+
   source?: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage | EntityAddParams.SecFiling;
 
   triggering_workflow?: string | null;
@@ -1610,6 +1633,8 @@ export interface EntityAddBatchParams {
    * If true, attempt to merge with existing entities in the dataset
    */
   attempt_merge?: boolean;
+
+  max_steps_without_save?: number;
 
   skip_malformed_entities?: boolean;
 
@@ -1646,6 +1671,16 @@ export interface EntityAddRelationshipParams {
   to_id: string;
 
   properties?: Record<string, string | boolean | number>;
+}
+
+export interface EntityAgentMergeParams {
+  dataset: string;
+
+  entity_id: string;
+
+  force_consider_entities?: Array<string>;
+
+  top_k?: number;
 }
 
 export interface EntityDeleteRelationshipParams {
@@ -1781,6 +1816,7 @@ export declare namespace Entities {
     type EntityAddResponse as EntityAddResponse,
     type EntityAddBatchResponse as EntityAddBatchResponse,
     type EntityAddRelationshipResponse as EntityAddRelationshipResponse,
+    type EntityAgentMergeResponse as EntityAgentMergeResponse,
     type EntityDeleteRelationshipResponse as EntityDeleteRelationshipResponse,
     type EntityDeriveResponse as EntityDeriveResponse,
     type EntityGetResponse as EntityGetResponse,
@@ -1798,6 +1834,7 @@ export declare namespace Entities {
     type EntityAddParams as EntityAddParams,
     type EntityAddBatchParams as EntityAddBatchParams,
     type EntityAddRelationshipParams as EntityAddRelationshipParams,
+    type EntityAgentMergeParams as EntityAgentMergeParams,
     type EntityDeleteRelationshipParams as EntityDeleteRelationshipParams,
     type EntityDeriveParams as EntityDeriveParams,
     type EntityGetParams as EntityGetParams,

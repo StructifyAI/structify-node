@@ -55,6 +55,7 @@ describe('resource entities', () => {
         relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
       },
       attempt_merge: true,
+      max_steps_without_save: 0,
       source: 'None',
       triggering_workflow: 'triggering_workflow',
     });
@@ -89,6 +90,7 @@ describe('resource entities', () => {
         },
       ],
       attempt_merge: true,
+      max_steps_without_save: 0,
       skip_malformed_entities: true,
       source: 'None',
       triggering_workflow: 'triggering_workflow',
@@ -118,6 +120,29 @@ describe('resource entities', () => {
       relationship_type: 'relationship_type',
       to_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       properties: { foo: 'string' },
+    });
+  });
+
+  test('agentMerge: only required params', async () => {
+    const responsePromise = client.entities.agentMerge({
+      dataset: 'dataset',
+      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('agentMerge: required and optional params', async () => {
+    const response = await client.entities.agentMerge({
+      dataset: 'dataset',
+      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      force_consider_entities: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
+      top_k: 0,
     });
   });
 

@@ -26,4 +26,42 @@ describe('resource sources', () => {
       property: 'property',
     });
   });
+
+  test('deleteEntity: only required params', async () => {
+    const responsePromise = client.sources.deleteEntity({
+      source_entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('deleteEntity: required and optional params', async () => {
+    const response = await client.sources.deleteEntity({
+      source_entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+  });
+
+  test('deleteRelationship: only required params', async () => {
+    const responsePromise = client.sources.deleteRelationship({
+      source_relationship_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('deleteRelationship: required and optional params', async () => {
+    const response = await client.sources.deleteRelationship({
+      source_relationship_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+  });
 });
