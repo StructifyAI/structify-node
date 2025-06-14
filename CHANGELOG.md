@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.139.0 (2025-06-14)
+
+Full Changelog: [v1.138.0...v1.139.0](https://github.com/StructifyAI/structify-node/compare/v1.138.0...v1.139.0)
+
+### Features
+
+* **api:** manual updates ([b73dc5e](https://github.com/StructifyAI/structify-node/commit/b73dc5e6ddaaef2bb60b368acaae1976ad892f3b))
+
+
+### Bug Fixes
+
+* add scrapers that somehow went missing ([a20a93d](https://github.com/StructifyAI/structify-node/commit/a20a93d4945432661697797e961906619f2b89a4))
+* publish script — handle NPM errors correctly ([0fae3fa](https://github.com/StructifyAI/structify-node/commit/0fae3fa51a1c3be48e40d63653116e6e71dfc581))
+
+
+### Chores
+
+* **internal:** make base APIResource abstract ([3097355](https://github.com/StructifyAI/structify-node/commit/309735594b12655945497589afb88b45a11c39bc))
+
 ## 1.138.0 (2025-06-12)
 
 Full Changelog: [v1.137.0...v1.138.0](https://github.com/StructifyAI/structify-node/compare/v1.137.0...v1.138.0)
