@@ -230,6 +230,8 @@ export interface JobCancelResponse {
 
   run_time_milliseconds?: number | null;
 
+  seeded_kg_search_term?: string | null;
+
   workflow_group_id?: string | null;
 
   workflow_id?: WorkflowAPI.ID | null;
@@ -282,6 +284,8 @@ export namespace JobGetResponse {
     run_started_time?: string | null;
 
     run_time_milliseconds?: number | null;
+
+    seeded_kg_search_term?: string | null;
 
     workflow_group_id?: string | null;
 
@@ -735,6 +739,11 @@ export interface JobListParams extends JobsListParams {
    * Dataset name to optionally filter jobs by
    */
   dataset?: string | null;
+
+  /**
+   * seeded kg search term
+   */
+  seeded_kg_search_term?: string | null;
 
   /**
    * List since a specific timestamp
