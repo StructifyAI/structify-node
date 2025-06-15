@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.139.1 (2025-06-15)
+
+Full Changelog: [v1.139.0...v1.139.1](https://github.com/StructifyAI/structify-node/compare/v1.139.0...v1.139.1)
+
 ## 1.139.0 (2025-06-15)
 
 Full Changelog: [v1.138.0...v1.139.0](https://github.com/StructifyAI/structify-node/compare/v1.138.0...v1.139.0)
