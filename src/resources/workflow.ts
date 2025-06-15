@@ -183,6 +183,8 @@ export namespace WorkflowJobsResponse {
 
     run_time_milliseconds?: number | null;
 
+    seeded_kg_search_term?: string | null;
+
     workflow_group_id?: string | null;
 
     workflow_id?: WorkflowAPI.ID | null;
