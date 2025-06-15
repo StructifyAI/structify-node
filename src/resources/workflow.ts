@@ -153,6 +153,8 @@ export namespace WorkflowJobsResponse {
 
     job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
 
+    max_steps_without_save: number;
+
     selected_next_workflow_step: boolean;
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
@@ -180,6 +182,8 @@ export namespace WorkflowJobsResponse {
     run_started_time?: string | null;
 
     run_time_milliseconds?: number | null;
+
+    seeded_kg_search_term?: string | null;
 
     workflow_group_id?: string | null;
 
@@ -235,6 +239,8 @@ export interface WorkflowTriggerParams {
   entity_ids: Array<string>;
 
   workflow_id: ID;
+
+  max_steps_without_save?: number;
 }
 
 export declare namespace WorkflowResource {

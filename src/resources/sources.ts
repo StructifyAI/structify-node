@@ -11,6 +11,52 @@ export class Sources extends APIResource {
   list(query: SourceListParams, options?: Core.RequestOptions): Core.APIPromise<SourceListResponse> {
     return this._client.get('/source/get_sources', { query, ...options });
   }
+
+  deleteEntity(
+    body: SourceDeleteEntityParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<DeleteSourceEntityResponse> {
+    return this._client.delete('/source/entity', { body, ...options });
+  }
+
+  deleteRelationship(
+    body: SourceDeleteRelationshipParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<DeleteSourceRelationshipResponse> {
+    return this._client.delete('/source/relationship', { body, ...options });
+  }
+}
+
+export interface DeleteSourceEntityParams {
+  source_entity_id: string;
+}
+
+export interface DeleteSourceEntityResponse {
+  /**
+   * Optional message about the deletion
+   */
+  message: string;
+
+  /**
+   * Whether the deletion was successful
+   */
+  success: boolean;
+}
+
+export interface DeleteSourceRelationshipParams {
+  source_relationship_id: string;
+}
+
+export interface DeleteSourceRelationshipResponse {
+  /**
+   * Optional message about the deletion
+   */
+  message: string;
+
+  /**
+   * Whether the deletion was successful
+   */
+  success: boolean;
 }
 
 export type Source = Source.Web | Source.Document | Source.SecFiling;
@@ -121,10 +167,24 @@ export interface SourceListParams {
   property?: string | null;
 }
 
+export interface SourceDeleteEntityParams {
+  source_entity_id: string;
+}
+
+export interface SourceDeleteRelationshipParams {
+  source_relationship_id: string;
+}
+
 export declare namespace Sources {
   export {
+    type DeleteSourceEntityParams as DeleteSourceEntityParams,
+    type DeleteSourceEntityResponse as DeleteSourceEntityResponse,
+    type DeleteSourceRelationshipParams as DeleteSourceRelationshipParams,
+    type DeleteSourceRelationshipResponse as DeleteSourceRelationshipResponse,
     type Source as Source,
     type SourceListResponse as SourceListResponse,
     type SourceListParams as SourceListParams,
+    type SourceDeleteEntityParams as SourceDeleteEntityParams,
+    type SourceDeleteRelationshipParams as SourceDeleteRelationshipParams,
   };
 }

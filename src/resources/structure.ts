@@ -595,6 +595,8 @@ export interface StructureEnhancePropertyParams {
 
   allow_extra_entities?: boolean;
 
+  max_steps_without_save?: number;
+
   special_job_type?: 'HumanLLM' | null;
 
   starting_searches?: Array<string>;
@@ -608,6 +610,8 @@ export interface StructureEnhanceRelationshipParams {
   relationship_name: string;
 
   allow_extra_entities?: boolean;
+
+  max_steps_without_save?: number;
 
   special_job_type?: 'HumanLLM' | null;
 
@@ -624,6 +628,8 @@ export interface StructureFindRelationshipParams {
   to_id: string;
 
   allow_extra_entities?: boolean;
+
+  max_steps_without_save?: number;
 
   special_job_type?: 'HumanLLM' | null;
 
@@ -651,6 +657,8 @@ export interface StructureRunAsyncParams {
    * These are all the types that can be converted into a BasicInputType
    */
   source: StructureRunAsyncParams.Pdf | StructureRunAsyncParams.Web;
+
+  max_steps_without_save?: number;
 
   save_requirement?: Array<SaveRequirement>;
 

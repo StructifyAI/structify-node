@@ -130,7 +130,11 @@ export namespace JobListResponse {
      */
     seeded_kg: SharedAPI.KnowledgeGraph;
 
-    structuring_input: Parameters.Agent | Parameters.TransformationPrompt | Parameters.ScrapePage;
+    structuring_input:
+      | Parameters.Agent
+      | Parameters.TransformationPrompt
+      | Parameters.ScrapeFromURLProperty
+      | Parameters.ScrapeURL;
   }
 
   export namespace Parameters {
@@ -175,8 +179,12 @@ export namespace JobListResponse {
       TransformationPrompt: string;
     }
 
-    export interface ScrapePage {
-      ScrapePage: string;
+    export interface ScrapeFromURLProperty {
+      ScrapeFromUrlProperty: string;
+    }
+
+    export interface ScrapeURL {
+      ScrapeUrl: string;
     }
   }
 }
@@ -191,6 +199,8 @@ export interface JobCancelResponse {
   dataset_id: string;
 
   job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
+
+  max_steps_without_save: number;
 
   selected_next_workflow_step: boolean;
 
@@ -220,6 +230,8 @@ export interface JobCancelResponse {
 
   run_time_milliseconds?: number | null;
 
+  seeded_kg_search_term?: string | null;
+
   workflow_group_id?: string | null;
 
   workflow_id?: WorkflowAPI.ID | null;
@@ -242,6 +254,8 @@ export namespace JobGetResponse {
     dataset_id: string;
 
     job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
+
+    max_steps_without_save: number;
 
     selected_next_workflow_step: boolean;
 
@@ -270,6 +284,8 @@ export namespace JobGetResponse {
     run_started_time?: string | null;
 
     run_time_milliseconds?: number | null;
+
+    seeded_kg_search_term?: string | null;
 
     workflow_group_id?: string | null;
 
@@ -723,6 +739,11 @@ export interface JobListParams extends JobsListParams {
    * Dataset name to optionally filter jobs by
    */
   dataset?: string | null;
+
+  /**
+   * seeded kg search term
+   */
+  seeded_kg_search_term?: string | null;
 
   /**
    * List since a specific timestamp
