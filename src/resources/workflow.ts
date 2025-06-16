@@ -85,11 +85,6 @@ export interface ExistingWorkflow extends Workflow {
 export type ID = string;
 
 export interface Workflow {
-  /**
-   * Configuration parameters for the StopChecker
-   */
-  default_stop_conditions: Workflow.DefaultStopConditions;
-
   name: string;
 
   starting_step: string;
@@ -97,22 +92,14 @@ export interface Workflow {
   starting_table: string;
 
   steps: Array<Workflow.Step>;
-}
 
-export namespace Workflow {
   /**
    * Configuration parameters for the StopChecker
    */
-  export interface DefaultStopConditions {
-    max_steps_without_save: number;
+  default_stop_conditions?: Workflow.DefaultStopConditions;
+}
 
-    max_errors?: number | null;
-
-    max_execution_time_secs?: number | null;
-
-    max_total_steps?: number | null;
-  }
-
+export namespace Workflow {
   export interface Step {
     id: string;
 
@@ -152,6 +139,19 @@ export namespace Workflow {
         starting_url_property_name: string;
       }
     }
+  }
+
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  export interface DefaultStopConditions {
+    max_steps_without_save: number;
+
+    max_errors?: number | null;
+
+    max_execution_time_secs?: number | null;
+
+    max_total_steps?: number | null;
   }
 }
 
