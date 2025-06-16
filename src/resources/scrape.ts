@@ -29,7 +29,25 @@ export interface ScrapeListRequest {
 
   url: string;
 
-  max_steps_without_save?: number;
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  stop_config?: ScrapeListRequest.StopConfig | null;
+}
+
+export namespace ScrapeListRequest {
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  export interface StopConfig {
+    max_steps_without_save: number;
+
+    max_errors?: number | null;
+
+    max_execution_time_secs?: number | null;
+
+    max_total_steps?: number | null;
+  }
 }
 
 /**
@@ -57,7 +75,25 @@ export interface ScrapeListParams {
 
   url: string;
 
-  max_steps_without_save?: number;
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  stop_config?: ScrapeListParams.StopConfig | null;
+}
+
+export namespace ScrapeListParams {
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  export interface StopConfig {
+    max_steps_without_save: number;
+
+    max_errors?: number | null;
+
+    max_execution_time_secs?: number | null;
+
+    max_total_steps?: number | null;
+  }
 }
 
 export declare namespace Scrape {

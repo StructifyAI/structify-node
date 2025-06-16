@@ -77,7 +77,12 @@ describe('resource scrape', () => {
       },
       table_name: 'table_name',
       url: 'url',
-      max_steps_without_save: 0,
+      stop_config: {
+        max_steps_without_save: 0,
+        max_errors: 0,
+        max_execution_time_secs: 0,
+        max_total_steps: 0,
+      },
     });
   });
 });

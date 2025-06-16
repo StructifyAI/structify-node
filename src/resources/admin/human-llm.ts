@@ -120,6 +120,12 @@ export namespace HumanLlmJob {
 
     user_id: string;
 
+    max_errors?: number | null;
+
+    max_execution_time_secs?: number | null;
+
+    max_total_steps?: number | null;
+
     /**
      * A message about the status of the job at completion
      */
