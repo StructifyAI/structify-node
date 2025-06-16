@@ -85,6 +85,11 @@ export interface ExistingWorkflow extends Workflow {
 export type ID = string;
 
 export interface Workflow {
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  default_stop_conditions: Workflow.DefaultStopConditions;
+
   name: string;
 
   starting_step: string;
@@ -95,6 +100,19 @@ export interface Workflow {
 }
 
 export namespace Workflow {
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  export interface DefaultStopConditions {
+    max_steps_without_save: number;
+
+    max_errors?: number | null;
+
+    max_execution_time_secs?: number | null;
+
+    max_total_steps?: number | null;
+  }
+
   export interface Step {
     id: string;
 
@@ -160,6 +178,12 @@ export namespace WorkflowJobsResponse {
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
     user_id: string;
+
+    max_errors?: number | null;
+
+    max_execution_time_secs?: number | null;
+
+    max_total_steps?: number | null;
 
     /**
      * A message about the status of the job at completion
@@ -240,7 +264,25 @@ export interface WorkflowTriggerParams {
 
   workflow_id: ID;
 
-  max_steps_without_save?: number;
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  stop_config?: WorkflowTriggerParams.StopConfig | null;
+}
+
+export namespace WorkflowTriggerParams {
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  export interface StopConfig {
+    max_steps_without_save: number;
+
+    max_errors?: number | null;
+
+    max_execution_time_secs?: number | null;
+
+    max_total_steps?: number | null;
+  }
 }
 
 export declare namespace WorkflowResource {

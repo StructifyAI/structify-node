@@ -738,6 +738,12 @@ export namespace EntityListJobsResponse {
 
     user_id: string;
 
+    max_errors?: number | null;
+
+    max_execution_time_secs?: number | null;
+
+    max_total_steps?: number | null;
+
     /**
      * A message about the status of the job at completion
      */
@@ -1605,9 +1611,12 @@ export interface EntityAddParams {
    */
   attempt_merge?: boolean;
 
-  max_steps_without_save?: number;
-
   source?: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage | EntityAddParams.SecFiling;
+
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  stop_config?: EntityAddParams.StopConfig | null;
 
   triggering_workflow?: string | null;
 }
@@ -1624,6 +1633,19 @@ export namespace EntityAddParams {
   export interface SecFiling {
     SecFiling: Array<unknown>;
   }
+
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  export interface StopConfig {
+    max_steps_without_save: number;
+
+    max_errors?: number | null;
+
+    max_execution_time_secs?: number | null;
+
+    max_total_steps?: number | null;
+  }
 }
 
 export interface EntityAddBatchParams {
@@ -1636,8 +1658,6 @@ export interface EntityAddBatchParams {
    */
   attempt_merge?: boolean;
 
-  max_steps_without_save?: number;
-
   skip_malformed_entities?: boolean;
 
   source?:
@@ -1645,6 +1665,11 @@ export interface EntityAddBatchParams {
     | EntityAddBatchParams.Web
     | EntityAddBatchParams.DocumentPage
     | EntityAddBatchParams.SecFiling;
+
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  stop_config?: EntityAddBatchParams.StopConfig | null;
 
   triggering_workflow?: string | null;
 }
@@ -1660,6 +1685,19 @@ export namespace EntityAddBatchParams {
 
   export interface SecFiling {
     SecFiling: Array<unknown>;
+  }
+
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  export interface StopConfig {
+    max_steps_without_save: number;
+
+    max_errors?: number | null;
+
+    max_execution_time_secs?: number | null;
+
+    max_total_steps?: number | null;
   }
 }
 
