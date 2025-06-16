@@ -13,7 +13,6 @@ describe('resource workflow', () => {
     const responsePromise = client.workflow.create({
       dataset_name: 'dataset_name',
       workflow: {
-        default_stop_conditions: { max_steps_without_save: 0 },
         name: 'name',
         starting_step: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         starting_table: 'starting_table',
@@ -40,12 +39,6 @@ describe('resource workflow', () => {
     const response = await client.workflow.create({
       dataset_name: 'dataset_name',
       workflow: {
-        default_stop_conditions: {
-          max_steps_without_save: 0,
-          max_errors: 0,
-          max_execution_time_secs: 0,
-          max_total_steps: 0,
-        },
         name: 'name',
         starting_step: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         starting_table: 'starting_table',
@@ -57,6 +50,12 @@ describe('resource workflow', () => {
             table_name: 'table_name',
           },
         ],
+        default_stop_conditions: {
+          max_steps_without_save: 0,
+          max_errors: 0,
+          max_execution_time_secs: 0,
+          max_total_steps: 0,
+        },
       },
     });
   });
@@ -65,7 +64,6 @@ describe('resource workflow', () => {
     const responsePromise = client.workflow.update({
       dataset_name: 'dataset_name',
       workflow: {
-        default_stop_conditions: { max_steps_without_save: 0 },
         name: 'name',
         starting_step: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         starting_table: 'starting_table',
@@ -93,12 +91,6 @@ describe('resource workflow', () => {
     const response = await client.workflow.update({
       dataset_name: 'dataset_name',
       workflow: {
-        default_stop_conditions: {
-          max_steps_without_save: 0,
-          max_errors: 0,
-          max_execution_time_secs: 0,
-          max_total_steps: 0,
-        },
         name: 'name',
         starting_step: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         starting_table: 'starting_table',
@@ -110,6 +102,12 @@ describe('resource workflow', () => {
             table_name: 'table_name',
           },
         ],
+        default_stop_conditions: {
+          max_steps_without_save: 0,
+          max_errors: 0,
+          max_execution_time_secs: 0,
+          max_total_steps: 0,
+        },
       },
       workflow_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
