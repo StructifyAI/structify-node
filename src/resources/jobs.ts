@@ -168,6 +168,8 @@ export namespace JobListResponse {
 
       export namespace Web {
         export interface Web {
+          banned_domains?: Array<string>;
+
           starting_searches?: Array<string>;
 
           starting_urls?: Array<string>;
@@ -208,6 +210,12 @@ export interface JobCancelResponse {
 
   user_id: string;
 
+  max_errors?: number | null;
+
+  max_execution_time_secs?: number | null;
+
+  max_total_steps?: number | null;
+
   /**
    * A message about the status of the job at completion
    */
@@ -231,6 +239,8 @@ export interface JobCancelResponse {
   run_time_milliseconds?: number | null;
 
   seeded_kg_search_term?: string | null;
+
+  session_id?: string | null;
 
   workflow_group_id?: string | null;
 
@@ -263,6 +273,12 @@ export namespace JobGetResponse {
 
     user_id: string;
 
+    max_errors?: number | null;
+
+    max_execution_time_secs?: number | null;
+
+    max_total_steps?: number | null;
+
     /**
      * A message about the status of the job at completion
      */
@@ -286,6 +302,8 @@ export namespace JobGetResponse {
     run_time_milliseconds?: number | null;
 
     seeded_kg_search_term?: string | null;
+
+    session_id?: string | null;
 
     workflow_group_id?: string | null;
 

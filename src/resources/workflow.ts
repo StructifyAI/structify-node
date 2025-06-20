@@ -92,6 +92,13 @@ export interface Workflow {
   starting_table: string;
 
   steps: Array<Workflow.Step>;
+
+  default_banned_domains?: Array<string>;
+
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  default_stop_conditions?: Workflow.DefaultStopConditions;
 }
 
 export namespace Workflow {
@@ -135,6 +142,19 @@ export namespace Workflow {
       }
     }
   }
+
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  export interface DefaultStopConditions {
+    max_steps_without_save: number;
+
+    max_errors?: number | null;
+
+    max_execution_time_secs?: number | null;
+
+    max_total_steps?: number | null;
+  }
 }
 
 export type WorkflowListResponse = Array<ExistingWorkflow>;
@@ -161,6 +181,12 @@ export namespace WorkflowJobsResponse {
 
     user_id: string;
 
+    max_errors?: number | null;
+
+    max_execution_time_secs?: number | null;
+
+    max_total_steps?: number | null;
+
     /**
      * A message about the status of the job at completion
      */
@@ -184,6 +210,8 @@ export namespace WorkflowJobsResponse {
     run_time_milliseconds?: number | null;
 
     seeded_kg_search_term?: string | null;
+
+    session_id?: string | null;
 
     workflow_group_id?: string | null;
 
@@ -240,7 +268,27 @@ export interface WorkflowTriggerParams {
 
   workflow_id: ID;
 
-  max_steps_without_save?: number;
+  banned_domains?: Array<string> | null;
+
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  stop_config?: WorkflowTriggerParams.StopConfig | null;
+}
+
+export namespace WorkflowTriggerParams {
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  export interface StopConfig {
+    max_steps_without_save: number;
+
+    max_errors?: number | null;
+
+    max_execution_time_secs?: number | null;
+
+    max_total_steps?: number | null;
+  }
 }
 
 export declare namespace WorkflowResource {

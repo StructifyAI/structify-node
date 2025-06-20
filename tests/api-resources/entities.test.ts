@@ -55,7 +55,6 @@ describe('resource entities', () => {
         relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
       },
       attempt_merge: true,
-      max_steps_without_save: 0,
       source: 'None',
       triggering_workflow: 'triggering_workflow',
     });
@@ -90,7 +89,6 @@ describe('resource entities', () => {
         },
       ],
       attempt_merge: true,
-      max_steps_without_save: 0,
       skip_malformed_entities: true,
       source: 'None',
       triggering_workflow: 'triggering_workflow',

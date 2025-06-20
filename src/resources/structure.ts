@@ -595,13 +595,33 @@ export interface StructureEnhancePropertyParams {
 
   allow_extra_entities?: boolean;
 
-  max_steps_without_save?: number;
+  banned_domains?: Array<string>;
 
   special_job_type?: 'HumanLLM' | null;
 
   starting_searches?: Array<string>;
 
   starting_urls?: Array<string>;
+
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  stop_config?: StructureEnhancePropertyParams.StopConfig | null;
+}
+
+export namespace StructureEnhancePropertyParams {
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  export interface StopConfig {
+    max_steps_without_save: number;
+
+    max_errors?: number | null;
+
+    max_execution_time_secs?: number | null;
+
+    max_total_steps?: number | null;
+  }
 }
 
 export interface StructureEnhanceRelationshipParams {
@@ -611,13 +631,33 @@ export interface StructureEnhanceRelationshipParams {
 
   allow_extra_entities?: boolean;
 
-  max_steps_without_save?: number;
+  banned_domains?: Array<string>;
 
   special_job_type?: 'HumanLLM' | null;
 
   starting_searches?: Array<string>;
 
   starting_urls?: Array<string>;
+
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  stop_config?: StructureEnhanceRelationshipParams.StopConfig | null;
+}
+
+export namespace StructureEnhanceRelationshipParams {
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  export interface StopConfig {
+    max_steps_without_save: number;
+
+    max_errors?: number | null;
+
+    max_execution_time_secs?: number | null;
+
+    max_total_steps?: number | null;
+  }
 }
 
 export interface StructureFindRelationshipParams {
@@ -629,13 +669,33 @@ export interface StructureFindRelationshipParams {
 
   allow_extra_entities?: boolean;
 
-  max_steps_without_save?: number;
+  banned_domains?: Array<string>;
 
   special_job_type?: 'HumanLLM' | null;
 
   starting_searches?: Array<string>;
 
   starting_urls?: Array<string>;
+
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  stop_config?: StructureFindRelationshipParams.StopConfig | null;
+}
+
+export namespace StructureFindRelationshipParams {
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  export interface StopConfig {
+    max_steps_without_save: number;
+
+    max_errors?: number | null;
+
+    max_execution_time_secs?: number | null;
+
+    max_total_steps?: number | null;
+  }
 }
 
 export type StructureIsCompleteParams = Array<string>;
@@ -658,8 +718,6 @@ export interface StructureRunAsyncParams {
    */
   source: StructureRunAsyncParams.Pdf | StructureRunAsyncParams.Web;
 
-  max_steps_without_save?: number;
-
   save_requirement?: Array<SaveRequirement>;
 
   /**
@@ -670,6 +728,11 @@ export interface StructureRunAsyncParams {
   seeded_entity?: SharedAPI.KnowledgeGraph;
 
   special_job_type?: 'HumanLLM' | null;
+
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  stop_config?: StructureRunAsyncParams.StopConfig | null;
 }
 
 export namespace StructureRunAsyncParams {
@@ -695,10 +758,25 @@ export namespace StructureRunAsyncParams {
 
   export namespace Web {
     export interface Web {
+      banned_domains?: Array<string>;
+
       starting_searches?: Array<string>;
 
       starting_urls?: Array<string>;
     }
+  }
+
+  /**
+   * Configuration parameters for the StopChecker
+   */
+  export interface StopConfig {
+    max_steps_without_save: number;
+
+    max_errors?: number | null;
+
+    max_execution_time_secs?: number | null;
+
+    max_total_steps?: number | null;
   }
 }
 

@@ -97,7 +97,7 @@ export namespace ActionTrainingDataEntry {
 
     extraction_criteria: Array<StructureAPI.SaveRequirement>;
 
-    previous_queries: Array<string>;
+    previous_actions: Array<Input.SelectedStep | Input.SearchStep | Input.InvalidAction | 'Exit'>;
 
     /**
      * Knowledge graph info structured to deserialize and display in the same format
@@ -114,6 +114,38 @@ export namespace ActionTrainingDataEntry {
       action_name?: string;
 
       metadata?: Record<string, string>;
+    }
+
+    export interface SelectedStep {
+      SelectedStep: SelectedStep.SelectedStep;
+    }
+
+    export namespace SelectedStep {
+      export interface SelectedStep {
+        step_id: string;
+      }
+    }
+
+    export interface SearchStep {
+      SearchStep: SearchStep.SearchStep;
+    }
+
+    export namespace SearchStep {
+      export interface SearchStep {
+        search_query: string;
+      }
+    }
+
+    export interface InvalidAction {
+      InvalidAction: InvalidAction.InvalidAction;
+    }
+
+    export namespace InvalidAction {
+      export interface InvalidAction {
+        error: string;
+
+        llm_output: string;
+      }
     }
   }
 
@@ -194,7 +226,7 @@ export namespace AddActionTrainingDatumRequest {
 
     extraction_criteria: Array<StructureAPI.SaveRequirement>;
 
-    previous_queries: Array<string>;
+    previous_actions: Array<Input.SelectedStep | Input.SearchStep | Input.InvalidAction | 'Exit'>;
 
     /**
      * Knowledge graph info structured to deserialize and display in the same format
@@ -211,6 +243,38 @@ export namespace AddActionTrainingDatumRequest {
       action_name?: string;
 
       metadata?: Record<string, string>;
+    }
+
+    export interface SelectedStep {
+      SelectedStep: SelectedStep.SelectedStep;
+    }
+
+    export namespace SelectedStep {
+      export interface SelectedStep {
+        step_id: string;
+      }
+    }
+
+    export interface SearchStep {
+      SearchStep: SearchStep.SearchStep;
+    }
+
+    export namespace SearchStep {
+      export interface SearchStep {
+        search_query: string;
+      }
+    }
+
+    export interface InvalidAction {
+      InvalidAction: InvalidAction.InvalidAction;
+    }
+
+    export namespace InvalidAction {
+      export interface InvalidAction {
+        error: string;
+
+        llm_output: string;
+      }
     }
   }
 
@@ -343,7 +407,7 @@ export namespace NextActionAddTrainingDatumParams {
 
     extraction_criteria: Array<StructureAPI.SaveRequirement>;
 
-    previous_queries: Array<string>;
+    previous_actions: Array<Input.SelectedStep | Input.SearchStep | Input.InvalidAction | 'Exit'>;
 
     /**
      * Knowledge graph info structured to deserialize and display in the same format
@@ -360,6 +424,38 @@ export namespace NextActionAddTrainingDatumParams {
       action_name?: string;
 
       metadata?: Record<string, string>;
+    }
+
+    export interface SelectedStep {
+      SelectedStep: SelectedStep.SelectedStep;
+    }
+
+    export namespace SelectedStep {
+      export interface SelectedStep {
+        step_id: string;
+      }
+    }
+
+    export interface SearchStep {
+      SearchStep: SearchStep.SearchStep;
+    }
+
+    export namespace SearchStep {
+      export interface SearchStep {
+        search_query: string;
+      }
+    }
+
+    export interface InvalidAction {
+      InvalidAction: InvalidAction.InvalidAction;
+    }
+
+    export namespace InvalidAction {
+      export interface InvalidAction {
+        error: string;
+
+        llm_output: string;
+      }
     }
   }
 

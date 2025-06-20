@@ -738,6 +738,12 @@ export namespace EntityListJobsResponse {
 
     user_id: string;
 
+    max_errors?: number | null;
+
+    max_execution_time_secs?: number | null;
+
+    max_total_steps?: number | null;
+
     /**
      * A message about the status of the job at completion
      */
@@ -761,6 +767,8 @@ export namespace EntityListJobsResponse {
     run_time_milliseconds?: number | null;
 
     seeded_kg_search_term?: string | null;
+
+    session_id?: string | null;
 
     workflow_group_id?: string | null;
 
@@ -1605,8 +1613,6 @@ export interface EntityAddParams {
    */
   attempt_merge?: boolean;
 
-  max_steps_without_save?: number;
-
   source?: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage | EntityAddParams.SecFiling;
 
   triggering_workflow?: string | null;
@@ -1635,8 +1641,6 @@ export interface EntityAddBatchParams {
    * If true, attempt to merge with existing entities in the dataset
    */
   attempt_merge?: boolean;
-
-  max_steps_without_save?: number;
 
   skip_malformed_entities?: boolean;
 
