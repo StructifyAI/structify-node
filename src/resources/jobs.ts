@@ -168,6 +168,8 @@ export namespace JobListResponse {
 
       export namespace Web {
         export interface Web {
+          banned_domains?: Array<string>;
+
           starting_searches?: Array<string>;
 
           starting_urls?: Array<string>;
@@ -238,6 +240,8 @@ export interface JobCancelResponse {
 
   seeded_kg_search_term?: string | null;
 
+  session_id?: string | null;
+
   workflow_group_id?: string | null;
 
   workflow_id?: WorkflowAPI.ID | null;
@@ -298,6 +302,8 @@ export namespace JobGetResponse {
     run_time_milliseconds?: number | null;
 
     seeded_kg_search_term?: string | null;
+
+    session_id?: string | null;
 
     workflow_group_id?: string | null;
 

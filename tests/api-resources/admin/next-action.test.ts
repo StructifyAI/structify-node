@@ -33,7 +33,7 @@ describe('resource nextAction', () => {
           ],
         },
         extraction_criteria: [{ relationship_name: 'relationship_name' }],
-        previous_queries: ['string'],
+        previous_actions: [{ SelectedStep: { step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' } }],
         seeded_kg: {
           entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
           relationships: [{ source: 0, target: 0, type: 'type' }],
@@ -93,7 +93,7 @@ describe('resource nextAction', () => {
           llm_override_field: 'llm_override_field',
         },
         extraction_criteria: [{ relationship_name: 'relationship_name' }],
-        previous_queries: ['string'],
+        previous_actions: [{ SelectedStep: { step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' } }],
         seeded_kg: {
           entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
           relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],

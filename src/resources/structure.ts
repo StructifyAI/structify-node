@@ -595,6 +595,8 @@ export interface StructureEnhancePropertyParams {
 
   allow_extra_entities?: boolean;
 
+  banned_domains?: Array<string>;
+
   special_job_type?: 'HumanLLM' | null;
 
   starting_searches?: Array<string>;
@@ -628,6 +630,8 @@ export interface StructureEnhanceRelationshipParams {
   relationship_name: string;
 
   allow_extra_entities?: boolean;
+
+  banned_domains?: Array<string>;
 
   special_job_type?: 'HumanLLM' | null;
 
@@ -664,6 +668,8 @@ export interface StructureFindRelationshipParams {
   to_id: string;
 
   allow_extra_entities?: boolean;
+
+  banned_domains?: Array<string>;
 
   special_job_type?: 'HumanLLM' | null;
 
@@ -752,6 +758,8 @@ export namespace StructureRunAsyncParams {
 
   export namespace Web {
     export interface Web {
+      banned_domains?: Array<string>;
+
       starting_searches?: Array<string>;
 
       starting_urls?: Array<string>;
