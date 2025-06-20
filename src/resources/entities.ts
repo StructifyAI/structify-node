@@ -768,6 +768,8 @@ export namespace EntityListJobsResponse {
 
     seeded_kg_search_term?: string | null;
 
+    session_id?: string | null;
+
     workflow_group_id?: string | null;
 
     workflow_id?: WorkflowAPI.ID | null;
@@ -1613,11 +1615,6 @@ export interface EntityAddParams {
 
   source?: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage | EntityAddParams.SecFiling;
 
-  /**
-   * Configuration parameters for the StopChecker
-   */
-  stop_config?: EntityAddParams.StopConfig | null;
-
   triggering_workflow?: string | null;
 }
 
@@ -1632,19 +1629,6 @@ export namespace EntityAddParams {
 
   export interface SecFiling {
     SecFiling: Array<unknown>;
-  }
-
-  /**
-   * Configuration parameters for the StopChecker
-   */
-  export interface StopConfig {
-    max_steps_without_save: number;
-
-    max_errors?: number | null;
-
-    max_execution_time_secs?: number | null;
-
-    max_total_steps?: number | null;
   }
 }
 
@@ -1666,11 +1650,6 @@ export interface EntityAddBatchParams {
     | EntityAddBatchParams.DocumentPage
     | EntityAddBatchParams.SecFiling;
 
-  /**
-   * Configuration parameters for the StopChecker
-   */
-  stop_config?: EntityAddBatchParams.StopConfig | null;
-
   triggering_workflow?: string | null;
 }
 
@@ -1685,19 +1664,6 @@ export namespace EntityAddBatchParams {
 
   export interface SecFiling {
     SecFiling: Array<unknown>;
-  }
-
-  /**
-   * Configuration parameters for the StopChecker
-   */
-  export interface StopConfig {
-    max_steps_without_save: number;
-
-    max_errors?: number | null;
-
-    max_execution_time_secs?: number | null;
-
-    max_total_steps?: number | null;
   }
 }
 

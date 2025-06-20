@@ -93,6 +93,8 @@ export interface Workflow {
 
   steps: Array<Workflow.Step>;
 
+  default_banned_domains?: Array<string>;
+
   /**
    * Configuration parameters for the StopChecker
    */
@@ -209,6 +211,8 @@ export namespace WorkflowJobsResponse {
 
     seeded_kg_search_term?: string | null;
 
+    session_id?: string | null;
+
     workflow_group_id?: string | null;
 
     workflow_id?: WorkflowAPI.ID | null;
@@ -263,6 +267,8 @@ export interface WorkflowTriggerParams {
   entity_ids: Array<string>;
 
   workflow_id: ID;
+
+  banned_domains?: Array<string> | null;
 
   /**
    * Configuration parameters for the StopChecker

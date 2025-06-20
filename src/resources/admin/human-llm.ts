@@ -150,6 +150,8 @@ export namespace HumanLlmJob {
 
     seeded_kg_search_term?: string | null;
 
+    session_id?: string | null;
+
     workflow_group_id?: string | null;
 
     workflow_id?: WorkflowAPI.ID | null;
