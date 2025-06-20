@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.140.0 (2025-06-20)
+
+Full Changelog: [v1.139.0...v1.140.0](https://github.com/StructifyAI/structify-node/compare/v1.139.0...v1.140.0)
+
+### Features
+
+* **api:** manual updates ([b9e8314](https://github.com/StructifyAI/structify-node/commit/b9e8314ca537498b651ea333742c5230b44bdd3b))
+* **api:** manual updates ([d723bca](https://github.com/StructifyAI/structify-node/commit/d723bcaf0df619ff65e659622c820bbee9fae66f))
+* **client:** add support for endpoint-specific base URLs ([53b4d87](https://github.com/StructifyAI/structify-node/commit/53b4d87c91b231da7f1178535f3dd27a38443628))
+
+
+### Bug Fixes
+
+* Stop parameters shouldn't be required ([db5b5ff](https://github.com/StructifyAI/structify-node/commit/db5b5fff3a4af001d8852f237c41fd3819d2cf22))
+
+
+### Chores
+
+* **ci:** enable for pull requests ([f72c8b9](https://github.com/StructifyAI/structify-node/commit/f72c8b958ac3127e45bf78d36feb9560d36ba660))
+* **internal:** codegen related update ([db29d6d](https://github.com/StructifyAI/structify-node/commit/db29d6d977c5e5bdaaa83f5ee670a5c18701d9ae))
+
 ## 1.139.0 (2025-06-15)
 
 Full Changelog: [v1.138.0...v1.139.0](https://github.com/StructifyAI/structify-node/compare/v1.138.0...v1.139.0)
