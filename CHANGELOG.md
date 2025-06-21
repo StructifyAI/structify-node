@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.141.0 (2025-06-21)
+
+Full Changelog: [v1.140.0...v1.141.0](https://github.com/StructifyAI/structify-node/compare/v1.140.0...v1.141.0)
+
+### Features
+
+* **api:** manual updates ([1a01a96](https://github.com/StructifyAI/structify-node/commit/1a01a965c7bd24529d75c6360418ae94b5921fbf))
+
+
+### Chores
+
+* **internal:** codegen related update ([44103b5](https://github.com/StructifyAI/structify-node/commit/44103b5b7084b893cb614e22adb79e90a7c4f82b))
+
 ## 1.140.0 (2025-06-20)
 
 Full Changelog: [v1.139.0...v1.140.0](https://github.com/StructifyAI/structify-node/compare/v1.139.0...v1.140.0)
