@@ -97,7 +97,7 @@ export namespace ActionTrainingDataEntry {
 
     extraction_criteria: Array<StructureAPI.SaveRequirement>;
 
-    previous_actions: Array<Input.SelectedStep | Input.SearchStep | Input.InvalidAction | 'Exit'>;
+    previous_actions: Array<Input.SelectedStep | Input.SearchStep | Input.InvalidAction | Input.Exit>;
 
     /**
      * Knowledge graph info structured to deserialize and display in the same format
@@ -122,6 +122,8 @@ export namespace ActionTrainingDataEntry {
 
     export namespace SelectedStep {
       export interface SelectedStep {
+        llm_output: string;
+
         step_id: string;
       }
     }
@@ -132,6 +134,8 @@ export namespace ActionTrainingDataEntry {
 
     export namespace SearchStep {
       export interface SearchStep {
+        llm_output: string;
+
         search_query: string;
       }
     }
@@ -147,6 +151,16 @@ export namespace ActionTrainingDataEntry {
         llm_output: string;
       }
     }
+
+    export interface Exit {
+      Exit: Exit.Exit;
+    }
+
+    export namespace Exit {
+      export interface Exit {
+        llm_output: string;
+      }
+    }
   }
 
   export interface Output {
@@ -156,7 +170,7 @@ export namespace ActionTrainingDataEntry {
 
     label: 'HumanLLMLabel' | 'LLMOutput' | 'Pending' | 'Reviewed' | 'Verified' | 'Others';
 
-    output: Output.SelectedStep | Output.SearchStep | Output.InvalidAction | 'Exit';
+    output: Output.SelectedStep | Output.SearchStep | Output.InvalidAction | Output.Exit;
   }
 
   export namespace Output {
@@ -166,6 +180,8 @@ export namespace ActionTrainingDataEntry {
 
     export namespace SelectedStep {
       export interface SelectedStep {
+        llm_output: string;
+
         step_id: string;
       }
     }
@@ -176,6 +192,8 @@ export namespace ActionTrainingDataEntry {
 
     export namespace SearchStep {
       export interface SearchStep {
+        llm_output: string;
+
         search_query: string;
       }
     }
@@ -188,6 +206,16 @@ export namespace ActionTrainingDataEntry {
       export interface InvalidAction {
         error: string;
 
+        llm_output: string;
+      }
+    }
+
+    export interface Exit {
+      Exit: Exit.Exit;
+    }
+
+    export namespace Exit {
+      export interface Exit {
         llm_output: string;
       }
     }
@@ -207,7 +235,7 @@ export interface AddActionTrainingDatumRequest {
     | AddActionTrainingDatumRequest.SelectedStep
     | AddActionTrainingDatumRequest.SearchStep
     | AddActionTrainingDatumRequest.InvalidAction
-    | 'Exit';
+    | AddActionTrainingDatumRequest.Exit;
 
   job_id?: string | null;
 }
@@ -226,7 +254,7 @@ export namespace AddActionTrainingDatumRequest {
 
     extraction_criteria: Array<StructureAPI.SaveRequirement>;
 
-    previous_actions: Array<Input.SelectedStep | Input.SearchStep | Input.InvalidAction | 'Exit'>;
+    previous_actions: Array<Input.SelectedStep | Input.SearchStep | Input.InvalidAction | Input.Exit>;
 
     /**
      * Knowledge graph info structured to deserialize and display in the same format
@@ -251,6 +279,8 @@ export namespace AddActionTrainingDatumRequest {
 
     export namespace SelectedStep {
       export interface SelectedStep {
+        llm_output: string;
+
         step_id: string;
       }
     }
@@ -261,6 +291,8 @@ export namespace AddActionTrainingDatumRequest {
 
     export namespace SearchStep {
       export interface SearchStep {
+        llm_output: string;
+
         search_query: string;
       }
     }
@@ -276,6 +308,16 @@ export namespace AddActionTrainingDatumRequest {
         llm_output: string;
       }
     }
+
+    export interface Exit {
+      Exit: Exit.Exit;
+    }
+
+    export namespace Exit {
+      export interface Exit {
+        llm_output: string;
+      }
+    }
   }
 
   export interface SelectedStep {
@@ -284,6 +326,8 @@ export namespace AddActionTrainingDatumRequest {
 
   export namespace SelectedStep {
     export interface SelectedStep {
+      llm_output: string;
+
       step_id: string;
     }
   }
@@ -294,6 +338,8 @@ export namespace AddActionTrainingDatumRequest {
 
   export namespace SearchStep {
     export interface SearchStep {
+      llm_output: string;
+
       search_query: string;
     }
   }
@@ -306,6 +352,16 @@ export namespace AddActionTrainingDatumRequest {
     export interface InvalidAction {
       error: string;
 
+      llm_output: string;
+    }
+  }
+
+  export interface Exit {
+    Exit: Exit.Exit;
+  }
+
+  export namespace Exit {
+    export interface Exit {
       llm_output: string;
     }
   }
@@ -342,7 +398,7 @@ export interface LabelActionTrainingDatumRequest {
     | LabelActionTrainingDatumRequest.SelectedStep
     | LabelActionTrainingDatumRequest.SearchStep
     | LabelActionTrainingDatumRequest.InvalidAction
-    | 'Exit';
+    | LabelActionTrainingDatumRequest.Exit;
 }
 
 export namespace LabelActionTrainingDatumRequest {
@@ -352,6 +408,8 @@ export namespace LabelActionTrainingDatumRequest {
 
   export namespace SelectedStep {
     export interface SelectedStep {
+      llm_output: string;
+
       step_id: string;
     }
   }
@@ -362,6 +420,8 @@ export namespace LabelActionTrainingDatumRequest {
 
   export namespace SearchStep {
     export interface SearchStep {
+      llm_output: string;
+
       search_query: string;
     }
   }
@@ -377,6 +437,16 @@ export namespace LabelActionTrainingDatumRequest {
       llm_output: string;
     }
   }
+
+  export interface Exit {
+    Exit: Exit.Exit;
+  }
+
+  export namespace Exit {
+    export interface Exit {
+      llm_output: string;
+    }
+  }
 }
 
 export interface NextActionAddTrainingDatumParams {
@@ -388,7 +458,7 @@ export interface NextActionAddTrainingDatumParams {
     | NextActionAddTrainingDatumParams.SelectedStep
     | NextActionAddTrainingDatumParams.SearchStep
     | NextActionAddTrainingDatumParams.InvalidAction
-    | 'Exit';
+    | NextActionAddTrainingDatumParams.Exit;
 
   job_id?: string | null;
 }
@@ -407,7 +477,7 @@ export namespace NextActionAddTrainingDatumParams {
 
     extraction_criteria: Array<StructureAPI.SaveRequirement>;
 
-    previous_actions: Array<Input.SelectedStep | Input.SearchStep | Input.InvalidAction | 'Exit'>;
+    previous_actions: Array<Input.SelectedStep | Input.SearchStep | Input.InvalidAction | Input.Exit>;
 
     /**
      * Knowledge graph info structured to deserialize and display in the same format
@@ -432,6 +502,8 @@ export namespace NextActionAddTrainingDatumParams {
 
     export namespace SelectedStep {
       export interface SelectedStep {
+        llm_output: string;
+
         step_id: string;
       }
     }
@@ -442,6 +514,8 @@ export namespace NextActionAddTrainingDatumParams {
 
     export namespace SearchStep {
       export interface SearchStep {
+        llm_output: string;
+
         search_query: string;
       }
     }
@@ -457,6 +531,16 @@ export namespace NextActionAddTrainingDatumParams {
         llm_output: string;
       }
     }
+
+    export interface Exit {
+      Exit: Exit.Exit;
+    }
+
+    export namespace Exit {
+      export interface Exit {
+        llm_output: string;
+      }
+    }
   }
 
   export interface SelectedStep {
@@ -465,6 +549,8 @@ export namespace NextActionAddTrainingDatumParams {
 
   export namespace SelectedStep {
     export interface SelectedStep {
+      llm_output: string;
+
       step_id: string;
     }
   }
@@ -475,6 +561,8 @@ export namespace NextActionAddTrainingDatumParams {
 
   export namespace SearchStep {
     export interface SearchStep {
+      llm_output: string;
+
       search_query: string;
     }
   }
@@ -487,6 +575,16 @@ export namespace NextActionAddTrainingDatumParams {
     export interface InvalidAction {
       error: string;
 
+      llm_output: string;
+    }
+  }
+
+  export interface Exit {
+    Exit: Exit.Exit;
+  }
+
+  export namespace Exit {
+    export interface Exit {
       llm_output: string;
     }
   }
@@ -529,7 +627,7 @@ export interface NextActionLabelTrainingDatumParams {
     | NextActionLabelTrainingDatumParams.SelectedStep
     | NextActionLabelTrainingDatumParams.SearchStep
     | NextActionLabelTrainingDatumParams.InvalidAction
-    | 'Exit';
+    | NextActionLabelTrainingDatumParams.Exit;
 }
 
 export namespace NextActionLabelTrainingDatumParams {
@@ -539,6 +637,8 @@ export namespace NextActionLabelTrainingDatumParams {
 
   export namespace SelectedStep {
     export interface SelectedStep {
+      llm_output: string;
+
       step_id: string;
     }
   }
@@ -549,6 +649,8 @@ export namespace NextActionLabelTrainingDatumParams {
 
   export namespace SearchStep {
     export interface SearchStep {
+      llm_output: string;
+
       search_query: string;
     }
   }
@@ -561,6 +663,16 @@ export namespace NextActionLabelTrainingDatumParams {
     export interface InvalidAction {
       error: string;
 
+      llm_output: string;
+    }
+  }
+
+  export interface Exit {
+    Exit: Exit.Exit;
+  }
+
+  export namespace Exit {
+    export interface Exit {
       llm_output: string;
     }
   }
