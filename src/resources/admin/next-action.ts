@@ -122,6 +122,8 @@ export namespace ActionTrainingDataEntry {
 
     export namespace SelectedStep {
       export interface SelectedStep {
+        llm_input: string;
+
         llm_output: string;
 
         step_id: string;
@@ -134,6 +136,8 @@ export namespace ActionTrainingDataEntry {
 
     export namespace SearchStep {
       export interface SearchStep {
+        llm_input: string;
+
         llm_output: string;
 
         search_query: string;
@@ -148,6 +152,8 @@ export namespace ActionTrainingDataEntry {
       export interface InvalidAction {
         error: string;
 
+        llm_input: string;
+
         llm_output: string;
       }
     }
@@ -158,6 +164,8 @@ export namespace ActionTrainingDataEntry {
 
     export namespace Exit {
       export interface Exit {
+        llm_input: string;
+
         llm_output: string;
       }
     }
@@ -180,6 +188,8 @@ export namespace ActionTrainingDataEntry {
 
     export namespace SelectedStep {
       export interface SelectedStep {
+        llm_input: string;
+
         llm_output: string;
 
         step_id: string;
@@ -192,6 +202,8 @@ export namespace ActionTrainingDataEntry {
 
     export namespace SearchStep {
       export interface SearchStep {
+        llm_input: string;
+
         llm_output: string;
 
         search_query: string;
@@ -206,6 +218,8 @@ export namespace ActionTrainingDataEntry {
       export interface InvalidAction {
         error: string;
 
+        llm_input: string;
+
         llm_output: string;
       }
     }
@@ -216,6 +230,8 @@ export namespace ActionTrainingDataEntry {
 
     export namespace Exit {
       export interface Exit {
+        llm_input: string;
+
         llm_output: string;
       }
     }
@@ -279,6 +295,8 @@ export namespace AddActionTrainingDatumRequest {
 
     export namespace SelectedStep {
       export interface SelectedStep {
+        llm_input: string;
+
         llm_output: string;
 
         step_id: string;
@@ -291,6 +309,8 @@ export namespace AddActionTrainingDatumRequest {
 
     export namespace SearchStep {
       export interface SearchStep {
+        llm_input: string;
+
         llm_output: string;
 
         search_query: string;
@@ -305,6 +325,8 @@ export namespace AddActionTrainingDatumRequest {
       export interface InvalidAction {
         error: string;
 
+        llm_input: string;
+
         llm_output: string;
       }
     }
@@ -315,6 +337,8 @@ export namespace AddActionTrainingDatumRequest {
 
     export namespace Exit {
       export interface Exit {
+        llm_input: string;
+
         llm_output: string;
       }
     }
@@ -326,6 +350,8 @@ export namespace AddActionTrainingDatumRequest {
 
   export namespace SelectedStep {
     export interface SelectedStep {
+      llm_input: string;
+
       llm_output: string;
 
       step_id: string;
@@ -338,6 +364,8 @@ export namespace AddActionTrainingDatumRequest {
 
   export namespace SearchStep {
     export interface SearchStep {
+      llm_input: string;
+
       llm_output: string;
 
       search_query: string;
@@ -352,6 +380,8 @@ export namespace AddActionTrainingDatumRequest {
     export interface InvalidAction {
       error: string;
 
+      llm_input: string;
+
       llm_output: string;
     }
   }
@@ -362,6 +392,8 @@ export namespace AddActionTrainingDatumRequest {
 
   export namespace Exit {
     export interface Exit {
+      llm_input: string;
+
       llm_output: string;
     }
   }
@@ -408,6 +440,8 @@ export namespace LabelActionTrainingDatumRequest {
 
   export namespace SelectedStep {
     export interface SelectedStep {
+      llm_input: string;
+
       llm_output: string;
 
       step_id: string;
@@ -420,6 +454,8 @@ export namespace LabelActionTrainingDatumRequest {
 
   export namespace SearchStep {
     export interface SearchStep {
+      llm_input: string;
+
       llm_output: string;
 
       search_query: string;
@@ -434,6 +470,8 @@ export namespace LabelActionTrainingDatumRequest {
     export interface InvalidAction {
       error: string;
 
+      llm_input: string;
+
       llm_output: string;
     }
   }
@@ -444,6 +482,8 @@ export namespace LabelActionTrainingDatumRequest {
 
   export namespace Exit {
     export interface Exit {
+      llm_input: string;
+
       llm_output: string;
     }
   }
@@ -502,6 +542,8 @@ export namespace NextActionAddTrainingDatumParams {
 
     export namespace SelectedStep {
       export interface SelectedStep {
+        llm_input: string;
+
         llm_output: string;
 
         step_id: string;
@@ -514,6 +556,8 @@ export namespace NextActionAddTrainingDatumParams {
 
     export namespace SearchStep {
       export interface SearchStep {
+        llm_input: string;
+
         llm_output: string;
 
         search_query: string;
@@ -528,6 +572,8 @@ export namespace NextActionAddTrainingDatumParams {
       export interface InvalidAction {
         error: string;
 
+        llm_input: string;
+
         llm_output: string;
       }
     }
@@ -538,6 +584,8 @@ export namespace NextActionAddTrainingDatumParams {
 
     export namespace Exit {
       export interface Exit {
+        llm_input: string;
+
         llm_output: string;
       }
     }
@@ -549,6 +597,8 @@ export namespace NextActionAddTrainingDatumParams {
 
   export namespace SelectedStep {
     export interface SelectedStep {
+      llm_input: string;
+
       llm_output: string;
 
       step_id: string;
@@ -561,6 +611,8 @@ export namespace NextActionAddTrainingDatumParams {
 
   export namespace SearchStep {
     export interface SearchStep {
+      llm_input: string;
+
       llm_output: string;
 
       search_query: string;
@@ -575,6 +627,8 @@ export namespace NextActionAddTrainingDatumParams {
     export interface InvalidAction {
       error: string;
 
+      llm_input: string;
+
       llm_output: string;
     }
   }
@@ -585,6 +639,8 @@ export namespace NextActionAddTrainingDatumParams {
 
   export namespace Exit {
     export interface Exit {
+      llm_input: string;
+
       llm_output: string;
     }
   }
@@ -637,6 +693,8 @@ export namespace NextActionLabelTrainingDatumParams {
 
   export namespace SelectedStep {
     export interface SelectedStep {
+      llm_input: string;
+
       llm_output: string;
 
       step_id: string;
@@ -649,6 +707,8 @@ export namespace NextActionLabelTrainingDatumParams {
 
   export namespace SearchStep {
     export interface SearchStep {
+      llm_input: string;
+
       llm_output: string;
 
       search_query: string;
@@ -663,6 +723,8 @@ export namespace NextActionLabelTrainingDatumParams {
     export interface InvalidAction {
       error: string;
 
+      llm_input: string;
+
       llm_output: string;
     }
   }
@@ -673,6 +735,8 @@ export namespace NextActionLabelTrainingDatumParams {
 
   export namespace Exit {
     export interface Exit {
+      llm_input: string;
+
       llm_output: string;
     }
   }
