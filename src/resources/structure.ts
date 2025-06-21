@@ -216,7 +216,7 @@ export namespace ChatPrompt {
 
     extraction_criteria: Array<StructureAPI.SaveRequirement>;
 
-    formatter_specific: Metadata.ImageMeta | Metadata.WebMeta | Metadata.TextMeta;
+    formatter_specific: Metadata.ImageMeta | Metadata.WebMeta | Metadata.TextMeta | Metadata.ScraperMeta;
 
     tool_metadata: Array<StructureAPI.ToolMetadata>;
 
@@ -294,6 +294,18 @@ export namespace ChatPrompt {
     export namespace TextMeta {
       export interface TextMeta {
         text: string;
+      }
+    }
+
+    export interface ScraperMeta {
+      ScraperMeta: ScraperMeta.ScraperMeta;
+    }
+
+    export namespace ScraperMeta {
+      export interface ScraperMeta {
+        html_content: string;
+
+        url: string;
       }
     }
   }
