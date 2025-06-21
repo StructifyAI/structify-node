@@ -33,14 +33,16 @@ describe('resource nextAction', () => {
           ],
         },
         extraction_criteria: [{ relationship_name: 'relationship_name' }],
-        previous_actions: [{ SelectedStep: { step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' } }],
+        previous_actions: [
+          { SelectedStep: { llm_output: 'llm_output', step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' } },
+        ],
         seeded_kg: {
           entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
           relationships: [{ source: 0, target: 0, type: 'type' }],
         },
       },
       label: 'label',
-      output: { SelectedStep: { step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' } },
+      output: { SelectedStep: { llm_output: 'llm_output', step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' } },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -93,14 +95,16 @@ describe('resource nextAction', () => {
           llm_override_field: 'llm_override_field',
         },
         extraction_criteria: [{ relationship_name: 'relationship_name' }],
-        previous_actions: [{ SelectedStep: { step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' } }],
+        previous_actions: [
+          { SelectedStep: { llm_output: 'llm_output', step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' } },
+        ],
         seeded_kg: {
           entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
           relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
         },
       },
       label: 'label',
-      output: { SelectedStep: { step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' } },
+      output: { SelectedStep: { llm_output: 'llm_output', step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' } },
       job_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
@@ -182,7 +186,7 @@ describe('resource nextAction', () => {
     const responsePromise = client.admin.nextAction.labelTrainingDatum({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       label: 'label',
-      output: { SelectedStep: { step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' } },
+      output: { SelectedStep: { llm_output: 'llm_output', step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' } },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -197,7 +201,7 @@ describe('resource nextAction', () => {
     const response = await client.admin.nextAction.labelTrainingDatum({
       id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       label: 'label',
-      output: { SelectedStep: { step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' } },
+      output: { SelectedStep: { llm_output: 'llm_output', step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' } },
     });
   });
 });
