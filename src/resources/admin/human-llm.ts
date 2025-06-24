@@ -131,6 +131,8 @@ export namespace HumanLlmJob {
      */
     message?: string | null;
 
+    node_id?: string | null;
+
     /**
      * Proto for JobInput
      */
@@ -193,7 +195,7 @@ export namespace StepChoices {
 
     action_name?: string;
 
-    metadata?: { [key: string]: string };
+    metadata?: Record<string, string>;
   }
 }
 

@@ -99,7 +99,7 @@ export interface DocumentDownloadResponse {
   content: Core.Uploadable;
 }
 
-export type DocumentStructureResponse = { [key: string]: unknown };
+export type DocumentStructureResponse = Record<string, unknown>;
 
 export interface DocumentListParams {
   dataset?: string | null;

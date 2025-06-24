@@ -102,6 +102,12 @@ import {
 import { Scrape, ScrapeListParams, ScrapeListRequest, ScrapeListResponse } from './resources/scrape';
 import { Server, ServerInformation } from './resources/server';
 import {
+  GetSessionEventsResponse,
+  JobEventBody,
+  SessionGetEventsParams,
+  Sessions,
+} from './resources/sessions';
+import {
   DatasetDescriptor,
   Entity,
   EntityMatch,
@@ -377,6 +383,7 @@ export class Structify extends Core.APIClient {
   datasets: API.Datasets = new API.Datasets(this);
   documents: API.Documents = new API.Documents(this);
   jobs: API.Jobs = new API.Jobs(this);
+  sessions: API.Sessions = new API.Sessions(this);
   server: API.Server = new API.Server(this);
   sources: API.Sources = new API.Sources(this);
   entities: API.Entities = new API.Entities(this);
@@ -444,6 +451,7 @@ Structify.DatasetViewTableResponsesJobsList = DatasetViewTableResponsesJobsList;
 Structify.Documents = Documents;
 Structify.Jobs = Jobs;
 Structify.JobListResponsesJobsList = JobListResponsesJobsList;
+Structify.Sessions = Sessions;
 Structify.Server = Server;
 Structify.Sources = Sources;
 Structify.Entities = Entities;
@@ -596,6 +604,13 @@ export declare namespace Structify {
     type JobGetStepsResponse as JobGetStepsResponse,
     JobListResponsesJobsList as JobListResponsesJobsList,
     type JobListParams as JobListParams,
+  };
+
+  export {
+    Sessions as Sessions,
+    type GetSessionEventsResponse as GetSessionEventsResponse,
+    type JobEventBody as JobEventBody,
+    type SessionGetEventsParams as SessionGetEventsParams,
   };
 
   export { Server as Server, type ServerInformation as ServerInformation };

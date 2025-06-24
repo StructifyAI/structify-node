@@ -221,6 +221,8 @@ export interface JobCancelResponse {
    */
   message?: string | null;
 
+  node_id?: string | null;
+
   /**
    * Proto for JobInput
    */
@@ -283,6 +285,8 @@ export namespace JobGetResponse {
      * A message about the status of the job at completion
      */
     message?: string | null;
+
+    node_id?: string | null;
 
     /**
      * Proto for JobInput
