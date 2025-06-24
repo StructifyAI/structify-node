@@ -127,6 +127,12 @@ export {
 export { Scrape, type ScrapeListRequest, type ScrapeListResponse, type ScrapeListParams } from './scrape';
 export { Server, type ServerInformation } from './server';
 export {
+  Sessions,
+  type GetSessionEventsResponse,
+  type JobEventBody,
+  type SessionGetEventsParams,
+} from './sessions';
+export {
   Shared,
   type DatasetDescriptor,
   type Entity,

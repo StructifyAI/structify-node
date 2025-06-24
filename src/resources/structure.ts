@@ -139,15 +139,15 @@ export namespace ChatPrompt {
     }
 
     export interface LogitBias {
-      LogitBias: { [key: string]: number };
+      LogitBias: Record<string, number>;
     }
 
     export interface Functions {
-      Functions: Array<{ [key: string]: unknown }>;
+      Functions: Array<Record<string, unknown>>;
     }
 
     export interface JsonValidator {
-      JsonValidator: { [key: string]: unknown };
+      JsonValidator: Record<string, unknown>;
     }
 
     export interface RegexValidator {
@@ -609,6 +609,8 @@ export interface StructureEnhancePropertyParams {
 
   banned_domains?: Array<string>;
 
+  run_metadata?: StructureEnhancePropertyParams.RunMetadata | null;
+
   special_job_type?: 'HumanLLM' | null;
 
   starting_searches?: Array<string>;
@@ -622,6 +624,12 @@ export interface StructureEnhancePropertyParams {
 }
 
 export namespace StructureEnhancePropertyParams {
+  export interface RunMetadata {
+    node_id: string;
+
+    session_id: string;
+  }
+
   /**
    * Configuration parameters for the StopChecker
    */

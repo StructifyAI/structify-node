@@ -320,6 +320,17 @@ Methods:
 - <code title="get /jobs/get_steps/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">getSteps</a>(jobId) -> JobGetStepsResponse</code>
 - <code title="post /jobs/schedule">client.jobs.<a href="./src/resources/jobs.ts">schedule</a>() -> void</code>
 
+# Sessions
+
+Types:
+
+- <code><a href="./src/resources/sessions.ts">GetSessionEventsResponse</a></code>
+- <code><a href="./src/resources/sessions.ts">JobEventBody</a></code>
+
+Methods:
+
+- <code title="get /sessions/{session_id}/events">client.sessions.<a href="./src/resources/sessions.ts">getEvents</a>(sessionId, { ...params }) -> GetSessionEventsResponse</code>
+
 # Server
 
 Types:
