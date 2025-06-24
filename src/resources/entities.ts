@@ -190,22 +190,22 @@ export interface EntityAddRelationshipResponse {
 
   label: string;
 
-  properties: Record<
-    string,
-    | string
-    | boolean
-    | number
-    | EntityAddRelationshipResponse.PartialDateObject
-    | string
-    | string
-    | EntityAddRelationshipResponse.URLObject
-    | string
-    | EntityAddRelationshipResponse.MoneyObject
-    | SharedAPI.Image
-    | EntityAddRelationshipResponse.PersonName
-    | EntityAddRelationshipResponse.AddressObject
-    | string
-  >;
+  properties: {
+    [key: string]:
+      | string
+      | boolean
+      | number
+      | EntityAddRelationshipResponse.PartialDateObject
+      | string
+      | string
+      | EntityAddRelationshipResponse.URLObject
+      | string
+      | EntityAddRelationshipResponse.MoneyObject
+      | SharedAPI.Image
+      | EntityAddRelationshipResponse.PersonName
+      | EntityAddRelationshipResponse.AddressObject
+      | string;
+  };
 
   to_id: string;
 
@@ -268,7 +268,7 @@ export namespace EntityAddRelationshipResponse {
   }
 
   export interface AddressObject {
-    components: Record<string, string>;
+    components: { [key: string]: string };
 
     original_address: string;
   }
@@ -295,22 +295,22 @@ export interface EntityGetResponse {
 
   label: string;
 
-  properties: Record<
-    string,
-    | string
-    | boolean
-    | number
-    | EntityGetResponse.PartialDateObject
-    | string
-    | string
-    | EntityGetResponse.URLObject
-    | string
-    | EntityGetResponse.MoneyObject
-    | SharedAPI.Image
-    | EntityGetResponse.PersonName
-    | EntityGetResponse.AddressObject
-    | string
-  >;
+  properties: {
+    [key: string]:
+      | string
+      | boolean
+      | number
+      | EntityGetResponse.PartialDateObject
+      | string
+      | string
+      | EntityGetResponse.URLObject
+      | string
+      | EntityGetResponse.MoneyObject
+      | SharedAPI.Image
+      | EntityGetResponse.PersonName
+      | EntityGetResponse.AddressObject
+      | string;
+  };
 
   updated_at: string;
 }
@@ -371,7 +371,7 @@ export namespace EntityGetResponse {
   }
 
   export interface AddressObject {
-    components: Record<string, string>;
+    components: { [key: string]: string };
 
     original_address: string;
   }
@@ -393,22 +393,22 @@ export namespace EntityGetLocalSubgraphResponse {
 
     label: string;
 
-    properties: Record<
-      string,
-      | string
-      | boolean
-      | number
-      | Neighbor.PartialDateObject
-      | string
-      | string
-      | Neighbor.URLObject
-      | string
-      | Neighbor.MoneyObject
-      | SharedAPI.Image
-      | Neighbor.PersonName
-      | Neighbor.AddressObject
-      | string
-    >;
+    properties: {
+      [key: string]:
+        | string
+        | boolean
+        | number
+        | Neighbor.PartialDateObject
+        | string
+        | string
+        | Neighbor.URLObject
+        | string
+        | Neighbor.MoneyObject
+        | SharedAPI.Image
+        | Neighbor.PersonName
+        | Neighbor.AddressObject
+        | string;
+    };
 
     updated_at: string;
   }
@@ -469,7 +469,7 @@ export namespace EntityGetLocalSubgraphResponse {
     }
 
     export interface AddressObject {
-      components: Record<string, string>;
+      components: { [key: string]: string };
 
       original_address: string;
     }
@@ -486,22 +486,22 @@ export namespace EntityGetLocalSubgraphResponse {
 
     label: string;
 
-    properties: Record<
-      string,
-      | string
-      | boolean
-      | number
-      | Relationship.PartialDateObject
-      | string
-      | string
-      | Relationship.URLObject
-      | string
-      | Relationship.MoneyObject
-      | SharedAPI.Image
-      | Relationship.PersonName
-      | Relationship.AddressObject
-      | string
-    >;
+    properties: {
+      [key: string]:
+        | string
+        | boolean
+        | number
+        | Relationship.PartialDateObject
+        | string
+        | string
+        | Relationship.URLObject
+        | string
+        | Relationship.MoneyObject
+        | SharedAPI.Image
+        | Relationship.PersonName
+        | Relationship.AddressObject
+        | string;
+    };
 
     to_id: string;
 
@@ -564,7 +564,7 @@ export namespace EntityGetLocalSubgraphResponse {
     }
 
     export interface AddressObject {
-      components: Record<string, string>;
+      components: { [key: string]: string };
 
       original_address: string;
     }
@@ -589,22 +589,22 @@ export namespace EntityGetSourceEntitiesResponse {
 
     llm_id: number;
 
-    properties: Record<
-      string,
-      | string
-      | boolean
-      | number
-      | SourceEntity.PartialDateObject
-      | string
-      | string
-      | SourceEntity.URLObject
-      | string
-      | SourceEntity.MoneyObject
-      | SharedAPI.Image
-      | SourceEntity.PersonName
-      | SourceEntity.AddressObject
-      | string
-    >;
+    properties: {
+      [key: string]:
+        | string
+        | boolean
+        | number
+        | SourceEntity.PartialDateObject
+        | string
+        | string
+        | SourceEntity.URLObject
+        | string
+        | SourceEntity.MoneyObject
+        | SharedAPI.Image
+        | SourceEntity.PersonName
+        | SourceEntity.AddressObject
+        | string;
+    };
 
     source_id: string;
 
@@ -679,7 +679,7 @@ export namespace EntityGetSourceEntitiesResponse {
     }
 
     export interface AddressObject {
-      components: Record<string, string>;
+      components: { [key: string]: string };
 
       original_address: string;
     }
@@ -796,22 +796,22 @@ export namespace EntitySearchResponse {
 
     label: string;
 
-    properties: Record<
-      string,
-      | string
-      | boolean
-      | number
-      | EntitySearchResponseItem.PartialDateObject
-      | string
-      | string
-      | EntitySearchResponseItem.URLObject
-      | string
-      | EntitySearchResponseItem.MoneyObject
-      | SharedAPI.Image
-      | EntitySearchResponseItem.PersonName
-      | EntitySearchResponseItem.AddressObject
-      | string
-    >;
+    properties: {
+      [key: string]:
+        | string
+        | boolean
+        | number
+        | EntitySearchResponseItem.PartialDateObject
+        | string
+        | string
+        | EntitySearchResponseItem.URLObject
+        | string
+        | EntitySearchResponseItem.MoneyObject
+        | SharedAPI.Image
+        | EntitySearchResponseItem.PersonName
+        | EntitySearchResponseItem.AddressObject
+        | string;
+    };
 
     updated_at: string;
   }
@@ -872,7 +872,7 @@ export namespace EntitySearchResponse {
     }
 
     export interface AddressObject {
-      components: Record<string, string>;
+      components: { [key: string]: string };
 
       original_address: string;
     }
@@ -891,22 +891,22 @@ export namespace EntitySummarizeResponse {
 
     label: string;
 
-    properties: Record<
-      string,
-      | string
-      | boolean
-      | number
-      | EntitySummarizeResponseItem.PartialDateObject
-      | string
-      | string
-      | EntitySummarizeResponseItem.URLObject
-      | string
-      | EntitySummarizeResponseItem.MoneyObject
-      | SharedAPI.Image
-      | EntitySummarizeResponseItem.PersonName
-      | EntitySummarizeResponseItem.AddressObject
-      | string
-    >;
+    properties: {
+      [key: string]:
+        | string
+        | boolean
+        | number
+        | EntitySummarizeResponseItem.PartialDateObject
+        | string
+        | string
+        | EntitySummarizeResponseItem.URLObject
+        | string
+        | EntitySummarizeResponseItem.MoneyObject
+        | SharedAPI.Image
+        | EntitySummarizeResponseItem.PersonName
+        | EntitySummarizeResponseItem.AddressObject
+        | string;
+    };
 
     updated_at: string;
   }
@@ -967,7 +967,7 @@ export namespace EntitySummarizeResponse {
     }
 
     export interface AddressObject {
-      components: Record<string, string>;
+      components: { [key: string]: string };
 
       original_address: string;
     }
@@ -983,22 +983,22 @@ export interface EntityTriggerMergeResponse {
 
   label: string;
 
-  properties: Record<
-    string,
-    | string
-    | boolean
-    | number
-    | EntityTriggerMergeResponse.PartialDateObject
-    | string
-    | string
-    | EntityTriggerMergeResponse.URLObject
-    | string
-    | EntityTriggerMergeResponse.MoneyObject
-    | SharedAPI.Image
-    | EntityTriggerMergeResponse.PersonName
-    | EntityTriggerMergeResponse.AddressObject
-    | string
-  >;
+  properties: {
+    [key: string]:
+      | string
+      | boolean
+      | number
+      | EntityTriggerMergeResponse.PartialDateObject
+      | string
+      | string
+      | EntityTriggerMergeResponse.URLObject
+      | string
+      | EntityTriggerMergeResponse.MoneyObject
+      | SharedAPI.Image
+      | EntityTriggerMergeResponse.PersonName
+      | EntityTriggerMergeResponse.AddressObject
+      | string;
+  };
 
   updated_at: string;
 }
@@ -1059,7 +1059,7 @@ export namespace EntityTriggerMergeResponse {
   }
 
   export interface AddressObject {
-    components: Record<string, string>;
+    components: { [key: string]: string };
 
     original_address: string;
   }
@@ -1074,22 +1074,22 @@ export interface EntityUpdatePropertyResponse {
 
   label: string;
 
-  properties: Record<
-    string,
-    | string
-    | boolean
-    | number
-    | EntityUpdatePropertyResponse.PartialDateObject
-    | string
-    | string
-    | EntityUpdatePropertyResponse.URLObject
-    | string
-    | EntityUpdatePropertyResponse.MoneyObject
-    | SharedAPI.Image
-    | EntityUpdatePropertyResponse.PersonName
-    | EntityUpdatePropertyResponse.AddressObject
-    | string
-  >;
+  properties: {
+    [key: string]:
+      | string
+      | boolean
+      | number
+      | EntityUpdatePropertyResponse.PartialDateObject
+      | string
+      | string
+      | EntityUpdatePropertyResponse.URLObject
+      | string
+      | EntityUpdatePropertyResponse.MoneyObject
+      | SharedAPI.Image
+      | EntityUpdatePropertyResponse.PersonName
+      | EntityUpdatePropertyResponse.AddressObject
+      | string;
+  };
 
   updated_at: string;
 }
@@ -1150,7 +1150,7 @@ export namespace EntityUpdatePropertyResponse {
   }
 
   export interface AddressObject {
-    components: Record<string, string>;
+    components: { [key: string]: string };
 
     original_address: string;
   }
@@ -1180,22 +1180,22 @@ export namespace EntityViewResponse {
 
     label: string;
 
-    properties: Record<
-      string,
-      | string
-      | boolean
-      | number
-      | ConnectedEntity.PartialDateObject
-      | string
-      | string
-      | ConnectedEntity.URLObject
-      | string
-      | ConnectedEntity.MoneyObject
-      | SharedAPI.Image
-      | ConnectedEntity.PersonName
-      | ConnectedEntity.AddressObject
-      | string
-    >;
+    properties: {
+      [key: string]:
+        | string
+        | boolean
+        | number
+        | ConnectedEntity.PartialDateObject
+        | string
+        | string
+        | ConnectedEntity.URLObject
+        | string
+        | ConnectedEntity.MoneyObject
+        | SharedAPI.Image
+        | ConnectedEntity.PersonName
+        | ConnectedEntity.AddressObject
+        | string;
+    };
 
     updated_at: string;
   }
@@ -1256,7 +1256,7 @@ export namespace EntityViewResponse {
     }
 
     export interface AddressObject {
-      components: Record<string, string>;
+      components: { [key: string]: string };
 
       original_address: string;
     }
@@ -1271,22 +1271,22 @@ export namespace EntityViewResponse {
 
     label: string;
 
-    properties: Record<
-      string,
-      | string
-      | boolean
-      | number
-      | Entity.PartialDateObject
-      | string
-      | string
-      | Entity.URLObject
-      | string
-      | Entity.MoneyObject
-      | SharedAPI.Image
-      | Entity.PersonName
-      | Entity.AddressObject
-      | string
-    >;
+    properties: {
+      [key: string]:
+        | string
+        | boolean
+        | number
+        | Entity.PartialDateObject
+        | string
+        | string
+        | Entity.URLObject
+        | string
+        | Entity.MoneyObject
+        | SharedAPI.Image
+        | Entity.PersonName
+        | Entity.AddressObject
+        | string;
+    };
 
     updated_at: string;
   }
@@ -1347,7 +1347,7 @@ export namespace EntityViewResponse {
     }
 
     export interface AddressObject {
-      components: Record<string, string>;
+      components: { [key: string]: string };
 
       original_address: string;
     }
@@ -1364,22 +1364,22 @@ export namespace EntityViewResponse {
 
     label: string;
 
-    properties: Record<
-      string,
-      | string
-      | boolean
-      | number
-      | Relationship.PartialDateObject
-      | string
-      | string
-      | Relationship.URLObject
-      | string
-      | Relationship.MoneyObject
-      | SharedAPI.Image
-      | Relationship.PersonName
-      | Relationship.AddressObject
-      | string
-    >;
+    properties: {
+      [key: string]:
+        | string
+        | boolean
+        | number
+        | Relationship.PartialDateObject
+        | string
+        | string
+        | Relationship.URLObject
+        | string
+        | Relationship.MoneyObject
+        | SharedAPI.Image
+        | Relationship.PersonName
+        | Relationship.AddressObject
+        | string;
+    };
 
     to_id: string;
 
@@ -1442,7 +1442,7 @@ export namespace EntityViewResponse {
     }
 
     export interface AddressObject {
-      components: Record<string, string>;
+      components: { [key: string]: string };
 
       original_address: string;
     }
@@ -1457,22 +1457,22 @@ export namespace EntityViewResponse {
 
     label: string;
 
-    properties: Record<
-      string,
-      | string
-      | boolean
-      | number
-      | SimilarEntity.PartialDateObject
-      | string
-      | string
-      | SimilarEntity.URLObject
-      | string
-      | SimilarEntity.MoneyObject
-      | SharedAPI.Image
-      | SimilarEntity.PersonName
-      | SimilarEntity.AddressObject
-      | string
-    >;
+    properties: {
+      [key: string]:
+        | string
+        | boolean
+        | number
+        | SimilarEntity.PartialDateObject
+        | string
+        | string
+        | SimilarEntity.URLObject
+        | string
+        | SimilarEntity.MoneyObject
+        | SharedAPI.Image
+        | SimilarEntity.PersonName
+        | SimilarEntity.AddressObject
+        | string;
+    };
 
     updated_at: string;
   }
@@ -1533,7 +1533,7 @@ export namespace EntityViewResponse {
     }
 
     export interface AddressObject {
-      components: Record<string, string>;
+      components: { [key: string]: string };
 
       original_address: string;
     }
@@ -1676,7 +1676,7 @@ export interface EntityAddRelationshipParams {
 
   to_id: string;
 
-  properties?: Record<string, string | boolean | number>;
+  properties?: { [key: string]: string | boolean | number };
 }
 
 export interface EntityAgentMergeParams {
@@ -1771,7 +1771,7 @@ export interface EntityUpdatePropertyParams {
 
   entity_id: string;
 
-  properties: Record<string, string | boolean | number>;
+  properties: { [key: string]: string | boolean | number };
 
   source?:
     | 'None'
