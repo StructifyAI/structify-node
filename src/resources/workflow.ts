@@ -159,7 +159,7 @@ export namespace Workflow {
 
 export type WorkflowListResponse = Array<ExistingWorkflow>;
 
-export type WorkflowJobProgressResponse = { [key: string]: { [key: string]: number } };
+export type WorkflowJobProgressResponse = Record<string, Record<string, number>>;
 
 export type WorkflowJobsResponse = Array<WorkflowJobsResponse.WorkflowJobsResponseItem>;
 
@@ -191,6 +191,8 @@ export namespace WorkflowJobsResponse {
      * A message about the status of the job at completion
      */
     message?: string | null;
+
+    node_id?: string | null;
 
     /**
      * Proto for JobInput
