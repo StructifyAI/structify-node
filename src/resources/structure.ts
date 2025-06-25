@@ -139,15 +139,15 @@ export namespace ChatPrompt {
     }
 
     export interface LogitBias {
-      LogitBias: { [key: string]: number };
+      LogitBias: Record<string, number>;
     }
 
     export interface Functions {
-      Functions: Array<{ [key: string]: unknown }>;
+      Functions: Array<Record<string, unknown>>;
     }
 
     export interface JsonValidator {
-      JsonValidator: { [key: string]: unknown };
+      JsonValidator: Record<string, unknown>;
     }
 
     export interface RegexValidator {
@@ -230,11 +230,11 @@ export namespace ChatPrompt {
 
     export namespace ImageMeta {
       export interface ImageMeta {
+        image: string | null;
+
         document_name?: string | null;
 
         document_page?: number | null;
-
-        image?: Core.Uploadable | null;
 
         ocr_content?: string | null;
       }
