@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.144.0 (2025-06-25)
+
+Full Changelog: [v1.143.0...v1.144.0](https://github.com/StructifyAI/structify-node/compare/v1.143.0...v1.144.0)
+
+### Features
+
+* **api:** manual updates ([945bc2b](https://github.com/StructifyAI/structify-node/commit/945bc2b89d0339b2bfdce62ff51526e5a9a138bd))
+
+
+### Bug Fixes
+
+* Implement job events queue functionality ([3fdbb3d](https://github.com/StructifyAI/structify-node/commit/3fdbb3d5458ad8269958490e111f5c867ded6dde))
+* stainless maybe ([b211f9b](https://github.com/StructifyAI/structify-node/commit/b211f9bf5fce0b969b3da28989941e2c9c213b80))
+
+
+### Chores
+
+* **internal:** codegen related update ([6fb42f6](https://github.com/StructifyAI/structify-node/commit/6fb42f6f28d07d6daaae9acaaecdb82578c6d8b0))
+
+
+### Refactors
+
+* **types:** replace Record with mapped types ([345820c](https://github.com/StructifyAI/structify-node/commit/345820c40bd9935e78e4ea32ef2e835ab1af6439))
+
 ## 1.143.0 (2025-06-21)
 
 Full Changelog: [v1.142.0...v1.143.0](https://github.com/StructifyAI/structify-node/compare/v1.142.0...v1.143.0)
