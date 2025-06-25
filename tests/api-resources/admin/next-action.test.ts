@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Structify, { toFile } from 'structifyai';
+import Structify from 'structifyai';
 import { Response } from 'node-fetch';
 
 const client = new Structify({
@@ -66,7 +66,7 @@ describe('resource nextAction', () => {
                     },
                   ],
                   extraction_criteria: [{ relationship_name: 'relationship_name' }],
-                  formatter_specific: { ImageMeta: {} },
+                  formatter_specific: { ImageMeta: { image: 'image' } },
                   tool_metadata: [
                     { description: 'description', name: 'Exit', regex_validator: 'regex_validator' },
                   ],
@@ -115,7 +115,7 @@ describe('resource nextAction', () => {
                 },
               ],
               extraction_criteria: [{ relationship_name: 'relationship_name' }],
-              formatter_specific: { ImageMeta: {} },
+              formatter_specific: { ImageMeta: { image: 'image' } },
               tool_metadata: [
                 { description: 'description', name: 'Exit', regex_validator: 'regex_validator' },
               ],
@@ -234,9 +234,9 @@ describe('resource nextAction', () => {
                   extraction_criteria: [{ relationship_name: 'relationship_name' }],
                   formatter_specific: {
                     ImageMeta: {
+                      image: 'image',
                       document_name: 'document_name',
                       document_page: 0,
-                      image: await toFile(Buffer.from('# my file contents'), 'README.md'),
                       ocr_content: 'ocr_content',
                     },
                   },
@@ -313,9 +313,9 @@ describe('resource nextAction', () => {
               extraction_criteria: [{ relationship_name: 'relationship_name' }],
               formatter_specific: {
                 ImageMeta: {
+                  image: 'image',
                   document_name: 'document_name',
                   document_page: 0,
-                  image: await toFile(Buffer.from('# my file contents'), 'README.md'),
                   ocr_content: 'ocr_content',
                 },
               },
@@ -442,7 +442,7 @@ describe('resource nextAction', () => {
                 },
               ],
               extraction_criteria: [{ relationship_name: 'relationship_name' }],
-              formatter_specific: { ImageMeta: {} },
+              formatter_specific: { ImageMeta: { image: 'image' } },
               tool_metadata: [
                 { description: 'description', name: 'Exit', regex_validator: 'regex_validator' },
               ],
@@ -522,9 +522,9 @@ describe('resource nextAction', () => {
               extraction_criteria: [{ relationship_name: 'relationship_name' }],
               formatter_specific: {
                 ImageMeta: {
+                  image: 'image',
                   document_name: 'document_name',
                   document_page: 0,
-                  image: await toFile(Buffer.from('# my file contents'), 'README.md'),
                   ocr_content: 'ocr_content',
                 },
               },
