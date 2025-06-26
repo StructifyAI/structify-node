@@ -139,15 +139,15 @@ export namespace ChatPrompt {
     }
 
     export interface LogitBias {
-      LogitBias: { [key: string]: number };
+      LogitBias: Record<string, number>;
     }
 
     export interface Functions {
-      Functions: Array<{ [key: string]: unknown }>;
+      Functions: Array<Record<string, unknown>>;
     }
 
     export interface JsonValidator {
-      JsonValidator: { [key: string]: unknown };
+      JsonValidator: Record<string, unknown>;
     }
 
     export interface RegexValidator {
@@ -738,6 +738,8 @@ export interface StructureRunAsyncParams {
    */
   source: StructureRunAsyncParams.Pdf | StructureRunAsyncParams.Web;
 
+  run_metadata?: StructureRunAsyncParams.RunMetadata | null;
+
   save_requirement?: Array<SaveRequirement>;
 
   /**
@@ -784,6 +786,12 @@ export namespace StructureRunAsyncParams {
 
       starting_urls?: Array<string>;
     }
+  }
+
+  export interface RunMetadata {
+    node_id: string;
+
+    session_id: string;
   }
 
   /**

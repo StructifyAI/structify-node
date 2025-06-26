@@ -77,6 +77,7 @@ describe('resource scrape', () => {
       },
       table_name: 'table_name',
       url: 'url',
+      run_metadata: { node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', session_id: 'session_id' },
       stop_config: {
         max_steps_without_save: 0,
         max_errors: 0,

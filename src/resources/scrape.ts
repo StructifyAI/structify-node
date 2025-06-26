@@ -8,7 +8,7 @@ export class Scrape extends APIResource {
   /**
    * Scrape a list from a URL and return a knowledge graph
    */
-  list(body: ScrapeListParams, options?: Core.RequestOptions): Core.APIPromise<ScrapeListResponse> {
+  list(body: ScrapeListParams, options?: Core.RequestOptions): Core.APIPromise<string> {
     return this._client.post('/scrape/list', { body, ...options });
   }
 }
@@ -29,6 +29,8 @@ export interface ScrapeListRequest {
 
   url: string;
 
+  run_metadata?: ScrapeListRequest.RunMetadata | null;
+
   /**
    * Configuration parameters for the StopChecker
    */
@@ -36,6 +38,12 @@ export interface ScrapeListRequest {
 }
 
 export namespace ScrapeListRequest {
+  export interface RunMetadata {
+    node_id: string;
+
+    session_id: string;
+  }
+
   /**
    * Configuration parameters for the StopChecker
    */
@@ -50,17 +58,7 @@ export namespace ScrapeListRequest {
   }
 }
 
-/**
- * Response containing the extracted knowledge graph
- */
-export interface ScrapeListResponse {
-  /**
-   * Knowledge graph info structured to deserialize and display in the same format
-   * that the LLM outputs. Also the first representation of an LLM output in the
-   * pipeline from raw tool output to being merged into a Neo4j DB
-   */
-  knowledge_graph: SharedAPI.KnowledgeGraph;
-}
+export type ScrapeListResponse = string;
 
 export interface ScrapeListParams {
   /**
@@ -75,6 +73,8 @@ export interface ScrapeListParams {
 
   url: string;
 
+  run_metadata?: ScrapeListParams.RunMetadata | null;
+
   /**
    * Configuration parameters for the StopChecker
    */
@@ -82,6 +82,12 @@ export interface ScrapeListParams {
 }
 
 export namespace ScrapeListParams {
+  export interface RunMetadata {
+    node_id: string;
+
+    session_id: string;
+  }
+
   /**
    * Configuration parameters for the StopChecker
    */

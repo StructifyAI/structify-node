@@ -79,7 +79,6 @@ import {
   UserListResponse,
   UserSetCreditsParams,
   UserSetCreditsResponse,
-  UserUpdateParams,
   Users,
 } from './users';
 
@@ -140,7 +139,6 @@ export declare namespace Admin {
     type UserGetStatsResponse as UserGetStatsResponse,
     type UserSetCreditsResponse as UserSetCreditsResponse,
     type UserCreateParams as UserCreateParams,
-    type UserUpdateParams as UserUpdateParams,
     type UserGetCreditsParams as UserGetCreditsParams,
     type UserGetStatsParams as UserGetStatsParams,
     type UserSetCreditsParams as UserSetCreditsParams,
