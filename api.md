@@ -5,12 +5,14 @@ Types:
 - <code><a href="./src/resources/user/user.ts">SurveySubmissionRequest</a></code>
 - <code><a href="./src/resources/user/user.ts">SurveySubmissionResponse</a></code>
 - <code><a href="./src/resources/user/user.ts">TokenResponse</a></code>
+- <code><a href="./src/resources/user/user.ts">UpdateUserParams</a></code>
 - <code><a href="./src/resources/user/user.ts">UserInfo</a></code>
 - <code><a href="./src/resources/user/user.ts">UserTransactionsResponse</a></code>
 - <code><a href="./src/resources/user/user.ts">UserUsageResponse</a></code>
 
 Methods:
 
+- <code title="put /user/update">client.user.<a href="./src/resources/user/user.ts">update</a>({ ...params }) -> User</code>
 - <code title="get /user/info">client.user.<a href="./src/resources/user/user.ts">info</a>() -> UserInfo</code>
 - <code title="post /user/jwt_to_api_token/{jwt}">client.user.<a href="./src/resources/user/user.ts">jwtToAPIToken</a>(jwt) -> TokenResponse</code>
 - <code title="post /user/survey/submit">client.user.<a href="./src/resources/user/user.ts">surveySubmit</a>({ ...params }) -> SurveySubmissionResponse</code>
@@ -161,7 +163,6 @@ Types:
 Methods:
 
 - <code title="post /admin/users/create">client.admin.users.<a href="./src/resources/admin/users.ts">create</a>({ ...params }) -> TokenResponse</code>
-- <code title="put /admin/users/update">client.admin.users.<a href="./src/resources/admin/users.ts">update</a>({ ...params }) -> User</code>
 - <code title="get /admin/users/list">client.admin.users.<a href="./src/resources/admin/users.ts">list</a>() -> UserListResponse</code>
 - <code title="post /admin/users/get_credits">client.admin.users.<a href="./src/resources/admin/users.ts">getCredits</a>({ ...params }) -> UserGetCreditsResponse</code>
 - <code title="post /admin/users/get_stats">client.admin.users.<a href="./src/resources/admin/users.ts">getStats</a>({ ...params }) -> UserGetStatsResponse</code>
@@ -305,7 +306,6 @@ Types:
 - <code><a href="./src/resources/jobs.ts">JobDeleteResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobCancelResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobGetResponse</a></code>
-- <code><a href="./src/resources/jobs.ts">JobGetScrapersResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobGetStepResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobGetStepGraphResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobGetStepsResponse</a></code>
@@ -316,7 +316,6 @@ Methods:
 - <code title="post /jobs/delete/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">delete</a>(jobId) -> string</code>
 - <code title="post /jobs/cancel/{uuid}">client.jobs.<a href="./src/resources/jobs.ts">cancel</a>(uuid) -> JobCancelResponse</code>
 - <code title="get /jobs/get/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">get</a>(jobId) -> JobGetResponse</code>
-- <code title="get /jobs/get_scrapers/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">getScrapers</a>(jobId) -> JobGetScrapersResponse</code>
 - <code title="get /jobs/get_step/{step_id}">client.jobs.<a href="./src/resources/jobs.ts">getStep</a>(stepId) -> JobGetStepResponse</code>
 - <code title="get /jobs/get_step_graph/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">getStepGraph</a>(jobId) -> JobGetStepGraphResponse</code>
 - <code title="get /jobs/get_steps/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">getSteps</a>(jobId) -> JobGetStepsResponse</code>
@@ -430,7 +429,7 @@ Types:
 
 Methods:
 
-- <code title="post /scrape/list">client.scrape.<a href="./src/resources/scrape.ts">list</a>({ ...params }) -> ScrapeListResponse</code>
+- <code title="post /scrape/list">client.scrape.<a href="./src/resources/scrape.ts">list</a>({ ...params }) -> string</code>
 
 # Structure
 

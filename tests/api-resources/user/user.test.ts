@@ -9,6 +9,17 @@ const client = new Structify({
 });
 
 describe('resource user', () => {
+  test('update', async () => {
+    const responsePromise = client.user.update({});
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
   test('info', async () => {
     const responsePromise = client.user.info();
     const rawResponse = await responsePromise.asResponse();
