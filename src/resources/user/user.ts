@@ -3,6 +3,7 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
+import * as UsersAPI from '../admin/users';
 import * as StripeAPI from './stripe';
 import {
   CreateSessionRequest,
@@ -16,6 +17,13 @@ import {
 
 export class User extends APIResource {
   stripe: StripeAPI.Stripe = new StripeAPI.Stripe(this._client);
+
+  /**
+   * Update a user's permissions and type.
+   */
+  update(body: UserUpdateParams, options?: Core.RequestOptions): Core.APIPromise<UsersAPI.User> {
+    return this._client.put('/user/update', { body, ...options });
+  }
 
   /**
    * Enable a source
@@ -74,7 +82,7 @@ export class User extends APIResource {
 }
 
 export interface SurveySubmissionRequest {
-  survey_response: { [key: string]: unknown };
+  survey_response: Record<string, unknown>;
 }
 
 export interface SurveySubmissionResponse {
@@ -87,6 +95,25 @@ export interface TokenResponse {
   token: string;
 
   permissions: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'>;
+}
+
+export interface UpdateUserParams {
+  current_email?: string | null;
+
+  is_developer?: boolean | null;
+
+  new_email?: string | null;
+
+  new_feature_flags?: Array<
+    | 'functional_test'
+    | 'pdf_parsing'
+    | 'boredm_construction_model'
+    | 'generic_suspicious_queue'
+    | 'new_use_case_preview'
+    | 'none'
+  > | null;
+
+  new_permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'> | null;
 }
 
 export interface UserInfo {
@@ -102,6 +129,8 @@ export interface UserInfo {
     | 'new_use_case_preview'
     | 'none'
   >;
+
+  is_developer: boolean;
 
   permissions: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'>;
 
@@ -141,8 +170,27 @@ export interface UserUsageResponse {
   num_relationships: number;
 }
 
+export interface UserUpdateParams {
+  current_email?: string | null;
+
+  is_developer?: boolean | null;
+
+  new_email?: string | null;
+
+  new_feature_flags?: Array<
+    | 'functional_test'
+    | 'pdf_parsing'
+    | 'boredm_construction_model'
+    | 'generic_suspicious_queue'
+    | 'new_use_case_preview'
+    | 'none'
+  > | null;
+
+  new_permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'> | null;
+}
+
 export interface UserSurveySubmitParams {
-  survey_response: { [key: string]: unknown };
+  survey_response: Record<string, unknown>;
 }
 
 export interface UserUsageParams {
@@ -156,9 +204,11 @@ export declare namespace User {
     type SurveySubmissionRequest as SurveySubmissionRequest,
     type SurveySubmissionResponse as SurveySubmissionResponse,
     type TokenResponse as TokenResponse,
+    type UpdateUserParams as UpdateUserParams,
     type UserInfo as UserInfo,
     type UserTransactionsResponse as UserTransactionsResponse,
     type UserUsageResponse as UserUsageResponse,
+    type UserUpdateParams as UserUpdateParams,
     type UserSurveySubmitParams as UserSurveySubmitParams,
     type UserUsageParams as UserUsageParams,
   };

@@ -73,7 +73,6 @@ export {
   type UserGetStatsResponse,
   type UserSetCreditsResponse,
   type UserCreateParams,
-  type UserUpdateParams,
   type UserGetCreditsParams,
   type UserGetStatsParams,
   type UserSetCreditsParams,

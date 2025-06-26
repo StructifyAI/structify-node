@@ -14,9 +14,11 @@ export {
   type SurveySubmissionRequest,
   type SurveySubmissionResponse,
   type TokenResponse,
+  type UpdateUserParams,
   type UserInfo,
   type UserTransactionsResponse,
   type UserUsageResponse,
+  type UserUpdateParams,
   type UserSurveySubmitParams,
   type UserUsageParams,
 } from './user';
