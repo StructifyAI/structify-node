@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.144.1 (2025-06-27)
+
+Full Changelog: [v1.144.0...v1.144.1](https://github.com/StructifyAI/structify-node/compare/v1.144.0...v1.144.1)
+
+### Bug Fixes
+
+* add run metadata to `run_async` ([c8aa181](https://github.com/StructifyAI/structify-node/commit/c8aa181cdfefe7df6dcbe379d25b264755aeef37))
+* **ci:** release-doctor — report correct token name ([76b5033](https://github.com/StructifyAI/structify-node/commit/76b503392788bce1c602f8581377e838fe29ddac))
+
+
+### Chores
+
+* **internal:** codegen related update ([d56b10f](https://github.com/StructifyAI/structify-node/commit/d56b10fbc766fe59b34fcc53cd660564a8638f91))
+* **internal:** codegen related update ([eee1178](https://github.com/StructifyAI/structify-node/commit/eee11787376592ef79fa69d8eba58e19e7bf36b3))
+
 ## 1.144.0 (2025-06-25)
 
 Full Changelog: [v1.143.0...v1.144.0](https://github.com/StructifyAI/structify-node/compare/v1.143.0...v1.144.0)
