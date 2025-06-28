@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.144.2 (2025-06-28)
+
+Full Changelog: [v1.144.1...v1.144.2](https://github.com/StructifyAI/structify-node/compare/v1.144.1...v1.144.2)
+
+### Chores
+
+* **ci:** only run for pushes and fork pull requests ([1c68f5c](https://github.com/StructifyAI/structify-node/commit/1c68f5c29d5f4c9a22ce10b61a5fd86202047420))
+* **internal:** codegen related update ([774549f](https://github.com/StructifyAI/structify-node/commit/774549f98382e1f1f51f9cec707ae913cd16ecb3))
+* **internal:** version bump ([7ddabbe](https://github.com/StructifyAI/structify-node/commit/7ddabbe14fadef06e0e2511aaf88435828f47f3a))
+
 ## 1.144.1 (2025-06-27)
 
 Full Changelog: [v1.144.0...v1.144.1](https://github.com/StructifyAI/structify-node/compare/v1.144.0...v1.144.1)
