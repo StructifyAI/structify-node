@@ -114,9 +114,9 @@ export interface EvaluateGetResponse {
 
 export namespace EvaluateGetResponse {
   export interface Matches {
-    relationship_matches: Record<string, Matches.RelationshipMatches>;
+    relationship_matches: { [key: string]: Matches.RelationshipMatches };
 
-    table_matches: Record<string, Matches.TableMatches>;
+    table_matches: { [key: string]: Matches.TableMatches };
   }
 
   export namespace Matches {
@@ -161,22 +161,22 @@ export namespace EvaluateGetResponse {
 
           label: string;
 
-          properties: Record<
-            string,
-            | string
-            | boolean
-            | number
-            | RelationshipA.PartialDateObject
-            | string
-            | string
-            | RelationshipA.URLObject
-            | string
-            | RelationshipA.MoneyObject
-            | SharedAPI.Image
-            | RelationshipA.PersonName
-            | RelationshipA.AddressObject
-            | string
-          >;
+          properties: {
+            [key: string]:
+              | string
+              | boolean
+              | number
+              | RelationshipA.PartialDateObject
+              | string
+              | string
+              | RelationshipA.URLObject
+              | string
+              | RelationshipA.MoneyObject
+              | SharedAPI.Image
+              | RelationshipA.PersonName
+              | RelationshipA.AddressObject
+              | string;
+          };
 
           to_id: string;
 
@@ -239,7 +239,7 @@ export namespace EvaluateGetResponse {
           }
 
           export interface AddressObject {
-            components: Record<string, string>;
+            components: { [key: string]: string };
 
             original_address: string;
           }
@@ -256,22 +256,22 @@ export namespace EvaluateGetResponse {
 
           label: string;
 
-          properties: Record<
-            string,
-            | string
-            | boolean
-            | number
-            | RelationshipB.PartialDateObject
-            | string
-            | string
-            | RelationshipB.URLObject
-            | string
-            | RelationshipB.MoneyObject
-            | SharedAPI.Image
-            | RelationshipB.PersonName
-            | RelationshipB.AddressObject
-            | string
-          >;
+          properties: {
+            [key: string]:
+              | string
+              | boolean
+              | number
+              | RelationshipB.PartialDateObject
+              | string
+              | string
+              | RelationshipB.URLObject
+              | string
+              | RelationshipB.MoneyObject
+              | SharedAPI.Image
+              | RelationshipB.PersonName
+              | RelationshipB.AddressObject
+              | string;
+          };
 
           to_id: string;
 
@@ -334,7 +334,7 @@ export namespace EvaluateGetResponse {
           }
 
           export interface AddressObject {
-            components: Record<string, string>;
+            components: { [key: string]: string };
 
             original_address: string;
           }
@@ -352,22 +352,22 @@ export namespace EvaluateGetResponse {
 
         label: string;
 
-        properties: Record<
-          string,
-          | string
-          | boolean
-          | number
-          | UnmatchedA.PartialDateObject
-          | string
-          | string
-          | UnmatchedA.URLObject
-          | string
-          | UnmatchedA.MoneyObject
-          | SharedAPI.Image
-          | UnmatchedA.PersonName
-          | UnmatchedA.AddressObject
-          | string
-        >;
+        properties: {
+          [key: string]:
+            | string
+            | boolean
+            | number
+            | UnmatchedA.PartialDateObject
+            | string
+            | string
+            | UnmatchedA.URLObject
+            | string
+            | UnmatchedA.MoneyObject
+            | SharedAPI.Image
+            | UnmatchedA.PersonName
+            | UnmatchedA.AddressObject
+            | string;
+        };
 
         to_id: string;
 
@@ -430,7 +430,7 @@ export namespace EvaluateGetResponse {
         }
 
         export interface AddressObject {
-          components: Record<string, string>;
+          components: { [key: string]: string };
 
           original_address: string;
         }
@@ -447,22 +447,22 @@ export namespace EvaluateGetResponse {
 
         label: string;
 
-        properties: Record<
-          string,
-          | string
-          | boolean
-          | number
-          | UnmatchedB.PartialDateObject
-          | string
-          | string
-          | UnmatchedB.URLObject
-          | string
-          | UnmatchedB.MoneyObject
-          | SharedAPI.Image
-          | UnmatchedB.PersonName
-          | UnmatchedB.AddressObject
-          | string
-        >;
+        properties: {
+          [key: string]:
+            | string
+            | boolean
+            | number
+            | UnmatchedB.PartialDateObject
+            | string
+            | string
+            | UnmatchedB.URLObject
+            | string
+            | UnmatchedB.MoneyObject
+            | SharedAPI.Image
+            | UnmatchedB.PersonName
+            | UnmatchedB.AddressObject
+            | string;
+        };
 
         to_id: string;
 
@@ -525,7 +525,7 @@ export namespace EvaluateGetResponse {
         }
 
         export interface AddressObject {
-          components: Record<string, string>;
+          components: { [key: string]: string };
 
           original_address: string;
         }
@@ -557,22 +557,22 @@ export namespace EvaluateGetResponse {
 
           label: string;
 
-          properties: Record<
-            string,
-            | string
-            | boolean
-            | number
-            | Entity.PartialDateObject
-            | string
-            | string
-            | Entity.URLObject
-            | string
-            | Entity.MoneyObject
-            | SharedAPI.Image
-            | Entity.PersonName
-            | Entity.AddressObject
-            | string
-          >;
+          properties: {
+            [key: string]:
+              | string
+              | boolean
+              | number
+              | Entity.PartialDateObject
+              | string
+              | string
+              | Entity.URLObject
+              | string
+              | Entity.MoneyObject
+              | SharedAPI.Image
+              | Entity.PersonName
+              | Entity.AddressObject
+              | string;
+          };
 
           updated_at: string;
         }
@@ -633,7 +633,7 @@ export namespace EvaluateGetResponse {
           }
 
           export interface AddressObject {
-            components: Record<string, string>;
+            components: { [key: string]: string };
 
             original_address: string;
           }
@@ -656,22 +656,22 @@ export namespace EvaluateGetResponse {
 
           label: string;
 
-          properties: Record<
-            string,
-            | string
-            | boolean
-            | number
-            | Entity.PartialDateObject
-            | string
-            | string
-            | Entity.URLObject
-            | string
-            | Entity.MoneyObject
-            | SharedAPI.Image
-            | Entity.PersonName
-            | Entity.AddressObject
-            | string
-          >;
+          properties: {
+            [key: string]:
+              | string
+              | boolean
+              | number
+              | Entity.PartialDateObject
+              | string
+              | string
+              | Entity.URLObject
+              | string
+              | Entity.MoneyObject
+              | SharedAPI.Image
+              | Entity.PersonName
+              | Entity.AddressObject
+              | string;
+          };
 
           updated_at: string;
         }
@@ -732,7 +732,7 @@ export namespace EvaluateGetResponse {
           }
 
           export interface AddressObject {
-            components: Record<string, string>;
+            components: { [key: string]: string };
 
             original_address: string;
           }
@@ -742,14 +742,14 @@ export namespace EvaluateGetResponse {
   }
 
   export interface Stats {
-    per_relationship: Record<string, Stats.PerRelationship>;
+    per_relationship: { [key: string]: Stats.PerRelationship };
 
-    per_table: Record<string, Stats.PerTable>;
+    per_table: { [key: string]: Stats.PerTable };
   }
 
   export namespace Stats {
     export interface PerRelationship {
-      per_property: Record<string, PerRelationship.PerProperty>;
+      per_property: { [key: string]: PerRelationship.PerProperty };
 
       prop_granularity: PerRelationship.PropGranularity;
 
@@ -785,7 +785,7 @@ export namespace EvaluateGetResponse {
     export interface PerTable {
       entity_granularity: PerTable.EntityGranularity;
 
-      per_property: Record<string, PerTable.PerProperty>;
+      per_property: { [key: string]: PerTable.PerProperty };
 
       prop_granularity: PerTable.PropGranularity;
     }
