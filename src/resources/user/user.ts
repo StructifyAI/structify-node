@@ -82,7 +82,7 @@ export class User extends APIResource {
 }
 
 export interface SurveySubmissionRequest {
-  survey_response: Record<string, unknown>;
+  survey_response: { [key: string]: unknown };
 }
 
 export interface SurveySubmissionResponse {
@@ -190,7 +190,7 @@ export interface UserUpdateParams {
 }
 
 export interface UserSurveySubmitParams {
-  survey_response: Record<string, unknown>;
+  survey_response: { [key: string]: unknown };
 }
 
 export interface UserUsageParams {
