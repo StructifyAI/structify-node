@@ -107,6 +107,7 @@ export {
   type JobDeleteResponse,
   type JobCancelResponse,
   type JobGetResponse,
+  type JobGetScrapersResponse,
   type JobGetStepResponse,
   type JobGetStepGraphResponse,
   type JobGetStepsResponse,
