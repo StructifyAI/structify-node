@@ -431,7 +431,7 @@ Types:
 
 Methods:
 
-- <code title="post /scrape/list">client.scrape.<a href="./src/resources/scrape.ts">list</a>({ ...params }) -> string</code>
+- <code title="post /scrape/list">client.scrape.<a href="./src/resources/scrape.ts">list</a>({ ...params }) -> ScrapeListResponse</code>
 
 # Structure
 
