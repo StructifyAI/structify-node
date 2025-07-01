@@ -8,7 +8,7 @@ export class Scrape extends APIResource {
   /**
    * Scrape a list from a URL and return a knowledge graph
    */
-  list(body: ScrapeListParams, options?: Core.RequestOptions): Core.APIPromise<string> {
+  list(body: ScrapeListParams, options?: Core.RequestOptions): Core.APIPromise<ScrapeListResponse> {
     return this._client.post('/scrape/list', { body, ...options });
   }
 }
@@ -58,7 +58,12 @@ export namespace ScrapeListRequest {
   }
 }
 
-export type ScrapeListResponse = string;
+/**
+ * Response body for scrape_list endpoint
+ */
+export interface ScrapeListResponse {
+  job_id: string;
+}
 
 export interface ScrapeListParams {
   /**
