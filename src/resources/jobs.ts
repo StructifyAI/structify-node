@@ -52,6 +52,13 @@ export class Jobs extends APIResource {
   }
 
   /**
+   * Retrieve scrapers associated with a job from structify.
+   */
+  getScrapers(jobId: string, options?: Core.RequestOptions): Core.APIPromise<JobGetScrapersResponse> {
+    return this._client.get(`/jobs/get_scrapers/${jobId}`, options);
+  }
+
+  /**
    * Retrieve a step from structify.
    */
   getStep(stepId: string, options?: Core.RequestOptions): Core.APIPromise<JobGetStepResponse> {
@@ -314,6 +321,28 @@ export namespace JobGetResponse {
     workflow_id?: WorkflowAPI.ID | null;
 
     workflow_step_id?: string | null;
+  }
+}
+
+export type JobGetScrapersResponse = Array<JobGetScrapersResponse.JobGetScrapersResponseItem>;
+
+export namespace JobGetScrapersResponse {
+  export interface JobGetScrapersResponseItem {
+    base_url: string;
+
+    is_newly_created: boolean;
+
+    scraper_created_at: string;
+
+    scraper_id: string;
+
+    scraper_updated_at: string;
+
+    chat?: StructureAPI.ChatPrompt | null;
+
+    code?: string | null;
+
+    next_page_code?: string | null;
   }
 }
 
@@ -786,6 +815,7 @@ export declare namespace Jobs {
     type JobDeleteResponse as JobDeleteResponse,
     type JobCancelResponse as JobCancelResponse,
     type JobGetResponse as JobGetResponse,
+    type JobGetScrapersResponse as JobGetScrapersResponse,
     type JobGetStepResponse as JobGetStepResponse,
     type JobGetStepGraphResponse as JobGetStepGraphResponse,
     type JobGetStepsResponse as JobGetStepsResponse,
