@@ -139,15 +139,15 @@ export namespace ChatPrompt {
     }
 
     export interface LogitBias {
-      LogitBias: Record<string, number>;
+      LogitBias: { [key: string]: number };
     }
 
     export interface Functions {
-      Functions: Array<Record<string, unknown>>;
+      Functions: Array<{ [key: string]: unknown }>;
     }
 
     export interface JsonValidator {
-      JsonValidator: Record<string, unknown>;
+      JsonValidator: { [key: string]: unknown };
     }
 
     export interface RegexValidator {
