@@ -113,7 +113,7 @@ export namespace ActionTrainingDataEntry {
 
       action_name?: string;
 
-      metadata?: Record<string, string>;
+      metadata?: { [key: string]: string };
     }
 
     export interface SelectedStep {
@@ -286,7 +286,7 @@ export namespace AddActionTrainingDatumRequest {
 
       action_name?: string;
 
-      metadata?: Record<string, string>;
+      metadata?: { [key: string]: string };
     }
 
     export interface SelectedStep {
@@ -533,7 +533,7 @@ export namespace NextActionAddTrainingDatumParams {
 
       action_name?: string;
 
-      metadata?: Record<string, string>;
+      metadata?: { [key: string]: string };
     }
 
     export interface SelectedStep {
