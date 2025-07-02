@@ -47,13 +47,19 @@ Types:
 - <code><a href="./src/resources/chat.ts">ErrorResponse</a></code>
 - <code><a href="./src/resources/chat.ts">GetChatSessionResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ListChatSessionsResponse</a></code>
+- <code><a href="./src/resources/chat.ts">ChatAddGitCommitResponse</a></code>
+- <code><a href="./src/resources/chat.ts">ChatGetGitCommitResponse</a></code>
+- <code><a href="./src/resources/chat.ts">ChatGetSessionTimelineResponse</a></code>
 
 Methods:
 
+- <code title="post /chat/sessions/{session_id}/commits">client.chat.<a href="./src/resources/chat.ts">addGitCommit</a>(sessionId, { ...params }) -> ChatAddGitCommitResponse</code>
 - <code title="post /chat/sessions/{session_id}/messages">client.chat.<a href="./src/resources/chat.ts">addMessage</a>(sessionId, { ...params }) -> AddChatMessageResponse</code>
 - <code title="post /chat/sessions">client.chat.<a href="./src/resources/chat.ts">createSession</a>({ ...params }) -> CreateChatSessionResponse</code>
 - <code title="delete /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">deleteSession</a>(sessionId) -> DeleteChatSessionResponse</code>
+- <code title="get /chat/sessions/{chat_id}/commits/{commit_hash}">client.chat.<a href="./src/resources/chat.ts">getGitCommit</a>(chatId, commitHash) -> ChatGetGitCommitResponse</code>
 - <code title="get /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">getSession</a>(sessionId) -> GetChatSessionResponse</code>
+- <code title="get /chat/sessions/{session_id}/timeline">client.chat.<a href="./src/resources/chat.ts">getSessionTimeline</a>(sessionId) -> ChatGetSessionTimelineResponse</code>
 - <code title="get /chat/sessions">client.chat.<a href="./src/resources/chat.ts">listSessions</a>({ ...params }) -> ListChatSessionsResponse</code>
 
 # Teams
@@ -104,6 +110,26 @@ Methods:
 
 - <code title="delete /team/{team_id}/project/{project_id}">client.projects.<a href="./src/resources/projects.ts">delete</a>(teamId, projectId) -> DeleteProjectResponse</code>
 - <code title="get /team/{team_id}/project/{project_id}">client.projects.<a href="./src/resources/projects.ts">get</a>(teamId, projectId) -> GetProjectResponse</code>
+
+# Secrets
+
+Types:
+
+- <code><a href="./src/resources/secrets.ts">CreateSecretRequest</a></code>
+- <code><a href="./src/resources/secrets.ts">GetSecretResponse</a></code>
+- <code><a href="./src/resources/secrets.ts">ProjectSecret</a></code>
+- <code><a href="./src/resources/secrets.ts">ProjectSecretSummary</a></code>
+- <code><a href="./src/resources/secrets.ts">UpdateSecretRequest</a></code>
+- <code><a href="./src/resources/secrets.ts">UpdateSecretResponse</a></code>
+- <code><a href="./src/resources/secrets.ts">SecretListResponse</a></code>
+
+Methods:
+
+- <code title="post /project/{project_id}/secrets">client.secrets.<a href="./src/resources/secrets.ts">create</a>(projectId, { ...params }) -> void</code>
+- <code title="put /project/{project_id}/secrets/{secret_name}">client.secrets.<a href="./src/resources/secrets.ts">update</a>(projectId, secretName, { ...params }) -> UpdateSecretResponse</code>
+- <code title="get /project/{project_id}/secrets">client.secrets.<a href="./src/resources/secrets.ts">list</a>(projectId) -> SecretListResponse</code>
+- <code title="delete /project/{project_id}/secrets/{secret_name}">client.secrets.<a href="./src/resources/secrets.ts">delete</a>(projectId, secretName) -> void</code>
+- <code title="get /project/{project_id}/secrets/{secret_name}">client.secrets.<a href="./src/resources/secrets.ts">get</a>(projectId, secretName) -> GetSecretResponse</code>
 
 # Admin
 

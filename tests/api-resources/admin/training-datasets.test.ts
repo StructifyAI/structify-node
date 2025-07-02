@@ -401,11 +401,7 @@ describe('resource trainingDatasets', () => {
   });
 
   test('verifyDatum: only required params', async () => {
-    const responsePromise = client.admin.trainingDatasets.verifyDatum({
-      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      status: 'unlabeled',
-      verified_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
+    const responsePromise = client.admin.trainingDatasets.verifyDatum({});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -416,10 +412,6 @@ describe('resource trainingDatasets', () => {
   });
 
   test('verifyDatum: required and optional params', async () => {
-    const response = await client.admin.trainingDatasets.verifyDatum({
-      id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      status: 'unlabeled',
-      verified_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
+    const response = await client.admin.trainingDatasets.verifyDatum({});
   });
 });
