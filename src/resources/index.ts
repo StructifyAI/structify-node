@@ -13,6 +13,10 @@ export {
   type ErrorResponse,
   type GetChatSessionResponse,
   type ListChatSessionsResponse,
+  type ChatAddGitCommitResponse,
+  type ChatGetGitCommitResponse,
+  type ChatGetSessionTimelineResponse,
+  type ChatAddGitCommitParams,
   type ChatAddMessageParams,
   type ChatCreateSessionParams,
   type ChatListSessionsParams,
@@ -126,6 +130,18 @@ export {
   type ReportWrongParams,
 } from './report';
 export { Scrape, type ScrapeListRequest, type ScrapeListResponse, type ScrapeListParams } from './scrape';
+export {
+  Secrets,
+  type CreateSecretRequest,
+  type GetSecretResponse,
+  type ProjectSecret,
+  type ProjectSecretSummary,
+  type UpdateSecretRequest,
+  type UpdateSecretResponse,
+  type SecretListResponse,
+  type SecretCreateParams,
+  type SecretUpdateParams,
+} from './secrets';
 export { Server, type ServerInformation } from './server';
 export {
   Sessions,

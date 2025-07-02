@@ -9,12 +9,23 @@ const client = new Structify({
 });
 
 describe('resource chat', () => {
+  test('addGitCommit: only required params', async () => {
+    const responsePromise = client.chat.addGitCommit('session_id', { commit_hash: 'commit_hash' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('addGitCommit: required and optional params', async () => {
+    const response = await client.chat.addGitCommit('session_id', { commit_hash: 'commit_hash' });
+  });
+
   test('addMessage: only required params', async () => {
-    const responsePromise = client.chat.addMessage('session_id', {
-      content: 'content',
-      git_commit_hash: 'git_commit_hash',
-      role: 'role',
-    });
+    const responsePromise = client.chat.addMessage('session_id', { content: 'content', role: 'role' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -25,18 +36,11 @@ describe('resource chat', () => {
   });
 
   test('addMessage: required and optional params', async () => {
-    const response = await client.chat.addMessage('session_id', {
-      content: 'content',
-      git_commit_hash: 'git_commit_hash',
-      role: 'role',
-      timestamp: '2019-12-27T18:11:19.117Z',
-    });
+    const response = await client.chat.addMessage('session_id', { content: 'content', role: 'role' });
   });
 
   test('createSession: only required params', async () => {
     const responsePromise = client.chat.createSession({
-      git_branch: 'git_branch',
-      git_commit_hash: 'git_commit_hash',
       git_repo_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       initial_message: 'initial_message',
       project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -52,8 +56,6 @@ describe('resource chat', () => {
 
   test('createSession: required and optional params', async () => {
     const response = await client.chat.createSession({
-      git_branch: 'git_branch',
-      git_commit_hash: 'git_commit_hash',
       git_repo_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       initial_message: 'initial_message',
       project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -78,6 +80,24 @@ describe('resource chat', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
+  test('getGitCommit', async () => {
+    const responsePromise = client.chat.getGitCommit('chat_id', 'commit_hash');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('getGitCommit: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.chat.getGitCommit('chat_id', 'commit_hash', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
   test('getSession', async () => {
     const responsePromise = client.chat.getSession('session_id');
     const rawResponse = await responsePromise.asResponse();
@@ -94,6 +114,24 @@ describe('resource chat', () => {
     await expect(client.chat.getSession('session_id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
       Structify.NotFoundError,
     );
+  });
+
+  test('getSessionTimeline', async () => {
+    const responsePromise = client.chat.getSessionTimeline('session_id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('getSessionTimeline: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.chat.getSessionTimeline('session_id', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Structify.NotFoundError);
   });
 
   test('listSessions', async () => {

@@ -195,7 +195,7 @@ export namespace StepChoices {
 
     action_name?: string;
 
-    metadata?: { [key: string]: string };
+    metadata?: Record<string, string>;
   }
 }
 
