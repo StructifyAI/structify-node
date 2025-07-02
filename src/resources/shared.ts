@@ -56,7 +56,7 @@ export namespace DatasetDescriptor {
 export interface Entity {
   id: number;
 
-  properties: { [key: string]: string | boolean | number };
+  properties: Record<string, string | boolean | number>;
 
   type: string;
 }
@@ -87,22 +87,22 @@ export namespace EntityMatch {
 
     label: string;
 
-    properties: {
-      [key: string]:
-        | string
-        | boolean
-        | number
-        | EntityA.PartialDateObject
-        | string
-        | string
-        | EntityA.URLObject
-        | string
-        | EntityA.MoneyObject
-        | SharedAPI.Image
-        | EntityA.PersonName
-        | EntityA.AddressObject
-        | string;
-    };
+    properties: Record<
+      string,
+      | string
+      | boolean
+      | number
+      | EntityA.PartialDateObject
+      | string
+      | string
+      | EntityA.URLObject
+      | string
+      | EntityA.MoneyObject
+      | SharedAPI.Image
+      | EntityA.PersonName
+      | EntityA.AddressObject
+      | string
+    >;
 
     updated_at: string;
   }
@@ -163,7 +163,7 @@ export namespace EntityMatch {
     }
 
     export interface AddressObject {
-      components: { [key: string]: string };
+      components: Record<string, string>;
 
       original_address: string;
     }
@@ -178,22 +178,22 @@ export namespace EntityMatch {
 
     label: string;
 
-    properties: {
-      [key: string]:
-        | string
-        | boolean
-        | number
-        | EntityB.PartialDateObject
-        | string
-        | string
-        | EntityB.URLObject
-        | string
-        | EntityB.MoneyObject
-        | SharedAPI.Image
-        | EntityB.PersonName
-        | EntityB.AddressObject
-        | string;
-    };
+    properties: Record<
+      string,
+      | string
+      | boolean
+      | number
+      | EntityB.PartialDateObject
+      | string
+      | string
+      | EntityB.URLObject
+      | string
+      | EntityB.MoneyObject
+      | SharedAPI.Image
+      | EntityB.PersonName
+      | EntityB.AddressObject
+      | string
+    >;
 
     updated_at: string;
   }
@@ -254,7 +254,7 @@ export namespace EntityMatch {
     }
 
     export interface AddressObject {
-      components: { [key: string]: string };
+      components: Record<string, string>;
 
       original_address: string;
     }
@@ -324,7 +324,7 @@ export interface Relationship {
 
   type: string;
 
-  properties?: { [key: string]: string | boolean | number };
+  properties?: Record<string, string | boolean | number>;
 }
 
 /**

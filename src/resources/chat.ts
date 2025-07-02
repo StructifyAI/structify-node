@@ -6,6 +6,17 @@ import * as Core from '../core';
 
 export class Chat extends APIResource {
   /**
+   * Add a git commit to a chat session
+   */
+  addGitCommit(
+    sessionId: string,
+    body: ChatAddGitCommitParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatAddGitCommitResponse> {
+    return this._client.post(`/chat/sessions/${sessionId}/commits`, { body, ...options });
+  }
+
+  /**
    * Add a message to a chat session
    */
   addMessage(
@@ -37,6 +48,17 @@ export class Chat extends APIResource {
   }
 
   /**
+   * Get a specific git commit by its hash for a chat session
+   */
+  getGitCommit(
+    chatId: string,
+    commitHash: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatGetGitCommitResponse> {
+    return this._client.get(`/chat/sessions/${chatId}/commits/${commitHash}`, options);
+  }
+
+  /**
    * Get a chat session with all its messages
    */
   getSession(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<GetChatSessionResponse> {
@@ -44,7 +66,17 @@ export class Chat extends APIResource {
   }
 
   /**
-   * List all chat sessions for the authenticated user, doesn't contain the messages.
+   * Get chronological timeline of messages and commits for a chat session
+   */
+  getSessionTimeline(
+    sessionId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatGetSessionTimelineResponse> {
+    return this._client.get(`/chat/sessions/${sessionId}/timeline`, options);
+  }
+
+  /**
+   * List all chat sessions for the authenticated user.
    */
   listSessions(
     query?: ChatListSessionsParams,
@@ -65,11 +97,7 @@ export class Chat extends APIResource {
 export interface AddChatMessageRequest {
   content: string;
 
-  git_commit_hash: string;
-
   role: string;
-
-  timestamp?: string | null;
 }
 
 /**
@@ -89,8 +117,6 @@ export namespace AddChatMessageResponse {
 
     created_at: string;
 
-    git_commit_hash: string;
-
     role: string;
 
     timestamp: string;
@@ -101,8 +127,6 @@ export interface ChatSession {
   id: string;
 
   created_at: string;
-
-  git_branch: string;
 
   git_repo_id: string;
 
@@ -117,8 +141,6 @@ export interface ChatSessionWithMessages {
   id: string;
 
   created_at: string;
-
-  git_branch: string;
 
   git_repo_id: string;
 
@@ -141,8 +163,6 @@ export namespace ChatSessionWithMessages {
 
     created_at: string;
 
-    git_commit_hash: string;
-
     role: string;
 
     timestamp: string;
@@ -150,10 +170,6 @@ export namespace ChatSessionWithMessages {
 }
 
 export interface CreateChatSessionRequest {
-  git_branch: string;
-
-  git_commit_hash: string;
-
   git_repo_id: string;
 
   initial_message: string;
@@ -195,24 +211,115 @@ export interface GetChatSessionResponse {
  * Response for listing chat sessions
  */
 export interface ListChatSessionsResponse {
-  sessions: Array<ChatSession>;
+  sessions: Array<ListChatSessionsResponse.Session>;
+}
+
+export namespace ListChatSessionsResponse {
+  export interface Session {
+    id: string;
+
+    created_at: string;
+
+    project_id: string;
+
+    title: string;
+
+    user_id: string;
+  }
+}
+
+/**
+ * Response structure for adding a git commit
+ */
+export interface ChatAddGitCommitResponse {
+  commit: ChatAddGitCommitResponse.Commit;
+}
+
+export namespace ChatAddGitCommitResponse {
+  export interface Commit {
+    id: string;
+
+    chat_session_id: string;
+
+    commit_hash: string;
+
+    created_at: string;
+  }
+}
+
+/**
+ * Response structure for getting a git commit by hash
+ */
+export interface ChatGetGitCommitResponse {
+  commit: ChatGetGitCommitResponse.Commit;
+}
+
+export namespace ChatGetGitCommitResponse {
+  export interface Commit {
+    id: string;
+
+    chat_session_id: string;
+
+    commit_hash: string;
+
+    created_at: string;
+  }
+}
+
+/**
+ * Response structure for getting session timeline
+ */
+export interface ChatGetSessionTimelineResponse {
+  /**
+   * Chronologically sorted list of messages and commits
+   */
+  timeline: Array<ChatGetSessionTimelineResponse.Message | ChatGetSessionTimelineResponse.GitCommit>;
+}
+
+export namespace ChatGetSessionTimelineResponse {
+  export interface Message {
+    id: string;
+
+    chat_session_id: string;
+
+    content: string;
+
+    created_at: string;
+
+    role: string;
+
+    timestamp: string;
+
+    type: 'Message';
+  }
+
+  export interface GitCommit {
+    id: string;
+
+    chat_session_id: string;
+
+    commit_hash: string;
+
+    created_at: string;
+
+    type: 'GitCommit';
+  }
+}
+
+export interface ChatAddGitCommitParams {
+  /**
+   * The git commit hash (must be 40 characters)
+   */
+  commit_hash: string;
 }
 
 export interface ChatAddMessageParams {
   content: string;
 
-  git_commit_hash: string;
-
   role: string;
-
-  timestamp?: string | null;
 }
 
 export interface ChatCreateSessionParams {
-  git_branch: string;
-
-  git_commit_hash: string;
-
   git_repo_id: string;
 
   initial_message: string;
@@ -239,6 +346,10 @@ export declare namespace Chat {
     type ErrorResponse as ErrorResponse,
     type GetChatSessionResponse as GetChatSessionResponse,
     type ListChatSessionsResponse as ListChatSessionsResponse,
+    type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
+    type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
+    type ChatGetSessionTimelineResponse as ChatGetSessionTimelineResponse,
+    type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAddMessageParams as ChatAddMessageParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
     type ChatListSessionsParams as ChatListSessionsParams,

@@ -12,8 +12,12 @@ import {
   AddChatMessageRequest,
   AddChatMessageResponse,
   Chat,
+  ChatAddGitCommitParams,
+  ChatAddGitCommitResponse,
   ChatAddMessageParams,
   ChatCreateSessionParams,
+  ChatGetGitCommitResponse,
+  ChatGetSessionTimelineResponse,
   ChatListSessionsParams,
   ChatSession,
   ChatSessionWithMessages,
@@ -101,6 +105,18 @@ import {
   ReportWrongResponse,
 } from './resources/report';
 import { Scrape, ScrapeListParams, ScrapeListRequest, ScrapeListResponse } from './resources/scrape';
+import {
+  CreateSecretRequest,
+  GetSecretResponse,
+  ProjectSecret,
+  ProjectSecretSummary,
+  SecretCreateParams,
+  SecretListResponse,
+  SecretUpdateParams,
+  Secrets,
+  UpdateSecretRequest,
+  UpdateSecretResponse,
+} from './resources/secrets';
 import { Server, ServerInformation } from './resources/server';
 import {
   GetSessionEventsResponse,
@@ -381,6 +397,7 @@ export class Structify extends Core.APIClient {
   chat: API.Chat = new API.Chat(this);
   teams: API.Teams = new API.Teams(this);
   projects: API.Projects = new API.Projects(this);
+  secrets: API.Secrets = new API.Secrets(this);
   admin: API.Admin = new API.Admin(this);
   workflow: API.WorkflowResource = new API.WorkflowResource(this);
   datasets: API.Datasets = new API.Datasets(this);
@@ -446,6 +463,7 @@ Structify.User = User;
 Structify.Chat = Chat;
 Structify.Teams = Teams;
 Structify.Projects = Projects;
+Structify.Secrets = Secrets;
 Structify.Admin = Admin;
 Structify.WorkflowResource = WorkflowResource;
 Structify.Datasets = Datasets;
@@ -494,6 +512,10 @@ export declare namespace Structify {
     type ErrorResponse as ErrorResponse,
     type GetChatSessionResponse as GetChatSessionResponse,
     type ListChatSessionsResponse as ListChatSessionsResponse,
+    type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
+    type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
+    type ChatGetSessionTimelineResponse as ChatGetSessionTimelineResponse,
+    type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAddMessageParams as ChatAddMessageParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
     type ChatListSessionsParams as ChatListSessionsParams,
@@ -530,6 +552,19 @@ export declare namespace Structify {
     type DeleteProjectResponse as DeleteProjectResponse,
     type GetProjectResponse as GetProjectResponse,
     type Project as Project,
+  };
+
+  export {
+    Secrets as Secrets,
+    type CreateSecretRequest as CreateSecretRequest,
+    type GetSecretResponse as GetSecretResponse,
+    type ProjectSecret as ProjectSecret,
+    type ProjectSecretSummary as ProjectSecretSummary,
+    type UpdateSecretRequest as UpdateSecretRequest,
+    type UpdateSecretResponse as UpdateSecretResponse,
+    type SecretListResponse as SecretListResponse,
+    type SecretCreateParams as SecretCreateParams,
+    type SecretUpdateParams as SecretUpdateParams,
   };
 
   export { Admin as Admin };

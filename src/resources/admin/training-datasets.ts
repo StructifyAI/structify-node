@@ -1098,13 +1098,7 @@ export interface TrainingDatasetUploadLabeledStepParams {
   step_bytes: Core.Uploadable;
 }
 
-export interface TrainingDatasetVerifyDatumParams {
-  id: string;
-
-  status: DatumStatus;
-
-  verified_id: string;
-}
+export type TrainingDatasetVerifyDatumParams = unknown;
 
 export declare namespace TrainingDatasets {
   export {
