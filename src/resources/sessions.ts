@@ -36,7 +36,7 @@ export namespace GetSessionEventsResponse {
   export interface Event {
     id: string;
 
-    body: Record<string, unknown>;
+    body: { [key: string]: unknown };
 
     job_id: string;
 
@@ -75,7 +75,7 @@ export namespace JobEventBody {
   }
 
   export interface Custom {
-    data: Record<string, unknown>;
+    data: { [key: string]: unknown };
 
     event_name: string;
 
