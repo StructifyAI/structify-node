@@ -307,7 +307,7 @@ export interface DatasetGetResponse extends SharedAPI.DatasetDescriptor {
   created_timestamp: string;
 }
 
-export type DatasetMatchResponse = { [key: string]: DatasetMatchResponse.item };
+export type DatasetMatchResponse = Record<string, DatasetMatchResponse.item>;
 
 export namespace DatasetMatchResponse {
   export interface item {
@@ -328,22 +328,22 @@ export interface DatasetViewRelationshipsResponse {
 
   label: string;
 
-  properties: {
-    [key: string]:
-      | string
-      | boolean
-      | number
-      | DatasetViewRelationshipsResponse.PartialDateObject
-      | string
-      | string
-      | DatasetViewRelationshipsResponse.URLObject
-      | string
-      | DatasetViewRelationshipsResponse.MoneyObject
-      | SharedAPI.Image
-      | DatasetViewRelationshipsResponse.PersonName
-      | DatasetViewRelationshipsResponse.AddressObject
-      | string;
-  };
+  properties: Record<
+    string,
+    | string
+    | boolean
+    | number
+    | DatasetViewRelationshipsResponse.PartialDateObject
+    | string
+    | string
+    | DatasetViewRelationshipsResponse.URLObject
+    | string
+    | DatasetViewRelationshipsResponse.MoneyObject
+    | SharedAPI.Image
+    | DatasetViewRelationshipsResponse.PersonName
+    | DatasetViewRelationshipsResponse.AddressObject
+    | string
+  >;
 
   to_id: string;
 
@@ -406,7 +406,7 @@ export namespace DatasetViewRelationshipsResponse {
   }
 
   export interface AddressObject {
-    components: { [key: string]: string };
+    components: Record<string, string>;
 
     original_address: string;
   }
@@ -421,22 +421,22 @@ export interface DatasetViewTableResponse {
 
   label: string;
 
-  properties: {
-    [key: string]:
-      | string
-      | boolean
-      | number
-      | DatasetViewTableResponse.PartialDateObject
-      | string
-      | string
-      | DatasetViewTableResponse.URLObject
-      | string
-      | DatasetViewTableResponse.MoneyObject
-      | SharedAPI.Image
-      | DatasetViewTableResponse.PersonName
-      | DatasetViewTableResponse.AddressObject
-      | string;
-  };
+  properties: Record<
+    string,
+    | string
+    | boolean
+    | number
+    | DatasetViewTableResponse.PartialDateObject
+    | string
+    | string
+    | DatasetViewTableResponse.URLObject
+    | string
+    | DatasetViewTableResponse.MoneyObject
+    | SharedAPI.Image
+    | DatasetViewTableResponse.PersonName
+    | DatasetViewTableResponse.AddressObject
+    | string
+  >;
 
   updated_at: string;
 }
@@ -497,7 +497,7 @@ export namespace DatasetViewTableResponse {
   }
 
   export interface AddressObject {
-    components: { [key: string]: string };
+    components: Record<string, string>;
 
     original_address: string;
   }
@@ -521,22 +521,22 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     label: string;
 
-    properties: {
-      [key: string]:
-        | string
-        | boolean
-        | number
-        | ConnectedEntity.PartialDateObject
-        | string
-        | string
-        | ConnectedEntity.URLObject
-        | string
-        | ConnectedEntity.MoneyObject
-        | SharedAPI.Image
-        | ConnectedEntity.PersonName
-        | ConnectedEntity.AddressObject
-        | string;
-    };
+    properties: Record<
+      string,
+      | string
+      | boolean
+      | number
+      | ConnectedEntity.PartialDateObject
+      | string
+      | string
+      | ConnectedEntity.URLObject
+      | string
+      | ConnectedEntity.MoneyObject
+      | SharedAPI.Image
+      | ConnectedEntity.PersonName
+      | ConnectedEntity.AddressObject
+      | string
+    >;
 
     updated_at: string;
   }
@@ -597,7 +597,7 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
     }
 
     export interface AddressObject {
-      components: { [key: string]: string };
+      components: Record<string, string>;
 
       original_address: string;
     }
@@ -612,22 +612,22 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     label: string;
 
-    properties: {
-      [key: string]:
-        | string
-        | boolean
-        | number
-        | Entity.PartialDateObject
-        | string
-        | string
-        | Entity.URLObject
-        | string
-        | Entity.MoneyObject
-        | SharedAPI.Image
-        | Entity.PersonName
-        | Entity.AddressObject
-        | string;
-    };
+    properties: Record<
+      string,
+      | string
+      | boolean
+      | number
+      | Entity.PartialDateObject
+      | string
+      | string
+      | Entity.URLObject
+      | string
+      | Entity.MoneyObject
+      | SharedAPI.Image
+      | Entity.PersonName
+      | Entity.AddressObject
+      | string
+    >;
 
     updated_at: string;
   }
@@ -688,7 +688,7 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
     }
 
     export interface AddressObject {
-      components: { [key: string]: string };
+      components: Record<string, string>;
 
       original_address: string;
     }
@@ -705,22 +705,22 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     label: string;
 
-    properties: {
-      [key: string]:
-        | string
-        | boolean
-        | number
-        | Relationship.PartialDateObject
-        | string
-        | string
-        | Relationship.URLObject
-        | string
-        | Relationship.MoneyObject
-        | SharedAPI.Image
-        | Relationship.PersonName
-        | Relationship.AddressObject
-        | string;
-    };
+    properties: Record<
+      string,
+      | string
+      | boolean
+      | number
+      | Relationship.PartialDateObject
+      | string
+      | string
+      | Relationship.URLObject
+      | string
+      | Relationship.MoneyObject
+      | SharedAPI.Image
+      | Relationship.PersonName
+      | Relationship.AddressObject
+      | string
+    >;
 
     to_id: string;
 
@@ -783,7 +783,7 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
     }
 
     export interface AddressObject {
-      components: { [key: string]: string };
+      components: Record<string, string>;
 
       original_address: string;
     }
