@@ -113,7 +113,7 @@ export namespace ActionTrainingDataEntry {
 
       action_name?: string;
 
-      metadata?: { [key: string]: string };
+      metadata?: Record<string, string>;
     }
 
     export interface SelectedStep {
@@ -122,11 +122,23 @@ export namespace ActionTrainingDataEntry {
 
     export namespace SelectedStep {
       export interface SelectedStep {
+        info: SelectedStep.Info;
+
         llm_input: StructureAPI.ChatPrompt;
 
         llm_output: string;
 
         step_id: string;
+      }
+
+      export namespace SelectedStep {
+        export interface Info {
+          id: string;
+
+          action_name?: string;
+
+          metadata?: Record<string, string>;
+        }
       }
     }
 
@@ -188,11 +200,23 @@ export namespace ActionTrainingDataEntry {
 
     export namespace SelectedStep {
       export interface SelectedStep {
+        info: SelectedStep.Info;
+
         llm_input: StructureAPI.ChatPrompt;
 
         llm_output: string;
 
         step_id: string;
+      }
+
+      export namespace SelectedStep {
+        export interface Info {
+          id: string;
+
+          action_name?: string;
+
+          metadata?: Record<string, string>;
+        }
       }
     }
 
@@ -286,7 +310,7 @@ export namespace AddActionTrainingDatumRequest {
 
       action_name?: string;
 
-      metadata?: { [key: string]: string };
+      metadata?: Record<string, string>;
     }
 
     export interface SelectedStep {
@@ -295,11 +319,23 @@ export namespace AddActionTrainingDatumRequest {
 
     export namespace SelectedStep {
       export interface SelectedStep {
+        info: SelectedStep.Info;
+
         llm_input: StructureAPI.ChatPrompt;
 
         llm_output: string;
 
         step_id: string;
+      }
+
+      export namespace SelectedStep {
+        export interface Info {
+          id: string;
+
+          action_name?: string;
+
+          metadata?: Record<string, string>;
+        }
       }
     }
 
@@ -350,11 +386,23 @@ export namespace AddActionTrainingDatumRequest {
 
   export namespace SelectedStep {
     export interface SelectedStep {
+      info: SelectedStep.Info;
+
       llm_input: StructureAPI.ChatPrompt;
 
       llm_output: string;
 
       step_id: string;
+    }
+
+    export namespace SelectedStep {
+      export interface Info {
+        id: string;
+
+        action_name?: string;
+
+        metadata?: Record<string, string>;
+      }
     }
   }
 
@@ -440,11 +488,23 @@ export namespace LabelActionTrainingDatumRequest {
 
   export namespace SelectedStep {
     export interface SelectedStep {
+      info: SelectedStep.Info;
+
       llm_input: StructureAPI.ChatPrompt;
 
       llm_output: string;
 
       step_id: string;
+    }
+
+    export namespace SelectedStep {
+      export interface Info {
+        id: string;
+
+        action_name?: string;
+
+        metadata?: Record<string, string>;
+      }
     }
   }
 
@@ -533,7 +593,7 @@ export namespace NextActionAddTrainingDatumParams {
 
       action_name?: string;
 
-      metadata?: { [key: string]: string };
+      metadata?: Record<string, string>;
     }
 
     export interface SelectedStep {
@@ -542,11 +602,23 @@ export namespace NextActionAddTrainingDatumParams {
 
     export namespace SelectedStep {
       export interface SelectedStep {
+        info: SelectedStep.Info;
+
         llm_input: StructureAPI.ChatPrompt;
 
         llm_output: string;
 
         step_id: string;
+      }
+
+      export namespace SelectedStep {
+        export interface Info {
+          id: string;
+
+          action_name?: string;
+
+          metadata?: Record<string, string>;
+        }
       }
     }
 
@@ -597,11 +669,23 @@ export namespace NextActionAddTrainingDatumParams {
 
   export namespace SelectedStep {
     export interface SelectedStep {
+      info: SelectedStep.Info;
+
       llm_input: StructureAPI.ChatPrompt;
 
       llm_output: string;
 
       step_id: string;
+    }
+
+    export namespace SelectedStep {
+      export interface Info {
+        id: string;
+
+        action_name?: string;
+
+        metadata?: Record<string, string>;
+      }
     }
   }
 
@@ -693,11 +777,23 @@ export namespace NextActionLabelTrainingDatumParams {
 
   export namespace SelectedStep {
     export interface SelectedStep {
+      info: SelectedStep.Info;
+
       llm_input: StructureAPI.ChatPrompt;
 
       llm_output: string;
 
       step_id: string;
+    }
+
+    export namespace SelectedStep {
+      export interface Info {
+        id: string;
+
+        action_name?: string;
+
+        metadata?: Record<string, string>;
+      }
     }
   }
 

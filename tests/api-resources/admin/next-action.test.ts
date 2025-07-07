@@ -36,6 +36,7 @@ describe('resource nextAction', () => {
         previous_actions: [
           {
             SelectedStep: {
+              info: { id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
               llm_input: {
                 decoding_params: { parameters: [{ MaxTokens: 0 }] },
                 messages: [{ content: [{ Text: 'Text' }], role: 'user' }],
@@ -85,6 +86,7 @@ describe('resource nextAction', () => {
       label: 'label',
       output: {
         SelectedStep: {
+          info: { id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
           llm_input: {
             decoding_params: { parameters: [{ MaxTokens: 0 }] },
             messages: [{ content: [{ Text: 'Text' }], role: 'user' }],
@@ -180,6 +182,11 @@ describe('resource nextAction', () => {
         previous_actions: [
           {
             SelectedStep: {
+              info: {
+                id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+                action_name: 'action_name',
+                metadata: { foo: 'string' },
+              },
               llm_input: {
                 decoding_params: { parameters: [{ MaxTokens: 0 }] },
                 messages: [{ content: [{ Text: 'Text' }], role: 'user' }],
@@ -259,6 +266,11 @@ describe('resource nextAction', () => {
       label: 'label',
       output: {
         SelectedStep: {
+          info: {
+            id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+            action_name: 'action_name',
+            metadata: { foo: 'string' },
+          },
           llm_input: {
             decoding_params: { parameters: [{ MaxTokens: 0 }] },
             messages: [{ content: [{ Text: 'Text' }], role: 'user' }],
@@ -412,6 +424,7 @@ describe('resource nextAction', () => {
       label: 'label',
       output: {
         SelectedStep: {
+          info: { id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
           llm_input: {
             decoding_params: { parameters: [{ MaxTokens: 0 }] },
             messages: [{ content: [{ Text: 'Text' }], role: 'user' }],
@@ -468,6 +481,11 @@ describe('resource nextAction', () => {
       label: 'label',
       output: {
         SelectedStep: {
+          info: {
+            id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+            action_name: 'action_name',
+            metadata: { foo: 'string' },
+          },
           llm_input: {
             decoding_params: { parameters: [{ MaxTokens: 0 }] },
             messages: [{ content: [{ Text: 'Text' }], role: 'user' }],
