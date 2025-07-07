@@ -45,7 +45,7 @@ export class Jobs extends APIResource {
   }
 
   /**
-   * Retrieve a job from structify.
+   * Retrieve a job from structify using a job_id.
    */
   get(jobId: string, options?: Core.RequestOptions): Core.APIPromise<JobGetResponse> {
     return this._client.get(`/jobs/get/${jobId}`, options);
