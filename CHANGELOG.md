@@ -1,5 +1,34 @@
 # Changelog
 
+## 1.145.0 (2025-07-08)
+
+Full Changelog: [v1.144.1...v1.145.0](https://github.com/StructifyAI/structify-node/compare/v1.144.1...v1.145.0)
+
+### Features
+
+* **api:** manual updates ([4923d5f](https://github.com/StructifyAI/structify-node/commit/4923d5f695ad5b72103a69770d740198d0bee649))
+* **api:** manual updates ([4ed5ac0](https://github.com/StructifyAI/structify-node/commit/4ed5ac0f31e100c1c158a2521a2a3af41c4e9717))
+* **api:** manual updates ([2b460c0](https://github.com/StructifyAI/structify-node/commit/2b460c0a1578b05f7cf80db1c9b9e48d9bcaeb69))
+* CRUD endpoints for secrets ([7d51d9a](https://github.com/StructifyAI/structify-node/commit/7d51d9acdcce664df25f9a1bd9d58e6978255bce))
+
+
+### Bug Fixes
+
+* "Job" error ([2e8f122](https://github.com/StructifyAI/structify-node/commit/2e8f122e7bac29036c451c5a99b16a93ad252b69))
+* **client:** don't send `Content-Type` for bodyless methods ([bc5d148](https://github.com/StructifyAI/structify-node/commit/bc5d1489668335555c624b4acd3a01b949b1c088))
+
+
+### Chores
+
+* **ci:** only run for pushes and fork pull requests ([1c68f5c](https://github.com/StructifyAI/structify-node/commit/1c68f5c29d5f4c9a22ce10b61a5fd86202047420))
+* **internal:** codegen related update ([39cc1df](https://github.com/StructifyAI/structify-node/commit/39cc1dfed4ed905215fa3380ffb8fc85d4adfc66))
+* **internal:** codegen related update ([19e4a33](https://github.com/StructifyAI/structify-node/commit/19e4a337f61505419cdb23e8b3a796b537177efa))
+* **internal:** codegen related update ([2281c2e](https://github.com/StructifyAI/structify-node/commit/2281c2e61cf814e9785f31feab28c6fd930a4776))
+* **internal:** codegen related update ([e9341ae](https://github.com/StructifyAI/structify-node/commit/e9341ae7eef6d0233cfdc4c20e28f4a31873479d))
+* **internal:** codegen related update ([774549f](https://github.com/StructifyAI/structify-node/commit/774549f98382e1f1f51f9cec707ae913cd16ecb3))
+* **internal:** version bump ([7ddabbe](https://github.com/StructifyAI/structify-node/commit/7ddabbe14fadef06e0e2511aaf88435828f47f3a))
+* mention unit type in timeout docs ([f15fedb](https://github.com/StructifyAI/structify-node/commit/f15fedbff8c9efa8a9fceb9895f038ce213f942b))
+
 ## 1.144.1 (2025-06-27)
 
 Full Changelog: [v1.144.0...v1.144.1](https://github.com/StructifyAI/structify-node/compare/v1.144.0...v1.144.1)
