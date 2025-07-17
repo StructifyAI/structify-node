@@ -28,11 +28,7 @@ export const server = new McpServer(
     name: 'structifyai_api',
     version: '1.145.0',
   },
-  {
-    capabilities: {
-      tools: {},
-    },
-  },
+  { capabilities: { tools: {} } },
 );
 
 /**
