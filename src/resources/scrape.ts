@@ -29,7 +29,7 @@ export interface ScrapeListRequest {
 
   url: string;
 
-  run_metadata?: ScrapeListRequest.RunMetadata | null;
+  node_id?: string | null;
 
   /**
    * Configuration parameters for the StopChecker
@@ -38,12 +38,6 @@ export interface ScrapeListRequest {
 }
 
 export namespace ScrapeListRequest {
-  export interface RunMetadata {
-    node_id: string;
-
-    session_id: string;
-  }
-
   /**
    * Configuration parameters for the StopChecker
    */
@@ -62,6 +56,8 @@ export namespace ScrapeListRequest {
  * Response body for scrape_list endpoint
  */
 export interface ScrapeListResponse {
+  dataset_name: string;
+
   job_id: string;
 }
 
@@ -78,7 +74,7 @@ export interface ScrapeListParams {
 
   url: string;
 
-  run_metadata?: ScrapeListParams.RunMetadata | null;
+  node_id?: string | null;
 
   /**
    * Configuration parameters for the StopChecker
@@ -87,12 +83,6 @@ export interface ScrapeListParams {
 }
 
 export namespace ScrapeListParams {
-  export interface RunMetadata {
-    node_id: string;
-
-    session_id: string;
-  }
-
   /**
    * Configuration parameters for the StopChecker
    */

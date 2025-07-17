@@ -84,6 +84,7 @@ import {
   JobDeleteResponse,
   JobGetResponse,
   JobGetScrapersResponse,
+  JobGetSourceEntitiesResponse,
   JobGetStepGraphResponse,
   JobGetStepResponse,
   JobGetStepsResponse,
@@ -119,10 +120,23 @@ import {
 } from './resources/secrets';
 import { Server, ServerInformation } from './resources/server';
 import {
+  CreateWorkflowEdgeRequest,
+  CreateWorkflowNodeRequest,
+  CreateWorkflowSessionRequest,
   GetSessionEventsResponse,
+  GetWorkflowDagResponse,
   JobEventBody,
+  SessionCreateEdgeParams,
+  SessionCreateNodeParams,
+  SessionCreateSessionParams,
   SessionGetEventsParams,
+  SessionUpdateNodeParams,
   Sessions,
+  UpdateWorkflowNodeRequest,
+  WorkflowNodeExecutionStatus,
+  WorkflowSession,
+  WorkflowSessionEdge,
+  WorkflowSessionNode,
 } from './resources/sessions';
 import {
   DatasetDescriptor,
@@ -642,6 +656,7 @@ export declare namespace Structify {
     type JobCancelResponse as JobCancelResponse,
     type JobGetResponse as JobGetResponse,
     type JobGetScrapersResponse as JobGetScrapersResponse,
+    type JobGetSourceEntitiesResponse as JobGetSourceEntitiesResponse,
     type JobGetStepResponse as JobGetStepResponse,
     type JobGetStepGraphResponse as JobGetStepGraphResponse,
     type JobGetStepsResponse as JobGetStepsResponse,
@@ -651,9 +666,22 @@ export declare namespace Structify {
 
   export {
     Sessions as Sessions,
+    type CreateWorkflowEdgeRequest as CreateWorkflowEdgeRequest,
+    type CreateWorkflowNodeRequest as CreateWorkflowNodeRequest,
+    type CreateWorkflowSessionRequest as CreateWorkflowSessionRequest,
     type GetSessionEventsResponse as GetSessionEventsResponse,
+    type GetWorkflowDagResponse as GetWorkflowDagResponse,
     type JobEventBody as JobEventBody,
+    type UpdateWorkflowNodeRequest as UpdateWorkflowNodeRequest,
+    type WorkflowNodeExecutionStatus as WorkflowNodeExecutionStatus,
+    type WorkflowSession as WorkflowSession,
+    type WorkflowSessionEdge as WorkflowSessionEdge,
+    type WorkflowSessionNode as WorkflowSessionNode,
+    type SessionCreateEdgeParams as SessionCreateEdgeParams,
+    type SessionCreateNodeParams as SessionCreateNodeParams,
+    type SessionCreateSessionParams as SessionCreateSessionParams,
     type SessionGetEventsParams as SessionGetEventsParams,
+    type SessionUpdateNodeParams as SessionUpdateNodeParams,
   };
 
   export { Server as Server, type ServerInformation as ServerInformation };

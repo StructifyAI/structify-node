@@ -609,7 +609,7 @@ export interface StructureEnhancePropertyParams {
 
   banned_domains?: Array<string>;
 
-  run_metadata?: StructureEnhancePropertyParams.RunMetadata | null;
+  node_id?: string | null;
 
   special_job_type?: 'HumanLLM' | null;
 
@@ -624,12 +624,6 @@ export interface StructureEnhancePropertyParams {
 }
 
 export namespace StructureEnhancePropertyParams {
-  export interface RunMetadata {
-    node_id: string;
-
-    session_id: string;
-  }
-
   /**
    * Configuration parameters for the StopChecker
    */
@@ -738,7 +732,7 @@ export interface StructureRunAsyncParams {
    */
   source: StructureRunAsyncParams.Pdf | StructureRunAsyncParams.Web;
 
-  run_metadata?: StructureRunAsyncParams.RunMetadata | null;
+  node_id?: string | null;
 
   save_requirement?: Array<SaveRequirement>;
 
@@ -786,12 +780,6 @@ export namespace StructureRunAsyncParams {
 
       starting_urls?: Array<string>;
     }
-  }
-
-  export interface RunMetadata {
-    node_id: string;
-
-    session_id: string;
   }
 
   /**

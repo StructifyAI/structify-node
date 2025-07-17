@@ -1,6 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import * as DatasetAPI from './dataset';
+import { AdminDatasetReturn, Dataset, DatasetGetByIDParams } from './dataset';
 import * as HumanLlmAPI from './human-llm';
 import {
   HumanLlm,
@@ -19,6 +21,14 @@ import {
   HumanLlmUpdateStepParams,
   StepChoices,
 } from './human-llm';
+import * as JobsAPI from './jobs';
+import {
+  AdminListJobsRequestParams,
+  AdminListJobsResponse,
+  AdminListJobsResponsesJobsList,
+  JobListParams,
+  Jobs,
+} from './jobs';
 import * as NextActionAPI from './next-action';
 import {
   ActionTrainingDataEntry,
@@ -83,6 +93,8 @@ import {
 } from './users';
 
 export class Admin extends APIResource {
+  dataset: DatasetAPI.Dataset = new DatasetAPI.Dataset(this._client);
+  jobs: JobsAPI.Jobs = new JobsAPI.Jobs(this._client);
   humanLlm: HumanLlmAPI.HumanLlm = new HumanLlmAPI.HumanLlm(this._client);
   nextAction: NextActionAPI.NextAction = new NextActionAPI.NextAction(this._client);
   users: UsersAPI.Users = new UsersAPI.Users(this._client);
@@ -91,12 +103,29 @@ export class Admin extends APIResource {
   );
 }
 
+Admin.Dataset = Dataset;
+Admin.Jobs = Jobs;
+Admin.AdminListJobsResponsesJobsList = AdminListJobsResponsesJobsList;
 Admin.HumanLlm = HumanLlm;
 Admin.NextAction = NextAction;
 Admin.Users = Users;
 Admin.TrainingDatasets = TrainingDatasets;
 
 export declare namespace Admin {
+  export {
+    Dataset as Dataset,
+    type AdminDatasetReturn as AdminDatasetReturn,
+    type DatasetGetByIDParams as DatasetGetByIDParams,
+  };
+
+  export {
+    Jobs as Jobs,
+    type AdminListJobsRequestParams as AdminListJobsRequestParams,
+    type AdminListJobsResponse as AdminListJobsResponse,
+    AdminListJobsResponsesJobsList as AdminListJobsResponsesJobsList,
+    type JobListParams as JobListParams,
+  };
+
   export {
     HumanLlm as HumanLlm,
     type HumanLlmJob as HumanLlmJob,

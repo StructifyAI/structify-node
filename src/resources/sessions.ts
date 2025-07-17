@@ -5,6 +5,33 @@ import { isRequestOptions } from '../core';
 import * as Core from '../core';
 
 export class Sessions extends APIResource {
+  createEdge(
+    sessionId: string,
+    body: SessionCreateEdgeParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<WorkflowSessionEdge> {
+    return this._client.post(`/sessions/${sessionId}/edges`, { body, ...options });
+  }
+
+  createNode(
+    sessionId: string,
+    body: SessionCreateNodeParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<WorkflowSessionNode> {
+    return this._client.post(`/sessions/${sessionId}/nodes`, { body, ...options });
+  }
+
+  createSession(
+    body: SessionCreateSessionParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<WorkflowSession> {
+    return this._client.post('/sessions', { body, ...options });
+  }
+
+  getDag(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<GetWorkflowDagResponse> {
+    return this._client.get(`/sessions/${sessionId}/dag`, options);
+  }
+
   /**
    * Get events from all jobs in a session's event queue (without removing them).
    */
@@ -24,6 +51,32 @@ export class Sessions extends APIResource {
     }
     return this._client.get(`/sessions/${sessionId}/events`, { query, ...options });
   }
+
+  updateNode(
+    nodeId: string,
+    body: SessionUpdateNodeParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<WorkflowSessionNode> {
+    return this._client.patch(`/sessions/nodes/${nodeId}`, { body, ...options });
+  }
+}
+
+export interface CreateWorkflowEdgeRequest {
+  source_node_id: string;
+
+  target_node_id: string;
+}
+
+export interface CreateWorkflowNodeRequest {
+  docstring: string;
+
+  function_name: string;
+
+  output_schema?: unknown;
+}
+
+export interface CreateWorkflowSessionRequest {
+  chat_session_id: string;
 }
 
 export interface GetSessionEventsResponse {
@@ -46,6 +99,12 @@ export namespace GetSessionEventsResponse {
   }
 }
 
+export interface GetWorkflowDagResponse {
+  edges: Array<WorkflowSessionEdge>;
+
+  nodes: Array<WorkflowSessionNode>;
+}
+
 /**
  * The body content of a job event
  */
@@ -53,6 +112,7 @@ export type JobEventBody =
   | JobEventBody.AgentNavigated
   | JobEventBody.AgentSearched
   | JobEventBody.Completed
+  | JobEventBody.Scraped
   | JobEventBody.Custom;
 
 export namespace JobEventBody {
@@ -74,6 +134,16 @@ export namespace JobEventBody {
     message?: string | null;
   }
 
+  export interface Scraped {
+    count: number;
+
+    event_type: 'scraped';
+
+    page: number;
+
+    url: string;
+  }
+
   export interface Custom {
     data: { [key: string]: unknown };
 
@@ -83,6 +153,88 @@ export namespace JobEventBody {
   }
 }
 
+export interface UpdateWorkflowNodeRequest {
+  execution_status: WorkflowNodeExecutionStatus;
+
+  error_message?: string | null;
+
+  error_traceback?: string | null;
+
+  execution_time_ms?: number | null;
+
+  output_data?: unknown;
+}
+
+export type WorkflowNodeExecutionStatus = 'Unexecuted' | 'Success' | 'Failure' | 'Running';
+
+export interface WorkflowSession {
+  id: string;
+
+  chat_session_id: string;
+
+  created_at?: string | null;
+}
+
+export interface WorkflowSessionEdge {
+  id: string;
+
+  created_at: string;
+
+  session_id: string;
+
+  source_node_id: string;
+
+  target_node_id: string;
+}
+
+export interface WorkflowSessionNode {
+  id: string;
+
+  docstring: string;
+
+  execution_status: WorkflowNodeExecutionStatus;
+
+  function_name: string;
+
+  node_index: number;
+
+  node_name: string;
+
+  session_id: string;
+
+  updated_at: string;
+
+  created_at?: string | null;
+
+  error_message?: string | null;
+
+  error_traceback?: string | null;
+
+  execution_time_ms?: number | null;
+
+  output_data?: unknown;
+
+  output_schema?: unknown;
+}
+
+export interface SessionCreateEdgeParams {
+  source_node_id: string;
+
+  target_node_id: string;
+}
+
+export interface SessionCreateNodeParams {
+  docstring: string;
+
+  function_name: string;
+
+  output_schema?: unknown;
+}
+
+export interface SessionCreateSessionParams {
+  chat_session_id: string;
+}
+
 export interface SessionGetEventsParams {
   /**
    * Maximum number of events to fetch (default: 100).
@@ -90,10 +242,35 @@ export interface SessionGetEventsParams {
   limit?: number | null;
 }
 
+export interface SessionUpdateNodeParams {
+  execution_status: WorkflowNodeExecutionStatus;
+
+  error_message?: string | null;
+
+  error_traceback?: string | null;
+
+  execution_time_ms?: number | null;
+
+  output_data?: unknown;
+}
+
 export declare namespace Sessions {
   export {
+    type CreateWorkflowEdgeRequest as CreateWorkflowEdgeRequest,
+    type CreateWorkflowNodeRequest as CreateWorkflowNodeRequest,
+    type CreateWorkflowSessionRequest as CreateWorkflowSessionRequest,
     type GetSessionEventsResponse as GetSessionEventsResponse,
+    type GetWorkflowDagResponse as GetWorkflowDagResponse,
     type JobEventBody as JobEventBody,
+    type UpdateWorkflowNodeRequest as UpdateWorkflowNodeRequest,
+    type WorkflowNodeExecutionStatus as WorkflowNodeExecutionStatus,
+    type WorkflowSession as WorkflowSession,
+    type WorkflowSessionEdge as WorkflowSessionEdge,
+    type WorkflowSessionNode as WorkflowSessionNode,
+    type SessionCreateEdgeParams as SessionCreateEdgeParams,
+    type SessionCreateNodeParams as SessionCreateNodeParams,
+    type SessionCreateSessionParams as SessionCreateSessionParams,
     type SessionGetEventsParams as SessionGetEventsParams,
+    type SessionUpdateNodeParams as SessionUpdateNodeParams,
   };
 }
