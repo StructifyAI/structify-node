@@ -4,6 +4,7 @@ import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as SharedAPI from './shared';
+import * as SourcesAPI from './sources';
 import * as StructureAPI from './structure';
 import * as WorkflowAPI from './workflow';
 import { JobsList, type JobsListParams } from '../pagination';
@@ -56,6 +57,16 @@ export class Jobs extends APIResource {
    */
   getScrapers(jobId: string, options?: Core.RequestOptions): Core.APIPromise<JobGetScrapersResponse> {
     return this._client.get(`/jobs/get_scrapers/${jobId}`, options);
+  }
+
+  /**
+   * Get all source entities and their associated sources for a specific job
+   */
+  getSourceEntities(
+    jobId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<JobGetSourceEntitiesResponse> {
+    return this._client.get(`/jobs/get_source_entities/${jobId}`, options);
   }
 
   /**
@@ -249,8 +260,6 @@ export interface JobCancelResponse {
 
   seeded_kg_search_term?: string | null;
 
-  session_id?: string | null;
-
   workflow_group_id?: string | null;
 
   workflow_id?: WorkflowAPI.ID | null;
@@ -314,8 +323,6 @@ export namespace JobGetResponse {
 
     seeded_kg_search_term?: string | null;
 
-    session_id?: string | null;
-
     workflow_group_id?: string | null;
 
     workflow_id?: WorkflowAPI.ID | null;
@@ -343,6 +350,151 @@ export namespace JobGetScrapersResponse {
     code?: string | null;
 
     next_page_code?: string | null;
+  }
+}
+
+export interface JobGetSourceEntitiesResponse {
+  source_entities: Array<Array<JobGetSourceEntitiesResponse.SourceEntity>>;
+}
+
+export namespace JobGetSourceEntitiesResponse {
+  export interface SourceEntity {
+    id: string;
+
+    created_at: string;
+
+    is_summary: boolean;
+
+    label: string;
+
+    llm_id: number;
+
+    properties: {
+      [key: string]:
+        | string
+        | boolean
+        | number
+        | SourceEntity.PartialDateObject
+        | string
+        | string
+        | SourceEntity.URLObject
+        | string
+        | SourceEntity.MoneyObject
+        | SharedAPI.Image
+        | SourceEntity.PersonName
+        | SourceEntity.AddressObject
+        | string;
+    };
+
+    source_id: string;
+
+    user_specified: boolean;
+
+    job_id?: string | null;
+
+    kg_entity_id?: string | null;
+
+    link?: SourcesAPI.Source | null;
+
+    location?: SourceEntity.Text | SourceEntity.Visual | SourceEntity.Page | null;
+
+    scraper_id?: string | null;
+
+    step_id?: string | null;
+  }
+
+  export namespace SourceEntity {
+    export interface PartialDateObject {
+      original_string: string;
+
+      year: number;
+
+      day?: number | null;
+
+      month?: number | null;
+    }
+
+    export interface URLObject {
+      original_string: string;
+
+      url: string;
+    }
+
+    export interface MoneyObject {
+      amount: number;
+
+      currency_code:
+        | 'USD'
+        | 'EUR'
+        | 'GBP'
+        | 'JPY'
+        | 'CNY'
+        | 'INR'
+        | 'RUB'
+        | 'CAD'
+        | 'AUD'
+        | 'CHF'
+        | 'ILS'
+        | 'NZD'
+        | 'SGD'
+        | 'HKD'
+        | 'NOK'
+        | 'SEK'
+        | 'PLN'
+        | 'TRY'
+        | 'DKK'
+        | 'MXN'
+        | 'ZAR'
+        | 'PHP'
+        | 'VND'
+        | 'THB'
+        | 'BRL'
+        | 'KRW';
+
+      original_string: string;
+    }
+
+    export interface PersonName {
+      name: string;
+    }
+
+    export interface AddressObject {
+      components: { [key: string]: string };
+
+      original_address: string;
+    }
+
+    export interface Text {
+      Text: Text.Text;
+    }
+
+    export namespace Text {
+      export interface Text {
+        byte_offset: number;
+      }
+    }
+
+    export interface Visual {
+      Visual: Visual.Visual;
+    }
+
+    export namespace Visual {
+      export interface Visual {
+        x: number;
+
+        y: number;
+      }
+    }
+
+    export interface Page {
+      Page: Page.Page;
+    }
+
+    export namespace Page {
+      export interface Page {
+        page_number: number;
+      }
+    }
   }
 }
 
@@ -816,6 +968,7 @@ export declare namespace Jobs {
     type JobCancelResponse as JobCancelResponse,
     type JobGetResponse as JobGetResponse,
     type JobGetScrapersResponse as JobGetScrapersResponse,
+    type JobGetSourceEntitiesResponse as JobGetSourceEntitiesResponse,
     type JobGetStepResponse as JobGetStepResponse,
     type JobGetStepGraphResponse as JobGetStepGraphResponse,
     type JobGetStepsResponse as JobGetStepsResponse,

@@ -29,7 +29,7 @@ describe('resource structure', () => {
       property_name: 'property_name',
       allow_extra_entities: true,
       banned_domains: ['string'],
-      run_metadata: { node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', session_id: 'session_id' },
+      node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       special_job_type: 'HumanLLM',
       starting_searches: ['string'],
       starting_urls: ['string'],
@@ -159,7 +159,7 @@ describe('resource structure', () => {
     const response = await client.structure.runAsync({
       dataset: 'dataset',
       source: { PDF: { path: 'path' } },
-      run_metadata: { node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', session_id: 'session_id' },
+      node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       save_requirement: [{ relationship_name: 'relationship_name' }],
       seeded_entity: {
         entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],

@@ -41,7 +41,7 @@ describe('resource chat', () => {
 
   test('createSession: only required params', async () => {
     const responsePromise = client.chat.createSession({
-      git_repo_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      git_application_token: 'git_application_token',
       initial_message: 'initial_message',
       project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
@@ -56,7 +56,7 @@ describe('resource chat', () => {
 
   test('createSession: required and optional params', async () => {
     const response = await client.chat.createSession({
-      git_repo_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      git_application_token: 'git_application_token',
       initial_message: 'initial_message',
       project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });

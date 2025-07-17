@@ -2,6 +2,14 @@
 
 export { Admin } from './admin';
 export {
+  AdminListJobsResponsesJobsList,
+  Jobs,
+  type AdminListJobsRequestParams,
+  type AdminListJobsResponse,
+  type JobListParams,
+} from './jobs';
+export { Dataset, type AdminDatasetReturn, type DatasetGetByIDParams } from './dataset';
+export {
   HumanLlm,
   type HumanLlmJob,
   type StepChoices,

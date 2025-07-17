@@ -128,7 +128,7 @@ export interface ChatSession {
 
   created_at: string;
 
-  git_repo_id: string;
+  git_application_token: string;
 
   project_id: string;
 
@@ -140,9 +140,11 @@ export interface ChatSession {
 export interface ChatSessionWithMessages {
   id: string;
 
+  commits: Array<ChatSessionWithMessages.Commit>;
+
   created_at: string;
 
-  git_repo_id: string;
+  git_application_token: string;
 
   messages: Array<ChatSessionWithMessages.Message>;
 
@@ -151,9 +153,21 @@ export interface ChatSessionWithMessages {
   updated_at: string;
 
   user_id: string;
+
+  latest_workflow_session_id?: string | null;
 }
 
 export namespace ChatSessionWithMessages {
+  export interface Commit {
+    id: string;
+
+    chat_session_id: string;
+
+    commit_hash: string;
+
+    created_at: string;
+  }
+
   export interface Message {
     id: string;
 
@@ -170,7 +184,7 @@ export namespace ChatSessionWithMessages {
 }
 
 export interface CreateChatSessionRequest {
-  git_repo_id: string;
+  git_application_token: string;
 
   initial_message: string;
 
@@ -320,7 +334,7 @@ export interface ChatAddMessageParams {
 }
 
 export interface ChatCreateSessionParams {
-  git_repo_id: string;
+  git_application_token: string;
 
   initial_message: string;
 
