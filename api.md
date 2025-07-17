@@ -133,6 +133,27 @@ Methods:
 
 # Admin
 
+## Dataset
+
+Types:
+
+- <code><a href="./src/resources/admin/dataset.ts">AdminDatasetReturn</a></code>
+
+Methods:
+
+- <code title="get /admin/dataset/get_by_id">client.admin.dataset.<a href="./src/resources/admin/dataset.ts">getById</a>({ ...params }) -> AdminDatasetReturn</code>
+
+## Jobs
+
+Types:
+
+- <code><a href="./src/resources/admin/jobs.ts">AdminListJobsRequestParams</a></code>
+- <code><a href="./src/resources/admin/jobs.ts">AdminListJobsResponse</a></code>
+
+Methods:
+
+- <code title="get /admin/jobs/list">client.admin.jobs.<a href="./src/resources/admin/jobs.ts">list</a>({ ...params }) -> AdminListJobsResponsesJobsList</code>
+
 ## HumanLlm
 
 Types:
@@ -333,6 +354,7 @@ Types:
 - <code><a href="./src/resources/jobs.ts">JobCancelResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobGetResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobGetScrapersResponse</a></code>
+- <code><a href="./src/resources/jobs.ts">JobGetSourceEntitiesResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobGetStepResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobGetStepGraphResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobGetStepsResponse</a></code>
@@ -344,6 +366,7 @@ Methods:
 - <code title="post /jobs/cancel/{uuid}">client.jobs.<a href="./src/resources/jobs.ts">cancel</a>(uuid) -> JobCancelResponse</code>
 - <code title="get /jobs/get/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">get</a>(jobId) -> JobGetResponse</code>
 - <code title="get /jobs/get_scrapers/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">getScrapers</a>(jobId) -> JobGetScrapersResponse</code>
+- <code title="get /jobs/get_source_entities/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">getSourceEntities</a>(jobId) -> JobGetSourceEntitiesResponse</code>
 - <code title="get /jobs/get_step/{step_id}">client.jobs.<a href="./src/resources/jobs.ts">getStep</a>(stepId) -> JobGetStepResponse</code>
 - <code title="get /jobs/get_step_graph/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">getStepGraph</a>(jobId) -> JobGetStepGraphResponse</code>
 - <code title="get /jobs/get_steps/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">getSteps</a>(jobId) -> JobGetStepsResponse</code>
@@ -353,12 +376,26 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/sessions.ts">CreateWorkflowEdgeRequest</a></code>
+- <code><a href="./src/resources/sessions.ts">CreateWorkflowNodeRequest</a></code>
+- <code><a href="./src/resources/sessions.ts">CreateWorkflowSessionRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">GetSessionEventsResponse</a></code>
+- <code><a href="./src/resources/sessions.ts">GetWorkflowDagResponse</a></code>
 - <code><a href="./src/resources/sessions.ts">JobEventBody</a></code>
+- <code><a href="./src/resources/sessions.ts">UpdateWorkflowNodeRequest</a></code>
+- <code><a href="./src/resources/sessions.ts">WorkflowNodeExecutionStatus</a></code>
+- <code><a href="./src/resources/sessions.ts">WorkflowSession</a></code>
+- <code><a href="./src/resources/sessions.ts">WorkflowSessionEdge</a></code>
+- <code><a href="./src/resources/sessions.ts">WorkflowSessionNode</a></code>
 
 Methods:
 
+- <code title="post /sessions/{session_id}/edges">client.sessions.<a href="./src/resources/sessions.ts">createEdge</a>(sessionId, { ...params }) -> WorkflowSessionEdge</code>
+- <code title="post /sessions/{session_id}/nodes">client.sessions.<a href="./src/resources/sessions.ts">createNode</a>(sessionId, { ...params }) -> WorkflowSessionNode</code>
+- <code title="post /sessions">client.sessions.<a href="./src/resources/sessions.ts">createSession</a>({ ...params }) -> WorkflowSession</code>
+- <code title="get /sessions/{session_id}/dag">client.sessions.<a href="./src/resources/sessions.ts">getDag</a>(sessionId) -> GetWorkflowDagResponse</code>
 - <code title="get /sessions/{session_id}/events">client.sessions.<a href="./src/resources/sessions.ts">getEvents</a>(sessionId, { ...params }) -> GetSessionEventsResponse</code>
+- <code title="patch /sessions/nodes/{node_id}">client.sessions.<a href="./src/resources/sessions.ts">updateNode</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 
 # Server
 

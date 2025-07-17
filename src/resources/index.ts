@@ -112,6 +112,7 @@ export {
   type JobCancelResponse,
   type JobGetResponse,
   type JobGetScrapersResponse,
+  type JobGetSourceEntitiesResponse,
   type JobGetStepResponse,
   type JobGetStepGraphResponse,
   type JobGetStepsResponse,
@@ -145,9 +146,22 @@ export {
 export { Server, type ServerInformation } from './server';
 export {
   Sessions,
+  type CreateWorkflowEdgeRequest,
+  type CreateWorkflowNodeRequest,
+  type CreateWorkflowSessionRequest,
   type GetSessionEventsResponse,
+  type GetWorkflowDagResponse,
   type JobEventBody,
+  type UpdateWorkflowNodeRequest,
+  type WorkflowNodeExecutionStatus,
+  type WorkflowSession,
+  type WorkflowSessionEdge,
+  type WorkflowSessionNode,
+  type SessionCreateEdgeParams,
+  type SessionCreateNodeParams,
+  type SessionCreateSessionParams,
   type SessionGetEventsParams,
+  type SessionUpdateNodeParams,
 } from './sessions';
 export {
   Shared,
