@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.146.0 (2025-07-22)
+
+Full Changelog: [v1.145.0...v1.146.0](https://github.com/StructifyAI/structify-node/compare/v1.145.0...v1.146.0)
+
+### Features
+
+* **api:** manual updates ([5c621fa](https://github.com/StructifyAI/structify-node/commit/5c621fa5ed2149457311b5876a3854a710348767))
+* **api:** manual updates ([b8ddab3](https://github.com/StructifyAI/structify-node/commit/b8ddab30875136c6c245b8a30528adfe6ae64885))
+* **mcp:** support filtering tool results by a jq expression ([f07dec3](https://github.com/StructifyAI/structify-node/commit/f07dec3e4b7788b7e85f8ab14d3896dc2e03262b))
+
+
+### Bug Fixes
+
+* **mcp:** relax input type for asTextContextResult ([ae51d4b](https://github.com/StructifyAI/structify-node/commit/ae51d4b392f92888cf3e0cd0cb2ca6bef6a111fe))
+* **mcp:** support jq filtering on cloudflare workers ([654eb1d](https://github.com/StructifyAI/structify-node/commit/654eb1d5c7e54f3c42ab8972c5f11a062142313e))
+
+
+### Chores
+
+* configure new SDK language ([80a0cc2](https://github.com/StructifyAI/structify-node/commit/80a0cc2049dd041e75ad75d2c9d4c2274c9290ab))
+* make some internal functions async ([2b738fb](https://github.com/StructifyAI/structify-node/commit/2b738fb04ed6d26bd657b8b95081a77cb4303fea))
+* **mcp:** formatting ([fe23ea5](https://github.com/StructifyAI/structify-node/commit/fe23ea55e3d2971233fe79c5ae37c6c1e7ce6491))
+* **mcp:** rework imports in tools ([180296a](https://github.com/StructifyAI/structify-node/commit/180296a7eab39e2cb33856bb08d567b3487baf4c))
+
 ## 1.145.0 (2025-07-08)
 
 Full Changelog: [v1.144.1...v1.145.0](https://github.com/StructifyAI/structify-node/compare/v1.144.1...v1.145.0)
