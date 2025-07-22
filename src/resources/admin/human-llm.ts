@@ -180,7 +180,7 @@ export interface StepChoices {
   /**
    * Knowledge graph info structured to deserialize and display in the same format
    * that the LLM outputs. Also the first representation of an LLM output in the
-   * pipeline from raw tool output to being merged into a Neo4j DB
+   * pipeline from raw tool output to being merged into a DB
    */
   seeded_kg: SharedAPI.KnowledgeGraph;
 
@@ -256,7 +256,7 @@ export namespace HumanLlmGetNextStepResponse {
         /**
          * Knowledge graph info structured to deserialize and display in the same format
          * that the LLM outputs. Also the first representation of an LLM output in the
-         * pipeline from raw tool output to being merged into a Neo4j DB
+         * pipeline from raw tool output to being merged into a DB
          */
         Save: SharedAPI.KnowledgeGraph;
       }
@@ -448,7 +448,7 @@ export namespace HumanLlmPrelabelStepResponse {
       /**
        * Knowledge graph info structured to deserialize and display in the same format
        * that the LLM outputs. Also the first representation of an LLM output in the
-       * pipeline from raw tool output to being merged into a Neo4j DB
+       * pipeline from raw tool output to being merged into a DB
        */
       Save: SharedAPI.KnowledgeGraph;
     }
@@ -643,7 +643,7 @@ export namespace HumanLlmAddToDatasetParams {
       /**
        * Knowledge graph info structured to deserialize and display in the same format
        * that the LLM outputs. Also the first representation of an LLM output in the
-       * pipeline from raw tool output to being merged into a Neo4j DB
+       * pipeline from raw tool output to being merged into a DB
        */
       Save: SharedAPI.KnowledgeGraph;
     }
@@ -852,7 +852,7 @@ export namespace HumanLlmUpdateStepParams {
       /**
        * Knowledge graph info structured to deserialize and display in the same format
        * that the LLM outputs. Also the first representation of an LLM output in the
-       * pipeline from raw tool output to being merged into a Neo4j DB
+       * pipeline from raw tool output to being merged into a DB
        */
       Save: SharedAPI.KnowledgeGraph;
     }
