@@ -126,10 +126,12 @@ import {
   GetSessionEventsResponse,
   GetWorkflowDagResponse,
   JobEventBody,
+  MarkWorkflowSessionErroredRequest,
   SessionCreateEdgeParams,
   SessionCreateNodeParams,
   SessionCreateSessionParams,
   SessionGetEventsParams,
+  SessionMarkErroredParams,
   SessionUpdateNodeParams,
   Sessions,
   UpdateWorkflowNodeRequest,
@@ -672,6 +674,7 @@ export declare namespace Structify {
     type GetSessionEventsResponse as GetSessionEventsResponse,
     type GetWorkflowDagResponse as GetWorkflowDagResponse,
     type JobEventBody as JobEventBody,
+    type MarkWorkflowSessionErroredRequest as MarkWorkflowSessionErroredRequest,
     type UpdateWorkflowNodeRequest as UpdateWorkflowNodeRequest,
     type WorkflowNodeExecutionStatus as WorkflowNodeExecutionStatus,
     type WorkflowSession as WorkflowSession,
@@ -681,6 +684,7 @@ export declare namespace Structify {
     type SessionCreateNodeParams as SessionCreateNodeParams,
     type SessionCreateSessionParams as SessionCreateSessionParams,
     type SessionGetEventsParams as SessionGetEventsParams,
+    type SessionMarkErroredParams as SessionMarkErroredParams,
     type SessionUpdateNodeParams as SessionUpdateNodeParams,
   };
 

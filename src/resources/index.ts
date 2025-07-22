@@ -152,6 +152,7 @@ export {
   type GetSessionEventsResponse,
   type GetWorkflowDagResponse,
   type JobEventBody,
+  type MarkWorkflowSessionErroredRequest,
   type UpdateWorkflowNodeRequest,
   type WorkflowNodeExecutionStatus,
   type WorkflowSession,
@@ -161,6 +162,7 @@ export {
   type SessionCreateNodeParams,
   type SessionCreateSessionParams,
   type SessionGetEventsParams,
+  type SessionMarkErroredParams,
   type SessionUpdateNodeParams,
 } from './sessions';
 export {

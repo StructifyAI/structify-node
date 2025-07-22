@@ -144,7 +144,7 @@ export namespace JobListResponse {
     /**
      * Knowledge graph info structured to deserialize and display in the same format
      * that the LLM outputs. Also the first representation of an LLM output in the
-     * pipeline from raw tool output to being merged into a Neo4j DB
+     * pipeline from raw tool output to being merged into a DB
      */
     seeded_kg: SharedAPI.KnowledgeGraph;
 
@@ -551,7 +551,7 @@ export namespace JobGetStepResponse {
         /**
          * Knowledge graph info structured to deserialize and display in the same format
          * that the LLM outputs. Also the first representation of an LLM output in the
-         * pipeline from raw tool output to being merged into a Neo4j DB
+         * pipeline from raw tool output to being merged into a DB
          */
         Save: SharedAPI.KnowledgeGraph;
       }
@@ -779,7 +779,7 @@ export namespace JobGetStepGraphResponse {
             /**
              * Knowledge graph info structured to deserialize and display in the same format
              * that the LLM outputs. Also the first representation of an LLM output in the
-             * pipeline from raw tool output to being merged into a Neo4j DB
+             * pipeline from raw tool output to being merged into a DB
              */
             Save: SharedAPI.KnowledgeGraph;
           }

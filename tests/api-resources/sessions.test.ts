@@ -118,6 +118,26 @@ describe('resource sessions', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
+  test('markErrored: only required params', async () => {
+    const responsePromise = client.sessions.markErrored('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      error_message: 'error_message',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('markErrored: required and optional params', async () => {
+    const response = await client.sessions.markErrored('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      error_message: 'error_message',
+      error_traceback: 'error_traceback',
+    });
+  });
+
   test('updateNode: only required params', async () => {
     const responsePromise = client.sessions.updateNode('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       execution_status: 'Unexecuted',

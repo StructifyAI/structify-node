@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
+import * as SourcesAPI from './sources';
 
 export class Sessions extends APIResource {
   createEdge(
@@ -50,6 +51,14 @@ export class Sessions extends APIResource {
       return this.getEvents(sessionId, {}, query);
     }
     return this._client.get(`/sessions/${sessionId}/events`, { query, ...options });
+  }
+
+  markErrored(
+    sessionId: string,
+    body: SessionMarkErroredParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<WorkflowSession> {
+    return this._client.patch(`/sessions/${sessionId}/error`, { body, ...options });
   }
 
   updateNode(
@@ -103,6 +112,12 @@ export interface GetWorkflowDagResponse {
   edges: Array<WorkflowSessionEdge>;
 
   nodes: Array<WorkflowSessionNode>;
+
+  session_id: string;
+
+  error?: string | null;
+
+  error_traceback?: string | null;
 }
 
 /**
@@ -111,6 +126,7 @@ export interface GetWorkflowDagResponse {
 export type JobEventBody =
   | JobEventBody.AgentNavigated
   | JobEventBody.AgentSearched
+  | JobEventBody.AgentSaved
   | JobEventBody.Completed
   | JobEventBody.Scraped
   | JobEventBody.Custom;
@@ -126,6 +142,16 @@ export namespace JobEventBody {
     event_type: 'agent_searched';
 
     query: string;
+  }
+
+  export interface AgentSaved {
+    event_type: 'agent_saved';
+
+    n_entities: number;
+
+    n_relationships: number;
+
+    url: SourcesAPI.Source;
   }
 
   export interface Completed {
@@ -153,6 +179,12 @@ export namespace JobEventBody {
   }
 }
 
+export interface MarkWorkflowSessionErroredRequest {
+  error_message: string;
+
+  error_traceback?: string | null;
+}
+
 export interface UpdateWorkflowNodeRequest {
   execution_status: WorkflowNodeExecutionStatus;
 
@@ -172,7 +204,13 @@ export interface WorkflowSession {
 
   chat_session_id: string;
 
+  updated_at: string;
+
   created_at?: string | null;
+
+  error_message?: string | null;
+
+  error_traceback?: string | null;
 }
 
 export interface WorkflowSessionEdge {
@@ -242,6 +280,12 @@ export interface SessionGetEventsParams {
   limit?: number | null;
 }
 
+export interface SessionMarkErroredParams {
+  error_message: string;
+
+  error_traceback?: string | null;
+}
+
 export interface SessionUpdateNodeParams {
   execution_status: WorkflowNodeExecutionStatus;
 
@@ -262,6 +306,7 @@ export declare namespace Sessions {
     type GetSessionEventsResponse as GetSessionEventsResponse,
     type GetWorkflowDagResponse as GetWorkflowDagResponse,
     type JobEventBody as JobEventBody,
+    type MarkWorkflowSessionErroredRequest as MarkWorkflowSessionErroredRequest,
     type UpdateWorkflowNodeRequest as UpdateWorkflowNodeRequest,
     type WorkflowNodeExecutionStatus as WorkflowNodeExecutionStatus,
     type WorkflowSession as WorkflowSession,
@@ -271,6 +316,7 @@ export declare namespace Sessions {
     type SessionCreateNodeParams as SessionCreateNodeParams,
     type SessionCreateSessionParams as SessionCreateSessionParams,
     type SessionGetEventsParams as SessionGetEventsParams,
+    type SessionMarkErroredParams as SessionMarkErroredParams,
     type SessionUpdateNodeParams as SessionUpdateNodeParams,
   };
 }
