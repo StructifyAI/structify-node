@@ -33,6 +33,7 @@ describe('resource jobs', () => {
       client.jobs.list(
         {
           dataset: 'dataset',
+          job_type: 'Web',
           limit: 0,
           offset: 0,
           seeded_kg_search_term: 'seeded_kg_search_term',
