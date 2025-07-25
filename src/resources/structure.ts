@@ -647,6 +647,8 @@ export interface StructureEnhanceRelationshipParams {
 
   banned_domains?: Array<string>;
 
+  node_id?: string | null;
+
   special_job_type?: 'HumanLLM' | null;
 
   starting_searches?: Array<string>;

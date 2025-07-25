@@ -164,6 +164,7 @@ export {
   type SessionGetEventsParams,
   type SessionMarkErroredParams,
   type SessionUpdateNodeParams,
+  type SessionUploadNodeOutputDataParams,
 } from './sessions';
 export {
   Shared,

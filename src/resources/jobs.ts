@@ -944,6 +944,11 @@ export interface JobListParams extends JobsListParams {
   dataset?: string | null;
 
   /**
+   * Type of job to optionally filter jobs by
+   */
+  job_type?: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | null;
+
+  /**
    * seeded kg search term
    */
   seeded_kg_search_term?: string | null;
