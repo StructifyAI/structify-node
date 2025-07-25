@@ -4,6 +4,7 @@ import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as SourcesAPI from './sources';
+import { type Response } from '../_shims/index';
 
 export class Sessions extends APIResource {
   createEdge(
@@ -53,6 +54,14 @@ export class Sessions extends APIResource {
     return this._client.get(`/sessions/${sessionId}/events`, { query, ...options });
   }
 
+  getNodeOutputData(nodeId: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
+    return this._client.get(`/sessions/nodes/${nodeId}/output_data`, {
+      ...options,
+      headers: { Accept: 'application/octet-stream', ...options?.headers },
+      __binaryResponse: true,
+    });
+  }
+
   markErrored(
     sessionId: string,
     body: SessionMarkErroredParams,
@@ -67,6 +76,17 @@ export class Sessions extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<WorkflowSessionNode> {
     return this._client.patch(`/sessions/nodes/${nodeId}`, { body, ...options });
+  }
+
+  uploadNodeOutputData(
+    nodeId: string,
+    body: SessionUploadNodeOutputDataParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<WorkflowSessionNode> {
+    return this._client.post(
+      `/sessions/nodes/${nodeId}/output_data`,
+      Core.multipartFormRequestOptions({ body, ...options }),
+    );
   }
 }
 
@@ -193,8 +213,6 @@ export interface UpdateWorkflowNodeRequest {
   error_traceback?: string | null;
 
   execution_time_ms?: number | null;
-
-  output_data?: unknown;
 }
 
 export type WorkflowNodeExecutionStatus = 'Unexecuted' | 'Success' | 'Failure' | 'Running';
@@ -250,7 +268,7 @@ export interface WorkflowSessionNode {
 
   execution_time_ms?: number | null;
 
-  output_data?: unknown;
+  output_blob_name?: string | null;
 
   output_schema?: unknown;
 }
@@ -294,8 +312,10 @@ export interface SessionUpdateNodeParams {
   error_traceback?: string | null;
 
   execution_time_ms?: number | null;
+}
 
-  output_data?: unknown;
+export interface SessionUploadNodeOutputDataParams {
+  content: Core.Uploadable;
 }
 
 export declare namespace Sessions {
@@ -318,5 +338,6 @@ export declare namespace Sessions {
     type SessionGetEventsParams as SessionGetEventsParams,
     type SessionMarkErroredParams as SessionMarkErroredParams,
     type SessionUpdateNodeParams as SessionUpdateNodeParams,
+    type SessionUploadNodeOutputDataParams as SessionUploadNodeOutputDataParams,
   };
 }

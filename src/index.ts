@@ -133,6 +133,7 @@ import {
   SessionGetEventsParams,
   SessionMarkErroredParams,
   SessionUpdateNodeParams,
+  SessionUploadNodeOutputDataParams,
   Sessions,
   UpdateWorkflowNodeRequest,
   WorkflowNodeExecutionStatus,
@@ -686,6 +687,7 @@ export declare namespace Structify {
     type SessionGetEventsParams as SessionGetEventsParams,
     type SessionMarkErroredParams as SessionMarkErroredParams,
     type SessionUpdateNodeParams as SessionUpdateNodeParams,
+    type SessionUploadNodeOutputDataParams as SessionUploadNodeOutputDataParams,
   };
 
   export { Server as Server, type ServerInformation as ServerInformation };

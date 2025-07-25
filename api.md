@@ -396,8 +396,10 @@ Methods:
 - <code title="post /sessions">client.sessions.<a href="./src/resources/sessions.ts">createSession</a>({ ...params }) -> WorkflowSession</code>
 - <code title="get /sessions/{session_id}/dag">client.sessions.<a href="./src/resources/sessions.ts">getDag</a>(sessionId) -> GetWorkflowDagResponse</code>
 - <code title="get /sessions/{session_id}/events">client.sessions.<a href="./src/resources/sessions.ts">getEvents</a>(sessionId, { ...params }) -> GetSessionEventsResponse</code>
+- <code title="get /sessions/nodes/{node_id}/output_data">client.sessions.<a href="./src/resources/sessions.ts">getNodeOutputData</a>(nodeId) -> Response</code>
 - <code title="patch /sessions/{session_id}/error">client.sessions.<a href="./src/resources/sessions.ts">markErrored</a>(sessionId, { ...params }) -> WorkflowSession</code>
 - <code title="patch /sessions/nodes/{node_id}">client.sessions.<a href="./src/resources/sessions.ts">updateNode</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
+- <code title="post /sessions/nodes/{node_id}/output_data">client.sessions.<a href="./src/resources/sessions.ts">uploadNodeOutputData</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 
 # Server
 

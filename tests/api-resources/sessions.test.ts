@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Structify from 'structifyai';
+import Structify, { toFile } from 'structifyai';
 import { Response } from 'node-fetch';
 
 const client = new Structify({
@@ -118,6 +118,15 @@ describe('resource sessions', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
+  test('getNodeOutputData: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.sessions.getNodeOutputData('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
   test('markErrored: only required params', async () => {
     const responsePromise = client.sessions.markErrored('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       error_message: 'error_message',
@@ -157,7 +166,25 @@ describe('resource sessions', () => {
       error_message: 'error_message',
       error_traceback: 'error_traceback',
       execution_time_ms: 0,
-      output_data: {},
+    });
+  });
+
+  test('uploadNodeOutputData: only required params', async () => {
+    const responsePromise = client.sessions.uploadNodeOutputData('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('uploadNodeOutputData: required and optional params', async () => {
+    const response = await client.sessions.uploadNodeOutputData('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      content: await toFile(Buffer.from('# my file contents'), 'README.md'),
     });
   });
 });
