@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.147.0 (2025-07-25)
+
+Full Changelog: [v1.146.0...v1.147.0](https://github.com/StructifyAI/structify-node/compare/v1.146.0...v1.147.0)
+
+### Features
+
+* Rust side of parquet db stuff ([8690635](https://github.com/StructifyAI/structify-node/commit/8690635809d202586d541a214cdae1ec72102afd))
+
 ## 1.146.0 (2025-07-22)
 
 Full Changelog: [v1.145.0...v1.146.0](https://github.com/StructifyAI/structify-node/compare/v1.145.0...v1.146.0)
