@@ -105,6 +105,12 @@ import {
   ReportWrongParams,
   ReportWrongResponse,
 } from './resources/report';
+import {
+  Sandbox,
+  SandboxListChatResponse,
+  SandboxResource,
+  SandboxUpdateStatusParams,
+} from './resources/sandbox';
 import { Scrape, ScrapeListParams, ScrapeListRequest, ScrapeListResponse } from './resources/scrape';
 import {
   CreateSecretRequest,
@@ -427,6 +433,7 @@ export class Structify extends Core.APIClient {
   sources: API.Sources = new API.Sources(this);
   entities: API.Entities = new API.Entities(this);
   report: API.Report = new API.Report(this);
+  sandbox: API.SandboxResource = new API.SandboxResource(this);
   scrape: API.Scrape = new API.Scrape(this);
   structure: API.Structure = new API.Structure(this);
   shared: API.Shared = new API.Shared(this);
@@ -496,6 +503,7 @@ Structify.Server = Server;
 Structify.Sources = Sources;
 Structify.Entities = Entities;
 Structify.Report = Report;
+Structify.SandboxResource = SandboxResource;
 Structify.Scrape = Scrape;
 Structify.Structure = Structure;
 Structify.Shared = Shared;
@@ -756,6 +764,13 @@ export declare namespace Structify {
     type ReportRelationshipParams as ReportRelationshipParams,
     type ReportStepParams as ReportStepParams,
     type ReportWrongParams as ReportWrongParams,
+  };
+
+  export {
+    SandboxResource as SandboxResource,
+    type Sandbox as Sandbox,
+    type SandboxListChatResponse as SandboxListChatResponse,
+    type SandboxUpdateStatusParams as SandboxUpdateStatusParams,
   };
 
   export {
