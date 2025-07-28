@@ -130,6 +130,12 @@ export {
   type ReportStepParams,
   type ReportWrongParams,
 } from './report';
+export {
+  SandboxResource,
+  type Sandbox,
+  type SandboxListChatResponse,
+  type SandboxUpdateStatusParams,
+} from './sandbox';
 export { Scrape, type ScrapeListRequest, type ScrapeListResponse, type ScrapeListParams } from './scrape';
 export {
   Secrets,

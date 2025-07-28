@@ -489,6 +489,20 @@ Methods:
 - <code title="post /report/step">client.report.<a href="./src/resources/report.ts">step</a>({ ...params }) -> string</code>
 - <code title="post /report/entity/wrong">client.report.<a href="./src/resources/report.ts">wrong</a>({ ...params }) -> string</code>
 
+# Sandbox
+
+Types:
+
+- <code><a href="./src/resources/sandbox.ts">Sandbox</a></code>
+- <code><a href="./src/resources/sandbox.ts">SandboxListChatResponse</a></code>
+
+Methods:
+
+- <code title="post /sandbox/{chat_id}">client.sandbox.<a href="./src/resources/sandbox.ts">createChat</a>(chatId) -> Sandbox</code>
+- <code title="get /sandbox/live/{chat_id}">client.sandbox.<a href="./src/resources/sandbox.ts">getLiveChat</a>(chatId) -> Sandbox</code>
+- <code title="get /sandbox/list/{chat_id}">client.sandbox.<a href="./src/resources/sandbox.ts">listChat</a>(chatId) -> SandboxListChatResponse</code>
+- <code title="patch /sandbox/{sandbox_id}/status">client.sandbox.<a href="./src/resources/sandbox.ts">updateStatus</a>(sandboxId, { ...params }) -> Sandbox</code>
+
 # Scrape
 
 Types:
