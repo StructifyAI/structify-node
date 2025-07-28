@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.148.0 (2025-07-28)
+
+Full Changelog: [v1.147.0...v1.148.0](https://github.com/StructifyAI/structify-node/compare/v1.147.0...v1.148.0)
+
+### Features
+
+* **api:** manual updates ([67ac1a3](https://github.com/StructifyAI/structify-node/commit/67ac1a35c156700483a2e4e8ce7607b4d5452f2e))
+
 ## 1.147.0 (2025-07-25)
 
 Full Changelog: [v1.146.0...v1.147.0](https://github.com/StructifyAI/structify-node/compare/v1.146.0...v1.147.0)
