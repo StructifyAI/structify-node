@@ -9,8 +9,8 @@ const client = new Structify({
 });
 
 describe('resource sandbox', () => {
-  test('createChat', async () => {
-    const responsePromise = client.sandbox.createChat('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
+  test('create', async () => {
+    const responsePromise = client.sandbox.create('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -20,15 +20,15 @@ describe('resource sandbox', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createChat: request options instead of params are passed correctly', async () => {
+  test('create: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.sandbox.createChat('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: '/_stainless_unknown_path' }),
+      client.sandbox.create('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
-  test('getLiveChat', async () => {
-    const responsePromise = client.sandbox.getLiveChat('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
+  test('list', async () => {
+    const responsePromise = client.sandbox.list('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -38,17 +38,15 @@ describe('resource sandbox', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('getLiveChat: request options instead of params are passed correctly', async () => {
+  test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.sandbox.getLiveChat('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-        path: '/_stainless_unknown_path',
-      }),
+      client.sandbox.list('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
-  test('listChat', async () => {
-    const responsePromise = client.sandbox.listChat('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
+  test('get', async () => {
+    const responsePromise = client.sandbox.get('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -56,13 +54,6 @@ describe('resource sandbox', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('listChat: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.sandbox.listChat('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Structify.NotFoundError);
   });
 
   test('updateStatus: only required params', async () => {
