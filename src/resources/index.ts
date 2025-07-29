@@ -132,8 +132,10 @@ export {
 } from './report';
 export {
   SandboxResource,
+  type GetSandboxRequest,
   type Sandbox,
-  type SandboxListChatResponse,
+  type SandboxListResponse,
+  type SandboxGetParams,
   type SandboxUpdateStatusParams,
 } from './sandbox';
 export { Scrape, type ScrapeListRequest, type ScrapeListResponse, type ScrapeListParams } from './scrape';

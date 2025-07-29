@@ -4,16 +4,16 @@ import { APIResource } from '../resource';
 import * as Core from '../core';
 
 export class SandboxResource extends APIResource {
-  createChat(chatId: string, options?: Core.RequestOptions): Core.APIPromise<Sandbox> {
+  create(chatId: string, options?: Core.RequestOptions): Core.APIPromise<Sandbox> {
     return this._client.post(`/sandbox/${chatId}`, options);
   }
 
-  getLiveChat(chatId: string, options?: Core.RequestOptions): Core.APIPromise<Sandbox> {
-    return this._client.get(`/sandbox/live/${chatId}`, options);
+  list(chatId: string, options?: Core.RequestOptions): Core.APIPromise<SandboxListResponse> {
+    return this._client.get(`/sandbox/list/${chatId}`, options);
   }
 
-  listChat(chatId: string, options?: Core.RequestOptions): Core.APIPromise<SandboxListChatResponse> {
-    return this._client.get(`/sandbox/list/${chatId}`, options);
+  get(chatId: string, body: SandboxGetParams, options?: Core.RequestOptions): Core.APIPromise<Sandbox> {
+    return this._client.post(`/sandbox/live/${chatId}`, { body, ...options });
   }
 
   updateStatus(
@@ -23,6 +23,10 @@ export class SandboxResource extends APIResource {
   ): Core.APIPromise<Sandbox> {
     return this._client.patch(`/sandbox/${sandboxId}/status`, { body, ...options });
   }
+}
+
+export interface GetSandboxRequest {
+  sandbox_url_override?: string | null;
 }
 
 export interface Sandbox {
@@ -39,9 +43,15 @@ export interface Sandbox {
   status: 'alive' | 'terminated';
 
   updated_at: string;
+
+  latest_node?: string | null;
 }
 
-export type SandboxListChatResponse = Array<Sandbox>;
+export type SandboxListResponse = Array<Sandbox>;
+
+export interface SandboxGetParams {
+  sandbox_url_override?: string | null;
+}
 
 export interface SandboxUpdateStatusParams {
   status: string;
@@ -49,8 +59,10 @@ export interface SandboxUpdateStatusParams {
 
 export declare namespace SandboxResource {
   export {
+    type GetSandboxRequest as GetSandboxRequest,
     type Sandbox as Sandbox,
-    type SandboxListChatResponse as SandboxListChatResponse,
+    type SandboxListResponse as SandboxListResponse,
+    type SandboxGetParams as SandboxGetParams,
     type SandboxUpdateStatusParams as SandboxUpdateStatusParams,
   };
 }
