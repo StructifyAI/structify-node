@@ -106,8 +106,10 @@ import {
   ReportWrongResponse,
 } from './resources/report';
 import {
+  GetSandboxRequest,
   Sandbox,
-  SandboxListChatResponse,
+  SandboxGetParams,
+  SandboxListResponse,
   SandboxResource,
   SandboxUpdateStatusParams,
 } from './resources/sandbox';
@@ -768,8 +770,10 @@ export declare namespace Structify {
 
   export {
     SandboxResource as SandboxResource,
+    type GetSandboxRequest as GetSandboxRequest,
     type Sandbox as Sandbox,
-    type SandboxListChatResponse as SandboxListChatResponse,
+    type SandboxListResponse as SandboxListResponse,
+    type SandboxGetParams as SandboxGetParams,
     type SandboxUpdateStatusParams as SandboxUpdateStatusParams,
   };
 

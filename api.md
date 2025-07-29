@@ -493,14 +493,15 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/sandbox.ts">GetSandboxRequest</a></code>
 - <code><a href="./src/resources/sandbox.ts">Sandbox</a></code>
-- <code><a href="./src/resources/sandbox.ts">SandboxListChatResponse</a></code>
+- <code><a href="./src/resources/sandbox.ts">SandboxListResponse</a></code>
 
 Methods:
 
-- <code title="post /sandbox/{chat_id}">client.sandbox.<a href="./src/resources/sandbox.ts">createChat</a>(chatId) -> Sandbox</code>
-- <code title="get /sandbox/live/{chat_id}">client.sandbox.<a href="./src/resources/sandbox.ts">getLiveChat</a>(chatId) -> Sandbox</code>
-- <code title="get /sandbox/list/{chat_id}">client.sandbox.<a href="./src/resources/sandbox.ts">listChat</a>(chatId) -> SandboxListChatResponse</code>
+- <code title="post /sandbox/{chat_id}">client.sandbox.<a href="./src/resources/sandbox.ts">create</a>(chatId) -> Sandbox</code>
+- <code title="get /sandbox/list/{chat_id}">client.sandbox.<a href="./src/resources/sandbox.ts">list</a>(chatId) -> SandboxListResponse</code>
+- <code title="post /sandbox/live/{chat_id}">client.sandbox.<a href="./src/resources/sandbox.ts">get</a>(chatId, { ...params }) -> Sandbox</code>
 - <code title="patch /sandbox/{sandbox_id}/status">client.sandbox.<a href="./src/resources/sandbox.ts">updateStatus</a>(sandboxId, { ...params }) -> Sandbox</code>
 
 # Scrape
