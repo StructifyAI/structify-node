@@ -62,6 +62,13 @@ export class Sessions extends APIResource {
     });
   }
 
+  getNodeProgress(
+    nodeId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<SessionGetNodeProgressResponse> {
+    return this._client.get(`/sessions/nodes/${nodeId}/progress`, options);
+  }
+
   markErrored(
     sessionId: string,
     body: SessionMarkErroredParams,
@@ -76,6 +83,14 @@ export class Sessions extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<WorkflowSessionNode> {
     return this._client.patch(`/sessions/nodes/${nodeId}`, { body, ...options });
+  }
+
+  updateNodeProgress(
+    nodeId: string,
+    body: SessionUpdateNodeProgressParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<WorkflowSessionNode> {
+    return this._client.patch(`/sessions/nodes/${nodeId}/progress`, { body, ...options });
   }
 
   uploadNodeOutputData(
@@ -205,6 +220,10 @@ export interface MarkWorkflowSessionErroredRequest {
   error_traceback?: string | null;
 }
 
+export interface UpdateWorkflowNodeProgressRequest {
+  progress: { [key: string]: unknown };
+}
+
 export interface UpdateWorkflowNodeRequest {
   execution_status: WorkflowNodeExecutionStatus;
 
@@ -275,6 +294,8 @@ export interface WorkflowSessionNode {
   progress?: unknown;
 }
 
+export type SessionGetNodeProgressResponse = { [key: string]: unknown };
+
 export interface SessionCreateEdgeParams {
   source_node_id: string;
 
@@ -316,6 +337,10 @@ export interface SessionUpdateNodeParams {
   execution_time_ms?: number | null;
 }
 
+export interface SessionUpdateNodeProgressParams {
+  progress: { [key: string]: unknown };
+}
+
 export interface SessionUploadNodeOutputDataParams {
   content: Core.Uploadable;
 }
@@ -329,17 +354,20 @@ export declare namespace Sessions {
     type GetWorkflowDagResponse as GetWorkflowDagResponse,
     type JobEventBody as JobEventBody,
     type MarkWorkflowSessionErroredRequest as MarkWorkflowSessionErroredRequest,
+    type UpdateWorkflowNodeProgressRequest as UpdateWorkflowNodeProgressRequest,
     type UpdateWorkflowNodeRequest as UpdateWorkflowNodeRequest,
     type WorkflowNodeExecutionStatus as WorkflowNodeExecutionStatus,
     type WorkflowSession as WorkflowSession,
     type WorkflowSessionEdge as WorkflowSessionEdge,
     type WorkflowSessionNode as WorkflowSessionNode,
+    type SessionGetNodeProgressResponse as SessionGetNodeProgressResponse,
     type SessionCreateEdgeParams as SessionCreateEdgeParams,
     type SessionCreateNodeParams as SessionCreateNodeParams,
     type SessionCreateSessionParams as SessionCreateSessionParams,
     type SessionGetEventsParams as SessionGetEventsParams,
     type SessionMarkErroredParams as SessionMarkErroredParams,
     type SessionUpdateNodeParams as SessionUpdateNodeParams,
+    type SessionUpdateNodeProgressParams as SessionUpdateNodeProgressParams,
     type SessionUploadNodeOutputDataParams as SessionUploadNodeOutputDataParams,
   };
 }
