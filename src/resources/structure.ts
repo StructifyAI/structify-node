@@ -60,8 +60,8 @@ export class Structure extends APIResource {
   }
 
   /**
-   * Get status for specified jobs with detailed information similar to websocket
-   * endpoint
+   * If only dataset_name is provided, up to 1000 of the most recent jobs for that
+   * dataset will be returned.
    */
   jobStatus(
     body: StructureJobStatusParams,

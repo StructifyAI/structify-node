@@ -271,6 +271,8 @@ export interface WorkflowSessionNode {
   output_blob_name?: string | null;
 
   output_schema?: unknown;
+
+  progress?: unknown;
 }
 
 export interface SessionCreateEdgeParams {
