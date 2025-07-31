@@ -383,11 +383,13 @@ Types:
 - <code><a href="./src/resources/sessions.ts">GetWorkflowDagResponse</a></code>
 - <code><a href="./src/resources/sessions.ts">JobEventBody</a></code>
 - <code><a href="./src/resources/sessions.ts">MarkWorkflowSessionErroredRequest</a></code>
+- <code><a href="./src/resources/sessions.ts">UpdateWorkflowNodeProgressRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">UpdateWorkflowNodeRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowNodeExecutionStatus</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowSession</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowSessionEdge</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowSessionNode</a></code>
+- <code><a href="./src/resources/sessions.ts">SessionGetNodeProgressResponse</a></code>
 
 Methods:
 
@@ -397,8 +399,10 @@ Methods:
 - <code title="get /sessions/{session_id}/dag">client.sessions.<a href="./src/resources/sessions.ts">getDag</a>(sessionId) -> GetWorkflowDagResponse</code>
 - <code title="get /sessions/{session_id}/events">client.sessions.<a href="./src/resources/sessions.ts">getEvents</a>(sessionId, { ...params }) -> GetSessionEventsResponse</code>
 - <code title="get /sessions/nodes/{node_id}/output_data">client.sessions.<a href="./src/resources/sessions.ts">getNodeOutputData</a>(nodeId) -> Response</code>
+- <code title="get /sessions/nodes/{node_id}/progress">client.sessions.<a href="./src/resources/sessions.ts">getNodeProgress</a>(nodeId) -> SessionGetNodeProgressResponse</code>
 - <code title="patch /sessions/{session_id}/error">client.sessions.<a href="./src/resources/sessions.ts">markErrored</a>(sessionId, { ...params }) -> WorkflowSession</code>
 - <code title="patch /sessions/nodes/{node_id}">client.sessions.<a href="./src/resources/sessions.ts">updateNode</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
+- <code title="patch /sessions/nodes/{node_id}/progress">client.sessions.<a href="./src/resources/sessions.ts">updateNodeProgress</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 - <code title="post /sessions/nodes/{node_id}/output_data">client.sessions.<a href="./src/resources/sessions.ts">uploadNodeOutputData</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 
 # Server
