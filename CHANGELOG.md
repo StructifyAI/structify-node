@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.149.0 (2025-07-31)
+
+Full Changelog: [v1.148.1...v1.149.0](https://github.com/StructifyAI/structify-node/compare/v1.148.1...v1.149.0)
+
+### Features
+
+* **api:** manual updates ([86dd96b](https://github.com/StructifyAI/structify-node/commit/86dd96bc4204321b93ba8b622822a265c3aa620d))
+* **api:** manual updates ([cb3c662](https://github.com/StructifyAI/structify-node/commit/cb3c662cca3a5530475f73bdeaa2864af0ec68e6))
+
+
+### Chores
+
+* **internal:** remove redundant imports config ([edb0997](https://github.com/StructifyAI/structify-node/commit/edb099713457609133001f328d885e0fcf91f33e))
+
 ## 1.148.1 (2025-07-29)
 
 Full Changelog: [v1.148.0...v1.148.1](https://github.com/StructifyAI/structify-node/compare/v1.148.0...v1.148.1)
