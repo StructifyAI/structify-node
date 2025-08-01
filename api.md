@@ -358,6 +358,7 @@ Types:
 - <code><a href="./src/resources/jobs.ts">JobGetStepResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobGetStepGraphResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobGetStepsResponse</a></code>
+- <code><a href="./src/resources/jobs.ts">JobStatusResponse</a></code>
 
 Methods:
 
@@ -371,6 +372,7 @@ Methods:
 - <code title="get /jobs/get_step_graph/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">getStepGraph</a>(jobId) -> JobGetStepGraphResponse</code>
 - <code title="get /jobs/get_steps/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">getSteps</a>(jobId) -> JobGetStepsResponse</code>
 - <code title="post /jobs/schedule">client.jobs.<a href="./src/resources/jobs.ts">schedule</a>() -> void</code>
+- <code title="post /jobs/status_aggregated">client.jobs.<a href="./src/resources/jobs.ts">status</a>({ ...params }) -> JobStatusResponse</code>
 
 # Sessions
 
