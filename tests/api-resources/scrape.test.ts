@@ -30,8 +30,8 @@ describe('resource scrape', () => {
           },
         ],
       },
+      input: { Direct: { url: 'url' } },
       table_name: 'table_name',
-      url: 'url',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -75,8 +75,9 @@ describe('resource scrape', () => {
         ],
         llm_override_field: 'llm_override_field',
       },
+      input: { Direct: { url: 'url' } },
       table_name: 'table_name',
-      url: 'url',
+      dataset_name: 'dataset_name',
       node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       stop_config: {
         max_steps_without_save: 0,
