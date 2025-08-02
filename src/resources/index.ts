@@ -116,7 +116,9 @@ export {
   type JobGetStepResponse,
   type JobGetStepGraphResponse,
   type JobGetStepsResponse,
+  type JobStatusResponse,
   type JobListParams,
+  type JobStatusParams,
 } from './jobs';
 export { Projects, type DeleteProjectResponse, type GetProjectResponse, type Project } from './projects';
 export {

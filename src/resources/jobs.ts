@@ -97,6 +97,16 @@ export class Jobs extends APIResource {
       headers: { Accept: '*/*', ...options?.headers },
     });
   }
+
+  /**
+   * Returns counts of jobs by status (completed, running, failed, queued). Exactly
+   * one of job_ids or dataset_name must be provided. This endpoint can handle large
+   * numbers of job IDs since it returns aggregated data instead of individual job
+   * details.
+   */
+  status(body: JobStatusParams, options?: Core.RequestOptions): Core.APIPromise<JobStatusResponse> {
+    return this._client.post('/jobs/status_aggregated', { body, ...options });
+  }
 }
 
 export class JobListResponsesJobsList extends JobsList<JobListResponse> {}
@@ -937,6 +947,18 @@ export namespace JobGetStepGraphResponse {
 
 export type JobGetStepsResponse = Array<StructureAPI.ExecutionStep>;
 
+export interface JobStatusResponse {
+  completed: number;
+
+  failed: number;
+
+  queued: number;
+
+  running: number;
+
+  total: number;
+}
+
 export interface JobListParams extends JobsListParams {
   /**
    * Dataset name to optionally filter jobs by
@@ -964,6 +986,12 @@ export interface JobListParams extends JobsListParams {
   status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
 }
 
+export interface JobStatusParams {
+  dataset_name?: string | null;
+
+  job_ids?: Array<string> | null;
+}
+
 Jobs.JobListResponsesJobsList = JobListResponsesJobsList;
 
 export declare namespace Jobs {
@@ -977,7 +1005,9 @@ export declare namespace Jobs {
     type JobGetStepResponse as JobGetStepResponse,
     type JobGetStepGraphResponse as JobGetStepGraphResponse,
     type JobGetStepsResponse as JobGetStepsResponse,
+    type JobStatusResponse as JobStatusResponse,
     JobListResponsesJobsList as JobListResponsesJobsList,
     type JobListParams as JobListParams,
+    type JobStatusParams as JobStatusParams,
   };
 }

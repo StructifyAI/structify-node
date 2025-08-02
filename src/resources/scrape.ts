@@ -5,16 +5,13 @@ import * as Core from '../core';
 import * as SharedAPI from './shared';
 
 export class Scrape extends APIResource {
-  /**
-   * Scrape a list from a URL and return a knowledge graph
-   */
   list(body: ScrapeListParams, options?: Core.RequestOptions): Core.APIPromise<ScrapeListResponse> {
     return this._client.post('/scrape/list', { body, ...options });
   }
 }
 
 /**
- * Request body for scraping a list from a URL
+ * Request body for scraping a list
  */
 export interface ScrapeListRequest {
   /**
@@ -25,9 +22,11 @@ export interface ScrapeListRequest {
    */
   dataset_descriptor: SharedAPI.DatasetDescriptor;
 
+  input: ScrapeListRequest.Direct | ScrapeListRequest.Related;
+
   table_name: string;
 
-  url: string;
+  dataset_name?: string | null;
 
   node_id?: string | null;
 
@@ -38,6 +37,30 @@ export interface ScrapeListRequest {
 }
 
 export namespace ScrapeListRequest {
+  export interface Direct {
+    Direct: Direct.Direct;
+  }
+
+  export namespace Direct {
+    export interface Direct {
+      url: string;
+    }
+  }
+
+  export interface Related {
+    Related: Related.Related;
+  }
+
+  export namespace Related {
+    export interface Related {
+      relationship_name: string;
+
+      source_entity: SharedAPI.Entity;
+
+      source_url_column: string;
+    }
+  }
+
   /**
    * Configuration parameters for the StopChecker
    */
@@ -53,7 +76,7 @@ export namespace ScrapeListRequest {
 }
 
 /**
- * Response body for scrape_list endpoint
+ * Response body
  */
 export interface ScrapeListResponse {
   dataset_name: string;
@@ -70,9 +93,11 @@ export interface ScrapeListParams {
    */
   dataset_descriptor: SharedAPI.DatasetDescriptor;
 
+  input: ScrapeListParams.Direct | ScrapeListParams.Related;
+
   table_name: string;
 
-  url: string;
+  dataset_name?: string | null;
 
   node_id?: string | null;
 
@@ -83,6 +108,30 @@ export interface ScrapeListParams {
 }
 
 export namespace ScrapeListParams {
+  export interface Direct {
+    Direct: Direct.Direct;
+  }
+
+  export namespace Direct {
+    export interface Direct {
+      url: string;
+    }
+  }
+
+  export interface Related {
+    Related: Related.Related;
+  }
+
+  export namespace Related {
+    export interface Related {
+      relationship_name: string;
+
+      source_entity: SharedAPI.Entity;
+
+      source_url_column: string;
+    }
+  }
+
   /**
    * Configuration parameters for the StopChecker
    */

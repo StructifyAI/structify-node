@@ -187,12 +187,14 @@ Types:
 - <code><a href="./src/resources/admin/next-action.ts">DeleteActionTrainingDataParams</a></code>
 - <code><a href="./src/resources/admin/next-action.ts">DeleteActionTrainingDataResponse</a></code>
 - <code><a href="./src/resources/admin/next-action.ts">GetActionTrainingDataParams</a></code>
+- <code><a href="./src/resources/admin/next-action.ts">GetBatchedActionTrainingDataRequest</a></code>
 - <code><a href="./src/resources/admin/next-action.ts">LabelActionTrainingDatumRequest</a></code>
 
 Methods:
 
 - <code title="post /admin/next_action/add_action_training_datum">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">addTrainingDatum</a>({ ...params }) -> void</code>
 - <code title="delete /admin/next_action/delete_action_training_data">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">deleteTrainingData</a>({ ...params }) -> DeleteActionTrainingDataResponse</code>
+- <code title="post /admin/next_action/get_batched_action_training_data">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">getBatchedTrainingData</a>({ ...params }) -> ActionTrainingDataResponse</code>
 - <code title="get /admin/next_action/get_action_training_data">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">getTrainingData</a>({ ...params }) -> ActionTrainingDataResponse</code>
 - <code title="get /admin/next_action/get_action_training_datum">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">getTrainingDatum</a>({ ...params }) -> ActionTrainingDataEntry</code>
 - <code title="put /admin/next_action/label_action_training_datum">client.admin.nextAction.<a href="./src/resources/admin/next-action.ts">labelTrainingDatum</a>({ ...params }) -> void</code>
@@ -358,6 +360,7 @@ Types:
 - <code><a href="./src/resources/jobs.ts">JobGetStepResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobGetStepGraphResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobGetStepsResponse</a></code>
+- <code><a href="./src/resources/jobs.ts">JobStatusResponse</a></code>
 
 Methods:
 
@@ -371,6 +374,7 @@ Methods:
 - <code title="get /jobs/get_step_graph/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">getStepGraph</a>(jobId) -> JobGetStepGraphResponse</code>
 - <code title="get /jobs/get_steps/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">getSteps</a>(jobId) -> JobGetStepsResponse</code>
 - <code title="post /jobs/schedule">client.jobs.<a href="./src/resources/jobs.ts">schedule</a>() -> void</code>
+- <code title="post /jobs/status_aggregated">client.jobs.<a href="./src/resources/jobs.ts">status</a>({ ...params }) -> JobStatusResponse</code>
 
 # Sessions
 

@@ -32,6 +32,13 @@ export class NextAction extends APIResource {
     });
   }
 
+  getBatchedTrainingData(
+    body: NextActionGetBatchedTrainingDataParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ActionTrainingDataResponse> {
+    return this._client.post('/admin/next_action/get_batched_action_training_data', { body, ...options });
+  }
+
   getTrainingData(
     query?: NextActionGetTrainingDataParams,
     options?: Core.RequestOptions,
@@ -469,6 +476,10 @@ export interface GetActionTrainingDataParams {
   to_date?: string | null;
 }
 
+export interface GetBatchedActionTrainingDataRequest {
+  job_ids: Array<string>;
+}
+
 export interface LabelActionTrainingDatumRequest {
   id: string;
 
@@ -737,6 +748,10 @@ export interface NextActionDeleteTrainingDataParams {
   id: string;
 }
 
+export interface NextActionGetBatchedTrainingDataParams {
+  job_ids: Array<string>;
+}
+
 export interface NextActionGetTrainingDataParams {
   from_date?: string | null;
 
@@ -846,9 +861,11 @@ export declare namespace NextAction {
     type DeleteActionTrainingDataParams as DeleteActionTrainingDataParams,
     type DeleteActionTrainingDataResponse as DeleteActionTrainingDataResponse,
     type GetActionTrainingDataParams as GetActionTrainingDataParams,
+    type GetBatchedActionTrainingDataRequest as GetBatchedActionTrainingDataRequest,
     type LabelActionTrainingDatumRequest as LabelActionTrainingDatumRequest,
     type NextActionAddTrainingDatumParams as NextActionAddTrainingDatumParams,
     type NextActionDeleteTrainingDataParams as NextActionDeleteTrainingDataParams,
+    type NextActionGetBatchedTrainingDataParams as NextActionGetBatchedTrainingDataParams,
     type NextActionGetTrainingDataParams as NextActionGetTrainingDataParams,
     type NextActionGetTrainingDatumParams as NextActionGetTrainingDatumParams,
     type NextActionLabelTrainingDatumParams as NextActionLabelTrainingDatumParams,

@@ -91,6 +91,8 @@ import {
   JobListParams,
   JobListResponse,
   JobListResponsesJobsList,
+  JobStatusParams,
+  JobStatusResponse,
   Jobs,
 } from './resources/jobs';
 import { DeleteProjectResponse, GetProjectResponse, Project, Projects } from './resources/projects';
@@ -676,8 +678,10 @@ export declare namespace Structify {
     type JobGetStepResponse as JobGetStepResponse,
     type JobGetStepGraphResponse as JobGetStepGraphResponse,
     type JobGetStepsResponse as JobGetStepsResponse,
+    type JobStatusResponse as JobStatusResponse,
     JobListResponsesJobsList as JobListResponsesJobsList,
     type JobListParams as JobListParams,
+    type JobStatusParams as JobStatusParams,
   };
 
   export {
