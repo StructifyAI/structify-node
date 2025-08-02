@@ -322,7 +322,7 @@ export namespace ChatGetSessionTimelineResponse {
 
 export interface ChatAddGitCommitParams {
   /**
-   * The git commit hash
+   * The git commit hash (must be 40 characters)
    */
   commit_hash: string;
 }
