@@ -5,7 +5,6 @@ import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as SharedAPI from '../shared';
 import * as StructureAPI from '../structure';
-import * as WorkflowAPI from '../workflow';
 
 export class HumanLlm extends APIResource {
   addSearchForJob(
@@ -114,8 +113,6 @@ export namespace HumanLlmJob {
 
     max_steps_without_save: number;
 
-    selected_next_workflow_step: boolean;
-
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
     user_id: string;
@@ -151,12 +148,6 @@ export namespace HumanLlmJob {
     run_time_milliseconds?: number | null;
 
     seeded_kg_search_term?: string | null;
-
-    workflow_group_id?: string | null;
-
-    workflow_id?: WorkflowAPI.ID | null;
-
-    workflow_step_id?: string | null;
   }
 
   export interface Metadata {

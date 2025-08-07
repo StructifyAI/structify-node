@@ -83,13 +83,15 @@ export interface ProjectSecret {
 
   nonce: Core.Uploadable;
 
-  project_id: string;
-
   secret_name: string;
 
   updated_at: string;
 
   wrapped_dek: Core.Uploadable;
+
+  project_id?: string | null;
+
+  workflow_schedule_id?: string | null;
 }
 
 /**

@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as SourcesAPI from './sources';
 import { type Response } from '../_shims/index';
 
 export class Sessions extends APIResource {
@@ -186,7 +185,7 @@ export namespace JobEventBody {
 
     n_relationships: number;
 
-    url: SourcesAPI.Source;
+    url: string;
   }
 
   export interface Completed {

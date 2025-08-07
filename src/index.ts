@@ -11,7 +11,9 @@ import * as API from './resources/index';
 import {
   AddChatMessageRequest,
   AddChatMessageResponse,
+  AddCollaboratorRequest,
   Chat,
+  ChatAddCollaboratorParams,
   ChatAddGitCommitParams,
   ChatAddGitCommitResponse,
   ChatAddMessageParams,
@@ -20,6 +22,8 @@ import {
   ChatGetSessionTimelineResponse,
   ChatListSessionsParams,
   ChatSession,
+  ChatSessionRole,
+  ChatSessionUser,
   ChatSessionWithMessages,
   CreateChatSessionRequest,
   CreateChatSessionResponse,
@@ -27,6 +31,7 @@ import {
   ErrorResponse,
   GetChatSessionResponse,
   ListChatSessionsResponse,
+  ListCollaboratorsResponse,
 } from './resources/chat';
 import {
   DocumentDeleteParams,
@@ -222,23 +227,11 @@ import {
   UserTeam,
 } from './resources/teams';
 import {
-  ExistingWorkflow,
-  ID,
-  Workflow,
-  WorkflowCreateParams,
-  WorkflowDeleteParams,
-  WorkflowGetParams,
-  WorkflowJobProgressParams,
-  WorkflowJobProgressResponse,
-  WorkflowJobsParams,
-  WorkflowJobsResponse,
-  WorkflowListParams,
-  WorkflowListResponse,
-  WorkflowResource,
-  WorkflowTriggerParams,
-  WorkflowTriggerResponse,
-  WorkflowUpdateParams,
-} from './resources/workflow';
+  CreateWorkflowScheduleRequest,
+  UpdateWorkflowScheduleRequest,
+  WorkflowSchedule,
+  WorkflowScheduleInfo,
+} from './resources/workflow-schedule';
 import { Admin } from './resources/admin/admin';
 import {
   DatasetAddPropertyParams,
@@ -431,11 +424,11 @@ export class Structify extends Core.APIClient {
   projects: API.Projects = new API.Projects(this);
   secrets: API.Secrets = new API.Secrets(this);
   admin: API.Admin = new API.Admin(this);
-  workflow: API.WorkflowResource = new API.WorkflowResource(this);
   datasets: API.Datasets = new API.Datasets(this);
   documents: API.Documents = new API.Documents(this);
   jobs: API.Jobs = new API.Jobs(this);
   sessions: API.Sessions = new API.Sessions(this);
+  workflowSchedule: API.WorkflowSchedule = new API.WorkflowSchedule(this);
   server: API.Server = new API.Server(this);
   sources: API.Sources = new API.Sources(this);
   entities: API.Entities = new API.Entities(this);
@@ -498,7 +491,6 @@ Structify.Teams = Teams;
 Structify.Projects = Projects;
 Structify.Secrets = Secrets;
 Structify.Admin = Admin;
-Structify.WorkflowResource = WorkflowResource;
 Structify.Datasets = Datasets;
 Structify.DatasetViewRelationshipsResponsesJobsList = DatasetViewRelationshipsResponsesJobsList;
 Structify.DatasetViewTableResponsesJobsList = DatasetViewTableResponsesJobsList;
@@ -506,6 +498,7 @@ Structify.Documents = Documents;
 Structify.Jobs = Jobs;
 Structify.JobListResponsesJobsList = JobListResponsesJobsList;
 Structify.Sessions = Sessions;
+Structify.WorkflowSchedule = WorkflowSchedule;
 Structify.Server = Server;
 Structify.Sources = Sources;
 Structify.Entities = Entities;
@@ -538,7 +531,10 @@ export declare namespace Structify {
     Chat as Chat,
     type AddChatMessageRequest as AddChatMessageRequest,
     type AddChatMessageResponse as AddChatMessageResponse,
+    type AddCollaboratorRequest as AddCollaboratorRequest,
     type ChatSession as ChatSession,
+    type ChatSessionRole as ChatSessionRole,
+    type ChatSessionUser as ChatSessionUser,
     type ChatSessionWithMessages as ChatSessionWithMessages,
     type CreateChatSessionRequest as CreateChatSessionRequest,
     type CreateChatSessionResponse as CreateChatSessionResponse,
@@ -546,9 +542,11 @@ export declare namespace Structify {
     type ErrorResponse as ErrorResponse,
     type GetChatSessionResponse as GetChatSessionResponse,
     type ListChatSessionsResponse as ListChatSessionsResponse,
+    type ListCollaboratorsResponse as ListCollaboratorsResponse,
     type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
     type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
     type ChatGetSessionTimelineResponse as ChatGetSessionTimelineResponse,
+    type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAddMessageParams as ChatAddMessageParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
@@ -602,25 +600,6 @@ export declare namespace Structify {
   };
 
   export { Admin as Admin };
-
-  export {
-    WorkflowResource as WorkflowResource,
-    type ExistingWorkflow as ExistingWorkflow,
-    type ID as ID,
-    type Workflow as Workflow,
-    type WorkflowListResponse as WorkflowListResponse,
-    type WorkflowJobProgressResponse as WorkflowJobProgressResponse,
-    type WorkflowJobsResponse as WorkflowJobsResponse,
-    type WorkflowTriggerResponse as WorkflowTriggerResponse,
-    type WorkflowCreateParams as WorkflowCreateParams,
-    type WorkflowUpdateParams as WorkflowUpdateParams,
-    type WorkflowListParams as WorkflowListParams,
-    type WorkflowDeleteParams as WorkflowDeleteParams,
-    type WorkflowGetParams as WorkflowGetParams,
-    type WorkflowJobProgressParams as WorkflowJobProgressParams,
-    type WorkflowJobsParams as WorkflowJobsParams,
-    type WorkflowTriggerParams as WorkflowTriggerParams,
-  };
 
   export {
     Datasets as Datasets,
@@ -708,6 +687,13 @@ export declare namespace Structify {
     type SessionUpdateNodeParams as SessionUpdateNodeParams,
     type SessionUpdateNodeProgressParams as SessionUpdateNodeProgressParams,
     type SessionUploadNodeOutputDataParams as SessionUploadNodeOutputDataParams,
+  };
+
+  export {
+    WorkflowSchedule as WorkflowSchedule,
+    type CreateWorkflowScheduleRequest as CreateWorkflowScheduleRequest,
+    type UpdateWorkflowScheduleRequest as UpdateWorkflowScheduleRequest,
+    type WorkflowScheduleInfo as WorkflowScheduleInfo,
   };
 
   export { Server as Server, type ServerInformation as ServerInformation };

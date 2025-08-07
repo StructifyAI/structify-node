@@ -56,7 +56,6 @@ describe('resource entities', () => {
       },
       attempt_merge: true,
       source: 'None',
-      triggering_workflow: 'triggering_workflow',
     });
   });
 
@@ -91,7 +90,6 @@ describe('resource entities', () => {
       attempt_merge: true,
       skip_malformed_entities: true,
       source: 'None',
-      triggering_workflow: 'triggering_workflow',
     });
   });
 

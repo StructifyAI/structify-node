@@ -4,7 +4,6 @@ import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as SharedAPI from './shared';
 import * as SourcesAPI from './sources';
-import * as WorkflowAPI from './workflow';
 
 export class Entities extends APIResource {
   /**
@@ -732,8 +731,6 @@ export namespace EntityListJobsResponse {
 
     max_steps_without_save: number;
 
-    selected_next_workflow_step: boolean;
-
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
     user_id: string;
@@ -769,12 +766,6 @@ export namespace EntityListJobsResponse {
     run_time_milliseconds?: number | null;
 
     seeded_kg_search_term?: string | null;
-
-    workflow_group_id?: string | null;
-
-    workflow_id?: WorkflowAPI.ID | null;
-
-    workflow_step_id?: string | null;
   }
 }
 
@@ -1614,8 +1605,6 @@ export interface EntityAddParams {
   attempt_merge?: boolean;
 
   source?: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage | EntityAddParams.SecFiling;
-
-  triggering_workflow?: string | null;
 }
 
 export namespace EntityAddParams {
@@ -1649,8 +1638,6 @@ export interface EntityAddBatchParams {
     | EntityAddBatchParams.Web
     | EntityAddBatchParams.DocumentPage
     | EntityAddBatchParams.SecFiling;
-
-  triggering_workflow?: string | null;
 }
 
 export namespace EntityAddBatchParams {

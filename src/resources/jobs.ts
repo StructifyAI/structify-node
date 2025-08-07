@@ -6,7 +6,6 @@ import * as Core from '../core';
 import * as SharedAPI from './shared';
 import * as SourcesAPI from './sources';
 import * as StructureAPI from './structure';
-import * as WorkflowAPI from './workflow';
 import { JobsList, type JobsListParams } from '../pagination';
 
 export class Jobs extends APIResource {
@@ -120,8 +119,6 @@ export interface JobListResponse {
 
   job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
 
-  selected_next_workflow_step: boolean;
-
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
   user_id: string;
@@ -137,12 +134,6 @@ export interface JobListResponse {
   run_time_milliseconds?: number | null;
 
   special_job_type?: 'HumanLLM' | null;
-
-  workflow_group_id?: string | null;
-
-  workflow_id?: WorkflowAPI.ID | null;
-
-  workflow_step_id?: string | null;
 }
 
 export namespace JobListResponse {
@@ -232,8 +223,6 @@ export interface JobCancelResponse {
 
   max_steps_without_save: number;
 
-  selected_next_workflow_step: boolean;
-
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
   user_id: string;
@@ -269,12 +258,6 @@ export interface JobCancelResponse {
   run_time_milliseconds?: number | null;
 
   seeded_kg_search_term?: string | null;
-
-  workflow_group_id?: string | null;
-
-  workflow_id?: WorkflowAPI.ID | null;
-
-  workflow_step_id?: string | null;
 }
 
 export interface JobGetResponse {
@@ -294,8 +277,6 @@ export namespace JobGetResponse {
     job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
 
     max_steps_without_save: number;
-
-    selected_next_workflow_step: boolean;
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
@@ -332,12 +313,6 @@ export namespace JobGetResponse {
     run_time_milliseconds?: number | null;
 
     seeded_kg_search_term?: string | null;
-
-    workflow_group_id?: string | null;
-
-    workflow_id?: WorkflowAPI.ID | null;
-
-    workflow_step_id?: string | null;
   }
 }
 
