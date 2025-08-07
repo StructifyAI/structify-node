@@ -39,7 +39,10 @@ Types:
 
 - <code><a href="./src/resources/chat.ts">AddChatMessageRequest</a></code>
 - <code><a href="./src/resources/chat.ts">AddChatMessageResponse</a></code>
+- <code><a href="./src/resources/chat.ts">AddCollaboratorRequest</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSession</a></code>
+- <code><a href="./src/resources/chat.ts">ChatSessionRole</a></code>
+- <code><a href="./src/resources/chat.ts">ChatSessionUser</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSessionWithMessages</a></code>
 - <code><a href="./src/resources/chat.ts">CreateChatSessionRequest</a></code>
 - <code><a href="./src/resources/chat.ts">CreateChatSessionResponse</a></code>
@@ -47,12 +50,14 @@ Types:
 - <code><a href="./src/resources/chat.ts">ErrorResponse</a></code>
 - <code><a href="./src/resources/chat.ts">GetChatSessionResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ListChatSessionsResponse</a></code>
+- <code><a href="./src/resources/chat.ts">ListCollaboratorsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatAddGitCommitResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetGitCommitResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetSessionTimelineResponse</a></code>
 
 Methods:
 
+- <code title="post /chat/sessions/{chat_id}/collaborators">client.chat.<a href="./src/resources/chat.ts">addCollaborator</a>(chatId, { ...params }) -> void</code>
 - <code title="post /chat/sessions/{session_id}/commits">client.chat.<a href="./src/resources/chat.ts">addGitCommit</a>(sessionId, { ...params }) -> ChatAddGitCommitResponse</code>
 - <code title="post /chat/sessions/{session_id}/messages">client.chat.<a href="./src/resources/chat.ts">addMessage</a>(sessionId, { ...params }) -> AddChatMessageResponse</code>
 - <code title="post /chat/sessions">client.chat.<a href="./src/resources/chat.ts">createSession</a>({ ...params }) -> CreateChatSessionResponse</code>
@@ -60,7 +65,9 @@ Methods:
 - <code title="get /chat/sessions/{chat_id}/commits/{commit_hash}">client.chat.<a href="./src/resources/chat.ts">getGitCommit</a>(chatId, commitHash) -> ChatGetGitCommitResponse</code>
 - <code title="get /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">getSession</a>(sessionId) -> GetChatSessionResponse</code>
 - <code title="get /chat/sessions/{session_id}/timeline">client.chat.<a href="./src/resources/chat.ts">getSessionTimeline</a>(sessionId) -> ChatGetSessionTimelineResponse</code>
+- <code title="get /chat/sessions/{chat_id}/collaborators">client.chat.<a href="./src/resources/chat.ts">listCollaborators</a>(chatId) -> ListCollaboratorsResponse</code>
 - <code title="get /chat/sessions">client.chat.<a href="./src/resources/chat.ts">listSessions</a>({ ...params }) -> ListChatSessionsResponse</code>
+- <code title="delete /chat/sessions/{chat_id}/collaborators/{user_id}">client.chat.<a href="./src/resources/chat.ts">removeCollaborator</a>(chatId, userId) -> void</code>
 
 # Teams
 
@@ -255,29 +262,6 @@ Methods:
 - <code title="post /admin/training_datasets/upload_labeled_step">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">uploadLabeledStep</a>({ ...params }) -> void</code>
 - <code title="put /admin/training_datasets/verify_datum">client.admin.trainingDatasets.<a href="./src/resources/admin/training-datasets.ts">verifyDatum</a>({ ...params }) -> void</code>
 
-# Workflow
-
-Types:
-
-- <code><a href="./src/resources/workflow.ts">ExistingWorkflow</a></code>
-- <code><a href="./src/resources/workflow.ts">ID</a></code>
-- <code><a href="./src/resources/workflow.ts">Workflow</a></code>
-- <code><a href="./src/resources/workflow.ts">WorkflowListResponse</a></code>
-- <code><a href="./src/resources/workflow.ts">WorkflowJobProgressResponse</a></code>
-- <code><a href="./src/resources/workflow.ts">WorkflowJobsResponse</a></code>
-- <code><a href="./src/resources/workflow.ts">WorkflowTriggerResponse</a></code>
-
-Methods:
-
-- <code title="post /workflow/create">client.workflow.<a href="./src/resources/workflow.ts">create</a>({ ...params }) -> string</code>
-- <code title="put /workflow/update">client.workflow.<a href="./src/resources/workflow.ts">update</a>({ ...params }) -> string</code>
-- <code title="post /workflow/list">client.workflow.<a href="./src/resources/workflow.ts">list</a>({ ...params }) -> WorkflowListResponse</code>
-- <code title="delete /workflow/delete">client.workflow.<a href="./src/resources/workflow.ts">delete</a>({ ...params }) -> void</code>
-- <code title="get /workflow/get">client.workflow.<a href="./src/resources/workflow.ts">get</a>({ ...params }) -> ExistingWorkflow</code>
-- <code title="get /workflow/job_progress">client.workflow.<a href="./src/resources/workflow.ts">jobProgress</a>({ ...params }) -> WorkflowJobProgressResponse</code>
-- <code title="get /workflow/jobs">client.workflow.<a href="./src/resources/workflow.ts">jobs</a>({ ...params }) -> WorkflowJobsResponse</code>
-- <code title="post /workflow/trigger">client.workflow.<a href="./src/resources/workflow.ts">trigger</a>({ ...params }) -> unknown</code>
-
 # Datasets
 
 Types:
@@ -408,6 +392,14 @@ Methods:
 - <code title="patch /sessions/nodes/{node_id}">client.sessions.<a href="./src/resources/sessions.ts">updateNode</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 - <code title="patch /sessions/nodes/{node_id}/progress">client.sessions.<a href="./src/resources/sessions.ts">updateNodeProgress</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 - <code title="post /sessions/nodes/{node_id}/output_data">client.sessions.<a href="./src/resources/sessions.ts">uploadNodeOutputData</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
+
+# WorkflowSchedule
+
+Types:
+
+- <code><a href="./src/resources/workflow-schedule.ts">CreateWorkflowScheduleRequest</a></code>
+- <code><a href="./src/resources/workflow-schedule.ts">UpdateWorkflowScheduleRequest</a></code>
+- <code><a href="./src/resources/workflow-schedule.ts">WorkflowScheduleInfo</a></code>
 
 # Server
 

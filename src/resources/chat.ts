@@ -3,8 +3,21 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
+import * as ChatAPI from './chat';
 
 export class Chat extends APIResource {
+  addCollaborator(
+    chatId: string,
+    body: ChatAddCollaboratorParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post(`/chat/sessions/${chatId}/collaborators`, {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
   /**
    * Add a git commit to a chat session
    */
@@ -76,6 +89,16 @@ export class Chat extends APIResource {
   }
 
   /**
+   * List all users who have access to a chat session
+   */
+  listCollaborators(
+    chatId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ListCollaboratorsResponse> {
+    return this._client.get(`/chat/sessions/${chatId}/collaborators`, options);
+  }
+
+  /**
    * List all chat sessions for the authenticated user.
    */
   listSessions(
@@ -91,6 +114,13 @@ export class Chat extends APIResource {
       return this.listSessions({}, query);
     }
     return this._client.get('/chat/sessions', { query, ...options });
+  }
+
+  removeCollaborator(chatId: string, userId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/chat/sessions/${chatId}/collaborators/${userId}`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -123,6 +153,12 @@ export namespace AddChatMessageResponse {
   }
 }
 
+export interface AddCollaboratorRequest {
+  role: ChatSessionRole;
+
+  user_id: string;
+}
+
 export interface ChatSession {
   id: string;
 
@@ -131,6 +167,20 @@ export interface ChatSession {
   git_application_token: string;
 
   project_id: string;
+
+  updated_at: string;
+}
+
+export type ChatSessionRole = 'owner' | 'editor' | 'viewer';
+
+export interface ChatSessionUser {
+  id: string;
+
+  chat_session_id: string;
+
+  created_at: string;
+
+  role: ChatSessionRole;
 
   updated_at: string;
 
@@ -152,7 +202,7 @@ export interface ChatSessionWithMessages {
 
   updated_at: string;
 
-  user_id: string;
+  user_role: ChatSessionRole;
 
   latest_workflow_session_id?: string | null;
 }
@@ -240,6 +290,30 @@ export namespace ListChatSessionsResponse {
 
     updated_at: string;
 
+    user_role: ChatAPI.ChatSessionRole;
+  }
+}
+
+/**
+ * Response for listing collaborators
+ */
+export interface ListCollaboratorsResponse {
+  users: Array<ListCollaboratorsResponse.User>;
+}
+
+export namespace ListCollaboratorsResponse {
+  /**
+   * DTO for chat collaborator with user email information
+   */
+  export interface User {
+    created_at: string;
+
+    email: string;
+
+    role: ChatAPI.ChatSessionRole;
+
+    updated_at: string;
+
     user_id: string;
   }
 }
@@ -322,9 +396,15 @@ export namespace ChatGetSessionTimelineResponse {
   }
 }
 
+export interface ChatAddCollaboratorParams {
+  role: ChatSessionRole;
+
+  user_id: string;
+}
+
 export interface ChatAddGitCommitParams {
   /**
-   * The git commit hash (must be 40 characters).
+   * The git commit hash (must be 40 characters)
    */
   commit_hash: string;
 }
@@ -354,7 +434,10 @@ export declare namespace Chat {
   export {
     type AddChatMessageRequest as AddChatMessageRequest,
     type AddChatMessageResponse as AddChatMessageResponse,
+    type AddCollaboratorRequest as AddCollaboratorRequest,
     type ChatSession as ChatSession,
+    type ChatSessionRole as ChatSessionRole,
+    type ChatSessionUser as ChatSessionUser,
     type ChatSessionWithMessages as ChatSessionWithMessages,
     type CreateChatSessionRequest as CreateChatSessionRequest,
     type CreateChatSessionResponse as CreateChatSessionResponse,
@@ -362,9 +445,11 @@ export declare namespace Chat {
     type ErrorResponse as ErrorResponse,
     type GetChatSessionResponse as GetChatSessionResponse,
     type ListChatSessionsResponse as ListChatSessionsResponse,
+    type ListCollaboratorsResponse as ListCollaboratorsResponse,
     type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
     type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
     type ChatGetSessionTimelineResponse as ChatGetSessionTimelineResponse,
+    type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAddMessageParams as ChatAddMessageParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
