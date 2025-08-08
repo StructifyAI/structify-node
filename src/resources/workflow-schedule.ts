@@ -1,8 +1,36 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../resource';
+import * as Core from '../core';
 
-export class WorkflowSchedule extends APIResource {}
+export class WorkflowSchedule extends APIResource {
+  create(
+    chatSessionId: string,
+    body: WorkflowScheduleCreateParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<WorkflowScheduleInfo> {
+    return this._client.post(`/workflow-schedule/${chatSessionId}`, { body, ...options });
+  }
+
+  update(
+    scheduleId: string,
+    body: WorkflowScheduleUpdateParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<WorkflowScheduleInfo> {
+    return this._client.put(`/workflow-schedule/${scheduleId}`, { body, ...options });
+  }
+
+  delete(scheduleId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/workflow-schedule/${scheduleId}`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  get(chatSessionId: string, options?: Core.RequestOptions): Core.APIPromise<WorkflowScheduleGetResponse> {
+    return this._client.get(`/workflow-schedule/${chatSessionId}`, options);
+  }
+}
 
 export interface CreateWorkflowScheduleRequest {
   git_commit_hash: string;
@@ -26,10 +54,27 @@ export interface WorkflowScheduleInfo {
   next_run_time?: string | null;
 }
 
+export type WorkflowScheduleGetResponse = Array<WorkflowScheduleInfo>;
+
+export interface WorkflowScheduleCreateParams {
+  git_commit_hash: string;
+
+  cron_schedule?: string | null;
+}
+
+export interface WorkflowScheduleUpdateParams {
+  cron_schedule?: string | null;
+
+  git_commit_hash?: string | null;
+}
+
 export declare namespace WorkflowSchedule {
   export {
     type CreateWorkflowScheduleRequest as CreateWorkflowScheduleRequest,
     type UpdateWorkflowScheduleRequest as UpdateWorkflowScheduleRequest,
     type WorkflowScheduleInfo as WorkflowScheduleInfo,
+    type WorkflowScheduleGetResponse as WorkflowScheduleGetResponse,
+    type WorkflowScheduleCreateParams as WorkflowScheduleCreateParams,
+    type WorkflowScheduleUpdateParams as WorkflowScheduleUpdateParams,
   };
 }
