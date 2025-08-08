@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.150.0 (2025-08-08)
+
+Full Changelog: [v1.149.0...v1.150.0](https://github.com/StructifyAI/structify-node/compare/v1.149.0...v1.150.0)
+
+### Features
+
+* **api:** manual updates ([ab14ff3](https://github.com/StructifyAI/structify-node/commit/ab14ff339eb61335b552e30528250c9cb69f84cf))
+* **api:** manual updates ([f0b5aba](https://github.com/StructifyAI/structify-node/commit/f0b5abaec13268ffe7f0720c830d3ea249896ad5))
+* **api:** manual updates ([a38e693](https://github.com/StructifyAI/structify-node/commit/a38e69342874a08619d0e2f31f7e50880389dad6))
+* **api:** manual updates ([0ac5fcb](https://github.com/StructifyAI/structify-node/commit/0ac5fcbfacf1fd85cbdb2175144ede520db322ee))
+* **api:** manual updates ([2b8f6e2](https://github.com/StructifyAI/structify-node/commit/2b8f6e20ac3d82e874d09c269253cdbe25a90990))
+* Update from Structify backend changes ([6622236](https://github.com/StructifyAI/structify-node/commit/66222362f8de99d757a6ce30c2e8325e4eef167a))
+* Update from Structify backend changes ([bf021d1](https://github.com/StructifyAI/structify-node/commit/bf021d11155b83ec98a3d22afb7d5d7f9d352542))
+
+
+### Bug Fixes
+
+* add dataset name as a sdk param ([b3f2fc4](https://github.com/StructifyAI/structify-node/commit/b3f2fc4f29a0dcebf0f144afa72a6f8219fb6b2c))
+
+
+### Chores
+
+* **internal:** move publish config ([891cb47](https://github.com/StructifyAI/structify-node/commit/891cb4753f949bd0bf15100d1bb53ec48ceef5c1))
+
 ## 1.149.0 (2025-07-31)
 
 Full Changelog: [v1.148.1...v1.149.0](https://github.com/StructifyAI/structify-node/compare/v1.148.1...v1.149.0)
