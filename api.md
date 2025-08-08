@@ -400,6 +400,14 @@ Types:
 - <code><a href="./src/resources/workflow-schedule.ts">CreateWorkflowScheduleRequest</a></code>
 - <code><a href="./src/resources/workflow-schedule.ts">UpdateWorkflowScheduleRequest</a></code>
 - <code><a href="./src/resources/workflow-schedule.ts">WorkflowScheduleInfo</a></code>
+- <code><a href="./src/resources/workflow-schedule.ts">WorkflowScheduleGetResponse</a></code>
+
+Methods:
+
+- <code title="post /workflow-schedule/{chat_session_id}">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">create</a>(chatSessionId, { ...params }) -> WorkflowScheduleInfo</code>
+- <code title="put /workflow-schedule/{schedule_id}">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">update</a>(scheduleId, { ...params }) -> WorkflowScheduleInfo</code>
+- <code title="delete /workflow-schedule/{schedule_id}">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">delete</a>(scheduleId) -> void</code>
+- <code title="get /workflow-schedule/{chat_session_id}">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">get</a>(chatSessionId) -> WorkflowScheduleGetResponse</code>
 
 # Server
 

@@ -269,4 +269,7 @@ export {
   type CreateWorkflowScheduleRequest,
   type UpdateWorkflowScheduleRequest,
   type WorkflowScheduleInfo,
+  type WorkflowScheduleGetResponse,
+  type WorkflowScheduleCreateParams,
+  type WorkflowScheduleUpdateParams,
 } from './workflow-schedule';
