@@ -230,7 +230,10 @@ import {
   CreateWorkflowScheduleRequest,
   UpdateWorkflowScheduleRequest,
   WorkflowSchedule,
+  WorkflowScheduleCreateParams,
+  WorkflowScheduleGetResponse,
   WorkflowScheduleInfo,
+  WorkflowScheduleUpdateParams,
 } from './resources/workflow-schedule';
 import { Admin } from './resources/admin/admin';
 import {
@@ -694,6 +697,9 @@ export declare namespace Structify {
     type CreateWorkflowScheduleRequest as CreateWorkflowScheduleRequest,
     type UpdateWorkflowScheduleRequest as UpdateWorkflowScheduleRequest,
     type WorkflowScheduleInfo as WorkflowScheduleInfo,
+    type WorkflowScheduleGetResponse as WorkflowScheduleGetResponse,
+    type WorkflowScheduleCreateParams as WorkflowScheduleCreateParams,
+    type WorkflowScheduleUpdateParams as WorkflowScheduleUpdateParams,
   };
 
   export { Server as Server, type ServerInformation as ServerInformation };
