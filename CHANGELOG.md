@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.151.0 (2025-08-11)
+
+Full Changelog: [v1.150.0...v1.151.0](https://github.com/StructifyAI/structify-node/compare/v1.150.0...v1.151.0)
+
+### Features
+
+* **api:** manual updates ([be4b1fe](https://github.com/StructifyAI/structify-node/commit/be4b1fe27a803a65a33522122a78e3758bde52fd))
+* **api:** manual updates ([7bc2c66](https://github.com/StructifyAI/structify-node/commit/7bc2c6648436a0a51b5f80c3b714029fbff978ac))
+
+
+### Chores
+
+* **internal:** update comment in script ([57bfe15](https://github.com/StructifyAI/structify-node/commit/57bfe1587bee1d6fa9561ede4997e245c58904a4))
+* update @stainless-api/prism-cli to v5.15.0 ([3a6c383](https://github.com/StructifyAI/structify-node/commit/3a6c383abbaf5fc105064b22325c2ff84f8a81d2))
+
 ## 1.150.0 (2025-08-08)
 
 Full Changelog: [v1.149.0...v1.150.0](https://github.com/StructifyAI/structify-node/compare/v1.149.0...v1.150.0)
