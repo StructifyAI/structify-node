@@ -97,6 +97,7 @@ export namespace ChatPrompt {
   export interface DecodingParams {
     parameters: Array<
       | DecodingParams.MaxTokens
+      | DecodingParams.MaxCompletionTokens
       | DecodingParams.TopP
       | DecodingParams.RepeatWindow
       | DecodingParams.RepeatPenalty
@@ -116,6 +117,10 @@ export namespace ChatPrompt {
   export namespace DecodingParams {
     export interface MaxTokens {
       MaxTokens: number;
+    }
+
+    export interface MaxCompletionTokens {
+      MaxCompletionTokens: number;
     }
 
     export interface TopP {
