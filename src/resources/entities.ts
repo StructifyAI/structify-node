@@ -1602,7 +1602,7 @@ export interface EntityAddParams {
   entity_graph: SharedAPI.KnowledgeGraph;
 
   /**
-   * If true, attempt to merge with existing entities in the dataset
+   * If true, attempt to merge with existing entities in the dataset.
    */
   attempt_merge?: boolean;
 
