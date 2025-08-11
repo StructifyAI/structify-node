@@ -2,6 +2,7 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
+import * as SessionsAPI from './sessions';
 
 export class WorkflowSchedule extends APIResource {
   create(
@@ -30,24 +31,50 @@ export class WorkflowSchedule extends APIResource {
   get(chatSessionId: string, options?: Core.RequestOptions): Core.APIPromise<WorkflowScheduleGetResponse> {
     return this._client.get(`/workflow-schedule/${chatSessionId}`, options);
   }
+
+  getSessions(
+    scheduleId: string,
+    body: WorkflowScheduleGetSessionsParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<GetWorkflowScheduleSessionsResponse> {
+    return this._client.post(`/workflow-schedule/${scheduleId}/sessions`, { body, ...options });
+  }
 }
 
 export interface CreateWorkflowScheduleRequest {
   git_commit_hash: string;
 
+  name: string;
+
   cron_schedule?: string | null;
+}
+
+export interface GetWorkflowScheduleSessionsRequest {
+  limit?: number;
+
+  offset?: number;
+}
+
+export interface GetWorkflowScheduleSessionsResponse {
+  sessions: Array<SessionsAPI.WorkflowSession>;
+
+  total_count: number;
 }
 
 export interface UpdateWorkflowScheduleRequest {
   cron_schedule?: string | null;
 
   git_commit_hash?: string | null;
+
+  name?: string | null;
 }
 
 export interface WorkflowScheduleInfo {
   id: string;
 
   git_commit_hash: string;
+
+  name: string;
 
   cron_schedule?: string | null;
 
@@ -59,6 +86,8 @@ export type WorkflowScheduleGetResponse = Array<WorkflowScheduleInfo>;
 export interface WorkflowScheduleCreateParams {
   git_commit_hash: string;
 
+  name: string;
+
   cron_schedule?: string | null;
 }
 
@@ -66,15 +95,26 @@ export interface WorkflowScheduleUpdateParams {
   cron_schedule?: string | null;
 
   git_commit_hash?: string | null;
+
+  name?: string | null;
+}
+
+export interface WorkflowScheduleGetSessionsParams {
+  limit?: number;
+
+  offset?: number;
 }
 
 export declare namespace WorkflowSchedule {
   export {
     type CreateWorkflowScheduleRequest as CreateWorkflowScheduleRequest,
+    type GetWorkflowScheduleSessionsRequest as GetWorkflowScheduleSessionsRequest,
+    type GetWorkflowScheduleSessionsResponse as GetWorkflowScheduleSessionsResponse,
     type UpdateWorkflowScheduleRequest as UpdateWorkflowScheduleRequest,
     type WorkflowScheduleInfo as WorkflowScheduleInfo,
     type WorkflowScheduleGetResponse as WorkflowScheduleGetResponse,
     type WorkflowScheduleCreateParams as WorkflowScheduleCreateParams,
     type WorkflowScheduleUpdateParams as WorkflowScheduleUpdateParams,
+    type WorkflowScheduleGetSessionsParams as WorkflowScheduleGetSessionsParams,
   };
 }

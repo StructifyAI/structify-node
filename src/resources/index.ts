@@ -267,9 +267,12 @@ export {
 export {
   WorkflowSchedule,
   type CreateWorkflowScheduleRequest,
+  type GetWorkflowScheduleSessionsRequest,
+  type GetWorkflowScheduleSessionsResponse,
   type UpdateWorkflowScheduleRequest,
   type WorkflowScheduleInfo,
   type WorkflowScheduleGetResponse,
   type WorkflowScheduleCreateParams,
   type WorkflowScheduleUpdateParams,
+  type WorkflowScheduleGetSessionsParams,
 } from './workflow-schedule';

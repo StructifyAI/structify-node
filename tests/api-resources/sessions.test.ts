@@ -68,6 +68,7 @@ describe('resource sessions', () => {
   test('createSession: required and optional params', async () => {
     const response = await client.sessions.createSession({
       chat_session_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      workflow_schedule_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 

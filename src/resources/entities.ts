@@ -733,6 +733,8 @@ export namespace EntityListJobsResponse {
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
+    updated_at: string;
+
     user_id: string;
 
     max_errors?: number | null;
