@@ -89,13 +89,15 @@ export interface ProjectSecret {
 
   wrapped_dek: Core.Uploadable;
 
+  connector_id?: string | null;
+
   project_id?: string | null;
 
   workflow_schedule_id?: string | null;
 }
 
 /**
- * Response model for listing project secrets (without sensitive data)
+ * Response model for listing secrets (without sensitive data)
  */
 export interface ProjectSecretSummary {
   id: string;

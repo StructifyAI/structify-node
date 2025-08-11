@@ -120,6 +120,8 @@ export interface CreateWorkflowNodeRequest {
 
 export interface CreateWorkflowSessionRequest {
   chat_session_id: string;
+
+  workflow_schedule_id?: string | null;
 }
 
 export interface GetSessionEventsResponse {
@@ -247,6 +249,8 @@ export interface WorkflowSession {
   error_message?: string | null;
 
   error_traceback?: string | null;
+
+  workflow_schedule_id?: string | null;
 }
 
 export interface WorkflowSessionEdge {
@@ -311,6 +315,8 @@ export interface SessionCreateNodeParams {
 
 export interface SessionCreateSessionParams {
   chat_session_id: string;
+
+  workflow_schedule_id?: string | null;
 }
 
 export interface SessionGetEventsParams {

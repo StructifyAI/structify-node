@@ -134,6 +134,8 @@ export interface UserInfo {
 
   permissions: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'>;
 
+  user_id: string;
+
   user_type: 'admin' | 'public' | 'end_user' | 'pro';
 
   username: string;

@@ -228,10 +228,13 @@ import {
 } from './resources/teams';
 import {
   CreateWorkflowScheduleRequest,
+  GetWorkflowScheduleSessionsRequest,
+  GetWorkflowScheduleSessionsResponse,
   UpdateWorkflowScheduleRequest,
   WorkflowSchedule,
   WorkflowScheduleCreateParams,
   WorkflowScheduleGetResponse,
+  WorkflowScheduleGetSessionsParams,
   WorkflowScheduleInfo,
   WorkflowScheduleUpdateParams,
 } from './resources/workflow-schedule';
@@ -695,11 +698,14 @@ export declare namespace Structify {
   export {
     WorkflowSchedule as WorkflowSchedule,
     type CreateWorkflowScheduleRequest as CreateWorkflowScheduleRequest,
+    type GetWorkflowScheduleSessionsRequest as GetWorkflowScheduleSessionsRequest,
+    type GetWorkflowScheduleSessionsResponse as GetWorkflowScheduleSessionsResponse,
     type UpdateWorkflowScheduleRequest as UpdateWorkflowScheduleRequest,
     type WorkflowScheduleInfo as WorkflowScheduleInfo,
     type WorkflowScheduleGetResponse as WorkflowScheduleGetResponse,
     type WorkflowScheduleCreateParams as WorkflowScheduleCreateParams,
     type WorkflowScheduleUpdateParams as WorkflowScheduleUpdateParams,
+    type WorkflowScheduleGetSessionsParams as WorkflowScheduleGetSessionsParams,
   };
 
   export { Server as Server, type ServerInformation as ServerInformation };
