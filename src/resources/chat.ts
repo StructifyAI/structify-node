@@ -425,7 +425,11 @@ export interface ChatAddMessageParams {
   role: string;
 }
 
-export type ChatCopyNodeOutputByCodeHashParams = unknown;
+export interface ChatCopyNodeOutputByCodeHashParams {
+  code_md5_hash: string;
+
+  new_node_id?: string | null;
+}
 
 export interface ChatCreateSessionParams {
   git_application_token: string;
