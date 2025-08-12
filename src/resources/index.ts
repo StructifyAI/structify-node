@@ -18,11 +18,13 @@ export {
   type ListChatSessionsResponse,
   type ListCollaboratorsResponse,
   type ChatAddGitCommitResponse,
+  type ChatCopyNodeOutputByCodeHashResponse,
   type ChatGetGitCommitResponse,
   type ChatGetSessionTimelineResponse,
   type ChatAddCollaboratorParams,
   type ChatAddGitCommitParams,
   type ChatAddMessageParams,
+  type ChatCopyNodeOutputByCodeHashParams,
   type ChatCreateSessionParams,
   type ChatListSessionsParams,
 } from './chat';

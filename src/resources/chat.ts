@@ -40,6 +40,14 @@ export class Chat extends APIResource {
     return this._client.post(`/chat/sessions/${sessionId}/messages`, { body, ...options });
   }
 
+  copyNodeOutputByCodeHash(
+    sessionId: string,
+    body: ChatCopyNodeOutputByCodeHashParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<string> {
+    return this._client.post(`/chat/sessions/${sessionId}/nodes/by_code_hash`, { body, ...options });
+  }
+
   /**
    * Create a new chat session with an initial message
    */
@@ -337,6 +345,8 @@ export namespace ChatAddGitCommitResponse {
   }
 }
 
+export type ChatCopyNodeOutputByCodeHashResponse = string | null;
+
 /**
  * Response structure for getting a git commit by hash
  */
@@ -415,6 +425,8 @@ export interface ChatAddMessageParams {
   role: string;
 }
 
+export type ChatCopyNodeOutputByCodeHashParams = unknown;
+
 export interface ChatCreateSessionParams {
   git_application_token: string;
 
@@ -447,11 +459,13 @@ export declare namespace Chat {
     type ListChatSessionsResponse as ListChatSessionsResponse,
     type ListCollaboratorsResponse as ListCollaboratorsResponse,
     type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
+    type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
     type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
     type ChatGetSessionTimelineResponse as ChatGetSessionTimelineResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAddMessageParams as ChatAddMessageParams,
+    type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
     type ChatListSessionsParams as ChatListSessionsParams,
   };
