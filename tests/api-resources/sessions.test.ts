@@ -32,6 +32,7 @@ describe('resource sessions', () => {
 
   test('createNode: only required params', async () => {
     const responsePromise = client.sessions.createNode('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      code_md5_hash: 'code_md5_hash',
       docstring: 'docstring',
       function_name: 'function_name',
     });
@@ -46,6 +47,7 @@ describe('resource sessions', () => {
 
   test('createNode: required and optional params', async () => {
     const response = await client.sessions.createNode('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      code_md5_hash: 'code_md5_hash',
       docstring: 'docstring',
       function_name: 'function_name',
       output_schema: {},

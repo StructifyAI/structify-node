@@ -17,6 +17,8 @@ import {
   ChatAddGitCommitParams,
   ChatAddGitCommitResponse,
   ChatAddMessageParams,
+  ChatCopyNodeOutputByCodeHashParams,
+  ChatCopyNodeOutputByCodeHashResponse,
   ChatCreateSessionParams,
   ChatGetGitCommitResponse,
   ChatGetSessionTimelineResponse,
@@ -513,6 +515,7 @@ Structify.SandboxResource = SandboxResource;
 Structify.Scrape = Scrape;
 Structify.Structure = Structure;
 Structify.Shared = Shared;
+
 export declare namespace Structify {
   export type RequestOptions = Core.RequestOptions;
 
@@ -550,11 +553,13 @@ export declare namespace Structify {
     type ListChatSessionsResponse as ListChatSessionsResponse,
     type ListCollaboratorsResponse as ListCollaboratorsResponse,
     type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
+    type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
     type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
     type ChatGetSessionTimelineResponse as ChatGetSessionTimelineResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAddMessageParams as ChatAddMessageParams,
+    type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
     type ChatListSessionsParams as ChatListSessionsParams,
   };

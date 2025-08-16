@@ -111,6 +111,8 @@ export interface CreateWorkflowEdgeRequest {
 }
 
 export interface CreateWorkflowNodeRequest {
+  code_md5_hash: string;
+
   docstring: string;
 
   function_name: string;
@@ -268,6 +270,8 @@ export interface WorkflowSessionEdge {
 export interface WorkflowSessionNode {
   id: string;
 
+  code_md5_hash: string;
+
   docstring: string;
 
   execution_status: WorkflowNodeExecutionStatus;
@@ -306,6 +310,8 @@ export interface SessionCreateEdgeParams {
 }
 
 export interface SessionCreateNodeParams {
+  code_md5_hash: string;
+
   docstring: string;
 
   function_name: string;
