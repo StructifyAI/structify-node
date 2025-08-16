@@ -515,6 +515,7 @@ Structify.SandboxResource = SandboxResource;
 Structify.Scrape = Scrape;
 Structify.Structure = Structure;
 Structify.Shared = Shared;
+
 export declare namespace Structify {
   export type RequestOptions = Core.RequestOptions;
 
