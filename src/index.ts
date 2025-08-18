@@ -106,7 +106,7 @@ import {
   Jobs,
 } from './resources/jobs';
 import { DeleteProjectResponse, GetProjectResponse, Project, Projects } from './resources/projects';
-import { PublicSessions, WorkflowDag } from './resources/public-sessions';
+import { PublicSessions } from './resources/public-sessions';
 import {
   Report,
   ReportMissingParams,
@@ -159,6 +159,7 @@ import {
   Sessions,
   UpdateWorkflowNodeProgressRequest,
   UpdateWorkflowNodeRequest,
+  WorkflowDag,
   WorkflowNodeExecutionStatus,
   WorkflowSession,
   WorkflowSessionEdge,
@@ -693,6 +694,7 @@ export declare namespace Structify {
     type MarkWorkflowSessionErroredRequest as MarkWorkflowSessionErroredRequest,
     type UpdateWorkflowNodeProgressRequest as UpdateWorkflowNodeProgressRequest,
     type UpdateWorkflowNodeRequest as UpdateWorkflowNodeRequest,
+    type WorkflowDag as WorkflowDag,
     type WorkflowNodeExecutionStatus as WorkflowNodeExecutionStatus,
     type WorkflowSession as WorkflowSession,
     type WorkflowSessionEdge as WorkflowSessionEdge,
@@ -826,7 +828,7 @@ export declare namespace Structify {
     type StructureRunAsyncParams as StructureRunAsyncParams,
   };
 
-  export { PublicSessions as PublicSessions, type WorkflowDag as WorkflowDag };
+  export { PublicSessions as PublicSessions };
 
   export {
     Shared as Shared,
