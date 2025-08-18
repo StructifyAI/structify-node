@@ -6,7 +6,10 @@ import * as SessionsAPI from './sessions';
 import { type Response } from '../_shims/index';
 
 export class PublicSessions extends APIResource {
-  getLatestWorkflow(chatSessionId: string, options?: Core.RequestOptions): Core.APIPromise<WorkflowDag> {
+  getLatestWorkflow(
+    chatSessionId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<SessionsAPI.WorkflowDag> {
     return this._client.get(`/public/chat/${chatSessionId}/latest-workflow`, options);
   }
 
@@ -17,20 +20,4 @@ export class PublicSessions extends APIResource {
       __binaryResponse: true,
     });
   }
-}
-
-export interface WorkflowDag {
-  edges: Array<SessionsAPI.WorkflowSessionEdge>;
-
-  nodes: Array<SessionsAPI.WorkflowSessionNode>;
-
-  session_id: string;
-
-  error?: string | null;
-
-  error_traceback?: string | null;
-}
-
-export declare namespace PublicSessions {
-  export { type WorkflowDag as WorkflowDag };
 }

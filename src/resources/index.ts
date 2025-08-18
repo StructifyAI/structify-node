@@ -131,7 +131,7 @@ export {
   type JobStatusParams,
 } from './jobs';
 export { Projects, type DeleteProjectResponse, type GetProjectResponse, type Project } from './projects';
-export { PublicSessions, type WorkflowDag } from './public-sessions';
+export { PublicSessions } from './public-sessions';
 export {
   Report,
   type ReportMissingResponse,
@@ -175,6 +175,7 @@ export {
   type MarkWorkflowSessionErroredRequest,
   type UpdateWorkflowNodeProgressRequest,
   type UpdateWorkflowNodeRequest,
+  type WorkflowDag,
   type WorkflowNodeExecutionStatus,
   type WorkflowSession,
   type WorkflowSessionEdge,
