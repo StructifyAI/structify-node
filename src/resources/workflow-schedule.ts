@@ -32,6 +32,10 @@ export class WorkflowSchedule extends APIResource {
     return this._client.get(`/workflow-schedule/${chatSessionId}`, options);
   }
 
+  getAll(options?: Core.RequestOptions): Core.APIPromise<WorkflowScheduleGetAllResponse> {
+    return this._client.get('/workflow-schedule', options);
+  }
+
   getSessions(
     scheduleId: string,
     body: WorkflowScheduleGetSessionsParams,
@@ -72,6 +76,8 @@ export interface UpdateWorkflowScheduleRequest {
 export interface WorkflowScheduleInfo {
   id: string;
 
+  chat_session_id: string;
+
   git_commit_hash: string;
 
   name: string;
@@ -82,6 +88,8 @@ export interface WorkflowScheduleInfo {
 }
 
 export type WorkflowScheduleGetResponse = Array<WorkflowScheduleInfo>;
+
+export type WorkflowScheduleGetAllResponse = Array<WorkflowScheduleInfo>;
 
 export interface WorkflowScheduleCreateParams {
   git_commit_hash: string;
@@ -113,6 +121,7 @@ export declare namespace WorkflowSchedule {
     type UpdateWorkflowScheduleRequest as UpdateWorkflowScheduleRequest,
     type WorkflowScheduleInfo as WorkflowScheduleInfo,
     type WorkflowScheduleGetResponse as WorkflowScheduleGetResponse,
+    type WorkflowScheduleGetAllResponse as WorkflowScheduleGetAllResponse,
     type WorkflowScheduleCreateParams as WorkflowScheduleCreateParams,
     type WorkflowScheduleUpdateParams as WorkflowScheduleUpdateParams,
     type WorkflowScheduleGetSessionsParams as WorkflowScheduleGetSessionsParams,

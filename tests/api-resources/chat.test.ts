@@ -244,4 +244,19 @@ describe('resource chat', () => {
       ),
     ).rejects.toThrow(Structify.NotFoundError);
   });
+
+  test('togglePublic: only required params', async () => {
+    const responsePromise = client.chat.togglePublic('session_id', { is_public: true });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('togglePublic: required and optional params', async () => {
+    const response = await client.chat.togglePublic('session_id', { is_public: true });
+  });
 });

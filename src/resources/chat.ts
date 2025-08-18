@@ -130,6 +130,17 @@ export class Chat extends APIResource {
       headers: { Accept: '*/*', ...options?.headers },
     });
   }
+
+  /**
+   * Toggle public visibility of a chat session
+   */
+  togglePublic(
+    sessionId: string,
+    body: ChatTogglePublicParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<TogglePublicResponse> {
+    return this._client.put(`/chat/sessions/${sessionId}/public`, { body, ...options });
+  }
 }
 
 export interface AddChatMessageRequest {
@@ -174,6 +185,8 @@ export interface ChatSession {
 
   git_application_token: string;
 
+  is_public: boolean;
+
   project_id: string;
 
   updated_at: string;
@@ -203,6 +216,11 @@ export interface ChatSessionWithMessages {
   created_at: string;
 
   git_application_token: string;
+
+  /**
+   * Whether the chat session is public
+   */
+  is_public: boolean;
 
   messages: Array<ChatSessionWithMessages.Message>;
 
@@ -326,6 +344,14 @@ export namespace ListCollaboratorsResponse {
   }
 }
 
+export interface TogglePublicRequest {
+  is_public: boolean;
+}
+
+export interface TogglePublicResponse {
+  is_public: boolean;
+}
+
 /**
  * Response structure for adding a git commit
  */
@@ -446,6 +472,10 @@ export interface ChatListSessionsParams {
   limit?: number | null;
 }
 
+export interface ChatTogglePublicParams {
+  is_public: boolean;
+}
+
 export declare namespace Chat {
   export {
     type AddChatMessageRequest as AddChatMessageRequest,
@@ -462,6 +492,8 @@ export declare namespace Chat {
     type GetChatSessionResponse as GetChatSessionResponse,
     type ListChatSessionsResponse as ListChatSessionsResponse,
     type ListCollaboratorsResponse as ListCollaboratorsResponse,
+    type TogglePublicRequest as TogglePublicRequest,
+    type TogglePublicResponse as TogglePublicResponse,
     type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
     type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
     type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
@@ -472,5 +504,6 @@ export declare namespace Chat {
     type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
     type ChatListSessionsParams as ChatListSessionsParams,
+    type ChatTogglePublicParams as ChatTogglePublicParams,
   };
 }
