@@ -111,6 +111,7 @@ export namespace ChatPrompt {
       | DecodingParams.NumBeams
       | DecodingParams.Crop
       | DecodingParams.Thinking
+      | DecodingParams.Verbosity
     >;
   }
 
@@ -176,6 +177,10 @@ export namespace ChatPrompt {
        * Thinking tokens for Claude 3.7. Contains the budget in tokens for thinking.
        */
       Thinking: number;
+    }
+
+    export interface Verbosity {
+      Verbosity: 'low' | 'medium' | 'high';
     }
   }
 

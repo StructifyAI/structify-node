@@ -17,6 +17,8 @@ export {
   type GetChatSessionResponse,
   type ListChatSessionsResponse,
   type ListCollaboratorsResponse,
+  type TogglePublicRequest,
+  type TogglePublicResponse,
   type ChatAddGitCommitResponse,
   type ChatCopyNodeOutputByCodeHashResponse,
   type ChatGetGitCommitResponse,
@@ -27,6 +29,7 @@ export {
   type ChatCopyNodeOutputByCodeHashParams,
   type ChatCreateSessionParams,
   type ChatListSessionsParams,
+  type ChatTogglePublicParams,
 } from './chat';
 export {
   DatasetViewRelationshipsResponsesJobsList,
@@ -128,6 +131,7 @@ export {
   type JobStatusParams,
 } from './jobs';
 export { Projects, type DeleteProjectResponse, type GetProjectResponse, type Project } from './projects';
+export { PublicSessions, type WorkflowDag } from './public-sessions';
 export {
   Report,
   type ReportMissingResponse,
@@ -167,7 +171,6 @@ export {
   type CreateWorkflowNodeRequest,
   type CreateWorkflowSessionRequest,
   type GetSessionEventsResponse,
-  type GetWorkflowDagResponse,
   type JobEventBody,
   type MarkWorkflowSessionErroredRequest,
   type UpdateWorkflowNodeProgressRequest,
@@ -274,6 +277,7 @@ export {
   type UpdateWorkflowScheduleRequest,
   type WorkflowScheduleInfo,
   type WorkflowScheduleGetResponse,
+  type WorkflowScheduleGetAllResponse,
   type WorkflowScheduleCreateParams,
   type WorkflowScheduleUpdateParams,
   type WorkflowScheduleGetSessionsParams,

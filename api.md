@@ -51,6 +51,8 @@ Types:
 - <code><a href="./src/resources/chat.ts">GetChatSessionResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ListChatSessionsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ListCollaboratorsResponse</a></code>
+- <code><a href="./src/resources/chat.ts">TogglePublicRequest</a></code>
+- <code><a href="./src/resources/chat.ts">TogglePublicResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatAddGitCommitResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatCopyNodeOutputByCodeHashResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetGitCommitResponse</a></code>
@@ -70,6 +72,7 @@ Methods:
 - <code title="get /chat/sessions/{chat_id}/collaborators">client.chat.<a href="./src/resources/chat.ts">listCollaborators</a>(chatId) -> ListCollaboratorsResponse</code>
 - <code title="get /chat/sessions">client.chat.<a href="./src/resources/chat.ts">listSessions</a>({ ...params }) -> ListChatSessionsResponse</code>
 - <code title="delete /chat/sessions/{chat_id}/collaborators/{user_id}">client.chat.<a href="./src/resources/chat.ts">removeCollaborator</a>(chatId, userId) -> void</code>
+- <code title="put /chat/sessions/{session_id}/public">client.chat.<a href="./src/resources/chat.ts">togglePublic</a>(sessionId, { ...params }) -> TogglePublicResponse</code>
 
 # Teams
 
@@ -370,7 +373,6 @@ Types:
 - <code><a href="./src/resources/sessions.ts">CreateWorkflowNodeRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">CreateWorkflowSessionRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">GetSessionEventsResponse</a></code>
-- <code><a href="./src/resources/sessions.ts">GetWorkflowDagResponse</a></code>
 - <code><a href="./src/resources/sessions.ts">JobEventBody</a></code>
 - <code><a href="./src/resources/sessions.ts">MarkWorkflowSessionErroredRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">UpdateWorkflowNodeProgressRequest</a></code>
@@ -386,7 +388,7 @@ Methods:
 - <code title="post /sessions/{session_id}/edges">client.sessions.<a href="./src/resources/sessions.ts">createEdge</a>(sessionId, { ...params }) -> WorkflowSessionEdge</code>
 - <code title="post /sessions/{session_id}/nodes">client.sessions.<a href="./src/resources/sessions.ts">createNode</a>(sessionId, { ...params }) -> WorkflowSessionNode</code>
 - <code title="post /sessions">client.sessions.<a href="./src/resources/sessions.ts">createSession</a>({ ...params }) -> WorkflowSession</code>
-- <code title="get /sessions/{session_id}/dag">client.sessions.<a href="./src/resources/sessions.ts">getDag</a>(sessionId) -> GetWorkflowDagResponse</code>
+- <code title="get /sessions/{session_id}/dag">client.sessions.<a href="./src/resources/sessions.ts">getDag</a>(sessionId) -> WorkflowDag</code>
 - <code title="get /sessions/{session_id}/events">client.sessions.<a href="./src/resources/sessions.ts">getEvents</a>(sessionId, { ...params }) -> GetSessionEventsResponse</code>
 - <code title="get /sessions/nodes/{node_id}/output_data">client.sessions.<a href="./src/resources/sessions.ts">getNodeOutputData</a>(nodeId) -> Response</code>
 - <code title="get /sessions/nodes/{node_id}/progress">client.sessions.<a href="./src/resources/sessions.ts">getNodeProgress</a>(nodeId) -> SessionGetNodeProgressResponse</code>
@@ -405,6 +407,7 @@ Types:
 - <code><a href="./src/resources/workflow-schedule.ts">UpdateWorkflowScheduleRequest</a></code>
 - <code><a href="./src/resources/workflow-schedule.ts">WorkflowScheduleInfo</a></code>
 - <code><a href="./src/resources/workflow-schedule.ts">WorkflowScheduleGetResponse</a></code>
+- <code><a href="./src/resources/workflow-schedule.ts">WorkflowScheduleGetAllResponse</a></code>
 
 Methods:
 
@@ -412,6 +415,7 @@ Methods:
 - <code title="put /workflow-schedule/{schedule_id}">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">update</a>(scheduleId, { ...params }) -> WorkflowScheduleInfo</code>
 - <code title="delete /workflow-schedule/{schedule_id}">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">delete</a>(scheduleId) -> void</code>
 - <code title="get /workflow-schedule/{chat_session_id}">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">get</a>(chatSessionId) -> WorkflowScheduleGetResponse</code>
+- <code title="get /workflow-schedule">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">getAll</a>() -> WorkflowScheduleGetAllResponse</code>
 - <code title="post /workflow-schedule/{schedule_id}/sessions">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">getSessions</a>(scheduleId, { ...params }) -> GetWorkflowScheduleSessionsResponse</code>
 
 # Server
@@ -551,6 +555,17 @@ Methods:
 - <code title="post /structure/is_complete">client.structure.<a href="./src/resources/structure.ts">isComplete</a>([ ...job ]) -> string</code>
 - <code title="post /structure/job_status">client.structure.<a href="./src/resources/structure.ts">jobStatus</a>({ ...params }) -> StructureJobStatusResponse</code>
 - <code title="post /structure/run_async">client.structure.<a href="./src/resources/structure.ts">runAsync</a>({ ...params }) -> string</code>
+
+# PublicSessions
+
+Types:
+
+- <code><a href="./src/resources/public-sessions.ts">WorkflowDag</a></code>
+
+Methods:
+
+- <code title="get /public/chat/{chat_session_id}/latest-workflow">client.publicSessions.<a href="./src/resources/public-sessions.ts">getLatestWorkflow</a>(chatSessionId) -> WorkflowDag</code>
+- <code title="get /public/nodes/{node_id}/output_data">client.publicSessions.<a href="./src/resources/public-sessions.ts">getNodeOutputData</a>(nodeId) -> Response</code>
 
 # Shared
 

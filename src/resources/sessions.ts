@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
+import * as PublicSessionsAPI from './public-sessions';
 import { type Response } from '../_shims/index';
 
 export class Sessions extends APIResource {
@@ -29,7 +30,7 @@ export class Sessions extends APIResource {
     return this._client.post('/sessions', { body, ...options });
   }
 
-  getDag(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<GetWorkflowDagResponse> {
+  getDag(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<PublicSessionsAPI.WorkflowDag> {
     return this._client.get(`/sessions/${sessionId}/dag`, options);
   }
 
@@ -144,18 +145,6 @@ export namespace GetSessionEventsResponse {
 
     node_id?: string | null;
   }
-}
-
-export interface GetWorkflowDagResponse {
-  edges: Array<WorkflowSessionEdge>;
-
-  nodes: Array<WorkflowSessionNode>;
-
-  session_id: string;
-
-  error?: string | null;
-
-  error_traceback?: string | null;
 }
 
 /**
@@ -362,7 +351,6 @@ export declare namespace Sessions {
     type CreateWorkflowNodeRequest as CreateWorkflowNodeRequest,
     type CreateWorkflowSessionRequest as CreateWorkflowSessionRequest,
     type GetSessionEventsResponse as GetSessionEventsResponse,
-    type GetWorkflowDagResponse as GetWorkflowDagResponse,
     type JobEventBody as JobEventBody,
     type MarkWorkflowSessionErroredRequest as MarkWorkflowSessionErroredRequest,
     type UpdateWorkflowNodeProgressRequest as UpdateWorkflowNodeProgressRequest,
