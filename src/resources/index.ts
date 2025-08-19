@@ -151,7 +151,15 @@ export {
   type SandboxGetParams,
   type SandboxUpdateStatusParams,
 } from './sandbox';
-export { Scrape, type ScrapeListRequest, type ScrapeListResponse, type ScrapeListParams } from './scrape';
+export {
+  Scrape,
+  type ScrapeListRequest,
+  type ScrapeRequest,
+  type ScrapeListResponse,
+  type ScrapeScrapeResponse,
+  type ScrapeListParams,
+  type ScrapeScrapeParams,
+} from './scrape';
 export {
   Secrets,
   type CreateSecretRequest,

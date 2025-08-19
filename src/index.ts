@@ -126,7 +126,15 @@ import {
   SandboxResource,
   SandboxUpdateStatusParams,
 } from './resources/sandbox';
-import { Scrape, ScrapeListParams, ScrapeListRequest, ScrapeListResponse } from './resources/scrape';
+import {
+  Scrape,
+  ScrapeListParams,
+  ScrapeListRequest,
+  ScrapeListResponse,
+  ScrapeRequest,
+  ScrapeScrapeParams,
+  ScrapeScrapeResponse,
+} from './resources/scrape';
 import {
   CreateSecretRequest,
   GetSecretResponse,
@@ -804,8 +812,11 @@ export declare namespace Structify {
   export {
     Scrape as Scrape,
     type ScrapeListRequest as ScrapeListRequest,
+    type ScrapeRequest as ScrapeRequest,
     type ScrapeListResponse as ScrapeListResponse,
+    type ScrapeScrapeResponse as ScrapeScrapeResponse,
     type ScrapeListParams as ScrapeListParams,
+    type ScrapeScrapeParams as ScrapeScrapeParams,
   };
 
   export {

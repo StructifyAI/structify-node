@@ -527,11 +527,14 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/scrape.ts">ScrapeListRequest</a></code>
+- <code><a href="./src/resources/scrape.ts">ScrapeRequest</a></code>
 - <code><a href="./src/resources/scrape.ts">ScrapeListResponse</a></code>
+- <code><a href="./src/resources/scrape.ts">ScrapeScrapeResponse</a></code>
 
 Methods:
 
 - <code title="post /scrape/list">client.scrape.<a href="./src/resources/scrape.ts">list</a>({ ...params }) -> ScrapeListResponse</code>
+- <code title="post /scrape">client.scrape.<a href="./src/resources/scrape.ts">scrape</a>({ ...params }) -> ScrapeScrapeResponse</code>
 
 # Structure
 

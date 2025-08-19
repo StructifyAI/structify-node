@@ -87,4 +87,38 @@ describe('resource scrape', () => {
       },
     });
   });
+
+  test('scrape: only required params', async () => {
+    const responsePromise = client.scrape.scrape({
+      dataset_name: 'dataset_name',
+      extraction_criteria: [{ relationship_name: 'relationship_name' }],
+      url: 'url',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('scrape: required and optional params', async () => {
+    const response = await client.scrape.scrape({
+      dataset_name: 'dataset_name',
+      extraction_criteria: [{ relationship_name: 'relationship_name' }],
+      url: 'url',
+      node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      seeded_kg: {
+        entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
+        relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
+      },
+      stop_config: {
+        max_steps_without_save: 0,
+        max_errors: 0,
+        max_execution_time_secs: 0,
+        max_total_steps: 0,
+      },
+    });
+  });
 });
