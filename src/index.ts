@@ -17,6 +17,8 @@ import {
   ChatAddGitCommitParams,
   ChatAddGitCommitResponse,
   ChatAddMessageParams,
+  ChatCopyNodeOutputByCodeHashParams,
+  ChatCopyNodeOutputByCodeHashResponse,
   ChatCreateSessionParams,
   ChatGetGitCommitResponse,
   ChatGetSessionTimelineResponse,
@@ -25,6 +27,7 @@ import {
   ChatSessionRole,
   ChatSessionUser,
   ChatSessionWithMessages,
+  ChatTogglePublicParams,
   CreateChatSessionRequest,
   CreateChatSessionResponse,
   DeleteChatSessionResponse,
@@ -32,6 +35,8 @@ import {
   GetChatSessionResponse,
   ListChatSessionsResponse,
   ListCollaboratorsResponse,
+  TogglePublicRequest,
+  TogglePublicResponse,
 } from './resources/chat';
 import {
   DocumentDeleteParams,
@@ -101,6 +106,7 @@ import {
   Jobs,
 } from './resources/jobs';
 import { DeleteProjectResponse, GetProjectResponse, Project, Projects } from './resources/projects';
+import { PublicSessions } from './resources/public-sessions';
 import {
   Report,
   ReportMissingParams,
@@ -120,7 +126,15 @@ import {
   SandboxResource,
   SandboxUpdateStatusParams,
 } from './resources/sandbox';
-import { Scrape, ScrapeListParams, ScrapeListRequest, ScrapeListResponse } from './resources/scrape';
+import {
+  Scrape,
+  ScrapeListParams,
+  ScrapeListRequest,
+  ScrapeListResponse,
+  ScrapeRequest,
+  ScrapeScrapeParams,
+  ScrapeScrapeResponse,
+} from './resources/scrape';
 import {
   CreateSecretRequest,
   GetSecretResponse,
@@ -139,7 +153,6 @@ import {
   CreateWorkflowNodeRequest,
   CreateWorkflowSessionRequest,
   GetSessionEventsResponse,
-  GetWorkflowDagResponse,
   JobEventBody,
   MarkWorkflowSessionErroredRequest,
   SessionCreateEdgeParams,
@@ -154,6 +167,7 @@ import {
   Sessions,
   UpdateWorkflowNodeProgressRequest,
   UpdateWorkflowNodeRequest,
+  WorkflowDag,
   WorkflowNodeExecutionStatus,
   WorkflowSession,
   WorkflowSessionEdge,
@@ -233,6 +247,7 @@ import {
   UpdateWorkflowScheduleRequest,
   WorkflowSchedule,
   WorkflowScheduleCreateParams,
+  WorkflowScheduleGetAllResponse,
   WorkflowScheduleGetResponse,
   WorkflowScheduleGetSessionsParams,
   WorkflowScheduleInfo,
@@ -442,6 +457,7 @@ export class Structify extends Core.APIClient {
   sandbox: API.SandboxResource = new API.SandboxResource(this);
   scrape: API.Scrape = new API.Scrape(this);
   structure: API.Structure = new API.Structure(this);
+  publicSessions: API.PublicSessions = new API.PublicSessions(this);
   shared: API.Shared = new API.Shared(this);
 
   /**
@@ -512,7 +528,9 @@ Structify.Report = Report;
 Structify.SandboxResource = SandboxResource;
 Structify.Scrape = Scrape;
 Structify.Structure = Structure;
+Structify.PublicSessions = PublicSessions;
 Structify.Shared = Shared;
+
 export declare namespace Structify {
   export type RequestOptions = Core.RequestOptions;
 
@@ -549,14 +567,19 @@ export declare namespace Structify {
     type GetChatSessionResponse as GetChatSessionResponse,
     type ListChatSessionsResponse as ListChatSessionsResponse,
     type ListCollaboratorsResponse as ListCollaboratorsResponse,
+    type TogglePublicRequest as TogglePublicRequest,
+    type TogglePublicResponse as TogglePublicResponse,
     type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
+    type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
     type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
     type ChatGetSessionTimelineResponse as ChatGetSessionTimelineResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAddMessageParams as ChatAddMessageParams,
+    type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
     type ChatListSessionsParams as ChatListSessionsParams,
+    type ChatTogglePublicParams as ChatTogglePublicParams,
   };
 
   export {
@@ -675,11 +698,11 @@ export declare namespace Structify {
     type CreateWorkflowNodeRequest as CreateWorkflowNodeRequest,
     type CreateWorkflowSessionRequest as CreateWorkflowSessionRequest,
     type GetSessionEventsResponse as GetSessionEventsResponse,
-    type GetWorkflowDagResponse as GetWorkflowDagResponse,
     type JobEventBody as JobEventBody,
     type MarkWorkflowSessionErroredRequest as MarkWorkflowSessionErroredRequest,
     type UpdateWorkflowNodeProgressRequest as UpdateWorkflowNodeProgressRequest,
     type UpdateWorkflowNodeRequest as UpdateWorkflowNodeRequest,
+    type WorkflowDag as WorkflowDag,
     type WorkflowNodeExecutionStatus as WorkflowNodeExecutionStatus,
     type WorkflowSession as WorkflowSession,
     type WorkflowSessionEdge as WorkflowSessionEdge,
@@ -703,6 +726,7 @@ export declare namespace Structify {
     type UpdateWorkflowScheduleRequest as UpdateWorkflowScheduleRequest,
     type WorkflowScheduleInfo as WorkflowScheduleInfo,
     type WorkflowScheduleGetResponse as WorkflowScheduleGetResponse,
+    type WorkflowScheduleGetAllResponse as WorkflowScheduleGetAllResponse,
     type WorkflowScheduleCreateParams as WorkflowScheduleCreateParams,
     type WorkflowScheduleUpdateParams as WorkflowScheduleUpdateParams,
     type WorkflowScheduleGetSessionsParams as WorkflowScheduleGetSessionsParams,
@@ -788,8 +812,11 @@ export declare namespace Structify {
   export {
     Scrape as Scrape,
     type ScrapeListRequest as ScrapeListRequest,
+    type ScrapeRequest as ScrapeRequest,
     type ScrapeListResponse as ScrapeListResponse,
+    type ScrapeScrapeResponse as ScrapeScrapeResponse,
     type ScrapeListParams as ScrapeListParams,
+    type ScrapeScrapeParams as ScrapeScrapeParams,
   };
 
   export {
@@ -811,6 +838,8 @@ export declare namespace Structify {
     type StructureJobStatusParams as StructureJobStatusParams,
     type StructureRunAsyncParams as StructureRunAsyncParams,
   };
+
+  export { PublicSessions as PublicSessions };
 
   export {
     Shared as Shared,

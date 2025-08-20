@@ -17,14 +17,19 @@ export {
   type GetChatSessionResponse,
   type ListChatSessionsResponse,
   type ListCollaboratorsResponse,
+  type TogglePublicRequest,
+  type TogglePublicResponse,
   type ChatAddGitCommitResponse,
+  type ChatCopyNodeOutputByCodeHashResponse,
   type ChatGetGitCommitResponse,
   type ChatGetSessionTimelineResponse,
   type ChatAddCollaboratorParams,
   type ChatAddGitCommitParams,
   type ChatAddMessageParams,
+  type ChatCopyNodeOutputByCodeHashParams,
   type ChatCreateSessionParams,
   type ChatListSessionsParams,
+  type ChatTogglePublicParams,
 } from './chat';
 export {
   DatasetViewRelationshipsResponsesJobsList,
@@ -126,6 +131,7 @@ export {
   type JobStatusParams,
 } from './jobs';
 export { Projects, type DeleteProjectResponse, type GetProjectResponse, type Project } from './projects';
+export { PublicSessions } from './public-sessions';
 export {
   Report,
   type ReportMissingResponse,
@@ -145,7 +151,15 @@ export {
   type SandboxGetParams,
   type SandboxUpdateStatusParams,
 } from './sandbox';
-export { Scrape, type ScrapeListRequest, type ScrapeListResponse, type ScrapeListParams } from './scrape';
+export {
+  Scrape,
+  type ScrapeListRequest,
+  type ScrapeRequest,
+  type ScrapeListResponse,
+  type ScrapeScrapeResponse,
+  type ScrapeListParams,
+  type ScrapeScrapeParams,
+} from './scrape';
 export {
   Secrets,
   type CreateSecretRequest,
@@ -165,11 +179,11 @@ export {
   type CreateWorkflowNodeRequest,
   type CreateWorkflowSessionRequest,
   type GetSessionEventsResponse,
-  type GetWorkflowDagResponse,
   type JobEventBody,
   type MarkWorkflowSessionErroredRequest,
   type UpdateWorkflowNodeProgressRequest,
   type UpdateWorkflowNodeRequest,
+  type WorkflowDag,
   type WorkflowNodeExecutionStatus,
   type WorkflowSession,
   type WorkflowSessionEdge,
@@ -272,6 +286,7 @@ export {
   type UpdateWorkflowScheduleRequest,
   type WorkflowScheduleInfo,
   type WorkflowScheduleGetResponse,
+  type WorkflowScheduleGetAllResponse,
   type WorkflowScheduleCreateParams,
   type WorkflowScheduleUpdateParams,
   type WorkflowScheduleGetSessionsParams,

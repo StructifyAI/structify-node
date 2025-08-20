@@ -40,6 +40,14 @@ export class Chat extends APIResource {
     return this._client.post(`/chat/sessions/${sessionId}/messages`, { body, ...options });
   }
 
+  copyNodeOutputByCodeHash(
+    sessionId: string,
+    body: ChatCopyNodeOutputByCodeHashParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<string> {
+    return this._client.post(`/chat/sessions/${sessionId}/nodes/by_code_hash`, { body, ...options });
+  }
+
   /**
    * Create a new chat session with an initial message
    */
@@ -122,6 +130,17 @@ export class Chat extends APIResource {
       headers: { Accept: '*/*', ...options?.headers },
     });
   }
+
+  /**
+   * Toggle public visibility of a chat session
+   */
+  togglePublic(
+    sessionId: string,
+    body: ChatTogglePublicParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<TogglePublicResponse> {
+    return this._client.put(`/chat/sessions/${sessionId}/public`, { body, ...options });
+  }
 }
 
 export interface AddChatMessageRequest {
@@ -166,6 +185,8 @@ export interface ChatSession {
 
   git_application_token: string;
 
+  is_public: boolean;
+
   project_id: string;
 
   updated_at: string;
@@ -195,6 +216,11 @@ export interface ChatSessionWithMessages {
   created_at: string;
 
   git_application_token: string;
+
+  /**
+   * Whether the chat session is public
+   */
+  is_public: boolean;
 
   messages: Array<ChatSessionWithMessages.Message>;
 
@@ -318,6 +344,14 @@ export namespace ListCollaboratorsResponse {
   }
 }
 
+export interface TogglePublicRequest {
+  is_public: boolean;
+}
+
+export interface TogglePublicResponse {
+  is_public: boolean;
+}
+
 /**
  * Response structure for adding a git commit
  */
@@ -336,6 +370,8 @@ export namespace ChatAddGitCommitResponse {
     created_at: string;
   }
 }
+
+export type ChatCopyNodeOutputByCodeHashResponse = string | null;
 
 /**
  * Response structure for getting a git commit by hash
@@ -415,6 +451,12 @@ export interface ChatAddMessageParams {
   role: string;
 }
 
+export interface ChatCopyNodeOutputByCodeHashParams {
+  code_md5_hash: string;
+
+  new_node_id?: string | null;
+}
+
 export interface ChatCreateSessionParams {
   git_application_token: string;
 
@@ -428,6 +470,10 @@ export interface ChatListSessionsParams {
    * Maximum number of sessions to return (default: 50)
    */
   limit?: number | null;
+}
+
+export interface ChatTogglePublicParams {
+  is_public: boolean;
 }
 
 export declare namespace Chat {
@@ -446,13 +492,18 @@ export declare namespace Chat {
     type GetChatSessionResponse as GetChatSessionResponse,
     type ListChatSessionsResponse as ListChatSessionsResponse,
     type ListCollaboratorsResponse as ListCollaboratorsResponse,
+    type TogglePublicRequest as TogglePublicRequest,
+    type TogglePublicResponse as TogglePublicResponse,
     type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
+    type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
     type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
     type ChatGetSessionTimelineResponse as ChatGetSessionTimelineResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAddMessageParams as ChatAddMessageParams,
+    type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
     type ChatListSessionsParams as ChatListSessionsParams,
+    type ChatTogglePublicParams as ChatTogglePublicParams,
   };
 }

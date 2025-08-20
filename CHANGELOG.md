@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.152.0 (2025-08-19)
+
+Full Changelog: [v1.151.0...v1.152.0](https://github.com/StructifyAI/structify-node/compare/v1.151.0...v1.152.0)
+
+### Features
+
+* **api:** manual updates ([6a79ef8](https://github.com/StructifyAI/structify-node/commit/6a79ef89e39cc63c416532ef1ac09863ae8ceda5))
+* **api:** manual updates ([fb6cdbe](https://github.com/StructifyAI/structify-node/commit/fb6cdbe474f9e445042a0d0147722c357c9b063f))
+* Update from Structify backend changes ([1dce897](https://github.com/StructifyAI/structify-node/commit/1dce8971df49a3435c50e82c89f940b7f956ede9))
+* Update from Structify backend changes ([0964d9a](https://github.com/StructifyAI/structify-node/commit/0964d9a4354966c15fdfde3e4cb26b506c6df029))
+* Update from Structify backend changes ([26a7460](https://github.com/StructifyAI/structify-node/commit/26a74602af105980cf0110d72f6f753f9425c3b9))
+
+
+### Chores
+
+* **deps:** update dependency node-fetch to v2.6.13 ([df81c7c](https://github.com/StructifyAI/structify-node/commit/df81c7c0242cedfbdcb6670ed6873b50b4f58940))
+* **internal:** formatting change ([6aba81a](https://github.com/StructifyAI/structify-node/commit/6aba81ad506c54be75b0f9318297ff710e897128))
+
 ## 1.151.0 (2025-08-11)
 
 Full Changelog: [v1.150.0...v1.151.0](https://github.com/StructifyAI/structify-node/compare/v1.150.0...v1.151.0)

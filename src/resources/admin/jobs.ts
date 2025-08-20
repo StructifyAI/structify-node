@@ -117,11 +117,31 @@ export namespace AdminListJobsResponse {
     }
 
     export interface ScrapeFromURLProperty {
-      ScrapeFromUrlProperty: string;
+      ScrapeFromUrlProperty: ScrapeFromURLProperty.ScrapeFromURLProperty;
+    }
+
+    export namespace ScrapeFromURLProperty {
+      export interface ScrapeFromURLProperty {
+        batch_scrape: boolean;
+
+        url_property_name: string;
+
+        use_markdown: boolean;
+      }
     }
 
     export interface ScrapeURL {
-      ScrapeUrl: string;
+      ScrapeUrl: ScrapeURL.ScrapeURL;
+    }
+
+    export namespace ScrapeURL {
+      export interface ScrapeURL {
+        batch_scrape: boolean;
+
+        url: string;
+
+        use_markdown: boolean;
+      }
     }
   }
 }

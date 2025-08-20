@@ -29,7 +29,7 @@ export class Sessions extends APIResource {
     return this._client.post('/sessions', { body, ...options });
   }
 
-  getDag(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<GetWorkflowDagResponse> {
+  getDag(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<WorkflowDag> {
     return this._client.get(`/sessions/${sessionId}/dag`, options);
   }
 
@@ -111,6 +111,8 @@ export interface CreateWorkflowEdgeRequest {
 }
 
 export interface CreateWorkflowNodeRequest {
+  code_md5_hash: string;
+
   docstring: string;
 
   function_name: string;
@@ -142,18 +144,6 @@ export namespace GetSessionEventsResponse {
 
     node_id?: string | null;
   }
-}
-
-export interface GetWorkflowDagResponse {
-  edges: Array<WorkflowSessionEdge>;
-
-  nodes: Array<WorkflowSessionNode>;
-
-  session_id: string;
-
-  error?: string | null;
-
-  error_traceback?: string | null;
 }
 
 /**
@@ -235,6 +225,18 @@ export interface UpdateWorkflowNodeRequest {
   execution_time_ms?: number | null;
 }
 
+export interface WorkflowDag {
+  edges: Array<WorkflowSessionEdge>;
+
+  nodes: Array<WorkflowSessionNode>;
+
+  session_id: string;
+
+  error?: string | null;
+
+  error_traceback?: string | null;
+}
+
 export type WorkflowNodeExecutionStatus = 'Unexecuted' | 'Success' | 'Failure' | 'Running';
 
 export interface WorkflowSession {
@@ -267,6 +269,8 @@ export interface WorkflowSessionEdge {
 
 export interface WorkflowSessionNode {
   id: string;
+
+  code_md5_hash: string;
 
   docstring: string;
 
@@ -306,6 +310,8 @@ export interface SessionCreateEdgeParams {
 }
 
 export interface SessionCreateNodeParams {
+  code_md5_hash: string;
+
   docstring: string;
 
   function_name: string;
@@ -356,11 +362,11 @@ export declare namespace Sessions {
     type CreateWorkflowNodeRequest as CreateWorkflowNodeRequest,
     type CreateWorkflowSessionRequest as CreateWorkflowSessionRequest,
     type GetSessionEventsResponse as GetSessionEventsResponse,
-    type GetWorkflowDagResponse as GetWorkflowDagResponse,
     type JobEventBody as JobEventBody,
     type MarkWorkflowSessionErroredRequest as MarkWorkflowSessionErroredRequest,
     type UpdateWorkflowNodeProgressRequest as UpdateWorkflowNodeProgressRequest,
     type UpdateWorkflowNodeRequest as UpdateWorkflowNodeRequest,
+    type WorkflowDag as WorkflowDag,
     type WorkflowNodeExecutionStatus as WorkflowNodeExecutionStatus,
     type WorkflowSession as WorkflowSession,
     type WorkflowSessionEdge as WorkflowSessionEdge,

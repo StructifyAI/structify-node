@@ -60,6 +60,26 @@ describe('resource chat', () => {
     const response = await client.chat.addMessage('session_id', { content: 'content', role: 'role' });
   });
 
+  test('copyNodeOutputByCodeHash: only required params', async () => {
+    const responsePromise = client.chat.copyNodeOutputByCodeHash('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      code_md5_hash: 'code_md5_hash',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('copyNodeOutputByCodeHash: required and optional params', async () => {
+    const response = await client.chat.copyNodeOutputByCodeHash('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      code_md5_hash: 'code_md5_hash',
+      new_node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+  });
+
   test('createSession: only required params', async () => {
     const responsePromise = client.chat.createSession({
       git_application_token: 'git_application_token',
@@ -223,5 +243,20 @@ describe('resource chat', () => {
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Structify.NotFoundError);
+  });
+
+  test('togglePublic: only required params', async () => {
+    const responsePromise = client.chat.togglePublic('session_id', { is_public: true });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('togglePublic: required and optional params', async () => {
+    const response = await client.chat.togglePublic('session_id', { is_public: true });
   });
 });
