@@ -245,6 +245,8 @@ export interface JobCancelResponse {
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
+  token_id: string;
+
   updated_at: string;
 
   user_id: string;
@@ -301,6 +303,8 @@ export namespace JobGetResponse {
     max_steps_without_save: number;
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+    token_id: string;
 
     updated_at: string;
 
