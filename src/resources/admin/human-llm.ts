@@ -115,6 +115,8 @@ export namespace HumanLlmJob {
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
+    token_id: string;
+
     updated_at: string;
 
     user_id: string;
