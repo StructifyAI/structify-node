@@ -10,7 +10,11 @@ const client = new Structify({
 
 describe('resource stripe', () => {
   test('createSession: only required params', async () => {
-    const responsePromise = client.user.stripe.createSession({ credits: 0, origin: 'origin' });
+    const responsePromise = client.user.stripe.createSession({
+      credits: 0,
+      origin: 'origin',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,11 +25,19 @@ describe('resource stripe', () => {
   });
 
   test('createSession: required and optional params', async () => {
-    const response = await client.user.stripe.createSession({ credits: 0, origin: 'origin' });
+    const response = await client.user.stripe.createSession({
+      credits: 0,
+      origin: 'origin',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
   });
 
   test('createSubscription: only required params', async () => {
-    const responsePromise = client.user.stripe.createSubscription({ origin: 'origin', plan: 'Pro' });
+    const responsePromise = client.user.stripe.createSubscription({
+      origin: 'origin',
+      plan: 'Pro',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -36,6 +48,10 @@ describe('resource stripe', () => {
   });
 
   test('createSubscription: required and optional params', async () => {
-    const response = await client.user.stripe.createSubscription({ origin: 'origin', plan: 'Pro' });
+    const response = await client.user.stripe.createSubscription({
+      origin: 'origin',
+      plan: 'Pro',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
   });
 });
