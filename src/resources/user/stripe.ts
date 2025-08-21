@@ -26,6 +26,8 @@ export interface CreateSessionRequest {
   credits: number;
 
   origin: string;
+
+  team_id: string;
 }
 
 export interface CreateSessionResponse {
@@ -36,6 +38,8 @@ export interface CreateSubscriptionRequest {
   origin: string;
 
   plan: SubscriptionPlan;
+
+  team_id: string;
 }
 
 export type SubscriptionPlan = 'Pro';
@@ -47,12 +51,16 @@ export interface StripeCreateSessionParams {
   credits: number;
 
   origin: string;
+
+  team_id: string;
 }
 
 export interface StripeCreateSubscriptionParams {
   origin: string;
 
   plan: SubscriptionPlan;
+
+  team_id: string;
 }
 
 export declare namespace Stripe {
