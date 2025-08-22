@@ -119,6 +119,8 @@ export interface RemoveMemberResponse {
 export interface Team {
   id: string;
 
+  balance_id: string;
+
   created_at: string;
 
   name: string;
