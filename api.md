@@ -84,8 +84,12 @@ Types:
 - <code><a href="./src/resources/teams.ts">CreateProjectResponse</a></code>
 - <code><a href="./src/resources/teams.ts">CreateTeamRequest</a></code>
 - <code><a href="./src/resources/teams.ts">CreateTeamResponse</a></code>
+- <code><a href="./src/resources/teams.ts">CreditsUsageRequest</a></code>
+- <code><a href="./src/resources/teams.ts">CreditsUsageResponse</a></code>
+- <code><a href="./src/resources/teams.ts">CreditsUsageTimeseriesPoint</a></code>
 - <code><a href="./src/resources/teams.ts">DeleteTeamResponse</a></code>
 - <code><a href="./src/resources/teams.ts">GetTeamResponse</a></code>
+- <code><a href="./src/resources/teams.ts">Granularity</a></code>
 - <code><a href="./src/resources/teams.ts">ListMembersResponse</a></code>
 - <code><a href="./src/resources/teams.ts">ListProjectsResponse</a></code>
 - <code><a href="./src/resources/teams.ts">ListTeamsResponse</a></code>
@@ -95,6 +99,7 @@ Types:
 - <code><a href="./src/resources/teams.ts">TeamWithRole</a></code>
 - <code><a href="./src/resources/teams.ts">UpdateTeamRequest</a></code>
 - <code><a href="./src/resources/teams.ts">UpdateTeamResponse</a></code>
+- <code><a href="./src/resources/teams.ts">UsageGroupKey</a></code>
 - <code><a href="./src/resources/teams.ts">UserTeam</a></code>
 
 Methods:
@@ -105,6 +110,7 @@ Methods:
 - <code title="delete /team/{team_id}">client.teams.<a href="./src/resources/teams.ts">delete</a>(teamId) -> DeleteTeamResponse</code>
 - <code title="post /team/{team_id}/members">client.teams.<a href="./src/resources/teams.ts">addMember</a>(teamId, { ...params }) -> AddMemberResponse</code>
 - <code title="post /team/{team_id}/projects">client.teams.<a href="./src/resources/teams.ts">createProject</a>(teamId, { ...params }) -> CreateProjectResponse</code>
+- <code title="get /team/{team_id}/credits/usage">client.teams.<a href="./src/resources/teams.ts">creditsUsage</a>(teamId, { ...params }) -> CreditsUsageResponse</code>
 - <code title="get /team/{team_id}">client.teams.<a href="./src/resources/teams.ts">get</a>(teamId) -> GetTeamResponse</code>
 - <code title="get /team/{team_id}/members">client.teams.<a href="./src/resources/teams.ts">listMembers</a>(teamId) -> ListMembersResponse</code>
 - <code title="get /team/{team_id}/projects">client.teams.<a href="./src/resources/teams.ts">listProjects</a>(teamId) -> ListProjectsResponse</code>

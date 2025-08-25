@@ -41,6 +41,14 @@ export class Teams extends APIResource {
     return this._client.post(`/team/${teamId}/projects`, { body, ...options });
   }
 
+  creditsUsage(
+    teamId: string,
+    query: TeamCreditsUsageParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<CreditsUsageResponse> {
+    return this._client.get(`/team/${teamId}/credits/usage`, { query, ...options });
+  }
+
   get(teamId: string, options?: Core.RequestOptions): Core.APIPromise<GetTeamResponse> {
     return this._client.get(`/team/${teamId}`, options);
   }
@@ -92,6 +100,30 @@ export interface CreateTeamResponse {
   team: Team;
 }
 
+export interface CreditsUsageRequest {
+  end: string;
+
+  start: string;
+
+  token?: string | null;
+
+  granularity?: Granularity;
+}
+
+export interface CreditsUsageResponse {
+  timeseries: Array<CreditsUsageTimeseriesPoint>;
+
+  total_credits_added: number;
+
+  total_spent: number;
+}
+
+export interface CreditsUsageTimeseriesPoint {
+  bucket_start: string;
+
+  groups: { [key: string]: number };
+}
+
 export interface DeleteTeamResponse {
   success: boolean;
 }
@@ -99,6 +131,8 @@ export interface DeleteTeamResponse {
 export interface GetTeamResponse {
   team: Team;
 }
+
+export type Granularity = 'hour' | 'day' | 'week' | 'month';
 
 export interface ListMembersResponse {
   members: Array<UserTeam>;
@@ -146,6 +180,8 @@ export interface UpdateTeamResponse {
   team: Team;
 }
 
+export type UsageGroupKey = 'web' | 'pdf' | 'derive' | 'scrape' | 'other';
+
 export interface UserTeam {
   id: string;
 
@@ -182,6 +218,28 @@ export interface TeamCreateProjectParams {
   description?: string | null;
 }
 
+export interface TeamCreditsUsageParams {
+  /**
+   * End time exclusive (UTC)
+   */
+  end: string;
+
+  /**
+   * hour | day | week | month
+   */
+  granularity: Granularity;
+
+  /**
+   * Start time inclusive (UTC)
+   */
+  start: string;
+
+  /**
+   * Optional token ID to filter by
+   */
+  token?: string | null;
+}
+
 export declare namespace Teams {
   export {
     type AddMemberRequest as AddMemberRequest,
@@ -190,8 +248,12 @@ export declare namespace Teams {
     type CreateProjectResponse as CreateProjectResponse,
     type CreateTeamRequest as CreateTeamRequest,
     type CreateTeamResponse as CreateTeamResponse,
+    type CreditsUsageRequest as CreditsUsageRequest,
+    type CreditsUsageResponse as CreditsUsageResponse,
+    type CreditsUsageTimeseriesPoint as CreditsUsageTimeseriesPoint,
     type DeleteTeamResponse as DeleteTeamResponse,
     type GetTeamResponse as GetTeamResponse,
+    type Granularity as Granularity,
     type ListMembersResponse as ListMembersResponse,
     type ListProjectsResponse as ListProjectsResponse,
     type ListTeamsResponse as ListTeamsResponse,
@@ -201,10 +263,12 @@ export declare namespace Teams {
     type TeamWithRole as TeamWithRole,
     type UpdateTeamRequest as UpdateTeamRequest,
     type UpdateTeamResponse as UpdateTeamResponse,
+    type UsageGroupKey as UsageGroupKey,
     type UserTeam as UserTeam,
     type TeamCreateParams as TeamCreateParams,
     type TeamUpdateParams as TeamUpdateParams,
     type TeamAddMemberParams as TeamAddMemberParams,
     type TeamCreateProjectParams as TeamCreateProjectParams,
+    type TeamCreditsUsageParams as TeamCreditsUsageParams,
   };
 }
