@@ -112,6 +112,30 @@ describe('resource teams', () => {
     });
   });
 
+  test('creditsUsage: only required params', async () => {
+    const responsePromise = client.teams.creditsUsage('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      end: '2019-12-27T18:11:19.117Z',
+      granularity: 'hour',
+      start: '2019-12-27T18:11:19.117Z',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('creditsUsage: required and optional params', async () => {
+    const response = await client.teams.creditsUsage('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      end: '2019-12-27T18:11:19.117Z',
+      granularity: 'hour',
+      start: '2019-12-27T18:11:19.117Z',
+      token: 'token',
+    });
+  });
+
   test('get', async () => {
     const responsePromise = client.teams.get('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();
