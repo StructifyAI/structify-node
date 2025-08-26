@@ -168,7 +168,7 @@ describe('resource entities', () => {
       dataset: 'dataset',
       derived_property: 'derived_property',
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      table_name: 'table_name',
+      instructions: 'instructions',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -184,9 +184,8 @@ describe('resource entities', () => {
       dataset: 'dataset',
       derived_property: 'derived_property',
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      table_name: 'table_name',
-      extra_instruction: 'extra_instruction',
-      input_properties: ['string'],
+      instructions: 'instructions',
+      node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 

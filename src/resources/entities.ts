@@ -1693,11 +1693,9 @@ export interface EntityDeriveParams {
 
   entity_id: string;
 
-  table_name: string;
+  instructions: string;
 
-  extra_instruction?: string | null;
-
-  input_properties?: Array<string> | null;
+  node_id?: string | null;
 }
 
 export interface EntityGetParams {
