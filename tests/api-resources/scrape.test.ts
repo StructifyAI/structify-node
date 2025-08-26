@@ -85,6 +85,7 @@ describe('resource scrape', () => {
         max_execution_time_secs: 0,
         max_total_steps: 0,
       },
+      use_proxy: true,
     });
   });
 
@@ -119,6 +120,7 @@ describe('resource scrape', () => {
         max_execution_time_secs: 0,
         max_total_steps: 0,
       },
+      use_proxy: true,
     });
   });
 });

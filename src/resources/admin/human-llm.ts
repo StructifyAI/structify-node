@@ -119,6 +119,8 @@ export namespace HumanLlmJob {
 
     updated_at: string;
 
+    use_proxy: boolean;
+
     user_id: string;
 
     max_errors?: number | null;

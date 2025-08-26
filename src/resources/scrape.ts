@@ -39,6 +39,8 @@ export interface ScrapeListRequest {
    * Configuration parameters for the StopChecker
    */
   stop_config?: ScrapeListRequest.StopConfig | null;
+
+  use_proxy?: boolean | null;
 }
 
 export namespace ScrapeListRequest {
@@ -103,6 +105,8 @@ export interface ScrapeRequest {
    * Configuration parameters for the StopChecker
    */
   stop_config?: ScrapeRequest.StopConfig | null;
+
+  use_proxy?: boolean | null;
 }
 
 export namespace ScrapeRequest {
@@ -157,6 +161,8 @@ export interface ScrapeListParams {
    * Configuration parameters for the StopChecker
    */
   stop_config?: ScrapeListParams.StopConfig | null;
+
+  use_proxy?: boolean | null;
 }
 
 export namespace ScrapeListParams {
@@ -218,6 +224,8 @@ export interface ScrapeScrapeParams {
    * Configuration parameters for the StopChecker
    */
   stop_config?: ScrapeScrapeParams.StopConfig | null;
+
+  use_proxy?: boolean | null;
 }
 
 export namespace ScrapeScrapeParams {
