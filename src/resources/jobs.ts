@@ -249,6 +249,8 @@ export interface JobCancelResponse {
 
   updated_at: string;
 
+  use_proxy: boolean;
+
   user_id: string;
 
   max_errors?: number | null;
@@ -307,6 +309,8 @@ export namespace JobGetResponse {
     token_id: string;
 
     updated_at: string;
+
+    use_proxy: boolean;
 
     user_id: string;
 
