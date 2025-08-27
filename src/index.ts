@@ -38,6 +38,7 @@ import {
   TogglePublicRequest,
   TogglePublicResponse,
 } from './resources/chat';
+import { Code, CodeGenerateCodeParams, GenerateCodeRequest } from './resources/code';
 import {
   DocumentDeleteParams,
   DocumentDownloadParams,
@@ -462,6 +463,7 @@ export class Structify extends Core.APIClient {
   report: API.Report = new API.Report(this);
   sandbox: API.SandboxResource = new API.SandboxResource(this);
   scrape: API.Scrape = new API.Scrape(this);
+  code: API.Code = new API.Code(this);
   structure: API.Structure = new API.Structure(this);
   publicSessions: API.PublicSessions = new API.PublicSessions(this);
   shared: API.Shared = new API.Shared(this);
@@ -533,6 +535,7 @@ Structify.Entities = Entities;
 Structify.Report = Report;
 Structify.SandboxResource = SandboxResource;
 Structify.Scrape = Scrape;
+Structify.Code = Code;
 Structify.Structure = Structure;
 Structify.PublicSessions = PublicSessions;
 Structify.Shared = Shared;
@@ -829,6 +832,12 @@ export declare namespace Structify {
     type ScrapeScrapeResponse as ScrapeScrapeResponse,
     type ScrapeListParams as ScrapeListParams,
     type ScrapeScrapeParams as ScrapeScrapeParams,
+  };
+
+  export {
+    Code as Code,
+    type GenerateCodeRequest as GenerateCodeRequest,
+    type CodeGenerateCodeParams as CodeGenerateCodeParams,
   };
 
   export {
