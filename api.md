@@ -542,6 +542,16 @@ Methods:
 - <code title="post /scrape/list">client.scrape.<a href="./src/resources/scrape.ts">list</a>({ ...params }) -> ScrapeListResponse</code>
 - <code title="post /scrape">client.scrape.<a href="./src/resources/scrape.ts">scrape</a>({ ...params }) -> ScrapeScrapeResponse</code>
 
+# Code
+
+Types:
+
+- <code><a href="./src/resources/code.ts">GenerateCodeRequest</a></code>
+
+Methods:
+
+- <code title="post /code/generate-code">client.code.<a href="./src/resources/code.ts">generateCode</a>({ ...params }) -> void</code>
+
 # Structure
 
 Types:
