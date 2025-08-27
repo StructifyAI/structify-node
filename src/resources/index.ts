@@ -31,6 +31,7 @@ export {
   type ChatListSessionsParams,
   type ChatTogglePublicParams,
 } from './chat';
+export { Code, type GenerateCodeRequest, type CodeGenerateCodeParams } from './code';
 export {
   DatasetViewRelationshipsResponsesJobsList,
   DatasetViewTableResponsesJobsList,
