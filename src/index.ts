@@ -28,6 +28,7 @@ import {
   ChatSessionUser,
   ChatSessionWithMessages,
   ChatTogglePublicParams,
+  ChatUpdateSessionParams,
   CreateChatSessionRequest,
   CreateChatSessionResponse,
   DeleteChatSessionResponse,
@@ -589,6 +590,7 @@ export declare namespace Structify {
     type ChatCreateSessionParams as ChatCreateSessionParams,
     type ChatListSessionsParams as ChatListSessionsParams,
     type ChatTogglePublicParams as ChatTogglePublicParams,
+    type ChatUpdateSessionParams as ChatUpdateSessionParams,
   };
 
   export {
