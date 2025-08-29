@@ -39,7 +39,7 @@ describe('resource nextAction', () => {
               info: { id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
               llm_input: {
                 decoding_params: { parameters: [{ MaxTokens: 0 }] },
-                messages: [{ message: 'message', role: 'user' }],
+                messages: [{ content: [{ Text: 'Text' }], role: 'user' }],
                 metadata: {
                   dataset_descriptor: {
                     description: 'description',
@@ -89,7 +89,7 @@ describe('resource nextAction', () => {
           info: { id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
           llm_input: {
             decoding_params: { parameters: [{ MaxTokens: 0 }] },
-            messages: [{ message: 'message', role: 'user' }],
+            messages: [{ content: [{ Text: 'Text' }], role: 'user' }],
             metadata: {
               dataset_descriptor: {
                 description: 'description',
@@ -189,7 +189,7 @@ describe('resource nextAction', () => {
               },
               llm_input: {
                 decoding_params: { parameters: [{ MaxTokens: 0 }] },
-                messages: [{ message: 'message', role: 'user' }],
+                messages: [{ content: [{ Text: 'Text' }], role: 'user' }],
                 metadata: {
                   dataset_descriptor: {
                     description: 'description',
@@ -273,7 +273,7 @@ describe('resource nextAction', () => {
           },
           llm_input: {
             decoding_params: { parameters: [{ MaxTokens: 0 }] },
-            messages: [{ message: 'message', role: 'user' }],
+            messages: [{ content: [{ Text: 'Text' }], role: 'user' }],
             metadata: {
               dataset_descriptor: {
                 description: 'description',
@@ -446,7 +446,7 @@ describe('resource nextAction', () => {
           info: { id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
           llm_input: {
             decoding_params: { parameters: [{ MaxTokens: 0 }] },
-            messages: [{ message: 'message', role: 'user' }],
+            messages: [{ content: [{ Text: 'Text' }], role: 'user' }],
             metadata: {
               dataset_descriptor: {
                 description: 'description',
@@ -507,7 +507,7 @@ describe('resource nextAction', () => {
           },
           llm_input: {
             decoding_params: { parameters: [{ MaxTokens: 0 }] },
-            messages: [{ message: 'message', role: 'user' }],
+            messages: [{ content: [{ Text: 'Text' }], role: 'user' }],
             metadata: {
               dataset_descriptor: {
                 description: 'description',
