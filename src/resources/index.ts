@@ -30,6 +30,7 @@ export {
   type ChatCreateSessionParams,
   type ChatListSessionsParams,
   type ChatTogglePublicParams,
+  type ChatUpdateSessionParams,
 } from './chat';
 export { Code, type GenerateCodeRequest, type CodeGenerateCodeParams } from './code';
 export {

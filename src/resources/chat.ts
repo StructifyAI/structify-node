@@ -141,6 +141,14 @@ export class Chat extends APIResource {
   ): Core.APIPromise<TogglePublicResponse> {
     return this._client.put(`/chat/sessions/${sessionId}/public`, { body, ...options });
   }
+
+  updateSession(
+    sessionId: string,
+    body: ChatUpdateSessionParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatSession> {
+    return this._client.patch(`/chat/sessions/${sessionId}`, { body, ...options });
+  }
 }
 
 export interface AddChatMessageRequest {
@@ -190,6 +198,8 @@ export interface ChatSession {
   project_id: string;
 
   updated_at: string;
+
+  name?: string | null;
 }
 
 export type ChatSessionRole = 'owner' | 'editor' | 'viewer';
@@ -200,6 +210,8 @@ export interface ChatSessionUser {
   chat_session_id: string;
 
   created_at: string;
+
+  is_favorite: boolean;
 
   role: ChatSessionRole;
 
@@ -217,6 +229,8 @@ export interface ChatSessionWithMessages {
 
   git_application_token: string;
 
+  is_favorite: boolean;
+
   /**
    * Whether the chat session is public
    */
@@ -231,6 +245,8 @@ export interface ChatSessionWithMessages {
   user_role: ChatSessionRole;
 
   latest_workflow_session_id?: string | null;
+
+  name?: string | null;
 }
 
 export namespace ChatSessionWithMessages {
@@ -310,6 +326,8 @@ export namespace ListChatSessionsResponse {
 
     created_at: string;
 
+    is_favorite: boolean;
+
     project_id: string;
 
     title: string;
@@ -317,6 +335,8 @@ export namespace ListChatSessionsResponse {
     updated_at: string;
 
     user_role: ChatAPI.ChatSessionRole;
+
+    name?: string | null;
   }
 }
 
@@ -476,6 +496,12 @@ export interface ChatTogglePublicParams {
   is_public: boolean;
 }
 
+export interface ChatUpdateSessionParams {
+  is_favorite?: boolean | null;
+
+  name?: string | null;
+}
+
 export declare namespace Chat {
   export {
     type AddChatMessageRequest as AddChatMessageRequest,
@@ -505,5 +531,6 @@ export declare namespace Chat {
     type ChatCreateSessionParams as ChatCreateSessionParams,
     type ChatListSessionsParams as ChatListSessionsParams,
     type ChatTogglePublicParams as ChatTogglePublicParams,
+    type ChatUpdateSessionParams as ChatUpdateSessionParams,
   };
 }

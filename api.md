@@ -73,6 +73,7 @@ Methods:
 - <code title="get /chat/sessions">client.chat.<a href="./src/resources/chat.ts">listSessions</a>({ ...params }) -> ListChatSessionsResponse</code>
 - <code title="delete /chat/sessions/{chat_id}/collaborators/{user_id}">client.chat.<a href="./src/resources/chat.ts">removeCollaborator</a>(chatId, userId) -> void</code>
 - <code title="put /chat/sessions/{session_id}/public">client.chat.<a href="./src/resources/chat.ts">togglePublic</a>(sessionId, { ...params }) -> TogglePublicResponse</code>
+- <code title="patch /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">updateSession</a>(sessionId, { ...params }) -> ChatSession</code>
 
 # Teams
 
