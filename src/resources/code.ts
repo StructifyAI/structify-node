@@ -9,6 +9,10 @@ export class Code extends APIResource {
    *
    * - event: `token` — data is a JSON object: `{ "delta": string }` containing the
    *   next chunk.
+   * - event: `tool_call` — data is a JSON object: `{ "tool_call": object }` with
+   *   tool call information.
+   * - event: `tool_result` — data is a JSON object:
+   *   `{ "tool_call": object, "result_text": string }` with tool results.
    * - event: `error` — data is a JSON object: `{ "message": string }` describing the
    *   error.
    */
