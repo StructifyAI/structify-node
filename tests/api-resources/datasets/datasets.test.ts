@@ -193,10 +193,7 @@ describe('resource datasets', () => {
   test('match: only required params', async () => {
     const responsePromise = client.datasets.match({
       dataset: 'dataset',
-      query_kg: {
-        entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
-        relationships: [{ source: 0, target: 0, type: 'type' }],
-      },
+      query_kg: { entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }] },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);

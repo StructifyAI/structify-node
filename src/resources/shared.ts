@@ -295,7 +295,7 @@ export interface Image {
 export interface KnowledgeGraph {
   entities: Array<Entity>;
 
-  relationships: Array<Relationship>;
+  relationships?: Array<Relationship>;
 }
 
 export type PropertyType =
