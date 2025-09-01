@@ -37,12 +37,7 @@ describe('resource humanLlm', () => {
       step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       tool_calls: [
         {
-          input: {
-            Save: {
-              entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
-              relationships: [{ source: 0, target: 0, type: 'type' }],
-            },
-          },
+          input: { Save: { entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }] } },
           name: 'Exit',
         },
       ],
@@ -198,12 +193,7 @@ describe('resource humanLlm', () => {
       step_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       tool_calls: [
         {
-          input: {
-            Save: {
-              entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
-              relationships: [{ source: 0, target: 0, type: 'type' }],
-            },
-          },
+          input: { Save: { entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }] } },
           name: 'Exit',
         },
       ],

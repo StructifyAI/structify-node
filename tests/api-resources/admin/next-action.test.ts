@@ -61,10 +61,7 @@ describe('resource nextAction', () => {
                     ],
                   },
                   extracted_entities: [
-                    {
-                      entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
-                      relationships: [{ source: 0, target: 0, type: 'type' }],
-                    },
+                    { entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }] },
                   ],
                   extraction_criteria: [{ relationship_name: 'relationship_name' }],
                   formatter_specific: { ImageMeta: { image: 'image' } },
@@ -78,10 +75,7 @@ describe('resource nextAction', () => {
             },
           },
         ],
-        seeded_kg: {
-          entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
-          relationships: [{ source: 0, target: 0, type: 'type' }],
-        },
+        seeded_kg: { entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }] },
       },
       label: 'label',
       output: {
@@ -110,12 +104,7 @@ describe('resource nextAction', () => {
                   },
                 ],
               },
-              extracted_entities: [
-                {
-                  entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
-                  relationships: [{ source: 0, target: 0, type: 'type' }],
-                },
-              ],
+              extracted_entities: [{ entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }] }],
               extraction_criteria: [{ relationship_name: 'relationship_name' }],
               formatter_specific: { ImageMeta: { image: 'image' } },
               tool_metadata: [
@@ -467,12 +456,7 @@ describe('resource nextAction', () => {
                   },
                 ],
               },
-              extracted_entities: [
-                {
-                  entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
-                  relationships: [{ source: 0, target: 0, type: 'type' }],
-                },
-              ],
+              extracted_entities: [{ entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }] }],
               extraction_criteria: [{ relationship_name: 'relationship_name' }],
               formatter_specific: { ImageMeta: { image: 'image' } },
               tool_metadata: [

@@ -206,12 +206,7 @@ describe('resource trainingDatasets', () => {
       status: 'unlabeled',
       updated_tool_calls: [
         {
-          input: {
-            Save: {
-              entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
-              relationships: [{ source: 0, target: 0, type: 'type' }],
-            },
-          },
+          input: { Save: { entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }] } },
           name: 'Exit',
         },
       ],

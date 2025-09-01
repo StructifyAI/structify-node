@@ -33,10 +33,7 @@ describe('resource entities', () => {
   test('add: only required params', async () => {
     const responsePromise = client.entities.add({
       dataset: 'dataset',
-      entity_graph: {
-        entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
-        relationships: [{ source: 0, target: 0, type: 'type' }],
-      },
+      entity_graph: { entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }] },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -62,12 +59,7 @@ describe('resource entities', () => {
   test('addBatch: only required params', async () => {
     const responsePromise = client.entities.addBatch({
       dataset: 'dataset',
-      entity_graphs: [
-        {
-          entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
-          relationships: [{ source: 0, target: 0, type: 'type' }],
-        },
-      ],
+      entity_graphs: [{ entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }] }],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -385,10 +377,7 @@ describe('resource entities', () => {
   test('verify: only required params', async () => {
     const responsePromise = client.entities.verify({
       dataset: 'dataset',
-      entity_graph: {
-        entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
-        relationships: [{ source: 0, target: 0, type: 'type' }],
-      },
+      entity_graph: { entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }] },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
