@@ -124,6 +124,16 @@ export class Chat extends APIResource {
     return this._client.get('/chat/sessions', { query, ...options });
   }
 
+  /**
+   * Load files from a chat session's git repository
+   */
+  loadFiles(
+    body: ChatLoadFilesParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatLoadFilesResponse> {
+    return this._client.post('/chat/files/load', { body, ...options });
+  }
+
   removeCollaborator(chatId: string, userId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/chat/sessions/${chatId}/collaborators/${userId}`, {
       ...options,
@@ -276,8 +286,6 @@ export namespace ChatSessionWithMessages {
 }
 
 export interface CreateChatSessionRequest {
-  git_application_token: string;
-
   initial_message: string;
 
   project_id: string;
@@ -452,6 +460,12 @@ export namespace ChatGetSessionTimelineResponse {
   }
 }
 
+export interface ChatLoadFilesResponse {
+  commit_hash: string;
+
+  files: { [key: string]: string };
+}
+
 export interface ChatAddCollaboratorParams {
   role: ChatSessionRole;
 
@@ -478,8 +492,6 @@ export interface ChatCopyNodeOutputByCodeHashParams {
 }
 
 export interface ChatCreateSessionParams {
-  git_application_token: string;
-
   initial_message: string;
 
   project_id: string;
@@ -490,6 +502,12 @@ export interface ChatListSessionsParams {
    * Maximum number of sessions to return (default: 50)
    */
   limit?: number | null;
+}
+
+export interface ChatLoadFilesParams {
+  chat_id: string;
+
+  commit_hash: string;
 }
 
 export interface ChatTogglePublicParams {
@@ -524,12 +542,14 @@ export declare namespace Chat {
     type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
     type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
     type ChatGetSessionTimelineResponse as ChatGetSessionTimelineResponse,
+    type ChatLoadFilesResponse as ChatLoadFilesResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAddMessageParams as ChatAddMessageParams,
     type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
     type ChatListSessionsParams as ChatListSessionsParams,
+    type ChatLoadFilesParams as ChatLoadFilesParams,
     type ChatTogglePublicParams as ChatTogglePublicParams,
     type ChatUpdateSessionParams as ChatUpdateSessionParams,
   };
