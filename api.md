@@ -57,6 +57,7 @@ Types:
 - <code><a href="./src/resources/chat.ts">ChatCopyNodeOutputByCodeHashResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetGitCommitResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetSessionTimelineResponse</a></code>
+- <code><a href="./src/resources/chat.ts">ChatLoadFilesResponse</a></code>
 
 Methods:
 
@@ -71,6 +72,7 @@ Methods:
 - <code title="get /chat/sessions/{session_id}/timeline">client.chat.<a href="./src/resources/chat.ts">getSessionTimeline</a>(sessionId) -> ChatGetSessionTimelineResponse</code>
 - <code title="get /chat/sessions/{chat_id}/collaborators">client.chat.<a href="./src/resources/chat.ts">listCollaborators</a>(chatId) -> ListCollaboratorsResponse</code>
 - <code title="get /chat/sessions">client.chat.<a href="./src/resources/chat.ts">listSessions</a>({ ...params }) -> ListChatSessionsResponse</code>
+- <code title="post /chat/files/load">client.chat.<a href="./src/resources/chat.ts">loadFiles</a>({ ...params }) -> ChatLoadFilesResponse</code>
 - <code title="delete /chat/sessions/{chat_id}/collaborators/{user_id}">client.chat.<a href="./src/resources/chat.ts">removeCollaborator</a>(chatId, userId) -> void</code>
 - <code title="put /chat/sessions/{session_id}/public">client.chat.<a href="./src/resources/chat.ts">togglePublic</a>(sessionId, { ...params }) -> TogglePublicResponse</code>
 - <code title="patch /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">updateSession</a>(sessionId, { ...params }) -> ChatSession</code>
