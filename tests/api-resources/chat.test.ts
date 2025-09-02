@@ -82,7 +82,6 @@ describe('resource chat', () => {
 
   test('createSession: only required params', async () => {
     const responsePromise = client.chat.createSession({
-      git_application_token: 'git_application_token',
       initial_message: 'initial_message',
       project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
@@ -97,7 +96,6 @@ describe('resource chat', () => {
 
   test('createSession: required and optional params', async () => {
     const response = await client.chat.createSession({
-      git_application_token: 'git_application_token',
       initial_message: 'initial_message',
       project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
@@ -218,6 +216,27 @@ describe('resource chat', () => {
     await expect(
       client.chat.listSessions({ limit: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Structify.NotFoundError);
+  });
+
+  test('loadFiles: only required params', async () => {
+    const responsePromise = client.chat.loadFiles({
+      chat_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      commit_hash: 'commit_hash',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('loadFiles: required and optional params', async () => {
+    const response = await client.chat.loadFiles({
+      chat_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      commit_hash: 'commit_hash',
+    });
   });
 
   test('removeCollaborator', async () => {
