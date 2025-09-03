@@ -112,6 +112,7 @@ export namespace ChatPrompt {
       | DecodingParams.Crop
       | DecodingParams.Thinking
       | DecodingParams.Verbosity
+      | DecodingParams.ReasoningEffort
     >;
   }
 
@@ -181,6 +182,10 @@ export namespace ChatPrompt {
 
     export interface Verbosity {
       Verbosity: 'low' | 'medium' | 'high';
+    }
+
+    export interface ReasoningEffort {
+      ReasoningEffort: 'low' | 'medium' | 'high' | 'minimal';
     }
   }
 
