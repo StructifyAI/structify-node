@@ -132,26 +132,6 @@ Methods:
 - <code title="delete /team/{team_id}/project/{project_id}">client.projects.<a href="./src/resources/projects.ts">delete</a>(teamId, projectId) -> DeleteProjectResponse</code>
 - <code title="get /team/{team_id}/project/{project_id}">client.projects.<a href="./src/resources/projects.ts">get</a>(teamId, projectId) -> GetProjectResponse</code>
 
-# Secrets
-
-Types:
-
-- <code><a href="./src/resources/secrets.ts">CreateSecretRequest</a></code>
-- <code><a href="./src/resources/secrets.ts">GetSecretResponse</a></code>
-- <code><a href="./src/resources/secrets.ts">ProjectSecret</a></code>
-- <code><a href="./src/resources/secrets.ts">ProjectSecretSummary</a></code>
-- <code><a href="./src/resources/secrets.ts">UpdateSecretRequest</a></code>
-- <code><a href="./src/resources/secrets.ts">UpdateSecretResponse</a></code>
-- <code><a href="./src/resources/secrets.ts">SecretListResponse</a></code>
-
-Methods:
-
-- <code title="post /project/{project_id}/secrets">client.secrets.<a href="./src/resources/secrets.ts">create</a>(projectId, { ...params }) -> void</code>
-- <code title="put /project/{project_id}/secrets/{secret_name}">client.secrets.<a href="./src/resources/secrets.ts">update</a>(projectId, secretName, { ...params }) -> UpdateSecretResponse</code>
-- <code title="get /project/{project_id}/secrets">client.secrets.<a href="./src/resources/secrets.ts">list</a>(projectId) -> SecretListResponse</code>
-- <code title="delete /project/{project_id}/secrets/{secret_name}">client.secrets.<a href="./src/resources/secrets.ts">delete</a>(projectId, secretName) -> void</code>
-- <code title="get /project/{project_id}/secrets/{secret_name}">client.secrets.<a href="./src/resources/secrets.ts">get</a>(projectId, secretName) -> GetSecretResponse</code>
-
 # Admin
 
 ## Dataset
@@ -427,6 +407,27 @@ Methods:
 - <code title="get /workflow-schedule/{chat_session_id}">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">get</a>(chatSessionId) -> WorkflowScheduleGetResponse</code>
 - <code title="get /workflow-schedule">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">getAll</a>() -> WorkflowScheduleGetAllResponse</code>
 - <code title="post /workflow-schedule/{schedule_id}/sessions">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">getSessions</a>(scheduleId, { ...params }) -> GetWorkflowScheduleSessionsResponse</code>
+
+# Connectors
+
+Types:
+
+- <code><a href="./src/resources/connectors.ts">Connector</a></code>
+- <code><a href="./src/resources/connectors.ts">ConnectorWithSecrets</a></code>
+- <code><a href="./src/resources/connectors.ts">CreateConnectorRequest</a></code>
+- <code><a href="./src/resources/connectors.ts">CreateSecretRequest</a></code>
+- <code><a href="./src/resources/connectors.ts">UpdateConnectorRequest</a></code>
+- <code><a href="./src/resources/connectors.ts">ConnectorGetResponse</a></code>
+
+Methods:
+
+- <code title="post /connectors">client.connectors.<a href="./src/resources/connectors.ts">create</a>({ ...params }) -> Connector</code>
+- <code title="patch /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors.ts">update</a>(connectorId, { ...params }) -> void</code>
+- <code title="get /connectors">client.connectors.<a href="./src/resources/connectors.ts">list</a>({ ...params }) -> ConnectorWithSecretsJobsList</code>
+- <code title="delete /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors.ts">delete</a>(connectorId) -> void</code>
+- <code title="post /connectors/{connector_id}/secrets">client.connectors.<a href="./src/resources/connectors.ts">createSecret</a>(connectorId, { ...params }) -> void</code>
+- <code title="delete /connectors/{connector_id}/secrets/{secret_name}">client.connectors.<a href="./src/resources/connectors.ts">deleteSecret</a>(connectorId, secretName) -> void</code>
+- <code title="get /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors.ts">get</a>(connectorId) -> ConnectorGetResponse</code>
 
 # Server
 
