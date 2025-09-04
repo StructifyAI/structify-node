@@ -191,9 +191,9 @@ export namespace AddChatMessageResponse {
 }
 
 export interface AddCollaboratorRequest {
-  role: ChatSessionRole;
+  email: string;
 
-  user_id: string;
+  role: ChatSessionRole;
 }
 
 export interface ChatSession {
@@ -467,9 +467,9 @@ export interface ChatLoadFilesResponse {
 }
 
 export interface ChatAddCollaboratorParams {
-  role: ChatSessionRole;
+  email: string;
 
-  user_id: string;
+  role: ChatSessionRole;
 }
 
 export interface ChatAddGitCommitParams {

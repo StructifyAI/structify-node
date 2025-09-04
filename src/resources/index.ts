@@ -36,6 +36,20 @@ export {
 } from './chat';
 export { Code, type GenerateCodeRequest, type CodeGenerateCodeParams } from './code';
 export {
+  ConnectorWithSecretsJobsList,
+  Connectors,
+  type Connector,
+  type ConnectorWithSecrets,
+  type CreateConnectorRequest,
+  type CreateSecretRequest,
+  type UpdateConnectorRequest,
+  type ConnectorGetResponse,
+  type ConnectorCreateParams,
+  type ConnectorUpdateParams,
+  type ConnectorListParams,
+  type ConnectorCreateSecretParams,
+} from './connectors';
+export {
   DatasetViewRelationshipsResponsesJobsList,
   DatasetViewTableResponsesJobsList,
   Datasets,
@@ -164,18 +178,6 @@ export {
   type ScrapeListParams,
   type ScrapeScrapeParams,
 } from './scrape';
-export {
-  Secrets,
-  type CreateSecretRequest,
-  type GetSecretResponse,
-  type ProjectSecret,
-  type ProjectSecretSummary,
-  type UpdateSecretRequest,
-  type UpdateSecretResponse,
-  type SecretListResponse,
-  type SecretCreateParams,
-  type SecretUpdateParams,
-} from './secrets';
 export { Server, type ServerInformation } from './server';
 export {
   Sessions,

@@ -11,8 +11,8 @@ const client = new Structify({
 describe('resource chat', () => {
   test('addCollaborator: only required params', async () => {
     const responsePromise = client.chat.addCollaborator('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      email: 'email',
       role: 'owner',
-      user_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -25,8 +25,8 @@ describe('resource chat', () => {
 
   test('addCollaborator: required and optional params', async () => {
     const response = await client.chat.addCollaborator('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      email: 'email',
       role: 'owner',
-      user_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 
