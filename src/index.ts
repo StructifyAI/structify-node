@@ -43,6 +43,20 @@ import {
 } from './resources/chat';
 import { Code, CodeGenerateCodeParams, GenerateCodeRequest } from './resources/code';
 import {
+  Connector,
+  ConnectorCreateParams,
+  ConnectorCreateSecretParams,
+  ConnectorGetResponse,
+  ConnectorListParams,
+  ConnectorUpdateParams,
+  ConnectorWithSecrets,
+  ConnectorWithSecretsJobsList,
+  Connectors,
+  CreateConnectorRequest,
+  CreateSecretRequest,
+  UpdateConnectorRequest,
+} from './resources/connectors';
+import {
   DocumentDeleteParams,
   DocumentDownloadParams,
   DocumentDownloadResponse,
@@ -139,18 +153,6 @@ import {
   ScrapeScrapeParams,
   ScrapeScrapeResponse,
 } from './resources/scrape';
-import {
-  CreateSecretRequest,
-  GetSecretResponse,
-  ProjectSecret,
-  ProjectSecretSummary,
-  SecretCreateParams,
-  SecretListResponse,
-  SecretUpdateParams,
-  Secrets,
-  UpdateSecretRequest,
-  UpdateSecretResponse,
-} from './resources/secrets';
 import { Server, ServerInformation } from './resources/server';
 import {
   CreateWorkflowEdgeRequest,
@@ -453,13 +455,13 @@ export class Structify extends Core.APIClient {
   chat: API.Chat = new API.Chat(this);
   teams: API.Teams = new API.Teams(this);
   projects: API.Projects = new API.Projects(this);
-  secrets: API.Secrets = new API.Secrets(this);
   admin: API.Admin = new API.Admin(this);
   datasets: API.Datasets = new API.Datasets(this);
   documents: API.Documents = new API.Documents(this);
   jobs: API.Jobs = new API.Jobs(this);
   sessions: API.Sessions = new API.Sessions(this);
   workflowSchedule: API.WorkflowSchedule = new API.WorkflowSchedule(this);
+  connectors: API.Connectors = new API.Connectors(this);
   server: API.Server = new API.Server(this);
   sources: API.Sources = new API.Sources(this);
   entities: API.Entities = new API.Entities(this);
@@ -522,7 +524,6 @@ Structify.User = User;
 Structify.Chat = Chat;
 Structify.Teams = Teams;
 Structify.Projects = Projects;
-Structify.Secrets = Secrets;
 Structify.Admin = Admin;
 Structify.Datasets = Datasets;
 Structify.DatasetViewRelationshipsResponsesJobsList = DatasetViewRelationshipsResponsesJobsList;
@@ -532,6 +533,8 @@ Structify.Jobs = Jobs;
 Structify.JobListResponsesJobsList = JobListResponsesJobsList;
 Structify.Sessions = Sessions;
 Structify.WorkflowSchedule = WorkflowSchedule;
+Structify.Connectors = Connectors;
+Structify.ConnectorWithSecretsJobsList = ConnectorWithSecretsJobsList;
 Structify.Server = Server;
 Structify.Sources = Sources;
 Structify.Entities = Entities;
@@ -636,19 +639,6 @@ export declare namespace Structify {
     type Project as Project,
   };
 
-  export {
-    Secrets as Secrets,
-    type CreateSecretRequest as CreateSecretRequest,
-    type GetSecretResponse as GetSecretResponse,
-    type ProjectSecret as ProjectSecret,
-    type ProjectSecretSummary as ProjectSecretSummary,
-    type UpdateSecretRequest as UpdateSecretRequest,
-    type UpdateSecretResponse as UpdateSecretResponse,
-    type SecretListResponse as SecretListResponse,
-    type SecretCreateParams as SecretCreateParams,
-    type SecretUpdateParams as SecretUpdateParams,
-  };
-
   export { Admin as Admin };
 
   export {
@@ -751,6 +741,21 @@ export declare namespace Structify {
     type WorkflowScheduleCreateParams as WorkflowScheduleCreateParams,
     type WorkflowScheduleUpdateParams as WorkflowScheduleUpdateParams,
     type WorkflowScheduleGetSessionsParams as WorkflowScheduleGetSessionsParams,
+  };
+
+  export {
+    Connectors as Connectors,
+    type Connector as Connector,
+    type ConnectorWithSecrets as ConnectorWithSecrets,
+    type CreateConnectorRequest as CreateConnectorRequest,
+    type CreateSecretRequest as CreateSecretRequest,
+    type UpdateConnectorRequest as UpdateConnectorRequest,
+    type ConnectorGetResponse as ConnectorGetResponse,
+    ConnectorWithSecretsJobsList as ConnectorWithSecretsJobsList,
+    type ConnectorCreateParams as ConnectorCreateParams,
+    type ConnectorUpdateParams as ConnectorUpdateParams,
+    type ConnectorListParams as ConnectorListParams,
+    type ConnectorCreateSecretParams as ConnectorCreateSecretParams,
   };
 
   export { Server as Server, type ServerInformation as ServerInformation };
