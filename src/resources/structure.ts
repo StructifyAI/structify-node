@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as StructureAPI from './structure';
+import * as ChatAPI from './chat';
 import * as SharedAPI from './shared';
 
 export class Structure extends APIResource {
@@ -85,7 +86,7 @@ export class Structure extends APIResource {
 export interface ChatPrompt {
   decoding_params: ChatPrompt.DecodingParams;
 
-  messages: Array<ChatPrompt.Message>;
+  messages: Array<ChatAPI.Message>;
 
   /**
    * All metadata required to generate a prompt for the LLM
@@ -186,32 +187,6 @@ export namespace ChatPrompt {
 
     export interface ReasoningEffort {
       ReasoningEffort: 'low' | 'medium' | 'high' | 'minimal';
-    }
-  }
-
-  /**
-   * Our generic definition of a message to a chat agent.
-   */
-  export interface Message {
-    /**
-     * We want this to be a vec of contents so we can accurately capture an
-     * interleaving of images and text.
-     *
-     * This is meant to be a completely raw, unprocessed representation of the text.
-     * Don't take stuff out.
-     */
-    content: Array<Message.Text | Message.Image>;
-
-    role: 'user' | 'system' | 'assistant';
-  }
-
-  export namespace Message {
-    export interface Text {
-      Text: string;
-    }
-
-    export interface Image {
-      Image: Core.Uploadable;
     }
   }
 

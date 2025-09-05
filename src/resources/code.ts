@@ -7,12 +7,10 @@ export class Code extends APIResource {
   /**
    * Protocol:
    *
-   * - event: `token` — data is a JSON object: `{ "delta": string }` containing the
-   *   next chunk.
-   * - event: `tool_call` — data is a JSON object: `{ "tool_call": object }` with
-   *   tool call information.
-   * - event: `tool_result` — data is a JSON object:
-   *   `{ "tool_call": object, "result_text": string }` with tool results.
+   * - event: `chat_event` — data is a JSON object, one of (serde external-tagged
+   *   enum):
+   * - `{ "TextMessage": { "message": string } }`
+   * - `{ "ToolCall": { "name": string, "input": any, "result_id"?: string, "result_text"?: string } }`
    * - event: `error` — data is a JSON object: `{ "message": string }` describing the
    *   error.
    */

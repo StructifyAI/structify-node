@@ -40,6 +40,7 @@ Types:
 - <code><a href="./src/resources/chat.ts">AddChatMessageRequest</a></code>
 - <code><a href="./src/resources/chat.ts">AddChatMessageResponse</a></code>
 - <code><a href="./src/resources/chat.ts">AddCollaboratorRequest</a></code>
+- <code><a href="./src/resources/chat.ts">ChatEvent</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSession</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSessionRole</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSessionUser</a></code>
@@ -52,6 +53,7 @@ Types:
 - <code><a href="./src/resources/chat.ts">GetChatSessionResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ListChatSessionsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ListCollaboratorsResponse</a></code>
+- <code><a href="./src/resources/chat.ts">Message</a></code>
 - <code><a href="./src/resources/chat.ts">TogglePublicRequest</a></code>
 - <code><a href="./src/resources/chat.ts">TogglePublicResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatAddGitCommitResponse</a></code>
