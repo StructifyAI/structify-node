@@ -40,6 +40,13 @@ export class Chat extends APIResource {
     return this._client.post(`/chat/sessions/${sessionId}/messages`, { body, ...options });
   }
 
+  /**
+   * Copy a chat session with its workflows and git files
+   */
+  copy(body: ChatCopyParams, options?: Core.RequestOptions): Core.APIPromise<ChatSessionWithMessages> {
+    return this._client.post('/chat/copy', { body, ...options });
+  }
+
   copyNodeOutputByCodeHash(
     sessionId: string,
     body: ChatCopyNodeOutputByCodeHashParams,
@@ -285,6 +292,12 @@ export namespace ChatSessionWithMessages {
   }
 }
 
+export interface CopyChatSessionRequest {
+  copy_name: string;
+
+  source_chat_id: string;
+}
+
 export interface CreateChatSessionRequest {
   initial_message: string;
 
@@ -485,6 +498,12 @@ export interface ChatAddMessageParams {
   role: string;
 }
 
+export interface ChatCopyParams {
+  copy_name: string;
+
+  source_chat_id: string;
+}
+
 export interface ChatCopyNodeOutputByCodeHashParams {
   code_md5_hash: string;
 
@@ -529,6 +548,7 @@ export declare namespace Chat {
     type ChatSessionRole as ChatSessionRole,
     type ChatSessionUser as ChatSessionUser,
     type ChatSessionWithMessages as ChatSessionWithMessages,
+    type CopyChatSessionRequest as CopyChatSessionRequest,
     type CreateChatSessionRequest as CreateChatSessionRequest,
     type CreateChatSessionResponse as CreateChatSessionResponse,
     type DeleteChatSessionResponse as DeleteChatSessionResponse,
@@ -546,6 +566,7 @@ export declare namespace Chat {
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAddMessageParams as ChatAddMessageParams,
+    type ChatCopyParams as ChatCopyParams,
     type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
     type ChatListSessionsParams as ChatListSessionsParams,
