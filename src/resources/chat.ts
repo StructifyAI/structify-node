@@ -203,6 +203,78 @@ export interface AddCollaboratorRequest {
   role: ChatSessionRole;
 }
 
+/**
+ * Events in a chat session timeline, including messages and unified tool
+ * calls/results
+ */
+export type ChatEvent = ChatEvent.TextMessage | ChatEvent.ToolCall;
+
+export namespace ChatEvent {
+  export interface TextMessage {
+    TextMessage: TextMessage.TextMessage;
+  }
+
+  export namespace TextMessage {
+    export interface TextMessage {
+      message: string;
+    }
+  }
+
+  export interface ToolCall {
+    ToolCall: ToolCall.UnionMember0 | ToolCall.UnionMember1 | ToolCall.UnionMember2;
+  }
+
+  export namespace ToolCall {
+    export interface UnionMember0 {
+      input: UnionMember0.Input;
+
+      name: 'web_search';
+
+      result_id?: string | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember0 {
+      export interface Input {
+        query: string;
+      }
+    }
+
+    export interface UnionMember1 {
+      input: UnionMember1.Input;
+
+      name: 'web_navigate';
+
+      result_id?: string | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember1 {
+      export interface Input {
+        url: string;
+      }
+    }
+
+    export interface UnionMember2 {
+      input: UnionMember2.Input;
+
+      name: 'inspect_dag';
+
+      result_id?: string | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember2 {
+      export interface Input {
+        node_function_name: string;
+      }
+    }
+  }
+}
+
 export interface ChatSession {
   id: string;
 
@@ -299,9 +371,9 @@ export interface CopyChatSessionRequest {
 }
 
 export interface CreateChatSessionRequest {
-  initial_message: string;
-
   project_id: string;
+
+  initial_message?: string | null;
 }
 
 /**
@@ -331,7 +403,70 @@ export interface ErrorResponse {
  * Response for getting a chat session
  */
 export interface GetChatSessionResponse {
-  session: ChatSessionWithMessages;
+  session: GetChatSessionResponse.Session;
+}
+
+export namespace GetChatSessionResponse {
+  export interface Session {
+    id: string;
+
+    commits: Array<Session.Commit>;
+
+    created_at: string;
+
+    git_application_token: string;
+
+    is_favorite: boolean;
+
+    is_public: boolean;
+
+    messages: Array<Session.Message>;
+
+    project_id: string;
+
+    title: string;
+
+    updated_at: string;
+
+    user_role: ChatAPI.ChatSessionRole;
+
+    latest_workflow_session_id?: string | null;
+
+    name?: string | null;
+  }
+
+  export namespace Session {
+    export interface Commit {
+      id: string;
+
+      chat_session_id: string;
+
+      commit_hash: string;
+
+      created_at: string;
+    }
+
+    /**
+     * Model-layer message representation - streamlined for LLM transmission
+     */
+    export interface Message {
+      id: string;
+
+      chat_session_id: string;
+
+      /**
+       * Events in a chat session timeline, including messages and unified tool
+       * calls/results
+       */
+      content: ChatAPI.ChatEvent;
+
+      created_at: string;
+
+      role: 'user' | 'system' | 'assistant';
+
+      timestamp: string;
+    }
+  }
 }
 
 /**
@@ -348,6 +483,8 @@ export namespace ListChatSessionsResponse {
     created_at: string;
 
     is_favorite: boolean;
+
+    is_public: boolean;
 
     project_id: string;
 
@@ -382,6 +519,32 @@ export namespace ListCollaboratorsResponse {
     updated_at: string;
 
     user_id: string;
+  }
+}
+
+/**
+ * Our generic definition of a message to a chat agent.
+ */
+export interface Message {
+  /**
+   * We want this to be a vec of contents so we can accurately capture an
+   * interleaving of images and text.
+   *
+   * This is meant to be a completely raw, unprocessed representation of the text.
+   * Don't take stuff out.
+   */
+  content: Array<Message.Text | Message.Image>;
+
+  role: 'user' | 'system' | 'assistant';
+}
+
+export namespace Message {
+  export interface Text {
+    Text: string;
+  }
+
+  export interface Image {
+    Image: Core.Uploadable;
   }
 }
 
@@ -511,9 +674,9 @@ export interface ChatCopyNodeOutputByCodeHashParams {
 }
 
 export interface ChatCreateSessionParams {
-  initial_message: string;
-
   project_id: string;
+
+  initial_message?: string | null;
 }
 
 export interface ChatListSessionsParams {
@@ -544,6 +707,7 @@ export declare namespace Chat {
     type AddChatMessageRequest as AddChatMessageRequest,
     type AddChatMessageResponse as AddChatMessageResponse,
     type AddCollaboratorRequest as AddCollaboratorRequest,
+    type ChatEvent as ChatEvent,
     type ChatSession as ChatSession,
     type ChatSessionRole as ChatSessionRole,
     type ChatSessionUser as ChatSessionUser,
@@ -556,6 +720,7 @@ export declare namespace Chat {
     type GetChatSessionResponse as GetChatSessionResponse,
     type ListChatSessionsResponse as ListChatSessionsResponse,
     type ListCollaboratorsResponse as ListCollaboratorsResponse,
+    type Message as Message,
     type TogglePublicRequest as TogglePublicRequest,
     type TogglePublicResponse as TogglePublicResponse,
     type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
