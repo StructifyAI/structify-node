@@ -193,6 +193,7 @@ export {
   type MarkWorkflowSessionErroredRequest,
   type UpdateWorkflowNodeProgressRequest,
   type UpdateWorkflowNodeRequest,
+  type UploadNodeVisualizationOutputRequest,
   type WorkflowDag,
   type WorkflowNodeExecutionStatus,
   type WorkflowSession,
@@ -207,6 +208,7 @@ export {
   type SessionUpdateNodeParams,
   type SessionUpdateNodeProgressParams,
   type SessionUploadNodeOutputDataParams,
+  type SessionUploadNodeVisualizationOutputParams,
 } from './sessions';
 export {
   Shared,

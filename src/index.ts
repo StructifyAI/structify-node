@@ -174,9 +174,11 @@ import {
   SessionUpdateNodeParams,
   SessionUpdateNodeProgressParams,
   SessionUploadNodeOutputDataParams,
+  SessionUploadNodeVisualizationOutputParams,
   Sessions,
   UpdateWorkflowNodeProgressRequest,
   UpdateWorkflowNodeRequest,
+  UploadNodeVisualizationOutputRequest,
   WorkflowDag,
   WorkflowNodeExecutionStatus,
   WorkflowSession,
@@ -721,6 +723,7 @@ export declare namespace Structify {
     type MarkWorkflowSessionErroredRequest as MarkWorkflowSessionErroredRequest,
     type UpdateWorkflowNodeProgressRequest as UpdateWorkflowNodeProgressRequest,
     type UpdateWorkflowNodeRequest as UpdateWorkflowNodeRequest,
+    type UploadNodeVisualizationOutputRequest as UploadNodeVisualizationOutputRequest,
     type WorkflowDag as WorkflowDag,
     type WorkflowNodeExecutionStatus as WorkflowNodeExecutionStatus,
     type WorkflowSession as WorkflowSession,
@@ -735,6 +738,7 @@ export declare namespace Structify {
     type SessionUpdateNodeParams as SessionUpdateNodeParams,
     type SessionUpdateNodeProgressParams as SessionUpdateNodeProgressParams,
     type SessionUploadNodeOutputDataParams as SessionUploadNodeOutputDataParams,
+    type SessionUploadNodeVisualizationOutputParams as SessionUploadNodeVisualizationOutputParams,
   };
 
   export {
