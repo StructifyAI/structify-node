@@ -2,6 +2,7 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
+import * as TeamsAPI from './teams';
 import * as ProjectsAPI from './projects';
 
 export class Teams extends APIResource {
@@ -71,9 +72,9 @@ export class Teams extends APIResource {
 }
 
 export interface AddMemberRequest {
-  role: TeamRole;
+  email: string;
 
-  user_id: string;
+  role: TeamRole;
 }
 
 export interface AddMemberResponse {
@@ -135,7 +136,21 @@ export interface GetTeamResponse {
 export type Granularity = 'hour' | 'day' | 'week' | 'month';
 
 export interface ListMembersResponse {
-  members: Array<UserTeam>;
+  members: Array<ListMembersResponse.Member>;
+}
+
+export namespace ListMembersResponse {
+  export interface Member {
+    created_at: string;
+
+    email: string;
+
+    role: TeamsAPI.TeamRole;
+
+    team_id: string;
+
+    user_id: string;
+  }
 }
 
 export interface ListProjectsResponse {
@@ -207,9 +222,9 @@ export interface TeamUpdateParams {
 }
 
 export interface TeamAddMemberParams {
-  role: TeamRole;
+  email: string;
 
-  user_id: string;
+  role: TeamRole;
 }
 
 export interface TeamCreateProjectParams {
