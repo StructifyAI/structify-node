@@ -102,6 +102,14 @@ export class Sessions extends APIResource {
       Core.multipartFormRequestOptions({ body, ...options }),
     );
   }
+
+  uploadNodeVisualizationOutput(
+    nodeId: string,
+    body: SessionUploadNodeVisualizationOutputParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<WorkflowSessionNode> {
+    return this._client.post(`/sessions/nodes/${nodeId}/visualization_output`, { body, ...options });
+  }
 }
 
 export interface CreateWorkflowEdgeRequest {
@@ -225,6 +233,10 @@ export interface UpdateWorkflowNodeRequest {
   execution_time_ms?: number | null;
 }
 
+export interface UploadNodeVisualizationOutputRequest {
+  visualization_output: { [key: string]: unknown };
+}
+
 export interface WorkflowDag {
   edges: Array<WorkflowSessionEdge>;
 
@@ -299,6 +311,8 @@ export interface WorkflowSessionNode {
   output_schema?: unknown;
 
   progress?: unknown;
+
+  visualization_output?: unknown;
 }
 
 export type SessionGetNodeProgressResponse = { [key: string]: unknown };
@@ -356,6 +370,10 @@ export interface SessionUploadNodeOutputDataParams {
   content: Core.Uploadable;
 }
 
+export interface SessionUploadNodeVisualizationOutputParams {
+  visualization_output: { [key: string]: unknown };
+}
+
 export declare namespace Sessions {
   export {
     type CreateWorkflowEdgeRequest as CreateWorkflowEdgeRequest,
@@ -366,6 +384,7 @@ export declare namespace Sessions {
     type MarkWorkflowSessionErroredRequest as MarkWorkflowSessionErroredRequest,
     type UpdateWorkflowNodeProgressRequest as UpdateWorkflowNodeProgressRequest,
     type UpdateWorkflowNodeRequest as UpdateWorkflowNodeRequest,
+    type UploadNodeVisualizationOutputRequest as UploadNodeVisualizationOutputRequest,
     type WorkflowDag as WorkflowDag,
     type WorkflowNodeExecutionStatus as WorkflowNodeExecutionStatus,
     type WorkflowSession as WorkflowSession,
@@ -380,5 +399,6 @@ export declare namespace Sessions {
     type SessionUpdateNodeParams as SessionUpdateNodeParams,
     type SessionUpdateNodeProgressParams as SessionUpdateNodeProgressParams,
     type SessionUploadNodeOutputDataParams as SessionUploadNodeOutputDataParams,
+    type SessionUploadNodeVisualizationOutputParams as SessionUploadNodeVisualizationOutputParams,
   };
 }
