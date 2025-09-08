@@ -207,7 +207,16 @@ export interface AddCollaboratorRequest {
  * Events in a chat session timeline, including messages and unified tool
  * calls/results
  */
-export type ChatEvent = ChatEvent.TextMessage | ChatEvent.ToolCall;
+export type ChatEvent =
+  | ChatEvent.TextMessage
+  | ChatEvent.Thinking
+  | ChatEvent.File
+  | ChatEvent.Action
+  | ChatEvent.Connector
+  | ChatEvent.CodeProject
+  | ChatEvent.DeleteFile
+  | ChatEvent.MoveFile
+  | ChatEvent.ToolCall;
 
 export namespace ChatEvent {
   export interface TextMessage {
@@ -217,6 +226,121 @@ export namespace ChatEvent {
   export namespace TextMessage {
     export interface TextMessage {
       message: string;
+    }
+  }
+
+  export interface Thinking {
+    Thinking: Thinking.Thinking;
+  }
+
+  export namespace Thinking {
+    export interface Thinking {
+      content: string;
+    }
+  }
+
+  export interface File {
+    /**
+     * The file event can't be serialized to the database safely without the content.
+     * When streaming, we start with the path only, then add the content as we go.
+     */
+    File: File.File;
+  }
+
+  export namespace File {
+    /**
+     * The file event can't be serialized to the database safely without the content.
+     * When streaming, we start with the path only, then add the content as we go.
+     */
+    export interface File {
+      path: string;
+
+      content?: string | null;
+    }
+  }
+
+  export interface Action {
+    Action: Action.Action;
+  }
+
+  export namespace Action {
+    export interface Action {
+      actions: Array<Action.Action>;
+    }
+
+    export namespace Action {
+      /**
+       * Action definition
+       */
+      export interface Action {
+        description: string;
+
+        name: string;
+      }
+    }
+  }
+
+  export interface Connector {
+    Connector: Connector.Connector;
+  }
+
+  export namespace Connector {
+    export interface Connector {
+      env_vars: Array<string>;
+
+      name: string;
+
+      description?: string | null;
+    }
+  }
+
+  export interface CodeProject {
+    CodeProject: CodeProject.CodeProject;
+  }
+
+  export namespace CodeProject {
+    export interface CodeProject {
+      /**
+       * CodeProject attributes
+       */
+      attributes: CodeProject.Attributes;
+    }
+
+    export namespace CodeProject {
+      /**
+       * CodeProject attributes
+       */
+      export interface Attributes {
+        id?: string | null;
+
+        badge?: string | null;
+
+        label?: string | null;
+
+        version?: string | null;
+      }
+    }
+  }
+
+  export interface DeleteFile {
+    DeleteFile: DeleteFile.DeleteFile;
+  }
+
+  export namespace DeleteFile {
+    export interface DeleteFile {
+      file: string;
+    }
+  }
+
+  export interface MoveFile {
+    MoveFile: MoveFile.MoveFile;
+  }
+
+  export namespace MoveFile {
+    export interface MoveFile {
+      file: string;
+
+      new_path: string;
     }
   }
 
