@@ -9,8 +9,8 @@ const client = new Structify({
 });
 
 describe('resource user', () => {
-  test('update', async () => {
-    const responsePromise = client.user.update({});
+  test('update: only required params', async () => {
+    const responsePromise = client.user.update({ updates: {} });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -18,6 +18,20 @@ describe('resource user', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('update: required and optional params', async () => {
+    const response = await client.user.update({
+      updates: {
+        email: 'email',
+        feature_flags: ['functional_test'],
+        full_name: 'full_name',
+        is_developer: true,
+        permissions: ['labeler'],
+        user_type: 'admin',
+      },
+      current_email: 'current_email',
+    });
   });
 
   test('info', async () => {
