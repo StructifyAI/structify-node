@@ -70,6 +70,8 @@ export interface User {
 
   user_type: 'admin' | 'public' | 'end_user' | 'pro';
 
+  last_activity?: string | null;
+
   survey_completed_at?: string | null;
 
   survey_response?: unknown;
