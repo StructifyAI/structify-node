@@ -30,7 +30,10 @@ describe('resource documents', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.documents.list({ dataset: 'dataset' }, { path: '/_stainless_unknown_path' }),
+      client.documents.list(
+        { dataset: 'dataset', project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
+        { path: '/_stainless_unknown_path' },
+      ),
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
@@ -154,6 +157,7 @@ describe('resource documents', () => {
       file_type: 'Text',
       path: await toFile(Buffer.from('# my file contents'), 'README.md'),
       dataset: 'dataset',
+      project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 });

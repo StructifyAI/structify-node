@@ -60,11 +60,11 @@ export class Documents extends APIResource {
    * Add a new file to the database
    */
   upload(params: DocumentUploadParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { dataset, ...body } = params;
+    const { dataset, project_id, ...body } = params;
     return this._client.post(
       '/documents/upload',
       Core.multipartFormRequestOptions({
-        query: { dataset },
+        query: { dataset, project_id },
         body,
         ...options,
         headers: { Accept: '*/*', ...options?.headers },
@@ -92,6 +92,8 @@ export namespace DocumentListResponse {
     created_from_job?: string | null;
 
     dataset_id?: string | null;
+
+    project_id?: string | null;
   }
 }
 
@@ -103,6 +105,8 @@ export type DocumentStructureResponse = { [key: string]: unknown };
 
 export interface DocumentListParams {
   dataset?: string | null;
+
+  project_id?: string | null;
 }
 
 export interface DocumentDeleteParams {
@@ -154,6 +158,11 @@ export interface DocumentUploadParams {
    * Query param:
    */
   dataset?: string | null;
+
+  /**
+   * Query param:
+   */
+  project_id?: string | null;
 }
 
 export declare namespace Documents {
