@@ -98,22 +98,32 @@ export interface TokenResponse {
 }
 
 export interface UpdateUserParams {
+  updates: UpdateUserParams.Updates;
+
   current_email?: string | null;
+}
 
-  is_developer?: boolean | null;
+export namespace UpdateUserParams {
+  export interface Updates {
+    email?: string | null;
 
-  new_email?: string | null;
+    feature_flags?: Array<
+      | 'functional_test'
+      | 'pdf_parsing'
+      | 'boredm_construction_model'
+      | 'generic_suspicious_queue'
+      | 'new_use_case_preview'
+      | 'none'
+    > | null;
 
-  new_feature_flags?: Array<
-    | 'functional_test'
-    | 'pdf_parsing'
-    | 'boredm_construction_model'
-    | 'generic_suspicious_queue'
-    | 'new_use_case_preview'
-    | 'none'
-  > | null;
+    full_name?: string | null;
 
-  new_permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'> | null;
+    is_developer?: boolean | null;
+
+    permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'> | null;
+
+    user_type?: 'admin' | 'public' | 'end_user' | 'pro' | null;
+  }
 }
 
 export interface UserInfo {
@@ -129,6 +139,8 @@ export interface UserInfo {
     | 'new_use_case_preview'
     | 'none'
   >;
+
+  full_name: string;
 
   is_developer: boolean;
 
@@ -173,22 +185,32 @@ export interface UserUsageResponse {
 }
 
 export interface UserUpdateParams {
+  updates: UserUpdateParams.Updates;
+
   current_email?: string | null;
+}
 
-  is_developer?: boolean | null;
+export namespace UserUpdateParams {
+  export interface Updates {
+    email?: string | null;
 
-  new_email?: string | null;
+    feature_flags?: Array<
+      | 'functional_test'
+      | 'pdf_parsing'
+      | 'boredm_construction_model'
+      | 'generic_suspicious_queue'
+      | 'new_use_case_preview'
+      | 'none'
+    > | null;
 
-  new_feature_flags?: Array<
-    | 'functional_test'
-    | 'pdf_parsing'
-    | 'boredm_construction_model'
-    | 'generic_suspicious_queue'
-    | 'new_use_case_preview'
-    | 'none'
-  > | null;
+    full_name?: string | null;
 
-  new_permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'> | null;
+    is_developer?: boolean | null;
+
+    permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'> | null;
+
+    user_type?: 'admin' | 'public' | 'end_user' | 'pro' | null;
+  }
 }
 
 export interface UserSurveySubmitParams {
