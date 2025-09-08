@@ -700,6 +700,8 @@ export interface ChatUpdateSessionParams {
   is_favorite?: boolean | null;
 
   name?: string | null;
+
+  project_id?: string | null;
 }
 
 export declare namespace Chat {
