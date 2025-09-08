@@ -202,11 +202,23 @@ export interface UserTeam {
 
   created_at: string;
 
+  pending: boolean;
+
   role: TeamRole;
 
   team_id: string;
 
-  user_id: string;
+  invitation_expires_at?: string | null;
+
+  invitation_token?: string | null;
+
+  invited_at?: string | null;
+
+  invited_by_user_id?: string | null;
+
+  invitee_email?: string | null;
+
+  user_id?: string | null;
 }
 
 export interface TeamCreateParams {
