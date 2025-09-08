@@ -62,6 +62,8 @@ export interface User {
     | null
   >;
 
+  full_name: string;
+
   is_developer: boolean;
 
   permissions: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none' | null>;
@@ -118,6 +120,8 @@ export interface UserCreateParams {
     | 'new_use_case_preview'
     | 'none'
   >;
+
+  full_name?: string | null;
 
   is_admin?: boolean;
 
