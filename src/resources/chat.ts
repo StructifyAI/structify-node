@@ -619,6 +619,8 @@ export namespace ListChatSessionsResponse {
     user_role: ChatAPI.ChatSessionRole;
 
     name?: string | null;
+
+    owner_email?: string | null;
   }
 }
 
