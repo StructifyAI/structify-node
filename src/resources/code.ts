@@ -29,6 +29,8 @@ export interface GenerateCodeRequest {
   prompt: string;
 
   fileContents?: Array<GenerateCodeRequest.FileContent>;
+
+  model?: unknown;
 }
 
 export namespace GenerateCodeRequest {
@@ -45,6 +47,8 @@ export interface CodeGenerateCodeParams {
   prompt: string;
 
   fileContents?: Array<CodeGenerateCodeParams.FileContent>;
+
+  model?: unknown;
 }
 
 export namespace CodeGenerateCodeParams {
