@@ -141,6 +141,16 @@ export class Chat extends APIResource {
     return this._client.post('/chat/files/load', { body, ...options });
   }
 
+  /**
+   * Make an ephemeral chat session permanent
+   */
+  makePermanent(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.patch(`/chat/sessions/${sessionId}/make-permanent`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
   removeCollaborator(chatId: string, userId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/chat/sessions/${chatId}/collaborators/${userId}`, {
       ...options,
@@ -404,6 +414,8 @@ export interface ChatSession {
 
   created_at: string;
 
+  ephemeral: boolean;
+
   git_application_token: string;
 
   is_public: boolean;
@@ -496,6 +508,8 @@ export interface CopyChatSessionRequest {
 
 export interface CreateChatSessionRequest {
   project_id: string;
+
+  ephemeral?: boolean | null;
 
   initial_message?: string | null;
 }
@@ -801,6 +815,8 @@ export interface ChatCopyNodeOutputByCodeHashParams {
 
 export interface ChatCreateSessionParams {
   project_id: string;
+
+  ephemeral?: boolean | null;
 
   initial_message?: string | null;
 }
