@@ -10,6 +10,10 @@ export class Code extends APIResource {
    * - event: `chat_event` — data is a JSON object, one of (serde external-tagged
    *   enum):
    * - `{ "TextMessage": { "message": string } }`
+   * - `{ "Connector": { "name": string, "description"?: string, "env_vars": string[] } }`
+   * - `{ "Thinking": { "content": string } }`
+   * - `{ "File": { "path": string, "content"?: string } }`
+   * - `{ "Action": { "actions": Array<{ name: string, description: string }> } }`
    * - `{ "ToolCall": { "name": string, "input": any, "result_id"?: string, "result_text"?: string } }`
    * - event: `error` — data is a JSON object: `{ "message": string }` describing the
    *   error.
