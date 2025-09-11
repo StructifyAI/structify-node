@@ -141,16 +141,6 @@ export class Chat extends APIResource {
     return this._client.post('/chat/files/load', { body, ...options });
   }
 
-  /**
-   * Make an ephemeral chat session permanent
-   */
-  makePermanent(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.patch(`/chat/sessions/${sessionId}/make-permanent`, {
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
   removeCollaborator(chatId: string, userId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/chat/sessions/${chatId}/collaborators/${userId}`, {
       ...options,
@@ -355,14 +345,20 @@ export namespace ChatEvent {
   }
 
   export interface ToolCall {
-    ToolCall: ToolCall.UnionMember0 | ToolCall.UnionMember1 | ToolCall.UnionMember2;
+    ToolCall:
+      | ToolCall.UnionMember0
+      | ToolCall.UnionMember1
+      | ToolCall.UnionMember2
+      | ToolCall.UnionMember3
+      | ToolCall.UnionMember4
+      | ToolCall.UnionMember5;
   }
 
   export namespace ToolCall {
     export interface UnionMember0 {
       input: UnionMember0.Input;
 
-      name: 'web_search';
+      name: 'WebSearch';
 
       result_id?: string | null;
 
@@ -378,7 +374,7 @@ export namespace ChatEvent {
     export interface UnionMember1 {
       input: UnionMember1.Input;
 
-      name: 'web_navigate';
+      name: 'WebNavigate';
 
       result_id?: string | null;
 
@@ -394,7 +390,7 @@ export namespace ChatEvent {
     export interface UnionMember2 {
       input: UnionMember2.Input;
 
-      name: 'inspect_dag';
+      name: 'InspectDAG';
 
       result_id?: string | null;
 
@@ -404,6 +400,60 @@ export namespace ChatEvent {
     export namespace UnionMember2 {
       export interface Input {
         node_function_name: string;
+      }
+    }
+
+    export interface UnionMember3 {
+      input: UnionMember3.Input;
+
+      name: 'Connector';
+
+      result_id?: string | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember3 {
+      export interface Input {
+        env_vars: Array<string>;
+
+        name: string;
+
+        description?: string | null;
+      }
+    }
+
+    export interface UnionMember4 {
+      input: UnionMember4.Input;
+
+      name: 'DeleteFile';
+
+      result_id?: string | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember4 {
+      export interface Input {
+        file: string;
+      }
+    }
+
+    export interface UnionMember5 {
+      input: UnionMember5.Input;
+
+      name: 'MoveFile';
+
+      result_id?: string | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember5 {
+      export interface Input {
+        file: string;
+
+        new_path: string;
       }
     }
   }
