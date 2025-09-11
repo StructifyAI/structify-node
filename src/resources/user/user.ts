@@ -113,6 +113,7 @@ export namespace UpdateUserParams {
       | 'boredm_construction_model'
       | 'generic_suspicious_queue'
       | 'new_use_case_preview'
+      | 'bedrock_codegen'
       | 'none'
     > | null;
 
@@ -137,6 +138,7 @@ export interface UserInfo {
     | 'boredm_construction_model'
     | 'generic_suspicious_queue'
     | 'new_use_case_preview'
+    | 'bedrock_codegen'
     | 'none'
   >;
 
@@ -200,6 +202,7 @@ export namespace UserUpdateParams {
       | 'boredm_construction_model'
       | 'generic_suspicious_queue'
       | 'new_use_case_preview'
+      | 'bedrock_codegen'
       | 'none'
     > | null;
 
