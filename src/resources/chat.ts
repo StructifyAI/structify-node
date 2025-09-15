@@ -141,6 +141,16 @@ export class Chat extends APIResource {
     return this._client.post('/chat/files/load', { body, ...options });
   }
 
+  /**
+   * Make an ephemeral chat session permanent
+   */
+  makePermanent(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.patch(`/chat/sessions/${sessionId}/make-permanent`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
   removeCollaborator(chatId: string, userId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/chat/sessions/${chatId}/collaborators/${userId}`, {
       ...options,
@@ -194,6 +204,8 @@ export namespace AddChatMessageResponse {
     role: string;
 
     timestamp: string;
+
+    git_commit_id?: string | null;
   }
 }
 
@@ -351,7 +363,9 @@ export namespace ChatEvent {
       | ToolCall.UnionMember2
       | ToolCall.UnionMember3
       | ToolCall.UnionMember4
-      | ToolCall.UnionMember5;
+      | ToolCall.UnionMember5
+      | ToolCall.UnionMember6
+      | ToolCall.UnionMember7;
   }
 
   export namespace ToolCall {
@@ -456,6 +470,46 @@ export namespace ChatEvent {
         new_path: string;
       }
     }
+
+    export interface UnionMember6 {
+      input: UnionMember6.Input;
+
+      name: 'RunBash';
+
+      result_id?: string | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember6 {
+      export interface Input {
+        command: string;
+
+        env?: { [key: string]: string } | null;
+
+        working_dir?: string | null;
+      }
+    }
+
+    export interface UnionMember7 {
+      input: UnionMember7.Input;
+
+      name: 'RunPython';
+
+      result_id?: string | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember7 {
+      export interface Input {
+        code: string;
+
+        env?: { [key: string]: string } | null;
+
+        working_dir?: string | null;
+      }
+    }
   }
 }
 
@@ -547,6 +601,8 @@ export namespace ChatSessionWithMessages {
     role: string;
 
     timestamp: string;
+
+    git_commit_id?: string | null;
   }
 }
 
@@ -653,6 +709,8 @@ export namespace GetChatSessionResponse {
       role: 'user' | 'system' | 'assistant';
 
       timestamp: string;
+
+      commit_hash?: string | null;
     }
   }
 }
@@ -811,6 +869,8 @@ export namespace ChatGetSessionTimelineResponse {
     timestamp: string;
 
     type: 'Message';
+
+    git_commit_id?: string | null;
   }
 
   export interface GitCommit {
