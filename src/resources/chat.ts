@@ -609,6 +609,8 @@ export namespace ChatSessionWithMessages {
 export interface CopyChatSessionRequest {
   copy_name: string;
 
+  project_id: string;
+
   source_chat_id: string;
 }
 
@@ -913,6 +915,8 @@ export interface ChatAddMessageParams {
 
 export interface ChatCopyParams {
   copy_name: string;
+
+  project_id: string;
 
   source_chat_id: string;
 }
