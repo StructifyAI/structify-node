@@ -114,6 +114,7 @@ export namespace UpdateUserParams {
       | 'generic_suspicious_queue'
       | 'new_use_case_preview'
       | 'bedrock_codegen'
+      | 'cerebras_codegen'
       | 'none'
     > | null;
 
@@ -139,6 +140,7 @@ export interface UserInfo {
     | 'generic_suspicious_queue'
     | 'new_use_case_preview'
     | 'bedrock_codegen'
+    | 'cerebras_codegen'
     | 'none'
   >;
 
@@ -203,6 +205,7 @@ export namespace UserUpdateParams {
       | 'generic_suspicious_queue'
       | 'new_use_case_preview'
       | 'bedrock_codegen'
+      | 'cerebras_codegen'
       | 'none'
     > | null;
 
