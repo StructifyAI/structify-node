@@ -59,6 +59,7 @@ export interface User {
     | 'generic_suspicious_queue'
     | 'new_use_case_preview'
     | 'bedrock_codegen'
+    | 'cerebras_codegen'
     | 'none'
     | null
   >;
@@ -120,6 +121,7 @@ export interface UserCreateParams {
     | 'generic_suspicious_queue'
     | 'new_use_case_preview'
     | 'bedrock_codegen'
+    | 'cerebras_codegen'
     | 'none'
   >;
 
