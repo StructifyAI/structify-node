@@ -63,6 +63,7 @@ describe('resource chat', () => {
   test('copy: only required params', async () => {
     const responsePromise = client.chat.copy({
       copy_name: 'copy_name',
+      project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       source_chat_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -77,6 +78,7 @@ describe('resource chat', () => {
   test('copy: required and optional params', async () => {
     const response = await client.chat.copy({
       copy_name: 'copy_name',
+      project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       source_chat_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
