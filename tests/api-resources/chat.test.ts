@@ -238,10 +238,7 @@ describe('resource chat', () => {
   });
 
   test('loadFiles: only required params', async () => {
-    const responsePromise = client.chat.loadFiles({
-      chat_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      commit_hash: 'commit_hash',
-    });
+    const responsePromise = client.chat.loadFiles({ chat_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

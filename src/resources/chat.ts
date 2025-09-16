@@ -941,7 +941,7 @@ export interface ChatListSessionsParams {
 export interface ChatLoadFilesParams {
   chat_id: string;
 
-  commit_hash: string;
+  commit_hash?: string | null;
 }
 
 export interface ChatTogglePublicParams {
