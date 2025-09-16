@@ -31,32 +31,12 @@ export interface GenerateCodeRequest {
   chatSessionId: string;
 
   prompt: string;
-
-  fileContents?: Array<GenerateCodeRequest.FileContent>;
-}
-
-export namespace GenerateCodeRequest {
-  export interface FileContent {
-    content: string;
-
-    path: string;
-  }
 }
 
 export interface CodeGenerateCodeParams {
   chatSessionId: string;
 
   prompt: string;
-
-  fileContents?: Array<CodeGenerateCodeParams.FileContent>;
-}
-
-export namespace CodeGenerateCodeParams {
-  export interface FileContent {
-    content: string;
-
-    path: string;
-  }
 }
 
 export declare namespace Code {
