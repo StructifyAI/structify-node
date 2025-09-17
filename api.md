@@ -378,6 +378,7 @@ Types:
 - <code><a href="./src/resources/sessions.ts">WorkflowSessionEdge</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowSessionNode</a></code>
 - <code><a href="./src/resources/sessions.ts">SessionGetNodeProgressResponse</a></code>
+- <code><a href="./src/resources/sessions.ts">SessionKillJobsResponse</a></code>
 
 Methods:
 
@@ -388,6 +389,7 @@ Methods:
 - <code title="get /sessions/{session_id}/events">client.sessions.<a href="./src/resources/sessions.ts">getEvents</a>(sessionId, { ...params }) -> GetSessionEventsResponse</code>
 - <code title="get /sessions/nodes/{node_id}/output_data">client.sessions.<a href="./src/resources/sessions.ts">getNodeOutputData</a>(nodeId) -> Response</code>
 - <code title="get /sessions/nodes/{node_id}/progress">client.sessions.<a href="./src/resources/sessions.ts">getNodeProgress</a>(nodeId) -> SessionGetNodeProgressResponse</code>
+- <code title="post /sessions/{session_id}/kill_jobs">client.sessions.<a href="./src/resources/sessions.ts">killJobs</a>(sessionId, { ...params }) -> SessionKillJobsResponse</code>
 - <code title="patch /sessions/{session_id}/error">client.sessions.<a href="./src/resources/sessions.ts">markErrored</a>(sessionId, { ...params }) -> WorkflowSession</code>
 - <code title="patch /sessions/nodes/{node_id}">client.sessions.<a href="./src/resources/sessions.ts">updateNode</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 - <code title="patch /sessions/nodes/{node_id}/progress">client.sessions.<a href="./src/resources/sessions.ts">updateNodeProgress</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
