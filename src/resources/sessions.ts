@@ -68,6 +68,14 @@ export class Sessions extends APIResource {
     return this._client.get(`/sessions/nodes/${nodeId}/progress`, options);
   }
 
+  killJobs(
+    sessionId: string,
+    body: SessionKillJobsParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<SessionKillJobsResponse> {
+    return this._client.post(`/sessions/${sessionId}/kill_jobs`, { body, ...options });
+  }
+
   markErrored(
     sessionId: string,
     body: SessionMarkErroredParams,
@@ -317,6 +325,12 @@ export interface WorkflowSessionNode {
 
 export type SessionGetNodeProgressResponse = { [key: string]: unknown };
 
+export interface SessionKillJobsResponse {
+  killed_jobs: Array<string>;
+
+  message: string;
+}
+
 export interface SessionCreateEdgeParams {
   source_node_id: string;
 
@@ -344,6 +358,10 @@ export interface SessionGetEventsParams {
    * Maximum number of events to fetch (default: 100).
    */
   limit?: number | null;
+}
+
+export interface SessionKillJobsParams {
+  message?: string | null;
 }
 
 export interface SessionMarkErroredParams {
@@ -391,10 +409,12 @@ export declare namespace Sessions {
     type WorkflowSessionEdge as WorkflowSessionEdge,
     type WorkflowSessionNode as WorkflowSessionNode,
     type SessionGetNodeProgressResponse as SessionGetNodeProgressResponse,
+    type SessionKillJobsResponse as SessionKillJobsResponse,
     type SessionCreateEdgeParams as SessionCreateEdgeParams,
     type SessionCreateNodeParams as SessionCreateNodeParams,
     type SessionCreateSessionParams as SessionCreateSessionParams,
     type SessionGetEventsParams as SessionGetEventsParams,
+    type SessionKillJobsParams as SessionKillJobsParams,
     type SessionMarkErroredParams as SessionMarkErroredParams,
     type SessionUpdateNodeParams as SessionUpdateNodeParams,
     type SessionUpdateNodeProgressParams as SessionUpdateNodeProgressParams,
