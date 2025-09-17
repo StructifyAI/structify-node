@@ -978,6 +978,11 @@ export interface JobListParams extends JobsListParams {
   job_type?: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | null;
 
   /**
+   * Node ID to optionally filter jobs by
+   */
+  node_id?: string | null;
+
+  /**
    * seeded kg search term
    */
   seeded_kg_search_term?: string | null;
