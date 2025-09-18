@@ -314,6 +314,8 @@ export interface WorkflowSessionNode {
 
   execution_time_ms?: number | null;
 
+  original_node?: string | null;
+
   output_blob_name?: string | null;
 
   output_schema?: unknown;
