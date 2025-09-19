@@ -1002,6 +1002,8 @@ export interface JobStatusParams {
   dataset_name?: string | null;
 
   job_ids?: Array<string> | null;
+
+  node_id?: string | null;
 }
 
 Jobs.JobListResponsesJobsList = JobListResponsesJobsList;
