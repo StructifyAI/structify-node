@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
+import * as SessionsAPI from './sessions';
 import { type Response } from '../_shims/index';
 
 export class Sessions extends APIResource {
@@ -34,23 +35,23 @@ export class Sessions extends APIResource {
   }
 
   /**
-   * Get events from all jobs in a session's event queue (without removing them).
+   * Get events from all jobs for a specific workflow node.
    */
   getEvents(
-    sessionId: string,
+    nodeId: string,
     query?: SessionGetEventsParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<GetSessionEventsResponse>;
-  getEvents(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<GetSessionEventsResponse>;
+  ): Core.APIPromise<SessionGetEventsResponse>;
+  getEvents(nodeId: string, options?: Core.RequestOptions): Core.APIPromise<SessionGetEventsResponse>;
   getEvents(
-    sessionId: string,
+    nodeId: string,
     query: SessionGetEventsParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.APIPromise<GetSessionEventsResponse> {
+  ): Core.APIPromise<SessionGetEventsResponse> {
     if (isRequestOptions(query)) {
-      return this.getEvents(sessionId, {}, query);
+      return this.getEvents(nodeId, {}, query);
     }
-    return this._client.get(`/sessions/${sessionId}/events`, { query, ...options });
+    return this._client.get(`/sessions/nodes/${nodeId}/events`, { query, ...options });
   }
 
   getNodeOutputData(nodeId: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
@@ -140,26 +141,6 @@ export interface CreateWorkflowSessionRequest {
   chat_session_id: string;
 
   workflow_schedule_id?: string | null;
-}
-
-export interface GetSessionEventsResponse {
-  count: number;
-
-  events: Array<GetSessionEventsResponse.Event>;
-}
-
-export namespace GetSessionEventsResponse {
-  export interface Event {
-    id: string;
-
-    body: { [key: string]: unknown };
-
-    job_id: string;
-
-    created_at?: string | null;
-
-    node_id?: string | null;
-  }
 }
 
 /**
@@ -325,6 +306,27 @@ export interface WorkflowSessionNode {
   visualization_output?: unknown;
 }
 
+export interface SessionGetEventsResponse {
+  count: number;
+
+  events: Array<SessionGetEventsResponse.Event>;
+}
+
+export namespace SessionGetEventsResponse {
+  export interface Event {
+    id: string;
+
+    /**
+     * The body content of a job event
+     */
+    body: SessionsAPI.JobEventBody;
+
+    created_at: string;
+
+    job_id: string;
+  }
+}
+
 export type SessionGetNodeProgressResponse = { [key: string]: unknown };
 
 export interface SessionKillJobsResponse {
@@ -399,7 +401,6 @@ export declare namespace Sessions {
     type CreateWorkflowEdgeRequest as CreateWorkflowEdgeRequest,
     type CreateWorkflowNodeRequest as CreateWorkflowNodeRequest,
     type CreateWorkflowSessionRequest as CreateWorkflowSessionRequest,
-    type GetSessionEventsResponse as GetSessionEventsResponse,
     type JobEventBody as JobEventBody,
     type MarkWorkflowSessionErroredRequest as MarkWorkflowSessionErroredRequest,
     type UpdateWorkflowNodeProgressRequest as UpdateWorkflowNodeProgressRequest,
@@ -410,6 +411,7 @@ export declare namespace Sessions {
     type WorkflowSession as WorkflowSession,
     type WorkflowSessionEdge as WorkflowSessionEdge,
     type WorkflowSessionNode as WorkflowSessionNode,
+    type SessionGetEventsResponse as SessionGetEventsResponse,
     type SessionGetNodeProgressResponse as SessionGetNodeProgressResponse,
     type SessionKillJobsResponse as SessionKillJobsResponse,
     type SessionCreateEdgeParams as SessionCreateEdgeParams,
