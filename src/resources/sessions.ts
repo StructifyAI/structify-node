@@ -4,6 +4,7 @@ import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as SessionsAPI from './sessions';
+import * as SharedAPI from './shared';
 import { type Response } from '../_shims/index';
 
 export class Sessions extends APIResource {
@@ -150,6 +151,8 @@ export type JobEventBody =
   | JobEventBody.AgentNavigated
   | JobEventBody.AgentSearched
   | JobEventBody.AgentSaved
+  | JobEventBody.AgentExited
+  | JobEventBody.Failed
   | JobEventBody.Completed
   | JobEventBody.Scraped
   | JobEventBody.Custom;
@@ -158,6 +161,8 @@ export namespace JobEventBody {
   export interface AgentNavigated {
     event_type: 'agent_navigated';
 
+    mode: 'visual' | 'text';
+
     url: string;
   }
 
@@ -165,16 +170,37 @@ export namespace JobEventBody {
     event_type: 'agent_searched';
 
     query: string;
+
+    results: Array<Array<string>>;
   }
 
   export interface AgentSaved {
     event_type: 'agent_saved';
 
-    n_entities: number;
+    /**
+     * Knowledge graph info structured to deserialize and display in the same format
+     * that the LLM outputs. Also the first representation of an LLM output in the
+     * pipeline from raw tool output to being merged into a DB
+     */
+    kg: SharedAPI.KnowledgeGraph;
 
-    n_relationships: number;
+    sources: Array<string>;
 
-    url: string;
+    reason?: string | null;
+  }
+
+  export interface AgentExited {
+    event_type: 'agent_exited';
+
+    reason?: string | null;
+  }
+
+  export interface Failed {
+    error: string;
+
+    event_type: 'failed';
+
+    summary?: string | null;
   }
 
   export interface Completed {
