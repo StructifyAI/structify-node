@@ -137,6 +137,12 @@ export {
   type EntityViewParams,
 } from './entities';
 export {
+  External,
+  type SearchRequest,
+  type ExternalSearchResponse,
+  type ExternalSearchParams,
+} from './external/external';
+export {
   JobListResponsesJobsList,
   Jobs,
   type JobListResponse,
