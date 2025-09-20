@@ -124,7 +124,7 @@ export namespace UpdateUserParams {
 
     permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'> | null;
 
-    user_type?: 'admin' | 'public' | 'end_user' | 'pro' | null;
+    user_type?: 'admin' | 'public' | 'end_user' | null;
   }
 }
 
@@ -152,7 +152,7 @@ export interface UserInfo {
 
   user_id: string;
 
-  user_type: 'admin' | 'public' | 'end_user' | 'pro';
+  user_type: 'admin' | 'public' | 'end_user';
 
   username: string;
 
@@ -173,6 +173,8 @@ export namespace UserTransactionsResponse {
     timestamp: string;
 
     token_id: string;
+
+    credit_grant_id?: string | null;
 
     job_id?: string | null;
   }
@@ -215,7 +217,7 @@ export namespace UserUpdateParams {
 
     permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'> | null;
 
-    user_type?: 'admin' | 'public' | 'end_user' | 'pro' | null;
+    user_type?: 'admin' | 'public' | 'end_user' | null;
   }
 }
 

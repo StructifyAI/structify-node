@@ -42,7 +42,7 @@ export interface CreateSubscriptionRequest {
   team_id: string;
 }
 
-export type SubscriptionPlan = 'Pro';
+export type SubscriptionPlan = 'Pro' | 'Team';
 
 export interface StripeCreateSessionParams {
   /**

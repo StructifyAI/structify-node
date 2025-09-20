@@ -72,7 +72,7 @@ export interface User {
 
   updated_at: string;
 
-  user_type: 'admin' | 'public' | 'end_user' | 'pro';
+  user_type: 'admin' | 'public' | 'end_user';
 
   last_activity?: string | null;
 
