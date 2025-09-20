@@ -274,6 +274,7 @@ export {
   type RemoveMemberResponse,
   type Team,
   type TeamRole,
+  type TeamSubscriptionStatus,
   type TeamWithRole,
   type UpdateTeamRequest,
   type UpdateTeamResponse,

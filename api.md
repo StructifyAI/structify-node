@@ -104,6 +104,7 @@ Types:
 - <code><a href="./src/resources/teams.ts">RemoveMemberResponse</a></code>
 - <code><a href="./src/resources/teams.ts">Team</a></code>
 - <code><a href="./src/resources/teams.ts">TeamRole</a></code>
+- <code><a href="./src/resources/teams.ts">TeamSubscriptionStatus</a></code>
 - <code><a href="./src/resources/teams.ts">TeamWithRole</a></code>
 - <code><a href="./src/resources/teams.ts">UpdateTeamRequest</a></code>
 - <code><a href="./src/resources/teams.ts">UpdateTeamResponse</a></code>
