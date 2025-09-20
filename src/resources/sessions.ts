@@ -384,10 +384,13 @@ export interface SessionCreateSessionParams {
 }
 
 export interface SessionGetEventsParams {
-  /**
-   * Maximum number of events to fetch (default: 100).
-   */
-  limit?: number | null;
+  limit?: number;
+
+  offset?: number;
+
+  search_term?: string | null;
+
+  status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
 }
 
 export interface SessionKillJobsParams {
