@@ -130,6 +130,8 @@ export interface DeleteTeamResponse {
 }
 
 export interface GetTeamResponse {
+  subscription_status: TeamSubscriptionStatus;
+
   team: Team;
 }
 
@@ -168,8 +170,6 @@ export interface RemoveMemberResponse {
 export interface Team {
   id: string;
 
-  balance_id: string;
-
   created_at: string;
 
   name: string;
@@ -180,6 +180,21 @@ export interface Team {
 }
 
 export type TeamRole = 'member' | 'admin' | 'owner';
+
+export interface TeamSubscriptionStatus {
+  has_active_subscription: boolean;
+
+  is_trial: boolean;
+
+  remaining_credits: number;
+
+  /**
+   * Represents the different subscription tiers available
+   */
+  subscription_tier: 'free' | 'free_trial' | 'pro' | 'team' | 'enterprise';
+
+  trial_expires_at?: string | null;
+}
 
 export interface TeamWithRole extends Team {
   role: TeamRole;
@@ -287,6 +302,7 @@ export declare namespace Teams {
     type RemoveMemberResponse as RemoveMemberResponse,
     type Team as Team,
     type TeamRole as TeamRole,
+    type TeamSubscriptionStatus as TeamSubscriptionStatus,
     type TeamWithRole as TeamWithRole,
     type UpdateTeamRequest as UpdateTeamRequest,
     type UpdateTeamResponse as UpdateTeamResponse,
