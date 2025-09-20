@@ -115,7 +115,7 @@ describe('resource sessions', () => {
     await expect(
       client.sessions.getEvents(
         '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        { limit: 0 },
+        { limit: 0, offset: 0, search_term: 'search_term', status: 'Queued' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Structify.NotFoundError);
