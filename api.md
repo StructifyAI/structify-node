@@ -609,3 +609,111 @@ Types:
 - <code><a href="./src/resources/shared.ts">PropertyType</a></code>
 - <code><a href="./src/resources/shared.ts">Relationship</a></code>
 - <code><a href="./src/resources/shared.ts">Table</a></code>
+
+# External
+
+Types:
+
+- <code><a href="./src/resources/external/external.ts">SearchRequest</a></code>
+- <code><a href="./src/resources/external/external.ts">ExternalSearchResponse</a></code>
+
+Methods:
+
+- <code title="post /external/search">client.external.<a href="./src/resources/external/external.ts">search</a>({ ...params }) -> ExternalSearchResponse</code>
+
+## Newsapi
+
+Types:
+
+- <code><a href="./src/resources/external/newsapi.ts">EverythingQuery</a></code>
+- <code><a href="./src/resources/external/newsapi.ts">EverythingResponse</a></code>
+- <code><a href="./src/resources/external/newsapi.ts">NewsArticle</a></code>
+- <code><a href="./src/resources/external/newsapi.ts">NewsSource</a></code>
+- <code><a href="./src/resources/external/newsapi.ts">NewsSourceDetail</a></code>
+- <code><a href="./src/resources/external/newsapi.ts">SourcesQuery</a></code>
+- <code><a href="./src/resources/external/newsapi.ts">SourcesResponse</a></code>
+- <code><a href="./src/resources/external/newsapi.ts">TopHeadlinesQuery</a></code>
+- <code><a href="./src/resources/external/newsapi.ts">TopHeadlinesResponse</a></code>
+
+Methods:
+
+- <code title="get /external/newsapi/everything">client.external.newsapi.<a href="./src/resources/external/newsapi.ts">everything</a>({ ...params }) -> EverythingResponse</code>
+- <code title="get /external/newsapi/sources">client.external.newsapi.<a href="./src/resources/external/newsapi.ts">sources</a>({ ...params }) -> SourcesResponse</code>
+- <code title="get /external/newsapi/top-headlines">client.external.newsapi.<a href="./src/resources/external/newsapi.ts">topHeadlines</a>({ ...params }) -> TopHeadlinesResponse</code>
+
+## Searchapi
+
+Types:
+
+- <code><a href="./src/resources/external/searchapi.ts">FlightCalendarRequest</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">FlightLocationSearchRequest</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">GoogleFlightsSearchRequest</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">GoogleMapsResult</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">GoogleMapsSearchRequest</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">GoogleScholarSearchRequest</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">GoogleSearchRequest</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">GoogleSearchResponse</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">GoogleSearchResult</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">LocationCoordinates</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">LocationResponse</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">LocationResult</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">LocationSearchRequest</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">PlaceDetailsRequest</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">PlacePhotosRequest</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">PlaceReviewsRequest</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">ScholarAuthorSearchRequest</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">ScholarCiteRequest</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">SearchapiGoogleFlightsCalendarResponse</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">SearchapiGoogleFlightsLocationSearchResponse</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">SearchapiGoogleFlightsSearchResponse</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">SearchapiGoogleMapsPlaceDetailsResponse</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">SearchapiGoogleMapsPlacePhotosResponse</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">SearchapiGoogleMapsPlaceReviewsResponse</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">SearchapiGoogleMapsSearchResponse</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">SearchapiGoogleScholarAuthorSearchResponse</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">SearchapiGoogleScholarCitationsResponse</a></code>
+- <code><a href="./src/resources/external/searchapi.ts">SearchapiGoogleScholarSearchResponse</a></code>
+
+Methods:
+
+- <code title="post /external/searchapi/flights/calendar">client.external.searchapi.<a href="./src/resources/external/searchapi.ts">googleFlightsCalendar</a>({ ...params }) -> SearchapiGoogleFlightsCalendarResponse</code>
+- <code title="post /external/searchapi/flights/location_search">client.external.searchapi.<a href="./src/resources/external/searchapi.ts">googleFlightsLocationSearch</a>({ ...params }) -> SearchapiGoogleFlightsLocationSearchResponse</code>
+- <code title="post /external/searchapi/flights/search">client.external.searchapi.<a href="./src/resources/external/searchapi.ts">googleFlightsSearch</a>({ ...params }) -> SearchapiGoogleFlightsSearchResponse</code>
+- <code title="post /external/searchapi/maps/place">client.external.searchapi.<a href="./src/resources/external/searchapi.ts">googleMapsPlaceDetails</a>({ ...params }) -> SearchapiGoogleMapsPlaceDetailsResponse</code>
+- <code title="post /external/searchapi/maps/photos">client.external.searchapi.<a href="./src/resources/external/searchapi.ts">googleMapsPlacePhotos</a>({ ...params }) -> SearchapiGoogleMapsPlacePhotosResponse</code>
+- <code title="post /external/searchapi/maps/reviews">client.external.searchapi.<a href="./src/resources/external/searchapi.ts">googleMapsPlaceReviews</a>({ ...params }) -> SearchapiGoogleMapsPlaceReviewsResponse</code>
+- <code title="post /external/searchapi/maps/search">client.external.searchapi.<a href="./src/resources/external/searchapi.ts">googleMapsSearch</a>({ ...params }) -> SearchapiGoogleMapsSearchResponse</code>
+- <code title="post /external/searchapi/scholar/author">client.external.searchapi.<a href="./src/resources/external/searchapi.ts">googleScholarAuthorSearch</a>({ ...params }) -> SearchapiGoogleScholarAuthorSearchResponse</code>
+- <code title="post /external/searchapi/scholar/cite">client.external.searchapi.<a href="./src/resources/external/searchapi.ts">googleScholarCitations</a>({ ...params }) -> SearchapiGoogleScholarCitationsResponse</code>
+- <code title="post /external/searchapi/scholar/search">client.external.searchapi.<a href="./src/resources/external/searchapi.ts">googleScholarSearch</a>({ ...params }) -> SearchapiGoogleScholarSearchResponse</code>
+- <code title="post /external/searchapi/search">client.external.searchapi.<a href="./src/resources/external/searchapi.ts">googleSearch</a>({ ...params }) -> GoogleSearchResponse</code>
+- <code title="post /external/searchapi/locations">client.external.searchapi.<a href="./src/resources/external/searchapi.ts">locationSearch</a>({ ...params }) -> LocationResponse</code>
+
+## Apollo
+
+Types:
+
+- <code><a href="./src/resources/external/apollo.ts">CompaniesSearchRequest</a></code>
+- <code><a href="./src/resources/external/apollo.ts">CompaniesSearchResponse</a></code>
+- <code><a href="./src/resources/external/apollo.ts">CompanySearchResult</a></code>
+- <code><a href="./src/resources/external/apollo.ts">EnrichedOrganization</a></code>
+- <code><a href="./src/resources/external/apollo.ts">JobPosting</a></code>
+- <code><a href="./src/resources/external/apollo.ts">JobPostingsQuery</a></code>
+- <code><a href="./src/resources/external/apollo.ts">JobPostingsResponse</a></code>
+- <code><a href="./src/resources/external/apollo.ts">OrganizationDetail</a></code>
+- <code><a href="./src/resources/external/apollo.ts">OrganizationEnrichQuery</a></code>
+- <code><a href="./src/resources/external/apollo.ts">PeopleMatchRequest</a></code>
+- <code><a href="./src/resources/external/apollo.ts">PeopleMatchResponse</a></code>
+- <code><a href="./src/resources/external/apollo.ts">PeopleSearchRequest</a></code>
+- <code><a href="./src/resources/external/apollo.ts">PeopleSearchResponse</a></code>
+- <code><a href="./src/resources/external/apollo.ts">PersonMatch</a></code>
+- <code><a href="./src/resources/external/apollo.ts">PersonSearchResult</a></code>
+
+Methods:
+
+- <code title="post /external/apollo/mixed_companies/search">client.external.apollo.<a href="./src/resources/external/apollo.ts">companiesSearch</a>({ ...params }) -> CompaniesSearchResponse</code>
+- <code title="get /external/apollo/organizations/{id}">client.external.apollo.<a href="./src/resources/external/apollo.ts">organizationDetail</a>(id) -> OrganizationDetail</code>
+- <code title="get /external/apollo/organizations/{organization_id}/job_postings">client.external.apollo.<a href="./src/resources/external/apollo.ts">organizationJobPostings</a>(organizationId, { ...params }) -> JobPostingsResponse</code>
+- <code title="get /external/apollo/organizations/enrich">client.external.apollo.<a href="./src/resources/external/apollo.ts">organizationsEnrich</a>({ ...params }) -> EnrichedOrganization</code>
+- <code title="post /external/apollo/people/match">client.external.apollo.<a href="./src/resources/external/apollo.ts">peopleMatch</a>({ ...params }) -> PeopleMatchResponse</code>
+- <code title="post /external/apollo/mixed_people/search">client.external.apollo.<a href="./src/resources/external/apollo.ts">peopleSearch</a>({ ...params }) -> PeopleSearchResponse</code>

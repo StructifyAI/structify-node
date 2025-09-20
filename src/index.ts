@@ -308,6 +308,12 @@ import {
   Strategy,
 } from './resources/datasets/datasets';
 import {
+  External,
+  ExternalSearchParams,
+  ExternalSearchResponse,
+  SearchRequest,
+} from './resources/external/external';
+import {
   SurveySubmissionRequest,
   SurveySubmissionResponse,
   TokenResponse,
@@ -481,6 +487,7 @@ export class Structify extends Core.APIClient {
   structure: API.Structure = new API.Structure(this);
   publicSessions: API.PublicSessions = new API.PublicSessions(this);
   shared: API.Shared = new API.Shared(this);
+  external: API.External = new API.External(this);
 
   /**
    * Check whether the base URL is set to its default.
@@ -554,6 +561,7 @@ Structify.Code = Code;
 Structify.Structure = Structure;
 Structify.PublicSessions = PublicSessions;
 Structify.Shared = Shared;
+Structify.External = External;
 
 export declare namespace Structify {
   export type RequestOptions = Core.RequestOptions;
@@ -901,6 +909,13 @@ export declare namespace Structify {
     type PropertyType as PropertyType,
     type Relationship as Relationship,
     type Table as Table,
+  };
+
+  export {
+    External as External,
+    type SearchRequest as SearchRequest,
+    type ExternalSearchResponse as ExternalSearchResponse,
+    type ExternalSearchParams as ExternalSearchParams,
   };
 }
 
