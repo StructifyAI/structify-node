@@ -485,6 +485,8 @@ export namespace ChatEvent {
       export interface Input {
         command: string;
 
+        connectors: Array<string>;
+
         env?: { [key: string]: string } | null;
 
         working_dir?: string | null;
@@ -504,6 +506,8 @@ export namespace ChatEvent {
     export namespace UnionMember7 {
       export interface Input {
         code: string;
+
+        connectors: Array<string>;
 
         env?: { [key: string]: string } | null;
 
