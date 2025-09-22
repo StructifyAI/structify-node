@@ -4,39 +4,39 @@ import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 
-export class Newsapi extends APIResource {
+export class News extends APIResource {
   /**
    * Search through millions of articles from over 80,000 large and small news
    * sources and blogs
    */
   everything(
-    query?: NewsapiEverythingParams,
+    query?: NewsEverythingParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<EverythingResponse>;
   everything(options?: Core.RequestOptions): Core.APIPromise<EverythingResponse>;
   everything(
-    query: NewsapiEverythingParams | Core.RequestOptions = {},
+    query: NewsEverythingParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<EverythingResponse> {
     if (isRequestOptions(query)) {
       return this.everything({}, query);
     }
-    return this._client.get('/external/newsapi/everything', { query, ...options });
+    return this._client.get('/external/news/everything', { query, ...options });
   }
 
   /**
    * Returns the subset of news publishers that top headlines are available from
    */
-  sources(query?: NewsapiSourcesParams, options?: Core.RequestOptions): Core.APIPromise<SourcesResponse>;
+  sources(query?: NewsSourcesParams, options?: Core.RequestOptions): Core.APIPromise<SourcesResponse>;
   sources(options?: Core.RequestOptions): Core.APIPromise<SourcesResponse>;
   sources(
-    query: NewsapiSourcesParams | Core.RequestOptions = {},
+    query: NewsSourcesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<SourcesResponse> {
     if (isRequestOptions(query)) {
       return this.sources({}, query);
     }
-    return this._client.get('/external/newsapi/sources', { query, ...options });
+    return this._client.get('/external/news/sources', { query, ...options });
   }
 
   /**
@@ -44,18 +44,18 @@ export class Newsapi extends APIResource {
    * specific sources
    */
   topHeadlines(
-    query?: NewsapiTopHeadlinesParams,
+    query?: NewsTopHeadlinesParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<TopHeadlinesResponse>;
   topHeadlines(options?: Core.RequestOptions): Core.APIPromise<TopHeadlinesResponse>;
   topHeadlines(
-    query: NewsapiTopHeadlinesParams | Core.RequestOptions = {},
+    query: NewsTopHeadlinesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<TopHeadlinesResponse> {
     if (isRequestOptions(query)) {
       return this.topHeadlines({}, query);
     }
-    return this._client.get('/external/newsapi/top-headlines', { query, ...options });
+    return this._client.get('/external/news/top-headlines', { query, ...options });
   }
 }
 
@@ -301,7 +301,7 @@ export interface TopHeadlinesResponse {
   total_results: number;
 }
 
-export interface NewsapiEverythingParams {
+export interface NewsEverythingParams {
   /**
    * Comma-separated domains
    */
@@ -358,7 +358,7 @@ export interface NewsapiEverythingParams {
   to?: string | null;
 }
 
-export interface NewsapiSourcesParams {
+export interface NewsSourcesParams {
   /**
    * News category
    */
@@ -375,7 +375,7 @@ export interface NewsapiSourcesParams {
   language?: string | null;
 }
 
-export interface NewsapiTopHeadlinesParams {
+export interface NewsTopHeadlinesParams {
   /**
    * Category
    */
@@ -407,7 +407,7 @@ export interface NewsapiTopHeadlinesParams {
   sources?: string | null;
 }
 
-export declare namespace Newsapi {
+export declare namespace News {
   export {
     type EverythingQuery as EverythingQuery,
     type EverythingResponse as EverythingResponse,
@@ -418,8 +418,8 @@ export declare namespace Newsapi {
     type SourcesResponse as SourcesResponse,
     type TopHeadlinesQuery as TopHeadlinesQuery,
     type TopHeadlinesResponse as TopHeadlinesResponse,
-    type NewsapiEverythingParams as NewsapiEverythingParams,
-    type NewsapiSourcesParams as NewsapiSourcesParams,
-    type NewsapiTopHeadlinesParams as NewsapiTopHeadlinesParams,
+    type NewsEverythingParams as NewsEverythingParams,
+    type NewsSourcesParams as NewsSourcesParams,
+    type NewsTopHeadlinesParams as NewsTopHeadlinesParams,
   };
 }

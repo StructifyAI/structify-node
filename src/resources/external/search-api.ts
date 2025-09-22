@@ -3,125 +3,125 @@
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
 
-export class Searchapi extends APIResource {
+export class SearchAPI extends APIResource {
   /**
    * Get flight prices across different dates (calendar view)
    */
   googleFlightsCalendar(
-    body: SearchapiGoogleFlightsCalendarParams,
+    body: SearchAPIGoogleFlightsCalendarParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<SearchapiGoogleFlightsCalendarResponse> {
-    return this._client.post('/external/searchapi/flights/calendar', { body, ...options });
+  ): Core.APIPromise<SearchAPIGoogleFlightsCalendarResponse> {
+    return this._client.post('/external/search/flights/calendar', { body, ...options });
   }
 
   /**
    * Search for airports and locations for flight booking
    */
   googleFlightsLocationSearch(
-    body: SearchapiGoogleFlightsLocationSearchParams,
+    body: SearchAPIGoogleFlightsLocationSearchParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<SearchapiGoogleFlightsLocationSearchResponse> {
-    return this._client.post('/external/searchapi/flights/location_search', { body, ...options });
+  ): Core.APIPromise<SearchAPIGoogleFlightsLocationSearchResponse> {
+    return this._client.post('/external/search/flights/location_search', { body, ...options });
   }
 
   /**
    * Search for flight options between airports
    */
   googleFlightsSearch(
-    body: SearchapiGoogleFlightsSearchParams,
+    body: SearchAPIGoogleFlightsSearchParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<SearchapiGoogleFlightsSearchResponse> {
-    return this._client.post('/external/searchapi/flights/search', { body, ...options });
+  ): Core.APIPromise<SearchAPIGoogleFlightsSearchResponse> {
+    return this._client.post('/external/search/flights/search', { body, ...options });
   }
 
   /**
    * Get detailed information about a specific place
    */
   googleMapsPlaceDetails(
-    body: SearchapiGoogleMapsPlaceDetailsParams,
+    body: SearchAPIGoogleMapsPlaceDetailsParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<SearchapiGoogleMapsPlaceDetailsResponse> {
-    return this._client.post('/external/searchapi/maps/place', { body, ...options });
+  ): Core.APIPromise<SearchAPIGoogleMapsPlaceDetailsResponse> {
+    return this._client.post('/external/search/maps/place', { body, ...options });
   }
 
   /**
    * Get photos for a specific place
    */
   googleMapsPlacePhotos(
-    body: SearchapiGoogleMapsPlacePhotosParams,
+    body: SearchAPIGoogleMapsPlacePhotosParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<SearchapiGoogleMapsPlacePhotosResponse> {
-    return this._client.post('/external/searchapi/maps/photos', { body, ...options });
+  ): Core.APIPromise<SearchAPIGoogleMapsPlacePhotosResponse> {
+    return this._client.post('/external/search/maps/photos', { body, ...options });
   }
 
   /**
    * Get reviews for a specific place
    */
   googleMapsPlaceReviews(
-    body: SearchapiGoogleMapsPlaceReviewsParams,
+    body: SearchAPIGoogleMapsPlaceReviewsParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<SearchapiGoogleMapsPlaceReviewsResponse> {
-    return this._client.post('/external/searchapi/maps/reviews', { body, ...options });
+  ): Core.APIPromise<SearchAPIGoogleMapsPlaceReviewsResponse> {
+    return this._client.post('/external/search/maps/reviews', { body, ...options });
   }
 
   /**
    * Search for places on Google Maps
    */
   googleMapsSearch(
-    body: SearchapiGoogleMapsSearchParams,
+    body: SearchAPIGoogleMapsSearchParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<SearchapiGoogleMapsSearchResponse> {
-    return this._client.post('/external/searchapi/maps/search', { body, ...options });
+  ): Core.APIPromise<SearchAPIGoogleMapsSearchResponse> {
+    return this._client.post('/external/search/maps/search', { body, ...options });
   }
 
   /**
    * Search for academic authors and their publications
    */
   googleScholarAuthorSearch(
-    body: SearchapiGoogleScholarAuthorSearchParams,
+    body: SearchAPIGoogleScholarAuthorSearchParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<SearchapiGoogleScholarAuthorSearchResponse> {
-    return this._client.post('/external/searchapi/scholar/author', { body, ...options });
+  ): Core.APIPromise<SearchAPIGoogleScholarAuthorSearchResponse> {
+    return this._client.post('/external/search/scholar/author', { body, ...options });
   }
 
   /**
    * Get citations for a specific academic publication
    */
   googleScholarCitations(
-    body: SearchapiGoogleScholarCitationsParams,
+    body: SearchAPIGoogleScholarCitationsParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<SearchapiGoogleScholarCitationsResponse> {
-    return this._client.post('/external/searchapi/scholar/cite', { body, ...options });
+  ): Core.APIPromise<SearchAPIGoogleScholarCitationsResponse> {
+    return this._client.post('/external/search/scholar/cite', { body, ...options });
   }
 
   /**
    * Search academic papers and publications on Google Scholar
    */
   googleScholarSearch(
-    body: SearchapiGoogleScholarSearchParams,
+    body: SearchAPIGoogleScholarSearchParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<SearchapiGoogleScholarSearchResponse> {
-    return this._client.post('/external/searchapi/scholar/search', { body, ...options });
+  ): Core.APIPromise<SearchAPIGoogleScholarSearchResponse> {
+    return this._client.post('/external/search/scholar/search', { body, ...options });
   }
 
   /**
    * Performs a Google web search using the SearchAPI service
    */
   googleSearch(
-    body: SearchapiGoogleSearchParams,
+    body: SearchAPIGoogleSearchParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<GoogleSearchResponse> {
-    return this._client.post('/external/searchapi/search', { body, ...options });
+    return this._client.post('/external/search/search', { body, ...options });
   }
 
   /**
    * Search for geographic locations, addresses, and places
    */
   locationSearch(
-    body: SearchapiLocationSearchParams,
+    body: SearchAPILocationSearchParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<LocationResponse> {
-    return this._client.post('/external/searchapi/locations', { body, ...options });
+    return this._client.post('/external/search/locations', { body, ...options });
   }
 }
 
@@ -548,27 +548,27 @@ export interface ScholarCiteRequest {
   start?: number | null;
 }
 
-export type SearchapiGoogleFlightsCalendarResponse = { [key: string]: unknown };
+export type SearchAPIGoogleFlightsCalendarResponse = { [key: string]: unknown };
 
-export type SearchapiGoogleFlightsLocationSearchResponse = { [key: string]: unknown };
+export type SearchAPIGoogleFlightsLocationSearchResponse = { [key: string]: unknown };
 
-export type SearchapiGoogleFlightsSearchResponse = { [key: string]: unknown };
+export type SearchAPIGoogleFlightsSearchResponse = { [key: string]: unknown };
 
-export type SearchapiGoogleMapsPlaceDetailsResponse = { [key: string]: unknown };
+export type SearchAPIGoogleMapsPlaceDetailsResponse = { [key: string]: unknown };
 
-export type SearchapiGoogleMapsPlacePhotosResponse = { [key: string]: unknown };
+export type SearchAPIGoogleMapsPlacePhotosResponse = { [key: string]: unknown };
 
-export type SearchapiGoogleMapsPlaceReviewsResponse = { [key: string]: unknown };
+export type SearchAPIGoogleMapsPlaceReviewsResponse = { [key: string]: unknown };
 
-export type SearchapiGoogleMapsSearchResponse = Array<GoogleMapsResult>;
+export type SearchAPIGoogleMapsSearchResponse = Array<GoogleMapsResult>;
 
-export type SearchapiGoogleScholarAuthorSearchResponse = { [key: string]: unknown };
+export type SearchAPIGoogleScholarAuthorSearchResponse = { [key: string]: unknown };
 
-export type SearchapiGoogleScholarCitationsResponse = { [key: string]: unknown };
+export type SearchAPIGoogleScholarCitationsResponse = { [key: string]: unknown };
 
-export type SearchapiGoogleScholarSearchResponse = { [key: string]: unknown };
+export type SearchAPIGoogleScholarSearchResponse = { [key: string]: unknown };
 
-export interface SearchapiGoogleFlightsCalendarParams {
+export interface SearchAPIGoogleFlightsCalendarParams {
   /**
    * Arrival airport code
    */
@@ -600,7 +600,7 @@ export interface SearchapiGoogleFlightsCalendarParams {
   return_date?: string | null;
 }
 
-export interface SearchapiGoogleFlightsLocationSearchParams {
+export interface SearchAPIGoogleFlightsLocationSearchParams {
   /**
    * Search query for airport/location
    */
@@ -612,7 +612,7 @@ export interface SearchapiGoogleFlightsLocationSearchParams {
   hl?: string | null;
 }
 
-export interface SearchapiGoogleFlightsSearchParams {
+export interface SearchAPIGoogleFlightsSearchParams {
   /**
    * Arrival airport code (e.g., "JFK", "LAX")
    */
@@ -669,7 +669,7 @@ export interface SearchapiGoogleFlightsSearchParams {
   travel_class?: string | null;
 }
 
-export interface SearchapiGoogleMapsPlaceDetailsParams {
+export interface SearchAPIGoogleMapsPlaceDetailsParams {
   /**
    * Place ID from Google Maps
    */
@@ -681,7 +681,7 @@ export interface SearchapiGoogleMapsPlaceDetailsParams {
   hl?: string | null;
 }
 
-export interface SearchapiGoogleMapsPlacePhotosParams {
+export interface SearchAPIGoogleMapsPlacePhotosParams {
   /**
    * Place ID from Google Maps
    */
@@ -693,7 +693,7 @@ export interface SearchapiGoogleMapsPlacePhotosParams {
   num?: number | null;
 }
 
-export interface SearchapiGoogleMapsPlaceReviewsParams {
+export interface SearchAPIGoogleMapsPlaceReviewsParams {
   /**
    * Place ID from Google Maps
    */
@@ -710,7 +710,7 @@ export interface SearchapiGoogleMapsPlaceReviewsParams {
   num?: number | null;
 }
 
-export interface SearchapiGoogleMapsSearchParams {
+export interface SearchAPIGoogleMapsSearchParams {
   /**
    * The search query (e.g., "restaurants near me")
    */
@@ -732,7 +732,7 @@ export interface SearchapiGoogleMapsSearchParams {
   num?: number | null;
 }
 
-export interface SearchapiGoogleScholarAuthorSearchParams {
+export interface SearchAPIGoogleScholarAuthorSearchParams {
   /**
    * Author name to search for
    */
@@ -754,7 +754,7 @@ export interface SearchapiGoogleScholarAuthorSearchParams {
   start?: number | null;
 }
 
-export interface SearchapiGoogleScholarCitationsParams {
+export interface SearchAPIGoogleScholarCitationsParams {
   /**
    * The publication ID to get citations for
    */
@@ -776,7 +776,7 @@ export interface SearchapiGoogleScholarCitationsParams {
   start?: number | null;
 }
 
-export interface SearchapiGoogleScholarSearchParams {
+export interface SearchAPIGoogleScholarSearchParams {
   /**
    * The search query
    */
@@ -808,7 +808,7 @@ export interface SearchapiGoogleScholarSearchParams {
   start?: number | null;
 }
 
-export interface SearchapiGoogleSearchParams {
+export interface SearchAPIGoogleSearchParams {
   /**
    * The search query
    */
@@ -835,7 +835,7 @@ export interface SearchapiGoogleSearchParams {
   start?: number | null;
 }
 
-export interface SearchapiLocationSearchParams {
+export interface SearchAPILocationSearchParams {
   /**
    * The location query to search for
    */
@@ -857,7 +857,7 @@ export interface SearchapiLocationSearchParams {
   num?: number | null;
 }
 
-export declare namespace Searchapi {
+export declare namespace SearchAPI {
   export {
     type FlightCalendarRequest as FlightCalendarRequest,
     type FlightLocationSearchRequest as FlightLocationSearchRequest,
@@ -877,27 +877,27 @@ export declare namespace Searchapi {
     type PlaceReviewsRequest as PlaceReviewsRequest,
     type ScholarAuthorSearchRequest as ScholarAuthorSearchRequest,
     type ScholarCiteRequest as ScholarCiteRequest,
-    type SearchapiGoogleFlightsCalendarResponse as SearchapiGoogleFlightsCalendarResponse,
-    type SearchapiGoogleFlightsLocationSearchResponse as SearchapiGoogleFlightsLocationSearchResponse,
-    type SearchapiGoogleFlightsSearchResponse as SearchapiGoogleFlightsSearchResponse,
-    type SearchapiGoogleMapsPlaceDetailsResponse as SearchapiGoogleMapsPlaceDetailsResponse,
-    type SearchapiGoogleMapsPlacePhotosResponse as SearchapiGoogleMapsPlacePhotosResponse,
-    type SearchapiGoogleMapsPlaceReviewsResponse as SearchapiGoogleMapsPlaceReviewsResponse,
-    type SearchapiGoogleMapsSearchResponse as SearchapiGoogleMapsSearchResponse,
-    type SearchapiGoogleScholarAuthorSearchResponse as SearchapiGoogleScholarAuthorSearchResponse,
-    type SearchapiGoogleScholarCitationsResponse as SearchapiGoogleScholarCitationsResponse,
-    type SearchapiGoogleScholarSearchResponse as SearchapiGoogleScholarSearchResponse,
-    type SearchapiGoogleFlightsCalendarParams as SearchapiGoogleFlightsCalendarParams,
-    type SearchapiGoogleFlightsLocationSearchParams as SearchapiGoogleFlightsLocationSearchParams,
-    type SearchapiGoogleFlightsSearchParams as SearchapiGoogleFlightsSearchParams,
-    type SearchapiGoogleMapsPlaceDetailsParams as SearchapiGoogleMapsPlaceDetailsParams,
-    type SearchapiGoogleMapsPlacePhotosParams as SearchapiGoogleMapsPlacePhotosParams,
-    type SearchapiGoogleMapsPlaceReviewsParams as SearchapiGoogleMapsPlaceReviewsParams,
-    type SearchapiGoogleMapsSearchParams as SearchapiGoogleMapsSearchParams,
-    type SearchapiGoogleScholarAuthorSearchParams as SearchapiGoogleScholarAuthorSearchParams,
-    type SearchapiGoogleScholarCitationsParams as SearchapiGoogleScholarCitationsParams,
-    type SearchapiGoogleScholarSearchParams as SearchapiGoogleScholarSearchParams,
-    type SearchapiGoogleSearchParams as SearchapiGoogleSearchParams,
-    type SearchapiLocationSearchParams as SearchapiLocationSearchParams,
+    type SearchAPIGoogleFlightsCalendarResponse as SearchAPIGoogleFlightsCalendarResponse,
+    type SearchAPIGoogleFlightsLocationSearchResponse as SearchAPIGoogleFlightsLocationSearchResponse,
+    type SearchAPIGoogleFlightsSearchResponse as SearchAPIGoogleFlightsSearchResponse,
+    type SearchAPIGoogleMapsPlaceDetailsResponse as SearchAPIGoogleMapsPlaceDetailsResponse,
+    type SearchAPIGoogleMapsPlacePhotosResponse as SearchAPIGoogleMapsPlacePhotosResponse,
+    type SearchAPIGoogleMapsPlaceReviewsResponse as SearchAPIGoogleMapsPlaceReviewsResponse,
+    type SearchAPIGoogleMapsSearchResponse as SearchAPIGoogleMapsSearchResponse,
+    type SearchAPIGoogleScholarAuthorSearchResponse as SearchAPIGoogleScholarAuthorSearchResponse,
+    type SearchAPIGoogleScholarCitationsResponse as SearchAPIGoogleScholarCitationsResponse,
+    type SearchAPIGoogleScholarSearchResponse as SearchAPIGoogleScholarSearchResponse,
+    type SearchAPIGoogleFlightsCalendarParams as SearchAPIGoogleFlightsCalendarParams,
+    type SearchAPIGoogleFlightsLocationSearchParams as SearchAPIGoogleFlightsLocationSearchParams,
+    type SearchAPIGoogleFlightsSearchParams as SearchAPIGoogleFlightsSearchParams,
+    type SearchAPIGoogleMapsPlaceDetailsParams as SearchAPIGoogleMapsPlaceDetailsParams,
+    type SearchAPIGoogleMapsPlacePhotosParams as SearchAPIGoogleMapsPlacePhotosParams,
+    type SearchAPIGoogleMapsPlaceReviewsParams as SearchAPIGoogleMapsPlaceReviewsParams,
+    type SearchAPIGoogleMapsSearchParams as SearchAPIGoogleMapsSearchParams,
+    type SearchAPIGoogleScholarAuthorSearchParams as SearchAPIGoogleScholarAuthorSearchParams,
+    type SearchAPIGoogleScholarCitationsParams as SearchAPIGoogleScholarCitationsParams,
+    type SearchAPIGoogleScholarSearchParams as SearchAPIGoogleScholarSearchParams,
+    type SearchAPIGoogleSearchParams as SearchAPIGoogleSearchParams,
+    type SearchAPILocationSearchParams as SearchAPILocationSearchParams,
   };
 }

@@ -8,9 +8,9 @@ const client = new Structify({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource searchapi', () => {
+describe('resource searchAPI', () => {
   test('googleFlightsCalendar: only required params', async () => {
-    const responsePromise = client.external.searchapi.googleFlightsCalendar({
+    const responsePromise = client.external.searchAPI.googleFlightsCalendar({
       arrival_id: 'arrival_id',
       departure_id: 'departure_id',
       outbound_date: 'outbound_date',
@@ -25,7 +25,7 @@ describe('resource searchapi', () => {
   });
 
   test('googleFlightsCalendar: required and optional params', async () => {
-    const response = await client.external.searchapi.googleFlightsCalendar({
+    const response = await client.external.searchAPI.googleFlightsCalendar({
       arrival_id: 'arrival_id',
       departure_id: 'departure_id',
       outbound_date: 'outbound_date',
@@ -36,7 +36,7 @@ describe('resource searchapi', () => {
   });
 
   test('googleFlightsLocationSearch: only required params', async () => {
-    const responsePromise = client.external.searchapi.googleFlightsLocationSearch({ q: 'q' });
+    const responsePromise = client.external.searchAPI.googleFlightsLocationSearch({ q: 'q' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -47,11 +47,11 @@ describe('resource searchapi', () => {
   });
 
   test('googleFlightsLocationSearch: required and optional params', async () => {
-    const response = await client.external.searchapi.googleFlightsLocationSearch({ q: 'q', hl: 'hl' });
+    const response = await client.external.searchAPI.googleFlightsLocationSearch({ q: 'q', hl: 'hl' });
   });
 
   test('googleFlightsSearch: only required params', async () => {
-    const responsePromise = client.external.searchapi.googleFlightsSearch({
+    const responsePromise = client.external.searchAPI.googleFlightsSearch({
       arrival_id: 'arrival_id',
       departure_id: 'departure_id',
       outbound_date: 'outbound_date',
@@ -66,7 +66,7 @@ describe('resource searchapi', () => {
   });
 
   test('googleFlightsSearch: required and optional params', async () => {
-    const response = await client.external.searchapi.googleFlightsSearch({
+    const response = await client.external.searchAPI.googleFlightsSearch({
       arrival_id: 'arrival_id',
       departure_id: 'departure_id',
       outbound_date: 'outbound_date',
@@ -82,7 +82,7 @@ describe('resource searchapi', () => {
   });
 
   test('googleMapsPlaceDetails: only required params', async () => {
-    const responsePromise = client.external.searchapi.googleMapsPlaceDetails({ place_id: 'place_id' });
+    const responsePromise = client.external.searchAPI.googleMapsPlaceDetails({ place_id: 'place_id' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -93,14 +93,14 @@ describe('resource searchapi', () => {
   });
 
   test('googleMapsPlaceDetails: required and optional params', async () => {
-    const response = await client.external.searchapi.googleMapsPlaceDetails({
+    const response = await client.external.searchAPI.googleMapsPlaceDetails({
       place_id: 'place_id',
       hl: 'hl',
     });
   });
 
   test('googleMapsPlacePhotos: only required params', async () => {
-    const responsePromise = client.external.searchapi.googleMapsPlacePhotos({ place_id: 'place_id' });
+    const responsePromise = client.external.searchAPI.googleMapsPlacePhotos({ place_id: 'place_id' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -111,11 +111,11 @@ describe('resource searchapi', () => {
   });
 
   test('googleMapsPlacePhotos: required and optional params', async () => {
-    const response = await client.external.searchapi.googleMapsPlacePhotos({ place_id: 'place_id', num: 0 });
+    const response = await client.external.searchAPI.googleMapsPlacePhotos({ place_id: 'place_id', num: 0 });
   });
 
   test('googleMapsPlaceReviews: only required params', async () => {
-    const responsePromise = client.external.searchapi.googleMapsPlaceReviews({ place_id: 'place_id' });
+    const responsePromise = client.external.searchAPI.googleMapsPlaceReviews({ place_id: 'place_id' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -126,7 +126,7 @@ describe('resource searchapi', () => {
   });
 
   test('googleMapsPlaceReviews: required and optional params', async () => {
-    const response = await client.external.searchapi.googleMapsPlaceReviews({
+    const response = await client.external.searchAPI.googleMapsPlaceReviews({
       place_id: 'place_id',
       hl: 'hl',
       num: 0,
@@ -134,7 +134,7 @@ describe('resource searchapi', () => {
   });
 
   test('googleMapsSearch: only required params', async () => {
-    const responsePromise = client.external.searchapi.googleMapsSearch({ q: 'q' });
+    const responsePromise = client.external.searchAPI.googleMapsSearch({ q: 'q' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -145,11 +145,11 @@ describe('resource searchapi', () => {
   });
 
   test('googleMapsSearch: required and optional params', async () => {
-    const response = await client.external.searchapi.googleMapsSearch({ q: 'q', gl: 'gl', hl: 'hl', num: 0 });
+    const response = await client.external.searchAPI.googleMapsSearch({ q: 'q', gl: 'gl', hl: 'hl', num: 0 });
   });
 
   test('googleScholarAuthorSearch: only required params', async () => {
-    const responsePromise = client.external.searchapi.googleScholarAuthorSearch({ author: 'author' });
+    const responsePromise = client.external.searchAPI.googleScholarAuthorSearch({ author: 'author' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -160,7 +160,7 @@ describe('resource searchapi', () => {
   });
 
   test('googleScholarAuthorSearch: required and optional params', async () => {
-    const response = await client.external.searchapi.googleScholarAuthorSearch({
+    const response = await client.external.searchAPI.googleScholarAuthorSearch({
       author: 'author',
       hl: 'hl',
       num: 0,
@@ -169,7 +169,7 @@ describe('resource searchapi', () => {
   });
 
   test('googleScholarCitations: only required params', async () => {
-    const responsePromise = client.external.searchapi.googleScholarCitations({ q: 'q' });
+    const responsePromise = client.external.searchAPI.googleScholarCitations({ q: 'q' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -180,7 +180,7 @@ describe('resource searchapi', () => {
   });
 
   test('googleScholarCitations: required and optional params', async () => {
-    const response = await client.external.searchapi.googleScholarCitations({
+    const response = await client.external.searchAPI.googleScholarCitations({
       q: 'q',
       hl: 'hl',
       num: 0,
@@ -189,7 +189,7 @@ describe('resource searchapi', () => {
   });
 
   test('googleScholarSearch: only required params', async () => {
-    const responsePromise = client.external.searchapi.googleScholarSearch({ q: 'q' });
+    const responsePromise = client.external.searchAPI.googleScholarSearch({ q: 'q' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -200,7 +200,7 @@ describe('resource searchapi', () => {
   });
 
   test('googleScholarSearch: required and optional params', async () => {
-    const response = await client.external.searchapi.googleScholarSearch({
+    const response = await client.external.searchAPI.googleScholarSearch({
       q: 'q',
       as_yhi: 0,
       as_ylo: 0,
@@ -211,7 +211,7 @@ describe('resource searchapi', () => {
   });
 
   test('googleSearch: only required params', async () => {
-    const responsePromise = client.external.searchapi.googleSearch({ q: 'q' });
+    const responsePromise = client.external.searchAPI.googleSearch({ q: 'q' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -222,7 +222,7 @@ describe('resource searchapi', () => {
   });
 
   test('googleSearch: required and optional params', async () => {
-    const response = await client.external.searchapi.googleSearch({
+    const response = await client.external.searchAPI.googleSearch({
       q: 'q',
       gl: 'gl',
       hl: 'hl',
@@ -232,7 +232,7 @@ describe('resource searchapi', () => {
   });
 
   test('locationSearch: only required params', async () => {
-    const responsePromise = client.external.searchapi.locationSearch({ q: 'q' });
+    const responsePromise = client.external.searchAPI.locationSearch({ q: 'q' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -243,6 +243,6 @@ describe('resource searchapi', () => {
   });
 
   test('locationSearch: required and optional params', async () => {
-    const response = await client.external.searchapi.locationSearch({ q: 'q', gl: 'gl', hl: 'hl', num: 0 });
+    const response = await client.external.searchAPI.locationSearch({ q: 'q', gl: 'gl', hl: 'hl', num: 0 });
   });
 });
