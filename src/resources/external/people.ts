@@ -4,22 +4,22 @@ import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 
-export class Apollo extends APIResource {
+export class People extends APIResource {
   /**
    * Search for companies using various filters and criteria
    */
   companiesSearch(
-    body: ApolloCompaniesSearchParams,
+    body: PersonCompaniesSearchParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<CompaniesSearchResponse> {
-    return this._client.post('/external/apollo/mixed_companies/search', { body, ...options });
+    return this._client.post('/external/people/mixed_companies/search', { body, ...options });
   }
 
   /**
    * Retrieve detailed information about a specific organization
    */
   organizationDetail(id: string, options?: Core.RequestOptions): Core.APIPromise<OrganizationDetail> {
-    return this._client.get(`/external/apollo/organizations/${id}`, options);
+    return this._client.get(`/external/people/organizations/${id}`, options);
   }
 
   /**
@@ -27,7 +27,7 @@ export class Apollo extends APIResource {
    */
   organizationJobPostings(
     organizationId: string,
-    query?: ApolloOrganizationJobPostingsParams,
+    query?: PersonOrganizationJobPostingsParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<JobPostingsResponse>;
   organizationJobPostings(
@@ -36,13 +36,13 @@ export class Apollo extends APIResource {
   ): Core.APIPromise<JobPostingsResponse>;
   organizationJobPostings(
     organizationId: string,
-    query: ApolloOrganizationJobPostingsParams | Core.RequestOptions = {},
+    query: PersonOrganizationJobPostingsParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<JobPostingsResponse> {
     if (isRequestOptions(query)) {
       return this.organizationJobPostings(organizationId, {}, query);
     }
-    return this._client.get(`/external/apollo/organizations/${organizationId}/job_postings`, {
+    return this._client.get(`/external/people/organizations/${organizationId}/job_postings`, {
       query,
       ...options,
     });
@@ -52,38 +52,38 @@ export class Apollo extends APIResource {
    * Enrich organization data using Apollo.io's organization enrichment
    */
   organizationsEnrich(
-    query?: ApolloOrganizationsEnrichParams,
+    query?: PersonOrganizationsEnrichParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<EnrichedOrganization>;
   organizationsEnrich(options?: Core.RequestOptions): Core.APIPromise<EnrichedOrganization>;
   organizationsEnrich(
-    query: ApolloOrganizationsEnrichParams | Core.RequestOptions = {},
+    query: PersonOrganizationsEnrichParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<EnrichedOrganization> {
     if (isRequestOptions(query)) {
       return this.organizationsEnrich({}, query);
     }
-    return this._client.get('/external/apollo/organizations/enrich', { query, ...options });
+    return this._client.get('/external/people/organizations/enrich', { query, ...options });
   }
 
   /**
    * Enrich a single person's profile data using Apollo.io's person matching
    */
   peopleMatch(
-    body: ApolloPeopleMatchParams,
+    body: PersonPeopleMatchParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<PeopleMatchResponse> {
-    return this._client.post('/external/apollo/people/match', { body, ...options });
+    return this._client.post('/external/people/people/match', { body, ...options });
   }
 
   /**
    * Search for people using various filters and criteria
    */
   peopleSearch(
-    body: ApolloPeopleSearchParams,
+    body: PersonPeopleSearchParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<PeopleSearchResponse> {
-    return this._client.post('/external/apollo/mixed_people/search', { body, ...options });
+    return this._client.post('/external/people/mixed_people/search', { body, ...options });
   }
 }
 
@@ -1004,7 +1004,7 @@ export interface PersonSearchResult {
   title?: string | null;
 }
 
-export interface ApolloCompaniesSearchParams {
+export interface PersonCompaniesSearchParams {
   /**
    * Organization department headcount ranges
    */
@@ -1091,7 +1091,7 @@ export interface ApolloCompaniesSearchParams {
   sort_by_field?: string | null;
 }
 
-export interface ApolloOrganizationJobPostingsParams {
+export interface PersonOrganizationJobPostingsParams {
   /**
    * Page number
    */
@@ -1103,7 +1103,7 @@ export interface ApolloOrganizationJobPostingsParams {
   per_page?: number | null;
 }
 
-export interface ApolloOrganizationsEnrichParams {
+export interface PersonOrganizationsEnrichParams {
   /**
    * Organization domain
    */
@@ -1115,7 +1115,7 @@ export interface ApolloOrganizationsEnrichParams {
   organization_name?: string | null;
 }
 
-export interface ApolloPeopleMatchParams {
+export interface PersonPeopleMatchParams {
   /**
    * Company domain
    */
@@ -1182,7 +1182,7 @@ export interface ApolloPeopleMatchParams {
   title?: string | null;
 }
 
-export interface ApolloPeopleSearchParams {
+export interface PersonPeopleSearchParams {
   /**
    * Contact email status
    */
@@ -1259,7 +1259,7 @@ export interface ApolloPeopleSearchParams {
   reveal_professional_emails?: boolean | null;
 }
 
-export declare namespace Apollo {
+export declare namespace People {
   export {
     type CompaniesSearchRequest as CompaniesSearchRequest,
     type CompaniesSearchResponse as CompaniesSearchResponse,
@@ -1276,10 +1276,10 @@ export declare namespace Apollo {
     type PeopleSearchResponse as PeopleSearchResponse,
     type PersonMatch as PersonMatch,
     type PersonSearchResult as PersonSearchResult,
-    type ApolloCompaniesSearchParams as ApolloCompaniesSearchParams,
-    type ApolloOrganizationJobPostingsParams as ApolloOrganizationJobPostingsParams,
-    type ApolloOrganizationsEnrichParams as ApolloOrganizationsEnrichParams,
-    type ApolloPeopleMatchParams as ApolloPeopleMatchParams,
-    type ApolloPeopleSearchParams as ApolloPeopleSearchParams,
+    type PersonCompaniesSearchParams as PersonCompaniesSearchParams,
+    type PersonOrganizationJobPostingsParams as PersonOrganizationJobPostingsParams,
+    type PersonOrganizationsEnrichParams as PersonOrganizationsEnrichParams,
+    type PersonPeopleMatchParams as PersonPeopleMatchParams,
+    type PersonPeopleSearchParams as PersonPeopleSearchParams,
   };
 }
