@@ -8,9 +8,9 @@ const client = new Structify({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource newsapi', () => {
+describe('resource news', () => {
   test('everything', async () => {
-    const responsePromise = client.external.newsapi.everything();
+    const responsePromise = client.external.news.everything();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -22,7 +22,7 @@ describe('resource newsapi', () => {
 
   test('everything: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.external.newsapi.everything({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.external.news.everything({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       Structify.NotFoundError,
     );
   });
@@ -30,7 +30,7 @@ describe('resource newsapi', () => {
   test('everything: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.external.newsapi.everything(
+      client.external.news.everything(
         {
           domains: 'domains',
           exclude_domains: 'exclude_domains',
@@ -50,7 +50,7 @@ describe('resource newsapi', () => {
   });
 
   test('sources', async () => {
-    const responsePromise = client.external.newsapi.sources();
+    const responsePromise = client.external.news.sources();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -62,7 +62,7 @@ describe('resource newsapi', () => {
 
   test('sources: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.external.newsapi.sources({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.external.news.sources({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       Structify.NotFoundError,
     );
   });
@@ -70,7 +70,7 @@ describe('resource newsapi', () => {
   test('sources: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.external.newsapi.sources(
+      client.external.news.sources(
         { category: 'category', country: 'country', language: 'language' },
         { path: '/_stainless_unknown_path' },
       ),
@@ -78,7 +78,7 @@ describe('resource newsapi', () => {
   });
 
   test('topHeadlines', async () => {
-    const responsePromise = client.external.newsapi.topHeadlines();
+    const responsePromise = client.external.news.topHeadlines();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -90,7 +90,7 @@ describe('resource newsapi', () => {
 
   test('topHeadlines: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.external.newsapi.topHeadlines({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.external.news.topHeadlines({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       Structify.NotFoundError,
     );
   });
@@ -98,7 +98,7 @@ describe('resource newsapi', () => {
   test('topHeadlines: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.external.newsapi.topHeadlines(
+      client.external.news.topHeadlines(
         { category: 'category', country: 'country', page: 0, page_size: 0, q: 'q', sources: 'sources' },
         { path: '/_stainless_unknown_path' },
       ),

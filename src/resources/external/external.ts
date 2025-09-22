@@ -1,15 +1,24 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
-import * as Core from '../../core';
-import * as ApolloAPI from './apollo';
+import * as NewsAPI from './news';
 import {
-  Apollo,
-  ApolloCompaniesSearchParams,
-  ApolloOrganizationJobPostingsParams,
-  ApolloOrganizationsEnrichParams,
-  ApolloPeopleMatchParams,
-  ApolloPeopleSearchParams,
+  EverythingQuery,
+  EverythingResponse,
+  News,
+  NewsArticle,
+  NewsEverythingParams,
+  NewsSource,
+  NewsSourceDetail,
+  NewsSourcesParams,
+  NewsTopHeadlinesParams,
+  SourcesQuery,
+  SourcesResponse,
+  TopHeadlinesQuery,
+  TopHeadlinesResponse,
+} from './news';
+import * as PeopleAPI from './people';
+import {
   CompaniesSearchRequest,
   CompaniesSearchResponse,
   CompanySearchResult,
@@ -19,30 +28,20 @@ import {
   JobPostingsResponse,
   OrganizationDetail,
   OrganizationEnrichQuery,
+  People,
   PeopleMatchRequest,
   PeopleMatchResponse,
   PeopleSearchRequest,
   PeopleSearchResponse,
+  PersonCompaniesSearchParams,
   PersonMatch,
+  PersonOrganizationJobPostingsParams,
+  PersonOrganizationsEnrichParams,
+  PersonPeopleMatchParams,
+  PersonPeopleSearchParams,
   PersonSearchResult,
-} from './apollo';
-import * as NewsapiAPI from './newsapi';
-import {
-  EverythingQuery,
-  EverythingResponse,
-  NewsArticle,
-  NewsSource,
-  NewsSourceDetail,
-  Newsapi,
-  NewsapiEverythingParams,
-  NewsapiSourcesParams,
-  NewsapiTopHeadlinesParams,
-  SourcesQuery,
-  SourcesResponse,
-  TopHeadlinesQuery,
-  TopHeadlinesResponse,
-} from './newsapi';
-import * as SearchapiAPI from './searchapi';
+} from './people';
+import * as SearchAPIAPI from './search-api';
 import {
   FlightCalendarRequest,
   FlightLocationSearchRequest,
@@ -62,98 +61,44 @@ import {
   PlaceReviewsRequest,
   ScholarAuthorSearchRequest,
   ScholarCiteRequest,
-  Searchapi,
-  SearchapiGoogleFlightsCalendarParams,
-  SearchapiGoogleFlightsCalendarResponse,
-  SearchapiGoogleFlightsLocationSearchParams,
-  SearchapiGoogleFlightsLocationSearchResponse,
-  SearchapiGoogleFlightsSearchParams,
-  SearchapiGoogleFlightsSearchResponse,
-  SearchapiGoogleMapsPlaceDetailsParams,
-  SearchapiGoogleMapsPlaceDetailsResponse,
-  SearchapiGoogleMapsPlacePhotosParams,
-  SearchapiGoogleMapsPlacePhotosResponse,
-  SearchapiGoogleMapsPlaceReviewsParams,
-  SearchapiGoogleMapsPlaceReviewsResponse,
-  SearchapiGoogleMapsSearchParams,
-  SearchapiGoogleMapsSearchResponse,
-  SearchapiGoogleScholarAuthorSearchParams,
-  SearchapiGoogleScholarAuthorSearchResponse,
-  SearchapiGoogleScholarCitationsParams,
-  SearchapiGoogleScholarCitationsResponse,
-  SearchapiGoogleScholarSearchParams,
-  SearchapiGoogleScholarSearchResponse,
-  SearchapiGoogleSearchParams,
-  SearchapiLocationSearchParams,
-} from './searchapi';
+  SearchAPI,
+  SearchAPIGoogleFlightsCalendarParams,
+  SearchAPIGoogleFlightsCalendarResponse,
+  SearchAPIGoogleFlightsLocationSearchParams,
+  SearchAPIGoogleFlightsLocationSearchResponse,
+  SearchAPIGoogleFlightsSearchParams,
+  SearchAPIGoogleFlightsSearchResponse,
+  SearchAPIGoogleMapsPlaceDetailsParams,
+  SearchAPIGoogleMapsPlaceDetailsResponse,
+  SearchAPIGoogleMapsPlacePhotosParams,
+  SearchAPIGoogleMapsPlacePhotosResponse,
+  SearchAPIGoogleMapsPlaceReviewsParams,
+  SearchAPIGoogleMapsPlaceReviewsResponse,
+  SearchAPIGoogleMapsSearchParams,
+  SearchAPIGoogleMapsSearchResponse,
+  SearchAPIGoogleScholarAuthorSearchParams,
+  SearchAPIGoogleScholarAuthorSearchResponse,
+  SearchAPIGoogleScholarCitationsParams,
+  SearchAPIGoogleScholarCitationsResponse,
+  SearchAPIGoogleScholarSearchParams,
+  SearchAPIGoogleScholarSearchResponse,
+  SearchAPIGoogleSearchParams,
+  SearchAPILocationSearchParams,
+} from './search-api';
 
 export class External extends APIResource {
-  newsapi: NewsapiAPI.Newsapi = new NewsapiAPI.Newsapi(this._client);
-  searchapi: SearchapiAPI.Searchapi = new SearchapiAPI.Searchapi(this._client);
-  apollo: ApolloAPI.Apollo = new ApolloAPI.Apollo(this._client);
-
-  /**
-   * This endpoint provides web search functionality by leveraging the existing agent
-   * search infrastructure.
-   */
-  search(body: ExternalSearchParams, options?: Core.RequestOptions): Core.APIPromise<ExternalSearchResponse> {
-    return this._client.post('/external/search', { body, ...options });
-  }
+  news: NewsAPI.News = new NewsAPI.News(this._client);
+  searchAPI: SearchAPIAPI.SearchAPI = new SearchAPIAPI.SearchAPI(this._client);
+  people: PeopleAPI.People = new PeopleAPI.People(this._client);
 }
 
-export interface SearchRequest {
-  /**
-   * The search query
-   */
-  query: string;
-}
-
-export type ExternalSearchResponse = Array<ExternalSearchResponse.ExternalSearchResponseItem>;
-
-export namespace ExternalSearchResponse {
-  export interface ExternalSearchResponseItem {
-    /**
-     * Description/snippet of the search result
-     */
-    description: string;
-
-    /**
-     * The search query that produced this result
-     */
-    query: string;
-
-    /**
-     * Title of the search result
-     */
-    title: string;
-
-    /**
-     * URL of the search result
-     */
-    url: string;
-  }
-}
-
-export interface ExternalSearchParams {
-  /**
-   * The search query
-   */
-  query: string;
-}
-
-External.Newsapi = Newsapi;
-External.Searchapi = Searchapi;
-External.Apollo = Apollo;
+External.News = News;
+External.SearchAPI = SearchAPI;
+External.People = People;
 
 export declare namespace External {
   export {
-    type SearchRequest as SearchRequest,
-    type ExternalSearchResponse as ExternalSearchResponse,
-    type ExternalSearchParams as ExternalSearchParams,
-  };
-
-  export {
-    Newsapi as Newsapi,
+    News as News,
     type EverythingQuery as EverythingQuery,
     type EverythingResponse as EverythingResponse,
     type NewsArticle as NewsArticle,
@@ -163,13 +108,13 @@ export declare namespace External {
     type SourcesResponse as SourcesResponse,
     type TopHeadlinesQuery as TopHeadlinesQuery,
     type TopHeadlinesResponse as TopHeadlinesResponse,
-    type NewsapiEverythingParams as NewsapiEverythingParams,
-    type NewsapiSourcesParams as NewsapiSourcesParams,
-    type NewsapiTopHeadlinesParams as NewsapiTopHeadlinesParams,
+    type NewsEverythingParams as NewsEverythingParams,
+    type NewsSourcesParams as NewsSourcesParams,
+    type NewsTopHeadlinesParams as NewsTopHeadlinesParams,
   };
 
   export {
-    Searchapi as Searchapi,
+    SearchAPI as SearchAPI,
     type FlightCalendarRequest as FlightCalendarRequest,
     type FlightLocationSearchRequest as FlightLocationSearchRequest,
     type GoogleFlightsSearchRequest as GoogleFlightsSearchRequest,
@@ -188,32 +133,32 @@ export declare namespace External {
     type PlaceReviewsRequest as PlaceReviewsRequest,
     type ScholarAuthorSearchRequest as ScholarAuthorSearchRequest,
     type ScholarCiteRequest as ScholarCiteRequest,
-    type SearchapiGoogleFlightsCalendarResponse as SearchapiGoogleFlightsCalendarResponse,
-    type SearchapiGoogleFlightsLocationSearchResponse as SearchapiGoogleFlightsLocationSearchResponse,
-    type SearchapiGoogleFlightsSearchResponse as SearchapiGoogleFlightsSearchResponse,
-    type SearchapiGoogleMapsPlaceDetailsResponse as SearchapiGoogleMapsPlaceDetailsResponse,
-    type SearchapiGoogleMapsPlacePhotosResponse as SearchapiGoogleMapsPlacePhotosResponse,
-    type SearchapiGoogleMapsPlaceReviewsResponse as SearchapiGoogleMapsPlaceReviewsResponse,
-    type SearchapiGoogleMapsSearchResponse as SearchapiGoogleMapsSearchResponse,
-    type SearchapiGoogleScholarAuthorSearchResponse as SearchapiGoogleScholarAuthorSearchResponse,
-    type SearchapiGoogleScholarCitationsResponse as SearchapiGoogleScholarCitationsResponse,
-    type SearchapiGoogleScholarSearchResponse as SearchapiGoogleScholarSearchResponse,
-    type SearchapiGoogleFlightsCalendarParams as SearchapiGoogleFlightsCalendarParams,
-    type SearchapiGoogleFlightsLocationSearchParams as SearchapiGoogleFlightsLocationSearchParams,
-    type SearchapiGoogleFlightsSearchParams as SearchapiGoogleFlightsSearchParams,
-    type SearchapiGoogleMapsPlaceDetailsParams as SearchapiGoogleMapsPlaceDetailsParams,
-    type SearchapiGoogleMapsPlacePhotosParams as SearchapiGoogleMapsPlacePhotosParams,
-    type SearchapiGoogleMapsPlaceReviewsParams as SearchapiGoogleMapsPlaceReviewsParams,
-    type SearchapiGoogleMapsSearchParams as SearchapiGoogleMapsSearchParams,
-    type SearchapiGoogleScholarAuthorSearchParams as SearchapiGoogleScholarAuthorSearchParams,
-    type SearchapiGoogleScholarCitationsParams as SearchapiGoogleScholarCitationsParams,
-    type SearchapiGoogleScholarSearchParams as SearchapiGoogleScholarSearchParams,
-    type SearchapiGoogleSearchParams as SearchapiGoogleSearchParams,
-    type SearchapiLocationSearchParams as SearchapiLocationSearchParams,
+    type SearchAPIGoogleFlightsCalendarResponse as SearchAPIGoogleFlightsCalendarResponse,
+    type SearchAPIGoogleFlightsLocationSearchResponse as SearchAPIGoogleFlightsLocationSearchResponse,
+    type SearchAPIGoogleFlightsSearchResponse as SearchAPIGoogleFlightsSearchResponse,
+    type SearchAPIGoogleMapsPlaceDetailsResponse as SearchAPIGoogleMapsPlaceDetailsResponse,
+    type SearchAPIGoogleMapsPlacePhotosResponse as SearchAPIGoogleMapsPlacePhotosResponse,
+    type SearchAPIGoogleMapsPlaceReviewsResponse as SearchAPIGoogleMapsPlaceReviewsResponse,
+    type SearchAPIGoogleMapsSearchResponse as SearchAPIGoogleMapsSearchResponse,
+    type SearchAPIGoogleScholarAuthorSearchResponse as SearchAPIGoogleScholarAuthorSearchResponse,
+    type SearchAPIGoogleScholarCitationsResponse as SearchAPIGoogleScholarCitationsResponse,
+    type SearchAPIGoogleScholarSearchResponse as SearchAPIGoogleScholarSearchResponse,
+    type SearchAPIGoogleFlightsCalendarParams as SearchAPIGoogleFlightsCalendarParams,
+    type SearchAPIGoogleFlightsLocationSearchParams as SearchAPIGoogleFlightsLocationSearchParams,
+    type SearchAPIGoogleFlightsSearchParams as SearchAPIGoogleFlightsSearchParams,
+    type SearchAPIGoogleMapsPlaceDetailsParams as SearchAPIGoogleMapsPlaceDetailsParams,
+    type SearchAPIGoogleMapsPlacePhotosParams as SearchAPIGoogleMapsPlacePhotosParams,
+    type SearchAPIGoogleMapsPlaceReviewsParams as SearchAPIGoogleMapsPlaceReviewsParams,
+    type SearchAPIGoogleMapsSearchParams as SearchAPIGoogleMapsSearchParams,
+    type SearchAPIGoogleScholarAuthorSearchParams as SearchAPIGoogleScholarAuthorSearchParams,
+    type SearchAPIGoogleScholarCitationsParams as SearchAPIGoogleScholarCitationsParams,
+    type SearchAPIGoogleScholarSearchParams as SearchAPIGoogleScholarSearchParams,
+    type SearchAPIGoogleSearchParams as SearchAPIGoogleSearchParams,
+    type SearchAPILocationSearchParams as SearchAPILocationSearchParams,
   };
 
   export {
-    Apollo as Apollo,
+    People as People,
     type CompaniesSearchRequest as CompaniesSearchRequest,
     type CompaniesSearchResponse as CompaniesSearchResponse,
     type CompanySearchResult as CompanySearchResult,
@@ -229,10 +174,10 @@ export declare namespace External {
     type PeopleSearchResponse as PeopleSearchResponse,
     type PersonMatch as PersonMatch,
     type PersonSearchResult as PersonSearchResult,
-    type ApolloCompaniesSearchParams as ApolloCompaniesSearchParams,
-    type ApolloOrganizationJobPostingsParams as ApolloOrganizationJobPostingsParams,
-    type ApolloOrganizationsEnrichParams as ApolloOrganizationsEnrichParams,
-    type ApolloPeopleMatchParams as ApolloPeopleMatchParams,
-    type ApolloPeopleSearchParams as ApolloPeopleSearchParams,
+    type PersonCompaniesSearchParams as PersonCompaniesSearchParams,
+    type PersonOrganizationJobPostingsParams as PersonOrganizationJobPostingsParams,
+    type PersonOrganizationsEnrichParams as PersonOrganizationsEnrichParams,
+    type PersonPeopleMatchParams as PersonPeopleMatchParams,
+    type PersonPeopleSearchParams as PersonPeopleSearchParams,
   };
 }

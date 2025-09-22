@@ -307,12 +307,7 @@ import {
   RelationshipMergeStrategy,
   Strategy,
 } from './resources/datasets/datasets';
-import {
-  External,
-  ExternalSearchParams,
-  ExternalSearchResponse,
-  SearchRequest,
-} from './resources/external/external';
+import { External } from './resources/external/external';
 import {
   SurveySubmissionRequest,
   SurveySubmissionResponse,
@@ -911,12 +906,7 @@ export declare namespace Structify {
     type Table as Table,
   };
 
-  export {
-    External as External,
-    type SearchRequest as SearchRequest,
-    type ExternalSearchResponse as ExternalSearchResponse,
-    type ExternalSearchParams as ExternalSearchParams,
-  };
+  export { External as External };
 }
 
 export { toFile, fileFromPath } from './uploads';
