@@ -32,7 +32,6 @@ import {
   ChatSessionWithMessages,
   ChatTogglePublicParams,
   ChatUpdateSessionParams,
-  ChatWsParams,
   CopyChatSessionRequest,
   CreateChatSessionRequest,
   CreateChatSessionResponse,
@@ -44,7 +43,6 @@ import {
   Message,
   TogglePublicRequest,
   TogglePublicResponse,
-  WebsocketChatEvent,
 } from './resources/chat';
 import { Code, CodeGenerateCodeParams, GenerateCodeRequest } from './resources/code';
 import {
@@ -600,7 +598,6 @@ export declare namespace Structify {
     type Message as Message,
     type TogglePublicRequest as TogglePublicRequest,
     type TogglePublicResponse as TogglePublicResponse,
-    type WebsocketChatEvent as WebsocketChatEvent,
     type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
     type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
     type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
@@ -616,7 +613,6 @@ export declare namespace Structify {
     type ChatLoadFilesParams as ChatLoadFilesParams,
     type ChatTogglePublicParams as ChatTogglePublicParams,
     type ChatUpdateSessionParams as ChatUpdateSessionParams,
-    type ChatWsParams as ChatWsParams,
   };
 
   export {

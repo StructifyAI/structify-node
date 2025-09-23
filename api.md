@@ -57,7 +57,6 @@ Types:
 - <code><a href="./src/resources/chat.ts">Message</a></code>
 - <code><a href="./src/resources/chat.ts">TogglePublicRequest</a></code>
 - <code><a href="./src/resources/chat.ts">TogglePublicResponse</a></code>
-- <code><a href="./src/resources/chat.ts">WebsocketChatEvent</a></code>
 - <code><a href="./src/resources/chat.ts">ChatAddGitCommitResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatCopyNodeOutputByCodeHashResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetGitCommitResponse</a></code>
@@ -83,7 +82,6 @@ Methods:
 - <code title="delete /chat/sessions/{chat_id}/collaborators/{user_id}">client.chat.<a href="./src/resources/chat.ts">removeCollaborator</a>(chatId, userId) -> void</code>
 - <code title="put /chat/sessions/{session_id}/public">client.chat.<a href="./src/resources/chat.ts">togglePublic</a>(sessionId, { ...params }) -> TogglePublicResponse</code>
 - <code title="patch /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">updateSession</a>(sessionId, { ...params }) -> ChatSession</code>
-- <code title="get /chat/ws">client.chat.<a href="./src/resources/chat.ts">ws</a>({ ...params }) -> void</code>
 
 # Teams
 
