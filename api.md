@@ -40,7 +40,6 @@ Types:
 - <code><a href="./src/resources/chat.ts">AddChatMessageRequest</a></code>
 - <code><a href="./src/resources/chat.ts">AddChatMessageResponse</a></code>
 - <code><a href="./src/resources/chat.ts">AddCollaboratorRequest</a></code>
-- <code><a href="./src/resources/chat.ts">ChatEvent</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSession</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSessionRole</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSessionUser</a></code>
@@ -56,6 +55,7 @@ Types:
 - <code><a href="./src/resources/chat.ts">Message</a></code>
 - <code><a href="./src/resources/chat.ts">TogglePublicRequest</a></code>
 - <code><a href="./src/resources/chat.ts">TogglePublicResponse</a></code>
+- <code><a href="./src/resources/chat.ts">WebsocketChatEvent</a></code>
 - <code><a href="./src/resources/chat.ts">ChatAddGitCommitResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatCopyNodeOutputByCodeHashResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetGitCommitResponse</a></code>
@@ -81,6 +81,7 @@ Methods:
 - <code title="delete /chat/sessions/{chat_id}/collaborators/{user_id}">client.chat.<a href="./src/resources/chat.ts">removeCollaborator</a>(chatId, userId) -> void</code>
 - <code title="put /chat/sessions/{session_id}/public">client.chat.<a href="./src/resources/chat.ts">togglePublic</a>(sessionId, { ...params }) -> TogglePublicResponse</code>
 - <code title="patch /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">updateSession</a>(sessionId, { ...params }) -> ChatSession</code>
+- <code title="get /chat/ws">client.chat.<a href="./src/resources/chat.ts">ws</a>({ ...params }) -> void</code>
 
 # Teams
 
@@ -386,6 +387,7 @@ Methods:
 - <code title="post /sessions/{session_id}/edges">client.sessions.<a href="./src/resources/sessions.ts">createEdge</a>(sessionId, { ...params }) -> WorkflowSessionEdge</code>
 - <code title="post /sessions/{session_id}/nodes">client.sessions.<a href="./src/resources/sessions.ts">createNode</a>(sessionId, { ...params }) -> WorkflowSessionNode</code>
 - <code title="post /sessions">client.sessions.<a href="./src/resources/sessions.ts">createSession</a>({ ...params }) -> WorkflowSession</code>
+- <code title="post /sessions/{session_id}/dag_ready">client.sessions.<a href="./src/resources/sessions.ts">finalizeDag</a>(sessionId) -> void</code>
 - <code title="get /sessions/{session_id}/dag">client.sessions.<a href="./src/resources/sessions.ts">getDag</a>(sessionId) -> WorkflowDag</code>
 - <code title="get /sessions/nodes/{node_id}/events">client.sessions.<a href="./src/resources/sessions.ts">getEvents</a>(nodeId, { ...params }) -> SessionGetEventsResponse</code>
 - <code title="get /sessions/nodes/{node_id}/output_data">client.sessions.<a href="./src/resources/sessions.ts">getNodeOutputData</a>(nodeId) -> Response</code>
@@ -537,7 +539,7 @@ Types:
 
 Methods:
 
-- <code title="post /sandbox/{chat_id}">client.sandbox.<a href="./src/resources/sandbox.ts">create</a>(chatId) -> Sandbox</code>
+- <code title="post /sandbox/{chat_id}">client.sandbox.<a href="./src/resources/sandbox.ts">create</a>(chatId, { ...params }) -> Sandbox</code>
 - <code title="get /sandbox/list/{chat_id}">client.sandbox.<a href="./src/resources/sandbox.ts">list</a>(chatId) -> SandboxListResponse</code>
 - <code title="post /sandbox/live/{chat_id}">client.sandbox.<a href="./src/resources/sandbox.ts">get</a>(chatId, { ...params }) -> Sandbox</code>
 - <code title="patch /sandbox/{sandbox_id}/status">client.sandbox.<a href="./src/resources/sandbox.ts">updateStatus</a>(sandboxId, { ...params }) -> Sandbox</code>
