@@ -176,17 +176,6 @@ export class Chat extends APIResource {
   ): Core.APIPromise<ChatSession> {
     return this._client.patch(`/chat/sessions/${sessionId}`, { body, ...options });
   }
-
-  /**
-   * WebSocket endpoint for chat session events
-   */
-  ws(query: ChatWsParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.get('/chat/ws', {
-      query,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
 }
 
 export interface AddChatMessageRequest {
@@ -816,64 +805,6 @@ export interface TogglePublicResponse {
 }
 
 /**
- * Events that can be sent through the chat WebSocket
- */
-export type WebsocketChatEvent =
-  | WebsocketChatEvent.ConnectionEstablished
-  | WebsocketChatEvent.WorkflowDagReady
-  | WebsocketChatEvent.WorkflowProgress
-  | WebsocketChatEvent.WorkflowCompleted
-  | WebsocketChatEvent.WorkflowError;
-
-export namespace WebsocketChatEvent {
-  export interface ConnectionEstablished {
-    chat_session_id: string;
-
-    event_type: 'connection_established';
-  }
-
-  export interface WorkflowDagReady {
-    chat_session_id: string;
-
-    event_type: 'workflow_dag_ready';
-
-    workflow_session_id: string;
-  }
-
-  export interface WorkflowProgress {
-    chat_session_id: string;
-
-    current_step: string;
-
-    event_type: 'workflow_progress';
-
-    progress_percentage: number;
-
-    workflow_session_id: string;
-  }
-
-  export interface WorkflowCompleted {
-    chat_session_id: string;
-
-    completed_at: string;
-
-    event_type: 'workflow_completed';
-
-    workflow_session_id: string;
-  }
-
-  export interface WorkflowError {
-    chat_session_id: string;
-
-    error_message: string;
-
-    event_type: 'workflow_error';
-
-    workflow_session_id: string;
-  }
-}
-
-/**
  * Response structure for adding a git commit
  */
 export interface ChatAddGitCommitResponse {
@@ -1027,13 +958,6 @@ export interface ChatUpdateSessionParams {
   project_id?: string | null;
 }
 
-export interface ChatWsParams {
-  /**
-   * Chat session ID to subscribe to
-   */
-  chat_session_id: string;
-}
-
 export declare namespace Chat {
   export {
     type AddChatMessageRequest as AddChatMessageRequest,
@@ -1054,7 +978,6 @@ export declare namespace Chat {
     type Message as Message,
     type TogglePublicRequest as TogglePublicRequest,
     type TogglePublicResponse as TogglePublicResponse,
-    type WebsocketChatEvent as WebsocketChatEvent,
     type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
     type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
     type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
@@ -1070,6 +993,5 @@ export declare namespace Chat {
     type ChatLoadFilesParams as ChatLoadFilesParams,
     type ChatTogglePublicParams as ChatTogglePublicParams,
     type ChatUpdateSessionParams as ChatUpdateSessionParams,
-    type ChatWsParams as ChatWsParams,
   };
 }

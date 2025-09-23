@@ -21,7 +21,6 @@ export {
   type Message,
   type TogglePublicRequest,
   type TogglePublicResponse,
-  type WebsocketChatEvent,
   type ChatAddGitCommitResponse,
   type ChatCopyNodeOutputByCodeHashResponse,
   type ChatGetGitCommitResponse,
@@ -37,7 +36,6 @@ export {
   type ChatLoadFilesParams,
   type ChatTogglePublicParams,
   type ChatUpdateSessionParams,
-  type ChatWsParams,
 } from './chat';
 export { Code, type GenerateCodeRequest, type CodeGenerateCodeParams } from './code';
 export {
