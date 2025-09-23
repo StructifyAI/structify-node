@@ -6,7 +6,6 @@ export {
   type AddChatMessageRequest,
   type AddChatMessageResponse,
   type AddCollaboratorRequest,
-  type ChatEvent,
   type ChatSession,
   type ChatSessionRole,
   type ChatSessionUser,
@@ -22,6 +21,7 @@ export {
   type Message,
   type TogglePublicRequest,
   type TogglePublicResponse,
+  type WebsocketChatEvent,
   type ChatAddGitCommitResponse,
   type ChatCopyNodeOutputByCodeHashResponse,
   type ChatGetGitCommitResponse,
@@ -37,6 +37,7 @@ export {
   type ChatLoadFilesParams,
   type ChatTogglePublicParams,
   type ChatUpdateSessionParams,
+  type ChatWsParams,
 } from './chat';
 export { Code, type GenerateCodeRequest, type CodeGenerateCodeParams } from './code';
 export {
@@ -171,6 +172,7 @@ export {
   type GetSandboxRequest,
   type Sandbox,
   type SandboxListResponse,
+  type SandboxCreateParams,
   type SandboxGetParams,
   type SandboxUpdateStatusParams,
 } from './sandbox';

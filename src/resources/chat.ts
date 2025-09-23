@@ -176,6 +176,17 @@ export class Chat extends APIResource {
   ): Core.APIPromise<ChatSession> {
     return this._client.patch(`/chat/sessions/${sessionId}`, { body, ...options });
   }
+
+  /**
+   * WebSocket endpoint for chat session events
+   */
+  ws(query: ChatWsParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.get('/chat/ws', {
+      query,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
 }
 
 export interface AddChatMessageRequest {
@@ -213,308 +224,6 @@ export interface AddCollaboratorRequest {
   email: string;
 
   role: ChatSessionRole;
-}
-
-/**
- * Events in a chat session timeline, including messages and unified tool
- * calls/results
- */
-export type ChatEvent =
-  | ChatEvent.TextMessage
-  | ChatEvent.Thinking
-  | ChatEvent.File
-  | ChatEvent.Action
-  | ChatEvent.Connector
-  | ChatEvent.CodeProject
-  | ChatEvent.DeleteFile
-  | ChatEvent.MoveFile
-  | ChatEvent.ToolCall;
-
-export namespace ChatEvent {
-  export interface TextMessage {
-    TextMessage: TextMessage.TextMessage;
-  }
-
-  export namespace TextMessage {
-    export interface TextMessage {
-      message: string;
-    }
-  }
-
-  export interface Thinking {
-    Thinking: Thinking.Thinking;
-  }
-
-  export namespace Thinking {
-    export interface Thinking {
-      content: string;
-    }
-  }
-
-  export interface File {
-    /**
-     * The file event can't be serialized to the database safely without the content.
-     * When streaming, we start with the path only, then add the content as we go.
-     */
-    File: File.File;
-  }
-
-  export namespace File {
-    /**
-     * The file event can't be serialized to the database safely without the content.
-     * When streaming, we start with the path only, then add the content as we go.
-     */
-    export interface File {
-      path: string;
-
-      content?: string | null;
-    }
-  }
-
-  export interface Action {
-    Action: Action.Action;
-  }
-
-  export namespace Action {
-    export interface Action {
-      actions: Array<Action.Action>;
-    }
-
-    export namespace Action {
-      /**
-       * Action definition
-       */
-      export interface Action {
-        description: string;
-
-        name: string;
-      }
-    }
-  }
-
-  export interface Connector {
-    Connector: Connector.Connector;
-  }
-
-  export namespace Connector {
-    export interface Connector {
-      env_vars: Array<string>;
-
-      name: string;
-
-      description?: string | null;
-    }
-  }
-
-  export interface CodeProject {
-    CodeProject: CodeProject.CodeProject;
-  }
-
-  export namespace CodeProject {
-    export interface CodeProject {
-      /**
-       * CodeProject attributes
-       */
-      attributes: CodeProject.Attributes;
-    }
-
-    export namespace CodeProject {
-      /**
-       * CodeProject attributes
-       */
-      export interface Attributes {
-        id?: string | null;
-
-        badge?: string | null;
-
-        label?: string | null;
-
-        version?: string | null;
-      }
-    }
-  }
-
-  export interface DeleteFile {
-    DeleteFile: DeleteFile.DeleteFile;
-  }
-
-  export namespace DeleteFile {
-    export interface DeleteFile {
-      file: string;
-    }
-  }
-
-  export interface MoveFile {
-    MoveFile: MoveFile.MoveFile;
-  }
-
-  export namespace MoveFile {
-    export interface MoveFile {
-      file: string;
-
-      new_path: string;
-    }
-  }
-
-  export interface ToolCall {
-    ToolCall:
-      | ToolCall.UnionMember0
-      | ToolCall.UnionMember1
-      | ToolCall.UnionMember2
-      | ToolCall.UnionMember3
-      | ToolCall.UnionMember4
-      | ToolCall.UnionMember5
-      | ToolCall.UnionMember6
-      | ToolCall.UnionMember7;
-  }
-
-  export namespace ToolCall {
-    export interface UnionMember0 {
-      input: UnionMember0.Input;
-
-      name: 'WebSearch';
-
-      result_id?: string | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember0 {
-      export interface Input {
-        query: string;
-      }
-    }
-
-    export interface UnionMember1 {
-      input: UnionMember1.Input;
-
-      name: 'WebNavigate';
-
-      result_id?: string | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember1 {
-      export interface Input {
-        url: string;
-      }
-    }
-
-    export interface UnionMember2 {
-      input: UnionMember2.Input;
-
-      name: 'InspectDAG';
-
-      result_id?: string | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember2 {
-      export interface Input {
-        node_function_name: string;
-      }
-    }
-
-    export interface UnionMember3 {
-      input: UnionMember3.Input;
-
-      name: 'Connector';
-
-      result_id?: string | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember3 {
-      export interface Input {
-        env_vars: Array<string>;
-
-        name: string;
-
-        description?: string | null;
-      }
-    }
-
-    export interface UnionMember4 {
-      input: UnionMember4.Input;
-
-      name: 'DeleteFile';
-
-      result_id?: string | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember4 {
-      export interface Input {
-        file: string;
-      }
-    }
-
-    export interface UnionMember5 {
-      input: UnionMember5.Input;
-
-      name: 'MoveFile';
-
-      result_id?: string | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember5 {
-      export interface Input {
-        file: string;
-
-        new_path: string;
-      }
-    }
-
-    export interface UnionMember6 {
-      input: UnionMember6.Input;
-
-      name: 'RunBash';
-
-      result_id?: string | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember6 {
-      export interface Input {
-        command: string;
-
-        connectors: Array<string>;
-
-        env?: { [key: string]: string } | null;
-
-        working_dir?: string | null;
-      }
-    }
-
-    export interface UnionMember7 {
-      input: UnionMember7.Input;
-
-      name: 'RunPython';
-
-      result_id?: string | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember7 {
-      export interface Input {
-        code: string;
-
-        connectors: Array<string>;
-
-        env?: { [key: string]: string } | null;
-
-        working_dir?: string | null;
-      }
-    }
-  }
 }
 
 export interface ChatSession {
@@ -708,7 +417,16 @@ export namespace GetChatSessionResponse {
        * Events in a chat session timeline, including messages and unified tool
        * calls/results
        */
-      content: ChatAPI.ChatEvent;
+      content:
+        | Message.TextMessage
+        | Message.Thinking
+        | Message.File
+        | Message.Action
+        | Message.Connector
+        | Message.CodeProject
+        | Message.DeleteFile
+        | Message.MoveFile
+        | Message.ToolCall;
 
       created_at: string;
 
@@ -717,6 +435,293 @@ export namespace GetChatSessionResponse {
       timestamp: string;
 
       commit_hash?: string | null;
+    }
+
+    export namespace Message {
+      export interface TextMessage {
+        TextMessage: TextMessage.TextMessage;
+      }
+
+      export namespace TextMessage {
+        export interface TextMessage {
+          message: string;
+        }
+      }
+
+      export interface Thinking {
+        Thinking: Thinking.Thinking;
+      }
+
+      export namespace Thinking {
+        export interface Thinking {
+          content: string;
+        }
+      }
+
+      export interface File {
+        /**
+         * The file event can't be serialized to the database safely without the content.
+         * When streaming, we start with the path only, then add the content as we go.
+         */
+        File: File.File;
+      }
+
+      export namespace File {
+        /**
+         * The file event can't be serialized to the database safely without the content.
+         * When streaming, we start with the path only, then add the content as we go.
+         */
+        export interface File {
+          path: string;
+
+          content?: string | null;
+        }
+      }
+
+      export interface Action {
+        Action: Action.Action;
+      }
+
+      export namespace Action {
+        export interface Action {
+          actions: Array<Action.Action>;
+        }
+
+        export namespace Action {
+          /**
+           * Action definition
+           */
+          export interface Action {
+            description: string;
+
+            name: string;
+          }
+        }
+      }
+
+      export interface Connector {
+        Connector: Connector.Connector;
+      }
+
+      export namespace Connector {
+        export interface Connector {
+          env_vars: Array<string>;
+
+          name: string;
+
+          description?: string | null;
+        }
+      }
+
+      export interface CodeProject {
+        CodeProject: CodeProject.CodeProject;
+      }
+
+      export namespace CodeProject {
+        export interface CodeProject {
+          /**
+           * CodeProject attributes
+           */
+          attributes: CodeProject.Attributes;
+        }
+
+        export namespace CodeProject {
+          /**
+           * CodeProject attributes
+           */
+          export interface Attributes {
+            id?: string | null;
+
+            badge?: string | null;
+
+            label?: string | null;
+
+            version?: string | null;
+          }
+        }
+      }
+
+      export interface DeleteFile {
+        DeleteFile: DeleteFile.DeleteFile;
+      }
+
+      export namespace DeleteFile {
+        export interface DeleteFile {
+          file: string;
+        }
+      }
+
+      export interface MoveFile {
+        MoveFile: MoveFile.MoveFile;
+      }
+
+      export namespace MoveFile {
+        export interface MoveFile {
+          file: string;
+
+          new_path: string;
+        }
+      }
+
+      export interface ToolCall {
+        ToolCall:
+          | ToolCall.UnionMember0
+          | ToolCall.UnionMember1
+          | ToolCall.UnionMember2
+          | ToolCall.UnionMember3
+          | ToolCall.UnionMember4
+          | ToolCall.UnionMember5
+          | ToolCall.UnionMember6
+          | ToolCall.UnionMember7;
+      }
+
+      export namespace ToolCall {
+        export interface UnionMember0 {
+          input: UnionMember0.Input;
+
+          name: 'WebSearch';
+
+          result_id?: string | null;
+
+          result_text?: string | null;
+        }
+
+        export namespace UnionMember0 {
+          export interface Input {
+            query: string;
+          }
+        }
+
+        export interface UnionMember1 {
+          input: UnionMember1.Input;
+
+          name: 'WebNavigate';
+
+          result_id?: string | null;
+
+          result_text?: string | null;
+        }
+
+        export namespace UnionMember1 {
+          export interface Input {
+            url: string;
+          }
+        }
+
+        export interface UnionMember2 {
+          input: UnionMember2.Input;
+
+          name: 'InspectDAG';
+
+          result_id?: string | null;
+
+          result_text?: string | null;
+        }
+
+        export namespace UnionMember2 {
+          export interface Input {
+            node_function_name: string;
+          }
+        }
+
+        export interface UnionMember3 {
+          input: UnionMember3.Input;
+
+          name: 'Connector';
+
+          result_id?: string | null;
+
+          result_text?: string | null;
+        }
+
+        export namespace UnionMember3 {
+          export interface Input {
+            env_vars: Array<string>;
+
+            name: string;
+
+            description?: string | null;
+          }
+        }
+
+        export interface UnionMember4 {
+          input: UnionMember4.Input;
+
+          name: 'DeleteFile';
+
+          result_id?: string | null;
+
+          result_text?: string | null;
+        }
+
+        export namespace UnionMember4 {
+          export interface Input {
+            file: string;
+          }
+        }
+
+        export interface UnionMember5 {
+          input: UnionMember5.Input;
+
+          name: 'MoveFile';
+
+          result_id?: string | null;
+
+          result_text?: string | null;
+        }
+
+        export namespace UnionMember5 {
+          export interface Input {
+            file: string;
+
+            new_path: string;
+          }
+        }
+
+        export interface UnionMember6 {
+          input: UnionMember6.Input;
+
+          name: 'RunBash';
+
+          result_id?: string | null;
+
+          result_text?: string | null;
+        }
+
+        export namespace UnionMember6 {
+          export interface Input {
+            command: string;
+
+            connectors: Array<string>;
+
+            env?: { [key: string]: string } | null;
+
+            working_dir?: string | null;
+          }
+        }
+
+        export interface UnionMember7 {
+          input: UnionMember7.Input;
+
+          name: 'RunPython';
+
+          result_id?: string | null;
+
+          result_text?: string | null;
+        }
+
+        export namespace UnionMember7 {
+          export interface Input {
+            code: string;
+
+            connectors: Array<string>;
+
+            env?: { [key: string]: string } | null;
+
+            working_dir?: string | null;
+          }
+        }
+      }
     }
   }
 }
@@ -808,6 +813,64 @@ export interface TogglePublicRequest {
 
 export interface TogglePublicResponse {
   is_public: boolean;
+}
+
+/**
+ * Events that can be sent through the chat WebSocket
+ */
+export type WebsocketChatEvent =
+  | WebsocketChatEvent.ConnectionEstablished
+  | WebsocketChatEvent.WorkflowDagReady
+  | WebsocketChatEvent.WorkflowProgress
+  | WebsocketChatEvent.WorkflowCompleted
+  | WebsocketChatEvent.WorkflowError;
+
+export namespace WebsocketChatEvent {
+  export interface ConnectionEstablished {
+    chat_session_id: string;
+
+    event_type: 'connection_established';
+  }
+
+  export interface WorkflowDagReady {
+    chat_session_id: string;
+
+    event_type: 'workflow_dag_ready';
+
+    workflow_session_id: string;
+  }
+
+  export interface WorkflowProgress {
+    chat_session_id: string;
+
+    current_step: string;
+
+    event_type: 'workflow_progress';
+
+    progress_percentage: number;
+
+    workflow_session_id: string;
+  }
+
+  export interface WorkflowCompleted {
+    chat_session_id: string;
+
+    completed_at: string;
+
+    event_type: 'workflow_completed';
+
+    workflow_session_id: string;
+  }
+
+  export interface WorkflowError {
+    chat_session_id: string;
+
+    error_message: string;
+
+    event_type: 'workflow_error';
+
+    workflow_session_id: string;
+  }
 }
 
 /**
@@ -964,12 +1027,18 @@ export interface ChatUpdateSessionParams {
   project_id?: string | null;
 }
 
+export interface ChatWsParams {
+  /**
+   * Chat session ID to subscribe to
+   */
+  chat_session_id: string;
+}
+
 export declare namespace Chat {
   export {
     type AddChatMessageRequest as AddChatMessageRequest,
     type AddChatMessageResponse as AddChatMessageResponse,
     type AddCollaboratorRequest as AddCollaboratorRequest,
-    type ChatEvent as ChatEvent,
     type ChatSession as ChatSession,
     type ChatSessionRole as ChatSessionRole,
     type ChatSessionUser as ChatSessionUser,
@@ -985,6 +1054,7 @@ export declare namespace Chat {
     type Message as Message,
     type TogglePublicRequest as TogglePublicRequest,
     type TogglePublicResponse as TogglePublicResponse,
+    type WebsocketChatEvent as WebsocketChatEvent,
     type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
     type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
     type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
@@ -1000,5 +1070,6 @@ export declare namespace Chat {
     type ChatLoadFilesParams as ChatLoadFilesParams,
     type ChatTogglePublicParams as ChatTogglePublicParams,
     type ChatUpdateSessionParams as ChatUpdateSessionParams,
+    type ChatWsParams as ChatWsParams,
   };
 }

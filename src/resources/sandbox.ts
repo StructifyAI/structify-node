@@ -4,8 +4,8 @@ import { APIResource } from '../resource';
 import * as Core from '../core';
 
 export class SandboxResource extends APIResource {
-  create(chatId: string, options?: Core.RequestOptions): Core.APIPromise<Sandbox> {
-    return this._client.post(`/sandbox/${chatId}`, options);
+  create(chatId: string, body: SandboxCreateParams, options?: Core.RequestOptions): Core.APIPromise<Sandbox> {
+    return this._client.post(`/sandbox/${chatId}`, { body, ...options });
   }
 
   list(chatId: string, options?: Core.RequestOptions): Core.APIPromise<SandboxListResponse> {
@@ -49,6 +49,18 @@ export interface Sandbox {
 
 export type SandboxListResponse = Array<Sandbox>;
 
+export interface SandboxCreateParams {
+  chat_session_id: string;
+
+  modal_id: string;
+
+  modal_url: string;
+
+  status: 'alive' | 'terminated';
+
+  latest_node?: string | null;
+}
+
 export interface SandboxGetParams {
   sandbox_url_override?: string | null;
 }
@@ -62,6 +74,7 @@ export declare namespace SandboxResource {
     type GetSandboxRequest as GetSandboxRequest,
     type Sandbox as Sandbox,
     type SandboxListResponse as SandboxListResponse,
+    type SandboxCreateParams as SandboxCreateParams,
     type SandboxGetParams as SandboxGetParams,
     type SandboxUpdateStatusParams as SandboxUpdateStatusParams,
   };
