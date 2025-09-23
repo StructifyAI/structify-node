@@ -368,6 +368,7 @@ Types:
 - <code><a href="./src/resources/sessions.ts">CreateWorkflowEdgeRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">CreateWorkflowNodeRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">CreateWorkflowSessionRequest</a></code>
+- <code><a href="./src/resources/sessions.ts">GetNodeLogsResponse</a></code>
 - <code><a href="./src/resources/sessions.ts">JobEventBody</a></code>
 - <code><a href="./src/resources/sessions.ts">MarkWorkflowSessionErroredRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">UpdateWorkflowNodeProgressRequest</a></code>
@@ -375,6 +376,7 @@ Types:
 - <code><a href="./src/resources/sessions.ts">UploadNodeVisualizationOutputRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowDag</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowNodeExecutionStatus</a></code>
+- <code><a href="./src/resources/sessions.ts">WorkflowNodeLog</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowSession</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowSessionEdge</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowSessionNode</a></code>
@@ -390,6 +392,7 @@ Methods:
 - <code title="post /sessions/{session_id}/dag_ready">client.sessions.<a href="./src/resources/sessions.ts">finalizeDag</a>(sessionId) -> void</code>
 - <code title="get /sessions/{session_id}/dag">client.sessions.<a href="./src/resources/sessions.ts">getDag</a>(sessionId) -> WorkflowDag</code>
 - <code title="get /sessions/nodes/{node_id}/events">client.sessions.<a href="./src/resources/sessions.ts">getEvents</a>(nodeId, { ...params }) -> SessionGetEventsResponse</code>
+- <code title="get /sessions/node/{node_id}/logs">client.sessions.<a href="./src/resources/sessions.ts">getNodeLogs</a>(nodeId) -> GetNodeLogsResponse</code>
 - <code title="get /sessions/nodes/{node_id}/output_data">client.sessions.<a href="./src/resources/sessions.ts">getNodeOutputData</a>(nodeId) -> Response</code>
 - <code title="get /sessions/nodes/{node_id}/progress">client.sessions.<a href="./src/resources/sessions.ts">getNodeProgress</a>(nodeId) -> SessionGetNodeProgressResponse</code>
 - <code title="post /sessions/{session_id}/kill_jobs">client.sessions.<a href="./src/resources/sessions.ts">killJobs</a>(sessionId, { ...params }) -> SessionKillJobsResponse</code>
