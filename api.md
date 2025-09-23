@@ -23,6 +23,7 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/user/stripe.ts">CreatePortalRequest</a></code>
 - <code><a href="./src/resources/user/stripe.ts">CreateSessionRequest</a></code>
 - <code><a href="./src/resources/user/stripe.ts">CreateSessionResponse</a></code>
 - <code><a href="./src/resources/user/stripe.ts">CreateSubscriptionRequest</a></code>
@@ -30,6 +31,7 @@ Types:
 
 Methods:
 
+- <code title="post /user/transactions/stripe/create_portal_session">client.user.stripe.<a href="./src/resources/user/stripe.ts">createPortalSession</a>({ ...params }) -> CreateSessionResponse</code>
 - <code title="post /user/transactions/stripe/create_session">client.user.stripe.<a href="./src/resources/user/stripe.ts">createSession</a>({ ...params }) -> CreateSessionResponse</code>
 - <code title="post /user/transactions/stripe/create_subscription">client.user.stripe.<a href="./src/resources/user/stripe.ts">createSubscription</a>({ ...params }) -> CreateSessionResponse</code>
 

@@ -2,10 +2,12 @@
 
 export {
   Stripe,
+  type CreatePortalRequest,
   type CreateSessionRequest,
   type CreateSessionResponse,
   type CreateSubscriptionRequest,
   type SubscriptionPlan,
+  type StripeCreatePortalSessionParams,
   type StripeCreateSessionParams,
   type StripeCreateSubscriptionParams,
 } from './stripe';
