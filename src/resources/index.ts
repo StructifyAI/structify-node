@@ -6,6 +6,7 @@ export {
   type AddChatMessageRequest,
   type AddChatMessageResponse,
   type AddCollaboratorRequest,
+  type ChatEvent,
   type ChatSession,
   type ChatSessionRole,
   type ChatSessionUser,
