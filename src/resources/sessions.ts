@@ -65,6 +65,13 @@ export class Sessions extends APIResource {
     return this._client.get(`/sessions/nodes/${nodeId}/events`, { query, ...options });
   }
 
+  /**
+   * Get terminal logs for a workflow node
+   */
+  getNodeLogs(nodeId: string, options?: Core.RequestOptions): Core.APIPromise<GetNodeLogsResponse> {
+    return this._client.get(`/sessions/node/${nodeId}/logs`, options);
+  }
+
   getNodeOutputData(nodeId: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
     return this._client.get(`/sessions/nodes/${nodeId}/output_data`, {
       ...options,
@@ -152,6 +159,10 @@ export interface CreateWorkflowSessionRequest {
   chat_session_id: string;
 
   workflow_schedule_id?: string | null;
+}
+
+export interface GetNodeLogsResponse {
+  logs: Array<WorkflowNodeLog>;
 }
 
 /**
@@ -279,6 +290,18 @@ export interface WorkflowDag {
 }
 
 export type WorkflowNodeExecutionStatus = 'Unexecuted' | 'Success' | 'Failure' | 'Running';
+
+export interface WorkflowNodeLog {
+  id: string;
+
+  content: string;
+
+  is_stderr: boolean;
+
+  node_id: string;
+
+  timestamp: string;
+}
 
 export interface WorkflowSession {
   id: string;
@@ -448,6 +471,7 @@ export declare namespace Sessions {
     type CreateWorkflowEdgeRequest as CreateWorkflowEdgeRequest,
     type CreateWorkflowNodeRequest as CreateWorkflowNodeRequest,
     type CreateWorkflowSessionRequest as CreateWorkflowSessionRequest,
+    type GetNodeLogsResponse as GetNodeLogsResponse,
     type JobEventBody as JobEventBody,
     type MarkWorkflowSessionErroredRequest as MarkWorkflowSessionErroredRequest,
     type UpdateWorkflowNodeProgressRequest as UpdateWorkflowNodeProgressRequest,
@@ -455,6 +479,7 @@ export declare namespace Sessions {
     type UploadNodeVisualizationOutputRequest as UploadNodeVisualizationOutputRequest,
     type WorkflowDag as WorkflowDag,
     type WorkflowNodeExecutionStatus as WorkflowNodeExecutionStatus,
+    type WorkflowNodeLog as WorkflowNodeLog,
     type WorkflowSession as WorkflowSession,
     type WorkflowSessionEdge as WorkflowSessionEdge,
     type WorkflowSessionNode as WorkflowSessionNode,
