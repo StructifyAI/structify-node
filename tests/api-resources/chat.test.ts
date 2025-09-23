@@ -306,6 +306,25 @@ describe('resource chat', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
+  test('revertToCommit: only required params', async () => {
+    const responsePromise = client.chat.revertToCommit('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      commit_hash: 'commit_hash',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('revertToCommit: required and optional params', async () => {
+    const response = await client.chat.revertToCommit('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      commit_hash: 'commit_hash',
+    });
+  });
+
   test('togglePublic: only required params', async () => {
     const responsePromise = client.chat.togglePublic('session_id', { is_public: true });
     const rawResponse = await responsePromise.asResponse();

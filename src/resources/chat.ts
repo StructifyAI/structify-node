@@ -159,6 +159,17 @@ export class Chat extends APIResource {
   }
 
   /**
+   * Revert a chat session to a specific commit
+   */
+  revertToCommit(
+    sessionId: string,
+    body: ChatRevertToCommitParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatRevertToCommitResponse> {
+    return this._client.post(`/chat/sessions/${sessionId}/revert`, { body, ...options });
+  }
+
+  /**
    * Toggle public visibility of a chat session
    */
   togglePublic(
@@ -898,6 +909,21 @@ export interface ChatLoadFilesResponse {
   files: { [key: string]: string };
 }
 
+/**
+ * Response structure for reverting to a git commit
+ */
+export interface ChatRevertToCommitResponse {
+  /**
+   * The commit hash that was reverted to
+   */
+  commit_hash: string;
+
+  /**
+   * Timestamp when the revert occurred
+   */
+  reverted_at: string;
+}
+
 export interface ChatAddCollaboratorParams {
   email: string;
 
@@ -952,6 +978,13 @@ export interface ChatLoadFilesParams {
   commit_hash?: string | null;
 }
 
+export interface ChatRevertToCommitParams {
+  /**
+   * The git commit hash to revert to (must be 40 characters)
+   */
+  commit_hash: string;
+}
+
 export interface ChatTogglePublicParams {
   is_public: boolean;
 }
@@ -990,6 +1023,7 @@ export declare namespace Chat {
     type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
     type ChatGetSessionTimelineResponse as ChatGetSessionTimelineResponse,
     type ChatLoadFilesResponse as ChatLoadFilesResponse,
+    type ChatRevertToCommitResponse as ChatRevertToCommitResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAddMessageParams as ChatAddMessageParams,
@@ -998,6 +1032,7 @@ export declare namespace Chat {
     type ChatCreateSessionParams as ChatCreateSessionParams,
     type ChatListSessionsParams as ChatListSessionsParams,
     type ChatLoadFilesParams as ChatLoadFilesParams,
+    type ChatRevertToCommitParams as ChatRevertToCommitParams,
     type ChatTogglePublicParams as ChatTogglePublicParams,
     type ChatUpdateSessionParams as ChatUpdateSessionParams,
   };
