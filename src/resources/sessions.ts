@@ -207,6 +207,8 @@ export namespace JobEventBody {
 
     sources: Array<string>;
 
+    page?: number | null;
+
     reason?: string | null;
   }
 
