@@ -27,6 +27,7 @@ export {
   type ChatGetGitCommitResponse,
   type ChatGetSessionTimelineResponse,
   type ChatLoadFilesResponse,
+  type ChatRevertToCommitResponse,
   type ChatAddCollaboratorParams,
   type ChatAddGitCommitParams,
   type ChatAddMessageParams,
@@ -35,6 +36,7 @@ export {
   type ChatCreateSessionParams,
   type ChatListSessionsParams,
   type ChatLoadFilesParams,
+  type ChatRevertToCommitParams,
   type ChatTogglePublicParams,
   type ChatUpdateSessionParams,
 } from './chat';
