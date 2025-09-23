@@ -31,7 +31,9 @@ describe('resource chat', () => {
   });
 
   test('addGitCommit: only required params', async () => {
-    const responsePromise = client.chat.addGitCommit('session_id', { commit_hash: 'commit_hash' });
+    const responsePromise = client.chat.addGitCommit('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      commit_hash: 'commit_hash',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -42,7 +44,9 @@ describe('resource chat', () => {
   });
 
   test('addGitCommit: required and optional params', async () => {
-    const response = await client.chat.addGitCommit('session_id', { commit_hash: 'commit_hash' });
+    const response = await client.chat.addGitCommit('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      commit_hash: 'commit_hash',
+    });
   });
 
   test('addMessage: only required params', async () => {
@@ -177,7 +181,7 @@ describe('resource chat', () => {
   });
 
   test('getSessionTimeline', async () => {
-    const responsePromise = client.chat.getSessionTimeline('session_id');
+    const responsePromise = client.chat.getSessionTimeline('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -190,7 +194,9 @@ describe('resource chat', () => {
   test('getSessionTimeline: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.chat.getSessionTimeline('session_id', { path: '/_stainless_unknown_path' }),
+      client.chat.getSessionTimeline('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+        path: '/_stainless_unknown_path',
+      }),
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
@@ -324,5 +330,20 @@ describe('resource chat', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('ws: only required params', async () => {
+    const responsePromise = client.chat.ws({ chat_session_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('ws: required and optional params', async () => {
+    const response = await client.chat.ws({ chat_session_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
   });
 });

@@ -31,6 +31,16 @@ export class Sessions extends APIResource {
     return this._client.post('/sessions', { body, ...options });
   }
 
+  /**
+   * Finalize a workflow session DAG by validating and marking it as ready
+   */
+  finalizeDag(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post(`/sessions/${sessionId}/dag_ready`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
   getDag(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<WorkflowDag> {
     return this._client.get(`/sessions/${sessionId}/dag`, options);
   }
@@ -255,9 +265,13 @@ export interface UploadNodeVisualizationOutputRequest {
 export interface WorkflowDag {
   edges: Array<WorkflowSessionEdge>;
 
+  is_ready: boolean;
+
   nodes: Array<WorkflowSessionNode>;
 
   session_id: string;
+
+  dag_ready_at?: string | null;
 
   error?: string | null;
 
@@ -271,9 +285,13 @@ export interface WorkflowSession {
 
   chat_session_id: string;
 
+  dag_ready: boolean;
+
   updated_at: string;
 
   created_at?: string | null;
+
+  dag_ready_at?: string | null;
 
   error_message?: string | null;
 
