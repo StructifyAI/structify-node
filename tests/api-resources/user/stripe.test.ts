@@ -9,6 +9,27 @@ const client = new Structify({
 });
 
 describe('resource stripe', () => {
+  test('createPortalSession: only required params', async () => {
+    const responsePromise = client.user.stripe.createPortalSession({
+      return_url: 'return_url',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('createPortalSession: required and optional params', async () => {
+    const response = await client.user.stripe.createPortalSession({
+      return_url: 'return_url',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+  });
+
   test('createSession: only required params', async () => {
     const responsePromise = client.user.stripe.createSession({
       credits: 0,

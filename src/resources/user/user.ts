@@ -6,10 +6,12 @@ import * as Core from '../../core';
 import * as UsersAPI from '../admin/users';
 import * as StripeAPI from './stripe';
 import {
+  CreatePortalRequest,
   CreateSessionRequest,
   CreateSessionResponse,
   CreateSubscriptionRequest,
   Stripe,
+  StripeCreatePortalSessionParams,
   StripeCreateSessionParams,
   StripeCreateSubscriptionParams,
   SubscriptionPlan,
@@ -247,10 +249,12 @@ export declare namespace User {
 
   export {
     Stripe as Stripe,
+    type CreatePortalRequest as CreatePortalRequest,
     type CreateSessionRequest as CreateSessionRequest,
     type CreateSessionResponse as CreateSessionResponse,
     type CreateSubscriptionRequest as CreateSubscriptionRequest,
     type SubscriptionPlan as SubscriptionPlan,
+    type StripeCreatePortalSessionParams as StripeCreatePortalSessionParams,
     type StripeCreateSessionParams as StripeCreateSessionParams,
     type StripeCreateSubscriptionParams as StripeCreateSubscriptionParams,
   };
