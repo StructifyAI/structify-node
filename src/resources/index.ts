@@ -262,6 +262,8 @@ export {
 } from './structure';
 export {
   Teams,
+  type AcceptInvitationRequest,
+  type AcceptInvitationResponse,
   type AddMemberRequest,
   type AddMemberResponse,
   type CreateProjectRequest,
@@ -288,6 +290,7 @@ export {
   type UserTeam,
   type TeamCreateParams,
   type TeamUpdateParams,
+  type TeamAcceptInvitationParams,
   type TeamAddMemberParams,
   type TeamCreateProjectParams,
   type TeamCreditsUsageParams,

@@ -31,12 +31,16 @@ export interface GenerateCodeRequest {
   chatSessionId: string;
 
   prompt: string;
+
+  messageId?: string | null;
 }
 
 export interface CodeGenerateCodeParams {
   chatSessionId: string;
 
   prompt: string;
+
+  messageId?: string | null;
 }
 
 export declare namespace Code {

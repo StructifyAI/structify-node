@@ -43,6 +43,7 @@ export {
   type NextActionGetTrainingDatumParams,
   type NextActionLabelTrainingDatumParams,
 } from './next-action';
+export { Teams, type AdminTeamsListResponse, type TeamListResponse } from './teams';
 export {
   TrainingDatasets,
   type AddDatumRequest,
