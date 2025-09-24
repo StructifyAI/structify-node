@@ -71,6 +71,24 @@ describe('resource teams', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
+  test('acceptInvitation: only required params', async () => {
+    const responsePromise = client.teams.acceptInvitation({ token: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('acceptInvitation: required and optional params', async () => {
+    const response = await client.teams.acceptInvitation({
+      token: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      supabase_user_id: 'supabase_user_id',
+    });
+  });
+
   test('addMember: only required params', async () => {
     const responsePromise = client.teams.addMember('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       email: 'email',

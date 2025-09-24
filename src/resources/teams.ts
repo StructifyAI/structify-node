@@ -26,6 +26,13 @@ export class Teams extends APIResource {
     return this._client.delete(`/team/${teamId}`, options);
   }
 
+  acceptInvitation(
+    body: TeamAcceptInvitationParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<AcceptInvitationResponse> {
+    return this._client.post('/team/invitations/accept', { body, ...options });
+  }
+
   addMember(
     teamId: string,
     body: TeamAddMemberParams,
@@ -71,6 +78,24 @@ export class Teams extends APIResource {
   }
 }
 
+export interface AcceptInvitationRequest {
+  token: string;
+
+  supabase_user_id?: string | null;
+}
+
+export interface AcceptInvitationResponse {
+  requires_signup: boolean;
+
+  success: boolean;
+
+  team_id: string;
+
+  team_name: string;
+
+  user_email: string;
+}
+
 export interface AddMemberRequest {
   email: string;
 
@@ -78,6 +103,8 @@ export interface AddMemberRequest {
 }
 
 export interface AddMemberResponse {
+  invitation_sent: boolean;
+
   membership: UserTeam;
 }
 
@@ -248,6 +275,12 @@ export interface TeamUpdateParams {
   name?: string | null;
 }
 
+export interface TeamAcceptInvitationParams {
+  token: string;
+
+  supabase_user_id?: string | null;
+}
+
 export interface TeamAddMemberParams {
   email: string;
 
@@ -284,6 +317,8 @@ export interface TeamCreditsUsageParams {
 
 export declare namespace Teams {
   export {
+    type AcceptInvitationRequest as AcceptInvitationRequest,
+    type AcceptInvitationResponse as AcceptInvitationResponse,
     type AddMemberRequest as AddMemberRequest,
     type AddMemberResponse as AddMemberResponse,
     type CreateProjectRequest as CreateProjectRequest,
@@ -310,6 +345,7 @@ export declare namespace Teams {
     type UserTeam as UserTeam,
     type TeamCreateParams as TeamCreateParams,
     type TeamUpdateParams as TeamUpdateParams,
+    type TeamAcceptInvitationParams as TeamAcceptInvitationParams,
     type TeamAddMemberParams as TeamAddMemberParams,
     type TeamCreateProjectParams as TeamCreateProjectParams,
     type TeamCreditsUsageParams as TeamCreditsUsageParams,
