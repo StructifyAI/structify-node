@@ -90,6 +90,8 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/teams.ts">AcceptInvitationRequest</a></code>
+- <code><a href="./src/resources/teams.ts">AcceptInvitationResponse</a></code>
 - <code><a href="./src/resources/teams.ts">AddMemberRequest</a></code>
 - <code><a href="./src/resources/teams.ts">AddMemberResponse</a></code>
 - <code><a href="./src/resources/teams.ts">CreateProjectRequest</a></code>
@@ -121,6 +123,7 @@ Methods:
 - <code title="put /team/{team_id}">client.teams.<a href="./src/resources/teams.ts">update</a>(teamId, { ...params }) -> UpdateTeamResponse</code>
 - <code title="get /team/list">client.teams.<a href="./src/resources/teams.ts">list</a>() -> ListTeamsResponse</code>
 - <code title="delete /team/{team_id}">client.teams.<a href="./src/resources/teams.ts">delete</a>(teamId) -> DeleteTeamResponse</code>
+- <code title="post /team/invitations/accept">client.teams.<a href="./src/resources/teams.ts">acceptInvitation</a>({ ...params }) -> AcceptInvitationResponse</code>
 - <code title="post /team/{team_id}/members">client.teams.<a href="./src/resources/teams.ts">addMember</a>(teamId, { ...params }) -> AddMemberResponse</code>
 - <code title="post /team/{team_id}/projects">client.teams.<a href="./src/resources/teams.ts">createProject</a>(teamId, { ...params }) -> CreateProjectResponse</code>
 - <code title="get /team/{team_id}/credits/usage">client.teams.<a href="./src/resources/teams.ts">creditsUsage</a>(teamId, { ...params }) -> CreditsUsageResponse</code>
@@ -143,6 +146,17 @@ Methods:
 - <code title="get /team/{team_id}/project/{project_id}">client.projects.<a href="./src/resources/projects.ts">get</a>(teamId, projectId) -> GetProjectResponse</code>
 
 # Admin
+
+## Teams
+
+Types:
+
+- <code><a href="./src/resources/admin/teams.ts">AdminTeamsListResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">TeamListResponse</a></code>
+
+Methods:
+
+- <code title="get /admin/teams/list">client.admin.teams.<a href="./src/resources/admin/teams.ts">list</a>() -> TeamListResponse</code>
 
 ## Dataset
 

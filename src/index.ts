@@ -235,6 +235,8 @@ import {
   ToolMetadata,
 } from './resources/structure';
 import {
+  AcceptInvitationRequest,
+  AcceptInvitationResponse,
   AddMemberRequest,
   AddMemberResponse,
   CreateProjectRequest,
@@ -252,6 +254,7 @@ import {
   ListTeamsResponse,
   RemoveMemberResponse,
   Team,
+  TeamAcceptInvitationParams,
   TeamAddMemberParams,
   TeamCreateParams,
   TeamCreateProjectParams,
@@ -625,6 +628,8 @@ export declare namespace Structify {
 
   export {
     Teams as Teams,
+    type AcceptInvitationRequest as AcceptInvitationRequest,
+    type AcceptInvitationResponse as AcceptInvitationResponse,
     type AddMemberRequest as AddMemberRequest,
     type AddMemberResponse as AddMemberResponse,
     type CreateProjectRequest as CreateProjectRequest,
@@ -651,6 +656,7 @@ export declare namespace Structify {
     type UserTeam as UserTeam,
     type TeamCreateParams as TeamCreateParams,
     type TeamUpdateParams as TeamUpdateParams,
+    type TeamAcceptInvitationParams as TeamAcceptInvitationParams,
     type TeamAddMemberParams as TeamAddMemberParams,
     type TeamCreateProjectParams as TeamCreateProjectParams,
     type TeamCreditsUsageParams as TeamCreditsUsageParams,

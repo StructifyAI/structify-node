@@ -47,6 +47,8 @@ import {
   NextActionGetTrainingDatumParams,
   NextActionLabelTrainingDatumParams,
 } from './next-action';
+import * as TeamsAPI from './teams';
+import { AdminTeamsListResponse, TeamListResponse, Teams } from './teams';
 import * as TrainingDatasetsAPI from './training-datasets';
 import {
   AddDatumRequest,
@@ -95,6 +97,7 @@ import {
 } from './users';
 
 export class Admin extends APIResource {
+  teams: TeamsAPI.Teams = new TeamsAPI.Teams(this._client);
   dataset: DatasetAPI.Dataset = new DatasetAPI.Dataset(this._client);
   jobs: JobsAPI.Jobs = new JobsAPI.Jobs(this._client);
   humanLlm: HumanLlmAPI.HumanLlm = new HumanLlmAPI.HumanLlm(this._client);
@@ -105,6 +108,7 @@ export class Admin extends APIResource {
   );
 }
 
+Admin.Teams = Teams;
 Admin.Dataset = Dataset;
 Admin.Jobs = Jobs;
 Admin.AdminListJobsResponsesJobsList = AdminListJobsResponsesJobsList;
@@ -114,6 +118,12 @@ Admin.Users = Users;
 Admin.TrainingDatasets = TrainingDatasets;
 
 export declare namespace Admin {
+  export {
+    Teams as Teams,
+    type AdminTeamsListResponse as AdminTeamsListResponse,
+    type TeamListResponse as TeamListResponse,
+  };
+
   export {
     Dataset as Dataset,
     type AdminDatasetReturn as AdminDatasetReturn,
