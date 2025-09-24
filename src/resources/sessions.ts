@@ -173,9 +173,10 @@ export type JobEventBody =
   | JobEventBody.AgentSearched
   | JobEventBody.AgentSaved
   | JobEventBody.AgentExited
-  | JobEventBody.DerivedProperty
   | JobEventBody.Failed
-  | JobEventBody.Completed;
+  | JobEventBody.Completed
+  | JobEventBody.Scraped
+  | JobEventBody.Custom;
 
 export namespace JobEventBody {
   export interface AgentNavigated {
@@ -217,14 +218,6 @@ export namespace JobEventBody {
     reason?: string | null;
   }
 
-  export interface DerivedProperty {
-    event_type: 'derived_property';
-
-    property: string;
-
-    value: string;
-  }
-
   export interface Failed {
     error: string;
 
@@ -237,6 +230,24 @@ export namespace JobEventBody {
     event_type: 'completed';
 
     message?: string | null;
+  }
+
+  export interface Scraped {
+    count: number;
+
+    event_type: 'scraped';
+
+    page: number;
+
+    url: string;
+  }
+
+  export interface Custom {
+    data: { [key: string]: unknown };
+
+    event_name: string;
+
+    event_type: 'custom';
   }
 }
 
