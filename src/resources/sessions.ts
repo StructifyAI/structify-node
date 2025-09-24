@@ -258,7 +258,13 @@ export interface MarkWorkflowSessionErroredRequest {
 }
 
 export interface UpdateWorkflowNodeProgressRequest {
-  progress: { [key: string]: unknown };
+  current: number;
+
+  elapsed_seconds: number;
+
+  title: string;
+
+  total: number;
 }
 
 export interface UpdateWorkflowNodeRequest {
@@ -414,7 +420,19 @@ export namespace SessionGetEventsResponse {
   }
 }
 
-export type SessionGetNodeProgressResponse = { [key: string]: unknown };
+export type SessionGetNodeProgressResponse = { [key: string]: SessionGetNodeProgressResponse.item };
+
+export namespace SessionGetNodeProgressResponse {
+  export interface item {
+    current: number;
+
+    elapsed_seconds: number;
+
+    started_at: string;
+
+    total: number;
+  }
+}
 
 export interface SessionKillJobsResponse {
   killed_jobs: Array<string>;
@@ -475,7 +493,13 @@ export interface SessionUpdateNodeParams {
 }
 
 export interface SessionUpdateNodeProgressParams {
-  progress: { [key: string]: unknown };
+  current: number;
+
+  elapsed_seconds: number;
+
+  title: string;
+
+  total: number;
 }
 
 export interface SessionUploadNodeOutputDataParams {
