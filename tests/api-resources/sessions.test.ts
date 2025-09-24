@@ -245,7 +245,10 @@ describe('resource sessions', () => {
 
   test('updateNodeProgress: only required params', async () => {
     const responsePromise = client.sessions.updateNodeProgress('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      progress: { foo: 'bar' },
+      current: 0,
+      elapsed_seconds: 0,
+      title: 'title',
+      total: 0,
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -258,7 +261,10 @@ describe('resource sessions', () => {
 
   test('updateNodeProgress: required and optional params', async () => {
     const response = await client.sessions.updateNodeProgress('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      progress: { foo: 'bar' },
+      current: 0,
+      elapsed_seconds: 0,
+      title: 'title',
+      total: 0,
     });
   });
 
