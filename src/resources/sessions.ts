@@ -382,17 +382,35 @@ export interface SessionGetEventsResponse {
 }
 
 export namespace SessionGetEventsResponse {
+  /**
+   * A job paired with all its associated events
+   */
   export interface Event {
     id: string;
 
+    events: Array<Event.Event>;
+
+    run_started_time: string;
+
+    status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
     /**
-     * The body content of a job event
+     * Knowledge graph info structured to deserialize and display in the same format
+     * that the LLM outputs. Also the first representation of an LLM output in the
+     * pipeline from raw tool output to being merged into a DB
      */
-    body: SessionsAPI.JobEventBody;
+    seeded_kg?: SharedAPI.KnowledgeGraph | null;
+  }
 
-    created_at: string;
+  export namespace Event {
+    export interface Event {
+      /**
+       * The body content of a job event
+       */
+      body: SessionsAPI.JobEventBody;
 
-    job_id: string;
+      created_at: string;
+    }
   }
 }
 
