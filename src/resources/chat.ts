@@ -66,6 +66,17 @@ export class Chat extends APIResource {
   }
 
   /**
+   * Delete files from a chat session's git repository
+   */
+  deleteFiles(
+    chatId: string,
+    body: ChatDeleteFilesParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatDeleteFilesResponse> {
+    return this._client.post(`/chat/files/delete/${chatId}`, { body, ...options });
+  }
+
+  /**
    * Delete a chat session
    */
   deleteSession(
@@ -842,6 +853,12 @@ export namespace ChatAddGitCommitResponse {
 
 export type ChatCopyNodeOutputByCodeHashResponse = string | null;
 
+export interface ChatDeleteFilesResponse {
+  commit_hash: string;
+
+  files_deleted: number;
+}
+
 /**
  * Response structure for getting a git commit by hash
  */
@@ -965,6 +982,10 @@ export interface ChatCreateSessionParams {
   initial_message?: string | null;
 }
 
+export interface ChatDeleteFilesParams {
+  paths: Array<string>;
+}
+
 export interface ChatListSessionsParams {
   /**
    * Maximum number of sessions to return (default: 50)
@@ -1020,6 +1041,7 @@ export declare namespace Chat {
     type TogglePublicResponse as TogglePublicResponse,
     type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
     type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
+    type ChatDeleteFilesResponse as ChatDeleteFilesResponse,
     type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
     type ChatGetSessionTimelineResponse as ChatGetSessionTimelineResponse,
     type ChatLoadFilesResponse as ChatLoadFilesResponse,
@@ -1030,6 +1052,7 @@ export declare namespace Chat {
     type ChatCopyParams as ChatCopyParams,
     type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
+    type ChatDeleteFilesParams as ChatDeleteFilesParams,
     type ChatListSessionsParams as ChatListSessionsParams,
     type ChatLoadFilesParams as ChatLoadFilesParams,
     type ChatRevertToCommitParams as ChatRevertToCommitParams,
