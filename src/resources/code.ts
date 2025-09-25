@@ -32,7 +32,9 @@ export interface GenerateCodeRequest {
 
   prompt: string;
 
-  messageId?: string | null;
+  assistantMessageId?: string | null;
+
+  userMessageId?: string | null;
 }
 
 export interface CodeGenerateCodeParams {
@@ -40,7 +42,9 @@ export interface CodeGenerateCodeParams {
 
   prompt: string;
 
-  messageId?: string | null;
+  assistantMessageId?: string | null;
+
+  userMessageId?: string | null;
 }
 
 export declare namespace Code {
