@@ -60,6 +60,8 @@ export interface User {
     | 'new_use_case_preview'
     | 'bedrock_codegen'
     | 'cerebras_codegen'
+    | 'gemini25pro'
+    | 'claude_sonnet4'
     | 'none'
     | null
   >;
@@ -122,6 +124,8 @@ export interface UserCreateParams {
     | 'new_use_case_preview'
     | 'bedrock_codegen'
     | 'cerebras_codegen'
+    | 'gemini25pro'
+    | 'claude_sonnet4'
     | 'none'
   >;
 
