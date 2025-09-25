@@ -70,6 +70,27 @@ export interface Connector {
 
   created_at: string;
 
+  known_connector_type:
+    | 'Slack'
+    | 'Confluence'
+    | 'GoogleDrive'
+    | 'Snowflake'
+    | 'Hubspot'
+    | 'Salesforce'
+    | 'Supabase'
+    | 'Sharepoint'
+    | 'Notion'
+    | 'Jira'
+    | 'Linear'
+    | 'Intercom'
+    | 'Gmail'
+    | 'Airtable'
+    | 'Trello'
+    | 'Postgresql'
+    | 'Sap'
+    | 'Oracle'
+    | 'Manual';
+
   llm_information_store: string;
 
   name: string;
@@ -101,6 +122,27 @@ export namespace ConnectorWithSecrets {
 }
 
 export interface CreateConnectorRequest {
+  known_connector_type:
+    | 'Slack'
+    | 'Confluence'
+    | 'GoogleDrive'
+    | 'Snowflake'
+    | 'Hubspot'
+    | 'Salesforce'
+    | 'Supabase'
+    | 'Sharepoint'
+    | 'Notion'
+    | 'Jira'
+    | 'Linear'
+    | 'Intercom'
+    | 'Gmail'
+    | 'Airtable'
+    | 'Trello'
+    | 'Postgresql'
+    | 'Sap'
+    | 'Oracle'
+    | 'Manual';
+
   llm_information_store: string;
 
   name: string;
@@ -123,6 +165,28 @@ export interface CreateSecretRequest {
 
 export interface UpdateConnectorRequest {
   description?: string | null;
+
+  known_connector_type?:
+    | 'Slack'
+    | 'Confluence'
+    | 'GoogleDrive'
+    | 'Snowflake'
+    | 'Hubspot'
+    | 'Salesforce'
+    | 'Supabase'
+    | 'Sharepoint'
+    | 'Notion'
+    | 'Jira'
+    | 'Linear'
+    | 'Intercom'
+    | 'Gmail'
+    | 'Airtable'
+    | 'Trello'
+    | 'Postgresql'
+    | 'Sap'
+    | 'Oracle'
+    | 'Manual'
+    | null;
 
   llm_information_store?: string | null;
 
@@ -149,6 +213,27 @@ export namespace ConnectorGetResponse {
 }
 
 export interface ConnectorCreateParams {
+  known_connector_type:
+    | 'Slack'
+    | 'Confluence'
+    | 'GoogleDrive'
+    | 'Snowflake'
+    | 'Hubspot'
+    | 'Salesforce'
+    | 'Supabase'
+    | 'Sharepoint'
+    | 'Notion'
+    | 'Jira'
+    | 'Linear'
+    | 'Intercom'
+    | 'Gmail'
+    | 'Airtable'
+    | 'Trello'
+    | 'Postgresql'
+    | 'Sap'
+    | 'Oracle'
+    | 'Manual';
+
   llm_information_store: string;
 
   name: string;
@@ -165,6 +250,28 @@ export interface ConnectorCreateParams {
 
 export interface ConnectorUpdateParams {
   description?: string | null;
+
+  known_connector_type?:
+    | 'Slack'
+    | 'Confluence'
+    | 'GoogleDrive'
+    | 'Snowflake'
+    | 'Hubspot'
+    | 'Salesforce'
+    | 'Supabase'
+    | 'Sharepoint'
+    | 'Notion'
+    | 'Jira'
+    | 'Linear'
+    | 'Intercom'
+    | 'Gmail'
+    | 'Airtable'
+    | 'Trello'
+    | 'Postgresql'
+    | 'Sap'
+    | 'Oracle'
+    | 'Manual'
+    | null;
 
   llm_information_store?: string | null;
 
