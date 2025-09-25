@@ -117,6 +117,8 @@ export namespace UpdateUserParams {
       | 'new_use_case_preview'
       | 'bedrock_codegen'
       | 'cerebras_codegen'
+      | 'gemini25pro'
+      | 'claude_sonnet4'
       | 'none'
     > | null;
 
@@ -143,6 +145,8 @@ export interface UserInfo {
     | 'new_use_case_preview'
     | 'bedrock_codegen'
     | 'cerebras_codegen'
+    | 'gemini25pro'
+    | 'claude_sonnet4'
     | 'none'
   >;
 
@@ -210,6 +214,8 @@ export namespace UserUpdateParams {
       | 'new_use_case_preview'
       | 'bedrock_codegen'
       | 'cerebras_codegen'
+      | 'gemini25pro'
+      | 'claude_sonnet4'
       | 'none'
     > | null;
 
