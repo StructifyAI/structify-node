@@ -248,7 +248,6 @@ describe('resource sessions', () => {
       current: 0,
       elapsed_seconds: 0,
       title: 'title',
-      total: 0,
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
