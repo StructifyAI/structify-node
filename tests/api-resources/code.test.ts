@@ -27,7 +27,8 @@ describe('resource code', () => {
     const response = await client.code.generateCode({
       chatSessionId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       prompt: 'prompt',
-      messageId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      assistantMessageId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      userMessageId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 });
