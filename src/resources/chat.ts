@@ -854,8 +854,6 @@ export namespace ChatAddGitCommitResponse {
 export type ChatCopyNodeOutputByCodeHashResponse = string | null;
 
 export interface ChatDeleteFilesResponse {
-  commit_hash: string;
-
   files_deleted: number;
 }
 
