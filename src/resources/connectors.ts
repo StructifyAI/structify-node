@@ -100,6 +100,8 @@ export interface Connector {
   updated_at: string;
 
   description?: string | null;
+
+  refresh_script?: string | null;
 }
 
 export interface ConnectorWithSecrets extends Connector {
@@ -151,6 +153,8 @@ export interface CreateConnectorRequest {
 
   description?: string | null;
 
+  refresh_script?: string | null;
+
   /**
    * Optional secrets/environment variables for the connector
    */
@@ -191,6 +195,8 @@ export interface UpdateConnectorRequest {
   llm_information_store?: string | null;
 
   name?: string | null;
+
+  refresh_script?: string | null;
 }
 
 export interface ConnectorGetResponse extends Connector {
@@ -242,6 +248,8 @@ export interface ConnectorCreateParams {
 
   description?: string | null;
 
+  refresh_script?: string | null;
+
   /**
    * Optional secrets/environment variables for the connector
    */
@@ -276,6 +284,8 @@ export interface ConnectorUpdateParams {
   llm_information_store?: string | null;
 
   name?: string | null;
+
+  refresh_script?: string | null;
 }
 
 export interface ConnectorListParams extends JobsListParams {
