@@ -34,6 +34,8 @@ export interface GenerateCodeRequest {
 
   assistantMessageId?: string | null;
 
+  systemPrompt?: string | null;
+
   userMessageId?: string | null;
 }
 
@@ -43,6 +45,8 @@ export interface CodeGenerateCodeParams {
   prompt: string;
 
   assistantMessageId?: string | null;
+
+  systemPrompt?: string | null;
 
   userMessageId?: string | null;
 }
