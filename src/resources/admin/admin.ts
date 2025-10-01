@@ -85,6 +85,8 @@ import {
 import * as UsersAPI from './users';
 import {
   User,
+  UserAddCreditsParams,
+  UserAddCreditsResponse,
   UserCreateParams,
   UserGetCreditsParams,
   UserGetCreditsResponse,
@@ -178,10 +180,12 @@ export declare namespace Admin {
     Users as Users,
     type User as User,
     type UserListResponse as UserListResponse,
+    type UserAddCreditsResponse as UserAddCreditsResponse,
     type UserGetCreditsResponse as UserGetCreditsResponse,
     type UserGetStatsResponse as UserGetStatsResponse,
     type UserSetCreditsResponse as UserSetCreditsResponse,
     type UserCreateParams as UserCreateParams,
+    type UserAddCreditsParams as UserAddCreditsParams,
     type UserGetCreditsParams as UserGetCreditsParams,
     type UserGetStatsParams as UserGetStatsParams,
     type UserSetCreditsParams as UserSetCreditsParams,

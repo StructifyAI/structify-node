@@ -38,6 +38,26 @@ describe('resource users', () => {
     );
   });
 
+  test('addCredits: only required params', async () => {
+    const responsePromise = client.admin.users.addCredits({ credit_amount: 0, user_email: 'user_email' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('addCredits: required and optional params', async () => {
+    const response = await client.admin.users.addCredits({
+      credit_amount: 0,
+      user_email: 'user_email',
+      source_type: 'source_type',
+      valid_for_days: 0,
+    });
+  });
+
   test('getCredits', async () => {
     const responsePromise = client.admin.users.getCredits({});
     const rawResponse = await responsePromise.asResponse();

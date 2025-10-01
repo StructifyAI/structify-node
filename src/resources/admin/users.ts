@@ -21,6 +21,16 @@ export class Users extends APIResource {
   }
 
   /**
+   * Add credits to a user's account via a credit grant.
+   */
+  addCredits(
+    body: UserAddCreditsParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<UserAddCreditsResponse> {
+    return this._client.post('/admin/users/add_credits', { body, ...options });
+  }
+
+  /**
    * get the credit balance of a user by email.
    */
   getCredits(
@@ -93,6 +103,10 @@ export namespace UserListResponse {
   }
 }
 
+export interface UserAddCreditsResponse {
+  credit_count: number;
+}
+
 export interface UserGetCreditsResponse {
   credit_count: number;
 }
@@ -138,6 +152,16 @@ export interface UserCreateParams {
   test?: boolean;
 }
 
+export interface UserAddCreditsParams {
+  credit_amount: number;
+
+  user_email: string;
+
+  source_type?: string | null;
+
+  valid_for_days?: number | null;
+}
+
 export interface UserGetCreditsParams {
   user_email?: string | null;
 
@@ -166,10 +190,12 @@ export declare namespace Users {
   export {
     type User as User,
     type UserListResponse as UserListResponse,
+    type UserAddCreditsResponse as UserAddCreditsResponse,
     type UserGetCreditsResponse as UserGetCreditsResponse,
     type UserGetStatsResponse as UserGetStatsResponse,
     type UserSetCreditsResponse as UserSetCreditsResponse,
     type UserCreateParams as UserCreateParams,
+    type UserAddCreditsParams as UserAddCreditsParams,
     type UserGetCreditsParams as UserGetCreditsParams,
     type UserGetStatsParams as UserGetStatsParams,
     type UserSetCreditsParams as UserSetCreditsParams,
