@@ -204,6 +204,26 @@ Methods:
 - <code title="post /admin/human_llm/start_next_job">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">startNextJob</a>({ ...params }) -> StepChoices</code>
 - <code title="post /admin/human_llm/update_step">client.admin.humanLlm.<a href="./src/resources/admin/human-llm.ts">updateStep</a>({ ...params }) -> StepChoices</code>
 
+## FunctionalTests
+
+Types:
+
+- <code><a href="./src/resources/admin/functional-tests.ts">CreateFunctionalTestRequest</a></code>
+- <code><a href="./src/resources/admin/functional-tests.ts">FunctionalTest</a></code>
+- <code><a href="./src/resources/admin/functional-tests.ts">FunctionalTestResultsResponse</a></code>
+- <code><a href="./src/resources/admin/functional-tests.ts">GetResultsQuery</a></code>
+- <code><a href="./src/resources/admin/functional-tests.ts">LinkChatToFunctionalTestRequest</a></code>
+- <code><a href="./src/resources/admin/functional-tests.ts">UpdateFunctionalTestResultsRequest</a></code>
+- <code><a href="./src/resources/admin/functional-tests.ts">FunctionalTestListResponse</a></code>
+
+Methods:
+
+- <code title="post /admin/functional_tests/create">client.admin.functionalTests.<a href="./src/resources/admin/functional-tests.ts">create</a>({ ...params }) -> FunctionalTest</code>
+- <code title="get /admin/functional_tests/list">client.admin.functionalTests.<a href="./src/resources/admin/functional-tests.ts">list</a>() -> FunctionalTestListResponse</code>
+- <code title="get /admin/functional_tests/results">client.admin.functionalTests.<a href="./src/resources/admin/functional-tests.ts">getResults</a>({ ...params }) -> FunctionalTestResultsResponse</code>
+- <code title="post /admin/functional_tests/link">client.admin.functionalTests.<a href="./src/resources/admin/functional-tests.ts">linkChat</a>({ ...params }) -> void</code>
+- <code title="put /admin/functional_tests/update_results">client.admin.functionalTests.<a href="./src/resources/admin/functional-tests.ts">updateResults</a>({ ...params }) -> void</code>
+
 ## NextAction
 
 Types:

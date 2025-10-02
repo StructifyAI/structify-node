@@ -10,6 +10,20 @@ export {
 } from './jobs';
 export { Dataset, type AdminDatasetReturn, type DatasetGetByIDParams } from './dataset';
 export {
+  FunctionalTests,
+  type CreateFunctionalTestRequest,
+  type FunctionalTest,
+  type FunctionalTestResultsResponse,
+  type GetResultsQuery,
+  type LinkChatToFunctionalTestRequest,
+  type UpdateFunctionalTestResultsRequest,
+  type FunctionalTestListResponse,
+  type FunctionalTestCreateParams,
+  type FunctionalTestGetResultsParams,
+  type FunctionalTestLinkChatParams,
+  type FunctionalTestUpdateResultsParams,
+} from './functional-tests';
+export {
   HumanLlm,
   type HumanLlmJob,
   type StepChoices,
