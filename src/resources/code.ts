@@ -36,6 +36,8 @@ export interface GenerateCodeRequest {
 
   systemPrompt?: string | null;
 
+  triggerWorkflowExecution?: boolean;
+
   userMessageId?: string | null;
 }
 
@@ -47,6 +49,8 @@ export interface CodeGenerateCodeParams {
   assistantMessageId?: string | null;
 
   systemPrompt?: string | null;
+
+  triggerWorkflowExecution?: boolean;
 
   userMessageId?: string | null;
 }

@@ -464,6 +464,18 @@ Methods:
 - <code title="get /workflow-schedule">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">getAll</a>() -> WorkflowScheduleGetAllResponse</code>
 - <code title="post /workflow-schedule/{schedule_id}/sessions">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">getSessions</a>(scheduleId, { ...params }) -> GetWorkflowScheduleSessionsResponse</code>
 
+# Workflow
+
+Types:
+
+- <code><a href="./src/resources/workflow.ts">RunWorkflowRequest</a></code>
+- <code><a href="./src/resources/workflow.ts">StopWorkflowRequest</a></code>
+
+Methods:
+
+- <code title="post /workflow/run">client.workflow.<a href="./src/resources/workflow.ts">run</a>({ ...params }) -> void</code>
+- <code title="post /workflow/stop">client.workflow.<a href="./src/resources/workflow.ts">stop</a>({ ...params }) -> void</code>
+
 # Connectors
 
 Types:

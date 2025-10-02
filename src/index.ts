@@ -272,6 +272,13 @@ import {
   UserTeam,
 } from './resources/teams';
 import {
+  RunWorkflowRequest,
+  StopWorkflowRequest,
+  Workflow,
+  WorkflowRunParams,
+  WorkflowStopParams,
+} from './resources/workflow';
+import {
   CreateWorkflowScheduleRequest,
   GetWorkflowScheduleSessionsRequest,
   GetWorkflowScheduleSessionsResponse,
@@ -481,6 +488,7 @@ export class Structify extends Core.APIClient {
   jobs: API.Jobs = new API.Jobs(this);
   sessions: API.Sessions = new API.Sessions(this);
   workflowSchedule: API.WorkflowSchedule = new API.WorkflowSchedule(this);
+  workflow: API.Workflow = new API.Workflow(this);
   connectors: API.Connectors = new API.Connectors(this);
   server: API.Server = new API.Server(this);
   sources: API.Sources = new API.Sources(this);
@@ -554,6 +562,7 @@ Structify.Jobs = Jobs;
 Structify.JobListResponsesJobsList = JobListResponsesJobsList;
 Structify.Sessions = Sessions;
 Structify.WorkflowSchedule = WorkflowSchedule;
+Structify.Workflow = Workflow;
 Structify.Connectors = Connectors;
 Structify.ConnectorWithSecretsJobsList = ConnectorWithSecretsJobsList;
 Structify.Server = Server;
@@ -781,6 +790,14 @@ export declare namespace Structify {
     type WorkflowScheduleCreateParams as WorkflowScheduleCreateParams,
     type WorkflowScheduleUpdateParams as WorkflowScheduleUpdateParams,
     type WorkflowScheduleGetSessionsParams as WorkflowScheduleGetSessionsParams,
+  };
+
+  export {
+    Workflow as Workflow,
+    type RunWorkflowRequest as RunWorkflowRequest,
+    type StopWorkflowRequest as StopWorkflowRequest,
+    type WorkflowRunParams as WorkflowRunParams,
+    type WorkflowStopParams as WorkflowStopParams,
   };
 
   export {
