@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.158.0 (2025-10-02)
+
+Full Changelog: [v1.157.0...v1.158.0](https://github.com/StructifyAI/structify-node/compare/v1.157.0...v1.158.0)
+
+### Features
+
+* **api:** manual updates ([631b302](https://github.com/StructifyAI/structify-node/commit/631b302b0d3bc5ef5f563c330881ea0101a4e663))
+* Update from Structify backend changes ([e7489de](https://github.com/StructifyAI/structify-node/commit/e7489de99a57bef1e370d43eb2d25feb035f65aa))
+* Update from Structify backend changes ([fa3114a](https://github.com/StructifyAI/structify-node/commit/fa3114a01f9c9b026041b654977fc224681ba8fb))
+* Update from Structify backend changes ([db748a9](https://github.com/StructifyAI/structify-node/commit/db748a92da3e8cd23cfe0ab015ace941697da5aa))
+* Update from Structify backend changes ([20b7a2b](https://github.com/StructifyAI/structify-node/commit/20b7a2b1dfaeb816a83522beaa36bf2925f57463))
+* Update from Structify backend changes ([797963f](https://github.com/StructifyAI/structify-node/commit/797963f2b2f8356650655879f083a1f578d60559))
+* Update from Structify backend changes ([7cb3743](https://github.com/StructifyAI/structify-node/commit/7cb37431bbd3dc2a1efa4d262fc3998642b00081))
+
+
+### Chores
+
+* **internal:** remove .eslintcache ([d983522](https://github.com/StructifyAI/structify-node/commit/d9835225a17f25ce3a986245af786fd19fb9f950))
+
 ## 1.157.0 (2025-09-28)
 
 Full Changelog: [v1.156.0...v1.157.0](https://github.com/StructifyAI/structify-node/compare/v1.156.0...v1.157.0)
