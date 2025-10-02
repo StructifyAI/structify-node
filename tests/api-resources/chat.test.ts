@@ -239,8 +239,8 @@ describe('resource chat', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
-  test('listSessions', async () => {
-    const responsePromise = client.chat.listSessions();
+  test('listSessions: only required params', async () => {
+    const responsePromise = client.chat.listSessions({ project_id: 'project_id', team_id: 'team_id' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -250,18 +250,12 @@ describe('resource chat', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('listSessions: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.chat.listSessions({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Structify.NotFoundError,
-    );
-  });
-
-  test('listSessions: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.chat.listSessions({ limit: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Structify.NotFoundError);
+  test('listSessions: required and optional params', async () => {
+    const response = await client.chat.listSessions({
+      project_id: 'project_id',
+      team_id: 'team_id',
+      limit: 0,
+    });
   });
 
   test('loadFiles: only required params', async () => {
