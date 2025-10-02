@@ -237,7 +237,15 @@ export interface UpdateTeamResponse {
   team: Team;
 }
 
-export type UsageGroupKey = 'web' | 'pdf' | 'derive' | 'scrape' | 'other';
+export type UsageGroupKey =
+  | 'web'
+  | 'pdf'
+  | 'derive'
+  | 'scrape'
+  | 'apollo'
+  | 'searchapi'
+  | 'newsapi'
+  | 'other';
 
 export interface UserTeam {
   id: string;

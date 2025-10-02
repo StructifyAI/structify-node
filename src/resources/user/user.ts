@@ -182,6 +182,8 @@ export namespace UserTransactionsResponse {
 
     credit_grant_id?: string | null;
 
+    external_service?: 'People' | 'Search' | 'News' | null;
+
     job_id?: string | null;
   }
 }
