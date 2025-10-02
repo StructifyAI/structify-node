@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../resource';
-import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as ChatAPI from './chat';
 
@@ -125,20 +124,13 @@ export class Chat extends APIResource {
   }
 
   /**
-   * List all chat sessions for the authenticated user.
+   * List all chat sessions for the authenticated user within a specific team and
+   * project.
    */
   listSessions(
-    query?: ChatListSessionsParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ListChatSessionsResponse>;
-  listSessions(options?: Core.RequestOptions): Core.APIPromise<ListChatSessionsResponse>;
-  listSessions(
-    query: ChatListSessionsParams | Core.RequestOptions = {},
+    query: ChatListSessionsParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<ListChatSessionsResponse> {
-    if (isRequestOptions(query)) {
-      return this.listSessions({}, query);
-    }
     return this._client.get('/chat/sessions', { query, ...options });
   }
 
@@ -985,6 +977,16 @@ export interface ChatDeleteFilesParams {
 }
 
 export interface ChatListSessionsParams {
+  /**
+   * Project ID to filter chat sessions
+   */
+  project_id: string;
+
+  /**
+   * Team ID to filter chat sessions
+   */
+  team_id: string;
+
   /**
    * Maximum number of sessions to return (default: 50)
    */
