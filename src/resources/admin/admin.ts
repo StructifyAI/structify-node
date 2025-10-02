@@ -3,6 +3,21 @@
 import { APIResource } from '../../resource';
 import * as DatasetAPI from './dataset';
 import { AdminDatasetReturn, Dataset, DatasetGetByIDParams } from './dataset';
+import * as FunctionalTestsAPI from './functional-tests';
+import {
+  CreateFunctionalTestRequest,
+  FunctionalTest,
+  FunctionalTestCreateParams,
+  FunctionalTestGetResultsParams,
+  FunctionalTestLinkChatParams,
+  FunctionalTestListResponse,
+  FunctionalTestResultsResponse,
+  FunctionalTestUpdateResultsParams,
+  FunctionalTests,
+  GetResultsQuery,
+  LinkChatToFunctionalTestRequest,
+  UpdateFunctionalTestResultsRequest,
+} from './functional-tests';
 import * as HumanLlmAPI from './human-llm';
 import {
   HumanLlm,
@@ -103,6 +118,7 @@ export class Admin extends APIResource {
   dataset: DatasetAPI.Dataset = new DatasetAPI.Dataset(this._client);
   jobs: JobsAPI.Jobs = new JobsAPI.Jobs(this._client);
   humanLlm: HumanLlmAPI.HumanLlm = new HumanLlmAPI.HumanLlm(this._client);
+  functionalTests: FunctionalTestsAPI.FunctionalTests = new FunctionalTestsAPI.FunctionalTests(this._client);
   nextAction: NextActionAPI.NextAction = new NextActionAPI.NextAction(this._client);
   users: UsersAPI.Users = new UsersAPI.Users(this._client);
   trainingDatasets: TrainingDatasetsAPI.TrainingDatasets = new TrainingDatasetsAPI.TrainingDatasets(
@@ -115,6 +131,7 @@ Admin.Dataset = Dataset;
 Admin.Jobs = Jobs;
 Admin.AdminListJobsResponsesJobsList = AdminListJobsResponsesJobsList;
 Admin.HumanLlm = HumanLlm;
+Admin.FunctionalTests = FunctionalTests;
 Admin.NextAction = NextAction;
 Admin.Users = Users;
 Admin.TrainingDatasets = TrainingDatasets;
@@ -156,6 +173,21 @@ export declare namespace Admin {
     type HumanLlmGetNextStepParams as HumanLlmGetNextStepParams,
     type HumanLlmStartNextJobParams as HumanLlmStartNextJobParams,
     type HumanLlmUpdateStepParams as HumanLlmUpdateStepParams,
+  };
+
+  export {
+    FunctionalTests as FunctionalTests,
+    type CreateFunctionalTestRequest as CreateFunctionalTestRequest,
+    type FunctionalTest as FunctionalTest,
+    type FunctionalTestResultsResponse as FunctionalTestResultsResponse,
+    type GetResultsQuery as GetResultsQuery,
+    type LinkChatToFunctionalTestRequest as LinkChatToFunctionalTestRequest,
+    type UpdateFunctionalTestResultsRequest as UpdateFunctionalTestResultsRequest,
+    type FunctionalTestListResponse as FunctionalTestListResponse,
+    type FunctionalTestCreateParams as FunctionalTestCreateParams,
+    type FunctionalTestGetResultsParams as FunctionalTestGetResultsParams,
+    type FunctionalTestLinkChatParams as FunctionalTestLinkChatParams,
+    type FunctionalTestUpdateResultsParams as FunctionalTestUpdateResultsParams,
   };
 
   export {
