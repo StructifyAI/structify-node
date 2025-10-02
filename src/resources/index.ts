@@ -311,6 +311,13 @@ export {
   type UserUsageParams,
 } from './user/user';
 export {
+  Workflow,
+  type RunWorkflowRequest,
+  type StopWorkflowRequest,
+  type WorkflowRunParams,
+  type WorkflowStopParams,
+} from './workflow';
+export {
   WorkflowSchedule,
   type CreateWorkflowScheduleRequest,
   type GetWorkflowScheduleSessionsRequest,
