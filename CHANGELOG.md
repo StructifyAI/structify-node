@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.159.0 (2025-10-03)
+
+Full Changelog: [v1.158.0...v1.159.0](https://github.com/StructifyAI/structify-node/compare/v1.158.0...v1.159.0)
+
+### Features
+
+* Update from Structify backend changes ([f1dbdeb](https://github.com/StructifyAI/structify-node/commit/f1dbdeb7775be95f5c89394ec09f16085353782f))
+
 ## 1.158.0 (2025-10-02)
 
 Full Changelog: [v1.157.0...v1.158.0](https://github.com/StructifyAI/structify-node/compare/v1.157.0...v1.158.0)
