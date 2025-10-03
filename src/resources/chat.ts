@@ -630,6 +630,8 @@ export interface CopyChatSessionRequest {
   project_id: string;
 
   source_chat_id: string;
+
+  copy_inputs?: boolean;
 }
 
 export interface CreateChatSessionRequest {
@@ -956,6 +958,8 @@ export interface ChatCopyParams {
   project_id: string;
 
   source_chat_id: string;
+
+  copy_inputs?: boolean;
 }
 
 export interface ChatCopyNodeOutputByCodeHashParams {
