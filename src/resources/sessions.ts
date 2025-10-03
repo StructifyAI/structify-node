@@ -286,7 +286,7 @@ export interface WorkflowDag {
   error_traceback?: string | null;
 }
 
-export type WorkflowNodeExecutionStatus = 'Unexecuted' | 'Success' | 'Failure' | 'Running';
+export type WorkflowNodeExecutionStatus = 'Unexecuted' | 'Success' | 'Failure' | 'Running' | 'Aborted';
 
 export interface WorkflowNodeLog {
   id: string;
@@ -302,6 +302,8 @@ export interface WorkflowNodeLog {
 
 export interface WorkflowSession {
   id: string;
+
+  aborted: boolean;
 
   chat_session_id: string;
 
