@@ -60,10 +60,7 @@ describe('resource functionalTests', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.admin.functionalTests.getResults(
-        {
-          functional_test_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          sample_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        },
+        { functional_test_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', sample_name: 'sample_name' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Structify.NotFoundError);
@@ -74,7 +71,7 @@ describe('resource functionalTests', () => {
       chat_session_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       functional_test_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       results: { foo: 'bar' },
-      sample_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      sample_name: 'sample_name',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -90,7 +87,7 @@ describe('resource functionalTests', () => {
       chat_session_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       functional_test_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       results: { foo: 'bar' },
-      sample_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      sample_name: 'sample_name',
     });
   });
 
@@ -99,7 +96,7 @@ describe('resource functionalTests', () => {
       chat_session_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       functional_test_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       results: { foo: 'bar' },
-      sample_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      sample_name: 'sample_name',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -115,7 +112,7 @@ describe('resource functionalTests', () => {
       chat_session_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       functional_test_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       results: { foo: 'bar' },
-      sample_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      sample_name: 'sample_name',
     });
   });
 });
