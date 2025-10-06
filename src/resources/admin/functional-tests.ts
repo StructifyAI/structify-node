@@ -22,8 +22,8 @@ export class FunctionalTests extends APIResource {
 
   /**
    * Gets all results and chat IDs for either a specific functional test or a
-   * specific sample ID. Must provide either functional_test_id or sample_id, but not
-   * both.
+   * specific sample name. Must provide either functional_test_id or sample_name, but
+   * not both.
    */
   getResults(
     query?: FunctionalTestGetResultsParams,
@@ -41,8 +41,8 @@ export class FunctionalTests extends APIResource {
   }
 
   /**
-   * Links a chat session to a functional test with a specific sample ID and initial
-   * results.
+   * Links a chat session to a functional test with a specific sample name and
+   * initial results.
    */
   linkChat(body: FunctionalTestLinkChatParams, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post('/admin/functional_tests/link', {
@@ -78,6 +78,8 @@ export interface FunctionalTest {
 
   created_at: string;
 
+  created_by: string;
+
   model_override?: string | null;
 
   prompt_override?: string | null;
@@ -88,7 +90,7 @@ export interface FunctionalTestResultsResponse {
 
   functional_test_id?: string | null;
 
-  sample_id?: string | null;
+  sample_name?: string | null;
 }
 
 export namespace FunctionalTestResultsResponse {
@@ -97,14 +99,14 @@ export namespace FunctionalTestResultsResponse {
 
     results: { [key: string]: unknown };
 
-    sample_id: string;
+    sample_name: string;
   }
 }
 
 export interface GetResultsQuery {
   functional_test_id?: string | null;
 
-  sample_id?: string | null;
+  sample_name?: string | null;
 }
 
 export interface LinkChatToFunctionalTestRequest {
@@ -114,7 +116,7 @@ export interface LinkChatToFunctionalTestRequest {
 
   results: { [key: string]: unknown };
 
-  sample_id: string;
+  sample_name: string;
 }
 
 export interface UpdateFunctionalTestResultsRequest {
@@ -124,10 +126,26 @@ export interface UpdateFunctionalTestResultsRequest {
 
   results: { [key: string]: unknown };
 
-  sample_id: string;
+  sample_name: string;
 }
 
-export type FunctionalTestListResponse = Array<FunctionalTest>;
+export type FunctionalTestListResponse = Array<FunctionalTestListResponse.FunctionalTestListResponseItem>;
+
+export namespace FunctionalTestListResponse {
+  export interface FunctionalTestListResponseItem {
+    id: string;
+
+    created_at: string;
+
+    created_by: string;
+
+    created_by_email: string;
+
+    model_override?: string | null;
+
+    prompt_override?: string | null;
+  }
+}
 
 export interface FunctionalTestCreateParams {
   model_override?: string | null;
@@ -138,7 +156,7 @@ export interface FunctionalTestCreateParams {
 export interface FunctionalTestGetResultsParams {
   functional_test_id?: string | null;
 
-  sample_id?: string | null;
+  sample_name?: string | null;
 }
 
 export interface FunctionalTestLinkChatParams {
@@ -148,7 +166,7 @@ export interface FunctionalTestLinkChatParams {
 
   results: { [key: string]: unknown };
 
-  sample_id: string;
+  sample_name: string;
 }
 
 export interface FunctionalTestUpdateResultsParams {
@@ -158,7 +176,7 @@ export interface FunctionalTestUpdateResultsParams {
 
   results: { [key: string]: unknown };
 
-  sample_id: string;
+  sample_name: string;
 }
 
 export declare namespace FunctionalTests {
