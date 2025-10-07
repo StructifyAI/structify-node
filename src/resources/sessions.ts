@@ -139,6 +139,8 @@ export class Sessions extends APIResource {
   }
 }
 
+export type AutofixContext = 'creation' | 'execution';
+
 export interface CreateWorkflowEdgeRequest {
   source_node_id: string;
 
@@ -242,6 +244,10 @@ export namespace JobEventBody {
 
 export interface MarkWorkflowSessionErroredRequest {
   error_message: string;
+
+  autofix?: boolean;
+
+  autofix_context?: AutofixContext | null;
 
   error_traceback?: string | null;
 }
@@ -470,6 +476,10 @@ export interface SessionKillJobsParams {
 export interface SessionMarkErroredParams {
   error_message: string;
 
+  autofix?: boolean;
+
+  autofix_context?: AutofixContext | null;
+
   error_traceback?: string | null;
 }
 
@@ -503,6 +513,7 @@ export interface SessionUploadNodeVisualizationOutputParams {
 
 export declare namespace Sessions {
   export {
+    type AutofixContext as AutofixContext,
     type CreateWorkflowEdgeRequest as CreateWorkflowEdgeRequest,
     type CreateWorkflowNodeRequest as CreateWorkflowNodeRequest,
     type CreateWorkflowSessionRequest as CreateWorkflowSessionRequest,

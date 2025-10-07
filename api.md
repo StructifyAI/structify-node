@@ -406,6 +406,7 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/sessions.ts">AutofixContext</a></code>
 - <code><a href="./src/resources/sessions.ts">CreateWorkflowEdgeRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">CreateWorkflowNodeRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">CreateWorkflowSessionRequest</a></code>
