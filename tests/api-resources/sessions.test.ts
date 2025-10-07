@@ -217,6 +217,8 @@ describe('resource sessions', () => {
   test('markErrored: required and optional params', async () => {
     const response = await client.sessions.markErrored('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       error_message: 'error_message',
+      autofix: true,
+      autofix_context: 'creation',
       error_traceback: 'error_traceback',
     });
   });

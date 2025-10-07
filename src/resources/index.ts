@@ -191,6 +191,7 @@ export {
 export { Server, type ServerInformation } from './server';
 export {
   Sessions,
+  type AutofixContext,
   type CreateWorkflowEdgeRequest,
   type CreateWorkflowNodeRequest,
   type CreateWorkflowSessionRequest,
