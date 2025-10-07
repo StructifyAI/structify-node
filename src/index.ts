@@ -164,6 +164,7 @@ import {
 } from './resources/scrape';
 import { Server, ServerInformation } from './resources/server';
 import {
+  AutofixContext,
   CreateWorkflowEdgeRequest,
   CreateWorkflowNodeRequest,
   CreateWorkflowSessionRequest,
@@ -748,6 +749,7 @@ export declare namespace Structify {
 
   export {
     Sessions as Sessions,
+    type AutofixContext as AutofixContext,
     type CreateWorkflowEdgeRequest as CreateWorkflowEdgeRequest,
     type CreateWorkflowNodeRequest as CreateWorkflowNodeRequest,
     type CreateWorkflowSessionRequest as CreateWorkflowSessionRequest,
