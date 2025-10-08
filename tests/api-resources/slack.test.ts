@@ -48,7 +48,6 @@ describe('resource slack', () => {
 
   test('userMapping: only required params', async () => {
     const responsePromise = client.slack.userMapping({
-      slack_bot_token: 'slack_bot_token',
       slack_team_id: 'slack_team_id',
       slack_user_id: 'slack_user_id',
     });
@@ -63,7 +62,6 @@ describe('resource slack', () => {
 
   test('userMapping: required and optional params', async () => {
     const response = await client.slack.userMapping({
-      slack_bot_token: 'slack_bot_token',
       slack_team_id: 'slack_team_id',
       slack_user_id: 'slack_user_id',
       slack_username: 'slack_username',
