@@ -108,6 +108,8 @@ export namespace SlackEventPayload {
 }
 
 export interface SlackUserMappingRequest {
+  slack_bot_token: string;
+
   slack_team_id: string;
 
   slack_user_id: string;
@@ -176,6 +178,8 @@ export declare namespace SlackEventsParams {
 }
 
 export interface SlackUserMappingParams {
+  slack_bot_token: string;
+
   slack_team_id: string;
 
   slack_user_id: string;
