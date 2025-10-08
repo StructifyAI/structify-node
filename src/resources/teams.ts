@@ -220,6 +220,8 @@ export interface TeamSubscriptionStatus {
    */
   subscription_tier: 'free' | 'free_trial' | 'pro' | 'team' | 'enterprise';
 
+  payment_provider?: string | null;
+
   trial_expires_at?: string | null;
 }
 
