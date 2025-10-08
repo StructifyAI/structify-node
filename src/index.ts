@@ -212,9 +212,9 @@ import {
   SlackConnectionStatus,
   SlackEventPayload,
   SlackEventsParams,
-  SlackOAuthCallbackParams,
-  SlackOAuthCallbackRequest,
-  SlackOAuthResponse,
+  SlackUserMappingParams,
+  SlackUserMappingRequest,
+  SlackUserMappingResponse,
 } from './resources/slack';
 import {
   DeleteSourceEntityParams,
@@ -964,10 +964,10 @@ export declare namespace Structify {
     type SlackAPIResponse as SlackAPIResponse,
     type SlackConnectionStatus as SlackConnectionStatus,
     type SlackEventPayload as SlackEventPayload,
-    type SlackOAuthCallbackRequest as SlackOAuthCallbackRequest,
-    type SlackOAuthResponse as SlackOAuthResponse,
+    type SlackUserMappingRequest as SlackUserMappingRequest,
+    type SlackUserMappingResponse as SlackUserMappingResponse,
     type SlackEventsParams as SlackEventsParams,
-    type SlackOAuthCallbackParams as SlackOAuthCallbackParams,
+    type SlackUserMappingParams as SlackUserMappingParams,
   };
 }
 

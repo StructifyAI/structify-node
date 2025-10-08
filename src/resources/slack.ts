@@ -5,13 +5,6 @@ import * as Core from '../core';
 
 export class Slack extends APIResource {
   /**
-   * Disconnect user's Slack account
-   */
-  disconnect(options?: Core.RequestOptions): Core.APIPromise<SlackOAuthResponse> {
-    return this._client.delete('/slack/disconnect', options);
-  }
-
-  /**
    * This endpoint receives events from Slack when users mention @structify. It
    * handles URL verification challenges and app mention events. Requires proper
    * authentication via StructifyUser - no fake users created.
@@ -21,21 +14,20 @@ export class Slack extends APIResource {
   }
 
   /**
-   * This endpoint receives the authorization code from Slack OAuth flow, exchanges
-   * it for user information, and creates a user mapping.
-   */
-  oauthCallback(
-    body: SlackOAuthCallbackParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SlackOAuthResponse> {
-    return this._client.post('/slack/oauth/callback', { body, ...options });
-  }
-
-  /**
    * Get current user's Slack connection status
    */
   status(options?: Core.RequestOptions): Core.APIPromise<SlackConnectionStatus> {
     return this._client.get('/slack/status', options);
+  }
+
+  /**
+   * Create Slack user mapping directly from token data
+   */
+  userMapping(
+    body: SlackUserMappingParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<SlackUserMappingResponse> {
+    return this._client.post('/slack/user-mapping', { body, ...options });
   }
 }
 
@@ -115,18 +107,18 @@ export namespace SlackEventPayload {
   }
 }
 
-export interface SlackOAuthCallbackRequest {
-  code: string;
+export interface SlackUserMappingRequest {
+  slack_team_id: string;
 
-  redirect_uri?: string | null;
+  slack_user_id: string;
+
+  slack_username?: string | null;
 }
 
-export interface SlackOAuthResponse {
+export interface SlackUserMappingResponse {
   message: string;
 
   success: boolean;
-
-  connection_status?: SlackConnectionStatus | null;
 }
 
 export type SlackEventsParams = SlackEventsParams.Variant0 | SlackEventsParams.Variant1;
@@ -183,10 +175,12 @@ export declare namespace SlackEventsParams {
   }
 }
 
-export interface SlackOAuthCallbackParams {
-  code: string;
+export interface SlackUserMappingParams {
+  slack_team_id: string;
 
-  redirect_uri?: string | null;
+  slack_user_id: string;
+
+  slack_username?: string | null;
 }
 
 export declare namespace Slack {
@@ -194,9 +188,9 @@ export declare namespace Slack {
     type SlackAPIResponse as SlackAPIResponse,
     type SlackConnectionStatus as SlackConnectionStatus,
     type SlackEventPayload as SlackEventPayload,
-    type SlackOAuthCallbackRequest as SlackOAuthCallbackRequest,
-    type SlackOAuthResponse as SlackOAuthResponse,
+    type SlackUserMappingRequest as SlackUserMappingRequest,
+    type SlackUserMappingResponse as SlackUserMappingResponse,
     type SlackEventsParams as SlackEventsParams,
-    type SlackOAuthCallbackParams as SlackOAuthCallbackParams,
+    type SlackUserMappingParams as SlackUserMappingParams,
   };
 }
