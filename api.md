@@ -783,12 +783,11 @@ Types:
 - <code><a href="./src/resources/slack.ts">SlackAPIResponse</a></code>
 - <code><a href="./src/resources/slack.ts">SlackConnectionStatus</a></code>
 - <code><a href="./src/resources/slack.ts">SlackEventPayload</a></code>
-- <code><a href="./src/resources/slack.ts">SlackOAuthCallbackRequest</a></code>
-- <code><a href="./src/resources/slack.ts">SlackOAuthResponse</a></code>
+- <code><a href="./src/resources/slack.ts">SlackUserMappingRequest</a></code>
+- <code><a href="./src/resources/slack.ts">SlackUserMappingResponse</a></code>
 
 Methods:
 
-- <code title="delete /slack/disconnect">client.slack.<a href="./src/resources/slack.ts">disconnect</a>() -> SlackOAuthResponse</code>
 - <code title="post /slack/events">client.slack.<a href="./src/resources/slack.ts">events</a>({ ...params }) -> SlackAPIResponse</code>
-- <code title="post /slack/oauth/callback">client.slack.<a href="./src/resources/slack.ts">oauthCallback</a>({ ...params }) -> SlackOAuthResponse</code>
 - <code title="get /slack/status">client.slack.<a href="./src/resources/slack.ts">status</a>() -> SlackConnectionStatus</code>
+- <code title="post /slack/user-mapping">client.slack.<a href="./src/resources/slack.ts">userMapping</a>({ ...params }) -> SlackUserMappingResponse</code>
