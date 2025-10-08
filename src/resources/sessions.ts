@@ -139,7 +139,7 @@ export class Sessions extends APIResource {
   }
 }
 
-export type AutofixContext = 'creation' | 'execution';
+export type AutofixContext = 'creation' | 'execution' | 'visualization';
 
 export interface CreateWorkflowEdgeRequest {
   source_node_id: string;
