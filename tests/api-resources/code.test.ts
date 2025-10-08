@@ -28,7 +28,7 @@ describe('resource code', () => {
       chatSessionId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       prompt: 'prompt',
       assistantMessageId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      config: { llm_key: 'vllm.gpt-5-mini-2025-08-07', system_prompt: 'system_prompt' },
+      systemPrompt: 'systemPrompt',
       triggerWorkflowExecution: true,
       userMessageId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });

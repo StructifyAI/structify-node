@@ -546,8 +546,6 @@ export interface ChatSession {
 
   updated_at: string;
 
-  config_proto?: Core.Uploadable | null;
-
   name?: string | null;
 }
 
@@ -639,44 +637,9 @@ export interface CopyChatSessionRequest {
 export interface CreateChatSessionRequest {
   project_id: string;
 
-  /**
-   * Configuration for chat session with system prompt and LLM key
-   */
-  config?: CreateChatSessionRequest.Config | null;
-
   ephemeral?: boolean | null;
 
   initial_message?: string | null;
-}
-
-export namespace CreateChatSessionRequest {
-  /**
-   * Configuration for chat session with system prompt and LLM key
-   */
-  export interface Config {
-    /**
-     * LLM model keys available in the system. Format: <provider>.<model-name>
-     */
-    llm_key:
-      | 'vllm.gpt-5-mini-2025-08-07'
-      | 'vllm.gpt-4.1-mini-2025-04-14'
-      | 'vllm.gpt-5-nano-2025-08-07'
-      | 'vllm.gpt-5-2025-08-07'
-      | 'vllm.ft:gpt-4o-2024-08-06:structify::ADrF00Gq'
-      | 'vllm.ft:gpt-4o-mini-2024-07-18:structify::ABCLHTsN'
-      | 'vllm.action'
-      | 'vllm.dora'
-      | 'vllm.boring_dora'
-      | 'vllm.claude-3-7-sonnet-20250219'
-      | 'vllm.claude-sonnet-4-20250514'
-      | 'vllm.qwen-3-coder-480b'
-      | 'test_llm.test'
-      | 'bedrock.claude-sonnet-4-bedrock'
-      | 'bedrock.claude-sonnet-4-5-bedrock'
-      | 'gemini.gemini-2.5-pro';
-
-    system_prompt?: string | null;
-  }
 }
 
 /**
@@ -1008,44 +971,9 @@ export interface ChatCopyNodeOutputByCodeHashParams {
 export interface ChatCreateSessionParams {
   project_id: string;
 
-  /**
-   * Configuration for chat session with system prompt and LLM key
-   */
-  config?: ChatCreateSessionParams.Config | null;
-
   ephemeral?: boolean | null;
 
   initial_message?: string | null;
-}
-
-export namespace ChatCreateSessionParams {
-  /**
-   * Configuration for chat session with system prompt and LLM key
-   */
-  export interface Config {
-    /**
-     * LLM model keys available in the system. Format: <provider>.<model-name>
-     */
-    llm_key:
-      | 'vllm.gpt-5-mini-2025-08-07'
-      | 'vllm.gpt-4.1-mini-2025-04-14'
-      | 'vllm.gpt-5-nano-2025-08-07'
-      | 'vllm.gpt-5-2025-08-07'
-      | 'vllm.ft:gpt-4o-2024-08-06:structify::ADrF00Gq'
-      | 'vllm.ft:gpt-4o-mini-2024-07-18:structify::ABCLHTsN'
-      | 'vllm.action'
-      | 'vllm.dora'
-      | 'vllm.boring_dora'
-      | 'vllm.claude-3-7-sonnet-20250219'
-      | 'vllm.claude-sonnet-4-20250514'
-      | 'vllm.qwen-3-coder-480b'
-      | 'test_llm.test'
-      | 'bedrock.claude-sonnet-4-bedrock'
-      | 'bedrock.claude-sonnet-4-5-bedrock'
-      | 'gemini.gemini-2.5-pro';
-
-    system_prompt?: string | null;
-  }
 }
 
 export interface ChatDeleteFilesParams {
