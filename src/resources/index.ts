@@ -237,10 +237,10 @@ export {
   type SlackAPIResponse,
   type SlackConnectionStatus,
   type SlackEventPayload,
-  type SlackOAuthCallbackRequest,
-  type SlackOAuthResponse,
+  type SlackUserMappingRequest,
+  type SlackUserMappingResponse,
   type SlackEventsParams,
-  type SlackOAuthCallbackParams,
+  type SlackUserMappingParams,
 } from './slack';
 export {
   Sources,
