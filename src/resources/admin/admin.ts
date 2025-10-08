@@ -63,7 +63,21 @@ import {
   NextActionLabelTrainingDatumParams,
 } from './next-action';
 import * as TeamsAPI from './teams';
-import { AdminTeamsListResponse, TeamListResponse, Teams } from './teams';
+import {
+  AdminTeamsListResponse,
+  AdminTeamsListResponsesJobsList,
+  CancelSubscriptionRequest,
+  CancelSubscriptionResponse,
+  CreateSubscriptionResponse,
+  CreateTeamSubscriptionRequest,
+  GrantCreditsRequest,
+  GrantCreditsResponse,
+  TeamCancelSubscriptionParams,
+  TeamCreateSubscriptionParams,
+  TeamGrantCreditsParams,
+  TeamListParams,
+  Teams,
+} from './teams';
 import * as TrainingDatasetsAPI from './training-datasets';
 import {
   AddDatumRequest,
@@ -127,6 +141,7 @@ export class Admin extends APIResource {
 }
 
 Admin.Teams = Teams;
+Admin.AdminTeamsListResponsesJobsList = AdminTeamsListResponsesJobsList;
 Admin.Dataset = Dataset;
 Admin.Jobs = Jobs;
 Admin.AdminListJobsResponsesJobsList = AdminListJobsResponsesJobsList;
@@ -140,7 +155,17 @@ export declare namespace Admin {
   export {
     Teams as Teams,
     type AdminTeamsListResponse as AdminTeamsListResponse,
-    type TeamListResponse as TeamListResponse,
+    type CancelSubscriptionRequest as CancelSubscriptionRequest,
+    type CancelSubscriptionResponse as CancelSubscriptionResponse,
+    type CreateSubscriptionResponse as CreateSubscriptionResponse,
+    type CreateTeamSubscriptionRequest as CreateTeamSubscriptionRequest,
+    type GrantCreditsRequest as GrantCreditsRequest,
+    type GrantCreditsResponse as GrantCreditsResponse,
+    AdminTeamsListResponsesJobsList as AdminTeamsListResponsesJobsList,
+    type TeamListParams as TeamListParams,
+    type TeamCancelSubscriptionParams as TeamCancelSubscriptionParams,
+    type TeamCreateSubscriptionParams as TeamCreateSubscriptionParams,
+    type TeamGrantCreditsParams as TeamGrantCreditsParams,
   };
 
   export {

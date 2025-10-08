@@ -8,6 +8,21 @@ export {
   type AdminListJobsResponse,
   type JobListParams,
 } from './jobs';
+export {
+  AdminTeamsListResponsesJobsList,
+  Teams,
+  type AdminTeamsListResponse,
+  type CancelSubscriptionRequest,
+  type CancelSubscriptionResponse,
+  type CreateSubscriptionResponse,
+  type CreateTeamSubscriptionRequest,
+  type GrantCreditsRequest,
+  type GrantCreditsResponse,
+  type TeamListParams,
+  type TeamCancelSubscriptionParams,
+  type TeamCreateSubscriptionParams,
+  type TeamGrantCreditsParams,
+} from './teams';
 export { Dataset, type AdminDatasetReturn, type DatasetGetByIDParams } from './dataset';
 export {
   FunctionalTests,
@@ -57,7 +72,6 @@ export {
   type NextActionGetTrainingDatumParams,
   type NextActionLabelTrainingDatumParams,
 } from './next-action';
-export { Teams, type AdminTeamsListResponse, type TeamListResponse } from './teams';
 export {
   TrainingDatasets,
   type AddDatumRequest,

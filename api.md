@@ -154,11 +154,19 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/admin/teams.ts">AdminTeamsListResponse</a></code>
-- <code><a href="./src/resources/admin/teams.ts">TeamListResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">CancelSubscriptionRequest</a></code>
+- <code><a href="./src/resources/admin/teams.ts">CancelSubscriptionResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">CreateSubscriptionResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">CreateTeamSubscriptionRequest</a></code>
+- <code><a href="./src/resources/admin/teams.ts">GrantCreditsRequest</a></code>
+- <code><a href="./src/resources/admin/teams.ts">GrantCreditsResponse</a></code>
 
 Methods:
 
-- <code title="get /admin/teams/list">client.admin.teams.<a href="./src/resources/admin/teams.ts">list</a>() -> TeamListResponse</code>
+- <code title="get /admin/team/list">client.admin.teams.<a href="./src/resources/admin/teams.ts">list</a>({ ...params }) -> AdminTeamsListResponsesJobsList</code>
+- <code title="post /admin/team/cancel_subscription">client.admin.teams.<a href="./src/resources/admin/teams.ts">cancelSubscription</a>({ ...params }) -> CancelSubscriptionResponse</code>
+- <code title="post /admin/team/create_subscription">client.admin.teams.<a href="./src/resources/admin/teams.ts">createSubscription</a>({ ...params }) -> CreateSubscriptionResponse</code>
+- <code title="post /admin/team/grant_credits">client.admin.teams.<a href="./src/resources/admin/teams.ts">grantCredits</a>({ ...params }) -> GrantCreditsResponse</code>
 
 ## Dataset
 
