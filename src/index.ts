@@ -207,6 +207,16 @@ import {
   Table,
 } from './resources/shared';
 import {
+  Slack,
+  SlackAPIResponse,
+  SlackConnectionStatus,
+  SlackEventPayload,
+  SlackEventsParams,
+  SlackOAuthCallbackParams,
+  SlackOAuthCallbackRequest,
+  SlackOAuthResponse,
+} from './resources/slack';
+import {
   DeleteSourceEntityParams,
   DeleteSourceEntityResponse,
   DeleteSourceRelationshipParams,
@@ -502,6 +512,7 @@ export class Structify extends Core.APIClient {
   publicSessions: API.PublicSessions = new API.PublicSessions(this);
   shared: API.Shared = new API.Shared(this);
   external: API.External = new API.External(this);
+  slack: API.Slack = new API.Slack(this);
 
   /**
    * Check whether the base URL is set to its default.
@@ -577,6 +588,7 @@ Structify.Structure = Structure;
 Structify.PublicSessions = PublicSessions;
 Structify.Shared = Shared;
 Structify.External = External;
+Structify.Slack = Slack;
 
 export declare namespace Structify {
   export type RequestOptions = Core.RequestOptions;
@@ -946,6 +958,17 @@ export declare namespace Structify {
   };
 
   export { External as External };
+
+  export {
+    Slack as Slack,
+    type SlackAPIResponse as SlackAPIResponse,
+    type SlackConnectionStatus as SlackConnectionStatus,
+    type SlackEventPayload as SlackEventPayload,
+    type SlackOAuthCallbackRequest as SlackOAuthCallbackRequest,
+    type SlackOAuthResponse as SlackOAuthResponse,
+    type SlackEventsParams as SlackEventsParams,
+    type SlackOAuthCallbackParams as SlackOAuthCallbackParams,
+  };
 }
 
 export { toFile, fileFromPath } from './uploads';
