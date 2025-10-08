@@ -233,6 +233,16 @@ export {
   type Table,
 } from './shared';
 export {
+  Slack,
+  type SlackAPIResponse,
+  type SlackConnectionStatus,
+  type SlackEventPayload,
+  type SlackOAuthCallbackRequest,
+  type SlackOAuthResponse,
+  type SlackEventsParams,
+  type SlackOAuthCallbackParams,
+} from './slack';
+export {
   Sources,
   type DeleteSourceEntityParams,
   type DeleteSourceEntityResponse,

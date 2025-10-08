@@ -767,3 +767,20 @@ Methods:
 - <code title="get /external/people/organizations/enrich">client.external.people.<a href="./src/resources/external/people.ts">organizationsEnrich</a>({ ...params }) -> EnrichedOrganization</code>
 - <code title="post /external/people/people/match">client.external.people.<a href="./src/resources/external/people.ts">peopleMatch</a>({ ...params }) -> PeopleMatchResponse</code>
 - <code title="post /external/people/mixed_people/search">client.external.people.<a href="./src/resources/external/people.ts">peopleSearch</a>({ ...params }) -> PeopleSearchResponse</code>
+
+# Slack
+
+Types:
+
+- <code><a href="./src/resources/slack.ts">SlackAPIResponse</a></code>
+- <code><a href="./src/resources/slack.ts">SlackConnectionStatus</a></code>
+- <code><a href="./src/resources/slack.ts">SlackEventPayload</a></code>
+- <code><a href="./src/resources/slack.ts">SlackOAuthCallbackRequest</a></code>
+- <code><a href="./src/resources/slack.ts">SlackOAuthResponse</a></code>
+
+Methods:
+
+- <code title="delete /slack/disconnect">client.slack.<a href="./src/resources/slack.ts">disconnect</a>() -> SlackOAuthResponse</code>
+- <code title="post /slack/events">client.slack.<a href="./src/resources/slack.ts">events</a>({ ...params }) -> SlackAPIResponse</code>
+- <code title="post /slack/oauth/callback">client.slack.<a href="./src/resources/slack.ts">oauthCallback</a>({ ...params }) -> SlackOAuthResponse</code>
+- <code title="get /slack/status">client.slack.<a href="./src/resources/slack.ts">status</a>() -> SlackConnectionStatus</code>
