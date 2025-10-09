@@ -42,7 +42,7 @@ export namespace GenerateCodeRequest {
     /**
      * LLM model keys available in the system. Format: <provider>.<model-name>
      */
-    llm_key:
+    llm_key?:
       | 'vllm.gpt-5-mini-2025-08-07'
       | 'vllm.gpt-4.1-mini-2025-04-14'
       | 'vllm.gpt-5-nano-2025-08-07'
@@ -58,7 +58,8 @@ export namespace GenerateCodeRequest {
       | 'test_llm.test'
       | 'bedrock.claude-sonnet-4-bedrock'
       | 'bedrock.claude-sonnet-4-5-bedrock'
-      | 'gemini.gemini-2.5-pro';
+      | 'gemini.gemini-2.5-pro'
+      | null;
 
     system_prompt?: string | null;
   }
@@ -89,7 +90,7 @@ export namespace CodeGenerateCodeParams {
     /**
      * LLM model keys available in the system. Format: <provider>.<model-name>
      */
-    llm_key:
+    llm_key?:
       | 'vllm.gpt-5-mini-2025-08-07'
       | 'vllm.gpt-4.1-mini-2025-04-14'
       | 'vllm.gpt-5-nano-2025-08-07'
@@ -105,7 +106,8 @@ export namespace CodeGenerateCodeParams {
       | 'test_llm.test'
       | 'bedrock.claude-sonnet-4-bedrock'
       | 'bedrock.claude-sonnet-4-5-bedrock'
-      | 'gemini.gemini-2.5-pro';
+      | 'gemini.gemini-2.5-pro'
+      | null;
 
     system_prompt?: string | null;
   }
