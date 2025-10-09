@@ -12,6 +12,7 @@ import {
   AddChatMessageRequest,
   AddChatMessageResponse,
   AddCollaboratorRequest,
+  AdminGrantAccessResponse,
   Chat,
   ChatAddCollaboratorParams,
   ChatAddGitCommitParams,
@@ -26,6 +27,7 @@ import {
   ChatEvent,
   ChatGetGitCommitResponse,
   ChatGetSessionTimelineResponse,
+  ChatGrantAdminOverrideParams,
   ChatListSessionsParams,
   ChatLoadFilesParams,
   ChatLoadFilesResponse,
@@ -43,13 +45,20 @@ import {
   DeleteChatSessionResponse,
   ErrorResponse,
   GetChatSessionResponse,
+  GrantAdminAccessRequest,
   ListChatSessionsResponse,
   ListCollaboratorsResponse,
   Message,
   TogglePublicRequest,
   TogglePublicResponse,
 } from './resources/chat';
-import { Code, CodeGenerateCodeParams, GenerateCodeRequest } from './resources/code';
+import {
+  Code,
+  CodeGenerateCodeParams,
+  CodeInterruptGenerationParams,
+  GenerateCodeRequest,
+  InterruptGenerationRequest,
+} from './resources/code';
 import {
   Connector,
   ConnectorCreateParams,
@@ -615,6 +624,7 @@ export declare namespace Structify {
     type AddChatMessageRequest as AddChatMessageRequest,
     type AddChatMessageResponse as AddChatMessageResponse,
     type AddCollaboratorRequest as AddCollaboratorRequest,
+    type AdminGrantAccessResponse as AdminGrantAccessResponse,
     type ChatEvent as ChatEvent,
     type ChatSession as ChatSession,
     type ChatSessionRole as ChatSessionRole,
@@ -626,6 +636,7 @@ export declare namespace Structify {
     type DeleteChatSessionResponse as DeleteChatSessionResponse,
     type ErrorResponse as ErrorResponse,
     type GetChatSessionResponse as GetChatSessionResponse,
+    type GrantAdminAccessRequest as GrantAdminAccessRequest,
     type ListChatSessionsResponse as ListChatSessionsResponse,
     type ListCollaboratorsResponse as ListCollaboratorsResponse,
     type Message as Message,
@@ -645,6 +656,7 @@ export declare namespace Structify {
     type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
     type ChatDeleteFilesParams as ChatDeleteFilesParams,
+    type ChatGrantAdminOverrideParams as ChatGrantAdminOverrideParams,
     type ChatListSessionsParams as ChatListSessionsParams,
     type ChatLoadFilesParams as ChatLoadFilesParams,
     type ChatRevertToCommitParams as ChatRevertToCommitParams,
@@ -920,7 +932,9 @@ export declare namespace Structify {
   export {
     Code as Code,
     type GenerateCodeRequest as GenerateCodeRequest,
+    type InterruptGenerationRequest as InterruptGenerationRequest,
     type CodeGenerateCodeParams as CodeGenerateCodeParams,
+    type CodeInterruptGenerationParams as CodeInterruptGenerationParams,
   };
 
   export {
