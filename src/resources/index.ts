@@ -6,6 +6,7 @@ export {
   type AddChatMessageRequest,
   type AddChatMessageResponse,
   type AddCollaboratorRequest,
+  type AdminGrantAccessResponse,
   type ChatEvent,
   type ChatSession,
   type ChatSessionRole,
@@ -17,6 +18,7 @@ export {
   type DeleteChatSessionResponse,
   type ErrorResponse,
   type GetChatSessionResponse,
+  type GrantAdminAccessRequest,
   type ListChatSessionsResponse,
   type ListCollaboratorsResponse,
   type Message,
@@ -36,13 +38,20 @@ export {
   type ChatCopyNodeOutputByCodeHashParams,
   type ChatCreateSessionParams,
   type ChatDeleteFilesParams,
+  type ChatGrantAdminOverrideParams,
   type ChatListSessionsParams,
   type ChatLoadFilesParams,
   type ChatRevertToCommitParams,
   type ChatTogglePublicParams,
   type ChatUpdateSessionParams,
 } from './chat';
-export { Code, type GenerateCodeRequest, type CodeGenerateCodeParams } from './code';
+export {
+  Code,
+  type GenerateCodeRequest,
+  type InterruptGenerationRequest,
+  type CodeGenerateCodeParams,
+  type CodeInterruptGenerationParams,
+} from './code';
 export {
   ConnectorWithSecretsJobsList,
   Connectors,
