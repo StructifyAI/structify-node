@@ -15,6 +15,21 @@ export class Code extends APIResource {
       headers: { Accept: '*/*', ...options?.headers },
     });
   }
+
+  /**
+   * This sets an interrupt flag that will cause the generation to stop gracefully at
+   * the next checkpoint (before publishing the next event).
+   */
+  interruptGeneration(
+    body: CodeInterruptGenerationParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post('/code/interrupt-generation', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
 }
 
 export interface GenerateCodeRequest {
@@ -65,6 +80,10 @@ export namespace GenerateCodeRequest {
   }
 }
 
+export interface InterruptGenerationRequest {
+  chatSessionId: string;
+}
+
 export interface CodeGenerateCodeParams {
   chatSessionId: string;
 
@@ -113,9 +132,15 @@ export namespace CodeGenerateCodeParams {
   }
 }
 
+export interface CodeInterruptGenerationParams {
+  chatSessionId: string;
+}
+
 export declare namespace Code {
   export {
     type GenerateCodeRequest as GenerateCodeRequest,
+    type InterruptGenerationRequest as InterruptGenerationRequest,
     type CodeGenerateCodeParams as CodeGenerateCodeParams,
+    type CodeInterruptGenerationParams as CodeInterruptGenerationParams,
   };
 }
