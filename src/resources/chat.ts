@@ -114,17 +114,6 @@ export class Chat extends APIResource {
   }
 
   /**
-   * Grant temporary admin override access for the calling admin to a chat session
-   */
-  grantAdminOverride(
-    chatId: string,
-    body: ChatGrantAdminOverrideParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AdminGrantAccessResponse> {
-    return this._client.post(`/chat/sessions/${chatId}/admin_override`, { body, ...options });
-  }
-
-  /**
    * List all users who have access to a chat session
    */
   listCollaborators(
@@ -236,15 +225,6 @@ export namespace AddChatMessageResponse {
 
 export interface AddCollaboratorRequest {
   email: string;
-
-  role: ChatSessionRole;
-}
-
-/**
- * Response for granting temporary admin access
- */
-export interface AdminGrantAccessResponse {
-  expires_at: string;
 
   role: ChatSessionRole;
 }
@@ -677,7 +657,7 @@ export namespace CreateChatSessionRequest {
     /**
      * LLM model keys available in the system. Format: <provider>.<model-name>
      */
-    llm_key:
+    llm_key?:
       | 'vllm.gpt-5-mini-2025-08-07'
       | 'vllm.gpt-4.1-mini-2025-04-14'
       | 'vllm.gpt-5-nano-2025-08-07'
@@ -693,7 +673,8 @@ export namespace CreateChatSessionRequest {
       | 'test_llm.test'
       | 'bedrock.claude-sonnet-4-bedrock'
       | 'bedrock.claude-sonnet-4-5-bedrock'
-      | 'gemini.gemini-2.5-pro';
+      | 'gemini.gemini-2.5-pro'
+      | null;
 
     system_prompt?: string | null;
   }
@@ -792,15 +773,6 @@ export namespace GetChatSessionResponse {
       commit_hash?: string | null;
     }
   }
-}
-
-export interface GrantAdminAccessRequest {
-  /**
-   * Duration in hours for the temporary access
-   */
-  duration_hours: number;
-
-  role: ChatSessionRole;
 }
 
 /**
@@ -1055,7 +1027,7 @@ export namespace ChatCreateSessionParams {
     /**
      * LLM model keys available in the system. Format: <provider>.<model-name>
      */
-    llm_key:
+    llm_key?:
       | 'vllm.gpt-5-mini-2025-08-07'
       | 'vllm.gpt-4.1-mini-2025-04-14'
       | 'vllm.gpt-5-nano-2025-08-07'
@@ -1071,7 +1043,8 @@ export namespace ChatCreateSessionParams {
       | 'test_llm.test'
       | 'bedrock.claude-sonnet-4-bedrock'
       | 'bedrock.claude-sonnet-4-5-bedrock'
-      | 'gemini.gemini-2.5-pro';
+      | 'gemini.gemini-2.5-pro'
+      | null;
 
     system_prompt?: string | null;
   }
@@ -1079,15 +1052,6 @@ export namespace ChatCreateSessionParams {
 
 export interface ChatDeleteFilesParams {
   paths: Array<string>;
-}
-
-export interface ChatGrantAdminOverrideParams {
-  /**
-   * Duration in hours for the temporary access
-   */
-  duration_hours: number;
-
-  role: ChatSessionRole;
 }
 
 export interface ChatListSessionsParams {
@@ -1137,7 +1101,6 @@ export declare namespace Chat {
     type AddChatMessageRequest as AddChatMessageRequest,
     type AddChatMessageResponse as AddChatMessageResponse,
     type AddCollaboratorRequest as AddCollaboratorRequest,
-    type AdminGrantAccessResponse as AdminGrantAccessResponse,
     type ChatEvent as ChatEvent,
     type ChatSession as ChatSession,
     type ChatSessionRole as ChatSessionRole,
@@ -1149,7 +1112,6 @@ export declare namespace Chat {
     type DeleteChatSessionResponse as DeleteChatSessionResponse,
     type ErrorResponse as ErrorResponse,
     type GetChatSessionResponse as GetChatSessionResponse,
-    type GrantAdminAccessRequest as GrantAdminAccessRequest,
     type ListChatSessionsResponse as ListChatSessionsResponse,
     type ListCollaboratorsResponse as ListCollaboratorsResponse,
     type Message as Message,
@@ -1169,7 +1131,6 @@ export declare namespace Chat {
     type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
     type ChatDeleteFilesParams as ChatDeleteFilesParams,
-    type ChatGrantAdminOverrideParams as ChatGrantAdminOverrideParams,
     type ChatListSessionsParams as ChatListSessionsParams,
     type ChatLoadFilesParams as ChatLoadFilesParams,
     type ChatRevertToCommitParams as ChatRevertToCommitParams,
