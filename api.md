@@ -226,6 +226,7 @@ Types:
 - <code><a href="./src/resources/admin/functional-tests.ts">LinkChatToFunctionalTestRequest</a></code>
 - <code><a href="./src/resources/admin/functional-tests.ts">UpdateFunctionalTestResultsRequest</a></code>
 - <code><a href="./src/resources/admin/functional-tests.ts">FunctionalTestListResponse</a></code>
+- <code><a href="./src/resources/admin/functional-tests.ts">FunctionalTestSystemPromptResponse</a></code>
 
 Methods:
 
@@ -233,6 +234,7 @@ Methods:
 - <code title="get /admin/functional_tests/list">client.admin.functionalTests.<a href="./src/resources/admin/functional-tests.ts">list</a>() -> FunctionalTestListResponse</code>
 - <code title="get /admin/functional_tests/results">client.admin.functionalTests.<a href="./src/resources/admin/functional-tests.ts">getResults</a>({ ...params }) -> FunctionalTestResultsResponse</code>
 - <code title="post /admin/functional_tests/link">client.admin.functionalTests.<a href="./src/resources/admin/functional-tests.ts">linkChat</a>({ ...params }) -> void</code>
+- <code title="get /admin/functional_tests/system_prompt">client.admin.functionalTests.<a href="./src/resources/admin/functional-tests.ts">systemPrompt</a>() -> string</code>
 - <code title="put /admin/functional_tests/update_results">client.admin.functionalTests.<a href="./src/resources/admin/functional-tests.ts">updateResults</a>({ ...params }) -> void</code>
 
 ## NextAction
