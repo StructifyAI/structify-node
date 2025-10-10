@@ -631,12 +631,10 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/code.ts">GenerateCodeRequest</a></code>
-- <code><a href="./src/resources/code.ts">InterruptGenerationRequest</a></code>
 
 Methods:
 
 - <code title="post /code/generate-code">client.code.<a href="./src/resources/code.ts">generateCode</a>({ ...params }) -> void</code>
-- <code title="post /code/interrupt-generation">client.code.<a href="./src/resources/code.ts">interruptGeneration</a>({ ...params }) -> void</code>
 
 # Structure
 
