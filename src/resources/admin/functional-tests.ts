@@ -53,6 +53,16 @@ export class FunctionalTests extends APIResource {
   }
 
   /**
+   * Returns the current system prompt template used by the code agent.
+   */
+  systemPrompt(options?: Core.RequestOptions): Core.APIPromise<string> {
+    return this._client.get('/admin/functional_tests/system_prompt', {
+      ...options,
+      headers: { Accept: 'text/plain', ...options?.headers },
+    });
+  }
+
+  /**
    * Updates the results for a specific chat session linked to a functional test.
    */
   updateResults(
@@ -147,6 +157,8 @@ export namespace FunctionalTestListResponse {
   }
 }
 
+export type FunctionalTestSystemPromptResponse = string;
+
 export interface FunctionalTestCreateParams {
   model_override?: string | null;
 
@@ -188,6 +200,7 @@ export declare namespace FunctionalTests {
     type LinkChatToFunctionalTestRequest as LinkChatToFunctionalTestRequest,
     type UpdateFunctionalTestResultsRequest as UpdateFunctionalTestResultsRequest,
     type FunctionalTestListResponse as FunctionalTestListResponse,
+    type FunctionalTestSystemPromptResponse as FunctionalTestSystemPromptResponse,
     type FunctionalTestCreateParams as FunctionalTestCreateParams,
     type FunctionalTestGetResultsParams as FunctionalTestGetResultsParams,
     type FunctionalTestLinkChatParams as FunctionalTestLinkChatParams,

@@ -33,6 +33,7 @@ export {
   type LinkChatToFunctionalTestRequest,
   type UpdateFunctionalTestResultsRequest,
   type FunctionalTestListResponse,
+  type FunctionalTestSystemPromptResponse,
   type FunctionalTestCreateParams,
   type FunctionalTestGetResultsParams,
   type FunctionalTestLinkChatParams,
