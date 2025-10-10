@@ -52,7 +52,13 @@ import {
   TogglePublicRequest,
   TogglePublicResponse,
 } from './resources/chat';
-import { Code, CodeGenerateCodeParams, GenerateCodeRequest } from './resources/code';
+import {
+  Code,
+  CodeGenerateCodeParams,
+  CodeInterruptGenerationParams,
+  GenerateCodeRequest,
+  InterruptGenerationRequest,
+} from './resources/code';
 import {
   Connector,
   ConnectorCreateParams,
@@ -926,7 +932,9 @@ export declare namespace Structify {
   export {
     Code as Code,
     type GenerateCodeRequest as GenerateCodeRequest,
+    type InterruptGenerationRequest as InterruptGenerationRequest,
     type CodeGenerateCodeParams as CodeGenerateCodeParams,
+    type CodeInterruptGenerationParams as CodeInterruptGenerationParams,
   };
 
   export {
