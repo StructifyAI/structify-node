@@ -45,7 +45,13 @@ export {
   type ChatTogglePublicParams,
   type ChatUpdateSessionParams,
 } from './chat';
-export { Code, type GenerateCodeRequest, type CodeGenerateCodeParams } from './code';
+export {
+  Code,
+  type GenerateCodeRequest,
+  type InterruptGenerationRequest,
+  type CodeGenerateCodeParams,
+  type CodeInterruptGenerationParams,
+} from './code';
 export {
   ConnectorWithSecretsJobsList,
   Connectors,
