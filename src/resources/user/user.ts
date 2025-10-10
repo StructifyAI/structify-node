@@ -122,6 +122,8 @@ export namespace UpdateUserParams {
       | 'none'
     > | null;
 
+    feature_overrides?: unknown;
+
     full_name?: string | null;
 
     is_developer?: boolean | null;
@@ -220,6 +222,8 @@ export namespace UserUpdateParams {
       | 'claude_sonnet4'
       | 'none'
     > | null;
+
+    feature_overrides?: unknown;
 
     full_name?: string | null;
 
