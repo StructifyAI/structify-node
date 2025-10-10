@@ -25,6 +25,7 @@ describe('resource user', () => {
       updates: {
         email: 'email',
         feature_flags: ['functional_test'],
+        feature_overrides: {},
         full_name: 'full_name',
         is_developer: true,
         permissions: ['labeler'],

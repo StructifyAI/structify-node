@@ -76,6 +76,8 @@ export interface User {
     | null
   >;
 
+  feature_overrides: { [key: string]: unknown };
+
   full_name: string;
 
   is_developer: boolean;
