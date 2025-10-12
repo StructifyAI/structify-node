@@ -569,6 +569,12 @@ export interface ChatSession {
   config_proto?: Core.Uploadable | null;
 
   name?: string | null;
+
+  slack_channel_id?: string | null;
+
+  slack_team_id?: string | null;
+
+  slack_thread_ts?: string | null;
 }
 
 export type ChatSessionRole = 'owner' | 'editor' | 'viewer';
