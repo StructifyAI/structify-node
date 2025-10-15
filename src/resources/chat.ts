@@ -399,7 +399,9 @@ export namespace ChatEvent {
       | ToolCall.UnionMember4
       | ToolCall.UnionMember5
       | ToolCall.UnionMember6
-      | ToolCall.UnionMember7;
+      | ToolCall.UnionMember7
+      | ToolCall.UnionMember8
+      | ToolCall.UnionMember9;
   }
 
   export namespace ToolCall {
@@ -546,6 +548,48 @@ export namespace ChatEvent {
         env?: { [key: string]: string } | null;
 
         working_dir?: string | null;
+      }
+    }
+
+    export interface UnionMember8 {
+      input: UnionMember8.Input;
+
+      name: 'CreateTable';
+
+      result_id?: string | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember8 {
+      export interface Input {
+        name: string;
+
+        description?: string | null;
+
+        notes?: string | null;
+      }
+    }
+
+    export interface UnionMember9 {
+      input: UnionMember9.Input;
+
+      name: 'AddColumn';
+
+      result_id?: string | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember9 {
+      export interface Input {
+        column_name: string;
+
+        column_type: string;
+
+        table_name: string;
+
+        notes?: string | null;
       }
     }
   }
