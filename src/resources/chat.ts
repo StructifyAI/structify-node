@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as ChatAPI from './chat';
+import * as StructureAPI from './structure';
 
 export class Chat extends APIResource {
   addCollaborator(
@@ -37,6 +38,17 @@ export class Chat extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<AddChatMessageResponse> {
     return this._client.post(`/chat/sessions/${sessionId}/messages`, { body, ...options });
+  }
+
+  /**
+   * Get the actual chat prompt that the LLM will see on its next message (admin
+   * only)
+   */
+  adminGetChatPrompt(
+    sessionId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<StructureAPI.ChatPrompt> {
+    return this._client.get(`/chat/sessions/${sessionId}/admin/chat_prompt`, options);
   }
 
   /**
