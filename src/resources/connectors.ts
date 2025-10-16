@@ -58,8 +58,22 @@ export class Connectors extends APIResource {
     });
   }
 
+  explore(connectorId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post(`/connectors/${connectorId}/explore`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
   get(connectorId: string, options?: Core.RequestOptions): Core.APIPromise<ConnectorGetResponse> {
     return this._client.get(`/connectors/${connectorId}`, options);
+  }
+
+  getExplorationStatus(
+    connectorId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ExploreStatusResponse> {
+    return this._client.get(`/connectors/${connectorId}/explore/status`, options);
   }
 }
 
@@ -100,6 +114,12 @@ export interface Connector {
   updated_at: string;
 
   description?: string | null;
+
+  exploration_error?: string | null;
+
+  exploration_started_at?: string | null;
+
+  exploration_status?: ExplorationStatus | null;
 
   refresh_script?: string | null;
 }
@@ -165,6 +185,18 @@ export interface CreateSecretRequest {
   secret_name: string;
 
   secret_value: string;
+}
+
+export type ExplorationStatus = 'NotStarted' | 'Running' | 'Completed' | 'Failed';
+
+export interface ExploreStatusResponse {
+  status: ExplorationStatus;
+
+  error?: string | null;
+
+  result?: string | null;
+
+  started_at?: string | null;
 }
 
 export interface UpdateConnectorRequest {
@@ -309,6 +341,8 @@ export declare namespace Connectors {
     type ConnectorWithSecrets as ConnectorWithSecrets,
     type CreateConnectorRequest as CreateConnectorRequest,
     type CreateSecretRequest as CreateSecretRequest,
+    type ExplorationStatus as ExplorationStatus,
+    type ExploreStatusResponse as ExploreStatusResponse,
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type ConnectorGetResponse as ConnectorGetResponse,
     ConnectorWithSecretsJobsList as ConnectorWithSecretsJobsList,
