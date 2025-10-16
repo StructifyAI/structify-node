@@ -499,6 +499,8 @@ Types:
 - <code><a href="./src/resources/connectors.ts">ConnectorWithSecrets</a></code>
 - <code><a href="./src/resources/connectors.ts">CreateConnectorRequest</a></code>
 - <code><a href="./src/resources/connectors.ts">CreateSecretRequest</a></code>
+- <code><a href="./src/resources/connectors.ts">ExplorationStatus</a></code>
+- <code><a href="./src/resources/connectors.ts">ExploreStatusResponse</a></code>
 - <code><a href="./src/resources/connectors.ts">UpdateConnectorRequest</a></code>
 - <code><a href="./src/resources/connectors.ts">ConnectorGetResponse</a></code>
 
@@ -510,7 +512,9 @@ Methods:
 - <code title="delete /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors.ts">delete</a>(connectorId) -> void</code>
 - <code title="post /connectors/{connector_id}/secrets">client.connectors.<a href="./src/resources/connectors.ts">createSecret</a>(connectorId, { ...params }) -> void</code>
 - <code title="delete /connectors/{connector_id}/secrets/{secret_name}">client.connectors.<a href="./src/resources/connectors.ts">deleteSecret</a>(connectorId, secretName) -> void</code>
+- <code title="post /connectors/{connector_id}/explore">client.connectors.<a href="./src/resources/connectors.ts">explore</a>(connectorId) -> void</code>
 - <code title="get /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors.ts">get</a>(connectorId) -> ConnectorGetResponse</code>
+- <code title="get /connectors/{connector_id}/explore/status">client.connectors.<a href="./src/resources/connectors.ts">getExplorationStatus</a>(connectorId) -> ExploreStatusResponse</code>
 
 # Server
 
