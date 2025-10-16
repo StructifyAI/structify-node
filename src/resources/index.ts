@@ -59,6 +59,8 @@ export {
   type ConnectorWithSecrets,
   type CreateConnectorRequest,
   type CreateSecretRequest,
+  type ExplorationStatus,
+  type ExploreStatusResponse,
   type UpdateConnectorRequest,
   type ConnectorGetResponse,
   type ConnectorCreateParams,

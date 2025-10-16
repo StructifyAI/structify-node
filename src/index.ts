@@ -71,6 +71,8 @@ import {
   Connectors,
   CreateConnectorRequest,
   CreateSecretRequest,
+  ExplorationStatus,
+  ExploreStatusResponse,
   UpdateConnectorRequest,
 } from './resources/connectors';
 import {
@@ -832,6 +834,8 @@ export declare namespace Structify {
     type ConnectorWithSecrets as ConnectorWithSecrets,
     type CreateConnectorRequest as CreateConnectorRequest,
     type CreateSecretRequest as CreateSecretRequest,
+    type ExplorationStatus as ExplorationStatus,
+    type ExploreStatusResponse as ExploreStatusResponse,
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type ConnectorGetResponse as ConnectorGetResponse,
     ConnectorWithSecretsJobsList as ConnectorWithSecretsJobsList,
