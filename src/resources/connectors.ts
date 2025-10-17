@@ -2,6 +2,7 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
+import * as ConnectorsAPI from './connectors';
 import { JobsList, type JobsListParams } from '../pagination';
 
 export class Connectors extends APIResource {
@@ -124,6 +125,62 @@ export interface Connector {
   refresh_script?: string | null;
 }
 
+/**
+ * Represents a column in a relational database table
+ */
+export interface ConnectorColumnDescriptor {
+  /**
+   * Name of the column
+   */
+  name: string;
+
+  /**
+   * SQL type of the column (e.g., "VARCHAR(255)", "INTEGER", "TIMESTAMP")
+   */
+  type: string;
+
+  /**
+   * Additional notes about the column (e.g., "NOT NULL", "PRIMARY KEY", "UNIQUE",
+   * constraints)
+   */
+  notes?: string | null;
+}
+
+/**
+ * Descriptor for a relational database connector
+ */
+export interface ConnectorRelationalDatabaseDescriptor {
+  /**
+   * List of tables in the database
+   */
+  tables: Array<ConnectorTableDescriptor>;
+}
+
+/**
+ * Represents a table in a relational database
+ */
+export interface ConnectorTableDescriptor {
+  /**
+   * List of columns in this table
+   */
+  columns: Array<ConnectorColumnDescriptor>;
+
+  /**
+   * Name of the table
+   */
+  name: string;
+
+  /**
+   * Optional description of what this table contains
+   */
+  description?: string | null;
+
+  /**
+   * Optional notes about the table (e.g., constraints, indexes, relationships)
+   */
+  notes?: string | null;
+}
+
 export interface ConnectorWithSecrets extends Connector {
   secrets: Array<ConnectorWithSecrets.Secret>;
 }
@@ -194,9 +251,50 @@ export interface ExploreStatusResponse {
 
   error?: string | null;
 
-  result?: string | null;
+  /**
+   * Information store for LLM context about a connector
+   *
+   * This enum represents different types of connector information that can be
+   * provided to LLMs for context. It's stored as JSON in the database.
+   *
+   * When deserializing from the database, we attempt to parse into the most specific
+   * variant first (RelationalDatabase), and fall back to Other if the structure
+   * doesn't match.
+   */
+  result?: LlmInformationStore | null;
 
   started_at?: string | null;
+}
+
+/**
+ * Information store for LLM context about a connector
+ *
+ * This enum represents different types of connector information that can be
+ * provided to LLMs for context. It's stored as JSON in the database.
+ *
+ * When deserializing from the database, we attempt to parse into the most specific
+ * variant first (RelationalDatabase), and fall back to Other if the structure
+ * doesn't match.
+ */
+export type LlmInformationStore = LlmInformationStore.RelationalDatabase | LlmInformationStore.Other;
+
+export namespace LlmInformationStore {
+  /**
+   * Descriptor for a relational database connector
+   */
+  export interface RelationalDatabase extends ConnectorsAPI.ConnectorRelationalDatabaseDescriptor {
+    type: 'relational_database';
+  }
+
+  /**
+   * Catch-all for other connector types or unstructured information Contains raw
+   * string data
+   */
+  export interface Other {
+    data: string;
+
+    type: 'other';
+  }
 }
 
 export interface UpdateConnectorRequest {
@@ -338,11 +436,15 @@ Connectors.ConnectorWithSecretsJobsList = ConnectorWithSecretsJobsList;
 export declare namespace Connectors {
   export {
     type Connector as Connector,
+    type ConnectorColumnDescriptor as ConnectorColumnDescriptor,
+    type ConnectorRelationalDatabaseDescriptor as ConnectorRelationalDatabaseDescriptor,
+    type ConnectorTableDescriptor as ConnectorTableDescriptor,
     type ConnectorWithSecrets as ConnectorWithSecrets,
     type CreateConnectorRequest as CreateConnectorRequest,
     type CreateSecretRequest as CreateSecretRequest,
     type ExplorationStatus as ExplorationStatus,
     type ExploreStatusResponse as ExploreStatusResponse,
+    type LlmInformationStore as LlmInformationStore,
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type ConnectorGetResponse as ConnectorGetResponse,
     ConnectorWithSecretsJobsList as ConnectorWithSecretsJobsList,
