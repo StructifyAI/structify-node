@@ -496,11 +496,15 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/connectors.ts">Connector</a></code>
+- <code><a href="./src/resources/connectors.ts">ConnectorColumnDescriptor</a></code>
+- <code><a href="./src/resources/connectors.ts">ConnectorRelationalDatabaseDescriptor</a></code>
+- <code><a href="./src/resources/connectors.ts">ConnectorTableDescriptor</a></code>
 - <code><a href="./src/resources/connectors.ts">ConnectorWithSecrets</a></code>
 - <code><a href="./src/resources/connectors.ts">CreateConnectorRequest</a></code>
 - <code><a href="./src/resources/connectors.ts">CreateSecretRequest</a></code>
 - <code><a href="./src/resources/connectors.ts">ExplorationStatus</a></code>
 - <code><a href="./src/resources/connectors.ts">ExploreStatusResponse</a></code>
+- <code><a href="./src/resources/connectors.ts">LlmInformationStore</a></code>
 - <code><a href="./src/resources/connectors.ts">UpdateConnectorRequest</a></code>
 - <code><a href="./src/resources/connectors.ts">ConnectorGetResponse</a></code>
 

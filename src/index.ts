@@ -61,10 +61,13 @@ import {
 } from './resources/code';
 import {
   Connector,
+  ConnectorColumnDescriptor,
   ConnectorCreateParams,
   ConnectorCreateSecretParams,
   ConnectorGetResponse,
   ConnectorListParams,
+  ConnectorRelationalDatabaseDescriptor,
+  ConnectorTableDescriptor,
   ConnectorUpdateParams,
   ConnectorWithSecrets,
   ConnectorWithSecretsJobsList,
@@ -73,6 +76,7 @@ import {
   CreateSecretRequest,
   ExplorationStatus,
   ExploreStatusResponse,
+  LlmInformationStore,
   UpdateConnectorRequest,
 } from './resources/connectors';
 import {
@@ -831,11 +835,15 @@ export declare namespace Structify {
   export {
     Connectors as Connectors,
     type Connector as Connector,
+    type ConnectorColumnDescriptor as ConnectorColumnDescriptor,
+    type ConnectorRelationalDatabaseDescriptor as ConnectorRelationalDatabaseDescriptor,
+    type ConnectorTableDescriptor as ConnectorTableDescriptor,
     type ConnectorWithSecrets as ConnectorWithSecrets,
     type CreateConnectorRequest as CreateConnectorRequest,
     type CreateSecretRequest as CreateSecretRequest,
     type ExplorationStatus as ExplorationStatus,
     type ExploreStatusResponse as ExploreStatusResponse,
+    type LlmInformationStore as LlmInformationStore,
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type ConnectorGetResponse as ConnectorGetResponse,
     ConnectorWithSecretsJobsList as ConnectorWithSecretsJobsList,
