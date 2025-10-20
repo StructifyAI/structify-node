@@ -413,7 +413,8 @@ export namespace ChatEvent {
       | ToolCall.UnionMember6
       | ToolCall.UnionMember7
       | ToolCall.UnionMember8
-      | ToolCall.UnionMember9;
+      | ToolCall.UnionMember9
+      | ToolCall.UnionMember10;
   }
 
   export namespace ToolCall {
@@ -566,7 +567,7 @@ export namespace ChatEvent {
     export interface UnionMember8 {
       input: UnionMember8.Input;
 
-      name: 'CreateTable';
+      name: 'IssueFound';
 
       result_id?: string | null;
 
@@ -574,6 +575,24 @@ export namespace ChatEvent {
     }
 
     export namespace UnionMember8 {
+      export interface Input {
+        description: string;
+
+        title: string;
+      }
+    }
+
+    export interface UnionMember9 {
+      input: UnionMember9.Input;
+
+      name: 'CreateTable';
+
+      result_id?: string | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember9 {
       export interface Input {
         name: string;
 
@@ -583,8 +602,8 @@ export namespace ChatEvent {
       }
     }
 
-    export interface UnionMember9 {
-      input: UnionMember9.Input;
+    export interface UnionMember10 {
+      input: UnionMember10.Input;
 
       name: 'AddColumn';
 
@@ -593,7 +612,7 @@ export namespace ChatEvent {
       result_text?: string | null;
     }
 
-    export namespace UnionMember9 {
+    export namespace UnionMember10 {
       export interface Input {
         column_name: string;
 
