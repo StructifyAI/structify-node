@@ -781,6 +781,8 @@ export namespace CreateChatSessionRequest {
       | 'gemini.gemini-2.5-flash-preview-09-2025'
       | null;
 
+    reminder_message?: string | null;
+
     system_prompt?: string | null;
   }
 }
@@ -1161,6 +1163,8 @@ export namespace ChatCreateSessionParams {
       | 'gemini.gemini-2.5-flash'
       | 'gemini.gemini-2.5-flash-preview-09-2025'
       | null;
+
+    reminder_message?: string | null;
 
     system_prompt?: string | null;
   }

@@ -78,6 +78,8 @@ export namespace GenerateCodeRequest {
       | 'gemini.gemini-2.5-flash-preview-09-2025'
       | null;
 
+    reminder_message?: string | null;
+
     system_prompt?: string | null;
   }
 }
@@ -131,6 +133,8 @@ export namespace CodeGenerateCodeParams {
       | 'gemini.gemini-2.5-flash'
       | 'gemini.gemini-2.5-flash-preview-09-2025'
       | null;
+
+    reminder_message?: string | null;
 
     system_prompt?: string | null;
   }
