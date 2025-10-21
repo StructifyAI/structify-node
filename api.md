@@ -564,6 +564,7 @@ Types:
 - <code><a href="./src/resources/entities.ts">EntityAgentMergeResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityDeleteRelationshipResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityDeriveResponse</a></code>
+- <code><a href="./src/resources/entities.ts">EntityDeriveAllResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityGetResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityGetLocalSubgraphResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityGetMergesResponse</a></code>
@@ -585,6 +586,7 @@ Methods:
 - <code title="post /entity/agent_merge">client.entities.<a href="./src/resources/entities.ts">agentMerge</a>({ ...params }) -> EntityAgentMergeResponse</code>
 - <code title="post /entity/delete_relationship">client.entities.<a href="./src/resources/entities.ts">deleteRelationship</a>({ ...params }) -> unknown</code>
 - <code title="post /entity/derive">client.entities.<a href="./src/resources/entities.ts">derive</a>({ ...params }) -> string</code>
+- <code title="post /entity/derive_all">client.entities.<a href="./src/resources/entities.ts">deriveAll</a>({ ...params }) -> EntityDeriveAllResponse</code>
 - <code title="get /entity/get">client.entities.<a href="./src/resources/entities.ts">get</a>({ ...params }) -> EntityGetResponse</code>
 - <code title="get /entity/get_local_subgraph">client.entities.<a href="./src/resources/entities.ts">getLocalSubgraph</a>({ ...params }) -> EntityGetLocalSubgraphResponse</code>
 - <code title="get /entity/get_merges">client.entities.<a href="./src/resources/entities.ts">getMerges</a>({ ...params }) -> EntityGetMergesResponse</code>
