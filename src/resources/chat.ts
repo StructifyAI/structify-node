@@ -311,6 +311,8 @@ export namespace ChatEvent {
      * When streaming, we start with the path only, then add the content as we go.
      */
     export interface File {
+      complete: boolean;
+
       path: string;
 
       content?: string | null;
