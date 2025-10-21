@@ -46,10 +46,6 @@ export class JobsList<Item> extends AbstractPage<Item> {
 
   nextPageInfo(): PageInfo | null {
     const offset = (this.options.query as JobsListParams).offset ?? 0;
-    if (!offset) {
-      return null;
-    }
-
     const length = this.getPaginatedItems().length;
     const currentCount = offset + length;
 
