@@ -75,6 +75,17 @@ export class Entities extends APIResource {
   }
 
   /**
+   * Derive a new property value based on existing source properties for all entities
+   * in a table
+   */
+  deriveAll(
+    body: EntityDeriveAllParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<EntityDeriveAllResponse> {
+    return this._client.post('/entity/derive_all', { body, ...options });
+  }
+
+  /**
    * Get entity with a given id
    */
   get(query: EntityGetParams, options?: Core.RequestOptions): Core.APIPromise<EntityGetResponse> {
@@ -284,6 +295,8 @@ export interface EntityAgentMergeResponse {
 export type EntityDeleteRelationshipResponse = unknown;
 
 export type EntityDeriveResponse = string;
+
+export type EntityDeriveAllResponse = Array<string>;
 
 export interface EntityGetResponse {
   id: string;
@@ -1700,6 +1713,18 @@ export interface EntityDeriveParams {
   node_id?: string | null;
 }
 
+export interface EntityDeriveAllParams {
+  dataset: string;
+
+  derived_property: string;
+
+  instructions: string;
+
+  table_name: string;
+
+  node_id?: string | null;
+}
+
 export interface EntityGetParams {
   id: string;
 
@@ -1816,6 +1841,7 @@ export declare namespace Entities {
     type EntityAgentMergeResponse as EntityAgentMergeResponse,
     type EntityDeleteRelationshipResponse as EntityDeleteRelationshipResponse,
     type EntityDeriveResponse as EntityDeriveResponse,
+    type EntityDeriveAllResponse as EntityDeriveAllResponse,
     type EntityGetResponse as EntityGetResponse,
     type EntityGetLocalSubgraphResponse as EntityGetLocalSubgraphResponse,
     type EntityGetMergesResponse as EntityGetMergesResponse,
@@ -1834,6 +1860,7 @@ export declare namespace Entities {
     type EntityAgentMergeParams as EntityAgentMergeParams,
     type EntityDeleteRelationshipParams as EntityDeleteRelationshipParams,
     type EntityDeriveParams as EntityDeriveParams,
+    type EntityDeriveAllParams as EntityDeriveAllParams,
     type EntityGetParams as EntityGetParams,
     type EntityGetLocalSubgraphParams as EntityGetLocalSubgraphParams,
     type EntityGetMergesParams as EntityGetMergesParams,
