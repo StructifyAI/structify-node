@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as ConnectorsAPI from './connectors';
+import * as StructureAPI from './structure';
 import { JobsList, type JobsListParams } from '../pagination';
 
 export class Connectors extends APIResource {
@@ -70,11 +71,32 @@ export class Connectors extends APIResource {
     return this._client.get(`/connectors/${connectorId}`, options);
   }
 
+  /**
+   * Get all exploration runs for a connector (admin only)
+   */
+  getExplorationRuns(
+    connectorId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ExplorationRunsResponse> {
+    return this._client.get(`/connectors/${connectorId}/explore/runs`, options);
+  }
+
   getExplorationStatus(
     connectorId: string,
     options?: Core.RequestOptions,
   ): Core.APIPromise<ExploreStatusResponse> {
     return this._client.get(`/connectors/${connectorId}/explore/status`, options);
+  }
+
+  /**
+   * Get chat from a connector exploration run (admin only)
+   */
+  getExplorerChat(
+    connectorId: string,
+    query: ConnectorGetExplorerChatParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ExplorerChatResponse> {
+    return this._client.get(`/connectors/${connectorId}/explore/chat`, { query, ...options });
   }
 }
 
@@ -144,6 +166,21 @@ export interface ConnectorColumnDescriptor {
    * constraints)
    */
   notes?: string | null;
+}
+
+/**
+ * Connector explorer chat with deserialized ChatPrompt for API responses
+ */
+export interface ConnectorExplorerChat {
+  id: string;
+
+  chat_prompt: StructureAPI.ChatPrompt;
+
+  connector_id: string;
+
+  created_at: string;
+
+  exploration_run_id: string;
 }
 
 /**
@@ -244,6 +281,16 @@ export interface CreateSecretRequest {
   secret_value: string;
 }
 
+export interface ExplorationRun {
+  created_at: string;
+
+  run_id: string;
+}
+
+export interface ExplorationRunsResponse {
+  runs: Array<ExplorationRun>;
+}
+
 export type ExplorationStatus = 'NotStarted' | 'Running' | 'Completed' | 'Failed';
 
 export interface ExploreStatusResponse {
@@ -264,6 +311,13 @@ export interface ExploreStatusResponse {
   result?: LlmInformationStore | null;
 
   started_at?: string | null;
+}
+
+export interface ExplorerChatResponse {
+  /**
+   * Connector explorer chat with deserialized ChatPrompt for API responses
+   */
+  chat: ConnectorExplorerChat;
 }
 
 /**
@@ -431,19 +485,30 @@ export interface ConnectorCreateSecretParams {
   secret_value: string;
 }
 
+export interface ConnectorGetExplorerChatParams {
+  /**
+   * Exploration run ID (required)
+   */
+  run_id: string;
+}
+
 Connectors.ConnectorWithSecretsJobsList = ConnectorWithSecretsJobsList;
 
 export declare namespace Connectors {
   export {
     type Connector as Connector,
     type ConnectorColumnDescriptor as ConnectorColumnDescriptor,
+    type ConnectorExplorerChat as ConnectorExplorerChat,
     type ConnectorRelationalDatabaseDescriptor as ConnectorRelationalDatabaseDescriptor,
     type ConnectorTableDescriptor as ConnectorTableDescriptor,
     type ConnectorWithSecrets as ConnectorWithSecrets,
     type CreateConnectorRequest as CreateConnectorRequest,
     type CreateSecretRequest as CreateSecretRequest,
+    type ExplorationRun as ExplorationRun,
+    type ExplorationRunsResponse as ExplorationRunsResponse,
     type ExplorationStatus as ExplorationStatus,
     type ExploreStatusResponse as ExploreStatusResponse,
+    type ExplorerChatResponse as ExplorerChatResponse,
     type LlmInformationStore as LlmInformationStore,
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type ConnectorGetResponse as ConnectorGetResponse,
@@ -452,5 +517,6 @@ export declare namespace Connectors {
     type ConnectorUpdateParams as ConnectorUpdateParams,
     type ConnectorListParams as ConnectorListParams,
     type ConnectorCreateSecretParams as ConnectorCreateSecretParams,
+    type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
   };
 }
