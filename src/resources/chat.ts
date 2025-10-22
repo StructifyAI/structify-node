@@ -109,6 +109,16 @@ export class Chat extends APIResource {
   }
 
   /**
+   * Get all partial chats for a chat session
+   */
+  getPartialChats(
+    chatSessionId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatGetPartialChatsResponse> {
+    return this._client.get(`/chat/${chatSessionId}/partial-chats`, options);
+  }
+
+  /**
    * Get a chat session with all its messages
    */
   getSession(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<GetChatSessionResponse> {
@@ -1026,6 +1036,8 @@ export namespace ChatGetGitCommitResponse {
   }
 }
 
+export type ChatGetPartialChatsResponse = Array<StructureAPI.ChatPrompt>;
+
 /**
  * Response structure for getting session timeline
  */
@@ -1254,6 +1266,7 @@ export declare namespace Chat {
     type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
     type ChatDeleteFilesResponse as ChatDeleteFilesResponse,
     type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
+    type ChatGetPartialChatsResponse as ChatGetPartialChatsResponse,
     type ChatGetSessionTimelineResponse as ChatGetSessionTimelineResponse,
     type ChatLoadFilesResponse as ChatLoadFilesResponse,
     type ChatRevertToCommitResponse as ChatRevertToCommitResponse,
