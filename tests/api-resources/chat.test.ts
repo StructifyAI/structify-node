@@ -142,7 +142,11 @@ describe('resource chat', () => {
   test('createSession: required and optional params', async () => {
     const response = await client.chat.createSession({
       project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      config: { llm_key: 'vllm.gpt-5-mini-2025-08-07', system_prompt: 'system_prompt' },
+      config: {
+        llm_key: 'vllm.gpt-5-mini-2025-08-07',
+        reminder_message: 'reminder_message',
+        system_prompt: 'system_prompt',
+      },
       ephemeral: true,
       initial_message: 'initial_message',
     });
@@ -200,6 +204,24 @@ describe('resource chat', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.chat.getGitCommit('chat_id', 'commit_hash', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
+  test('getPartialChats', async () => {
+    const responsePromise = client.chat.getPartialChats('chat_session_id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('getPartialChats: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.chat.getPartialChats('chat_session_id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Structify.NotFoundError);
   });
 

@@ -109,6 +109,16 @@ export class Chat extends APIResource {
   }
 
   /**
+   * Get all partial chats for a chat session
+   */
+  getPartialChats(
+    chatSessionId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatGetPartialChatsResponse> {
+    return this._client.get(`/chat/${chatSessionId}/partial-chats`, options);
+  }
+
+  /**
    * Get a chat session with all its messages
    */
   getSession(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<GetChatSessionResponse> {
@@ -242,6 +252,8 @@ export namespace AddChatMessageResponse {
 
     timestamp: string;
 
+    content_proto?: Core.Uploadable | null;
+
     git_commit_id?: string | null;
   }
 }
@@ -271,9 +283,6 @@ export type ChatEvent =
   | ChatEvent.File
   | ChatEvent.Action
   | ChatEvent.Connector
-  | ChatEvent.CodeProject
-  | ChatEvent.DeleteFile
-  | ChatEvent.MoveFile
   | ChatEvent.ToolCall;
 
 export namespace ChatEvent {
@@ -311,6 +320,8 @@ export namespace ChatEvent {
      * When streaming, we start with the path only, then add the content as we go.
      */
     export interface File {
+      complete: boolean;
+
       path: string;
 
       content?: string | null;
@@ -349,56 +360,6 @@ export namespace ChatEvent {
       name: string;
 
       description?: string | null;
-    }
-  }
-
-  export interface CodeProject {
-    CodeProject: CodeProject.CodeProject;
-  }
-
-  export namespace CodeProject {
-    export interface CodeProject {
-      /**
-       * CodeProject attributes
-       */
-      attributes: CodeProject.Attributes;
-    }
-
-    export namespace CodeProject {
-      /**
-       * CodeProject attributes
-       */
-      export interface Attributes {
-        id?: string | null;
-
-        badge?: string | null;
-
-        label?: string | null;
-
-        version?: string | null;
-      }
-    }
-  }
-
-  export interface DeleteFile {
-    DeleteFile: DeleteFile.DeleteFile;
-  }
-
-  export namespace DeleteFile {
-    export interface DeleteFile {
-      file: string;
-    }
-  }
-
-  export interface MoveFile {
-    MoveFile: MoveFile.MoveFile;
-  }
-
-  export namespace MoveFile {
-    export interface MoveFile {
-      file: string;
-
-      new_path: string;
     }
   }
 
@@ -468,7 +429,7 @@ export namespace ChatEvent {
     export interface UnionMember3 {
       input: UnionMember3.Input;
 
-      name: 'Connector';
+      name: 'DeleteFile';
 
       result_id?: string | null;
 
@@ -477,18 +438,14 @@ export namespace ChatEvent {
 
     export namespace UnionMember3 {
       export interface Input {
-        env_vars: Array<string>;
-
-        name: string;
-
-        description?: string | null;
+        file: string;
       }
     }
 
     export interface UnionMember4 {
       input: UnionMember4.Input;
 
-      name: 'DeleteFile';
+      name: 'MoveFile';
 
       result_id?: string | null;
 
@@ -498,29 +455,13 @@ export namespace ChatEvent {
     export namespace UnionMember4 {
       export interface Input {
         file: string;
-      }
-    }
-
-    export interface UnionMember5 {
-      input: UnionMember5.Input;
-
-      name: 'MoveFile';
-
-      result_id?: string | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember5 {
-      export interface Input {
-        file: string;
 
         new_path: string;
       }
     }
 
-    export interface UnionMember6 {
-      input: UnionMember6.Input;
+    export interface UnionMember5 {
+      input: UnionMember5.Input;
 
       name: 'RunBash';
 
@@ -529,9 +470,31 @@ export namespace ChatEvent {
       result_text?: string | null;
     }
 
-    export namespace UnionMember6 {
+    export namespace UnionMember5 {
       export interface Input {
         command: string;
+
+        connectors: Array<string>;
+
+        env?: { [key: string]: string } | null;
+
+        working_dir?: string | null;
+      }
+    }
+
+    export interface UnionMember6 {
+      input: UnionMember6.Input;
+
+      name: 'RunPython';
+
+      result_id?: string | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember6 {
+      export interface Input {
+        code: string;
 
         connectors: Array<string>;
 
@@ -544,7 +507,7 @@ export namespace ChatEvent {
     export interface UnionMember7 {
       input: UnionMember7.Input;
 
-      name: 'RunPython';
+      name: 'IssueFound';
 
       result_id?: string | null;
 
@@ -553,13 +516,9 @@ export namespace ChatEvent {
 
     export namespace UnionMember7 {
       export interface Input {
-        code: string;
+        description: string;
 
-        connectors: Array<string>;
-
-        env?: { [key: string]: string } | null;
-
-        working_dir?: string | null;
+        title: string;
       }
     }
 
@@ -619,6 +578,8 @@ export interface ChatSession {
   is_public: boolean;
 
   project_id: string;
+
+  slack_completion_notified: boolean;
 
   updated_at: string;
 
@@ -704,6 +665,8 @@ export namespace ChatSessionWithMessages {
 
     timestamp: string;
 
+    content_proto?: Core.Uploadable | null;
+
     git_commit_id?: string | null;
   }
 }
@@ -759,6 +722,8 @@ export namespace CreateChatSessionRequest {
       | 'gemini.gemini-2.5-flash'
       | 'gemini.gemini-2.5-flash-preview-09-2025'
       | null;
+
+    reminder_message?: string | null;
 
     system_prompt?: string | null;
   }
@@ -1001,6 +966,8 @@ export namespace ChatGetGitCommitResponse {
   }
 }
 
+export type ChatGetPartialChatsResponse = Array<StructureAPI.ChatPrompt>;
+
 /**
  * Response structure for getting session timeline
  */
@@ -1026,6 +993,8 @@ export namespace ChatGetSessionTimelineResponse {
     timestamp: string;
 
     type: 'Message';
+
+    content_proto?: Core.Uploadable | null;
 
     git_commit_id?: string | null;
   }
@@ -1141,6 +1110,8 @@ export namespace ChatCreateSessionParams {
       | 'gemini.gemini-2.5-flash-preview-09-2025'
       | null;
 
+    reminder_message?: string | null;
+
     system_prompt?: string | null;
   }
 }
@@ -1227,6 +1198,7 @@ export declare namespace Chat {
     type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
     type ChatDeleteFilesResponse as ChatDeleteFilesResponse,
     type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
+    type ChatGetPartialChatsResponse as ChatGetPartialChatsResponse,
     type ChatGetSessionTimelineResponse as ChatGetSessionTimelineResponse,
     type ChatLoadFilesResponse as ChatLoadFilesResponse,
     type ChatRevertToCommitResponse as ChatRevertToCommitResponse,

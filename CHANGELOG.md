@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.163.0 (2025-10-22)
+
+Full Changelog: [v1.162.0...v1.163.0](https://github.com/StructifyAI/structify-node/compare/v1.162.0...v1.163.0)
+
+### Features
+
+* Update from Structify backend changes ([7f37e77](https://github.com/StructifyAI/structify-node/commit/7f37e771e4cca70aa0649d549d2b0983c0433227))
+* Update from Structify backend changes ([62118bc](https://github.com/StructifyAI/structify-node/commit/62118bc9900e1d3b7aed34f308c18974299b4d5f))
+* Update from Structify backend changes ([9f2f2b1](https://github.com/StructifyAI/structify-node/commit/9f2f2b1296d66921e901cd95c1383de1691e9d31))
+* Update from Structify backend changes ([b7e0f43](https://github.com/StructifyAI/structify-node/commit/b7e0f43202fc80c84d0f1945a7f912a350bccdbc))
+* Update from Structify backend changes ([fc87834](https://github.com/StructifyAI/structify-node/commit/fc878343994b9911f1a0397754e00a8261247d3c))
+* Update from Structify backend changes ([7b2b074](https://github.com/StructifyAI/structify-node/commit/7b2b074ade73ca8e67fb358ae6d80a57df635234))
+* Update from Structify backend changes ([fec8818](https://github.com/StructifyAI/structify-node/commit/fec881800d30717f282d5c0812517e8234066bfc))
+* Update from Structify backend changes ([8bea72a](https://github.com/StructifyAI/structify-node/commit/8bea72ab7d8663f40cbd0bcdc99ad9e59b85c6b9))
+* Update from Structify backend changes ([d9828b6](https://github.com/StructifyAI/structify-node/commit/d9828b693074209985251ef9364fca84c7bff3cd))
+* Update from Structify backend changes ([abfceab](https://github.com/StructifyAI/structify-node/commit/abfceab827a0d82617d1ac588154b991a0319be9))
+
+
+### Bug Fixes
+
+* **client:** incorrect offset pagination check ([7b2d72e](https://github.com/StructifyAI/structify-node/commit/7b2d72e9c3ad171fa226ef3b5c570bfec65b218c))
+
 ## 1.162.0 (2025-10-16)
 
 Full Changelog: [v1.161.0...v1.162.0](https://github.com/StructifyAI/structify-node/compare/v1.161.0...v1.162.0)

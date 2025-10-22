@@ -2,6 +2,8 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
+import * as ConnectorsAPI from './connectors';
+import * as StructureAPI from './structure';
 import { JobsList, type JobsListParams } from '../pagination';
 
 export class Connectors extends APIResource {
@@ -69,11 +71,32 @@ export class Connectors extends APIResource {
     return this._client.get(`/connectors/${connectorId}`, options);
   }
 
+  /**
+   * Get all exploration runs for a connector (admin only)
+   */
+  getExplorationRuns(
+    connectorId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ExplorationRunsResponse> {
+    return this._client.get(`/connectors/${connectorId}/explore/runs`, options);
+  }
+
   getExplorationStatus(
     connectorId: string,
     options?: Core.RequestOptions,
   ): Core.APIPromise<ExploreStatusResponse> {
     return this._client.get(`/connectors/${connectorId}/explore/status`, options);
+  }
+
+  /**
+   * Get chat from a connector exploration run (admin only)
+   */
+  getExplorerChat(
+    connectorId: string,
+    query: ConnectorGetExplorerChatParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ExplorerChatResponse> {
+    return this._client.get(`/connectors/${connectorId}/explore/chat`, { query, ...options });
   }
 }
 
@@ -122,6 +145,77 @@ export interface Connector {
   exploration_status?: ExplorationStatus | null;
 
   refresh_script?: string | null;
+}
+
+/**
+ * Represents a column in a relational database table
+ */
+export interface ConnectorColumnDescriptor {
+  /**
+   * Name of the column
+   */
+  name: string;
+
+  /**
+   * SQL type of the column (e.g., "VARCHAR(255)", "INTEGER", "TIMESTAMP")
+   */
+  type: string;
+
+  /**
+   * Additional notes about the column (e.g., "NOT NULL", "PRIMARY KEY", "UNIQUE",
+   * constraints)
+   */
+  notes?: string | null;
+}
+
+/**
+ * Connector explorer chat with deserialized ChatPrompt for API responses
+ */
+export interface ConnectorExplorerChat {
+  id: string;
+
+  chat_prompt: StructureAPI.ChatPrompt;
+
+  connector_id: string;
+
+  created_at: string;
+
+  exploration_run_id: string;
+}
+
+/**
+ * Descriptor for a relational database connector
+ */
+export interface ConnectorRelationalDatabaseDescriptor {
+  /**
+   * List of tables in the database
+   */
+  tables: Array<ConnectorTableDescriptor>;
+}
+
+/**
+ * Represents a table in a relational database
+ */
+export interface ConnectorTableDescriptor {
+  /**
+   * List of columns in this table
+   */
+  columns: Array<ConnectorColumnDescriptor>;
+
+  /**
+   * Name of the table
+   */
+  name: string;
+
+  /**
+   * Optional description of what this table contains
+   */
+  description?: string | null;
+
+  /**
+   * Optional notes about the table (e.g., constraints, indexes, relationships)
+   */
+  notes?: string | null;
 }
 
 export interface ConnectorWithSecrets extends Connector {
@@ -187,6 +281,16 @@ export interface CreateSecretRequest {
   secret_value: string;
 }
 
+export interface ExplorationRun {
+  created_at: string;
+
+  run_id: string;
+}
+
+export interface ExplorationRunsResponse {
+  runs: Array<ExplorationRun>;
+}
+
 export type ExplorationStatus = 'NotStarted' | 'Running' | 'Completed' | 'Failed';
 
 export interface ExploreStatusResponse {
@@ -194,9 +298,57 @@ export interface ExploreStatusResponse {
 
   error?: string | null;
 
-  result?: string | null;
+  /**
+   * Information store for LLM context about a connector
+   *
+   * This enum represents different types of connector information that can be
+   * provided to LLMs for context. It's stored as JSON in the database.
+   *
+   * When deserializing from the database, we attempt to parse into the most specific
+   * variant first (RelationalDatabase), and fall back to Other if the structure
+   * doesn't match.
+   */
+  result?: LlmInformationStore | null;
 
   started_at?: string | null;
+}
+
+export interface ExplorerChatResponse {
+  /**
+   * Connector explorer chat with deserialized ChatPrompt for API responses
+   */
+  chat: ConnectorExplorerChat;
+}
+
+/**
+ * Information store for LLM context about a connector
+ *
+ * This enum represents different types of connector information that can be
+ * provided to LLMs for context. It's stored as JSON in the database.
+ *
+ * When deserializing from the database, we attempt to parse into the most specific
+ * variant first (RelationalDatabase), and fall back to Other if the structure
+ * doesn't match.
+ */
+export type LlmInformationStore = LlmInformationStore.RelationalDatabase | LlmInformationStore.Other;
+
+export namespace LlmInformationStore {
+  /**
+   * Descriptor for a relational database connector
+   */
+  export interface RelationalDatabase extends ConnectorsAPI.ConnectorRelationalDatabaseDescriptor {
+    type: 'relational_database';
+  }
+
+  /**
+   * Catch-all for other connector types or unstructured information Contains raw
+   * string data
+   */
+  export interface Other {
+    data: string;
+
+    type: 'other';
+  }
 }
 
 export interface UpdateConnectorRequest {
@@ -333,16 +485,31 @@ export interface ConnectorCreateSecretParams {
   secret_value: string;
 }
 
+export interface ConnectorGetExplorerChatParams {
+  /**
+   * Exploration run ID (required)
+   */
+  run_id: string;
+}
+
 Connectors.ConnectorWithSecretsJobsList = ConnectorWithSecretsJobsList;
 
 export declare namespace Connectors {
   export {
     type Connector as Connector,
+    type ConnectorColumnDescriptor as ConnectorColumnDescriptor,
+    type ConnectorExplorerChat as ConnectorExplorerChat,
+    type ConnectorRelationalDatabaseDescriptor as ConnectorRelationalDatabaseDescriptor,
+    type ConnectorTableDescriptor as ConnectorTableDescriptor,
     type ConnectorWithSecrets as ConnectorWithSecrets,
     type CreateConnectorRequest as CreateConnectorRequest,
     type CreateSecretRequest as CreateSecretRequest,
+    type ExplorationRun as ExplorationRun,
+    type ExplorationRunsResponse as ExplorationRunsResponse,
     type ExplorationStatus as ExplorationStatus,
     type ExploreStatusResponse as ExploreStatusResponse,
+    type ExplorerChatResponse as ExplorerChatResponse,
+    type LlmInformationStore as LlmInformationStore,
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type ConnectorGetResponse as ConnectorGetResponse,
     ConnectorWithSecretsJobsList as ConnectorWithSecretsJobsList,
@@ -350,5 +517,6 @@ export declare namespace Connectors {
     type ConnectorUpdateParams as ConnectorUpdateParams,
     type ConnectorListParams as ConnectorListParams,
     type ConnectorCreateSecretParams as ConnectorCreateSecretParams,
+    type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
   };
 }

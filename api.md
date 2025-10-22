@@ -64,6 +64,7 @@ Types:
 - <code><a href="./src/resources/chat.ts">ChatCopyNodeOutputByCodeHashResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatDeleteFilesResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetGitCommitResponse</a></code>
+- <code><a href="./src/resources/chat.ts">ChatGetPartialChatsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetSessionTimelineResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatLoadFilesResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatRevertToCommitResponse</a></code>
@@ -80,6 +81,7 @@ Methods:
 - <code title="post /chat/files/delete/{chat_id}">client.chat.<a href="./src/resources/chat.ts">deleteFiles</a>(chatId, { ...params }) -> ChatDeleteFilesResponse</code>
 - <code title="delete /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">deleteSession</a>(sessionId) -> DeleteChatSessionResponse</code>
 - <code title="get /chat/sessions/{chat_id}/commits/{commit_hash}">client.chat.<a href="./src/resources/chat.ts">getGitCommit</a>(chatId, commitHash) -> ChatGetGitCommitResponse</code>
+- <code title="get /chat/{chat_session_id}/partial-chats">client.chat.<a href="./src/resources/chat.ts">getPartialChats</a>(chatSessionId) -> ChatGetPartialChatsResponse</code>
 - <code title="get /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">getSession</a>(sessionId) -> GetChatSessionResponse</code>
 - <code title="get /chat/sessions/{session_id}/timeline">client.chat.<a href="./src/resources/chat.ts">getSessionTimeline</a>(sessionId) -> ChatGetSessionTimelineResponse</code>
 - <code title="post /chat/sessions/{chat_id}/admin_override">client.chat.<a href="./src/resources/chat.ts">grantAdminOverride</a>(chatId, { ...params }) -> AdminGrantAccessResponse</code>
@@ -496,11 +498,19 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/connectors.ts">Connector</a></code>
+- <code><a href="./src/resources/connectors.ts">ConnectorColumnDescriptor</a></code>
+- <code><a href="./src/resources/connectors.ts">ConnectorExplorerChat</a></code>
+- <code><a href="./src/resources/connectors.ts">ConnectorRelationalDatabaseDescriptor</a></code>
+- <code><a href="./src/resources/connectors.ts">ConnectorTableDescriptor</a></code>
 - <code><a href="./src/resources/connectors.ts">ConnectorWithSecrets</a></code>
 - <code><a href="./src/resources/connectors.ts">CreateConnectorRequest</a></code>
 - <code><a href="./src/resources/connectors.ts">CreateSecretRequest</a></code>
+- <code><a href="./src/resources/connectors.ts">ExplorationRun</a></code>
+- <code><a href="./src/resources/connectors.ts">ExplorationRunsResponse</a></code>
 - <code><a href="./src/resources/connectors.ts">ExplorationStatus</a></code>
 - <code><a href="./src/resources/connectors.ts">ExploreStatusResponse</a></code>
+- <code><a href="./src/resources/connectors.ts">ExplorerChatResponse</a></code>
+- <code><a href="./src/resources/connectors.ts">LlmInformationStore</a></code>
 - <code><a href="./src/resources/connectors.ts">UpdateConnectorRequest</a></code>
 - <code><a href="./src/resources/connectors.ts">ConnectorGetResponse</a></code>
 
@@ -514,7 +524,9 @@ Methods:
 - <code title="delete /connectors/{connector_id}/secrets/{secret_name}">client.connectors.<a href="./src/resources/connectors.ts">deleteSecret</a>(connectorId, secretName) -> void</code>
 - <code title="post /connectors/{connector_id}/explore">client.connectors.<a href="./src/resources/connectors.ts">explore</a>(connectorId) -> void</code>
 - <code title="get /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors.ts">get</a>(connectorId) -> ConnectorGetResponse</code>
+- <code title="get /connectors/{connector_id}/explore/runs">client.connectors.<a href="./src/resources/connectors.ts">getExplorationRuns</a>(connectorId) -> ExplorationRunsResponse</code>
 - <code title="get /connectors/{connector_id}/explore/status">client.connectors.<a href="./src/resources/connectors.ts">getExplorationStatus</a>(connectorId) -> ExploreStatusResponse</code>
+- <code title="get /connectors/{connector_id}/explore/chat">client.connectors.<a href="./src/resources/connectors.ts">getExplorerChat</a>(connectorId, { ...params }) -> ExplorerChatResponse</code>
 
 # Server
 
@@ -554,6 +566,7 @@ Types:
 - <code><a href="./src/resources/entities.ts">EntityAgentMergeResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityDeleteRelationshipResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityDeriveResponse</a></code>
+- <code><a href="./src/resources/entities.ts">EntityDeriveAllResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityGetResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityGetLocalSubgraphResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityGetMergesResponse</a></code>
@@ -575,6 +588,7 @@ Methods:
 - <code title="post /entity/agent_merge">client.entities.<a href="./src/resources/entities.ts">agentMerge</a>({ ...params }) -> EntityAgentMergeResponse</code>
 - <code title="post /entity/delete_relationship">client.entities.<a href="./src/resources/entities.ts">deleteRelationship</a>({ ...params }) -> unknown</code>
 - <code title="post /entity/derive">client.entities.<a href="./src/resources/entities.ts">derive</a>({ ...params }) -> string</code>
+- <code title="post /entity/derive_all">client.entities.<a href="./src/resources/entities.ts">deriveAll</a>({ ...params }) -> EntityDeriveAllResponse</code>
 - <code title="get /entity/get">client.entities.<a href="./src/resources/entities.ts">get</a>({ ...params }) -> EntityGetResponse</code>
 - <code title="get /entity/get_local_subgraph">client.entities.<a href="./src/resources/entities.ts">getLocalSubgraph</a>({ ...params }) -> EntityGetLocalSubgraphResponse</code>
 - <code title="get /entity/get_merges">client.entities.<a href="./src/resources/entities.ts">getMerges</a>({ ...params }) -> EntityGetMergesResponse</code>
