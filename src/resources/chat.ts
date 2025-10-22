@@ -252,6 +252,8 @@ export namespace AddChatMessageResponse {
 
     timestamp: string;
 
+    content_proto?: Core.Uploadable | null;
+
     git_commit_id?: string | null;
   }
 }
@@ -281,9 +283,6 @@ export type ChatEvent =
   | ChatEvent.File
   | ChatEvent.Action
   | ChatEvent.Connector
-  | ChatEvent.CodeProject
-  | ChatEvent.DeleteFile
-  | ChatEvent.MoveFile
   | ChatEvent.ToolCall;
 
 export namespace ChatEvent {
@@ -364,56 +363,6 @@ export namespace ChatEvent {
     }
   }
 
-  export interface CodeProject {
-    CodeProject: CodeProject.CodeProject;
-  }
-
-  export namespace CodeProject {
-    export interface CodeProject {
-      /**
-       * CodeProject attributes
-       */
-      attributes: CodeProject.Attributes;
-    }
-
-    export namespace CodeProject {
-      /**
-       * CodeProject attributes
-       */
-      export interface Attributes {
-        id?: string | null;
-
-        badge?: string | null;
-
-        label?: string | null;
-
-        version?: string | null;
-      }
-    }
-  }
-
-  export interface DeleteFile {
-    DeleteFile: DeleteFile.DeleteFile;
-  }
-
-  export namespace DeleteFile {
-    export interface DeleteFile {
-      file: string;
-    }
-  }
-
-  export interface MoveFile {
-    MoveFile: MoveFile.MoveFile;
-  }
-
-  export namespace MoveFile {
-    export interface MoveFile {
-      file: string;
-
-      new_path: string;
-    }
-  }
-
   export interface ToolCall {
     ToolCall:
       | ToolCall.UnionMember0
@@ -425,8 +374,7 @@ export namespace ChatEvent {
       | ToolCall.UnionMember6
       | ToolCall.UnionMember7
       | ToolCall.UnionMember8
-      | ToolCall.UnionMember9
-      | ToolCall.UnionMember10;
+      | ToolCall.UnionMember9;
   }
 
   export namespace ToolCall {
@@ -481,7 +429,7 @@ export namespace ChatEvent {
     export interface UnionMember3 {
       input: UnionMember3.Input;
 
-      name: 'Connector';
+      name: 'DeleteFile';
 
       result_id?: string | null;
 
@@ -490,18 +438,14 @@ export namespace ChatEvent {
 
     export namespace UnionMember3 {
       export interface Input {
-        env_vars: Array<string>;
-
-        name: string;
-
-        description?: string | null;
+        file: string;
       }
     }
 
     export interface UnionMember4 {
       input: UnionMember4.Input;
 
-      name: 'DeleteFile';
+      name: 'MoveFile';
 
       result_id?: string | null;
 
@@ -511,29 +455,13 @@ export namespace ChatEvent {
     export namespace UnionMember4 {
       export interface Input {
         file: string;
-      }
-    }
-
-    export interface UnionMember5 {
-      input: UnionMember5.Input;
-
-      name: 'MoveFile';
-
-      result_id?: string | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember5 {
-      export interface Input {
-        file: string;
 
         new_path: string;
       }
     }
 
-    export interface UnionMember6 {
-      input: UnionMember6.Input;
+    export interface UnionMember5 {
+      input: UnionMember5.Input;
 
       name: 'RunBash';
 
@@ -542,9 +470,31 @@ export namespace ChatEvent {
       result_text?: string | null;
     }
 
-    export namespace UnionMember6 {
+    export namespace UnionMember5 {
       export interface Input {
         command: string;
+
+        connectors: Array<string>;
+
+        env?: { [key: string]: string } | null;
+
+        working_dir?: string | null;
+      }
+    }
+
+    export interface UnionMember6 {
+      input: UnionMember6.Input;
+
+      name: 'RunPython';
+
+      result_id?: string | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember6 {
+      export interface Input {
+        code: string;
 
         connectors: Array<string>;
 
@@ -557,7 +507,7 @@ export namespace ChatEvent {
     export interface UnionMember7 {
       input: UnionMember7.Input;
 
-      name: 'RunPython';
+      name: 'IssueFound';
 
       result_id?: string | null;
 
@@ -566,36 +516,14 @@ export namespace ChatEvent {
 
     export namespace UnionMember7 {
       export interface Input {
-        code: string;
-
-        connectors: Array<string>;
-
-        env?: { [key: string]: string } | null;
-
-        working_dir?: string | null;
-      }
-    }
-
-    export interface UnionMember8 {
-      input: UnionMember8.Input;
-
-      name: 'IssueFound';
-
-      result_id?: string | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember8 {
-      export interface Input {
         description: string;
 
         title: string;
       }
     }
 
-    export interface UnionMember9 {
-      input: UnionMember9.Input;
+    export interface UnionMember8 {
+      input: UnionMember8.Input;
 
       name: 'CreateTable';
 
@@ -604,7 +532,7 @@ export namespace ChatEvent {
       result_text?: string | null;
     }
 
-    export namespace UnionMember9 {
+    export namespace UnionMember8 {
       export interface Input {
         name: string;
 
@@ -614,8 +542,8 @@ export namespace ChatEvent {
       }
     }
 
-    export interface UnionMember10 {
-      input: UnionMember10.Input;
+    export interface UnionMember9 {
+      input: UnionMember9.Input;
 
       name: 'AddColumn';
 
@@ -624,7 +552,7 @@ export namespace ChatEvent {
       result_text?: string | null;
     }
 
-    export namespace UnionMember10 {
+    export namespace UnionMember9 {
       export interface Input {
         column_name: string;
 
@@ -736,6 +664,8 @@ export namespace ChatSessionWithMessages {
     role: string;
 
     timestamp: string;
+
+    content_proto?: Core.Uploadable | null;
 
     git_commit_id?: string | null;
   }
@@ -1063,6 +993,8 @@ export namespace ChatGetSessionTimelineResponse {
     timestamp: string;
 
     type: 'Message';
+
+    content_proto?: Core.Uploadable | null;
 
     git_commit_id?: string | null;
   }
