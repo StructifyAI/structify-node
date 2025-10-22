@@ -206,7 +206,7 @@ export interface Team {
   description?: string | null;
 }
 
-export type TeamRole = 'member' | 'admin' | 'owner';
+export type TeamRole = 'read_only' | 'member' | 'admin' | 'owner';
 
 export interface TeamSubscriptionStatus {
   has_active_subscription: boolean;

@@ -92,7 +92,7 @@ describe('resource teams', () => {
   test('addMember: only required params', async () => {
     const responsePromise = client.teams.addMember('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       email: 'email',
-      role: 'member',
+      role: 'read_only',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -106,7 +106,7 @@ describe('resource teams', () => {
   test('addMember: required and optional params', async () => {
     const response = await client.teams.addMember('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       email: 'email',
-      role: 'member',
+      role: 'read_only',
     });
   });
 
