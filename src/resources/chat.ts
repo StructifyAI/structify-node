@@ -641,6 +641,8 @@ export interface ChatSession {
 
   project_id: string;
 
+  slack_completion_notified: boolean;
+
   updated_at: string;
 
   config_proto?: Core.Uploadable | null;
