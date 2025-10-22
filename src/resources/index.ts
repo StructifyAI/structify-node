@@ -28,6 +28,7 @@ export {
   type ChatCopyNodeOutputByCodeHashResponse,
   type ChatDeleteFilesResponse,
   type ChatGetGitCommitResponse,
+  type ChatGetPartialChatsResponse,
   type ChatGetSessionTimelineResponse,
   type ChatLoadFilesResponse,
   type ChatRevertToCommitResponse,

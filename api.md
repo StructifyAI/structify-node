@@ -64,6 +64,7 @@ Types:
 - <code><a href="./src/resources/chat.ts">ChatCopyNodeOutputByCodeHashResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatDeleteFilesResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetGitCommitResponse</a></code>
+- <code><a href="./src/resources/chat.ts">ChatGetPartialChatsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetSessionTimelineResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatLoadFilesResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatRevertToCommitResponse</a></code>
@@ -80,6 +81,7 @@ Methods:
 - <code title="post /chat/files/delete/{chat_id}">client.chat.<a href="./src/resources/chat.ts">deleteFiles</a>(chatId, { ...params }) -> ChatDeleteFilesResponse</code>
 - <code title="delete /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">deleteSession</a>(sessionId) -> DeleteChatSessionResponse</code>
 - <code title="get /chat/sessions/{chat_id}/commits/{commit_hash}">client.chat.<a href="./src/resources/chat.ts">getGitCommit</a>(chatId, commitHash) -> ChatGetGitCommitResponse</code>
+- <code title="get /chat/{chat_session_id}/partial-chats">client.chat.<a href="./src/resources/chat.ts">getPartialChats</a>(chatSessionId) -> ChatGetPartialChatsResponse</code>
 - <code title="get /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">getSession</a>(sessionId) -> GetChatSessionResponse</code>
 - <code title="get /chat/sessions/{session_id}/timeline">client.chat.<a href="./src/resources/chat.ts">getSessionTimeline</a>(sessionId) -> ChatGetSessionTimelineResponse</code>
 - <code title="post /chat/sessions/{chat_id}/admin_override">client.chat.<a href="./src/resources/chat.ts">grantAdminOverride</a>(chatId, { ...params }) -> AdminGrantAccessResponse</code>
