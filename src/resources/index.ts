@@ -24,6 +24,8 @@ export {
   type Message,
   type TogglePublicRequest,
   type TogglePublicResponse,
+  type UpdateChatSessionFavoriteRequest,
+  type UpdateChatSessionRequest,
   type ChatAddGitCommitResponse,
   type ChatCopyNodeOutputByCodeHashResponse,
   type ChatDeleteFilesResponse,
@@ -45,6 +47,7 @@ export {
   type ChatRevertToCommitParams,
   type ChatTogglePublicParams,
   type ChatUpdateSessionParams,
+  type ChatUpdateSessionFavoriteParams,
 } from './chat';
 export {
   Code,
