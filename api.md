@@ -103,7 +103,6 @@ Types:
 - <code><a href="./src/resources/teams.ts">AddMemberRequest</a></code>
 - <code><a href="./src/resources/teams.ts">AddMemberResponse</a></code>
 - <code><a href="./src/resources/teams.ts">CreateProjectRequest</a></code>
-- <code><a href="./src/resources/teams.ts">CreateProjectResponse</a></code>
 - <code><a href="./src/resources/teams.ts">CreateTeamRequest</a></code>
 - <code><a href="./src/resources/teams.ts">CreateTeamResponse</a></code>
 - <code><a href="./src/resources/teams.ts">CreditsUsageRequest</a></code>
@@ -120,6 +119,8 @@ Types:
 - <code><a href="./src/resources/teams.ts">TeamRole</a></code>
 - <code><a href="./src/resources/teams.ts">TeamSubscriptionStatus</a></code>
 - <code><a href="./src/resources/teams.ts">TeamWithRole</a></code>
+- <code><a href="./src/resources/teams.ts">UpdateMemberRoleRequest</a></code>
+- <code><a href="./src/resources/teams.ts">UpdateMemberRoleResponse</a></code>
 - <code><a href="./src/resources/teams.ts">UpdateTeamRequest</a></code>
 - <code><a href="./src/resources/teams.ts">UpdateTeamResponse</a></code>
 - <code><a href="./src/resources/teams.ts">UsageGroupKey</a></code>
@@ -133,25 +134,27 @@ Methods:
 - <code title="delete /team/{team_id}">client.teams.<a href="./src/resources/teams.ts">delete</a>(teamId) -> DeleteTeamResponse</code>
 - <code title="post /team/invitations/accept">client.teams.<a href="./src/resources/teams.ts">acceptInvitation</a>({ ...params }) -> AcceptInvitationResponse</code>
 - <code title="post /team/{team_id}/members">client.teams.<a href="./src/resources/teams.ts">addMember</a>(teamId, { ...params }) -> AddMemberResponse</code>
-- <code title="post /team/{team_id}/projects">client.teams.<a href="./src/resources/teams.ts">createProject</a>(teamId, { ...params }) -> CreateProjectResponse</code>
+- <code title="post /team/{team_id}/projects">client.teams.<a href="./src/resources/teams.ts">createProject</a>(teamId, { ...params }) -> Project</code>
 - <code title="get /team/{team_id}/credits/usage">client.teams.<a href="./src/resources/teams.ts">creditsUsage</a>(teamId, { ...params }) -> CreditsUsageResponse</code>
 - <code title="get /team/{team_id}">client.teams.<a href="./src/resources/teams.ts">get</a>(teamId) -> GetTeamResponse</code>
 - <code title="get /team/{team_id}/members">client.teams.<a href="./src/resources/teams.ts">listMembers</a>(teamId) -> ListMembersResponse</code>
 - <code title="get /team/{team_id}/projects">client.teams.<a href="./src/resources/teams.ts">listProjects</a>(teamId) -> ListProjectsResponse</code>
 - <code title="delete /team/{team_id}/members/{user_id}">client.teams.<a href="./src/resources/teams.ts">removeMember</a>(teamId, userId) -> RemoveMemberResponse</code>
+- <code title="patch /team/{team_id}/members/{user_id}/role">client.teams.<a href="./src/resources/teams.ts">updateMemberRole</a>(teamId, userId, { ...params }) -> UpdateMemberRoleResponse</code>
 
 # Projects
 
 Types:
 
 - <code><a href="./src/resources/projects.ts">DeleteProjectResponse</a></code>
-- <code><a href="./src/resources/projects.ts">GetProjectResponse</a></code>
 - <code><a href="./src/resources/projects.ts">Project</a></code>
+- <code><a href="./src/resources/projects.ts">UpdateProjectRequest</a></code>
 
 Methods:
 
+- <code title="patch /team/{team_id}/project/{project_id}">client.projects.<a href="./src/resources/projects.ts">update</a>(teamId, projectId, { ...params }) -> Project</code>
 - <code title="delete /team/{team_id}/project/{project_id}">client.projects.<a href="./src/resources/projects.ts">delete</a>(teamId, projectId) -> DeleteProjectResponse</code>
-- <code title="get /team/{team_id}/project/{project_id}">client.projects.<a href="./src/resources/projects.ts">get</a>(teamId, projectId) -> GetProjectResponse</code>
+- <code title="get /team/{team_id}/project/{project_id}">client.projects.<a href="./src/resources/projects.ts">get</a>(teamId, projectId) -> Project</code>
 
 # Admin
 

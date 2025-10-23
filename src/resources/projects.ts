@@ -4,6 +4,15 @@ import { APIResource } from '../resource';
 import * as Core from '../core';
 
 export class Projects extends APIResource {
+  update(
+    teamId: string,
+    projectId: string,
+    body: ProjectUpdateParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Project> {
+    return this._client.patch(`/team/${teamId}/project/${projectId}`, { body, ...options });
+  }
+
   delete(
     teamId: string,
     projectId: string,
@@ -12,17 +21,13 @@ export class Projects extends APIResource {
     return this._client.delete(`/team/${teamId}/project/${projectId}`, options);
   }
 
-  get(teamId: string, projectId: string, options?: Core.RequestOptions): Core.APIPromise<GetProjectResponse> {
+  get(teamId: string, projectId: string, options?: Core.RequestOptions): Core.APIPromise<Project> {
     return this._client.get(`/team/${teamId}/project/${projectId}`, options);
   }
 }
 
 export interface DeleteProjectResponse {
   success: boolean;
-}
-
-export interface GetProjectResponse {
-  project: Project;
 }
 
 export interface Project {
@@ -39,10 +44,23 @@ export interface Project {
   description?: string | null;
 }
 
+export interface UpdateProjectRequest {
+  description?: string | null;
+
+  name?: string | null;
+}
+
+export interface ProjectUpdateParams {
+  description?: string | null;
+
+  name?: string | null;
+}
+
 export declare namespace Projects {
   export {
     type DeleteProjectResponse as DeleteProjectResponse,
-    type GetProjectResponse as GetProjectResponse,
     type Project as Project,
+    type UpdateProjectRequest as UpdateProjectRequest,
+    type ProjectUpdateParams as ProjectUpdateParams,
   };
 }

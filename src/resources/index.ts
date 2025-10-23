@@ -180,7 +180,13 @@ export {
   type JobListParams,
   type JobStatusParams,
 } from './jobs';
-export { Projects, type DeleteProjectResponse, type GetProjectResponse, type Project } from './projects';
+export {
+  Projects,
+  type DeleteProjectResponse,
+  type Project,
+  type UpdateProjectRequest,
+  type ProjectUpdateParams,
+} from './projects';
 export { PublicSessions } from './public-sessions';
 export {
   Report,
@@ -303,7 +309,6 @@ export {
   type AddMemberRequest,
   type AddMemberResponse,
   type CreateProjectRequest,
-  type CreateProjectResponse,
   type CreateTeamRequest,
   type CreateTeamResponse,
   type CreditsUsageRequest,
@@ -320,6 +325,8 @@ export {
   type TeamRole,
   type TeamSubscriptionStatus,
   type TeamWithRole,
+  type UpdateMemberRoleRequest,
+  type UpdateMemberRoleResponse,
   type UpdateTeamRequest,
   type UpdateTeamResponse,
   type UsageGroupKey,
@@ -330,6 +337,7 @@ export {
   type TeamAddMemberParams,
   type TeamCreateProjectParams,
   type TeamCreditsUsageParams,
+  type TeamUpdateMemberRoleParams,
 } from './teams';
 export {
   User,
