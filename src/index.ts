@@ -154,7 +154,13 @@ import {
   JobStatusResponse,
   Jobs,
 } from './resources/jobs';
-import { DeleteProjectResponse, GetProjectResponse, Project, Projects } from './resources/projects';
+import {
+  DeleteProjectResponse,
+  Project,
+  ProjectUpdateParams,
+  Projects,
+  UpdateProjectRequest,
+} from './resources/projects';
 import { PublicSessions } from './resources/public-sessions';
 import {
   Report,
@@ -276,7 +282,6 @@ import {
   AddMemberRequest,
   AddMemberResponse,
   CreateProjectRequest,
-  CreateProjectResponse,
   CreateTeamRequest,
   CreateTeamResponse,
   CreditsUsageRequest,
@@ -297,9 +302,12 @@ import {
   TeamCreditsUsageParams,
   TeamRole,
   TeamSubscriptionStatus,
+  TeamUpdateMemberRoleParams,
   TeamUpdateParams,
   TeamWithRole,
   Teams,
+  UpdateMemberRoleRequest,
+  UpdateMemberRoleResponse,
   UpdateTeamRequest,
   UpdateTeamResponse,
   UsageGroupKey,
@@ -686,7 +694,6 @@ export declare namespace Structify {
     type AddMemberRequest as AddMemberRequest,
     type AddMemberResponse as AddMemberResponse,
     type CreateProjectRequest as CreateProjectRequest,
-    type CreateProjectResponse as CreateProjectResponse,
     type CreateTeamRequest as CreateTeamRequest,
     type CreateTeamResponse as CreateTeamResponse,
     type CreditsUsageRequest as CreditsUsageRequest,
@@ -703,6 +710,8 @@ export declare namespace Structify {
     type TeamRole as TeamRole,
     type TeamSubscriptionStatus as TeamSubscriptionStatus,
     type TeamWithRole as TeamWithRole,
+    type UpdateMemberRoleRequest as UpdateMemberRoleRequest,
+    type UpdateMemberRoleResponse as UpdateMemberRoleResponse,
     type UpdateTeamRequest as UpdateTeamRequest,
     type UpdateTeamResponse as UpdateTeamResponse,
     type UsageGroupKey as UsageGroupKey,
@@ -713,13 +722,15 @@ export declare namespace Structify {
     type TeamAddMemberParams as TeamAddMemberParams,
     type TeamCreateProjectParams as TeamCreateProjectParams,
     type TeamCreditsUsageParams as TeamCreditsUsageParams,
+    type TeamUpdateMemberRoleParams as TeamUpdateMemberRoleParams,
   };
 
   export {
     Projects as Projects,
     type DeleteProjectResponse as DeleteProjectResponse,
-    type GetProjectResponse as GetProjectResponse,
     type Project as Project,
+    type UpdateProjectRequest as UpdateProjectRequest,
+    type ProjectUpdateParams as ProjectUpdateParams,
   };
 
   export { Admin as Admin };
