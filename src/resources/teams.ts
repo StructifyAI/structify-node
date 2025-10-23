@@ -45,7 +45,7 @@ export class Teams extends APIResource {
     teamId: string,
     body: TeamCreateProjectParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<CreateProjectResponse> {
+  ): Core.APIPromise<ProjectsAPI.Project> {
     return this._client.post(`/team/${teamId}/projects`, { body, ...options });
   }
 
@@ -75,6 +75,15 @@ export class Teams extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<RemoveMemberResponse> {
     return this._client.delete(`/team/${teamId}/members/${userId}`, options);
+  }
+
+  updateMemberRole(
+    teamId: string,
+    userId: string,
+    body: TeamUpdateMemberRoleParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<UpdateMemberRoleResponse> {
+    return this._client.patch(`/team/${teamId}/members/${userId}/role`, { body, ...options });
   }
 }
 
@@ -112,10 +121,6 @@ export interface CreateProjectRequest {
   name: string;
 
   description?: string | null;
-}
-
-export interface CreateProjectResponse {
-  project: ProjectsAPI.Project;
 }
 
 export interface CreateTeamRequest {
@@ -229,6 +234,14 @@ export interface TeamWithRole extends Team {
   role: TeamRole;
 }
 
+export interface UpdateMemberRoleRequest {
+  role: TeamRole;
+}
+
+export interface UpdateMemberRoleResponse {
+  success: boolean;
+}
+
 export interface UpdateTeamRequest {
   description?: string | null;
 
@@ -325,6 +338,10 @@ export interface TeamCreditsUsageParams {
   token?: string | null;
 }
 
+export interface TeamUpdateMemberRoleParams {
+  role: TeamRole;
+}
+
 export declare namespace Teams {
   export {
     type AcceptInvitationRequest as AcceptInvitationRequest,
@@ -332,7 +349,6 @@ export declare namespace Teams {
     type AddMemberRequest as AddMemberRequest,
     type AddMemberResponse as AddMemberResponse,
     type CreateProjectRequest as CreateProjectRequest,
-    type CreateProjectResponse as CreateProjectResponse,
     type CreateTeamRequest as CreateTeamRequest,
     type CreateTeamResponse as CreateTeamResponse,
     type CreditsUsageRequest as CreditsUsageRequest,
@@ -349,6 +365,8 @@ export declare namespace Teams {
     type TeamRole as TeamRole,
     type TeamSubscriptionStatus as TeamSubscriptionStatus,
     type TeamWithRole as TeamWithRole,
+    type UpdateMemberRoleRequest as UpdateMemberRoleRequest,
+    type UpdateMemberRoleResponse as UpdateMemberRoleResponse,
     type UpdateTeamRequest as UpdateTeamRequest,
     type UpdateTeamResponse as UpdateTeamResponse,
     type UsageGroupKey as UsageGroupKey,
@@ -359,5 +377,6 @@ export declare namespace Teams {
     type TeamAddMemberParams as TeamAddMemberParams,
     type TeamCreateProjectParams as TeamCreateProjectParams,
     type TeamCreditsUsageParams as TeamCreditsUsageParams,
+    type TeamUpdateMemberRoleParams as TeamUpdateMemberRoleParams,
   };
 }
