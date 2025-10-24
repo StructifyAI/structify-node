@@ -76,6 +76,7 @@ export namespace GenerateCodeRequest {
       | 'gemini.gemini-2.5-pro'
       | 'gemini.gemini-2.5-flash'
       | 'gemini.gemini-2.5-flash-preview-09-2025'
+      | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
 
     reminder_message?: string | null;
@@ -132,6 +133,7 @@ export namespace CodeGenerateCodeParams {
       | 'gemini.gemini-2.5-pro'
       | 'gemini.gemini-2.5-flash'
       | 'gemini.gemini-2.5-flash-preview-09-2025'
+      | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
 
     reminder_message?: string | null;
