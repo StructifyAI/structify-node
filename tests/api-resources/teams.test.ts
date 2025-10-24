@@ -83,10 +83,7 @@ describe('resource teams', () => {
   });
 
   test('acceptInvitation: required and optional params', async () => {
-    const response = await client.teams.acceptInvitation({
-      token: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      supabase_user_id: 'supabase_user_id',
-    });
+    const response = await client.teams.acceptInvitation({ token: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
   });
 
   test('addMember: only required params', async () => {
@@ -169,6 +166,26 @@ describe('resource teams', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.teams.get('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
+  test('invitationDetails', async () => {
+    const responsePromise = client.teams.invitationDetails('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('invitationDetails: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.teams.invitationDetails('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+        path: '/_stainless_unknown_path',
+      }),
     ).rejects.toThrow(Structify.NotFoundError);
   });
 

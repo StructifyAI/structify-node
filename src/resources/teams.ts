@@ -61,6 +61,13 @@ export class Teams extends APIResource {
     return this._client.get(`/team/${teamId}`, options);
   }
 
+  invitationDetails(
+    token: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<InvitationDetailsResponse> {
+    return this._client.get(`/team/invitations/details/${token}`, options);
+  }
+
   listMembers(teamId: string, options?: Core.RequestOptions): Core.APIPromise<ListMembersResponse> {
     return this._client.get(`/team/${teamId}/members`, options);
   }
@@ -89,20 +96,14 @@ export class Teams extends APIResource {
 
 export interface AcceptInvitationRequest {
   token: string;
-
-  supabase_user_id?: string | null;
 }
 
 export interface AcceptInvitationResponse {
-  requires_signup: boolean;
-
   success: boolean;
 
   team_id: string;
 
   team_name: string;
-
-  user_email: string;
 }
 
 export interface AddMemberRequest {
@@ -168,6 +169,14 @@ export interface GetTeamResponse {
 }
 
 export type Granularity = 'hour' | 'day' | 'week' | 'month';
+
+export interface InvitationDetailsResponse {
+  invitee_email: string;
+
+  team_name: string;
+
+  user_exists: boolean;
+}
 
 export interface ListMembersResponse {
   members: Array<ListMembersResponse.Member>;
@@ -300,8 +309,6 @@ export interface TeamUpdateParams {
 
 export interface TeamAcceptInvitationParams {
   token: string;
-
-  supabase_user_id?: string | null;
 }
 
 export interface TeamAddMemberParams {
@@ -357,6 +364,7 @@ export declare namespace Teams {
     type DeleteTeamResponse as DeleteTeamResponse,
     type GetTeamResponse as GetTeamResponse,
     type Granularity as Granularity,
+    type InvitationDetailsResponse as InvitationDetailsResponse,
     type ListMembersResponse as ListMembersResponse,
     type ListProjectsResponse as ListProjectsResponse,
     type ListTeamsResponse as ListTeamsResponse,
