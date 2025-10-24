@@ -16,11 +16,14 @@ export {
   type CancelSubscriptionResponse,
   type CreateSubscriptionResponse,
   type CreateTeamSubscriptionRequest,
+  type ExtendTrialRequest,
+  type ExtendTrialResponse,
   type GrantCreditsRequest,
   type GrantCreditsResponse,
   type TeamListParams,
   type TeamCancelSubscriptionParams,
   type TeamCreateSubscriptionParams,
+  type TeamExtendTrialParams,
   type TeamGrantCreditsParams,
 } from './teams';
 export { Dataset, type AdminDatasetReturn, type DatasetGetByIDParams } from './dataset';

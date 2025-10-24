@@ -39,6 +39,7 @@ import {
   ChatSessionUser,
   ChatSessionWithMessages,
   ChatTogglePublicParams,
+  ChatUpdateSessionFavoriteParams,
   ChatUpdateSessionParams,
   CopyChatSessionRequest,
   CreateChatSessionRequest,
@@ -52,6 +53,8 @@ import {
   Message,
   TogglePublicRequest,
   TogglePublicResponse,
+  UpdateChatSessionFavoriteRequest,
+  UpdateChatSessionRequest,
 } from './resources/chat';
 import {
   Code,
@@ -154,7 +157,13 @@ import {
   JobStatusResponse,
   Jobs,
 } from './resources/jobs';
-import { DeleteProjectResponse, GetProjectResponse, Project, Projects } from './resources/projects';
+import {
+  DeleteProjectResponse,
+  Project,
+  ProjectUpdateParams,
+  Projects,
+  UpdateProjectRequest,
+} from './resources/projects';
 import { PublicSessions } from './resources/public-sessions';
 import {
   Report,
@@ -276,7 +285,6 @@ import {
   AddMemberRequest,
   AddMemberResponse,
   CreateProjectRequest,
-  CreateProjectResponse,
   CreateTeamRequest,
   CreateTeamResponse,
   CreditsUsageRequest,
@@ -285,6 +293,7 @@ import {
   DeleteTeamResponse,
   GetTeamResponse,
   Granularity,
+  InvitationDetailsResponse,
   ListMembersResponse,
   ListProjectsResponse,
   ListTeamsResponse,
@@ -297,9 +306,12 @@ import {
   TeamCreditsUsageParams,
   TeamRole,
   TeamSubscriptionStatus,
+  TeamUpdateMemberRoleParams,
   TeamUpdateParams,
   TeamWithRole,
   Teams,
+  UpdateMemberRoleRequest,
+  UpdateMemberRoleResponse,
   UpdateTeamRequest,
   UpdateTeamResponse,
   UsageGroupKey,
@@ -656,6 +668,8 @@ export declare namespace Structify {
     type Message as Message,
     type TogglePublicRequest as TogglePublicRequest,
     type TogglePublicResponse as TogglePublicResponse,
+    type UpdateChatSessionFavoriteRequest as UpdateChatSessionFavoriteRequest,
+    type UpdateChatSessionRequest as UpdateChatSessionRequest,
     type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
     type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
     type ChatDeleteFilesResponse as ChatDeleteFilesResponse,
@@ -677,6 +691,7 @@ export declare namespace Structify {
     type ChatRevertToCommitParams as ChatRevertToCommitParams,
     type ChatTogglePublicParams as ChatTogglePublicParams,
     type ChatUpdateSessionParams as ChatUpdateSessionParams,
+    type ChatUpdateSessionFavoriteParams as ChatUpdateSessionFavoriteParams,
   };
 
   export {
@@ -686,7 +701,6 @@ export declare namespace Structify {
     type AddMemberRequest as AddMemberRequest,
     type AddMemberResponse as AddMemberResponse,
     type CreateProjectRequest as CreateProjectRequest,
-    type CreateProjectResponse as CreateProjectResponse,
     type CreateTeamRequest as CreateTeamRequest,
     type CreateTeamResponse as CreateTeamResponse,
     type CreditsUsageRequest as CreditsUsageRequest,
@@ -695,6 +709,7 @@ export declare namespace Structify {
     type DeleteTeamResponse as DeleteTeamResponse,
     type GetTeamResponse as GetTeamResponse,
     type Granularity as Granularity,
+    type InvitationDetailsResponse as InvitationDetailsResponse,
     type ListMembersResponse as ListMembersResponse,
     type ListProjectsResponse as ListProjectsResponse,
     type ListTeamsResponse as ListTeamsResponse,
@@ -703,6 +718,8 @@ export declare namespace Structify {
     type TeamRole as TeamRole,
     type TeamSubscriptionStatus as TeamSubscriptionStatus,
     type TeamWithRole as TeamWithRole,
+    type UpdateMemberRoleRequest as UpdateMemberRoleRequest,
+    type UpdateMemberRoleResponse as UpdateMemberRoleResponse,
     type UpdateTeamRequest as UpdateTeamRequest,
     type UpdateTeamResponse as UpdateTeamResponse,
     type UsageGroupKey as UsageGroupKey,
@@ -713,13 +730,15 @@ export declare namespace Structify {
     type TeamAddMemberParams as TeamAddMemberParams,
     type TeamCreateProjectParams as TeamCreateProjectParams,
     type TeamCreditsUsageParams as TeamCreditsUsageParams,
+    type TeamUpdateMemberRoleParams as TeamUpdateMemberRoleParams,
   };
 
   export {
     Projects as Projects,
     type DeleteProjectResponse as DeleteProjectResponse,
-    type GetProjectResponse as GetProjectResponse,
     type Project as Project,
+    type UpdateProjectRequest as UpdateProjectRequest,
+    type ProjectUpdateParams as ProjectUpdateParams,
   };
 
   export { Admin as Admin };

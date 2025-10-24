@@ -89,7 +89,8 @@ export class Connectors extends APIResource {
   }
 
   /**
-   * Get chat from a connector exploration run (admin only)
+   * Returns chats for all phases (table discovery, column discovery for each table,
+   * etc.)
    */
   getExplorerChat(
     connectorId: string,
@@ -181,6 +182,29 @@ export interface ConnectorExplorerChat {
   created_at: string;
 
   exploration_run_id: string;
+
+  /**
+   * Identifies the phase of connector exploration
+   *
+   * This enum is used to track which phase of exploration a chat session belongs to.
+   * It's stored as JSONB in the database to allow for flexible phase identification.
+   */
+  phase_id: ConnectorExplorerChat.DiscoverTables | ConnectorExplorerChat.DiscoverColumns;
+}
+
+export namespace ConnectorExplorerChat {
+  export interface DiscoverTables {
+    type: 'discover_tables';
+  }
+
+  /**
+   * Second phase: discovering columns for a specific table
+   */
+  export interface DiscoverColumns {
+    table_name: string;
+
+    type: 'discover_columns';
+  }
 }
 
 /**
@@ -314,10 +338,7 @@ export interface ExploreStatusResponse {
 }
 
 export interface ExplorerChatResponse {
-  /**
-   * Connector explorer chat with deserialized ChatPrompt for API responses
-   */
-  chat: ConnectorExplorerChat;
+  chats: Array<ConnectorExplorerChat>;
 }
 
 /**
