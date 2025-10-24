@@ -39,7 +39,6 @@ import {
   ChatSessionUser,
   ChatSessionWithMessages,
   ChatTogglePublicParams,
-  ChatUpdateSessionFavoriteParams,
   ChatUpdateSessionParams,
   CopyChatSessionRequest,
   CreateChatSessionRequest,
@@ -53,8 +52,6 @@ import {
   Message,
   TogglePublicRequest,
   TogglePublicResponse,
-  UpdateChatSessionFavoriteRequest,
-  UpdateChatSessionRequest,
 } from './resources/chat';
 import {
   Code,
@@ -293,6 +290,7 @@ import {
   DeleteTeamResponse,
   GetTeamResponse,
   Granularity,
+  InvitationDetailsResponse,
   ListMembersResponse,
   ListProjectsResponse,
   ListTeamsResponse,
@@ -667,8 +665,6 @@ export declare namespace Structify {
     type Message as Message,
     type TogglePublicRequest as TogglePublicRequest,
     type TogglePublicResponse as TogglePublicResponse,
-    type UpdateChatSessionFavoriteRequest as UpdateChatSessionFavoriteRequest,
-    type UpdateChatSessionRequest as UpdateChatSessionRequest,
     type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
     type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
     type ChatDeleteFilesResponse as ChatDeleteFilesResponse,
@@ -690,7 +686,6 @@ export declare namespace Structify {
     type ChatRevertToCommitParams as ChatRevertToCommitParams,
     type ChatTogglePublicParams as ChatTogglePublicParams,
     type ChatUpdateSessionParams as ChatUpdateSessionParams,
-    type ChatUpdateSessionFavoriteParams as ChatUpdateSessionFavoriteParams,
   };
 
   export {
@@ -708,6 +703,7 @@ export declare namespace Structify {
     type DeleteTeamResponse as DeleteTeamResponse,
     type GetTeamResponse as GetTeamResponse,
     type Granularity as Granularity,
+    type InvitationDetailsResponse as InvitationDetailsResponse,
     type ListMembersResponse as ListMembersResponse,
     type ListProjectsResponse as ListProjectsResponse,
     type ListTeamsResponse as ListTeamsResponse,
