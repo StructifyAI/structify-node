@@ -291,7 +291,8 @@ export type ChatEvent =
   | ChatEvent.File
   | ChatEvent.Action
   | ChatEvent.Connector
-  | ChatEvent.ToolCall;
+  | ChatEvent.ToolCall
+  | ChatEvent.InternalError;
 
 export namespace ChatEvent {
   export interface TextMessage {
@@ -570,6 +571,16 @@ export namespace ChatEvent {
 
         notes?: string | null;
       }
+    }
+  }
+
+  export interface InternalError {
+    InternalError: InternalError.InternalError;
+  }
+
+  export namespace InternalError {
+    export interface InternalError {
+      message: string;
     }
   }
 }
