@@ -60,8 +60,6 @@ Types:
 - <code><a href="./src/resources/chat.ts">Message</a></code>
 - <code><a href="./src/resources/chat.ts">TogglePublicRequest</a></code>
 - <code><a href="./src/resources/chat.ts">TogglePublicResponse</a></code>
-- <code><a href="./src/resources/chat.ts">UpdateChatSessionFavoriteRequest</a></code>
-- <code><a href="./src/resources/chat.ts">UpdateChatSessionRequest</a></code>
 - <code><a href="./src/resources/chat.ts">ChatAddGitCommitResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatCopyNodeOutputByCodeHashResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatDeleteFilesResponse</a></code>
@@ -95,7 +93,6 @@ Methods:
 - <code title="post /chat/sessions/{session_id}/revert">client.chat.<a href="./src/resources/chat.ts">revertToCommit</a>(sessionId, { ...params }) -> ChatRevertToCommitResponse</code>
 - <code title="put /chat/sessions/{session_id}/public">client.chat.<a href="./src/resources/chat.ts">togglePublic</a>(sessionId, { ...params }) -> TogglePublicResponse</code>
 - <code title="patch /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">updateSession</a>(sessionId, { ...params }) -> ChatSession</code>
-- <code title="patch /chat/sessions/{session_id}/favorite">client.chat.<a href="./src/resources/chat.ts">updateSessionFavorite</a>(sessionId, { ...params }) -> ChatSession</code>
 
 # Teams
 
@@ -114,6 +111,7 @@ Types:
 - <code><a href="./src/resources/teams.ts">DeleteTeamResponse</a></code>
 - <code><a href="./src/resources/teams.ts">GetTeamResponse</a></code>
 - <code><a href="./src/resources/teams.ts">Granularity</a></code>
+- <code><a href="./src/resources/teams.ts">InvitationDetailsResponse</a></code>
 - <code><a href="./src/resources/teams.ts">ListMembersResponse</a></code>
 - <code><a href="./src/resources/teams.ts">ListProjectsResponse</a></code>
 - <code><a href="./src/resources/teams.ts">ListTeamsResponse</a></code>
@@ -140,6 +138,7 @@ Methods:
 - <code title="post /team/{team_id}/projects">client.teams.<a href="./src/resources/teams.ts">createProject</a>(teamId, { ...params }) -> Project</code>
 - <code title="get /team/{team_id}/credits/usage">client.teams.<a href="./src/resources/teams.ts">creditsUsage</a>(teamId, { ...params }) -> CreditsUsageResponse</code>
 - <code title="get /team/{team_id}">client.teams.<a href="./src/resources/teams.ts">get</a>(teamId) -> GetTeamResponse</code>
+- <code title="get /team/invitations/details/{token}">client.teams.<a href="./src/resources/teams.ts">invitationDetails</a>(token) -> InvitationDetailsResponse</code>
 - <code title="get /team/{team_id}/members">client.teams.<a href="./src/resources/teams.ts">listMembers</a>(teamId) -> ListMembersResponse</code>
 - <code title="get /team/{team_id}/projects">client.teams.<a href="./src/resources/teams.ts">listProjects</a>(teamId) -> ListProjectsResponse</code>
 - <code title="delete /team/{team_id}/members/{user_id}">client.teams.<a href="./src/resources/teams.ts">removeMember</a>(teamId, userId) -> RemoveMemberResponse</code>
