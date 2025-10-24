@@ -223,6 +223,14 @@ export class Chat extends APIResource {
   ): Core.APIPromise<ChatSession> {
     return this._client.patch(`/chat/sessions/${sessionId}`, { body, ...options });
   }
+
+  updateSessionFavorite(
+    sessionId: string,
+    body: ChatUpdateSessionFavoriteParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatSession> {
+    return this._client.patch(`/chat/sessions/${sessionId}/favorite`, { body, ...options });
+  }
 }
 
 export interface AddChatMessageRequest {
@@ -922,6 +930,16 @@ export interface TogglePublicResponse {
   is_public: boolean;
 }
 
+export interface UpdateChatSessionFavoriteRequest {
+  is_favorite: boolean;
+}
+
+export interface UpdateChatSessionRequest {
+  name?: string | null;
+
+  project_id?: string | null;
+}
+
 /**
  * Response structure for adding a git commit
  */
@@ -1164,11 +1182,13 @@ export interface ChatTogglePublicParams {
 }
 
 export interface ChatUpdateSessionParams {
-  is_favorite?: boolean | null;
-
   name?: string | null;
 
   project_id?: string | null;
+}
+
+export interface ChatUpdateSessionFavoriteParams {
+  is_favorite: boolean;
 }
 
 export declare namespace Chat {
@@ -1194,6 +1214,8 @@ export declare namespace Chat {
     type Message as Message,
     type TogglePublicRequest as TogglePublicRequest,
     type TogglePublicResponse as TogglePublicResponse,
+    type UpdateChatSessionFavoriteRequest as UpdateChatSessionFavoriteRequest,
+    type UpdateChatSessionRequest as UpdateChatSessionRequest,
     type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
     type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
     type ChatDeleteFilesResponse as ChatDeleteFilesResponse,
@@ -1215,5 +1237,6 @@ export declare namespace Chat {
     type ChatRevertToCommitParams as ChatRevertToCommitParams,
     type ChatTogglePublicParams as ChatTogglePublicParams,
     type ChatUpdateSessionParams as ChatUpdateSessionParams,
+    type ChatUpdateSessionFavoriteParams as ChatUpdateSessionFavoriteParams,
   };
 }
