@@ -241,6 +241,8 @@ export interface TeamSubscriptionStatus {
 
 export interface TeamWithRole extends Team {
   role: TeamRole;
+
+  subscription_status: TeamSubscriptionStatus;
 }
 
 export interface UpdateMemberRoleRequest {
