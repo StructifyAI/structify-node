@@ -383,7 +383,8 @@ export namespace ChatEvent {
       | ToolCall.UnionMember6
       | ToolCall.UnionMember7
       | ToolCall.UnionMember8
-      | ToolCall.UnionMember9;
+      | ToolCall.UnionMember9
+      | ToolCall.UnionMember10;
   }
 
   export namespace ToolCall {
@@ -568,6 +569,28 @@ export namespace ChatEvent {
         column_type: string;
 
         table_name: string;
+
+        notes?: string | null;
+      }
+    }
+
+    export interface UnionMember10 {
+      input: UnionMember10.Input;
+
+      name: 'CreateApiResource';
+
+      result_id?: string | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember10 {
+      export interface Input {
+        endpoint: string;
+
+        name: string;
+
+        description?: string | null;
 
         notes?: string | null;
       }
