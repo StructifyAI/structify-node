@@ -189,7 +189,11 @@ export interface ConnectorExplorerChat {
    * This enum is used to track which phase of exploration a chat session belongs to.
    * It's stored as JSONB in the database to allow for flexible phase identification.
    */
-  phase_id: ConnectorExplorerChat.DiscoverTables | ConnectorExplorerChat.DiscoverColumns;
+  phase_id:
+    | ConnectorExplorerChat.DiscoverTables
+    | ConnectorExplorerChat.DiscoverColumns
+    | ConnectorExplorerChat.DiscoverAPIResources
+    | ConnectorExplorerChat.DiscoverAPIFields;
 }
 
 export namespace ConnectorExplorerChat {
@@ -204,6 +208,64 @@ export namespace ConnectorExplorerChat {
     table_name: string;
 
     type: 'discover_columns';
+  }
+
+  /**
+   * Initial phase: discovering all API resources
+   */
+  export interface DiscoverAPIResources {
+    known_connector_type:
+      | 'Slack'
+      | 'Confluence'
+      | 'GoogleDrive'
+      | 'Snowflake'
+      | 'Hubspot'
+      | 'Salesforce'
+      | 'Supabase'
+      | 'Sharepoint'
+      | 'Notion'
+      | 'Jira'
+      | 'Linear'
+      | 'Intercom'
+      | 'Gmail'
+      | 'Airtable'
+      | 'Trello'
+      | 'Postgresql'
+      | 'Sap'
+      | 'Oracle'
+      | 'Manual';
+
+    type: 'discover_api_resources';
+  }
+
+  /**
+   * Second phase: discovering fields for a specific API resource
+   */
+  export interface DiscoverAPIFields {
+    known_connector_type:
+      | 'Slack'
+      | 'Confluence'
+      | 'GoogleDrive'
+      | 'Snowflake'
+      | 'Hubspot'
+      | 'Salesforce'
+      | 'Supabase'
+      | 'Sharepoint'
+      | 'Notion'
+      | 'Jira'
+      | 'Linear'
+      | 'Intercom'
+      | 'Gmail'
+      | 'Airtable'
+      | 'Trello'
+      | 'Postgresql'
+      | 'Sap'
+      | 'Oracle'
+      | 'Manual';
+
+    resource_name: string;
+
+    type: 'discover_api_fields';
   }
 }
 
@@ -351,7 +413,10 @@ export interface ExplorerChatResponse {
  * variant first (RelationalDatabase), and fall back to Other if the structure
  * doesn't match.
  */
-export type LlmInformationStore = LlmInformationStore.RelationalDatabase | LlmInformationStore.Other;
+export type LlmInformationStore =
+  | LlmInformationStore.RelationalDatabase
+  | LlmInformationStore.APITabular
+  | LlmInformationStore.Other;
 
 export namespace LlmInformationStore {
   /**
@@ -359,6 +424,48 @@ export namespace LlmInformationStore {
    */
   export interface RelationalDatabase extends ConnectorsAPI.ConnectorRelationalDatabaseDescriptor {
     type: 'relational_database';
+  }
+
+  export interface APITabular {
+    /**
+     * List of resources (similar to tables/objects)
+     */
+    resources: Array<APITabular.Resource>;
+
+    type: 'api_tabular';
+  }
+
+  export namespace APITabular {
+    /**
+     * Represents a resource in an API (equivalent to a table/object)
+     */
+    export interface Resource {
+      /**
+       * List of columns (properties/fields in the API resource)
+       */
+      columns: Array<ConnectorsAPI.ConnectorColumnDescriptor>;
+
+      /**
+       * API endpoint for this resource (e.g., "/crm/v3/objects/contacts",
+       * "/rest/api/3/issue")
+       */
+      endpoint: string;
+
+      /**
+       * API name of the resource (e.g., "contacts", "issues", "records")
+       */
+      name: string;
+
+      /**
+       * Optional description
+       */
+      description?: string | null;
+
+      /**
+       * Optional notes (associations, usage patterns, etc.)
+       */
+      notes?: string | null;
+    }
   }
 
   /**
