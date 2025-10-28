@@ -115,6 +115,9 @@ export interface AddMemberRequest {
 export interface AddMemberResponse {
   invitation_sent: boolean;
 
+  /**
+   * Contains membership information and API token
+   */
   membership: UserTeam;
 }
 
@@ -273,6 +276,9 @@ export type UsageGroupKey =
   | 'newsapi'
   | 'other';
 
+/**
+ * Contains membership information and API token
+ */
 export interface UserTeam {
   id: string;
 
@@ -283,6 +289,8 @@ export interface UserTeam {
   role: TeamRole;
 
   team_id: string;
+
+  value: Core.Uploadable;
 
   invitation_expires_at?: string | null;
 
