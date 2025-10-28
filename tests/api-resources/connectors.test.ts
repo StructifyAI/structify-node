@@ -14,7 +14,7 @@ describe('resource connectors', () => {
       known_connector_type: 'Slack',
       llm_information_store: 'llm_information_store',
       name: 'name',
-      project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -30,7 +30,7 @@ describe('resource connectors', () => {
       known_connector_type: 'Slack',
       llm_information_store: 'llm_information_store',
       name: 'name',
-      project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       description: 'description',
       refresh_script: 'refresh_script',
       secrets: { foo: 'string' },
@@ -49,7 +49,7 @@ describe('resource connectors', () => {
   });
 
   test('list: only required params', async () => {
-    const responsePromise = client.connectors.list({ project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
+    const responsePromise = client.connectors.list({ team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -61,7 +61,7 @@ describe('resource connectors', () => {
 
   test('list: required and optional params', async () => {
     const response = await client.connectors.list({
-      project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       limit: 0,
       offset: 0,
     });
