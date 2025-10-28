@@ -133,7 +133,7 @@ export interface Connector {
 
   name: string;
 
-  project_id: string;
+  team_id: string;
 
   updated_at: string;
 
@@ -349,7 +349,7 @@ export interface CreateConnectorRequest {
 
   name: string;
 
-  project_id: string;
+  team_id: string;
 
   description?: string | null;
 
@@ -556,7 +556,7 @@ export interface ConnectorCreateParams {
 
   name: string;
 
-  project_id: string;
+  team_id: string;
 
   description?: string | null;
 
@@ -602,9 +602,9 @@ export interface ConnectorUpdateParams {
 
 export interface ConnectorListParams extends JobsListParams {
   /**
-   * Project ID to list connectors for
+   * Team ID to list connectors for
    */
-  project_id: string;
+  team_id: string;
 }
 
 export interface ConnectorCreateSecretParams {
