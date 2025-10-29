@@ -87,8 +87,8 @@ describe('resource chat', () => {
   test('copy: only required params', async () => {
     const responsePromise = client.chat.copy({
       copy_name: 'copy_name',
-      project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       source_chat_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -102,9 +102,10 @@ describe('resource chat', () => {
   test('copy: required and optional params', async () => {
     const response = await client.chat.copy({
       copy_name: 'copy_name',
-      project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       source_chat_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       copy_inputs: true,
+      project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 
@@ -129,7 +130,7 @@ describe('resource chat', () => {
   });
 
   test('createSession: only required params', async () => {
-    const responsePromise = client.chat.createSession({ project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
+    const responsePromise = client.chat.createSession({ team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -141,7 +142,7 @@ describe('resource chat', () => {
 
   test('createSession: required and optional params', async () => {
     const response = await client.chat.createSession({
-      project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       config: {
         llm_key: 'vllm.gpt-5-mini-2025-08-07',
         reminder_message: 'reminder_message',
@@ -149,6 +150,7 @@ describe('resource chat', () => {
       },
       ephemeral: true,
       initial_message: 'initial_message',
+      project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 
