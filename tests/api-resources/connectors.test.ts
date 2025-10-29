@@ -12,7 +12,6 @@ describe('resource connectors', () => {
   test('create: only required params', async () => {
     const responsePromise = client.connectors.create({
       known_connector_type: 'Slack',
-      llm_information_store: 'llm_information_store',
       name: 'name',
       team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
@@ -28,7 +27,6 @@ describe('resource connectors', () => {
   test('create: required and optional params', async () => {
     const response = await client.connectors.create({
       known_connector_type: 'Slack',
-      llm_information_store: 'llm_information_store',
       name: 'name',
       team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       description: 'description',
@@ -83,6 +81,25 @@ describe('resource connectors', () => {
     await expect(
       client.connectors.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Structify.NotFoundError);
+  });
+
+  test('approveVersion: only required params', async () => {
+    const responsePromise = client.connectors.approveVersion('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      version_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('approveVersion: required and optional params', async () => {
+    const response = await client.connectors.approveVersion('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      version_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
   });
 
   test('createSecret: only required params', async () => {
@@ -165,6 +182,26 @@ describe('resource connectors', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
+  test('getActiveVersion', async () => {
+    const responsePromise = client.connectors.getActiveVersion('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('getActiveVersion: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.connectors.getActiveVersion('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
   test('getExplorationRuns', async () => {
     const responsePromise = client.connectors.getExplorationRuns('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();
@@ -222,5 +259,25 @@ describe('resource connectors', () => {
     const response = await client.connectors.getExplorerChat('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       run_id: 'run_id',
     });
+  });
+
+  test('getPendingVersion', async () => {
+    const responsePromise = client.connectors.getPendingVersion('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('getPendingVersion: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.connectors.getPendingVersion('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(Structify.NotFoundError);
   });
 });
