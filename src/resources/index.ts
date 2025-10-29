@@ -60,6 +60,9 @@ export {
 export {
   ConnectorWithSecretsJobsList,
   Connectors,
+  type ActiveVersionData,
+  type ActiveVersionResponse,
+  type ApproveVersionRequest,
   type Connector,
   type ConnectorColumnDescriptor,
   type ConnectorExplorerChat,
@@ -74,11 +77,13 @@ export {
   type ExploreStatusResponse,
   type ExplorerChatResponse,
   type LlmInformationStore,
+  type PendingVersionResponse,
   type UpdateConnectorRequest,
   type ConnectorGetResponse,
   type ConnectorCreateParams,
   type ConnectorUpdateParams,
   type ConnectorListParams,
+  type ConnectorApproveVersionParams,
   type ConnectorCreateSecretParams,
   type ConnectorGetExplorerChatParams,
 } from './connectors';

@@ -65,7 +65,11 @@ import {
   InterruptGenerationRequest,
 } from './resources/code';
 import {
+  ActiveVersionData,
+  ActiveVersionResponse,
+  ApproveVersionRequest,
   Connector,
+  ConnectorApproveVersionParams,
   ConnectorColumnDescriptor,
   ConnectorCreateParams,
   ConnectorCreateSecretParams,
@@ -87,6 +91,7 @@ import {
   ExploreStatusResponse,
   ExplorerChatResponse,
   LlmInformationStore,
+  PendingVersionResponse,
   UpdateConnectorRequest,
 } from './resources/connectors';
 import {
@@ -872,6 +877,9 @@ export declare namespace Structify {
 
   export {
     Connectors as Connectors,
+    type ActiveVersionData as ActiveVersionData,
+    type ActiveVersionResponse as ActiveVersionResponse,
+    type ApproveVersionRequest as ApproveVersionRequest,
     type Connector as Connector,
     type ConnectorColumnDescriptor as ConnectorColumnDescriptor,
     type ConnectorExplorerChat as ConnectorExplorerChat,
@@ -886,12 +894,14 @@ export declare namespace Structify {
     type ExploreStatusResponse as ExploreStatusResponse,
     type ExplorerChatResponse as ExplorerChatResponse,
     type LlmInformationStore as LlmInformationStore,
+    type PendingVersionResponse as PendingVersionResponse,
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type ConnectorGetResponse as ConnectorGetResponse,
     ConnectorWithSecretsJobsList as ConnectorWithSecretsJobsList,
     type ConnectorCreateParams as ConnectorCreateParams,
     type ConnectorUpdateParams as ConnectorUpdateParams,
     type ConnectorListParams as ConnectorListParams,
+    type ConnectorApproveVersionParams as ConnectorApproveVersionParams,
     type ConnectorCreateSecretParams as ConnectorCreateSecretParams,
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
   };

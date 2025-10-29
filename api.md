@@ -513,6 +513,9 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/connectors.ts">ActiveVersionData</a></code>
+- <code><a href="./src/resources/connectors.ts">ActiveVersionResponse</a></code>
+- <code><a href="./src/resources/connectors.ts">ApproveVersionRequest</a></code>
 - <code><a href="./src/resources/connectors.ts">Connector</a></code>
 - <code><a href="./src/resources/connectors.ts">ConnectorColumnDescriptor</a></code>
 - <code><a href="./src/resources/connectors.ts">ConnectorExplorerChat</a></code>
@@ -527,6 +530,7 @@ Types:
 - <code><a href="./src/resources/connectors.ts">ExploreStatusResponse</a></code>
 - <code><a href="./src/resources/connectors.ts">ExplorerChatResponse</a></code>
 - <code><a href="./src/resources/connectors.ts">LlmInformationStore</a></code>
+- <code><a href="./src/resources/connectors.ts">PendingVersionResponse</a></code>
 - <code><a href="./src/resources/connectors.ts">UpdateConnectorRequest</a></code>
 - <code><a href="./src/resources/connectors.ts">ConnectorGetResponse</a></code>
 
@@ -536,13 +540,16 @@ Methods:
 - <code title="patch /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors.ts">update</a>(connectorId, { ...params }) -> void</code>
 - <code title="get /connectors">client.connectors.<a href="./src/resources/connectors.ts">list</a>({ ...params }) -> ConnectorWithSecretsJobsList</code>
 - <code title="delete /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors.ts">delete</a>(connectorId) -> void</code>
+- <code title="post /connectors/{connector_id}/approve-version">client.connectors.<a href="./src/resources/connectors.ts">approveVersion</a>(connectorId, { ...params }) -> void</code>
 - <code title="post /connectors/{connector_id}/secrets">client.connectors.<a href="./src/resources/connectors.ts">createSecret</a>(connectorId, { ...params }) -> void</code>
 - <code title="delete /connectors/{connector_id}/secrets/{secret_name}">client.connectors.<a href="./src/resources/connectors.ts">deleteSecret</a>(connectorId, secretName) -> void</code>
 - <code title="post /connectors/{connector_id}/explore">client.connectors.<a href="./src/resources/connectors.ts">explore</a>(connectorId) -> void</code>
 - <code title="get /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors.ts">get</a>(connectorId) -> ConnectorGetResponse</code>
+- <code title="get /connectors/{connector_id}/active-version">client.connectors.<a href="./src/resources/connectors.ts">getActiveVersion</a>(connectorId) -> ActiveVersionResponse</code>
 - <code title="get /connectors/{connector_id}/explore/runs">client.connectors.<a href="./src/resources/connectors.ts">getExplorationRuns</a>(connectorId) -> ExplorationRunsResponse</code>
 - <code title="get /connectors/{connector_id}/explore/status">client.connectors.<a href="./src/resources/connectors.ts">getExplorationStatus</a>(connectorId) -> ExploreStatusResponse</code>
 - <code title="get /connectors/{connector_id}/explore/chat">client.connectors.<a href="./src/resources/connectors.ts">getExplorerChat</a>(connectorId, { ...params }) -> ExplorerChatResponse</code>
+- <code title="get /connectors/{connector_id}/pending-version">client.connectors.<a href="./src/resources/connectors.ts">getPendingVersion</a>(connectorId) -> PendingVersionResponse</code>
 
 # Server
 
