@@ -37,6 +37,18 @@ export class Connectors extends APIResource {
     });
   }
 
+  approveVersion(
+    connectorId: string,
+    body: ConnectorApproveVersionParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post(`/connectors/${connectorId}/approve-version`, {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
   createSecret(
     connectorId: string,
     body: ConnectorCreateSecretParams,
@@ -71,6 +83,13 @@ export class Connectors extends APIResource {
     return this._client.get(`/connectors/${connectorId}`, options);
   }
 
+  getActiveVersion(
+    connectorId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ActiveVersionResponse> {
+    return this._client.get(`/connectors/${connectorId}/active-version`, options);
+  }
+
   /**
    * Get all exploration runs for a connector (admin only)
    */
@@ -99,9 +118,52 @@ export class Connectors extends APIResource {
   ): Core.APIPromise<ExplorerChatResponse> {
     return this._client.get(`/connectors/${connectorId}/explore/chat`, { query, ...options });
   }
+
+  getPendingVersion(
+    connectorId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<PendingVersionResponse> {
+    return this._client.get(`/connectors/${connectorId}/pending-version`, options);
+  }
 }
 
 export class ConnectorWithSecretsJobsList extends JobsList<ConnectorWithSecrets> {}
+
+/**
+ * Active version data
+ */
+export interface ActiveVersionData {
+  /**
+   * Information store for LLM context about a connector
+   *
+   * This enum represents different types of connector information that can be
+   * provided to LLMs for context. It's stored as JSON in the database.
+   *
+   * When deserializing from the database, we attempt to parse into the most specific
+   * variant first (RelationalDatabase), and fall back to Other if the structure
+   * doesn't match.
+   */
+  store: LlmInformationStore;
+
+  version_id: string;
+}
+
+/**
+ * Response containing active version
+ */
+export interface ActiveVersionResponse {
+  /**
+   * Active version data
+   */
+  active_version?: ActiveVersionData | null;
+}
+
+/**
+ * Request body for approving a version
+ */
+export interface ApproveVersionRequest {
+  version_id: string;
+}
 
 export interface Connector {
   id: string;
@@ -129,13 +191,13 @@ export interface Connector {
     | 'Oracle'
     | 'Manual';
 
-  llm_information_store: string;
-
   name: string;
 
   team_id: string;
 
   updated_at: string;
+
+  active_store_version_id?: string | null;
 
   description?: string | null;
 
@@ -345,8 +407,6 @@ export interface CreateConnectorRequest {
     | 'Oracle'
     | 'Manual';
 
-  llm_information_store: string;
-
   name: string;
 
   team_id: string;
@@ -383,18 +443,6 @@ export interface ExploreStatusResponse {
   status: ExplorationStatus;
 
   error?: string | null;
-
-  /**
-   * Information store for LLM context about a connector
-   *
-   * This enum represents different types of connector information that can be
-   * provided to LLMs for context. It's stored as JSON in the database.
-   *
-   * When deserializing from the database, we attempt to parse into the most specific
-   * variant first (RelationalDatabase), and fall back to Other if the structure
-   * doesn't match.
-   */
-  result?: LlmInformationStore | null;
 
   started_at?: string | null;
 }
@@ -479,6 +527,25 @@ export namespace LlmInformationStore {
   }
 }
 
+/**
+ * Response containing pending version
+ */
+export interface PendingVersionResponse {
+  /**
+   * Information store for LLM context about a connector
+   *
+   * This enum represents different types of connector information that can be
+   * provided to LLMs for context. It's stored as JSON in the database.
+   *
+   * When deserializing from the database, we attempt to parse into the most specific
+   * variant first (RelationalDatabase), and fall back to Other if the structure
+   * doesn't match.
+   */
+  store: LlmInformationStore;
+
+  version_id: string;
+}
+
 export interface UpdateConnectorRequest {
   description?: string | null;
 
@@ -503,8 +570,6 @@ export interface UpdateConnectorRequest {
     | 'Oracle'
     | 'Manual'
     | null;
-
-  llm_information_store?: string | null;
 
   name?: string | null;
 
@@ -552,8 +617,6 @@ export interface ConnectorCreateParams {
     | 'Oracle'
     | 'Manual';
 
-  llm_information_store: string;
-
   name: string;
 
   team_id: string;
@@ -593,8 +656,6 @@ export interface ConnectorUpdateParams {
     | 'Manual'
     | null;
 
-  llm_information_store?: string | null;
-
   name?: string | null;
 
   refresh_script?: string | null;
@@ -605,6 +666,10 @@ export interface ConnectorListParams extends JobsListParams {
    * Team ID to list connectors for
    */
   team_id: string;
+}
+
+export interface ConnectorApproveVersionParams {
+  version_id: string;
 }
 
 export interface ConnectorCreateSecretParams {
@@ -624,6 +689,9 @@ Connectors.ConnectorWithSecretsJobsList = ConnectorWithSecretsJobsList;
 
 export declare namespace Connectors {
   export {
+    type ActiveVersionData as ActiveVersionData,
+    type ActiveVersionResponse as ActiveVersionResponse,
+    type ApproveVersionRequest as ApproveVersionRequest,
     type Connector as Connector,
     type ConnectorColumnDescriptor as ConnectorColumnDescriptor,
     type ConnectorExplorerChat as ConnectorExplorerChat,
@@ -638,12 +706,14 @@ export declare namespace Connectors {
     type ExploreStatusResponse as ExploreStatusResponse,
     type ExplorerChatResponse as ExplorerChatResponse,
     type LlmInformationStore as LlmInformationStore,
+    type PendingVersionResponse as PendingVersionResponse,
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type ConnectorGetResponse as ConnectorGetResponse,
     ConnectorWithSecretsJobsList as ConnectorWithSecretsJobsList,
     type ConnectorCreateParams as ConnectorCreateParams,
     type ConnectorUpdateParams as ConnectorUpdateParams,
     type ConnectorListParams as ConnectorListParams,
+    type ConnectorApproveVersionParams as ConnectorApproveVersionParams,
     type ConnectorCreateSecretParams as ConnectorCreateSecretParams,
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
   };
