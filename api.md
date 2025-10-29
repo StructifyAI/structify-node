@@ -48,6 +48,7 @@ Types:
 - <code><a href="./src/resources/chat.ts">ChatSessionRole</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSessionUser</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSessionWithMessages</a></code>
+- <code><a href="./src/resources/chat.ts">ChatVisibility</a></code>
 - <code><a href="./src/resources/chat.ts">CopyChatSessionRequest</a></code>
 - <code><a href="./src/resources/chat.ts">CreateChatSessionRequest</a></code>
 - <code><a href="./src/resources/chat.ts">CreateChatSessionResponse</a></code>
@@ -58,10 +59,10 @@ Types:
 - <code><a href="./src/resources/chat.ts">ListChatSessionsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ListCollaboratorsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">Message</a></code>
-- <code><a href="./src/resources/chat.ts">TogglePublicRequest</a></code>
-- <code><a href="./src/resources/chat.ts">TogglePublicResponse</a></code>
 - <code><a href="./src/resources/chat.ts">UpdateChatSessionFavoriteRequest</a></code>
 - <code><a href="./src/resources/chat.ts">UpdateChatSessionRequest</a></code>
+- <code><a href="./src/resources/chat.ts">UpdateVisibilityRequest</a></code>
+- <code><a href="./src/resources/chat.ts">UpdateVisibilityResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatAddGitCommitResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatCopyNodeOutputByCodeHashResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatDeleteFilesResponse</a></code>
@@ -93,9 +94,9 @@ Methods:
 - <code title="patch /chat/sessions/{session_id}/make-permanent">client.chat.<a href="./src/resources/chat.ts">makePermanent</a>(sessionId) -> void</code>
 - <code title="delete /chat/sessions/{chat_id}/collaborators/{user_id}">client.chat.<a href="./src/resources/chat.ts">removeCollaborator</a>(chatId, userId) -> void</code>
 - <code title="post /chat/sessions/{session_id}/revert">client.chat.<a href="./src/resources/chat.ts">revertToCommit</a>(sessionId, { ...params }) -> ChatRevertToCommitResponse</code>
-- <code title="put /chat/sessions/{session_id}/public">client.chat.<a href="./src/resources/chat.ts">togglePublic</a>(sessionId, { ...params }) -> TogglePublicResponse</code>
 - <code title="patch /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">updateSession</a>(sessionId, { ...params }) -> ChatSession</code>
 - <code title="patch /chat/sessions/{session_id}/favorite">client.chat.<a href="./src/resources/chat.ts">updateSessionFavorite</a>(sessionId, { ...params }) -> ChatSession</code>
+- <code title="put /chat/sessions/{session_id}/visibility">client.chat.<a href="./src/resources/chat.ts">updateVisibility</a>(sessionId, { ...params }) -> UpdateVisibilityResponse</code>
 
 # Teams
 
