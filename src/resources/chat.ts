@@ -617,9 +617,9 @@ export interface ChatSession {
 
   git_application_token: string;
 
-  project_id: string;
-
   slack_completion_notified: boolean;
+
+  team_id: string;
 
   updated_at: string;
 
@@ -628,6 +628,8 @@ export interface ChatSession {
   config_proto?: Core.Uploadable | null;
 
   name?: string | null;
+
+  project_id?: string | null;
 
   slack_channel_id?: string | null;
 
@@ -667,7 +669,7 @@ export interface ChatSessionWithMessages {
 
   messages: Array<ChatSessionWithMessages.Message>;
 
-  project_id: string;
+  team_id: string;
 
   updated_at: string;
 
@@ -678,6 +680,8 @@ export interface ChatSessionWithMessages {
   latest_workflow_session_id?: string | null;
 
   name?: string | null;
+
+  project_id?: string | null;
 }
 
 export namespace ChatSessionWithMessages {
@@ -715,15 +719,17 @@ export type ChatVisibility = 'private' | 'shared_with_team' | 'public';
 export interface CopyChatSessionRequest {
   copy_name: string;
 
-  project_id: string;
-
   source_chat_id: string;
 
+  team_id: string;
+
   copy_inputs?: boolean;
+
+  project_id?: string | null;
 }
 
 export interface CreateChatSessionRequest {
-  project_id: string;
+  team_id: string;
 
   /**
    * Configuration for chat session with system prompt and LLM key
@@ -733,6 +739,8 @@ export interface CreateChatSessionRequest {
   ephemeral?: boolean | null;
 
   initial_message?: string | null;
+
+  project_id?: string | null;
 }
 
 export namespace CreateChatSessionRequest {
@@ -815,7 +823,7 @@ export namespace GetChatSessionResponse {
 
     messages: Array<Session.Message>;
 
-    project_id: string;
+    team_id: string;
 
     title: string;
 
@@ -828,6 +836,8 @@ export namespace GetChatSessionResponse {
     latest_workflow_session_id?: string | null;
 
     name?: string | null;
+
+    project_id?: string | null;
   }
 
   export namespace Session {
@@ -890,7 +900,7 @@ export namespace ListChatSessionsResponse {
 
     is_favorite: boolean;
 
-    project_id: string;
+    team_id: string;
 
     title: string;
 
@@ -903,6 +913,8 @@ export namespace ListChatSessionsResponse {
     name?: string | null;
 
     owner_email?: string | null;
+
+    project_id?: string | null;
   }
 }
 
@@ -1107,11 +1119,13 @@ export interface ChatAddMessageParams {
 export interface ChatCopyParams {
   copy_name: string;
 
-  project_id: string;
-
   source_chat_id: string;
 
+  team_id: string;
+
   copy_inputs?: boolean;
+
+  project_id?: string | null;
 }
 
 export interface ChatCopyNodeOutputByCodeHashParams {
@@ -1121,7 +1135,7 @@ export interface ChatCopyNodeOutputByCodeHashParams {
 }
 
 export interface ChatCreateSessionParams {
-  project_id: string;
+  team_id: string;
 
   /**
    * Configuration for chat session with system prompt and LLM key
@@ -1131,6 +1145,8 @@ export interface ChatCreateSessionParams {
   ephemeral?: boolean | null;
 
   initial_message?: string | null;
+
+  project_id?: string | null;
 }
 
 export namespace ChatCreateSessionParams {
