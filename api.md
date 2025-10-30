@@ -120,6 +120,7 @@ Types:
 - <code><a href="./src/resources/teams.ts">ListProjectsResponse</a></code>
 - <code><a href="./src/resources/teams.ts">ListTeamsResponse</a></code>
 - <code><a href="./src/resources/teams.ts">RemoveMemberResponse</a></code>
+- <code><a href="./src/resources/teams.ts">SelectTeamResponse</a></code>
 - <code><a href="./src/resources/teams.ts">Team</a></code>
 - <code><a href="./src/resources/teams.ts">TeamRole</a></code>
 - <code><a href="./src/resources/teams.ts">TeamSubscriptionStatus</a></code>
@@ -146,6 +147,7 @@ Methods:
 - <code title="get /team/{team_id}/members">client.teams.<a href="./src/resources/teams.ts">listMembers</a>(teamId) -> ListMembersResponse</code>
 - <code title="get /team/{team_id}/projects">client.teams.<a href="./src/resources/teams.ts">listProjects</a>(teamId) -> ListProjectsResponse</code>
 - <code title="delete /team/{team_id}/members/{user_id}">client.teams.<a href="./src/resources/teams.ts">removeMember</a>(teamId, userId) -> RemoveMemberResponse</code>
+- <code title="post /team/{team_id}/select">client.teams.<a href="./src/resources/teams.ts">select</a>(teamId) -> SelectTeamResponse</code>
 - <code title="patch /team/{team_id}/members/{user_id}/role">client.teams.<a href="./src/resources/teams.ts">updateMemberRole</a>(teamId, userId, { ...params }) -> UpdateMemberRoleResponse</code>
 
 # Projects

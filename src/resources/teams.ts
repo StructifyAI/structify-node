@@ -84,6 +84,10 @@ export class Teams extends APIResource {
     return this._client.delete(`/team/${teamId}/members/${userId}`, options);
   }
 
+  select(teamId: string, options?: Core.RequestOptions): Core.APIPromise<SelectTeamResponse> {
+    return this._client.post(`/team/${teamId}/select`, options);
+  }
+
   updateMemberRole(
     teamId: string,
     userId: string,
@@ -208,6 +212,10 @@ export interface ListTeamsResponse {
 }
 
 export interface RemoveMemberResponse {
+  success: boolean;
+}
+
+export interface SelectTeamResponse {
   success: boolean;
 }
 
@@ -379,6 +387,7 @@ export declare namespace Teams {
     type ListProjectsResponse as ListProjectsResponse,
     type ListTeamsResponse as ListTeamsResponse,
     type RemoveMemberResponse as RemoveMemberResponse,
+    type SelectTeamResponse as SelectTeamResponse,
     type Team as Team,
     type TeamRole as TeamRole,
     type TeamSubscriptionStatus as TeamSubscriptionStatus,
