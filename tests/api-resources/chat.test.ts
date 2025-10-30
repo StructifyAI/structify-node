@@ -307,7 +307,7 @@ describe('resource chat', () => {
   });
 
   test('listSessions: only required params', async () => {
-    const responsePromise = client.chat.listSessions({ project_id: 'project_id', team_id: 'team_id' });
+    const responsePromise = client.chat.listSessions({ team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -319,9 +319,9 @@ describe('resource chat', () => {
 
   test('listSessions: required and optional params', async () => {
     const response = await client.chat.listSessions({
-      project_id: 'project_id',
-      team_id: 'team_id',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       limit: 0,
+      project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 
