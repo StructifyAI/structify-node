@@ -1200,11 +1200,6 @@ export interface ChatGrantAdminOverrideParams {
 
 export interface ChatListSessionsParams {
   /**
-   * Project ID to filter chat sessions
-   */
-  project_id: string;
-
-  /**
    * Team ID to filter chat sessions
    */
   team_id: string;
@@ -1213,6 +1208,11 @@ export interface ChatListSessionsParams {
    * Maximum number of sessions to return (default: 50)
    */
   limit?: number | null;
+
+  /**
+   * Project ID to filter chat sessions
+   */
+  project_id?: string | null;
 }
 
 export interface ChatLoadFilesParams {
