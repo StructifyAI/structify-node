@@ -335,6 +335,7 @@ export {
   type ListProjectsResponse,
   type ListTeamsResponse,
   type RemoveMemberResponse,
+  type SelectTeamResponse,
   type Team,
   type TeamRole,
   type TeamSubscriptionStatus,
