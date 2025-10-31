@@ -128,6 +128,8 @@ export namespace UpdateUserParams {
 
     is_developer?: boolean | null;
 
+    last_selected_team_id?: string | null;
+
     permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'> | null;
 
     user_type?: 'admin' | 'public' | 'end_user' | null;
@@ -163,6 +165,8 @@ export interface UserInfo {
   user_type: 'admin' | 'public' | 'end_user';
 
   username: string;
+
+  last_selected_team_id?: string | null;
 
   survey_completed_at?: string | null;
 }
@@ -228,6 +232,8 @@ export namespace UserUpdateParams {
     full_name?: string | null;
 
     is_developer?: boolean | null;
+
+    last_selected_team_id?: string | null;
 
     permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'> | null;
 

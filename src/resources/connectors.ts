@@ -37,6 +37,18 @@ export class Connectors extends APIResource {
     });
   }
 
+  approveVersion(
+    connectorId: string,
+    body: ConnectorApproveVersionParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post(`/connectors/${connectorId}/approve-version`, {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
   createSecret(
     connectorId: string,
     body: ConnectorCreateSecretParams,
@@ -71,6 +83,13 @@ export class Connectors extends APIResource {
     return this._client.get(`/connectors/${connectorId}`, options);
   }
 
+  getActiveVersion(
+    connectorId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ActiveVersionResponse> {
+    return this._client.get(`/connectors/${connectorId}/active-version`, options);
+  }
+
   /**
    * Get all exploration runs for a connector (admin only)
    */
@@ -89,7 +108,8 @@ export class Connectors extends APIResource {
   }
 
   /**
-   * Get chat from a connector exploration run (admin only)
+   * Returns chats for all phases (table discovery, column discovery for each table,
+   * etc.)
    */
   getExplorerChat(
     connectorId: string,
@@ -98,9 +118,52 @@ export class Connectors extends APIResource {
   ): Core.APIPromise<ExplorerChatResponse> {
     return this._client.get(`/connectors/${connectorId}/explore/chat`, { query, ...options });
   }
+
+  getPendingVersion(
+    connectorId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<PendingVersionResponse> {
+    return this._client.get(`/connectors/${connectorId}/pending-version`, options);
+  }
 }
 
 export class ConnectorWithSecretsJobsList extends JobsList<ConnectorWithSecrets> {}
+
+/**
+ * Active version data
+ */
+export interface ActiveVersionData {
+  /**
+   * Information store for LLM context about a connector
+   *
+   * This enum represents different types of connector information that can be
+   * provided to LLMs for context. It's stored as JSON in the database.
+   *
+   * When deserializing from the database, we attempt to parse into the most specific
+   * variant first (RelationalDatabase), and fall back to Other if the structure
+   * doesn't match.
+   */
+  store: LlmInformationStore;
+
+  version_id: string;
+}
+
+/**
+ * Response containing active version
+ */
+export interface ActiveVersionResponse {
+  /**
+   * Active version data
+   */
+  active_version?: ActiveVersionData | null;
+}
+
+/**
+ * Request body for approving a version
+ */
+export interface ApproveVersionRequest {
+  version_id: string;
+}
 
 export interface Connector {
   id: string;
@@ -110,6 +173,7 @@ export interface Connector {
   known_connector_type:
     | 'Slack'
     | 'Confluence'
+    | 'Dropbox'
     | 'GoogleDrive'
     | 'Snowflake'
     | 'Hubspot'
@@ -128,13 +192,13 @@ export interface Connector {
     | 'Oracle'
     | 'Manual';
 
-  llm_information_store: string;
-
   name: string;
 
-  project_id: string;
+  team_id: string;
 
   updated_at: string;
+
+  active_store_version_id?: string | null;
 
   description?: string | null;
 
@@ -181,6 +245,93 @@ export interface ConnectorExplorerChat {
   created_at: string;
 
   exploration_run_id: string;
+
+  /**
+   * Identifies the phase of connector exploration
+   *
+   * This enum is used to track which phase of exploration a chat session belongs to.
+   * It's stored as JSONB in the database to allow for flexible phase identification.
+   */
+  phase_id:
+    | ConnectorExplorerChat.DiscoverTables
+    | ConnectorExplorerChat.DiscoverColumns
+    | ConnectorExplorerChat.DiscoverAPIResources
+    | ConnectorExplorerChat.DiscoverAPIFields;
+}
+
+export namespace ConnectorExplorerChat {
+  export interface DiscoverTables {
+    type: 'discover_tables';
+  }
+
+  /**
+   * Second phase: discovering columns for a specific table
+   */
+  export interface DiscoverColumns {
+    table_name: string;
+
+    type: 'discover_columns';
+  }
+
+  /**
+   * Initial phase: discovering all API resources
+   */
+  export interface DiscoverAPIResources {
+    known_connector_type:
+      | 'Slack'
+      | 'Confluence'
+      | 'Dropbox'
+      | 'GoogleDrive'
+      | 'Snowflake'
+      | 'Hubspot'
+      | 'Salesforce'
+      | 'Supabase'
+      | 'Sharepoint'
+      | 'Notion'
+      | 'Jira'
+      | 'Linear'
+      | 'Intercom'
+      | 'Gmail'
+      | 'Airtable'
+      | 'Trello'
+      | 'Postgresql'
+      | 'Sap'
+      | 'Oracle'
+      | 'Manual';
+
+    type: 'discover_api_resources';
+  }
+
+  /**
+   * Second phase: discovering fields for a specific API resource
+   */
+  export interface DiscoverAPIFields {
+    known_connector_type:
+      | 'Slack'
+      | 'Confluence'
+      | 'Dropbox'
+      | 'GoogleDrive'
+      | 'Snowflake'
+      | 'Hubspot'
+      | 'Salesforce'
+      | 'Supabase'
+      | 'Sharepoint'
+      | 'Notion'
+      | 'Jira'
+      | 'Linear'
+      | 'Intercom'
+      | 'Gmail'
+      | 'Airtable'
+      | 'Trello'
+      | 'Postgresql'
+      | 'Sap'
+      | 'Oracle'
+      | 'Manual';
+
+    resource_name: string;
+
+    type: 'discover_api_fields';
+  }
 }
 
 /**
@@ -241,6 +392,7 @@ export interface CreateConnectorRequest {
   known_connector_type:
     | 'Slack'
     | 'Confluence'
+    | 'Dropbox'
     | 'GoogleDrive'
     | 'Snowflake'
     | 'Hubspot'
@@ -259,11 +411,9 @@ export interface CreateConnectorRequest {
     | 'Oracle'
     | 'Manual';
 
-  llm_information_store: string;
-
   name: string;
 
-  project_id: string;
+  team_id: string;
 
   description?: string | null;
 
@@ -298,26 +448,11 @@ export interface ExploreStatusResponse {
 
   error?: string | null;
 
-  /**
-   * Information store for LLM context about a connector
-   *
-   * This enum represents different types of connector information that can be
-   * provided to LLMs for context. It's stored as JSON in the database.
-   *
-   * When deserializing from the database, we attempt to parse into the most specific
-   * variant first (RelationalDatabase), and fall back to Other if the structure
-   * doesn't match.
-   */
-  result?: LlmInformationStore | null;
-
   started_at?: string | null;
 }
 
 export interface ExplorerChatResponse {
-  /**
-   * Connector explorer chat with deserialized ChatPrompt for API responses
-   */
-  chat: ConnectorExplorerChat;
+  chats: Array<ConnectorExplorerChat>;
 }
 
 /**
@@ -330,7 +465,10 @@ export interface ExplorerChatResponse {
  * variant first (RelationalDatabase), and fall back to Other if the structure
  * doesn't match.
  */
-export type LlmInformationStore = LlmInformationStore.RelationalDatabase | LlmInformationStore.Other;
+export type LlmInformationStore =
+  | LlmInformationStore.RelationalDatabase
+  | LlmInformationStore.APITabular
+  | LlmInformationStore.Other;
 
 export namespace LlmInformationStore {
   /**
@@ -338,6 +476,48 @@ export namespace LlmInformationStore {
    */
   export interface RelationalDatabase extends ConnectorsAPI.ConnectorRelationalDatabaseDescriptor {
     type: 'relational_database';
+  }
+
+  export interface APITabular {
+    /**
+     * List of resources (similar to tables/objects)
+     */
+    resources: Array<APITabular.Resource>;
+
+    type: 'api_tabular';
+  }
+
+  export namespace APITabular {
+    /**
+     * Represents a resource in an API (equivalent to a table/object)
+     */
+    export interface Resource {
+      /**
+       * List of columns (properties/fields in the API resource)
+       */
+      columns: Array<ConnectorsAPI.ConnectorColumnDescriptor>;
+
+      /**
+       * API endpoint for this resource (e.g., "/crm/v3/objects/contacts",
+       * "/rest/api/3/issue")
+       */
+      endpoint: string;
+
+      /**
+       * API name of the resource (e.g., "contacts", "issues", "records")
+       */
+      name: string;
+
+      /**
+       * Optional description
+       */
+      description?: string | null;
+
+      /**
+       * Optional notes (associations, usage patterns, etc.)
+       */
+      notes?: string | null;
+    }
   }
 
   /**
@@ -351,12 +531,32 @@ export namespace LlmInformationStore {
   }
 }
 
+/**
+ * Response containing pending version
+ */
+export interface PendingVersionResponse {
+  /**
+   * Information store for LLM context about a connector
+   *
+   * This enum represents different types of connector information that can be
+   * provided to LLMs for context. It's stored as JSON in the database.
+   *
+   * When deserializing from the database, we attempt to parse into the most specific
+   * variant first (RelationalDatabase), and fall back to Other if the structure
+   * doesn't match.
+   */
+  store: LlmInformationStore;
+
+  version_id: string;
+}
+
 export interface UpdateConnectorRequest {
   description?: string | null;
 
   known_connector_type?:
     | 'Slack'
     | 'Confluence'
+    | 'Dropbox'
     | 'GoogleDrive'
     | 'Snowflake'
     | 'Hubspot'
@@ -375,8 +575,6 @@ export interface UpdateConnectorRequest {
     | 'Oracle'
     | 'Manual'
     | null;
-
-  llm_information_store?: string | null;
 
   name?: string | null;
 
@@ -406,6 +604,7 @@ export interface ConnectorCreateParams {
   known_connector_type:
     | 'Slack'
     | 'Confluence'
+    | 'Dropbox'
     | 'GoogleDrive'
     | 'Snowflake'
     | 'Hubspot'
@@ -424,11 +623,9 @@ export interface ConnectorCreateParams {
     | 'Oracle'
     | 'Manual';
 
-  llm_information_store: string;
-
   name: string;
 
-  project_id: string;
+  team_id: string;
 
   description?: string | null;
 
@@ -446,6 +643,7 @@ export interface ConnectorUpdateParams {
   known_connector_type?:
     | 'Slack'
     | 'Confluence'
+    | 'Dropbox'
     | 'GoogleDrive'
     | 'Snowflake'
     | 'Hubspot'
@@ -465,8 +663,6 @@ export interface ConnectorUpdateParams {
     | 'Manual'
     | null;
 
-  llm_information_store?: string | null;
-
   name?: string | null;
 
   refresh_script?: string | null;
@@ -474,9 +670,13 @@ export interface ConnectorUpdateParams {
 
 export interface ConnectorListParams extends JobsListParams {
   /**
-   * Project ID to list connectors for
+   * Team ID to list connectors for
    */
-  project_id: string;
+  team_id: string;
+}
+
+export interface ConnectorApproveVersionParams {
+  version_id: string;
 }
 
 export interface ConnectorCreateSecretParams {
@@ -496,6 +696,9 @@ Connectors.ConnectorWithSecretsJobsList = ConnectorWithSecretsJobsList;
 
 export declare namespace Connectors {
   export {
+    type ActiveVersionData as ActiveVersionData,
+    type ActiveVersionResponse as ActiveVersionResponse,
+    type ApproveVersionRequest as ApproveVersionRequest,
     type Connector as Connector,
     type ConnectorColumnDescriptor as ConnectorColumnDescriptor,
     type ConnectorExplorerChat as ConnectorExplorerChat,
@@ -510,12 +713,14 @@ export declare namespace Connectors {
     type ExploreStatusResponse as ExploreStatusResponse,
     type ExplorerChatResponse as ExplorerChatResponse,
     type LlmInformationStore as LlmInformationStore,
+    type PendingVersionResponse as PendingVersionResponse,
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type ConnectorGetResponse as ConnectorGetResponse,
     ConnectorWithSecretsJobsList as ConnectorWithSecretsJobsList,
     type ConnectorCreateParams as ConnectorCreateParams,
     type ConnectorUpdateParams as ConnectorUpdateParams,
     type ConnectorListParams as ConnectorListParams,
+    type ConnectorApproveVersionParams as ConnectorApproveVersionParams,
     type ConnectorCreateSecretParams as ConnectorCreateSecretParams,
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
   };

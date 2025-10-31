@@ -12,7 +12,7 @@ describe('resource chat', () => {
   test('addCollaborator: only required params', async () => {
     const responsePromise = client.chat.addCollaborator('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       email: 'email',
-      role: 'owner',
+      role: 'viewer',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -26,7 +26,7 @@ describe('resource chat', () => {
   test('addCollaborator: required and optional params', async () => {
     const response = await client.chat.addCollaborator('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       email: 'email',
-      role: 'owner',
+      role: 'viewer',
     });
   });
 
@@ -87,8 +87,8 @@ describe('resource chat', () => {
   test('copy: only required params', async () => {
     const responsePromise = client.chat.copy({
       copy_name: 'copy_name',
-      project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       source_chat_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -102,9 +102,10 @@ describe('resource chat', () => {
   test('copy: required and optional params', async () => {
     const response = await client.chat.copy({
       copy_name: 'copy_name',
-      project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       source_chat_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       copy_inputs: true,
+      project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 
@@ -129,7 +130,7 @@ describe('resource chat', () => {
   });
 
   test('createSession: only required params', async () => {
-    const responsePromise = client.chat.createSession({ project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
+    const responsePromise = client.chat.createSession({ team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -141,7 +142,7 @@ describe('resource chat', () => {
 
   test('createSession: required and optional params', async () => {
     const response = await client.chat.createSession({
-      project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       config: {
         llm_key: 'vllm.gpt-5-mini-2025-08-07',
         reminder_message: 'reminder_message',
@@ -149,6 +150,7 @@ describe('resource chat', () => {
       },
       ephemeral: true,
       initial_message: 'initial_message',
+      project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 
@@ -266,7 +268,7 @@ describe('resource chat', () => {
   test('grantAdminOverride: only required params', async () => {
     const responsePromise = client.chat.grantAdminOverride('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       duration_hours: 0,
-      role: 'owner',
+      role: 'viewer',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -280,7 +282,7 @@ describe('resource chat', () => {
   test('grantAdminOverride: required and optional params', async () => {
     const response = await client.chat.grantAdminOverride('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       duration_hours: 0,
-      role: 'owner',
+      role: 'viewer',
     });
   });
 
@@ -305,7 +307,7 @@ describe('resource chat', () => {
   });
 
   test('listSessions: only required params', async () => {
-    const responsePromise = client.chat.listSessions({ project_id: 'project_id', team_id: 'team_id' });
+    const responsePromise = client.chat.listSessions({ team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -317,9 +319,9 @@ describe('resource chat', () => {
 
   test('listSessions: required and optional params', async () => {
     const response = await client.chat.listSessions({
-      project_id: 'project_id',
-      team_id: 'team_id',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       limit: 0,
+      project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 
@@ -403,21 +405,6 @@ describe('resource chat', () => {
     });
   });
 
-  test('togglePublic: only required params', async () => {
-    const responsePromise = client.chat.togglePublic('session_id', { is_public: true });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('togglePublic: required and optional params', async () => {
-    const response = await client.chat.togglePublic('session_id', { is_public: true });
-  });
-
   test('updateSession', async () => {
     const responsePromise = client.chat.updateSession('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {});
     const rawResponse = await responsePromise.asResponse();
@@ -427,5 +414,39 @@ describe('resource chat', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('updateSessionFavorite: only required params', async () => {
+    const responsePromise = client.chat.updateSessionFavorite('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      is_favorite: true,
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('updateSessionFavorite: required and optional params', async () => {
+    const response = await client.chat.updateSessionFavorite('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      is_favorite: true,
+    });
+  });
+
+  test('updateVisibility: only required params', async () => {
+    const responsePromise = client.chat.updateVisibility('session_id', { visibility: 'private' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('updateVisibility: required and optional params', async () => {
+    const response = await client.chat.updateVisibility('session_id', { visibility: 'private' });
   });
 });

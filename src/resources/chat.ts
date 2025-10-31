@@ -205,23 +205,31 @@ export class Chat extends APIResource {
     return this._client.post(`/chat/sessions/${sessionId}/revert`, { body, ...options });
   }
 
-  /**
-   * Toggle public visibility of a chat session
-   */
-  togglePublic(
-    sessionId: string,
-    body: ChatTogglePublicParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TogglePublicResponse> {
-    return this._client.put(`/chat/sessions/${sessionId}/public`, { body, ...options });
-  }
-
   updateSession(
     sessionId: string,
     body: ChatUpdateSessionParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<ChatSession> {
     return this._client.patch(`/chat/sessions/${sessionId}`, { body, ...options });
+  }
+
+  updateSessionFavorite(
+    sessionId: string,
+    body: ChatUpdateSessionFavoriteParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatSession> {
+    return this._client.patch(`/chat/sessions/${sessionId}/favorite`, { body, ...options });
+  }
+
+  /**
+   * Update visibility of a chat session
+   */
+  updateVisibility(
+    sessionId: string,
+    body: ChatUpdateVisibilityParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<UpdateVisibilityResponse> {
+    return this._client.put(`/chat/sessions/${sessionId}/visibility`, { body, ...options });
   }
 }
 
@@ -283,7 +291,9 @@ export type ChatEvent =
   | ChatEvent.File
   | ChatEvent.Action
   | ChatEvent.Connector
-  | ChatEvent.ToolCall;
+  | ChatEvent.ToolCall
+  | ChatEvent.Question
+  | ChatEvent.InternalError;
 
 export namespace ChatEvent {
   export interface TextMessage {
@@ -374,7 +384,8 @@ export namespace ChatEvent {
       | ToolCall.UnionMember6
       | ToolCall.UnionMember7
       | ToolCall.UnionMember8
-      | ToolCall.UnionMember9;
+      | ToolCall.UnionMember9
+      | ToolCall.UnionMember10;
   }
 
   export namespace ToolCall {
@@ -563,6 +574,50 @@ export namespace ChatEvent {
         notes?: string | null;
       }
     }
+
+    export interface UnionMember10 {
+      input: UnionMember10.Input;
+
+      name: 'CreateApiResource';
+
+      result_id?: string | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember10 {
+      export interface Input {
+        endpoint: string;
+
+        name: string;
+
+        description?: string | null;
+
+        notes?: string | null;
+      }
+    }
+  }
+
+  export interface Question {
+    Question: Question.Question;
+  }
+
+  export namespace Question {
+    export interface Question {
+      complete: boolean;
+
+      content: string;
+    }
+  }
+
+  export interface InternalError {
+    InternalError: InternalError.InternalError;
+  }
+
+  export namespace InternalError {
+    export interface InternalError {
+      message: string;
+    }
   }
 }
 
@@ -575,17 +630,19 @@ export interface ChatSession {
 
   git_application_token: string;
 
-  is_public: boolean;
-
-  project_id: string;
-
   slack_completion_notified: boolean;
 
+  team_id: string;
+
   updated_at: string;
+
+  visibility: ChatVisibility;
 
   config_proto?: Core.Uploadable | null;
 
   name?: string | null;
+
+  project_id?: string | null;
 
   slack_channel_id?: string | null;
 
@@ -594,7 +651,7 @@ export interface ChatSession {
   slack_thread_ts?: string | null;
 }
 
-export type ChatSessionRole = 'owner' | 'editor' | 'viewer';
+export type ChatSessionRole = 'viewer' | 'editor' | 'owner';
 
 export interface ChatSessionUser {
   id: string;
@@ -623,22 +680,21 @@ export interface ChatSessionWithMessages {
 
   is_favorite: boolean;
 
-  /**
-   * Whether the chat session is public
-   */
-  is_public: boolean;
-
   messages: Array<ChatSessionWithMessages.Message>;
 
-  project_id: string;
+  team_id: string;
 
   updated_at: string;
 
   user_role: ChatSessionRole;
 
+  visibility: ChatVisibility;
+
   latest_workflow_session_id?: string | null;
 
   name?: string | null;
+
+  project_id?: string | null;
 }
 
 export namespace ChatSessionWithMessages {
@@ -671,18 +727,22 @@ export namespace ChatSessionWithMessages {
   }
 }
 
+export type ChatVisibility = 'private' | 'shared_with_team' | 'public';
+
 export interface CopyChatSessionRequest {
   copy_name: string;
 
-  project_id: string;
-
   source_chat_id: string;
 
+  team_id: string;
+
   copy_inputs?: boolean;
+
+  project_id?: string | null;
 }
 
 export interface CreateChatSessionRequest {
-  project_id: string;
+  team_id: string;
 
   /**
    * Configuration for chat session with system prompt and LLM key
@@ -692,6 +752,8 @@ export interface CreateChatSessionRequest {
   ephemeral?: boolean | null;
 
   initial_message?: string | null;
+
+  project_id?: string | null;
 }
 
 export namespace CreateChatSessionRequest {
@@ -721,6 +783,7 @@ export namespace CreateChatSessionRequest {
       | 'gemini.gemini-2.5-pro'
       | 'gemini.gemini-2.5-flash'
       | 'gemini.gemini-2.5-flash-preview-09-2025'
+      | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
 
     reminder_message?: string | null;
@@ -771,11 +834,9 @@ export namespace GetChatSessionResponse {
 
     is_favorite: boolean;
 
-    is_public: boolean;
-
     messages: Array<Session.Message>;
 
-    project_id: string;
+    team_id: string;
 
     title: string;
 
@@ -783,9 +844,13 @@ export namespace GetChatSessionResponse {
 
     user_role: ChatAPI.ChatSessionRole;
 
+    visibility: ChatAPI.ChatVisibility;
+
     latest_workflow_session_id?: string | null;
 
     name?: string | null;
+
+    project_id?: string | null;
   }
 
   export namespace Session {
@@ -848,9 +913,7 @@ export namespace ListChatSessionsResponse {
 
     is_favorite: boolean;
 
-    is_public: boolean;
-
-    project_id: string;
+    team_id: string;
 
     title: string;
 
@@ -858,9 +921,13 @@ export namespace ListChatSessionsResponse {
 
     user_role: ChatAPI.ChatSessionRole;
 
+    visibility: ChatAPI.ChatVisibility;
+
     name?: string | null;
 
     owner_email?: string | null;
+
+    project_id?: string | null;
   }
 }
 
@@ -914,12 +981,22 @@ export namespace Message {
   }
 }
 
-export interface TogglePublicRequest {
-  is_public: boolean;
+export interface UpdateChatSessionFavoriteRequest {
+  is_favorite: boolean;
 }
 
-export interface TogglePublicResponse {
-  is_public: boolean;
+export interface UpdateChatSessionRequest {
+  name?: string | null;
+
+  project_id?: string | null;
+}
+
+export interface UpdateVisibilityRequest {
+  visibility: ChatVisibility;
+}
+
+export interface UpdateVisibilityResponse {
+  visibility: ChatVisibility;
 }
 
 /**
@@ -1055,11 +1132,13 @@ export interface ChatAddMessageParams {
 export interface ChatCopyParams {
   copy_name: string;
 
-  project_id: string;
-
   source_chat_id: string;
 
+  team_id: string;
+
   copy_inputs?: boolean;
+
+  project_id?: string | null;
 }
 
 export interface ChatCopyNodeOutputByCodeHashParams {
@@ -1069,7 +1148,7 @@ export interface ChatCopyNodeOutputByCodeHashParams {
 }
 
 export interface ChatCreateSessionParams {
-  project_id: string;
+  team_id: string;
 
   /**
    * Configuration for chat session with system prompt and LLM key
@@ -1079,6 +1158,8 @@ export interface ChatCreateSessionParams {
   ephemeral?: boolean | null;
 
   initial_message?: string | null;
+
+  project_id?: string | null;
 }
 
 export namespace ChatCreateSessionParams {
@@ -1108,6 +1189,7 @@ export namespace ChatCreateSessionParams {
       | 'gemini.gemini-2.5-pro'
       | 'gemini.gemini-2.5-flash'
       | 'gemini.gemini-2.5-flash-preview-09-2025'
+      | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
 
     reminder_message?: string | null;
@@ -1131,11 +1213,6 @@ export interface ChatGrantAdminOverrideParams {
 
 export interface ChatListSessionsParams {
   /**
-   * Project ID to filter chat sessions
-   */
-  project_id: string;
-
-  /**
    * Team ID to filter chat sessions
    */
   team_id: string;
@@ -1144,6 +1221,11 @@ export interface ChatListSessionsParams {
    * Maximum number of sessions to return (default: 50)
    */
   limit?: number | null;
+
+  /**
+   * Project ID to filter chat sessions
+   */
+  project_id?: string | null;
 }
 
 export interface ChatLoadFilesParams {
@@ -1159,16 +1241,18 @@ export interface ChatRevertToCommitParams {
   commit_hash: string;
 }
 
-export interface ChatTogglePublicParams {
-  is_public: boolean;
-}
-
 export interface ChatUpdateSessionParams {
-  is_favorite?: boolean | null;
-
   name?: string | null;
 
   project_id?: string | null;
+}
+
+export interface ChatUpdateSessionFavoriteParams {
+  is_favorite: boolean;
+}
+
+export interface ChatUpdateVisibilityParams {
+  visibility: ChatVisibility;
 }
 
 export declare namespace Chat {
@@ -1182,6 +1266,7 @@ export declare namespace Chat {
     type ChatSessionRole as ChatSessionRole,
     type ChatSessionUser as ChatSessionUser,
     type ChatSessionWithMessages as ChatSessionWithMessages,
+    type ChatVisibility as ChatVisibility,
     type CopyChatSessionRequest as CopyChatSessionRequest,
     type CreateChatSessionRequest as CreateChatSessionRequest,
     type CreateChatSessionResponse as CreateChatSessionResponse,
@@ -1192,8 +1277,10 @@ export declare namespace Chat {
     type ListChatSessionsResponse as ListChatSessionsResponse,
     type ListCollaboratorsResponse as ListCollaboratorsResponse,
     type Message as Message,
-    type TogglePublicRequest as TogglePublicRequest,
-    type TogglePublicResponse as TogglePublicResponse,
+    type UpdateChatSessionFavoriteRequest as UpdateChatSessionFavoriteRequest,
+    type UpdateChatSessionRequest as UpdateChatSessionRequest,
+    type UpdateVisibilityRequest as UpdateVisibilityRequest,
+    type UpdateVisibilityResponse as UpdateVisibilityResponse,
     type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
     type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
     type ChatDeleteFilesResponse as ChatDeleteFilesResponse,
@@ -1213,7 +1300,8 @@ export declare namespace Chat {
     type ChatListSessionsParams as ChatListSessionsParams,
     type ChatLoadFilesParams as ChatLoadFilesParams,
     type ChatRevertToCommitParams as ChatRevertToCommitParams,
-    type ChatTogglePublicParams as ChatTogglePublicParams,
     type ChatUpdateSessionParams as ChatUpdateSessionParams,
+    type ChatUpdateSessionFavoriteParams as ChatUpdateSessionFavoriteParams,
+    type ChatUpdateVisibilityParams as ChatUpdateVisibilityParams,
   };
 }

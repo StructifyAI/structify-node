@@ -119,6 +119,14 @@ export class Sessions extends APIResource {
     return this._client.patch(`/sessions/nodes/${nodeId}/progress`, { body, ...options });
   }
 
+  uploadDashboardLayout(
+    sessionId: string,
+    body: SessionUploadDashboardLayoutParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<WorkflowSession> {
+    return this._client.post(`/sessions/${sessionId}/dashboard_layout`, { body, ...options });
+  }
+
   uploadNodeOutputData(
     nodeId: string,
     body: SessionUploadNodeOutputDataParams,
@@ -161,6 +169,24 @@ export interface CreateWorkflowSessionRequest {
   chat_session_id: string;
 
   workflow_schedule_id?: string | null;
+}
+
+export interface DashboardComponent {
+  node_name: string;
+
+  title: string;
+
+  description?: string | null;
+
+  span?: number | null;
+}
+
+export interface DashboardLayout {
+  components: Array<DashboardComponent>;
+
+  title: string;
+
+  description?: string | null;
 }
 
 export interface GetNodeLogsResponse {
@@ -272,6 +298,10 @@ export interface UpdateWorkflowNodeRequest {
   execution_time_ms?: number | null;
 }
 
+export interface UploadDashboardLayoutRequest {
+  layout: DashboardLayout;
+}
+
 export interface UploadNodeVisualizationOutputRequest {
   visualization_output: { [key: string]: unknown };
 }
@@ -286,6 +316,8 @@ export interface WorkflowDag {
   session_id: string;
 
   dag_ready_at?: string | null;
+
+  dashboard_layout?: DashboardLayout | null;
 
   error?: string | null;
 
@@ -320,6 +352,8 @@ export interface WorkflowSession {
   created_at?: string | null;
 
   dag_ready_at?: string | null;
+
+  dashboard_layout_proto?: Core.Uploadable | null;
 
   error_message?: string | null;
 
@@ -503,6 +537,10 @@ export interface SessionUpdateNodeProgressParams {
   total?: number | null;
 }
 
+export interface SessionUploadDashboardLayoutParams {
+  layout: DashboardLayout;
+}
+
 export interface SessionUploadNodeOutputDataParams {
   content: Core.Uploadable;
 }
@@ -517,11 +555,14 @@ export declare namespace Sessions {
     type CreateWorkflowEdgeRequest as CreateWorkflowEdgeRequest,
     type CreateWorkflowNodeRequest as CreateWorkflowNodeRequest,
     type CreateWorkflowSessionRequest as CreateWorkflowSessionRequest,
+    type DashboardComponent as DashboardComponent,
+    type DashboardLayout as DashboardLayout,
     type GetNodeLogsResponse as GetNodeLogsResponse,
     type JobEventBody as JobEventBody,
     type MarkWorkflowSessionErroredRequest as MarkWorkflowSessionErroredRequest,
     type UpdateWorkflowNodeProgressRequest as UpdateWorkflowNodeProgressRequest,
     type UpdateWorkflowNodeRequest as UpdateWorkflowNodeRequest,
+    type UploadDashboardLayoutRequest as UploadDashboardLayoutRequest,
     type UploadNodeVisualizationOutputRequest as UploadNodeVisualizationOutputRequest,
     type WorkflowDag as WorkflowDag,
     type WorkflowNodeExecutionStatus as WorkflowNodeExecutionStatus,
@@ -540,6 +581,7 @@ export declare namespace Sessions {
     type SessionMarkErroredParams as SessionMarkErroredParams,
     type SessionUpdateNodeParams as SessionUpdateNodeParams,
     type SessionUpdateNodeProgressParams as SessionUpdateNodeProgressParams,
+    type SessionUploadDashboardLayoutParams as SessionUploadDashboardLayoutParams,
     type SessionUploadNodeOutputDataParams as SessionUploadNodeOutputDataParams,
     type SessionUploadNodeVisualizationOutputParams as SessionUploadNodeVisualizationOutputParams,
   };

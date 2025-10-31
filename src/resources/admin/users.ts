@@ -90,6 +90,8 @@ export interface User {
 
   last_activity?: string | null;
 
+  last_selected_team_id?: string | null;
+
   survey_completed_at?: string | null;
 
   survey_response?: unknown;

@@ -45,7 +45,7 @@ export class Teams extends APIResource {
     teamId: string,
     body: TeamCreateProjectParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<CreateProjectResponse> {
+  ): Core.APIPromise<ProjectsAPI.Project> {
     return this._client.post(`/team/${teamId}/projects`, { body, ...options });
   }
 
@@ -59,6 +59,13 @@ export class Teams extends APIResource {
 
   get(teamId: string, options?: Core.RequestOptions): Core.APIPromise<GetTeamResponse> {
     return this._client.get(`/team/${teamId}`, options);
+  }
+
+  invitationDetails(
+    token: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<InvitationDetailsResponse> {
+    return this._client.get(`/team/invitations/details/${token}`, options);
   }
 
   listMembers(teamId: string, options?: Core.RequestOptions): Core.APIPromise<ListMembersResponse> {
@@ -76,24 +83,31 @@ export class Teams extends APIResource {
   ): Core.APIPromise<RemoveMemberResponse> {
     return this._client.delete(`/team/${teamId}/members/${userId}`, options);
   }
+
+  select(teamId: string, options?: Core.RequestOptions): Core.APIPromise<SelectTeamResponse> {
+    return this._client.post(`/team/${teamId}/select`, options);
+  }
+
+  updateMemberRole(
+    teamId: string,
+    userId: string,
+    body: TeamUpdateMemberRoleParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<UpdateMemberRoleResponse> {
+    return this._client.patch(`/team/${teamId}/members/${userId}/role`, { body, ...options });
+  }
 }
 
 export interface AcceptInvitationRequest {
   token: string;
-
-  supabase_user_id?: string | null;
 }
 
 export interface AcceptInvitationResponse {
-  requires_signup: boolean;
-
   success: boolean;
 
   team_id: string;
 
   team_name: string;
-
-  user_email: string;
 }
 
 export interface AddMemberRequest {
@@ -105,6 +119,9 @@ export interface AddMemberRequest {
 export interface AddMemberResponse {
   invitation_sent: boolean;
 
+  /**
+   * Contains membership information and API token
+   */
   membership: UserTeam;
 }
 
@@ -112,10 +129,6 @@ export interface CreateProjectRequest {
   name: string;
 
   description?: string | null;
-}
-
-export interface CreateProjectResponse {
-  project: ProjectsAPI.Project;
 }
 
 export interface CreateTeamRequest {
@@ -164,6 +177,14 @@ export interface GetTeamResponse {
 
 export type Granularity = 'hour' | 'day' | 'week' | 'month';
 
+export interface InvitationDetailsResponse {
+  invitee_email: string;
+
+  team_name: string;
+
+  user_exists: boolean;
+}
+
 export interface ListMembersResponse {
   members: Array<ListMembersResponse.Member>;
 }
@@ -191,6 +212,10 @@ export interface ListTeamsResponse {
 }
 
 export interface RemoveMemberResponse {
+  success: boolean;
+}
+
+export interface SelectTeamResponse {
   success: boolean;
 }
 
@@ -227,6 +252,16 @@ export interface TeamSubscriptionStatus {
 
 export interface TeamWithRole extends Team {
   role: TeamRole;
+
+  subscription_status: TeamSubscriptionStatus;
+}
+
+export interface UpdateMemberRoleRequest {
+  role: TeamRole;
+}
+
+export interface UpdateMemberRoleResponse {
+  success: boolean;
 }
 
 export interface UpdateTeamRequest {
@@ -249,6 +284,9 @@ export type UsageGroupKey =
   | 'newsapi'
   | 'other';
 
+/**
+ * Contains membership information and API token
+ */
 export interface UserTeam {
   id: string;
 
@@ -259,6 +297,8 @@ export interface UserTeam {
   role: TeamRole;
 
   team_id: string;
+
+  value: Core.Uploadable;
 
   invitation_expires_at?: string | null;
 
@@ -287,8 +327,6 @@ export interface TeamUpdateParams {
 
 export interface TeamAcceptInvitationParams {
   token: string;
-
-  supabase_user_id?: string | null;
 }
 
 export interface TeamAddMemberParams {
@@ -325,6 +363,10 @@ export interface TeamCreditsUsageParams {
   token?: string | null;
 }
 
+export interface TeamUpdateMemberRoleParams {
+  role: TeamRole;
+}
+
 export declare namespace Teams {
   export {
     type AcceptInvitationRequest as AcceptInvitationRequest,
@@ -332,7 +374,6 @@ export declare namespace Teams {
     type AddMemberRequest as AddMemberRequest,
     type AddMemberResponse as AddMemberResponse,
     type CreateProjectRequest as CreateProjectRequest,
-    type CreateProjectResponse as CreateProjectResponse,
     type CreateTeamRequest as CreateTeamRequest,
     type CreateTeamResponse as CreateTeamResponse,
     type CreditsUsageRequest as CreditsUsageRequest,
@@ -341,14 +382,18 @@ export declare namespace Teams {
     type DeleteTeamResponse as DeleteTeamResponse,
     type GetTeamResponse as GetTeamResponse,
     type Granularity as Granularity,
+    type InvitationDetailsResponse as InvitationDetailsResponse,
     type ListMembersResponse as ListMembersResponse,
     type ListProjectsResponse as ListProjectsResponse,
     type ListTeamsResponse as ListTeamsResponse,
     type RemoveMemberResponse as RemoveMemberResponse,
+    type SelectTeamResponse as SelectTeamResponse,
     type Team as Team,
     type TeamRole as TeamRole,
     type TeamSubscriptionStatus as TeamSubscriptionStatus,
     type TeamWithRole as TeamWithRole,
+    type UpdateMemberRoleRequest as UpdateMemberRoleRequest,
+    type UpdateMemberRoleResponse as UpdateMemberRoleResponse,
     type UpdateTeamRequest as UpdateTeamRequest,
     type UpdateTeamResponse as UpdateTeamResponse,
     type UsageGroupKey as UsageGroupKey,
@@ -359,5 +404,6 @@ export declare namespace Teams {
     type TeamAddMemberParams as TeamAddMemberParams,
     type TeamCreateProjectParams as TeamCreateProjectParams,
     type TeamCreditsUsageParams as TeamCreditsUsageParams,
+    type TeamUpdateMemberRoleParams as TeamUpdateMemberRoleParams,
   };
 }

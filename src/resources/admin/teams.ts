@@ -46,6 +46,13 @@ export class Teams extends APIResource {
     return this._client.post('/admin/team/create_subscription', { body, ...options });
   }
 
+  extendTrial(
+    body: TeamExtendTrialParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ExtendTrialResponse> {
+    return this._client.post('/admin/team/extend_trial', { body, ...options });
+  }
+
   grantCredits(
     body: TeamGrantCreditsParams,
     options?: Core.RequestOptions,
@@ -140,6 +147,20 @@ export interface CreateTeamSubscriptionRequest {
   external_subscription_id?: string | null;
 }
 
+export interface ExtendTrialRequest {
+  new_expires_at: string;
+
+  team_id: string;
+}
+
+export interface ExtendTrialResponse {
+  grant_id: string;
+
+  new_expires_at: string;
+
+  team_id: string;
+}
+
 export interface GrantCreditsRequest {
   amount: number;
 
@@ -187,6 +208,12 @@ export interface TeamCreateSubscriptionParams {
   external_subscription_id?: string | null;
 }
 
+export interface TeamExtendTrialParams {
+  new_expires_at: string;
+
+  team_id: string;
+}
+
 export interface TeamGrantCreditsParams {
   amount: number;
 
@@ -210,12 +237,15 @@ export declare namespace Teams {
     type CancelSubscriptionResponse as CancelSubscriptionResponse,
     type CreateSubscriptionResponse as CreateSubscriptionResponse,
     type CreateTeamSubscriptionRequest as CreateTeamSubscriptionRequest,
+    type ExtendTrialRequest as ExtendTrialRequest,
+    type ExtendTrialResponse as ExtendTrialResponse,
     type GrantCreditsRequest as GrantCreditsRequest,
     type GrantCreditsResponse as GrantCreditsResponse,
     AdminTeamsListResponsesJobsList as AdminTeamsListResponsesJobsList,
     type TeamListParams as TeamListParams,
     type TeamCancelSubscriptionParams as TeamCancelSubscriptionParams,
     type TeamCreateSubscriptionParams as TeamCreateSubscriptionParams,
+    type TeamExtendTrialParams as TeamExtendTrialParams,
     type TeamGrantCreditsParams as TeamGrantCreditsParams,
   };
 }
