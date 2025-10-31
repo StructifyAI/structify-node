@@ -173,6 +173,7 @@ export interface Connector {
   known_connector_type:
     | 'Slack'
     | 'Confluence'
+    | 'Dropbox'
     | 'GoogleDrive'
     | 'Snowflake'
     | 'Hubspot'
@@ -279,6 +280,7 @@ export namespace ConnectorExplorerChat {
     known_connector_type:
       | 'Slack'
       | 'Confluence'
+      | 'Dropbox'
       | 'GoogleDrive'
       | 'Snowflake'
       | 'Hubspot'
@@ -307,6 +309,7 @@ export namespace ConnectorExplorerChat {
     known_connector_type:
       | 'Slack'
       | 'Confluence'
+      | 'Dropbox'
       | 'GoogleDrive'
       | 'Snowflake'
       | 'Hubspot'
@@ -389,6 +392,7 @@ export interface CreateConnectorRequest {
   known_connector_type:
     | 'Slack'
     | 'Confluence'
+    | 'Dropbox'
     | 'GoogleDrive'
     | 'Snowflake'
     | 'Hubspot'
@@ -552,6 +556,7 @@ export interface UpdateConnectorRequest {
   known_connector_type?:
     | 'Slack'
     | 'Confluence'
+    | 'Dropbox'
     | 'GoogleDrive'
     | 'Snowflake'
     | 'Hubspot'
@@ -599,6 +604,7 @@ export interface ConnectorCreateParams {
   known_connector_type:
     | 'Slack'
     | 'Confluence'
+    | 'Dropbox'
     | 'GoogleDrive'
     | 'Snowflake'
     | 'Hubspot'
@@ -637,6 +643,7 @@ export interface ConnectorUpdateParams {
   known_connector_type?:
     | 'Slack'
     | 'Confluence'
+    | 'Dropbox'
     | 'GoogleDrive'
     | 'Snowflake'
     | 'Hubspot'
