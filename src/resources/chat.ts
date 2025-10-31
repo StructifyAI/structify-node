@@ -292,6 +292,7 @@ export type ChatEvent =
   | ChatEvent.Action
   | ChatEvent.Connector
   | ChatEvent.ToolCall
+  | ChatEvent.Question
   | ChatEvent.InternalError;
 
 export namespace ChatEvent {
@@ -594,6 +595,18 @@ export namespace ChatEvent {
 
         notes?: string | null;
       }
+    }
+  }
+
+  export interface Question {
+    Question: Question.Question;
+  }
+
+  export namespace Question {
+    export interface Question {
+      complete: boolean;
+
+      content: string;
     }
   }
 
