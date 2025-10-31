@@ -193,6 +193,9 @@ export {
   Projects,
   type DeleteProjectResponse,
   type Project,
+  type ProjectCollaboratorInput,
+  type ProjectMember,
+  type ProjectVisibility,
   type UpdateProjectRequest,
   type ProjectUpdateParams,
 } from './projects';

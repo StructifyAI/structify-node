@@ -12,7 +12,7 @@ describe('resource chat', () => {
   test('addCollaborator: only required params', async () => {
     const responsePromise = client.chat.addCollaborator('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       email: 'email',
-      role: 'owner',
+      role: 'viewer',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -26,7 +26,7 @@ describe('resource chat', () => {
   test('addCollaborator: required and optional params', async () => {
     const response = await client.chat.addCollaborator('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       email: 'email',
-      role: 'owner',
+      role: 'viewer',
     });
   });
 
@@ -268,7 +268,7 @@ describe('resource chat', () => {
   test('grantAdminOverride: only required params', async () => {
     const responsePromise = client.chat.grantAdminOverride('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       duration_hours: 0,
-      role: 'owner',
+      role: 'viewer',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -282,7 +282,7 @@ describe('resource chat', () => {
   test('grantAdminOverride: required and optional params', async () => {
     const response = await client.chat.grantAdminOverride('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       duration_hours: 0,
-      role: 'owner',
+      role: 'viewer',
     });
   });
 
