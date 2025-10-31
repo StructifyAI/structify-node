@@ -651,7 +651,7 @@ export interface ChatSession {
   slack_thread_ts?: string | null;
 }
 
-export type ChatSessionRole = 'owner' | 'editor' | 'viewer';
+export type ChatSessionRole = 'viewer' | 'editor' | 'owner';
 
 export interface ChatSessionUser {
   id: string;

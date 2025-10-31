@@ -166,7 +166,10 @@ import {
 import {
   DeleteProjectResponse,
   Project,
+  ProjectCollaboratorInput,
+  ProjectMember,
   ProjectUpdateParams,
+  ProjectVisibility,
   Projects,
   UpdateProjectRequest,
 } from './resources/projects';
@@ -750,6 +753,9 @@ export declare namespace Structify {
     Projects as Projects,
     type DeleteProjectResponse as DeleteProjectResponse,
     type Project as Project,
+    type ProjectCollaboratorInput as ProjectCollaboratorInput,
+    type ProjectMember as ProjectMember,
+    type ProjectVisibility as ProjectVisibility,
     type UpdateProjectRequest as UpdateProjectRequest,
     type ProjectUpdateParams as ProjectUpdateParams,
   };

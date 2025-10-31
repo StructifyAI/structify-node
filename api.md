@@ -156,6 +156,9 @@ Types:
 
 - <code><a href="./src/resources/projects.ts">DeleteProjectResponse</a></code>
 - <code><a href="./src/resources/projects.ts">Project</a></code>
+- <code><a href="./src/resources/projects.ts">ProjectCollaboratorInput</a></code>
+- <code><a href="./src/resources/projects.ts">ProjectMember</a></code>
+- <code><a href="./src/resources/projects.ts">ProjectVisibility</a></code>
 - <code><a href="./src/resources/projects.ts">UpdateProjectRequest</a></code>
 
 Methods:
