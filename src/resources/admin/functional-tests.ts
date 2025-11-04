@@ -78,6 +78,8 @@ export class FunctionalTests extends APIResource {
 }
 
 export interface CreateFunctionalTestRequest {
+  team_id: string;
+
   model_override?: string | null;
 
   prompt_override?: string | null;
@@ -160,6 +162,8 @@ export namespace FunctionalTestListResponse {
 export type FunctionalTestSystemPromptResponse = string;
 
 export interface FunctionalTestCreateParams {
+  team_id: string;
+
   model_override?: string | null;
 
   prompt_override?: string | null;
