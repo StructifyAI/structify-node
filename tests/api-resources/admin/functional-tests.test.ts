@@ -9,8 +9,10 @@ const client = new Structify({
 });
 
 describe('resource functionalTests', () => {
-  test('create', async () => {
-    const responsePromise = client.admin.functionalTests.create({});
+  test('create: only required params', async () => {
+    const responsePromise = client.admin.functionalTests.create({
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -18,6 +20,14 @@ describe('resource functionalTests', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('create: required and optional params', async () => {
+    const response = await client.admin.functionalTests.create({
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      model_override: 'model_override',
+      prompt_override: 'prompt_override',
+    });
   });
 
   test('list', async () => {
