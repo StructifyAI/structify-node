@@ -49,21 +49,6 @@ describe('resource chat', () => {
     });
   });
 
-  test('addMessage: only required params', async () => {
-    const responsePromise = client.chat.addMessage('session_id', { content: 'content', role: 'role' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('addMessage: required and optional params', async () => {
-    const response = await client.chat.addMessage('session_id', { content: 'content', role: 'role' });
-  });
-
   test('adminGetChatPrompt', async () => {
     const responsePromise = client.chat.adminGetChatPrompt('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();

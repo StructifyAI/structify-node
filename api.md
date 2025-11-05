@@ -39,8 +39,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/chat.ts">AddChatMessageRequest</a></code>
-- <code><a href="./src/resources/chat.ts">AddChatMessageResponse</a></code>
 - <code><a href="./src/resources/chat.ts">AddCollaboratorRequest</a></code>
 - <code><a href="./src/resources/chat.ts">AdminGrantAccessResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatEvent</a></code>
@@ -76,7 +74,6 @@ Methods:
 
 - <code title="post /chat/sessions/{chat_id}/collaborators">client.chat.<a href="./src/resources/chat.ts">addCollaborator</a>(chatId, { ...params }) -> void</code>
 - <code title="post /chat/sessions/{session_id}/commits">client.chat.<a href="./src/resources/chat.ts">addGitCommit</a>(sessionId, { ...params }) -> ChatAddGitCommitResponse</code>
-- <code title="post /chat/sessions/{session_id}/messages">client.chat.<a href="./src/resources/chat.ts">addMessage</a>(sessionId, { ...params }) -> AddChatMessageResponse</code>
 - <code title="get /chat/sessions/{session_id}/admin/chat_prompt">client.chat.<a href="./src/resources/chat.ts">adminGetChatPrompt</a>(sessionId) -> ChatPrompt</code>
 - <code title="post /chat/copy">client.chat.<a href="./src/resources/chat.ts">copy</a>({ ...params }) -> ChatSessionWithMessages</code>
 - <code title="post /chat/sessions/{session_id}/nodes/by_code_hash">client.chat.<a href="./src/resources/chat.ts">copyNodeOutputByCodeHash</a>(sessionId, { ...params }) -> string</code>

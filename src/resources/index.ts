@@ -3,8 +3,6 @@
 export { Admin } from './admin/admin';
 export {
   Chat,
-  type AddChatMessageRequest,
-  type AddChatMessageResponse,
   type AddCollaboratorRequest,
   type AdminGrantAccessResponse,
   type ChatEvent,
@@ -37,7 +35,6 @@ export {
   type ChatRevertToCommitResponse,
   type ChatAddCollaboratorParams,
   type ChatAddGitCommitParams,
-  type ChatAddMessageParams,
   type ChatCopyParams,
   type ChatCopyNodeOutputByCodeHashParams,
   type ChatCreateSessionParams,
