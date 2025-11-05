@@ -157,12 +157,13 @@ Types:
 - <code><a href="./src/resources/projects.ts">ProjectMember</a></code>
 - <code><a href="./src/resources/projects.ts">ProjectVisibility</a></code>
 - <code><a href="./src/resources/projects.ts">UpdateProjectRequest</a></code>
+- <code><a href="./src/resources/projects.ts">ProjectGetResponse</a></code>
 
 Methods:
 
 - <code title="patch /team/{team_id}/project/{project_id}">client.projects.<a href="./src/resources/projects.ts">update</a>(teamId, projectId, { ...params }) -> Project</code>
 - <code title="delete /team/{team_id}/project/{project_id}">client.projects.<a href="./src/resources/projects.ts">delete</a>(teamId, projectId) -> DeleteProjectResponse</code>
-- <code title="get /team/{team_id}/project/{project_id}">client.projects.<a href="./src/resources/projects.ts">get</a>(teamId, projectId) -> Project</code>
+- <code title="get /team/{team_id}/project/{project_id}">client.projects.<a href="./src/resources/projects.ts">get</a>(teamId, projectId) -> ProjectGetResponse</code>
 
 # Admin
 

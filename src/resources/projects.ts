@@ -22,7 +22,7 @@ export class Projects extends APIResource {
     return this._client.delete(`/team/${teamId}/project/${projectId}`, options);
   }
 
-  get(teamId: string, projectId: string, options?: Core.RequestOptions): Core.APIPromise<Project> {
+  get(teamId: string, projectId: string, options?: Core.RequestOptions): Core.APIPromise<ProjectGetResponse> {
     return this._client.get(`/team/${teamId}/project/${projectId}`, options);
   }
 }
@@ -77,6 +77,10 @@ export interface UpdateProjectRequest {
   visibility?: ProjectVisibility | null;
 }
 
+export interface ProjectGetResponse extends Project {
+  members: Array<ProjectMember>;
+}
+
 export interface ProjectUpdateParams {
   collaborators?: Array<ProjectCollaboratorInput> | null;
 
@@ -95,6 +99,7 @@ export declare namespace Projects {
     type ProjectMember as ProjectMember,
     type ProjectVisibility as ProjectVisibility,
     type UpdateProjectRequest as UpdateProjectRequest,
+    type ProjectGetResponse as ProjectGetResponse,
     type ProjectUpdateParams as ProjectUpdateParams,
   };
 }
