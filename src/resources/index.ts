@@ -195,6 +195,7 @@ export {
   type ProjectMember,
   type ProjectVisibility,
   type UpdateProjectRequest,
+  type ProjectGetResponse,
   type ProjectUpdateParams,
 } from './projects';
 export { PublicSessions } from './public-sessions';
