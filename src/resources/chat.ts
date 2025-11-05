@@ -30,17 +30,6 @@ export class Chat extends APIResource {
   }
 
   /**
-   * Add a message to a chat session
-   */
-  addMessage(
-    sessionId: string,
-    body: ChatAddMessageParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AddChatMessageResponse> {
-    return this._client.post(`/chat/sessions/${sessionId}/messages`, { body, ...options });
-  }
-
-  /**
    * Get the actual chat prompt that the LLM will see on its next message (admin
    * only)
    */
@@ -230,39 +219,6 @@ export class Chat extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<UpdateVisibilityResponse> {
     return this._client.put(`/chat/sessions/${sessionId}/visibility`, { body, ...options });
-  }
-}
-
-export interface AddChatMessageRequest {
-  content: string;
-
-  role: string;
-}
-
-/**
- * Response for adding a message
- */
-export interface AddChatMessageResponse {
-  message: AddChatMessageResponse.Message;
-}
-
-export namespace AddChatMessageResponse {
-  export interface Message {
-    id: string;
-
-    chat_session_id: string;
-
-    content: string;
-
-    created_at: string;
-
-    role: string;
-
-    timestamp: string;
-
-    content_proto?: Core.Uploadable | null;
-
-    git_commit_id?: string | null;
   }
 }
 
@@ -1123,12 +1079,6 @@ export interface ChatAddGitCommitParams {
   commit_hash: string;
 }
 
-export interface ChatAddMessageParams {
-  content: string;
-
-  role: string;
-}
-
 export interface ChatCopyParams {
   copy_name: string;
 
@@ -1257,8 +1207,6 @@ export interface ChatUpdateVisibilityParams {
 
 export declare namespace Chat {
   export {
-    type AddChatMessageRequest as AddChatMessageRequest,
-    type AddChatMessageResponse as AddChatMessageResponse,
     type AddCollaboratorRequest as AddCollaboratorRequest,
     type AdminGrantAccessResponse as AdminGrantAccessResponse,
     type ChatEvent as ChatEvent,
@@ -1291,7 +1239,6 @@ export declare namespace Chat {
     type ChatRevertToCommitResponse as ChatRevertToCommitResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
-    type ChatAddMessageParams as ChatAddMessageParams,
     type ChatCopyParams as ChatCopyParams,
     type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,

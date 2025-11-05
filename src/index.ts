@@ -9,15 +9,12 @@ import { type JobsListParams, JobsListResponse } from './pagination';
 import * as Uploads from './uploads';
 import * as API from './resources/index';
 import {
-  AddChatMessageRequest,
-  AddChatMessageResponse,
   AddCollaboratorRequest,
   AdminGrantAccessResponse,
   Chat,
   ChatAddCollaboratorParams,
   ChatAddGitCommitParams,
   ChatAddGitCommitResponse,
-  ChatAddMessageParams,
   ChatCopyNodeOutputByCodeHashParams,
   ChatCopyNodeOutputByCodeHashResponse,
   ChatCopyParams,
@@ -661,8 +658,6 @@ export declare namespace Structify {
 
   export {
     Chat as Chat,
-    type AddChatMessageRequest as AddChatMessageRequest,
-    type AddChatMessageResponse as AddChatMessageResponse,
     type AddCollaboratorRequest as AddCollaboratorRequest,
     type AdminGrantAccessResponse as AdminGrantAccessResponse,
     type ChatEvent as ChatEvent,
@@ -695,7 +690,6 @@ export declare namespace Structify {
     type ChatRevertToCommitResponse as ChatRevertToCommitResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
-    type ChatAddMessageParams as ChatAddMessageParams,
     type ChatCopyParams as ChatCopyParams,
     type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
