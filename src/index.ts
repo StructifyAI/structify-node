@@ -140,6 +140,7 @@ import {
   EntityTriggerMergeResponse,
   EntityUpdatePropertyParams,
   EntityUpdatePropertyResponse,
+  EntityUploadParquetParams,
   EntityVerifyParams,
   EntityViewParams,
   EntityViewResponse,
@@ -962,6 +963,7 @@ export declare namespace Structify {
     type EntitySummarizeParams as EntitySummarizeParams,
     type EntityTriggerMergeParams as EntityTriggerMergeParams,
     type EntityUpdatePropertyParams as EntityUpdatePropertyParams,
+    type EntityUploadParquetParams as EntityUploadParquetParams,
     type EntityVerifyParams as EntityVerifyParams,
     type EntityViewParams as EntityViewParams,
   };
