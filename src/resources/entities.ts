@@ -172,6 +172,22 @@ export class Entities extends APIResource {
   }
 
   /**
+   * Add multiple entities to a dataset from a Parquet file with fast batch insert
+   */
+  uploadParquet(params: EntityUploadParquetParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    const { dataset, table_name, ...body } = params;
+    return this._client.post(
+      '/entity/upload_parquet',
+      Core.multipartFormRequestOptions({
+        query: { dataset, table_name },
+        body,
+        ...options,
+        headers: { Accept: '*/*', ...options?.headers },
+      }),
+    );
+  }
+
+  /**
    * verify a kg against the dataset
    */
   verify(body: EntityVerifyParams, options?: Core.RequestOptions): Core.APIPromise<SharedAPI.KnowledgeGraph> {
@@ -1810,6 +1826,23 @@ export namespace EntityUpdatePropertyParams {
   }
 }
 
+export interface EntityUploadParquetParams {
+  /**
+   * Query param:
+   */
+  dataset: string;
+
+  /**
+   * Query param:
+   */
+  table_name: string;
+
+  /**
+   * Body param:
+   */
+  content: Core.Uploadable;
+}
+
 export interface EntityVerifyParams {
   dataset: string;
 
@@ -1871,6 +1904,7 @@ export declare namespace Entities {
     type EntitySummarizeParams as EntitySummarizeParams,
     type EntityTriggerMergeParams as EntityTriggerMergeParams,
     type EntityUpdatePropertyParams as EntityUpdatePropertyParams,
+    type EntityUploadParquetParams as EntityUploadParquetParams,
     type EntityVerifyParams as EntityVerifyParams,
     type EntityViewParams as EntityViewParams,
   };

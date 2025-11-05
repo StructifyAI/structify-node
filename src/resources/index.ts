@@ -166,6 +166,7 @@ export {
   type EntitySummarizeParams,
   type EntityTriggerMergeParams,
   type EntityUpdatePropertyParams,
+  type EntityUploadParquetParams,
   type EntityVerifyParams,
   type EntityViewParams,
 } from './entities';
