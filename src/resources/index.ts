@@ -388,4 +388,5 @@ export {
   type WorkflowScheduleCreateParams,
   type WorkflowScheduleUpdateParams,
   type WorkflowScheduleGetSessionsParams,
+  type WorkflowSchedulePauseParams,
 } from './workflow-schedule';
