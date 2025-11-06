@@ -348,6 +348,7 @@ import {
   WorkflowScheduleGetResponse,
   WorkflowScheduleGetSessionsParams,
   WorkflowScheduleInfo,
+  WorkflowSchedulePauseParams,
   WorkflowScheduleUpdateParams,
 } from './resources/workflow-schedule';
 import { Admin } from './resources/admin/admin';
@@ -870,6 +871,7 @@ export declare namespace Structify {
     type WorkflowScheduleCreateParams as WorkflowScheduleCreateParams,
     type WorkflowScheduleUpdateParams as WorkflowScheduleUpdateParams,
     type WorkflowScheduleGetSessionsParams as WorkflowScheduleGetSessionsParams,
+    type WorkflowSchedulePauseParams as WorkflowSchedulePauseParams,
   };
 
   export {

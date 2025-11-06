@@ -499,6 +499,8 @@ Methods:
 - <code title="get /workflow-schedule/{chat_session_id}">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">get</a>(chatSessionId) -> WorkflowScheduleGetResponse</code>
 - <code title="get /workflow-schedule">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">getAll</a>() -> WorkflowScheduleGetAllResponse</code>
 - <code title="post /workflow-schedule/{schedule_id}/sessions">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">getSessions</a>(scheduleId, { ...params }) -> GetWorkflowScheduleSessionsResponse</code>
+- <code title="patch /workflow-schedule/{schedule_id}/pause">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">pause</a>(scheduleId, { ...params }) -> WorkflowScheduleInfo</code>
+- <code title="post /workflow-schedule/{schedule_id}/run">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">run</a>(scheduleId) -> void</code>
 
 # Workflow
 
