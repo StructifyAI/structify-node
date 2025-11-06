@@ -11,7 +11,6 @@ const client = new Structify({
 describe('resource workflowSchedule', () => {
   test('create: only required params', async () => {
     const responsePromise = client.workflowSchedule.create('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      git_commit_hash: 'git_commit_hash',
       name: 'name',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -25,9 +24,9 @@ describe('resource workflowSchedule', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.workflowSchedule.create('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      git_commit_hash: 'git_commit_hash',
       name: 'name',
       cron_schedule: 'cron_schedule',
+      git_commit_hash: 'git_commit_hash',
     });
   });
 
@@ -109,5 +108,44 @@ describe('resource workflowSchedule', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('pause: only required params', async () => {
+    const responsePromise = client.workflowSchedule.pause('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      paused: true,
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('pause: required and optional params', async () => {
+    const response = await client.workflowSchedule.pause('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      paused: true,
+    });
+  });
+
+  test('run', async () => {
+    const responsePromise = client.workflowSchedule.run('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('run: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.workflowSchedule.run('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(Structify.NotFoundError);
   });
 });

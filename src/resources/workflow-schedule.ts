@@ -43,14 +43,29 @@ export class WorkflowSchedule extends APIResource {
   ): Core.APIPromise<GetWorkflowScheduleSessionsResponse> {
     return this._client.post(`/workflow-schedule/${scheduleId}/sessions`, { body, ...options });
   }
+
+  pause(
+    scheduleId: string,
+    body: WorkflowSchedulePauseParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<WorkflowScheduleInfo> {
+    return this._client.patch(`/workflow-schedule/${scheduleId}/pause`, { body, ...options });
+  }
+
+  run(scheduleId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post(`/workflow-schedule/${scheduleId}/run`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
 }
 
 export interface CreateWorkflowScheduleRequest {
-  git_commit_hash: string;
-
   name: string;
 
   cron_schedule?: string | null;
+
+  git_commit_hash?: string | null;
 }
 
 export interface GetWorkflowScheduleSessionsRequest {
@@ -71,6 +86,8 @@ export interface UpdateWorkflowScheduleRequest {
   git_commit_hash?: string | null;
 
   name?: string | null;
+
+  paused?: boolean | null;
 }
 
 export interface WorkflowScheduleInfo {
@@ -82,6 +99,8 @@ export interface WorkflowScheduleInfo {
 
   name: string;
 
+  paused: boolean;
+
   cron_schedule?: string | null;
 
   next_run_time?: string | null;
@@ -92,11 +111,11 @@ export type WorkflowScheduleGetResponse = Array<WorkflowScheduleInfo>;
 export type WorkflowScheduleGetAllResponse = Array<WorkflowScheduleInfo>;
 
 export interface WorkflowScheduleCreateParams {
-  git_commit_hash: string;
-
   name: string;
 
   cron_schedule?: string | null;
+
+  git_commit_hash?: string | null;
 }
 
 export interface WorkflowScheduleUpdateParams {
@@ -105,12 +124,18 @@ export interface WorkflowScheduleUpdateParams {
   git_commit_hash?: string | null;
 
   name?: string | null;
+
+  paused?: boolean | null;
 }
 
 export interface WorkflowScheduleGetSessionsParams {
   limit?: number;
 
   offset?: number;
+}
+
+export interface WorkflowSchedulePauseParams {
+  paused: boolean;
 }
 
 export declare namespace WorkflowSchedule {
@@ -125,5 +150,6 @@ export declare namespace WorkflowSchedule {
     type WorkflowScheduleCreateParams as WorkflowScheduleCreateParams,
     type WorkflowScheduleUpdateParams as WorkflowScheduleUpdateParams,
     type WorkflowScheduleGetSessionsParams as WorkflowScheduleGetSessionsParams,
+    type WorkflowSchedulePauseParams as WorkflowSchedulePauseParams,
   };
 }
