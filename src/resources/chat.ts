@@ -341,7 +341,8 @@ export namespace ChatEvent {
       | ToolCall.UnionMember7
       | ToolCall.UnionMember8
       | ToolCall.UnionMember9
-      | ToolCall.UnionMember10;
+      | ToolCall.UnionMember10
+      | ToolCall.UnionMember11;
   }
 
   export namespace ToolCall {
@@ -550,6 +551,24 @@ export namespace ChatEvent {
         description?: string | null;
 
         notes?: string | null;
+      }
+    }
+
+    export interface UnionMember11 {
+      input: UnionMember11.Input;
+
+      name: 'SaveMemory';
+
+      result_id?: string | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember11 {
+      export interface Input {
+        key: string;
+
+        value: string;
       }
     }
   }
