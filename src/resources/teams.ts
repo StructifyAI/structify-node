@@ -216,6 +216,8 @@ export interface RemoveMemberResponse {
 }
 
 export interface SelectTeamResponse {
+  api_token: string;
+
   success: boolean;
 }
 
