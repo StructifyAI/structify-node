@@ -282,6 +282,7 @@ export type UsageGroupKey =
   | 'apollo'
   | 'searchapi'
   | 'newsapi'
+  | 'match'
   | 'other';
 
 /**
