@@ -162,6 +162,16 @@ import {
   Jobs,
 } from './resources/jobs';
 import {
+  CreateMatchJobsRequest,
+  CreateMatchJobsResponse,
+  ListMatchResultsParams,
+  Match,
+  MatchCreateJobsParams,
+  MatchListResultsParams,
+  MatchResult,
+  MatchResultsJobsList,
+} from './resources/match';
+import {
   DeleteProjectResponse,
   Project,
   ProjectCollaboratorInput,
@@ -546,6 +556,7 @@ export class Structify extends Core.APIClient {
   datasets: API.Datasets = new API.Datasets(this);
   documents: API.Documents = new API.Documents(this);
   jobs: API.Jobs = new API.Jobs(this);
+  match: API.Match = new API.Match(this);
   sessions: API.Sessions = new API.Sessions(this);
   workflowSchedule: API.WorkflowSchedule = new API.WorkflowSchedule(this);
   workflow: API.Workflow = new API.Workflow(this);
@@ -621,6 +632,8 @@ Structify.DatasetViewTableResponsesJobsList = DatasetViewTableResponsesJobsList;
 Structify.Documents = Documents;
 Structify.Jobs = Jobs;
 Structify.JobListResponsesJobsList = JobListResponsesJobsList;
+Structify.Match = Match;
+Structify.MatchResultsJobsList = MatchResultsJobsList;
 Structify.Sessions = Sessions;
 Structify.WorkflowSchedule = WorkflowSchedule;
 Structify.Workflow = Workflow;
@@ -820,6 +833,17 @@ export declare namespace Structify {
     JobListResponsesJobsList as JobListResponsesJobsList,
     type JobListParams as JobListParams,
     type JobStatusParams as JobStatusParams,
+  };
+
+  export {
+    Match as Match,
+    type CreateMatchJobsRequest as CreateMatchJobsRequest,
+    type CreateMatchJobsResponse as CreateMatchJobsResponse,
+    type ListMatchResultsParams as ListMatchResultsParams,
+    type MatchResult as MatchResult,
+    MatchResultsJobsList as MatchResultsJobsList,
+    type MatchCreateJobsParams as MatchCreateJobsParams,
+    type MatchListResultsParams as MatchListResultsParams,
   };
 
   export {

@@ -433,6 +433,20 @@ Methods:
 - <code title="post /jobs/schedule">client.jobs.<a href="./src/resources/jobs.ts">schedule</a>() -> void</code>
 - <code title="post /jobs/status_aggregated">client.jobs.<a href="./src/resources/jobs.ts">status</a>({ ...params }) -> JobStatusResponse</code>
 
+# Match
+
+Types:
+
+- <code><a href="./src/resources/match.ts">CreateMatchJobsRequest</a></code>
+- <code><a href="./src/resources/match.ts">CreateMatchJobsResponse</a></code>
+- <code><a href="./src/resources/match.ts">ListMatchResultsParams</a></code>
+- <code><a href="./src/resources/match.ts">MatchResult</a></code>
+
+Methods:
+
+- <code title="post /match/create_jobs">client.match.<a href="./src/resources/match.ts">createJobs</a>({ ...params }) -> CreateMatchJobsResponse</code>
+- <code title="get /match/list_results">client.match.<a href="./src/resources/match.ts">listResults</a>({ ...params }) -> MatchResultsJobsList</code>
+
 # Sessions
 
 Types:
