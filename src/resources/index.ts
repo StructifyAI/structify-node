@@ -188,6 +188,16 @@ export {
   type JobStatusParams,
 } from './jobs';
 export {
+  MatchResultsJobsList,
+  Match,
+  type CreateMatchJobsRequest,
+  type CreateMatchJobsResponse,
+  type ListMatchResultsParams,
+  type MatchResult,
+  type MatchCreateJobsParams,
+  type MatchListResultsParams,
+} from './match';
+export {
   Projects,
   type DeleteProjectResponse,
   type Project,
