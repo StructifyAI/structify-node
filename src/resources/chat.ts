@@ -1113,7 +1113,7 @@ export interface ChatCopyParams {
 export interface ChatCopyNodeOutputByCodeHashParams {
   code_md5_hash: string;
 
-  new_node_id?: string | null;
+  new_node_id: string;
 }
 
 export interface ChatCreateSessionParams {

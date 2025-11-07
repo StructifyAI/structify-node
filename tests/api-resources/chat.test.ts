@@ -97,6 +97,7 @@ describe('resource chat', () => {
   test('copyNodeOutputByCodeHash: only required params', async () => {
     const responsePromise = client.chat.copyNodeOutputByCodeHash('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       code_md5_hash: 'code_md5_hash',
+      new_node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
