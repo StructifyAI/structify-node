@@ -117,7 +117,7 @@ export interface JobListResponse {
 
   dataset_id: string;
 
-  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
+  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match';
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
@@ -239,7 +239,7 @@ export interface JobCancelResponse {
 
   dataset_id: string;
 
-  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
+  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match';
 
   max_steps_without_save: number;
 
@@ -300,7 +300,7 @@ export namespace JobGetResponse {
 
     dataset_id: string;
 
-    job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
+    job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match';
 
     max_steps_without_save: number;
 
@@ -975,7 +975,7 @@ export interface JobListParams extends JobsListParams {
   /**
    * Type of job to optionally filter jobs by
    */
-  job_type?: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | null;
+  job_type?: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | null;
 
   /**
    * Node ID to optionally filter jobs by

@@ -109,7 +109,7 @@ export namespace HumanLlmJob {
 
     dataset_id: string;
 
-    job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
+    job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match';
 
     max_steps_without_save: number;
 
