@@ -43,7 +43,7 @@ export interface AdminListJobsResponse {
 
   dataset_id: string;
 
-  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape';
+  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match';
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
