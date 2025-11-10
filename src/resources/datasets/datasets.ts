@@ -60,6 +60,13 @@ export class Datasets extends APIResource {
     });
   }
 
+  countMissingEmbeddings(
+    query: DatasetCountMissingEmbeddingsParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<DatasetCountMissingEmbeddingsResponse> {
+    return this._client.get('/dataset/count_missing_embeddings', { query, ...options });
+  }
+
   /**
    * Get the enrichment progress for a dataset
    */
@@ -281,6 +288,10 @@ export namespace DatasetListResponse {
 
     created_timestamp: string;
   }
+}
+
+export interface DatasetCountMissingEmbeddingsResponse {
+  count: number;
 }
 
 export interface DatasetEnrichmentProgressResponse {
@@ -861,6 +872,10 @@ export namespace DatasetAddPropertyParams {
   }
 }
 
+export interface DatasetCountMissingEmbeddingsParams {
+  name: string;
+}
+
 export interface DatasetEnrichmentProgressParams {
   /**
    * Enrichment progress for the dataset
@@ -1043,6 +1058,7 @@ export declare namespace Datasets {
     type Strategy as Strategy,
     type DatasetCreateResponse as DatasetCreateResponse,
     type DatasetListResponse as DatasetListResponse,
+    type DatasetCountMissingEmbeddingsResponse as DatasetCountMissingEmbeddingsResponse,
     type DatasetEnrichmentProgressResponse as DatasetEnrichmentProgressResponse,
     type DatasetGetResponse as DatasetGetResponse,
     type DatasetMatchResponse as DatasetMatchResponse,
@@ -1054,6 +1070,7 @@ export declare namespace Datasets {
     type DatasetCreateParams as DatasetCreateParams,
     type DatasetDeleteParams as DatasetDeleteParams,
     type DatasetAddPropertyParams as DatasetAddPropertyParams,
+    type DatasetCountMissingEmbeddingsParams as DatasetCountMissingEmbeddingsParams,
     type DatasetEnrichmentProgressParams as DatasetEnrichmentProgressParams,
     type DatasetExportToCsvParams as DatasetExportToCsvParams,
     type DatasetExportToExcelParams as DatasetExportToExcelParams,
