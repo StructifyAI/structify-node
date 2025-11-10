@@ -23,12 +23,18 @@ describe('resource user', () => {
   test('update: required and optional params', async () => {
     const response = await client.user.update({
       updates: {
+        apollo_data: {},
+        company_description: 'company_description',
+        company_name: 'company_name',
+        cufinder_data: {},
         email: 'email',
         feature_flags: ['functional_test'],
         feature_overrides: {},
         full_name: 'full_name',
         is_developer: true,
+        job_title: 'job_title',
         last_selected_team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        linkedin_url: 'linkedin_url',
         permissions: ['labeler'],
         user_type: 'admin',
       },

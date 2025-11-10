@@ -107,6 +107,14 @@ export interface UpdateUserParams {
 
 export namespace UpdateUserParams {
   export interface Updates {
+    apollo_data?: unknown;
+
+    company_description?: string | null;
+
+    company_name?: string | null;
+
+    cufinder_data?: unknown;
+
     email?: string | null;
 
     feature_flags?: Array<
@@ -128,7 +136,11 @@ export namespace UpdateUserParams {
 
     is_developer?: boolean | null;
 
+    job_title?: string | null;
+
     last_selected_team_id?: string | null;
+
+    linkedin_url?: string | null;
 
     permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'> | null;
 
@@ -212,6 +224,14 @@ export interface UserUpdateParams {
 
 export namespace UserUpdateParams {
   export interface Updates {
+    apollo_data?: unknown;
+
+    company_description?: string | null;
+
+    company_name?: string | null;
+
+    cufinder_data?: unknown;
+
     email?: string | null;
 
     feature_flags?: Array<
@@ -233,7 +253,11 @@ export namespace UserUpdateParams {
 
     is_developer?: boolean | null;
 
+    job_title?: string | null;
+
     last_selected_team_id?: string | null;
+
+    linkedin_url?: string | null;
 
     permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'> | null;
 
