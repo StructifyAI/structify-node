@@ -88,9 +88,21 @@ export interface User {
 
   user_type: 'admin' | 'public' | 'end_user';
 
+  apollo_data?: unknown;
+
+  company_description?: string | null;
+
+  company_name?: string | null;
+
+  cufinder_data?: unknown;
+
+  job_title?: string | null;
+
   last_activity?: string | null;
 
   last_selected_team_id?: string | null;
+
+  linkedin_url?: string | null;
 
   survey_completed_at?: string | null;
 
