@@ -100,6 +100,10 @@ export interface MatchResult {
   target_entity_id: string;
 
   confidence_score?: number | null;
+
+  source_entity_index?: number | null;
+
+  target_entity_index?: number | null;
 }
 
 export interface MatchCreateJobsParams {

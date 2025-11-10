@@ -364,6 +364,8 @@ import {
 import { Admin } from './resources/admin/admin';
 import {
   DatasetAddPropertyParams,
+  DatasetCountMissingEmbeddingsParams,
+  DatasetCountMissingEmbeddingsResponse,
   DatasetCreateParams,
   DatasetCreateResponse,
   DatasetDeleteParams,
@@ -780,6 +782,7 @@ export declare namespace Structify {
     type Strategy as Strategy,
     type DatasetCreateResponse as DatasetCreateResponse,
     type DatasetListResponse as DatasetListResponse,
+    type DatasetCountMissingEmbeddingsResponse as DatasetCountMissingEmbeddingsResponse,
     type DatasetEnrichmentProgressResponse as DatasetEnrichmentProgressResponse,
     type DatasetGetResponse as DatasetGetResponse,
     type DatasetMatchResponse as DatasetMatchResponse,
@@ -791,6 +794,7 @@ export declare namespace Structify {
     type DatasetCreateParams as DatasetCreateParams,
     type DatasetDeleteParams as DatasetDeleteParams,
     type DatasetAddPropertyParams as DatasetAddPropertyParams,
+    type DatasetCountMissingEmbeddingsParams as DatasetCountMissingEmbeddingsParams,
     type DatasetEnrichmentProgressParams as DatasetEnrichmentProgressParams,
     type DatasetExportToCsvParams as DatasetExportToCsvParams,
     type DatasetExportToExcelParams as DatasetExportToExcelParams,

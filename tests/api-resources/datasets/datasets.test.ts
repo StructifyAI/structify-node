@@ -130,6 +130,21 @@ describe('resource datasets', () => {
     });
   });
 
+  test('countMissingEmbeddings: only required params', async () => {
+    const responsePromise = client.datasets.countMissingEmbeddings({ name: 'name' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('countMissingEmbeddings: required and optional params', async () => {
+    const response = await client.datasets.countMissingEmbeddings({ name: 'name' });
+  });
+
   test('enrichmentProgress: only required params', async () => {
     const responsePromise = client.datasets.enrichmentProgress({ name: 'name' });
     const rawResponse = await responsePromise.asResponse();
