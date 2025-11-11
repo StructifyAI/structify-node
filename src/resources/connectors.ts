@@ -419,6 +419,10 @@ export interface CreateConnectorRequest {
 
   description?: string | null;
 
+  pipedream_account_id?: string | null;
+
+  pipedream_project_id?: string | null;
+
   refresh_script?: string | null;
 
   /**
@@ -630,6 +634,10 @@ export interface ConnectorCreateParams {
   team_id: string;
 
   description?: string | null;
+
+  pipedream_account_id?: string | null;
+
+  pipedream_project_id?: string | null;
 
   refresh_script?: string | null;
 
