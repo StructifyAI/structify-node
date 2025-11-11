@@ -231,6 +231,8 @@ export interface Team {
   updated_at: string;
 
   description?: string | null;
+
+  pipedream_project_id?: string | null;
 }
 
 export type TeamRole = 'read_only' | 'member' | 'admin' | 'owner';
