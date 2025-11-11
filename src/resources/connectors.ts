@@ -208,6 +208,8 @@ export interface Connector {
 
   exploration_status?: ExplorationStatus | null;
 
+  pipedream_account_id?: string | null;
+
   refresh_script?: string | null;
 }
 
