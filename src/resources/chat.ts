@@ -444,8 +444,6 @@ export namespace ChatEvent {
 
         connectors: Array<string>;
 
-        env?: { [key: string]: string } | null;
-
         working_dir?: string | null;
       }
     }
@@ -465,8 +463,6 @@ export namespace ChatEvent {
         code: string;
 
         connectors: Array<string>;
-
-        env?: { [key: string]: string } | null;
 
         working_dir?: string | null;
       }
