@@ -162,6 +162,8 @@ export interface CreateWorkflowNodeRequest {
 
   function_name: string;
 
+  connector_id?: string | null;
+
   output_schema?: unknown;
 }
 
@@ -203,8 +205,7 @@ export type JobEventBody =
   | JobEventBody.AgentExited
   | JobEventBody.DerivedProperty
   | JobEventBody.Failed
-  | JobEventBody.Completed
-  | JobEventBody.AttemptedMatch;
+  | JobEventBody.Completed;
 
 export namespace JobEventBody {
   export interface AgentNavigated {
@@ -266,18 +267,6 @@ export namespace JobEventBody {
     event_type: 'completed';
 
     message?: string | null;
-  }
-
-  export interface AttemptedMatch {
-    candidates: Array<{ [key: string]: string | boolean | number }>;
-
-    event_type: 'attempted_match';
-
-    reason: string;
-
-    target: { [key: string]: string | boolean | number };
-
-    match_idx?: number | null;
   }
 }
 
@@ -406,6 +395,8 @@ export interface WorkflowSessionNode {
 
   updated_at: string;
 
+  connector_id?: string | null;
+
   created_at?: string | null;
 
   error_message?: string | null;
@@ -496,6 +487,8 @@ export interface SessionCreateNodeParams {
   docstring: string;
 
   function_name: string;
+
+  connector_id?: string | null;
 
   output_schema?: unknown;
 }
