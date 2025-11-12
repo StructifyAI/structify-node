@@ -404,6 +404,8 @@ export interface WorkflowSessionNode {
 
   node_name: string;
 
+  reviewed: boolean;
+
   session_id: string;
 
   updated_at: string;
