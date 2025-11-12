@@ -50,6 +50,8 @@ export interface CreateMatchJobsRequest {
    * Target table name (entities to match to)
    */
   target_table: string;
+
+  node_id?: string | null;
 }
 
 export interface CreateMatchJobsResponse {
@@ -126,6 +128,8 @@ export interface MatchCreateJobsParams {
    * Target table name (entities to match to)
    */
   target_table: string;
+
+  node_id?: string | null;
 }
 
 export interface MatchListResultsParams extends JobsListParams {

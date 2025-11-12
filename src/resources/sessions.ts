@@ -205,7 +205,8 @@ export type JobEventBody =
   | JobEventBody.AgentExited
   | JobEventBody.DerivedProperty
   | JobEventBody.Failed
-  | JobEventBody.Completed;
+  | JobEventBody.Completed
+  | JobEventBody.AttemptedMatch;
 
 export namespace JobEventBody {
   export interface AgentNavigated {
@@ -267,6 +268,18 @@ export namespace JobEventBody {
     event_type: 'completed';
 
     message?: string | null;
+  }
+
+  export interface AttemptedMatch {
+    candidates: Array<{ [key: string]: string | boolean | number }>;
+
+    event_type: 'attempted_match';
+
+    reason: string;
+
+    target: { [key: string]: string | boolean | number };
+
+    match_idx?: number | null;
   }
 }
 
