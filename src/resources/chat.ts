@@ -249,7 +249,8 @@ export type ChatEvent =
   | ChatEvent.Connector
   | ChatEvent.ToolCall
   | ChatEvent.Question
-  | ChatEvent.InternalError;
+  | ChatEvent.InternalError
+  | ChatEvent.ReviewRequest;
 
 export namespace ChatEvent {
   export interface TextMessage {
@@ -590,6 +591,16 @@ export namespace ChatEvent {
       message: string;
     }
   }
+
+  export interface ReviewRequest {
+    ReviewRequest: ReviewRequest.ReviewRequest;
+  }
+
+  export namespace ReviewRequest {
+    export interface ReviewRequest {
+      message: string;
+    }
+  }
 }
 
 export interface ChatSession {
@@ -600,6 +611,8 @@ export interface ChatSession {
   ephemeral: boolean;
 
   git_application_token: string;
+
+  review_required: boolean;
 
   slack_completion_notified: boolean;
 
