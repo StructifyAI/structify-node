@@ -75,7 +75,6 @@ export namespace GenerateCodeRequest {
       | 'bedrock.claude-sonnet-4-5-bedrock'
       | 'gemini.gemini-2.5-pro'
       | 'gemini.gemini-2.5-flash'
-      | 'gemini.gemini-2.5-flash-preview-09-2025'
       | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
 
@@ -132,7 +131,6 @@ export namespace CodeGenerateCodeParams {
       | 'bedrock.claude-sonnet-4-5-bedrock'
       | 'gemini.gemini-2.5-pro'
       | 'gemini.gemini-2.5-flash'
-      | 'gemini.gemini-2.5-flash-preview-09-2025'
       | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
 
