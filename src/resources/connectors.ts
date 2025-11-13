@@ -170,27 +170,7 @@ export interface Connector {
 
   created_at: string;
 
-  known_connector_type:
-    | 'Slack'
-    | 'Confluence'
-    | 'Dropbox'
-    | 'GoogleDrive'
-    | 'Snowflake'
-    | 'Hubspot'
-    | 'Salesforce'
-    | 'Supabase'
-    | 'Sharepoint'
-    | 'Notion'
-    | 'Jira'
-    | 'Linear'
-    | 'Intercom'
-    | 'Gmail'
-    | 'Airtable'
-    | 'Trello'
-    | 'Postgresql'
-    | 'Sap'
-    | 'Oracle'
-    | 'Manual';
+  known_connector_type: string;
 
   name: string;
 
@@ -279,27 +259,7 @@ export namespace ConnectorExplorerChat {
    * Initial phase: discovering all API resources
    */
   export interface DiscoverAPIResources {
-    known_connector_type:
-      | 'Slack'
-      | 'Confluence'
-      | 'Dropbox'
-      | 'GoogleDrive'
-      | 'Snowflake'
-      | 'Hubspot'
-      | 'Salesforce'
-      | 'Supabase'
-      | 'Sharepoint'
-      | 'Notion'
-      | 'Jira'
-      | 'Linear'
-      | 'Intercom'
-      | 'Gmail'
-      | 'Airtable'
-      | 'Trello'
-      | 'Postgresql'
-      | 'Sap'
-      | 'Oracle'
-      | 'Manual';
+    known_connector_type: string;
 
     type: 'discover_api_resources';
   }
@@ -308,27 +268,7 @@ export namespace ConnectorExplorerChat {
    * Second phase: discovering fields for a specific API resource
    */
   export interface DiscoverAPIFields {
-    known_connector_type:
-      | 'Slack'
-      | 'Confluence'
-      | 'Dropbox'
-      | 'GoogleDrive'
-      | 'Snowflake'
-      | 'Hubspot'
-      | 'Salesforce'
-      | 'Supabase'
-      | 'Sharepoint'
-      | 'Notion'
-      | 'Jira'
-      | 'Linear'
-      | 'Intercom'
-      | 'Gmail'
-      | 'Airtable'
-      | 'Trello'
-      | 'Postgresql'
-      | 'Sap'
-      | 'Oracle'
-      | 'Manual';
+    known_connector_type: string;
 
     resource_name: string;
 
@@ -391,27 +331,7 @@ export namespace ConnectorWithSecrets {
 }
 
 export interface CreateConnectorRequest {
-  known_connector_type:
-    | 'Slack'
-    | 'Confluence'
-    | 'Dropbox'
-    | 'GoogleDrive'
-    | 'Snowflake'
-    | 'Hubspot'
-    | 'Salesforce'
-    | 'Supabase'
-    | 'Sharepoint'
-    | 'Notion'
-    | 'Jira'
-    | 'Linear'
-    | 'Intercom'
-    | 'Gmail'
-    | 'Airtable'
-    | 'Trello'
-    | 'Postgresql'
-    | 'Sap'
-    | 'Oracle'
-    | 'Manual';
+  known_connector_type: string;
 
   name: string;
 
@@ -559,28 +479,7 @@ export interface PendingVersionResponse {
 export interface UpdateConnectorRequest {
   description?: string | null;
 
-  known_connector_type?:
-    | 'Slack'
-    | 'Confluence'
-    | 'Dropbox'
-    | 'GoogleDrive'
-    | 'Snowflake'
-    | 'Hubspot'
-    | 'Salesforce'
-    | 'Supabase'
-    | 'Sharepoint'
-    | 'Notion'
-    | 'Jira'
-    | 'Linear'
-    | 'Intercom'
-    | 'Gmail'
-    | 'Airtable'
-    | 'Trello'
-    | 'Postgresql'
-    | 'Sap'
-    | 'Oracle'
-    | 'Manual'
-    | null;
+  known_connector_type?: string | null;
 
   name?: string | null;
 
@@ -607,27 +506,7 @@ export namespace ConnectorGetResponse {
 }
 
 export interface ConnectorCreateParams {
-  known_connector_type:
-    | 'Slack'
-    | 'Confluence'
-    | 'Dropbox'
-    | 'GoogleDrive'
-    | 'Snowflake'
-    | 'Hubspot'
-    | 'Salesforce'
-    | 'Supabase'
-    | 'Sharepoint'
-    | 'Notion'
-    | 'Jira'
-    | 'Linear'
-    | 'Intercom'
-    | 'Gmail'
-    | 'Airtable'
-    | 'Trello'
-    | 'Postgresql'
-    | 'Sap'
-    | 'Oracle'
-    | 'Manual';
+  known_connector_type: string;
 
   name: string;
 
@@ -650,28 +529,7 @@ export interface ConnectorCreateParams {
 export interface ConnectorUpdateParams {
   description?: string | null;
 
-  known_connector_type?:
-    | 'Slack'
-    | 'Confluence'
-    | 'Dropbox'
-    | 'GoogleDrive'
-    | 'Snowflake'
-    | 'Hubspot'
-    | 'Salesforce'
-    | 'Supabase'
-    | 'Sharepoint'
-    | 'Notion'
-    | 'Jira'
-    | 'Linear'
-    | 'Intercom'
-    | 'Gmail'
-    | 'Airtable'
-    | 'Trello'
-    | 'Postgresql'
-    | 'Sap'
-    | 'Oracle'
-    | 'Manual'
-    | null;
+  known_connector_type?: string | null;
 
   name?: string | null;
 
