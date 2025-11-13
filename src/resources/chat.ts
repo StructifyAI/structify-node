@@ -620,6 +620,8 @@ export interface ChatSession {
 
   updated_at: string;
 
+  user_message_needed: boolean;
+
   visibility: ChatVisibility;
 
   config_proto?: Core.Uploadable | null;
@@ -669,6 +671,8 @@ export interface ChatSessionWithMessages {
   team_id: string;
 
   updated_at: string;
+
+  user_message_needed: boolean;
 
   user_role: ChatSessionRole;
 
@@ -824,6 +828,8 @@ export namespace GetChatSessionResponse {
     title: string;
 
     updated_at: string;
+
+    user_message_needed: boolean;
 
     user_role: ChatAPI.ChatSessionRole;
 
