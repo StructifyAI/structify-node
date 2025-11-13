@@ -65,7 +65,7 @@ export namespace SlackEventPayload {
   }
 
   export interface EventCallback {
-    event: EventCallback.Event;
+    event: EventCallback.AppMention | EventCallback.Message;
 
     team_id: string;
 
@@ -83,7 +83,7 @@ export namespace SlackEventPayload {
   }
 
   export namespace EventCallback {
-    export interface Event {
+    export interface AppMention {
       channel: string;
 
       text: string;
@@ -103,6 +103,30 @@ export namespace SlackEventPayload {
       team?: string | null;
 
       thread_ts?: string | null;
+    }
+
+    export interface Message {
+      channel: string;
+
+      ts: string;
+
+      type: 'message';
+
+      bot_id?: string | null;
+
+      channel_type?: string | null;
+
+      client_msg_id?: string | null;
+
+      event_ts?: string | null;
+
+      team?: string | null;
+
+      text?: string | null;
+
+      thread_ts?: string | null;
+
+      user?: string | null;
     }
   }
 }
@@ -135,7 +159,7 @@ export declare namespace SlackEventsParams {
   }
 
   export interface Variant1 {
-    event: Variant1.Event;
+    event: Variant1.AppMention | Variant1.Message;
 
     team_id: string;
 
@@ -153,7 +177,7 @@ export declare namespace SlackEventsParams {
   }
 
   export namespace Variant1 {
-    export interface Event {
+    export interface AppMention {
       channel: string;
 
       text: string;
@@ -173,6 +197,30 @@ export declare namespace SlackEventsParams {
       team?: string | null;
 
       thread_ts?: string | null;
+    }
+
+    export interface Message {
+      channel: string;
+
+      ts: string;
+
+      type: 'message';
+
+      bot_id?: string | null;
+
+      channel_type?: string | null;
+
+      client_msg_id?: string | null;
+
+      event_ts?: string | null;
+
+      team?: string | null;
+
+      text?: string | null;
+
+      thread_ts?: string | null;
+
+      user?: string | null;
     }
   }
 }
