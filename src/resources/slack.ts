@@ -100,9 +100,27 @@ export namespace SlackEventPayload {
 
       event_ts?: string | null;
 
+      files?: Array<AppMention.File> | null;
+
       team?: string | null;
 
       thread_ts?: string | null;
+    }
+
+    export namespace AppMention {
+      export interface File {
+        id: string;
+
+        name: string;
+
+        filetype?: string | null;
+
+        mimetype?: string | null;
+
+        url_private?: string | null;
+
+        url_private_download?: string | null;
+      }
     }
 
     export interface Message {
@@ -194,9 +212,27 @@ export declare namespace SlackEventsParams {
 
       event_ts?: string | null;
 
+      files?: Array<AppMention.File> | null;
+
       team?: string | null;
 
       thread_ts?: string | null;
+    }
+
+    export namespace AppMention {
+      export interface File {
+        id: string;
+
+        name: string;
+
+        filetype?: string | null;
+
+        mimetype?: string | null;
+
+        url_private?: string | null;
+
+        url_private_download?: string | null;
+      }
     }
 
     export interface Message {
