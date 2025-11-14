@@ -91,7 +91,7 @@ export class Connectors extends APIResource {
   }
 
   /**
-   * Get all exploration runs for a connector (admin only)
+   * Get all exploration runs for a connector (requires debug permission)
    */
   getExplorationRuns(
     connectorId: string,
