@@ -255,12 +255,7 @@ export namespace ConnectorExplorerChat {
     type: 'discover_columns';
   }
 
-  /**
-   * Initial phase: discovering all API resources
-   */
   export interface DiscoverAPIResources {
-    known_connector_type: string;
-
     type: 'discover_api_resources';
   }
 
@@ -268,8 +263,6 @@ export namespace ConnectorExplorerChat {
    * Second phase: discovering fields for a specific API resource
    */
   export interface DiscoverAPIFields {
-    known_connector_type: string;
-
     resource_name: string;
 
     type: 'discover_api_fields';
