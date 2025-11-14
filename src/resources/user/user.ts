@@ -49,8 +49,12 @@ export class User extends APIResource {
    * seamless experience for users transitioning from web-based authentication to API
    * usage.
    */
-  jwtToAPIToken(jwt: string, options?: Core.RequestOptions): Core.APIPromise<TokenResponse> {
-    return this._client.post(`/user/jwt_to_api_token/${jwt}`, options);
+  jwtToAPIToken(
+    jwt: string,
+    body: UserJwtToAPITokenParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<TokenResponse> {
+    return this._client.post(`/user/jwt_to_api_token/${jwt}`, { body, ...options });
   }
 
   /**
@@ -83,6 +87,10 @@ export class User extends APIResource {
   }
 }
 
+export interface JwtToAPITokenRequest {
+  full_name?: string | null;
+}
+
 export interface SurveySubmissionRequest {
   survey_response: { [key: string]: unknown };
 }
@@ -113,6 +121,8 @@ export namespace UpdateUserParams {
 
     company_name?: string | null;
 
+    completed_onboarding?: boolean | null;
+
     cufinder_data?: unknown;
 
     email?: string | null;
@@ -142,13 +152,19 @@ export namespace UpdateUserParams {
 
     linkedin_url?: string | null;
 
+    onboarding_session_id?: string | null;
+
     permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'> | null;
+
+    survey_response?: unknown;
 
     user_type?: 'admin' | 'public' | 'end_user' | null;
   }
 }
 
 export interface UserInfo {
+  completed_onboarding: boolean;
+
   credits_remaining: number;
 
   credits_used: number;
@@ -179,6 +195,8 @@ export interface UserInfo {
   username: string;
 
   last_selected_team_id?: string | null;
+
+  onboarding_session_id?: string | null;
 
   survey_completed_at?: string | null;
 }
@@ -230,6 +248,8 @@ export namespace UserUpdateParams {
 
     company_name?: string | null;
 
+    completed_onboarding?: boolean | null;
+
     cufinder_data?: unknown;
 
     email?: string | null;
@@ -259,10 +279,18 @@ export namespace UserUpdateParams {
 
     linkedin_url?: string | null;
 
+    onboarding_session_id?: string | null;
+
     permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'> | null;
+
+    survey_response?: unknown;
 
     user_type?: 'admin' | 'public' | 'end_user' | null;
   }
+}
+
+export interface UserJwtToAPITokenParams {
+  full_name?: string | null;
 }
 
 export interface UserSurveySubmitParams {
@@ -277,6 +305,7 @@ User.Stripe = Stripe;
 
 export declare namespace User {
   export {
+    type JwtToAPITokenRequest as JwtToAPITokenRequest,
     type SurveySubmissionRequest as SurveySubmissionRequest,
     type SurveySubmissionResponse as SurveySubmissionResponse,
     type TokenResponse as TokenResponse,
@@ -285,6 +314,7 @@ export declare namespace User {
     type UserTransactionsResponse as UserTransactionsResponse,
     type UserUsageResponse as UserUsageResponse,
     type UserUpdateParams as UserUpdateParams,
+    type UserJwtToAPITokenParams as UserJwtToAPITokenParams,
     type UserSurveySubmitParams as UserSurveySubmitParams,
     type UserUsageParams as UserUsageParams,
   };

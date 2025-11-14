@@ -370,6 +370,7 @@ export {
 } from './teams';
 export {
   User,
+  type JwtToAPITokenRequest,
   type SurveySubmissionRequest,
   type SurveySubmissionResponse,
   type TokenResponse,
@@ -378,6 +379,7 @@ export {
   type UserTransactionsResponse,
   type UserUsageResponse,
   type UserUpdateParams,
+  type UserJwtToAPITokenParams,
   type UserSurveySubmitParams,
   type UserUsageParams,
 } from './user/user';
