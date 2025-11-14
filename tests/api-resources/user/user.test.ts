@@ -26,6 +26,7 @@ describe('resource user', () => {
         apollo_data: {},
         company_description: 'company_description',
         company_name: 'company_name',
+        completed_onboarding: true,
         cufinder_data: {},
         email: 'email',
         feature_flags: ['functional_test'],
@@ -35,7 +36,9 @@ describe('resource user', () => {
         job_title: 'job_title',
         last_selected_team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         linkedin_url: 'linkedin_url',
+        onboarding_session_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         permissions: ['labeler'],
+        survey_response: {},
         user_type: 'admin',
       },
       current_email: 'current_email',
@@ -61,7 +64,7 @@ describe('resource user', () => {
   });
 
   test('jwtToAPIToken', async () => {
-    const responsePromise = client.user.jwtToAPIToken('jwt');
+    const responsePromise = client.user.jwtToAPIToken('jwt', {});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -69,13 +72,6 @@ describe('resource user', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('jwtToAPIToken: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.user.jwtToAPIToken('jwt', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Structify.NotFoundError,
-    );
   });
 
   test('surveySubmit: only required params', async () => {
