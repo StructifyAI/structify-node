@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.165.0 (2025-11-14)
+
+Full Changelog: [v1.164.0...v1.165.0](https://github.com/StructifyAI/structify-node/compare/v1.164.0...v1.165.0)
+
+### Features
+
+* Update from Structify backend changes ([eefbb9c](https://github.com/StructifyAI/structify-node/commit/eefbb9c1cfa5f0435c9663af2f0d8464a4d0150f))
+* Update from Structify backend changes ([0094e5d](https://github.com/StructifyAI/structify-node/commit/0094e5d816600cefb1ef6890a79b0ec0e38857c9))
+* Update from Structify backend changes ([8a27bf4](https://github.com/StructifyAI/structify-node/commit/8a27bf47cb6d20fc8494405ef7616d7f4121155a))
+* Update from Structify backend changes ([0d6dee9](https://github.com/StructifyAI/structify-node/commit/0d6dee9276c3885488a58624b2c3d06431512893))
+
 ## 1.164.0 (2025-11-13)
 
 Full Changelog: [v1.163.0...v1.164.0](https://github.com/StructifyAI/structify-node/compare/v1.163.0...v1.164.0)
