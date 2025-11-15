@@ -180,6 +180,8 @@ export interface Connector {
 
   active_store_version_id?: string | null;
 
+  datahub_urn?: string | null;
+
   description?: string | null;
 
   exploration_error?: string | null;

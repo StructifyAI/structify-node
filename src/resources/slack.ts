@@ -65,7 +65,7 @@ export namespace SlackEventPayload {
   }
 
   export interface EventCallback {
-    event: EventCallback.AppMention | EventCallback.Message;
+    event: EventCallback.Event;
 
     team_id: string;
 
@@ -83,7 +83,7 @@ export namespace SlackEventPayload {
   }
 
   export namespace EventCallback {
-    export interface AppMention {
+    export interface Event {
       channel: string;
 
       text: string;
@@ -100,14 +100,14 @@ export namespace SlackEventPayload {
 
       event_ts?: string | null;
 
-      files?: Array<AppMention.File> | null;
+      files?: Array<Event.File> | null;
 
       team?: string | null;
 
       thread_ts?: string | null;
     }
 
-    export namespace AppMention {
+    export namespace Event {
       export interface File {
         id: string;
 
@@ -121,30 +121,6 @@ export namespace SlackEventPayload {
 
         url_private_download?: string | null;
       }
-    }
-
-    export interface Message {
-      channel: string;
-
-      ts: string;
-
-      type: 'message';
-
-      bot_id?: string | null;
-
-      channel_type?: string | null;
-
-      client_msg_id?: string | null;
-
-      event_ts?: string | null;
-
-      team?: string | null;
-
-      text?: string | null;
-
-      thread_ts?: string | null;
-
-      user?: string | null;
     }
   }
 }
@@ -177,7 +153,7 @@ export declare namespace SlackEventsParams {
   }
 
   export interface Variant1 {
-    event: Variant1.AppMention | Variant1.Message;
+    event: Variant1.Event;
 
     team_id: string;
 
@@ -195,7 +171,7 @@ export declare namespace SlackEventsParams {
   }
 
   export namespace Variant1 {
-    export interface AppMention {
+    export interface Event {
       channel: string;
 
       text: string;
@@ -212,14 +188,14 @@ export declare namespace SlackEventsParams {
 
       event_ts?: string | null;
 
-      files?: Array<AppMention.File> | null;
+      files?: Array<Event.File> | null;
 
       team?: string | null;
 
       thread_ts?: string | null;
     }
 
-    export namespace AppMention {
+    export namespace Event {
       export interface File {
         id: string;
 
@@ -233,30 +209,6 @@ export declare namespace SlackEventsParams {
 
         url_private_download?: string | null;
       }
-    }
-
-    export interface Message {
-      channel: string;
-
-      ts: string;
-
-      type: 'message';
-
-      bot_id?: string | null;
-
-      channel_type?: string | null;
-
-      client_msg_id?: string | null;
-
-      event_ts?: string | null;
-
-      team?: string | null;
-
-      text?: string | null;
-
-      thread_ts?: string | null;
-
-      user?: string | null;
     }
   }
 }
