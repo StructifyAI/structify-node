@@ -58,8 +58,6 @@ export class Users extends APIResource {
 export interface User {
   id: string;
 
-  completed_onboarding: boolean;
-
   created_at: string;
 
   email: string;
@@ -105,8 +103,6 @@ export interface User {
   last_selected_team_id?: string | null;
 
   linkedin_url?: string | null;
-
-  onboarding_session_id?: string | null;
 
   survey_completed_at?: string | null;
 
