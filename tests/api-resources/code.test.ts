@@ -29,7 +29,6 @@ describe('resource code', () => {
       prompt: 'prompt',
       assistantMessageId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       config: {
-        is_onboarding_session: true,
         llm_key: 'vllm.gpt-5-mini-2025-08-07',
         reminder_message: 'reminder_message',
         system_prompt: 'system_prompt',
