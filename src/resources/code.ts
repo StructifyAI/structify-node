@@ -54,6 +54,8 @@ export namespace GenerateCodeRequest {
    * Configuration for chat session with system prompt and LLM key
    */
   export interface Config {
+    is_onboarding_session: boolean;
+
     /**
      * LLM model keys available in the system. Format: <provider>.<model-name>
      */
@@ -75,6 +77,7 @@ export namespace GenerateCodeRequest {
       | 'bedrock.claude-sonnet-4-5-bedrock'
       | 'gemini.gemini-2.5-pro'
       | 'gemini.gemini-2.5-flash'
+      | 'gemini.gemini-3-pro-preview'
       | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
 
@@ -110,6 +113,8 @@ export namespace CodeGenerateCodeParams {
    * Configuration for chat session with system prompt and LLM key
    */
   export interface Config {
+    is_onboarding_session: boolean;
+
     /**
      * LLM model keys available in the system. Format: <provider>.<model-name>
      */
@@ -131,6 +136,7 @@ export namespace CodeGenerateCodeParams {
       | 'bedrock.claude-sonnet-4-5-bedrock'
       | 'gemini.gemini-2.5-pro'
       | 'gemini.gemini-2.5-flash'
+      | 'gemini.gemini-3-pro-preview'
       | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
 

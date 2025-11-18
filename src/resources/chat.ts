@@ -579,6 +579,8 @@ export namespace ChatEvent {
       complete: boolean;
 
       content: string;
+
+      options: Array<string>;
     }
   }
 
@@ -749,6 +751,8 @@ export namespace CreateChatSessionRequest {
    * Configuration for chat session with system prompt and LLM key
    */
   export interface Config {
+    is_onboarding_session: boolean;
+
     /**
      * LLM model keys available in the system. Format: <provider>.<model-name>
      */
@@ -770,6 +774,7 @@ export namespace CreateChatSessionRequest {
       | 'bedrock.claude-sonnet-4-5-bedrock'
       | 'gemini.gemini-2.5-pro'
       | 'gemini.gemini-2.5-flash'
+      | 'gemini.gemini-3-pro-preview'
       | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
 
@@ -1150,6 +1155,8 @@ export namespace ChatCreateSessionParams {
    * Configuration for chat session with system prompt and LLM key
    */
   export interface Config {
+    is_onboarding_session: boolean;
+
     /**
      * LLM model keys available in the system. Format: <provider>.<model-name>
      */
@@ -1171,6 +1178,7 @@ export namespace ChatCreateSessionParams {
       | 'bedrock.claude-sonnet-4-5-bedrock'
       | 'gemini.gemini-2.5-pro'
       | 'gemini.gemini-2.5-flash'
+      | 'gemini.gemini-3-pro-preview'
       | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
 
