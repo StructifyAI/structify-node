@@ -206,7 +206,12 @@ export type JobEventBody =
   | JobEventBody.DerivedProperty
   | JobEventBody.Failed
   | JobEventBody.Completed
-  | JobEventBody.AttemptedMatch;
+  | JobEventBody.AttemptedMatch
+  | JobEventBody.DatahubPageFetched
+  | JobEventBody.DatahubDatabasesCreated
+  | JobEventBody.DatahubSchemasCreated
+  | JobEventBody.DatahubTablesProcessed
+  | JobEventBody.DatahubEmbeddingBatch;
 
 export namespace JobEventBody {
   export interface AgentNavigated {
@@ -280,6 +285,48 @@ export namespace JobEventBody {
     target: { [key: string]: string | boolean | number };
 
     match_idx?: number | null;
+  }
+
+  export interface DatahubPageFetched {
+    datasets_in_page: number;
+
+    event_type: 'datahub_page_fetched';
+
+    page_num: number;
+
+    total_datasets: number;
+  }
+
+  export interface DatahubDatabasesCreated {
+    count: number;
+
+    event_type: 'datahub_databases_created';
+  }
+
+  export interface DatahubSchemasCreated {
+    count: number;
+
+    event_type: 'datahub_schemas_created';
+  }
+
+  export interface DatahubTablesProcessed {
+    event_type: 'datahub_tables_processed';
+
+    tables_created: number;
+
+    tables_failed: number;
+
+    tables_updated: number;
+  }
+
+  export interface DatahubEmbeddingBatch {
+    batch_num: number;
+
+    event_type: 'datahub_embedding_batch';
+
+    tables_in_batch: number;
+
+    total_batches: number;
   }
 }
 
