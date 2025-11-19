@@ -2,7 +2,6 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
-import * as ConnectorsAPI from './connectors';
 import * as StructureAPI from './structure';
 import { JobsList, type JobsListParams } from '../pagination';
 
@@ -32,18 +31,6 @@ export class Connectors extends APIResource {
 
   delete(connectorId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/connectors/${connectorId}`, {
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  approveVersion(
-    connectorId: string,
-    body: ConnectorApproveVersionParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.post(`/connectors/${connectorId}/approve-version`, {
-      body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -79,15 +66,21 @@ export class Connectors extends APIResource {
     });
   }
 
-  get(connectorId: string, options?: Core.RequestOptions): Core.APIPromise<ConnectorGetResponse> {
-    return this._client.get(`/connectors/${connectorId}`, options);
+  /**
+   * This endpoint queues DiscoverColumns jobs for all tables in a DataHub connector.
+   * It's designed for DataHub connectors where tables are pre-populated from DataHub
+   * metadata.
+   */
+  exploreDatahubTables(
+    connectorId: string,
+    body: ConnectorExploreDatahubTablesParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ExploreDatahubTablesResponse> {
+    return this._client.post(`/${connectorId}/explore_datahub_tables`, { body, ...options });
   }
 
-  getActiveVersion(
-    connectorId: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ActiveVersionResponse> {
-    return this._client.get(`/connectors/${connectorId}/active-version`, options);
+  get(connectorId: string, options?: Core.RequestOptions): Core.APIPromise<ConnectorGetResponse> {
+    return this._client.get(`/connectors/${connectorId}`, options);
   }
 
   /**
@@ -119,56 +112,19 @@ export class Connectors extends APIResource {
     return this._client.get(`/connectors/${connectorId}/explore/chat`, { query, ...options });
   }
 
-  getPendingVersion(
-    connectorId: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PendingVersionResponse> {
-    return this._client.get(`/connectors/${connectorId}/pending-version`, options);
+  getStore(connectorId: string, options?: Core.RequestOptions): Core.APIPromise<ConnectorStoreResponse> {
+    return this._client.get(`/connectors/${connectorId}/store`, options);
   }
 }
 
 export class ConnectorWithSecretsJobsList extends JobsList<ConnectorWithSecrets> {}
 
-/**
- * Active version data
- */
-export interface ActiveVersionData {
-  /**
-   * Information store for LLM context about a connector
-   *
-   * This enum represents different types of connector information that can be
-   * provided to LLMs for context. It's stored as JSON in the database.
-   *
-   * When deserializing from the database, we attempt to parse into the most specific
-   * variant first (RelationalDatabase), and fall back to Other if the structure
-   * doesn't match.
-   */
-  store: LlmInformationStore;
-
-  version_id: string;
-}
-
-/**
- * Response containing active version
- */
-export interface ActiveVersionResponse {
-  /**
-   * Active version data
-   */
-  active_version?: ActiveVersionData | null;
-}
-
-/**
- * Request body for approving a version
- */
-export interface ApproveVersionRequest {
-  version_id: string;
-}
-
 export interface Connector {
   id: string;
 
   created_at: string;
+
+  exploration_status: ExplorationStatus;
 
   known_connector_type: string;
 
@@ -178,7 +134,7 @@ export interface Connector {
 
   updated_at: string;
 
-  active_store_version_id?: string | null;
+  connector_category?: ConnectorCategory | null;
 
   datahub_urn?: string | null;
 
@@ -188,33 +144,12 @@ export interface Connector {
 
   exploration_started_at?: string | null;
 
-  exploration_status?: ExplorationStatus | null;
-
   pipedream_account_id?: string | null;
 
   refresh_script?: string | null;
 }
 
-/**
- * Represents a column in a relational database table
- */
-export interface ConnectorColumnDescriptor {
-  /**
-   * Name of the column
-   */
-  name: string;
-
-  /**
-   * SQL type of the column (e.g., "VARCHAR(255)", "INTEGER", "TIMESTAMP")
-   */
-  type: string;
-
-  /**
-   * Additional notes about the column (e.g., "NOT NULL", "PRIMARY KEY", "UNIQUE",
-   * constraints)
-   */
-  notes?: string | null;
-}
+export type ConnectorCategory = 'RelationalDatabase' | 'ApiTabular';
 
 /**
  * Connector explorer chat with deserialized ChatPrompt for API responses
@@ -236,74 +171,21 @@ export interface ConnectorExplorerChat {
    * This enum is used to track which phase of exploration a chat session belongs to.
    * It's stored as JSONB in the database to allow for flexible phase identification.
    */
-  phase_id:
-    | ConnectorExplorerChat.DiscoverTables
-    | ConnectorExplorerChat.DiscoverColumns
-    | ConnectorExplorerChat.DiscoverAPIResources
-    | ConnectorExplorerChat.DiscoverAPIFields;
+  phase_id: ExplorationPhaseID;
 }
 
-export namespace ConnectorExplorerChat {
-  export interface DiscoverTables {
-    type: 'discover_tables';
-  }
-
+export interface ConnectorStoreResponse {
   /**
-   * Second phase: discovering columns for a specific table
+   * Information store for connector schema
+   *
+   * Hierarchical structure: Connector → Database → Schema → Table → Column Works for
+   * both relational databases and API-based data. Distinguishes between the two by
+   * presence of `endpoint` on tables:
+   *
+   * - Relational DB: all tables have `endpoint: None`
+   * - API: all tables have `endpoint: Some(...)`
    */
-  export interface DiscoverColumns {
-    table_name: string;
-
-    type: 'discover_columns';
-  }
-
-  export interface DiscoverAPIResources {
-    type: 'discover_api_resources';
-  }
-
-  /**
-   * Second phase: discovering fields for a specific API resource
-   */
-  export interface DiscoverAPIFields {
-    resource_name: string;
-
-    type: 'discover_api_fields';
-  }
-}
-
-/**
- * Descriptor for a relational database connector
- */
-export interface ConnectorRelationalDatabaseDescriptor {
-  /**
-   * List of tables in the database
-   */
-  tables: Array<ConnectorTableDescriptor>;
-}
-
-/**
- * Represents a table in a relational database
- */
-export interface ConnectorTableDescriptor {
-  /**
-   * List of columns in this table
-   */
-  columns: Array<ConnectorColumnDescriptor>;
-
-  /**
-   * Name of the table
-   */
-  name: string;
-
-  /**
-   * Optional description of what this table contains
-   */
-  description?: string | null;
-
-  /**
-   * Optional notes about the table (e.g., constraints, indexes, relationships)
-   */
-  notes?: string | null;
+  store?: LlmInformationStore | null;
 }
 
 export interface ConnectorWithSecrets extends Connector {
@@ -352,6 +234,84 @@ export interface CreateSecretRequest {
   secret_value: string;
 }
 
+/**
+ * Identifies the phase of connector exploration
+ *
+ * This enum is used to track which phase of exploration a chat session belongs to.
+ * It's stored as JSONB in the database to allow for flexible phase identification.
+ */
+export type ExplorationPhaseID =
+  | ExplorationPhaseID.DiscoverDatabases
+  | ExplorationPhaseID.DiscoverSchemas
+  | ExplorationPhaseID.DiscoverTables
+  | ExplorationPhaseID.DiscoverColumns
+  | ExplorationPhaseID.DiscoverAPIResources
+  | ExplorationPhaseID.DiscoverAPIFields;
+
+export namespace ExplorationPhaseID {
+  /**
+   * First phase: discovering all databases in the connector
+   */
+  export interface DiscoverDatabases {
+    connector_id: string;
+
+    type: 'discover_databases';
+  }
+
+  /**
+   * Second phase: discovering all schemas in a database
+   */
+  export interface DiscoverSchemas {
+    database_id: string;
+
+    database_name: string;
+
+    type: 'discover_schemas';
+  }
+
+  /**
+   * Third phase: discovering all tables in a schema
+   */
+  export interface DiscoverTables {
+    schema_id: string;
+
+    schema_name: string;
+
+    type: 'discover_tables';
+  }
+
+  /**
+   * Fourth phase: discovering columns for a specific table
+   */
+  export interface DiscoverColumns {
+    table_id: string;
+
+    table_name: string;
+
+    type: 'discover_columns';
+  }
+
+  /**
+   * Initial phase: discovering all API resources
+   */
+  export interface DiscoverAPIResources {
+    connector_id: string;
+
+    type: 'discover_api_resources';
+  }
+
+  /**
+   * Second phase: discovering fields for a specific API resource
+   */
+  export interface DiscoverAPIFields {
+    resource_name: string;
+
+    table_id: string;
+
+    type: 'discover_api_fields';
+  }
+}
+
 export interface ExplorationRun {
   created_at: string;
 
@@ -363,6 +323,14 @@ export interface ExplorationRunsResponse {
 }
 
 export type ExplorationStatus = 'NotStarted' | 'Running' | 'Completed' | 'Failed';
+
+export type ExploreDatahubTablesRequest = unknown;
+
+export interface ExploreDatahubTablesResponse {
+  jobs_queued: number;
+
+  tables_found: number;
+}
 
 export interface ExploreStatusResponse {
   status: ExplorationStatus;
@@ -377,98 +345,112 @@ export interface ExplorerChatResponse {
 }
 
 /**
- * Information store for LLM context about a connector
+ * Information store for connector schema
  *
- * This enum represents different types of connector information that can be
- * provided to LLMs for context. It's stored as JSON in the database.
+ * Hierarchical structure: Connector → Database → Schema → Table → Column Works for
+ * both relational databases and API-based data. Distinguishes between the two by
+ * presence of `endpoint` on tables:
  *
- * When deserializing from the database, we attempt to parse into the most specific
- * variant first (RelationalDatabase), and fall back to Other if the structure
- * doesn't match.
+ * - Relational DB: all tables have `endpoint: None`
+ * - API: all tables have `endpoint: Some(...)`
  */
-export type LlmInformationStore =
-  | LlmInformationStore.RelationalDatabase
-  | LlmInformationStore.APITabular
-  | LlmInformationStore.Other;
+export interface LlmInformationStore {
+  /**
+   * List of databases in this connector
+   */
+  databases: Array<LlmInformationStore.Database>;
+
+  /**
+   * Whether this store uses default auto-generated database/schema names (i.e.,
+   * database and schema names match the connector name). When true, UIs should hide
+   * the database/schema hierarchy. When false, UIs should show the full database →
+   * schema → table hierarchy.
+   */
+  uses_default_hierarchy: boolean;
+}
 
 export namespace LlmInformationStore {
   /**
-   * Descriptor for a relational database connector
+   * Database within a connector
    */
-  export interface RelationalDatabase extends ConnectorsAPI.ConnectorRelationalDatabaseDescriptor {
-    type: 'relational_database';
+  export interface Database {
+    name: string;
+
+    schemas: Array<Database.Schema>;
+
+    description?: string | null;
+
+    notes?: string | null;
   }
 
-  export interface APITabular {
+  export namespace Database {
     /**
-     * List of resources (similar to tables/objects)
+     * Schema within a database
      */
-    resources: Array<APITabular.Resource>;
-
-    type: 'api_tabular';
-  }
-
-  export namespace APITabular {
-    /**
-     * Represents a resource in an API (equivalent to a table/object)
-     */
-    export interface Resource {
-      /**
-       * List of columns (properties/fields in the API resource)
-       */
-      columns: Array<ConnectorsAPI.ConnectorColumnDescriptor>;
-
-      /**
-       * API endpoint for this resource (e.g., "/crm/v3/objects/contacts",
-       * "/rest/api/3/issue")
-       */
-      endpoint: string;
-
-      /**
-       * API name of the resource (e.g., "contacts", "issues", "records")
-       */
+    export interface Schema {
       name: string;
 
-      /**
-       * Optional description
-       */
+      tables: Array<Schema.Table>;
+
       description?: string | null;
 
-      /**
-       * Optional notes (associations, usage patterns, etc.)
-       */
       notes?: string | null;
     }
+
+    export namespace Schema {
+      /**
+       * Represents a table (for relational databases) or resource (for APIs)
+       */
+      export interface Table {
+        /**
+         * List of columns in this table/resource
+         */
+        columns: Array<Table.Column>;
+
+        /**
+         * Name of the table or resource
+         */
+        name: string;
+
+        /**
+         * Optional description
+         */
+        description?: string | null;
+
+        /**
+         * API endpoint (None for relational DB tables, Some for API resources)
+         */
+        endpoint?: string | null;
+
+        /**
+         * Optional notes
+         */
+        notes?: string | null;
+      }
+
+      export namespace Table {
+        /**
+         * Represents a column in a table or API resource
+         */
+        export interface Column {
+          /**
+           * Name of the column
+           */
+          name: string;
+
+          /**
+           * SQL type of the column (e.g., "VARCHAR(255)", "INTEGER") or API field type
+           */
+          type: string;
+
+          /**
+           * Additional notes about the column
+           */
+          notes?: string | null;
+        }
+      }
+    }
   }
-
-  /**
-   * Catch-all for other connector types or unstructured information Contains raw
-   * string data
-   */
-  export interface Other {
-    data: string;
-
-    type: 'other';
-  }
-}
-
-/**
- * Response containing pending version
- */
-export interface PendingVersionResponse {
-  /**
-   * Information store for LLM context about a connector
-   *
-   * This enum represents different types of connector information that can be
-   * provided to LLMs for context. It's stored as JSON in the database.
-   *
-   * When deserializing from the database, we attempt to parse into the most specific
-   * variant first (RelationalDatabase), and fall back to Other if the structure
-   * doesn't match.
-   */
-  store: LlmInformationStore;
-
-  version_id: string;
 }
 
 export interface UpdateConnectorRequest {
@@ -538,15 +520,13 @@ export interface ConnectorListParams extends JobsListParams {
   team_id: string;
 }
 
-export interface ConnectorApproveVersionParams {
-  version_id: string;
-}
-
 export interface ConnectorCreateSecretParams {
   secret_name: string;
 
   secret_value: string;
 }
+
+export type ConnectorExploreDatahubTablesParams = ExploreDatahubTablesRequest;
 
 export interface ConnectorGetExplorerChatParams {
   /**
@@ -559,32 +539,30 @@ Connectors.ConnectorWithSecretsJobsList = ConnectorWithSecretsJobsList;
 
 export declare namespace Connectors {
   export {
-    type ActiveVersionData as ActiveVersionData,
-    type ActiveVersionResponse as ActiveVersionResponse,
-    type ApproveVersionRequest as ApproveVersionRequest,
     type Connector as Connector,
-    type ConnectorColumnDescriptor as ConnectorColumnDescriptor,
+    type ConnectorCategory as ConnectorCategory,
     type ConnectorExplorerChat as ConnectorExplorerChat,
-    type ConnectorRelationalDatabaseDescriptor as ConnectorRelationalDatabaseDescriptor,
-    type ConnectorTableDescriptor as ConnectorTableDescriptor,
+    type ConnectorStoreResponse as ConnectorStoreResponse,
     type ConnectorWithSecrets as ConnectorWithSecrets,
     type CreateConnectorRequest as CreateConnectorRequest,
     type CreateSecretRequest as CreateSecretRequest,
+    type ExplorationPhaseID as ExplorationPhaseID,
     type ExplorationRun as ExplorationRun,
     type ExplorationRunsResponse as ExplorationRunsResponse,
     type ExplorationStatus as ExplorationStatus,
+    type ExploreDatahubTablesRequest as ExploreDatahubTablesRequest,
+    type ExploreDatahubTablesResponse as ExploreDatahubTablesResponse,
     type ExploreStatusResponse as ExploreStatusResponse,
     type ExplorerChatResponse as ExplorerChatResponse,
     type LlmInformationStore as LlmInformationStore,
-    type PendingVersionResponse as PendingVersionResponse,
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type ConnectorGetResponse as ConnectorGetResponse,
     ConnectorWithSecretsJobsList as ConnectorWithSecretsJobsList,
     type ConnectorCreateParams as ConnectorCreateParams,
     type ConnectorUpdateParams as ConnectorUpdateParams,
     type ConnectorListParams as ConnectorListParams,
-    type ConnectorApproveVersionParams as ConnectorApproveVersionParams,
     type ConnectorCreateSecretParams as ConnectorCreateSecretParams,
+    type ConnectorExploreDatahubTablesParams as ConnectorExploreDatahubTablesParams,
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
   };
 }
