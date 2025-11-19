@@ -535,24 +535,22 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/connectors.ts">ActiveVersionData</a></code>
-- <code><a href="./src/resources/connectors.ts">ActiveVersionResponse</a></code>
-- <code><a href="./src/resources/connectors.ts">ApproveVersionRequest</a></code>
 - <code><a href="./src/resources/connectors.ts">Connector</a></code>
-- <code><a href="./src/resources/connectors.ts">ConnectorColumnDescriptor</a></code>
+- <code><a href="./src/resources/connectors.ts">ConnectorCategory</a></code>
 - <code><a href="./src/resources/connectors.ts">ConnectorExplorerChat</a></code>
-- <code><a href="./src/resources/connectors.ts">ConnectorRelationalDatabaseDescriptor</a></code>
-- <code><a href="./src/resources/connectors.ts">ConnectorTableDescriptor</a></code>
+- <code><a href="./src/resources/connectors.ts">ConnectorStoreResponse</a></code>
 - <code><a href="./src/resources/connectors.ts">ConnectorWithSecrets</a></code>
 - <code><a href="./src/resources/connectors.ts">CreateConnectorRequest</a></code>
 - <code><a href="./src/resources/connectors.ts">CreateSecretRequest</a></code>
+- <code><a href="./src/resources/connectors.ts">ExplorationPhaseID</a></code>
 - <code><a href="./src/resources/connectors.ts">ExplorationRun</a></code>
 - <code><a href="./src/resources/connectors.ts">ExplorationRunsResponse</a></code>
 - <code><a href="./src/resources/connectors.ts">ExplorationStatus</a></code>
+- <code><a href="./src/resources/connectors.ts">ExploreDatahubTablesRequest</a></code>
+- <code><a href="./src/resources/connectors.ts">ExploreDatahubTablesResponse</a></code>
 - <code><a href="./src/resources/connectors.ts">ExploreStatusResponse</a></code>
 - <code><a href="./src/resources/connectors.ts">ExplorerChatResponse</a></code>
 - <code><a href="./src/resources/connectors.ts">LlmInformationStore</a></code>
-- <code><a href="./src/resources/connectors.ts">PendingVersionResponse</a></code>
 - <code><a href="./src/resources/connectors.ts">UpdateConnectorRequest</a></code>
 - <code><a href="./src/resources/connectors.ts">ConnectorGetResponse</a></code>
 
@@ -562,16 +560,15 @@ Methods:
 - <code title="patch /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors.ts">update</a>(connectorId, { ...params }) -> void</code>
 - <code title="get /connectors">client.connectors.<a href="./src/resources/connectors.ts">list</a>({ ...params }) -> ConnectorWithSecretsJobsList</code>
 - <code title="delete /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors.ts">delete</a>(connectorId) -> void</code>
-- <code title="post /connectors/{connector_id}/approve-version">client.connectors.<a href="./src/resources/connectors.ts">approveVersion</a>(connectorId, { ...params }) -> void</code>
 - <code title="post /connectors/{connector_id}/secrets">client.connectors.<a href="./src/resources/connectors.ts">createSecret</a>(connectorId, { ...params }) -> void</code>
 - <code title="delete /connectors/{connector_id}/secrets/{secret_name}">client.connectors.<a href="./src/resources/connectors.ts">deleteSecret</a>(connectorId, secretName) -> void</code>
 - <code title="post /connectors/{connector_id}/explore">client.connectors.<a href="./src/resources/connectors.ts">explore</a>(connectorId) -> void</code>
+- <code title="post /{connector_id}/explore_datahub_tables">client.connectors.<a href="./src/resources/connectors.ts">exploreDatahubTables</a>(connectorId, { ...params }) -> ExploreDatahubTablesResponse</code>
 - <code title="get /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors.ts">get</a>(connectorId) -> ConnectorGetResponse</code>
-- <code title="get /connectors/{connector_id}/active-version">client.connectors.<a href="./src/resources/connectors.ts">getActiveVersion</a>(connectorId) -> ActiveVersionResponse</code>
 - <code title="get /connectors/{connector_id}/explore/runs">client.connectors.<a href="./src/resources/connectors.ts">getExplorationRuns</a>(connectorId) -> ExplorationRunsResponse</code>
 - <code title="get /connectors/{connector_id}/explore/status">client.connectors.<a href="./src/resources/connectors.ts">getExplorationStatus</a>(connectorId) -> ExploreStatusResponse</code>
 - <code title="get /connectors/{connector_id}/explore/chat">client.connectors.<a href="./src/resources/connectors.ts">getExplorerChat</a>(connectorId, { ...params }) -> ExplorerChatResponse</code>
-- <code title="get /connectors/{connector_id}/pending-version">client.connectors.<a href="./src/resources/connectors.ts">getPendingVersion</a>(connectorId) -> PendingVersionResponse</code>
+- <code title="get /connectors/{connector_id}/store">client.connectors.<a href="./src/resources/connectors.ts">getStore</a>(connectorId) -> ConnectorStoreResponse</code>
 
 # Server
 

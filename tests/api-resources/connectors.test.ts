@@ -85,25 +85,6 @@ describe('resource connectors', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
-  test('approveVersion: only required params', async () => {
-    const responsePromise = client.connectors.approveVersion('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      version_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('approveVersion: required and optional params', async () => {
-    const response = await client.connectors.approveVersion('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      version_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
-  });
-
   test('createSecret: only required params', async () => {
     const responsePromise = client.connectors.createSecret('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       secret_name: 'secret_name',
@@ -166,6 +147,24 @@ describe('resource connectors', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
+  test('exploreDatahubTables: only required params', async () => {
+    const responsePromise = client.connectors.exploreDatahubTables(
+      '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      {},
+    );
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('exploreDatahubTables: required and optional params', async () => {
+    const response = await client.connectors.exploreDatahubTables('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {});
+  });
+
   test('get', async () => {
     const responsePromise = client.connectors.get('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();
@@ -181,26 +180,6 @@ describe('resource connectors', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.connectors.get('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Structify.NotFoundError);
-  });
-
-  test('getActiveVersion', async () => {
-    const responsePromise = client.connectors.getActiveVersion('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('getActiveVersion: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.connectors.getActiveVersion('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-        path: '/_stainless_unknown_path',
-      }),
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
@@ -263,8 +242,8 @@ describe('resource connectors', () => {
     });
   });
 
-  test('getPendingVersion', async () => {
-    const responsePromise = client.connectors.getPendingVersion('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
+  test('getStore', async () => {
+    const responsePromise = client.connectors.getStore('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -274,10 +253,10 @@ describe('resource connectors', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('getPendingVersion: request options instead of params are passed correctly', async () => {
+  test('getStore: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.connectors.getPendingVersion('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      client.connectors.getStore('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
         path: '/_stainless_unknown_path',
       }),
     ).rejects.toThrow(Structify.NotFoundError);

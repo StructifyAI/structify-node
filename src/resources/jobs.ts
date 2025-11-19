@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
+import * as ConnectorsAPI from './connectors';
 import * as SharedAPI from './shared';
 import * as SourcesAPI from './sources';
 import * as StructureAPI from './structure';
@@ -117,7 +118,7 @@ export interface JobListResponse {
 
   dataset_id: string;
 
-  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match';
+  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore';
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
@@ -153,7 +154,8 @@ export namespace JobListResponse {
       | Parameters.Agent
       | Parameters.TransformationPrompt
       | Parameters.ScrapeFromURLProperty
-      | Parameters.ScrapeURL;
+      | Parameters.ScrapeURL
+      | Parameters.ConnectorExploration;
   }
 
   export namespace Parameters {
@@ -227,6 +229,26 @@ export namespace JobListResponse {
         use_markdown: boolean;
       }
     }
+
+    export interface ConnectorExploration {
+      ConnectorExploration: ConnectorExploration.ConnectorExploration;
+    }
+
+    export namespace ConnectorExploration {
+      export interface ConnectorExploration {
+        connector_id: string;
+
+        /**
+         * Identifies the phase of connector exploration
+         *
+         * This enum is used to track which phase of exploration a chat session belongs to.
+         * It's stored as JSONB in the database to allow for flexible phase identification.
+         */
+        exploration_phase_id: ConnectorsAPI.ExplorationPhaseID;
+
+        exploration_run_id: string;
+      }
+    }
   }
 }
 
@@ -239,7 +261,7 @@ export interface JobCancelResponse {
 
   dataset_id: string;
 
-  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match';
+  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore';
 
   max_steps_without_save: number;
 
@@ -300,7 +322,7 @@ export namespace JobGetResponse {
 
     dataset_id: string;
 
-    job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match';
+    job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore';
 
     max_steps_without_save: number;
 
@@ -975,7 +997,7 @@ export interface JobListParams extends JobsListParams {
   /**
    * Type of job to optionally filter jobs by
    */
-  job_type?: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | null;
+  job_type?: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | null;
 
   /**
    * Node ID to optionally filter jobs by
