@@ -343,7 +343,10 @@ export namespace ChatEvent {
       | ToolCall.UnionMember8
       | ToolCall.UnionMember9
       | ToolCall.UnionMember10
-      | ToolCall.UnionMember11;
+      | ToolCall.UnionMember11
+      | ToolCall.UnionMember12
+      | ToolCall.UnionMember13
+      | ToolCall.UnionMember14;
   }
 
   export namespace ToolCall {
@@ -490,7 +493,7 @@ export namespace ChatEvent {
     export interface UnionMember8 {
       input: UnionMember8.Input;
 
-      name: 'CreateTable';
+      name: 'SaveDatabase';
 
       result_id?: string | null;
 
@@ -510,7 +513,7 @@ export namespace ChatEvent {
     export interface UnionMember9 {
       input: UnionMember9.Input;
 
-      name: 'AddColumn';
+      name: 'SaveSchema';
 
       result_id?: string | null;
 
@@ -519,11 +522,9 @@ export namespace ChatEvent {
 
     export namespace UnionMember9 {
       export interface Input {
-        column_name: string;
+        name: string;
 
-        column_type: string;
-
-        table_name: string;
+        description?: string | null;
 
         notes?: string | null;
       }
@@ -532,7 +533,7 @@ export namespace ChatEvent {
     export interface UnionMember10 {
       input: UnionMember10.Input;
 
-      name: 'CreateApiResource';
+      name: 'SaveTable';
 
       result_id?: string | null;
 
@@ -541,8 +542,6 @@ export namespace ChatEvent {
 
     export namespace UnionMember10 {
       export interface Input {
-        endpoint: string;
-
         name: string;
 
         description?: string | null;
@@ -554,7 +553,7 @@ export namespace ChatEvent {
     export interface UnionMember11 {
       input: UnionMember11.Input;
 
-      name: 'SaveMemory';
+      name: 'SaveColumn';
 
       result_id?: string | null;
 
@@ -563,9 +562,67 @@ export namespace ChatEvent {
 
     export namespace UnionMember11 {
       export interface Input {
+        column_name: string;
+
+        column_type: string;
+
+        notes?: string | null;
+      }
+    }
+
+    export interface UnionMember12 {
+      input: UnionMember12.Input;
+
+      name: 'SaveApiResource';
+
+      result_id?: string | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember12 {
+      export interface Input {
+        endpoint: string;
+
+        name: string;
+
+        description?: string | null;
+
+        notes?: string | null;
+      }
+    }
+
+    export interface UnionMember13 {
+      input: UnionMember13.Input;
+
+      name: 'SaveMemory';
+
+      result_id?: string | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember13 {
+      export interface Input {
         key: string;
 
         value: string;
+      }
+    }
+
+    export interface UnionMember14 {
+      input: UnionMember14.Input;
+
+      name: 'SearchConnectorTables';
+
+      result_id?: string | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember14 {
+      export interface Input {
+        query: string;
       }
     }
   }

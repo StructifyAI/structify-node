@@ -2,6 +2,7 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
+import * as ConnectorsAPI from '../connectors';
 import * as SharedAPI from '../shared';
 import * as StructureAPI from '../structure';
 import { JobsList, type JobsListParams } from '../../pagination';
@@ -43,7 +44,7 @@ export interface AdminListJobsResponse {
 
   dataset_id: string;
 
-  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match';
+  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore';
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
@@ -69,7 +70,8 @@ export namespace AdminListJobsResponse {
       | Parameters.Agent
       | Parameters.TransformationPrompt
       | Parameters.ScrapeFromURLProperty
-      | Parameters.ScrapeURL;
+      | Parameters.ScrapeURL
+      | Parameters.ConnectorExploration;
   }
 
   export namespace Parameters {
@@ -141,6 +143,26 @@ export namespace AdminListJobsResponse {
         url: string;
 
         use_markdown: boolean;
+      }
+    }
+
+    export interface ConnectorExploration {
+      ConnectorExploration: ConnectorExploration.ConnectorExploration;
+    }
+
+    export namespace ConnectorExploration {
+      export interface ConnectorExploration {
+        connector_id: string;
+
+        /**
+         * Identifies the phase of connector exploration
+         *
+         * This enum is used to track which phase of exploration a chat session belongs to.
+         * It's stored as JSONB in the database to allow for flexible phase identification.
+         */
+        exploration_phase_id: ConnectorsAPI.ExplorationPhaseID;
+
+        exploration_run_id: string;
       }
     }
   }

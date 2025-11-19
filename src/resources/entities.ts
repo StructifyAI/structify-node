@@ -756,7 +756,7 @@ export namespace EntityListJobsResponse {
 
     dataset_id: string;
 
-    job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match';
+    job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore';
 
     max_steps_without_save: number;
 
