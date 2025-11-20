@@ -72,6 +72,8 @@ export {
   type ExploreDatahubTablesResponse,
   type ExploreStatusResponse,
   type ExplorerChatResponse,
+  type IngestDatahubRequest,
+  type IngestDatahubResponse,
   type LlmInformationStore,
   type UpdateConnectorRequest,
   type ConnectorGetResponse,
@@ -82,6 +84,7 @@ export {
   type ConnectorCreateSecretParams,
   type ConnectorExploreDatahubTablesParams,
   type ConnectorGetExplorerChatParams,
+  type ConnectorIngestDatahubParams,
 } from './connectors';
 export {
   DatasetViewRelationshipsResponsesJobsList,

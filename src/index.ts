@@ -71,6 +71,7 @@ import {
   ConnectorGetClarificationRequestsResponse,
   ConnectorGetExplorerChatParams,
   ConnectorGetResponse,
+  ConnectorIngestDatahubParams,
   ConnectorListParams,
   ConnectorStoreResponse,
   ConnectorUpdateParams,
@@ -87,6 +88,8 @@ import {
   ExploreDatahubTablesResponse,
   ExploreStatusResponse,
   ExplorerChatResponse,
+  IngestDatahubRequest,
+  IngestDatahubResponse,
   LlmInformationStore,
   UpdateConnectorRequest,
 } from './resources/connectors';
@@ -930,6 +933,8 @@ export declare namespace Structify {
     type ExploreDatahubTablesResponse as ExploreDatahubTablesResponse,
     type ExploreStatusResponse as ExploreStatusResponse,
     type ExplorerChatResponse as ExplorerChatResponse,
+    type IngestDatahubRequest as IngestDatahubRequest,
+    type IngestDatahubResponse as IngestDatahubResponse,
     type LlmInformationStore as LlmInformationStore,
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type ConnectorGetResponse as ConnectorGetResponse,
@@ -941,6 +946,7 @@ export declare namespace Structify {
     type ConnectorCreateSecretParams as ConnectorCreateSecretParams,
     type ConnectorExploreDatahubTablesParams as ConnectorExploreDatahubTablesParams,
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
+    type ConnectorIngestDatahubParams as ConnectorIngestDatahubParams,
   };
 
   export { Server as Server, type ServerInformation as ServerInformation };
