@@ -550,6 +550,8 @@ Types:
 - <code><a href="./src/resources/connectors.ts">ExploreDatahubTablesResponse</a></code>
 - <code><a href="./src/resources/connectors.ts">ExploreStatusResponse</a></code>
 - <code><a href="./src/resources/connectors.ts">ExplorerChatResponse</a></code>
+- <code><a href="./src/resources/connectors.ts">IngestDatahubRequest</a></code>
+- <code><a href="./src/resources/connectors.ts">IngestDatahubResponse</a></code>
 - <code><a href="./src/resources/connectors.ts">LlmInformationStore</a></code>
 - <code><a href="./src/resources/connectors.ts">UpdateConnectorRequest</a></code>
 - <code><a href="./src/resources/connectors.ts">ConnectorGetResponse</a></code>
@@ -571,6 +573,7 @@ Methods:
 - <code title="get /connectors/{connector_id}/explore/status">client.connectors.<a href="./src/resources/connectors.ts">getExplorationStatus</a>(connectorId) -> ExploreStatusResponse</code>
 - <code title="get /connectors/{connector_id}/explore/chat">client.connectors.<a href="./src/resources/connectors.ts">getExplorerChat</a>(connectorId, { ...params }) -> ExplorerChatResponse</code>
 - <code title="get /connectors/{connector_id}/store">client.connectors.<a href="./src/resources/connectors.ts">getStore</a>(connectorId) -> ConnectorStoreResponse</code>
+- <code title="post /connectors/ingest-datahub">client.connectors.<a href="./src/resources/connectors.ts">ingestDatahub</a>({ ...params }) -> IngestDatahubResponse</code>
 
 # Server
 

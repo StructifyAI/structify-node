@@ -125,6 +125,13 @@ export class Connectors extends APIResource {
   getStore(connectorId: string, options?: Core.RequestOptions): Core.APIPromise<ConnectorStoreResponse> {
     return this._client.get(`/connectors/${connectorId}/store`, options);
   }
+
+  ingestDatahub(
+    body: ConnectorIngestDatahubParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<IngestDatahubResponse> {
+    return this._client.post('/connectors/ingest-datahub', { body, ...options });
+  }
 }
 
 export class ConnectorWithSecretsJobsList extends JobsList<ConnectorWithSecrets> {}
@@ -354,6 +361,14 @@ export interface ExplorerChatResponse {
   chats: Array<ConnectorExplorerChat>;
 }
 
+export interface IngestDatahubRequest {
+  connector_id: string;
+}
+
+export interface IngestDatahubResponse {
+  job_id: string;
+}
+
 /**
  * Information store for connector schema
  *
@@ -567,6 +582,10 @@ export interface ConnectorGetExplorerChatParams {
   run_id: string;
 }
 
+export interface ConnectorIngestDatahubParams {
+  connector_id: string;
+}
+
 Connectors.ConnectorWithSecretsJobsList = ConnectorWithSecretsJobsList;
 
 export declare namespace Connectors {
@@ -586,6 +605,8 @@ export declare namespace Connectors {
     type ExploreDatahubTablesResponse as ExploreDatahubTablesResponse,
     type ExploreStatusResponse as ExploreStatusResponse,
     type ExplorerChatResponse as ExplorerChatResponse,
+    type IngestDatahubRequest as IngestDatahubRequest,
+    type IngestDatahubResponse as IngestDatahubResponse,
     type LlmInformationStore as LlmInformationStore,
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type ConnectorGetResponse as ConnectorGetResponse,
@@ -597,5 +618,6 @@ export declare namespace Connectors {
     type ConnectorCreateSecretParams as ConnectorCreateSecretParams,
     type ConnectorExploreDatahubTablesParams as ConnectorExploreDatahubTablesParams,
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
+    type ConnectorIngestDatahubParams as ConnectorIngestDatahubParams,
   };
 }
