@@ -553,6 +553,7 @@ Types:
 - <code><a href="./src/resources/connectors.ts">LlmInformationStore</a></code>
 - <code><a href="./src/resources/connectors.ts">UpdateConnectorRequest</a></code>
 - <code><a href="./src/resources/connectors.ts">ConnectorGetResponse</a></code>
+- <code><a href="./src/resources/connectors.ts">ConnectorGetClarificationRequestsResponse</a></code>
 
 Methods:
 
@@ -565,6 +566,7 @@ Methods:
 - <code title="post /connectors/{connector_id}/explore">client.connectors.<a href="./src/resources/connectors.ts">explore</a>(connectorId) -> void</code>
 - <code title="post /{connector_id}/explore_datahub_tables">client.connectors.<a href="./src/resources/connectors.ts">exploreDatahubTables</a>(connectorId, { ...params }) -> ExploreDatahubTablesResponse</code>
 - <code title="get /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors.ts">get</a>(connectorId) -> ConnectorGetResponse</code>
+- <code title="get /connectors/{connector_id}/clarification-requests">client.connectors.<a href="./src/resources/connectors.ts">getClarificationRequests</a>(connectorId) -> ConnectorGetClarificationRequestsResponse</code>
 - <code title="get /connectors/{connector_id}/explore/runs">client.connectors.<a href="./src/resources/connectors.ts">getExplorationRuns</a>(connectorId) -> ExplorationRunsResponse</code>
 - <code title="get /connectors/{connector_id}/explore/status">client.connectors.<a href="./src/resources/connectors.ts">getExplorationStatus</a>(connectorId) -> ExploreStatusResponse</code>
 - <code title="get /connectors/{connector_id}/explore/chat">client.connectors.<a href="./src/resources/connectors.ts">getExplorerChat</a>(connectorId, { ...params }) -> ExplorerChatResponse</code>
