@@ -84,6 +84,16 @@ export class Connectors extends APIResource {
   }
 
   /**
+   * Get all clarification requests for a connector
+   */
+  getClarificationRequests(
+    connectorId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ConnectorGetClarificationRequestsResponse> {
+    return this._client.get(`/connectors/${connectorId}/clarification-requests`, options);
+  }
+
+  /**
    * Get all exploration runs for a connector (requires debug permission)
    */
   getExplorationRuns(
@@ -482,6 +492,28 @@ export namespace ConnectorGetResponse {
   }
 }
 
+export interface ConnectorGetClarificationRequestsResponse {
+  requests: Array<ConnectorGetClarificationRequestsResponse.Request>;
+}
+
+export namespace ConnectorGetClarificationRequestsResponse {
+  export interface Request {
+    id: string;
+
+    created_at: string;
+
+    question: string;
+
+    resolved: boolean;
+
+    table_id: string;
+
+    updated_at: string;
+
+    column_id?: string | null;
+  }
+}
+
 export interface ConnectorCreateParams {
   known_connector_type: string;
 
@@ -557,6 +589,7 @@ export declare namespace Connectors {
     type LlmInformationStore as LlmInformationStore,
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type ConnectorGetResponse as ConnectorGetResponse,
+    type ConnectorGetClarificationRequestsResponse as ConnectorGetClarificationRequestsResponse,
     ConnectorWithSecretsJobsList as ConnectorWithSecretsJobsList,
     type ConnectorCreateParams as ConnectorCreateParams,
     type ConnectorUpdateParams as ConnectorUpdateParams,

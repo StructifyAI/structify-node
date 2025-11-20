@@ -75,6 +75,7 @@ export {
   type LlmInformationStore,
   type UpdateConnectorRequest,
   type ConnectorGetResponse,
+  type ConnectorGetClarificationRequestsResponse,
   type ConnectorCreateParams,
   type ConnectorUpdateParams,
   type ConnectorListParams,

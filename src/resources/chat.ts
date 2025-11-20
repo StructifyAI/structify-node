@@ -346,7 +346,8 @@ export namespace ChatEvent {
       | ToolCall.UnionMember11
       | ToolCall.UnionMember12
       | ToolCall.UnionMember13
-      | ToolCall.UnionMember14;
+      | ToolCall.UnionMember14
+      | ToolCall.UnionMember15;
   }
 
   export namespace ToolCall {
@@ -623,6 +624,26 @@ export namespace ChatEvent {
     export namespace UnionMember14 {
       export interface Input {
         query: string;
+      }
+    }
+
+    export interface UnionMember15 {
+      input: UnionMember15.Input;
+
+      name: 'RequestClarification';
+
+      result_id?: string | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember15 {
+      export interface Input {
+        question: string;
+
+        table_name: string;
+
+        column_name?: string | null;
       }
     }
   }
