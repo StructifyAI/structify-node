@@ -178,6 +178,7 @@ export { External } from './external/external';
 export {
   JobListResponsesJobsList,
   Jobs,
+  type GetJobEventsResponse,
   type JobListResponse,
   type JobDeleteResponse,
   type JobCancelResponse,

@@ -4,6 +4,7 @@ import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as ConnectorsAPI from './connectors';
+import * as SessionsAPI from './sessions';
 import * as SharedAPI from './shared';
 import * as SourcesAPI from './sources';
 import * as StructureAPI from './structure';
@@ -50,6 +51,10 @@ export class Jobs extends APIResource {
    */
   get(jobId: string, options?: Core.RequestOptions): Core.APIPromise<JobGetResponse> {
     return this._client.get(`/jobs/get/${jobId}`, options);
+  }
+
+  getEvents(jobId: string, options?: Core.RequestOptions): Core.APIPromise<GetJobEventsResponse> {
+    return this._client.get(`/jobs/${jobId}/events`, options);
   }
 
   /**
@@ -110,6 +115,21 @@ export class Jobs extends APIResource {
 }
 
 export class JobListResponsesJobsList extends JobsList<JobListResponse> {}
+
+export interface GetJobEventsResponse {
+  events: Array<GetJobEventsResponse.Event>;
+}
+
+export namespace GetJobEventsResponse {
+  export interface Event {
+    /**
+     * The body content of a job event
+     */
+    body: SessionsAPI.JobEventBody;
+
+    created_at: string;
+  }
+}
 
 export interface JobListResponse {
   id: string;
@@ -1032,6 +1052,7 @@ Jobs.JobListResponsesJobsList = JobListResponsesJobsList;
 
 export declare namespace Jobs {
   export {
+    type GetJobEventsResponse as GetJobEventsResponse,
     type JobListResponse as JobListResponse,
     type JobDeleteResponse as JobDeleteResponse,
     type JobCancelResponse as JobCancelResponse,
