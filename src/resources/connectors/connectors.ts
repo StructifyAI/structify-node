@@ -167,6 +167,8 @@ export interface Connector {
 
   datahub_urn?: string | null;
 
+  deleted_at?: string | null;
+
   description?: string | null;
 
   exploration_error?: string | null;
