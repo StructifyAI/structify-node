@@ -545,6 +545,8 @@ export namespace ChatEvent {
       export interface Input {
         name: string;
 
+        deprioritization_reason?: string | null;
+
         description?: string | null;
 
         notes?: string | null;
