@@ -537,45 +537,59 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/connectors.ts">Connector</a></code>
-- <code><a href="./src/resources/connectors.ts">ConnectorCategory</a></code>
-- <code><a href="./src/resources/connectors.ts">ConnectorExplorerChat</a></code>
-- <code><a href="./src/resources/connectors.ts">ConnectorStoreResponse</a></code>
-- <code><a href="./src/resources/connectors.ts">ConnectorWithSecrets</a></code>
-- <code><a href="./src/resources/connectors.ts">CreateConnectorRequest</a></code>
-- <code><a href="./src/resources/connectors.ts">CreateSecretRequest</a></code>
-- <code><a href="./src/resources/connectors.ts">ExplorationPhaseID</a></code>
-- <code><a href="./src/resources/connectors.ts">ExplorationRun</a></code>
-- <code><a href="./src/resources/connectors.ts">ExplorationRunsResponse</a></code>
-- <code><a href="./src/resources/connectors.ts">ExplorationStatus</a></code>
-- <code><a href="./src/resources/connectors.ts">ExploreDatahubTablesRequest</a></code>
-- <code><a href="./src/resources/connectors.ts">ExploreDatahubTablesResponse</a></code>
-- <code><a href="./src/resources/connectors.ts">ExploreStatusResponse</a></code>
-- <code><a href="./src/resources/connectors.ts">ExplorerChatResponse</a></code>
-- <code><a href="./src/resources/connectors.ts">IngestDatahubRequest</a></code>
-- <code><a href="./src/resources/connectors.ts">IngestDatahubResponse</a></code>
-- <code><a href="./src/resources/connectors.ts">LlmInformationStore</a></code>
-- <code><a href="./src/resources/connectors.ts">UpdateConnectorRequest</a></code>
-- <code><a href="./src/resources/connectors.ts">ConnectorGetResponse</a></code>
-- <code><a href="./src/resources/connectors.ts">ConnectorGetClarificationRequestsResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">Connector</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorCategory</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorExplorerChat</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorStoreResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorWithSecrets</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorWithSnippets</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">CreateConnectorRequest</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">CreateSecretRequest</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ExplorationPhaseID</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ExplorationRun</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ExplorationRunsResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ExplorationStatus</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ExploreDatahubTablesRequest</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ExploreDatahubTablesResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ExploreStatusResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ExplorerChatResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">IngestDatahubRequest</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">IngestDatahubResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">LlmInformationStore</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">UpdateConnectorRequest</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorGetResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorGetClarificationRequestsResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorListWithSnippetsResponse</a></code>
 
 Methods:
 
-- <code title="post /connectors">client.connectors.<a href="./src/resources/connectors.ts">create</a>({ ...params }) -> Connector</code>
-- <code title="patch /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors.ts">update</a>(connectorId, { ...params }) -> void</code>
-- <code title="get /connectors">client.connectors.<a href="./src/resources/connectors.ts">list</a>({ ...params }) -> ConnectorWithSecretsJobsList</code>
-- <code title="delete /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors.ts">delete</a>(connectorId) -> void</code>
-- <code title="post /connectors/{connector_id}/secrets">client.connectors.<a href="./src/resources/connectors.ts">createSecret</a>(connectorId, { ...params }) -> void</code>
-- <code title="delete /connectors/{connector_id}/secrets/{secret_name}">client.connectors.<a href="./src/resources/connectors.ts">deleteSecret</a>(connectorId, secretName) -> void</code>
-- <code title="post /connectors/{connector_id}/explore">client.connectors.<a href="./src/resources/connectors.ts">explore</a>(connectorId) -> void</code>
-- <code title="post /{connector_id}/explore_datahub_tables">client.connectors.<a href="./src/resources/connectors.ts">exploreDatahubTables</a>(connectorId, { ...params }) -> ExploreDatahubTablesResponse</code>
-- <code title="get /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors.ts">get</a>(connectorId) -> ConnectorGetResponse</code>
-- <code title="get /connectors/{connector_id}/clarification-requests">client.connectors.<a href="./src/resources/connectors.ts">getClarificationRequests</a>(connectorId) -> ConnectorGetClarificationRequestsResponse</code>
-- <code title="get /connectors/{connector_id}/explore/runs">client.connectors.<a href="./src/resources/connectors.ts">getExplorationRuns</a>(connectorId) -> ExplorationRunsResponse</code>
-- <code title="get /connectors/{connector_id}/explore/status">client.connectors.<a href="./src/resources/connectors.ts">getExplorationStatus</a>(connectorId) -> ExploreStatusResponse</code>
-- <code title="get /connectors/{connector_id}/explore/chat">client.connectors.<a href="./src/resources/connectors.ts">getExplorerChat</a>(connectorId, { ...params }) -> ExplorerChatResponse</code>
-- <code title="get /connectors/{connector_id}/store">client.connectors.<a href="./src/resources/connectors.ts">getStore</a>(connectorId) -> ConnectorStoreResponse</code>
-- <code title="post /connectors/ingest-datahub">client.connectors.<a href="./src/resources/connectors.ts">ingestDatahub</a>({ ...params }) -> IngestDatahubResponse</code>
+- <code title="post /connectors">client.connectors.<a href="./src/resources/connectors/connectors.ts">create</a>({ ...params }) -> Connector</code>
+- <code title="patch /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">update</a>(connectorId, { ...params }) -> void</code>
+- <code title="get /connectors">client.connectors.<a href="./src/resources/connectors/connectors.ts">list</a>({ ...params }) -> ConnectorWithSecretsJobsList</code>
+- <code title="delete /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">delete</a>(connectorId) -> void</code>
+- <code title="post /connectors/{connector_id}/secrets">client.connectors.<a href="./src/resources/connectors/connectors.ts">createSecret</a>(connectorId, { ...params }) -> void</code>
+- <code title="delete /connectors/{connector_id}/secrets/{secret_name}">client.connectors.<a href="./src/resources/connectors/connectors.ts">deleteSecret</a>(connectorId, secretName) -> void</code>
+- <code title="post /connectors/{connector_id}/explore">client.connectors.<a href="./src/resources/connectors/connectors.ts">explore</a>(connectorId) -> void</code>
+- <code title="post /{connector_id}/explore_datahub_tables">client.connectors.<a href="./src/resources/connectors/connectors.ts">exploreDatahubTables</a>(connectorId, { ...params }) -> ExploreDatahubTablesResponse</code>
+- <code title="get /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">get</a>(connectorId) -> ConnectorGetResponse</code>
+- <code title="get /connectors/{connector_id}/clarification-requests">client.connectors.<a href="./src/resources/connectors/connectors.ts">getClarificationRequests</a>(connectorId) -> ConnectorGetClarificationRequestsResponse</code>
+- <code title="get /connectors/{connector_id}/explore/runs">client.connectors.<a href="./src/resources/connectors/connectors.ts">getExplorationRuns</a>(connectorId) -> ExplorationRunsResponse</code>
+- <code title="get /connectors/{connector_id}/explore/status">client.connectors.<a href="./src/resources/connectors/connectors.ts">getExplorationStatus</a>(connectorId) -> ExploreStatusResponse</code>
+- <code title="get /connectors/{connector_id}/explore/chat">client.connectors.<a href="./src/resources/connectors/connectors.ts">getExplorerChat</a>(connectorId, { ...params }) -> ExplorerChatResponse</code>
+- <code title="get /connectors/{connector_id}/store">client.connectors.<a href="./src/resources/connectors/connectors.ts">getStore</a>(connectorId) -> ConnectorStoreResponse</code>
+- <code title="post /connectors/ingest-datahub">client.connectors.<a href="./src/resources/connectors/connectors.ts">ingestDatahub</a>({ ...params }) -> IngestDatahubResponse</code>
+- <code title="get /connectors/with-snippets">client.connectors.<a href="./src/resources/connectors/connectors.ts">listWithSnippets</a>({ ...params }) -> ConnectorListWithSnippetsResponse</code>
+
+## TypeSnippets
+
+Types:
+
+- <code><a href="./src/resources/connectors/type-snippets.ts">Snippet</a></code>
+- <code><a href="./src/resources/connectors/type-snippets.ts">UpsertRequest</a></code>
+
+Methods:
+
+- <code title="put /connector-type-snippets/{connector_type}">client.connectors.typeSnippets.<a href="./src/resources/connectors/type-snippets.ts">upsert</a>(connectorType, { ...params }) -> Snippet</code>
 
 # Server
 
