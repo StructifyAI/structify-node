@@ -3,11 +3,11 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as ConnectorsAPI from './connectors';
 import * as SessionsAPI from './sessions';
 import * as SharedAPI from './shared';
 import * as SourcesAPI from './sources';
 import * as StructureAPI from './structure';
+import * as ConnectorsAPI from './connectors/connectors';
 import { JobsList, type JobsListParams } from '../pagination';
 
 export class Jobs extends APIResource {
