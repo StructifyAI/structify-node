@@ -62,6 +62,7 @@ export {
   type ConnectorExplorerChat,
   type ConnectorStoreResponse,
   type ConnectorWithSecrets,
+  type ConnectorWithSnippets,
   type CreateConnectorRequest,
   type CreateSecretRequest,
   type ExplorationPhaseID,
@@ -78,6 +79,7 @@ export {
   type UpdateConnectorRequest,
   type ConnectorGetResponse,
   type ConnectorGetClarificationRequestsResponse,
+  type ConnectorListWithSnippetsResponse,
   type ConnectorCreateParams,
   type ConnectorUpdateParams,
   type ConnectorListParams,
@@ -85,7 +87,8 @@ export {
   type ConnectorExploreDatahubTablesParams,
   type ConnectorGetExplorerChatParams,
   type ConnectorIngestDatahubParams,
-} from './connectors';
+  type ConnectorListWithSnippetsParams,
+} from './connectors/connectors';
 export {
   DatasetViewRelationshipsResponsesJobsList,
   DatasetViewTableResponsesJobsList,
