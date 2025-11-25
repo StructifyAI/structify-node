@@ -144,6 +144,13 @@ export class Connectors extends APIResource {
   ): Core.APIPromise<ConnectorListWithSnippetsResponse> {
     return this._client.get('/connectors/with-snippets', { query, ...options });
   }
+
+  searchTables(
+    query: ConnectorSearchTablesParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<SearchTablesResponse> {
+    return this._client.get('/connectors/search-tables', { query, ...options });
+  }
 }
 
 export class ConnectorWithSecretsJobsList extends JobsList<ConnectorWithSecrets> {}
@@ -500,6 +507,25 @@ export namespace LlmInformationStore {
   }
 }
 
+export interface SearchTablesResponse {
+  /**
+   * List of table mentions for autocomplete
+   */
+  results: Array<TableMention>;
+}
+
+export interface TableMention {
+  id: string;
+
+  database_name: string;
+
+  name: string;
+
+  schema_name: string;
+
+  description?: string | null;
+}
+
 export interface UpdateConnectorRequest {
   description?: string | null;
 
@@ -621,6 +647,23 @@ export interface ConnectorListWithSnippetsParams {
   team_id: string;
 }
 
+export interface ConnectorSearchTablesParams {
+  /**
+   * Search query string
+   */
+  query: string;
+
+  /**
+   * Team ID to search tables for
+   */
+  team_id: string;
+
+  /**
+   * Maximum number of results to return
+   */
+  limit?: number;
+}
+
 Connectors.ConnectorWithSecretsJobsList = ConnectorWithSecretsJobsList;
 Connectors.TypeSnippets = TypeSnippets;
 
@@ -645,6 +688,8 @@ export declare namespace Connectors {
     type IngestDatahubRequest as IngestDatahubRequest,
     type IngestDatahubResponse as IngestDatahubResponse,
     type LlmInformationStore as LlmInformationStore,
+    type SearchTablesResponse as SearchTablesResponse,
+    type TableMention as TableMention,
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type ConnectorGetResponse as ConnectorGetResponse,
     type ConnectorGetClarificationRequestsResponse as ConnectorGetClarificationRequestsResponse,
@@ -658,6 +703,7 @@ export declare namespace Connectors {
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
     type ConnectorIngestDatahubParams as ConnectorIngestDatahubParams,
     type ConnectorListWithSnippetsParams as ConnectorListWithSnippetsParams,
+    type ConnectorSearchTablesParams as ConnectorSearchTablesParams,
   };
 
   export {
