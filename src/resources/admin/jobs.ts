@@ -44,7 +44,7 @@ export interface AdminListJobsResponse {
 
   dataset_id: string;
 
-  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | 'DatahubIngestion';
+  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore';
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 

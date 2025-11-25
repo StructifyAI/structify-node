@@ -138,7 +138,7 @@ export interface JobListResponse {
 
   dataset_id: string;
 
-  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | 'DatahubIngestion';
+  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore';
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
@@ -281,7 +281,7 @@ export interface JobCancelResponse {
 
   dataset_id: string;
 
-  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | 'DatahubIngestion';
+  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore';
 
   max_steps_without_save: number;
 
@@ -342,7 +342,7 @@ export namespace JobGetResponse {
 
     dataset_id: string;
 
-    job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | 'DatahubIngestion';
+    job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore';
 
     max_steps_without_save: number;
 
@@ -1017,7 +1017,7 @@ export interface JobListParams extends JobsListParams {
   /**
    * Type of job to optionally filter jobs by
    */
-  job_type?: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | 'DatahubIngestion' | null;
+  job_type?: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | null;
 
   /**
    * Node ID to optionally filter jobs by
