@@ -550,6 +550,8 @@ export namespace ChatEvent {
         description?: string | null;
 
         notes?: string | null;
+
+        tag?: string | null;
       }
     }
 
@@ -626,6 +628,8 @@ export namespace ChatEvent {
     export namespace UnionMember14 {
       export interface Input {
         query: string;
+
+        wiki_tag?: string | null;
       }
     }
 
