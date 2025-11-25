@@ -511,6 +511,8 @@ export interface SearchTablesResponse {
 export interface TableMention {
   id: string;
 
+  column_names: Array<string>;
+
   database_name: string;
 
   name: string;
