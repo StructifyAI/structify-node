@@ -123,13 +123,6 @@ export class Connectors extends APIResource {
     return this._client.get(`/connectors/${connectorId}/store`, options);
   }
 
-  ingestDatahub(
-    body: ConnectorIngestDatahubParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<IngestDatahubResponse> {
-    return this._client.post('/connectors/ingest-datahub', { body, ...options });
-  }
-
   /**
    * Returns all tables across all databases and schemas for the given connector.
    * Useful for finding table IDs to pass to the explore endpoint for single-table
@@ -395,14 +388,6 @@ export interface ExplorerChatResponse {
   chats: Array<ConnectorExplorerChat>;
 }
 
-export interface IngestDatahubRequest {
-  connector_id: string;
-}
-
-export interface IngestDatahubResponse {
-  job_id: string;
-}
-
 export interface ListTablesResponse {
   tables: Array<ConnectorTableInfo>;
 }
@@ -647,10 +632,6 @@ export interface ConnectorGetExplorerChatParams {
   run_id: string;
 }
 
-export interface ConnectorIngestDatahubParams {
-  connector_id: string;
-}
-
 export interface ConnectorListWithSnippetsParams {
   /**
    * Team ID to list connectors for
@@ -696,8 +677,6 @@ export declare namespace Connectors {
     type ExploreConnectorRequest as ExploreConnectorRequest,
     type ExploreStatusResponse as ExploreStatusResponse,
     type ExplorerChatResponse as ExplorerChatResponse,
-    type IngestDatahubRequest as IngestDatahubRequest,
-    type IngestDatahubResponse as IngestDatahubResponse,
     type ListTablesResponse as ListTablesResponse,
     type LlmInformationStore as LlmInformationStore,
     type SearchTablesResponse as SearchTablesResponse,
@@ -713,7 +692,6 @@ export declare namespace Connectors {
     type ConnectorCreateSecretParams as ConnectorCreateSecretParams,
     type ConnectorExploreParams as ConnectorExploreParams,
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
-    type ConnectorIngestDatahubParams as ConnectorIngestDatahubParams,
     type ConnectorListWithSnippetsParams as ConnectorListWithSnippetsParams,
     type ConnectorSearchTablesParams as ConnectorSearchTablesParams,
   };

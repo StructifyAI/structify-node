@@ -19,8 +19,6 @@ export {
   type ExploreConnectorRequest,
   type ExploreStatusResponse,
   type ExplorerChatResponse,
-  type IngestDatahubRequest,
-  type IngestDatahubResponse,
   type ListTablesResponse,
   type LlmInformationStore,
   type SearchTablesResponse,
@@ -35,7 +33,6 @@ export {
   type ConnectorCreateSecretParams,
   type ConnectorExploreParams,
   type ConnectorGetExplorerChatParams,
-  type ConnectorIngestDatahubParams,
   type ConnectorListWithSnippetsParams,
   type ConnectorSearchTablesParams,
 } from './connectors';
