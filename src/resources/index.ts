@@ -76,6 +76,8 @@ export {
   type IngestDatahubRequest,
   type IngestDatahubResponse,
   type LlmInformationStore,
+  type SearchTablesResponse,
+  type TableMention,
   type UpdateConnectorRequest,
   type ConnectorGetResponse,
   type ConnectorGetClarificationRequestsResponse,
@@ -88,6 +90,7 @@ export {
   type ConnectorGetExplorerChatParams,
   type ConnectorIngestDatahubParams,
   type ConnectorListWithSnippetsParams,
+  type ConnectorSearchTablesParams,
 } from './connectors/connectors';
 export {
   DatasetViewRelationshipsResponsesJobsList,
@@ -389,6 +392,17 @@ export {
   type UserSurveySubmitParams,
   type UserUsageParams,
 } from './user/user';
+export {
+  Wiki,
+  type CreateWikiPageRequest,
+  type TeamWikiPage,
+  type UpdateWikiPageRequest,
+  type WikiConnectorReference,
+  type WikiPageWithReferences,
+  type WikiListResponse,
+  type WikiCreateParams,
+  type WikiUpdateParams,
+} from './wiki';
 export {
   Workflow,
   type RunWorkflowRequest,

@@ -312,6 +312,17 @@ import {
   UserTeam,
 } from './resources/teams';
 import {
+  CreateWikiPageRequest,
+  TeamWikiPage,
+  UpdateWikiPageRequest,
+  Wiki,
+  WikiConnectorReference,
+  WikiCreateParams,
+  WikiListResponse,
+  WikiPageWithReferences,
+  WikiUpdateParams,
+} from './resources/wiki';
+import {
   RunWorkflowRequest,
   StopWorkflowRequest,
   Workflow,
@@ -347,6 +358,7 @@ import {
   ConnectorListParams,
   ConnectorListWithSnippetsParams,
   ConnectorListWithSnippetsResponse,
+  ConnectorSearchTablesParams,
   ConnectorStoreResponse,
   ConnectorUpdateParams,
   ConnectorWithSecrets,
@@ -366,6 +378,8 @@ import {
   IngestDatahubRequest,
   IngestDatahubResponse,
   LlmInformationStore,
+  SearchTablesResponse,
+  TableMention,
   UpdateConnectorRequest,
 } from './resources/connectors/connectors';
 import {
@@ -561,6 +575,7 @@ export class Structify extends Core.APIClient {
   user: API.User = new API.User(this);
   chat: API.Chat = new API.Chat(this);
   teams: API.Teams = new API.Teams(this);
+  wiki: API.Wiki = new API.Wiki(this);
   projects: API.Projects = new API.Projects(this);
   admin: API.Admin = new API.Admin(this);
   datasets: API.Datasets = new API.Datasets(this);
@@ -634,6 +649,7 @@ export class Structify extends Core.APIClient {
 Structify.User = User;
 Structify.Chat = Chat;
 Structify.Teams = Teams;
+Structify.Wiki = Wiki;
 Structify.Projects = Projects;
 Structify.Admin = Admin;
 Structify.Datasets = Datasets;
@@ -769,6 +785,18 @@ export declare namespace Structify {
     type TeamCreateProjectParams as TeamCreateProjectParams,
     type TeamCreditsUsageParams as TeamCreditsUsageParams,
     type TeamUpdateMemberRoleParams as TeamUpdateMemberRoleParams,
+  };
+
+  export {
+    Wiki as Wiki,
+    type CreateWikiPageRequest as CreateWikiPageRequest,
+    type TeamWikiPage as TeamWikiPage,
+    type UpdateWikiPageRequest as UpdateWikiPageRequest,
+    type WikiConnectorReference as WikiConnectorReference,
+    type WikiPageWithReferences as WikiPageWithReferences,
+    type WikiListResponse as WikiListResponse,
+    type WikiCreateParams as WikiCreateParams,
+    type WikiUpdateParams as WikiUpdateParams,
   };
 
   export {
@@ -942,6 +970,8 @@ export declare namespace Structify {
     type IngestDatahubRequest as IngestDatahubRequest,
     type IngestDatahubResponse as IngestDatahubResponse,
     type LlmInformationStore as LlmInformationStore,
+    type SearchTablesResponse as SearchTablesResponse,
+    type TableMention as TableMention,
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type ConnectorGetResponse as ConnectorGetResponse,
     type ConnectorGetClarificationRequestsResponse as ConnectorGetClarificationRequestsResponse,
@@ -955,6 +985,7 @@ export declare namespace Structify {
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
     type ConnectorIngestDatahubParams as ConnectorIngestDatahubParams,
     type ConnectorListWithSnippetsParams as ConnectorListWithSnippetsParams,
+    type ConnectorSearchTablesParams as ConnectorSearchTablesParams,
   };
 
   export { Server as Server, type ServerInformation as ServerInformation };

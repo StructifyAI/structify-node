@@ -148,6 +148,25 @@ Methods:
 - <code title="post /team/{team_id}/select">client.teams.<a href="./src/resources/teams.ts">select</a>(teamId) -> SelectTeamResponse</code>
 - <code title="patch /team/{team_id}/members/{user_id}/role">client.teams.<a href="./src/resources/teams.ts">updateMemberRole</a>(teamId, userId, { ...params }) -> UpdateMemberRoleResponse</code>
 
+# Wiki
+
+Types:
+
+- <code><a href="./src/resources/wiki.ts">CreateWikiPageRequest</a></code>
+- <code><a href="./src/resources/wiki.ts">TeamWikiPage</a></code>
+- <code><a href="./src/resources/wiki.ts">UpdateWikiPageRequest</a></code>
+- <code><a href="./src/resources/wiki.ts">WikiConnectorReference</a></code>
+- <code><a href="./src/resources/wiki.ts">WikiPageWithReferences</a></code>
+- <code><a href="./src/resources/wiki.ts">WikiListResponse</a></code>
+
+Methods:
+
+- <code title="post /team/{team_id}/wiki">client.wiki.<a href="./src/resources/wiki.ts">create</a>(teamId, { ...params }) -> TeamWikiPage</code>
+- <code title="put /team/{team_id}/wiki/{slug}">client.wiki.<a href="./src/resources/wiki.ts">update</a>(teamId, slug, { ...params }) -> TeamWikiPage</code>
+- <code title="get /team/{team_id}/wiki">client.wiki.<a href="./src/resources/wiki.ts">list</a>(teamId) -> WikiListResponse</code>
+- <code title="delete /team/{team_id}/wiki/{slug}">client.wiki.<a href="./src/resources/wiki.ts">delete</a>(teamId, slug) -> void</code>
+- <code title="get /team/{team_id}/wiki/{slug}">client.wiki.<a href="./src/resources/wiki.ts">get</a>(teamId, slug) -> WikiPageWithReferences</code>
+
 # Projects
 
 Types:
@@ -556,6 +575,8 @@ Types:
 - <code><a href="./src/resources/connectors/connectors.ts">IngestDatahubRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">IngestDatahubResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">LlmInformationStore</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">SearchTablesResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">TableMention</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">UpdateConnectorRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorGetResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorGetClarificationRequestsResponse</a></code>
@@ -579,6 +600,7 @@ Methods:
 - <code title="get /connectors/{connector_id}/store">client.connectors.<a href="./src/resources/connectors/connectors.ts">getStore</a>(connectorId) -> ConnectorStoreResponse</code>
 - <code title="post /connectors/ingest-datahub">client.connectors.<a href="./src/resources/connectors/connectors.ts">ingestDatahub</a>({ ...params }) -> IngestDatahubResponse</code>
 - <code title="get /connectors/with-snippets">client.connectors.<a href="./src/resources/connectors/connectors.ts">listWithSnippets</a>({ ...params }) -> ConnectorListWithSnippetsResponse</code>
+- <code title="get /connectors/search-tables">client.connectors.<a href="./src/resources/connectors/connectors.ts">searchTables</a>({ ...params }) -> SearchTablesResponse</code>
 
 ## TypeSnippets
 
