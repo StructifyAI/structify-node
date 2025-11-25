@@ -560,6 +560,7 @@ Types:
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorCategory</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorExplorerChat</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorStoreResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorTableInfo</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorWithSecrets</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorWithSnippets</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">CreateConnectorRequest</a></code>
@@ -568,12 +569,12 @@ Types:
 - <code><a href="./src/resources/connectors/connectors.ts">ExplorationRun</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ExplorationRunsResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ExplorationStatus</a></code>
-- <code><a href="./src/resources/connectors/connectors.ts">ExploreDatahubTablesRequest</a></code>
-- <code><a href="./src/resources/connectors/connectors.ts">ExploreDatahubTablesResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ExploreConnectorRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ExploreStatusResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ExplorerChatResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">IngestDatahubRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">IngestDatahubResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ListTablesResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">LlmInformationStore</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">SearchTablesResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">TableMention</a></code>
@@ -590,8 +591,7 @@ Methods:
 - <code title="delete /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">delete</a>(connectorId) -> void</code>
 - <code title="post /connectors/{connector_id}/secrets">client.connectors.<a href="./src/resources/connectors/connectors.ts">createSecret</a>(connectorId, { ...params }) -> void</code>
 - <code title="delete /connectors/{connector_id}/secrets/{secret_name}">client.connectors.<a href="./src/resources/connectors/connectors.ts">deleteSecret</a>(connectorId, secretName) -> void</code>
-- <code title="post /connectors/{connector_id}/explore">client.connectors.<a href="./src/resources/connectors/connectors.ts">explore</a>(connectorId) -> void</code>
-- <code title="post /{connector_id}/explore_datahub_tables">client.connectors.<a href="./src/resources/connectors/connectors.ts">exploreDatahubTables</a>(connectorId, { ...params }) -> ExploreDatahubTablesResponse</code>
+- <code title="post /connectors/{connector_id}/explore">client.connectors.<a href="./src/resources/connectors/connectors.ts">explore</a>(connectorId, { ...params }) -> void</code>
 - <code title="get /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">get</a>(connectorId) -> ConnectorGetResponse</code>
 - <code title="get /connectors/{connector_id}/clarification-requests">client.connectors.<a href="./src/resources/connectors/connectors.ts">getClarificationRequests</a>(connectorId) -> ConnectorGetClarificationRequestsResponse</code>
 - <code title="get /connectors/{connector_id}/explore/runs">client.connectors.<a href="./src/resources/connectors/connectors.ts">getExplorationRuns</a>(connectorId) -> ExplorationRunsResponse</code>
@@ -599,6 +599,7 @@ Methods:
 - <code title="get /connectors/{connector_id}/explore/chat">client.connectors.<a href="./src/resources/connectors/connectors.ts">getExplorerChat</a>(connectorId, { ...params }) -> ExplorerChatResponse</code>
 - <code title="get /connectors/{connector_id}/store">client.connectors.<a href="./src/resources/connectors/connectors.ts">getStore</a>(connectorId) -> ConnectorStoreResponse</code>
 - <code title="post /connectors/ingest-datahub">client.connectors.<a href="./src/resources/connectors/connectors.ts">ingestDatahub</a>({ ...params }) -> IngestDatahubResponse</code>
+- <code title="get /connectors/{connector_id}/tables">client.connectors.<a href="./src/resources/connectors/connectors.ts">listTables</a>(connectorId) -> ListTablesResponse</code>
 - <code title="get /connectors/with-snippets">client.connectors.<a href="./src/resources/connectors/connectors.ts">listWithSnippets</a>({ ...params }) -> ConnectorListWithSnippetsResponse</code>
 - <code title="get /connectors/search-tables">client.connectors.<a href="./src/resources/connectors/connectors.ts">searchTables</a>({ ...params }) -> SearchTablesResponse</code>
 

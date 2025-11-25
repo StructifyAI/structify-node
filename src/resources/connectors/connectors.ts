@@ -64,24 +64,16 @@ export class Connectors extends APIResource {
     });
   }
 
-  explore(connectorId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+  explore(
+    connectorId: string,
+    body: ConnectorExploreParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
     return this._client.post(`/connectors/${connectorId}/explore`, {
+      body,
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
-  }
-
-  /**
-   * This endpoint queues DiscoverColumns jobs for all tables in a DataHub connector.
-   * It's designed for DataHub connectors where tables are pre-populated from DataHub
-   * metadata.
-   */
-  exploreDatahubTables(
-    connectorId: string,
-    body: ConnectorExploreDatahubTablesParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ExploreDatahubTablesResponse> {
-    return this._client.post(`/${connectorId}/explore_datahub_tables`, { body, ...options });
   }
 
   get(connectorId: string, options?: Core.RequestOptions): Core.APIPromise<ConnectorGetResponse> {
@@ -136,6 +128,15 @@ export class Connectors extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<IngestDatahubResponse> {
     return this._client.post('/connectors/ingest-datahub', { body, ...options });
+  }
+
+  /**
+   * Returns all tables across all databases and schemas for the given connector.
+   * Useful for finding table IDs to pass to the explore endpoint for single-table
+   * exploration.
+   */
+  listTables(connectorId: string, options?: Core.RequestOptions): Core.APIPromise<ListTablesResponse> {
+    return this._client.get(`/connectors/${connectorId}/tables`, options);
   }
 
   listWithSnippets(
@@ -228,6 +229,14 @@ export interface ConnectorStoreResponse {
    * - API: all tables have `endpoint: Some(...)`
    */
   store?: LlmInformationStore | null;
+}
+
+export interface ConnectorTableInfo {
+  id: string;
+
+  name: string;
+
+  description?: string | null;
 }
 
 export interface ConnectorWithSecrets extends Connector {
@@ -370,12 +379,8 @@ export interface ExplorationRunsResponse {
 
 export type ExplorationStatus = 'NotStarted' | 'Running' | 'Completed' | 'Failed';
 
-export type ExploreDatahubTablesRequest = unknown;
-
-export interface ExploreDatahubTablesResponse {
-  jobs_queued: number;
-
-  tables_found: number;
+export interface ExploreConnectorRequest {
+  table_id?: string | null;
 }
 
 export interface ExploreStatusResponse {
@@ -396,6 +401,10 @@ export interface IngestDatahubRequest {
 
 export interface IngestDatahubResponse {
   job_id: string;
+}
+
+export interface ListTablesResponse {
+  tables: Array<ConnectorTableInfo>;
 }
 
 /**
@@ -627,7 +636,9 @@ export interface ConnectorCreateSecretParams {
   secret_value: string;
 }
 
-export type ConnectorExploreDatahubTablesParams = ExploreDatahubTablesRequest;
+export interface ConnectorExploreParams {
+  table_id?: string | null;
+}
 
 export interface ConnectorGetExplorerChatParams {
   /**
@@ -673,6 +684,7 @@ export declare namespace Connectors {
     type ConnectorCategory as ConnectorCategory,
     type ConnectorExplorerChat as ConnectorExplorerChat,
     type ConnectorStoreResponse as ConnectorStoreResponse,
+    type ConnectorTableInfo as ConnectorTableInfo,
     type ConnectorWithSecrets as ConnectorWithSecrets,
     type ConnectorWithSnippets as ConnectorWithSnippets,
     type CreateConnectorRequest as CreateConnectorRequest,
@@ -681,12 +693,12 @@ export declare namespace Connectors {
     type ExplorationRun as ExplorationRun,
     type ExplorationRunsResponse as ExplorationRunsResponse,
     type ExplorationStatus as ExplorationStatus,
-    type ExploreDatahubTablesRequest as ExploreDatahubTablesRequest,
-    type ExploreDatahubTablesResponse as ExploreDatahubTablesResponse,
+    type ExploreConnectorRequest as ExploreConnectorRequest,
     type ExploreStatusResponse as ExploreStatusResponse,
     type ExplorerChatResponse as ExplorerChatResponse,
     type IngestDatahubRequest as IngestDatahubRequest,
     type IngestDatahubResponse as IngestDatahubResponse,
+    type ListTablesResponse as ListTablesResponse,
     type LlmInformationStore as LlmInformationStore,
     type SearchTablesResponse as SearchTablesResponse,
     type TableMention as TableMention,
@@ -699,7 +711,7 @@ export declare namespace Connectors {
     type ConnectorUpdateParams as ConnectorUpdateParams,
     type ConnectorListParams as ConnectorListParams,
     type ConnectorCreateSecretParams as ConnectorCreateSecretParams,
-    type ConnectorExploreDatahubTablesParams as ConnectorExploreDatahubTablesParams,
+    type ConnectorExploreParams as ConnectorExploreParams,
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
     type ConnectorIngestDatahubParams as ConnectorIngestDatahubParams,
     type ConnectorListWithSnippetsParams as ConnectorListWithSnippetsParams,
