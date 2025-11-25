@@ -26,7 +26,10 @@ export class SandboxResource extends APIResource {
 }
 
 export interface GetSandboxRequest {
-  sandbox_url_override?: string | null;
+  /**
+   * Override URL for the modal control service (for testing/development)
+   */
+  modal_control_service_url_override?: string | null;
 }
 
 export interface Sandbox {
@@ -62,7 +65,10 @@ export interface SandboxCreateParams {
 }
 
 export interface SandboxGetParams {
-  sandbox_url_override?: string | null;
+  /**
+   * Override URL for the modal control service (for testing/development)
+   */
+  modal_control_service_url_override?: string | null;
 }
 
 export interface SandboxUpdateStatusParams {
