@@ -450,6 +450,8 @@ export namespace LlmInformationStore {
        * Represents a table (for relational databases) or resource (for APIs)
        */
       export interface Table {
+        id: string;
+
         /**
          * List of columns in this table/resource
          */
