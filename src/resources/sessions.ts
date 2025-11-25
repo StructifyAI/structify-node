@@ -310,7 +310,11 @@ export namespace JobEventBody {
   }
 
   export interface DatahubTablesProcessed {
+    column_lineage_count: number;
+
     event_type: 'datahub_tables_processed';
+
+    table_lineage_count: number;
 
     tables_created: number;
 
