@@ -574,6 +574,14 @@ export namespace ConnectorGetClarificationRequestsResponse {
     updated_at: string;
 
     column_id?: string | null;
+
+    column_name?: string | null;
+
+    database_name?: string | null;
+
+    schema_name?: string | null;
+
+    table_name?: string | null;
   }
 }
 
