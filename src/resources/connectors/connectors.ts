@@ -139,11 +139,47 @@ export class Connectors extends APIResource {
     return this._client.get('/connectors/with-snippets', { query, ...options });
   }
 
+  /**
+   * Mark a clarification request as resolved
+   */
+  resolveClarification(clarificationId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.patch(`/connectors/clarification-requests/${clarificationId}/resolve`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
   searchTables(
     query: ConnectorSearchTablesParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<SearchTablesResponse> {
     return this._client.get('/connectors/search-tables', { query, ...options });
+  }
+
+  /**
+   * Update column metadata (notes)
+   */
+  updateColumn(
+    columnId: string,
+    body: ConnectorUpdateColumnParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.patch(`/connectors/columns/${columnId}`, {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Update table metadata (description or notes)
+   */
+  updateTable(
+    tableId: string,
+    body: ConnectorUpdateTableParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<UpdateTableResponse> {
+    return this._client.patch(`/connectors/tables/${tableId}`, { body, ...options });
   }
 }
 
@@ -524,6 +560,10 @@ export interface TableMention {
   description?: string | null;
 }
 
+export interface UpdateColumnRequest {
+  notes?: string | null;
+}
+
 export interface UpdateConnectorRequest {
   description?: string | null;
 
@@ -534,6 +574,75 @@ export interface UpdateConnectorRequest {
   refresh_script?: string | null;
 
   usage_snippet_override?: string | null;
+}
+
+export interface UpdateTableRequest {
+  description?: string | null;
+
+  notes?: string | null;
+}
+
+export interface UpdateTableResponse {
+  /**
+   * Represents a table (for relational databases) or resource (for APIs)
+   */
+  table: UpdateTableResponse.Table;
+}
+
+export namespace UpdateTableResponse {
+  /**
+   * Represents a table (for relational databases) or resource (for APIs)
+   */
+  export interface Table {
+    id: string;
+
+    /**
+     * List of columns in this table/resource
+     */
+    columns: Array<Table.Column>;
+
+    /**
+     * Name of the table or resource
+     */
+    name: string;
+
+    /**
+     * Optional description
+     */
+    description?: string | null;
+
+    /**
+     * API endpoint (None for relational DB tables, Some for API resources)
+     */
+    endpoint?: string | null;
+
+    /**
+     * Optional notes
+     */
+    notes?: string | null;
+  }
+
+  export namespace Table {
+    /**
+     * Represents a column in a table or API resource
+     */
+    export interface Column {
+      /**
+       * Name of the column
+       */
+      name: string;
+
+      /**
+       * SQL type of the column (e.g., "VARCHAR(255)", "INTEGER") or API field type
+       */
+      type: string;
+
+      /**
+       * Additional notes about the column
+       */
+      notes?: string | null;
+    }
+  }
 }
 
 export interface ConnectorGetResponse extends Connector {
@@ -668,6 +777,16 @@ export interface ConnectorSearchTablesParams {
   limit?: number;
 }
 
+export interface ConnectorUpdateColumnParams {
+  notes?: string | null;
+}
+
+export interface ConnectorUpdateTableParams {
+  description?: string | null;
+
+  notes?: string | null;
+}
+
 Connectors.ConnectorWithSecretsJobsList = ConnectorWithSecretsJobsList;
 Connectors.TypeSnippets = TypeSnippets;
 
@@ -693,7 +812,10 @@ export declare namespace Connectors {
     type LlmInformationStore as LlmInformationStore,
     type SearchTablesResponse as SearchTablesResponse,
     type TableMention as TableMention,
+    type UpdateColumnRequest as UpdateColumnRequest,
     type UpdateConnectorRequest as UpdateConnectorRequest,
+    type UpdateTableRequest as UpdateTableRequest,
+    type UpdateTableResponse as UpdateTableResponse,
     type ConnectorGetResponse as ConnectorGetResponse,
     type ConnectorGetClarificationRequestsResponse as ConnectorGetClarificationRequestsResponse,
     type ConnectorListWithSnippetsResponse as ConnectorListWithSnippetsResponse,
@@ -706,6 +828,8 @@ export declare namespace Connectors {
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
     type ConnectorListWithSnippetsParams as ConnectorListWithSnippetsParams,
     type ConnectorSearchTablesParams as ConnectorSearchTablesParams,
+    type ConnectorUpdateColumnParams as ConnectorUpdateColumnParams,
+    type ConnectorUpdateTableParams as ConnectorUpdateTableParams,
   };
 
   export {

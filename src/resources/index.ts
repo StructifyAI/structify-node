@@ -77,7 +77,10 @@ export {
   type LlmInformationStore,
   type SearchTablesResponse,
   type TableMention,
+  type UpdateColumnRequest,
   type UpdateConnectorRequest,
+  type UpdateTableRequest,
+  type UpdateTableResponse,
   type ConnectorGetResponse,
   type ConnectorGetClarificationRequestsResponse,
   type ConnectorListWithSnippetsResponse,
@@ -89,6 +92,8 @@ export {
   type ConnectorGetExplorerChatParams,
   type ConnectorListWithSnippetsParams,
   type ConnectorSearchTablesParams,
+  type ConnectorUpdateColumnParams,
+  type ConnectorUpdateTableParams,
 } from './connectors/connectors';
 export {
   DatasetViewRelationshipsResponsesJobsList,
