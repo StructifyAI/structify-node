@@ -152,7 +152,7 @@ export class Connectors extends APIResource {
   searchTables(
     query: ConnectorSearchTablesParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<SearchTablesResponse> {
+  ): Core.APIPromise<ConnectorSearchTablesResponse> {
     return this._client.get('/connectors/search-tables', { query, ...options });
   }
 
@@ -539,27 +539,6 @@ export namespace LlmInformationStore {
   }
 }
 
-export interface SearchTablesResponse {
-  /**
-   * List of table mentions for autocomplete
-   */
-  results: Array<TableMention>;
-}
-
-export interface TableMention {
-  id: string;
-
-  column_names: Array<string>;
-
-  database_name: string;
-
-  name: string;
-
-  schema_name: string;
-
-  description?: string | null;
-}
-
 export interface UpdateColumnRequest {
   notes?: string | null;
 }
@@ -696,6 +675,208 @@ export namespace ConnectorGetClarificationRequestsResponse {
 
 export type ConnectorListWithSnippetsResponse = Array<ConnectorWithSnippets>;
 
+export interface ConnectorSearchTablesResponse {
+  ranked_results: Array<ConnectorSearchTablesResponse.RankedResult>;
+
+  raw_results: Array<ConnectorSearchTablesResponse.RawResult>;
+
+  rerank_scores: Array<ConnectorSearchTablesResponse.RerankScore>;
+}
+
+export namespace ConnectorSearchTablesResponse {
+  /**
+   * Result struct for connector table search
+   */
+  export interface RankedResult {
+    columns: Array<RankedResult.Column>;
+
+    database_name: string;
+
+    schema_name: string;
+
+    /**
+     * Represents a table (for relational databases) or resource (for APIs)
+     */
+    table: RankedResult.Table;
+  }
+
+  export namespace RankedResult {
+    /**
+     * Represents a column in a table or API resource
+     */
+    export interface Column {
+      /**
+       * Name of the column
+       */
+      name: string;
+
+      /**
+       * SQL type of the column (e.g., "VARCHAR(255)", "INTEGER") or API field type
+       */
+      type: string;
+
+      /**
+       * Additional notes about the column
+       */
+      notes?: string | null;
+    }
+
+    /**
+     * Represents a table (for relational databases) or resource (for APIs)
+     */
+    export interface Table {
+      id: string;
+
+      /**
+       * List of columns in this table/resource
+       */
+      columns: Array<Table.Column>;
+
+      /**
+       * Name of the table or resource
+       */
+      name: string;
+
+      /**
+       * Optional description
+       */
+      description?: string | null;
+
+      /**
+       * API endpoint (None for relational DB tables, Some for API resources)
+       */
+      endpoint?: string | null;
+
+      /**
+       * Optional notes
+       */
+      notes?: string | null;
+    }
+
+    export namespace Table {
+      /**
+       * Represents a column in a table or API resource
+       */
+      export interface Column {
+        /**
+         * Name of the column
+         */
+        name: string;
+
+        /**
+         * SQL type of the column (e.g., "VARCHAR(255)", "INTEGER") or API field type
+         */
+        type: string;
+
+        /**
+         * Additional notes about the column
+         */
+        notes?: string | null;
+      }
+    }
+  }
+
+  /**
+   * Result struct for connector table search
+   */
+  export interface RawResult {
+    columns: Array<RawResult.Column>;
+
+    database_name: string;
+
+    schema_name: string;
+
+    /**
+     * Represents a table (for relational databases) or resource (for APIs)
+     */
+    table: RawResult.Table;
+  }
+
+  export namespace RawResult {
+    /**
+     * Represents a column in a table or API resource
+     */
+    export interface Column {
+      /**
+       * Name of the column
+       */
+      name: string;
+
+      /**
+       * SQL type of the column (e.g., "VARCHAR(255)", "INTEGER") or API field type
+       */
+      type: string;
+
+      /**
+       * Additional notes about the column
+       */
+      notes?: string | null;
+    }
+
+    /**
+     * Represents a table (for relational databases) or resource (for APIs)
+     */
+    export interface Table {
+      id: string;
+
+      /**
+       * List of columns in this table/resource
+       */
+      columns: Array<Table.Column>;
+
+      /**
+       * Name of the table or resource
+       */
+      name: string;
+
+      /**
+       * Optional description
+       */
+      description?: string | null;
+
+      /**
+       * API endpoint (None for relational DB tables, Some for API resources)
+       */
+      endpoint?: string | null;
+
+      /**
+       * Optional notes
+       */
+      notes?: string | null;
+    }
+
+    export namespace Table {
+      /**
+       * Represents a column in a table or API resource
+       */
+      export interface Column {
+        /**
+         * Name of the column
+         */
+        name: string;
+
+        /**
+         * SQL type of the column (e.g., "VARCHAR(255)", "INTEGER") or API field type
+         */
+        type: string;
+
+        /**
+         * Additional notes about the column
+         */
+        notes?: string | null;
+      }
+    }
+  }
+
+  export interface RerankScore {
+    index: number;
+
+    relevance_score: number;
+
+    text?: string | null;
+  }
+}
+
 export interface ConnectorCreateParams {
   known_connector_type: string;
 
@@ -770,11 +951,6 @@ export interface ConnectorSearchTablesParams {
    * Team ID to search tables for
    */
   team_id: string;
-
-  /**
-   * Maximum number of results to return
-   */
-  limit?: number;
 }
 
 export interface ConnectorUpdateColumnParams {
@@ -810,8 +986,6 @@ export declare namespace Connectors {
     type ExplorerChatResponse as ExplorerChatResponse,
     type ListTablesResponse as ListTablesResponse,
     type LlmInformationStore as LlmInformationStore,
-    type SearchTablesResponse as SearchTablesResponse,
-    type TableMention as TableMention,
     type UpdateColumnRequest as UpdateColumnRequest,
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type UpdateTableRequest as UpdateTableRequest,
@@ -819,6 +993,7 @@ export declare namespace Connectors {
     type ConnectorGetResponse as ConnectorGetResponse,
     type ConnectorGetClarificationRequestsResponse as ConnectorGetClarificationRequestsResponse,
     type ConnectorListWithSnippetsResponse as ConnectorListWithSnippetsResponse,
+    type ConnectorSearchTablesResponse as ConnectorSearchTablesResponse,
     ConnectorWithSecretsJobsList as ConnectorWithSecretsJobsList,
     type ConnectorCreateParams as ConnectorCreateParams,
     type ConnectorUpdateParams as ConnectorUpdateParams,
