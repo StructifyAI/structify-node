@@ -574,8 +574,6 @@ Types:
 - <code><a href="./src/resources/connectors/connectors.ts">ExplorerChatResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ListTablesResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">LlmInformationStore</a></code>
-- <code><a href="./src/resources/connectors/connectors.ts">SearchTablesResponse</a></code>
-- <code><a href="./src/resources/connectors/connectors.ts">TableMention</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">UpdateColumnRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">UpdateConnectorRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">UpdateTableRequest</a></code>
@@ -583,6 +581,7 @@ Types:
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorGetResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorGetClarificationRequestsResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorListWithSnippetsResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorSearchTablesResponse</a></code>
 
 Methods:
 
@@ -602,7 +601,7 @@ Methods:
 - <code title="get /connectors/{connector_id}/tables">client.connectors.<a href="./src/resources/connectors/connectors.ts">listTables</a>(connectorId) -> ListTablesResponse</code>
 - <code title="get /connectors/with-snippets">client.connectors.<a href="./src/resources/connectors/connectors.ts">listWithSnippets</a>({ ...params }) -> ConnectorListWithSnippetsResponse</code>
 - <code title="patch /connectors/clarification-requests/{clarification_id}/resolve">client.connectors.<a href="./src/resources/connectors/connectors.ts">resolveClarification</a>(clarificationId) -> void</code>
-- <code title="get /connectors/search-tables">client.connectors.<a href="./src/resources/connectors/connectors.ts">searchTables</a>({ ...params }) -> SearchTablesResponse</code>
+- <code title="get /connectors/search-tables">client.connectors.<a href="./src/resources/connectors/connectors.ts">searchTables</a>({ ...params }) -> ConnectorSearchTablesResponse</code>
 - <code title="patch /connectors/columns/{column_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">updateColumn</a>(columnId, { ...params }) -> void</code>
 - <code title="patch /connectors/tables/{table_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">updateTable</a>(tableId, { ...params }) -> UpdateTableResponse</code>
 
