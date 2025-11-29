@@ -360,7 +360,9 @@ import {
   ConnectorSearchTablesParams,
   ConnectorStoreResponse,
   ConnectorTableInfo,
+  ConnectorUpdateColumnParams,
   ConnectorUpdateParams,
+  ConnectorUpdateTableParams,
   ConnectorWithSecrets,
   ConnectorWithSecretsJobsList,
   ConnectorWithSnippets,
@@ -378,7 +380,10 @@ import {
   LlmInformationStore,
   SearchTablesResponse,
   TableMention,
+  UpdateColumnRequest,
   UpdateConnectorRequest,
+  UpdateTableRequest,
+  UpdateTableResponse,
 } from './resources/connectors/connectors';
 import {
   DatasetAddPropertyParams,
@@ -969,7 +974,10 @@ export declare namespace Structify {
     type LlmInformationStore as LlmInformationStore,
     type SearchTablesResponse as SearchTablesResponse,
     type TableMention as TableMention,
+    type UpdateColumnRequest as UpdateColumnRequest,
     type UpdateConnectorRequest as UpdateConnectorRequest,
+    type UpdateTableRequest as UpdateTableRequest,
+    type UpdateTableResponse as UpdateTableResponse,
     type ConnectorGetResponse as ConnectorGetResponse,
     type ConnectorGetClarificationRequestsResponse as ConnectorGetClarificationRequestsResponse,
     type ConnectorListWithSnippetsResponse as ConnectorListWithSnippetsResponse,
@@ -982,6 +990,8 @@ export declare namespace Structify {
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
     type ConnectorListWithSnippetsParams as ConnectorListWithSnippetsParams,
     type ConnectorSearchTablesParams as ConnectorSearchTablesParams,
+    type ConnectorUpdateColumnParams as ConnectorUpdateColumnParams,
+    type ConnectorUpdateTableParams as ConnectorUpdateTableParams,
   };
 
   export { Server as Server, type ServerInformation as ServerInformation };
