@@ -45,6 +45,21 @@ describe('resource user', () => {
     });
   });
 
+  test('enrich: only required params', async () => {
+    const responsePromise = client.user.enrich({ email: 'email' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('enrich: required and optional params', async () => {
+    const response = await client.user.enrich({ email: 'email' });
+  });
+
   test('info', async () => {
     const responsePromise = client.user.info();
     const rawResponse = await responsePromise.asResponse();
