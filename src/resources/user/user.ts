@@ -27,6 +27,14 @@ export class User extends APIResource {
     return this._client.put('/user/update', { body, ...options });
   }
 
+  enrich(body: UserEnrichParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/user/enrich', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
   /**
    * Enable a source
    */
@@ -85,6 +93,10 @@ export class User extends APIResource {
     }
     return this._client.get('/user/usage', { query, ...options });
   }
+}
+
+export interface EnrichUserParams {
+  email: string;
 }
 
 export interface JwtToAPITokenRequest {
@@ -289,6 +301,10 @@ export namespace UserUpdateParams {
   }
 }
 
+export interface UserEnrichParams {
+  email: string;
+}
+
 export interface UserJwtToAPITokenParams {
   full_name?: string | null;
 }
@@ -305,6 +321,7 @@ User.Stripe = Stripe;
 
 export declare namespace User {
   export {
+    type EnrichUserParams as EnrichUserParams,
     type JwtToAPITokenRequest as JwtToAPITokenRequest,
     type SurveySubmissionRequest as SurveySubmissionRequest,
     type SurveySubmissionResponse as SurveySubmissionResponse,
@@ -314,6 +331,7 @@ export declare namespace User {
     type UserTransactionsResponse as UserTransactionsResponse,
     type UserUsageResponse as UserUsageResponse,
     type UserUpdateParams as UserUpdateParams,
+    type UserEnrichParams as UserEnrichParams,
     type UserJwtToAPITokenParams as UserJwtToAPITokenParams,
     type UserSurveySubmitParams as UserSurveySubmitParams,
     type UserUsageParams as UserUsageParams,

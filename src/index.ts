@@ -420,12 +420,14 @@ import {
 } from './resources/datasets/datasets';
 import { External } from './resources/external/external';
 import {
+  EnrichUserParams,
   JwtToAPITokenRequest,
   SurveySubmissionRequest,
   SurveySubmissionResponse,
   TokenResponse,
   UpdateUserParams,
   User,
+  UserEnrichParams,
   UserInfo,
   UserJwtToAPITokenParams,
   UserSurveySubmitParams,
@@ -688,6 +690,7 @@ export declare namespace Structify {
 
   export {
     User as User,
+    type EnrichUserParams as EnrichUserParams,
     type JwtToAPITokenRequest as JwtToAPITokenRequest,
     type SurveySubmissionRequest as SurveySubmissionRequest,
     type SurveySubmissionResponse as SurveySubmissionResponse,
@@ -697,6 +700,7 @@ export declare namespace Structify {
     type UserTransactionsResponse as UserTransactionsResponse,
     type UserUsageResponse as UserUsageResponse,
     type UserUpdateParams as UserUpdateParams,
+    type UserEnrichParams as UserEnrichParams,
     type UserJwtToAPITokenParams as UserJwtToAPITokenParams,
     type UserSurveySubmitParams as UserSurveySubmitParams,
     type UserUsageParams as UserUsageParams,

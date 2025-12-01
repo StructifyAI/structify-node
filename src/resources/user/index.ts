@@ -13,6 +13,7 @@ export {
 } from './stripe';
 export {
   User,
+  type EnrichUserParams,
   type JwtToAPITokenRequest,
   type SurveySubmissionRequest,
   type SurveySubmissionResponse,
@@ -22,6 +23,7 @@ export {
   type UserTransactionsResponse,
   type UserUsageResponse,
   type UserUpdateParams,
+  type UserEnrichParams,
   type UserJwtToAPITokenParams,
   type UserSurveySubmitParams,
   type UserUsageParams,
