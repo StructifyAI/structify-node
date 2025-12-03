@@ -31,6 +31,7 @@ describe('resource connectors', () => {
       team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       description: 'description',
       pipedream_account_id: 'pipedream_account_id',
+      pipedream_external_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       pipedream_project_id: 'pipedream_project_id',
       refresh_script: 'refresh_script',
       secrets: { foo: 'string' },
