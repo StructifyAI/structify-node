@@ -63,6 +63,8 @@ import {
   NextActionGetTrainingDatumParams,
   NextActionLabelTrainingDatumParams,
 } from './next-action';
+import * as SandboxAPI from './sandbox';
+import { AdminSandboxResponse, AdminSandboxResponsesJobsList, Sandbox, SandboxListParams } from './sandbox';
 import * as TeamsAPI from './teams';
 import {
   AdminTeamsListResponse,
@@ -135,6 +137,7 @@ export class Admin extends APIResource {
   teams: TeamsAPI.Teams = new TeamsAPI.Teams(this._client);
   dataset: DatasetAPI.Dataset = new DatasetAPI.Dataset(this._client);
   jobs: JobsAPI.Jobs = new JobsAPI.Jobs(this._client);
+  sandbox: SandboxAPI.Sandbox = new SandboxAPI.Sandbox(this._client);
   humanLlm: HumanLlmAPI.HumanLlm = new HumanLlmAPI.HumanLlm(this._client);
   functionalTests: FunctionalTestsAPI.FunctionalTests = new FunctionalTestsAPI.FunctionalTests(this._client);
   nextAction: NextActionAPI.NextAction = new NextActionAPI.NextAction(this._client);
@@ -149,6 +152,8 @@ Admin.AdminTeamsListResponsesJobsList = AdminTeamsListResponsesJobsList;
 Admin.Dataset = Dataset;
 Admin.Jobs = Jobs;
 Admin.AdminListJobsResponsesJobsList = AdminListJobsResponsesJobsList;
+Admin.Sandbox = Sandbox;
+Admin.AdminSandboxResponsesJobsList = AdminSandboxResponsesJobsList;
 Admin.HumanLlm = HumanLlm;
 Admin.FunctionalTests = FunctionalTests;
 Admin.NextAction = NextAction;
@@ -187,6 +192,13 @@ export declare namespace Admin {
     type AdminListJobsResponse as AdminListJobsResponse,
     AdminListJobsResponsesJobsList as AdminListJobsResponsesJobsList,
     type JobListParams as JobListParams,
+  };
+
+  export {
+    Sandbox as Sandbox,
+    type AdminSandboxResponse as AdminSandboxResponse,
+    AdminSandboxResponsesJobsList as AdminSandboxResponsesJobsList,
+    type SandboxListParams as SandboxListParams,
   };
 
   export {
