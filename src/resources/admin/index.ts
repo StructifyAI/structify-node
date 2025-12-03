@@ -9,9 +9,10 @@ export {
   type JobListParams,
 } from './jobs';
 export {
-  AdminSandboxResponsesJobsList,
+  AdminSandboxesJobsList,
   Sandbox,
-  type AdminSandboxResponse,
+  type AdminSandbox,
+  type SandboxType,
   type SandboxListParams,
 } from './sandbox';
 export {
