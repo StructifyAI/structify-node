@@ -163,6 +163,11 @@ export namespace AdminListJobsResponse {
         exploration_phase_id: ConnectorsAPI.ExplorationPhaseID;
 
         exploration_run_id: string;
+
+        /**
+         * Which exploration stage to run
+         */
+        stage: 'both' | 'ingestion' | 'annotation';
       }
     }
   }
