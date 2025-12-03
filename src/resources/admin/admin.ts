@@ -64,7 +64,7 @@ import {
   NextActionLabelTrainingDatumParams,
 } from './next-action';
 import * as SandboxAPI from './sandbox';
-import { AdminSandboxResponse, AdminSandboxResponsesJobsList, Sandbox, SandboxListParams } from './sandbox';
+import { AdminSandbox, AdminSandboxesJobsList, Sandbox, SandboxListParams, SandboxType } from './sandbox';
 import * as TeamsAPI from './teams';
 import {
   AdminTeamsListResponse,
@@ -153,7 +153,7 @@ Admin.Dataset = Dataset;
 Admin.Jobs = Jobs;
 Admin.AdminListJobsResponsesJobsList = AdminListJobsResponsesJobsList;
 Admin.Sandbox = Sandbox;
-Admin.AdminSandboxResponsesJobsList = AdminSandboxResponsesJobsList;
+Admin.AdminSandboxesJobsList = AdminSandboxesJobsList;
 Admin.HumanLlm = HumanLlm;
 Admin.FunctionalTests = FunctionalTests;
 Admin.NextAction = NextAction;
@@ -196,8 +196,9 @@ export declare namespace Admin {
 
   export {
     Sandbox as Sandbox,
-    type AdminSandboxResponse as AdminSandboxResponse,
-    AdminSandboxResponsesJobsList as AdminSandboxResponsesJobsList,
+    type AdminSandbox as AdminSandbox,
+    type SandboxType as SandboxType,
+    AdminSandboxesJobsList as AdminSandboxesJobsList,
     type SandboxListParams as SandboxListParams,
   };
 

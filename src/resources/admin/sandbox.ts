@@ -9,76 +9,56 @@ export class Sandbox extends APIResource {
   list(
     query?: SandboxListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<AdminSandboxResponsesJobsList, AdminSandboxResponse>;
-  list(options?: Core.RequestOptions): Core.PagePromise<AdminSandboxResponsesJobsList, AdminSandboxResponse>;
+  ): Core.PagePromise<AdminSandboxesJobsList, AdminSandbox>;
+  list(options?: Core.RequestOptions): Core.PagePromise<AdminSandboxesJobsList, AdminSandbox>;
   list(
     query: SandboxListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<AdminSandboxResponsesJobsList, AdminSandboxResponse> {
+  ): Core.PagePromise<AdminSandboxesJobsList, AdminSandbox> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.getAPIList('/admin/sandbox/list', AdminSandboxResponsesJobsList, {
-      query,
-      ...options,
-    });
+    return this._client.getAPIList('/admin/sandbox/list', AdminSandboxesJobsList, { query, ...options });
   }
 }
 
-export class AdminSandboxResponsesJobsList extends JobsList<AdminSandboxResponse> {}
+export class AdminSandboxesJobsList extends JobsList<AdminSandbox> {}
 
-export type AdminSandboxResponse = AdminSandboxResponse.Dora | AdminSandboxResponse.Diego;
+export interface AdminSandbox {
+  id: string;
 
-export namespace AdminSandboxResponse {
-  export interface Dora {
-    id: string;
+  active_count: number;
 
-    chat_session_id: string;
+  created_at: string;
 
-    created_at: string;
+  sandbox_type: SandboxType;
 
-    modal_id: string;
+  status: 'alive' | 'terminated';
 
-    modal_url: string;
+  updated_at: string;
 
-    sandbox_type: 'dora';
+  chat_session_id?: string | null;
 
-    status: 'alive' | 'terminated';
+  exploration_run_id?: string | null;
 
-    updated_at: string;
+  latest_node?: string | null;
 
-    latest_node?: string | null;
-  }
+  modal_id?: string | null;
 
-  export interface Diego {
-    id: string;
-
-    active_count: number;
-
-    created_at: string;
-
-    exploration_run_id: string;
-
-    sandbox_type: 'diego';
-
-    status: 'alive' | 'terminated';
-
-    updated_at: string;
-
-    modal_id?: string | null;
-
-    modal_url?: string | null;
-  }
+  modal_url?: string | null;
 }
+
+export type SandboxType = 'dora' | 'diego';
 
 export interface SandboxListParams extends JobsListParams {}
 
-Sandbox.AdminSandboxResponsesJobsList = AdminSandboxResponsesJobsList;
+Sandbox.AdminSandboxesJobsList = AdminSandboxesJobsList;
 
 export declare namespace Sandbox {
   export {
-    type AdminSandboxResponse as AdminSandboxResponse,
-    AdminSandboxResponsesJobsList as AdminSandboxResponsesJobsList,
+    type AdminSandbox as AdminSandbox,
+    type SandboxType as SandboxType,
+    AdminSandboxesJobsList as AdminSandboxesJobsList,
     type SandboxListParams as SandboxListParams,
   };
 }
