@@ -87,15 +87,35 @@ export interface WikiConnectorReference {
 }
 
 export namespace WikiConnectorReference {
-  export interface Connector {}
+  export interface Connector {
+    id: string;
 
-  export interface Database {}
+    reference_type: 'connector';
+  }
 
-  export interface Schema {}
+  export interface Database {
+    id: string;
 
-  export interface Table {}
+    reference_type: 'database';
+  }
 
-  export interface Column {}
+  export interface Schema {
+    id: string;
+
+    reference_type: 'schema';
+  }
+
+  export interface Table {
+    id: string;
+
+    reference_type: 'table';
+  }
+
+  export interface Column {
+    id: string;
+
+    reference_type: 'column';
+  }
 }
 
 export interface WikiPageWithReferences extends TeamWikiPage {

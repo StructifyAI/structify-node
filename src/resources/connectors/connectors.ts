@@ -416,6 +416,15 @@ export interface ExplorationRunsResponse {
 export type ExplorationStatus = 'NotStarted' | 'Running' | 'Completed' | 'Failed';
 
 export interface ExploreConnectorRequest {
+  database_id?: string | null;
+
+  schema_id?: string | null;
+
+  /**
+   * Which exploration stage to run
+   */
+  stage?: 'both' | 'ingestion' | 'annotation' | null;
+
   table_id?: string | null;
 }
 
@@ -936,6 +945,15 @@ export interface ConnectorCreateSecretParams {
 }
 
 export interface ConnectorExploreParams {
+  database_id?: string | null;
+
+  schema_id?: string | null;
+
+  /**
+   * Which exploration stage to run
+   */
+  stage?: 'both' | 'ingestion' | 'annotation' | null;
+
   table_id?: string | null;
 }
 
