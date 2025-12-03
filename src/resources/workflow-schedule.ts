@@ -95,13 +95,13 @@ export interface WorkflowScheduleInfo {
 
   chat_session_id: string;
 
-  git_commit_hash: string;
-
   name: string;
 
   paused: boolean;
 
   cron_schedule?: string | null;
+
+  git_commit_hash?: string | null;
 
   next_run_time?: string | null;
 }
