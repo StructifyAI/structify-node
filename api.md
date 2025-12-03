@@ -232,6 +232,16 @@ Methods:
 
 - <code title="get /admin/jobs/list">client.admin.jobs.<a href="./src/resources/admin/jobs.ts">list</a>({ ...params }) -> AdminListJobsResponsesJobsList</code>
 
+## Sandbox
+
+Types:
+
+- <code><a href="./src/resources/admin/sandbox.ts">AdminSandboxResponse</a></code>
+
+Methods:
+
+- <code title="get /admin/sandbox/list">client.admin.sandbox.<a href="./src/resources/admin/sandbox.ts">list</a>({ ...params }) -> AdminSandboxResponsesJobsList</code>
+
 ## HumanLlm
 
 Types:
