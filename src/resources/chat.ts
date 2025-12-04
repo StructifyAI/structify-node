@@ -41,7 +41,7 @@ export class Chat extends APIResource {
   }
 
   /**
-   * Copy a chat session with its latest workflow and all files
+   * Copy a chat session with its workflows and git files
    */
   copy(body: ChatCopyParams, options?: Core.RequestOptions): Core.APIPromise<ChatSessionWithMessages> {
     return this._client.post('/chat/copy', { body, ...options });
@@ -84,6 +84,16 @@ export class Chat extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<DeleteChatSessionResponse> {
     return this._client.delete(`/chat/sessions/${sessionId}`, options);
+  }
+
+  /**
+   * Get all dependencies for a chat session
+   */
+  getDependencies(
+    sessionId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<GetDependenciesResponse> {
+    return this._client.get(`/chat/sessions/${sessionId}/dependencies`, options);
   }
 
   /**
@@ -238,6 +248,21 @@ export interface AdminGrantAccessResponse {
 }
 
 /**
+ * A chat session dependency
+ */
+export interface ChatDependency {
+  /**
+   * Name of the Python package
+   */
+  package_name: string;
+
+  /**
+   * Optional version specifier (e.g., ">=1.0.0", "==2.0.0")
+   */
+  version_spec?: string | null;
+}
+
+/**
  * Events in a chat session timeline, including messages and unified tool
  * calls/results
  */
@@ -347,7 +372,8 @@ export namespace ChatEvent {
       | ToolCall.UnionMember12
       | ToolCall.UnionMember13
       | ToolCall.UnionMember14
-      | ToolCall.UnionMember15;
+      | ToolCall.UnionMember15
+      | ToolCall.UnionMember16;
   }
 
   export namespace ToolCall {
@@ -650,6 +676,24 @@ export namespace ChatEvent {
         table_name: string;
 
         column_name?: string | null;
+      }
+    }
+
+    export interface UnionMember16 {
+      input: UnionMember16.Input;
+
+      name: 'AddDependency';
+
+      result_id?: string | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember16 {
+      export interface Input {
+        package_name: string;
+
+        version_spec?: string | null;
       }
     }
   }
@@ -966,6 +1010,16 @@ export namespace GetChatSessionResponse {
       commit_hash?: string | null;
     }
   }
+}
+
+/**
+ * Response structure for getting chat dependencies
+ */
+export interface GetDependenciesResponse {
+  /**
+   * List of dependencies for the chat session
+   */
+  dependencies: Array<ChatDependency>;
 }
 
 export interface GrantAdminAccessRequest {
@@ -1335,6 +1389,7 @@ export declare namespace Chat {
   export {
     type AddCollaboratorRequest as AddCollaboratorRequest,
     type AdminGrantAccessResponse as AdminGrantAccessResponse,
+    type ChatDependency as ChatDependency,
     type ChatEvent as ChatEvent,
     type ChatSession as ChatSession,
     type ChatSessionRole as ChatSessionRole,
@@ -1347,6 +1402,7 @@ export declare namespace Chat {
     type DeleteChatSessionResponse as DeleteChatSessionResponse,
     type ErrorResponse as ErrorResponse,
     type GetChatSessionResponse as GetChatSessionResponse,
+    type GetDependenciesResponse as GetDependenciesResponse,
     type GrantAdminAccessRequest as GrantAdminAccessRequest,
     type ListChatSessionsResponse as ListChatSessionsResponse,
     type ListCollaboratorsResponse as ListCollaboratorsResponse,
