@@ -53,6 +53,14 @@ export class Connectors extends APIResource {
     });
   }
 
+  deleteSchemaObject(
+    connectorId: string,
+    body: ConnectorDeleteSchemaObjectParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<DeleteSchemaObjectResponse> {
+    return this._client.delete(`/connectors/${connectorId}/schema_object`, { body, ...options });
+  }
+
   deleteSecret(
     connectorId: string,
     secretName: string,
@@ -325,6 +333,50 @@ export interface CreateSecretRequest {
   secret_value: string;
 }
 
+export type DeleteSchemaObjectRequest =
+  | DeleteSchemaObjectRequest.UnionMember0
+  | DeleteSchemaObjectRequest.UnionMember1
+  | DeleteSchemaObjectRequest.UnionMember2
+  | DeleteSchemaObjectRequest.UnionMember3;
+
+export namespace DeleteSchemaObjectRequest {
+  export interface UnionMember0 {
+    id: string;
+
+    type: 'column';
+  }
+
+  export interface UnionMember1 {
+    id: string;
+
+    type: 'table';
+  }
+
+  export interface UnionMember2 {
+    id: string;
+
+    type: 'schema';
+  }
+
+  export interface UnionMember3 {
+    id: string;
+
+    type: 'database';
+  }
+}
+
+export interface DeleteSchemaObjectResponse {
+  /**
+   * The ID of the schema object that was deleted
+   */
+  object_id: string;
+
+  /**
+   * The type of schema object that was deleted
+   */
+  object_type: string;
+}
+
 /**
  * Identifies the phase of connector exploration
  *
@@ -552,6 +604,38 @@ export namespace LlmInformationStore {
         }
       }
     }
+  }
+}
+
+export type SchemaObjectID =
+  | SchemaObjectID.Column
+  | SchemaObjectID.Table
+  | SchemaObjectID.Schema
+  | SchemaObjectID.Database;
+
+export namespace SchemaObjectID {
+  export interface Column {
+    id: string;
+
+    type: 'column';
+  }
+
+  export interface Table {
+    id: string;
+
+    type: 'table';
+  }
+
+  export interface Schema {
+    id: string;
+
+    type: 'schema';
+  }
+
+  export interface Database {
+    id: string;
+
+    type: 'database';
   }
 }
 
@@ -944,6 +1028,38 @@ export interface ConnectorCreateSecretParams {
   secret_value: string;
 }
 
+export type ConnectorDeleteSchemaObjectParams =
+  | ConnectorDeleteSchemaObjectParams.Variant0
+  | ConnectorDeleteSchemaObjectParams.Variant1
+  | ConnectorDeleteSchemaObjectParams.Variant2
+  | ConnectorDeleteSchemaObjectParams.Variant3;
+
+export declare namespace ConnectorDeleteSchemaObjectParams {
+  export interface Variant0 {
+    id: string;
+
+    type: 'column';
+  }
+
+  export interface Variant1 {
+    id: string;
+
+    type: 'table';
+  }
+
+  export interface Variant2 {
+    id: string;
+
+    type: 'schema';
+  }
+
+  export interface Variant3 {
+    id: string;
+
+    type: 'database';
+  }
+}
+
 export interface ConnectorExploreParams {
   database_id?: string | null;
 
@@ -1007,6 +1123,8 @@ export declare namespace Connectors {
     type ConnectorWithSnippets as ConnectorWithSnippets,
     type CreateConnectorRequest as CreateConnectorRequest,
     type CreateSecretRequest as CreateSecretRequest,
+    type DeleteSchemaObjectRequest as DeleteSchemaObjectRequest,
+    type DeleteSchemaObjectResponse as DeleteSchemaObjectResponse,
     type ExplorationPhaseID as ExplorationPhaseID,
     type ExplorationRun as ExplorationRun,
     type ExplorationRunsResponse as ExplorationRunsResponse,
@@ -1016,6 +1134,7 @@ export declare namespace Connectors {
     type ExplorerChatResponse as ExplorerChatResponse,
     type ListTablesResponse as ListTablesResponse,
     type LlmInformationStore as LlmInformationStore,
+    type SchemaObjectID as SchemaObjectID,
     type UpdateColumnRequest as UpdateColumnRequest,
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type UpdateTableRequest as UpdateTableRequest,
@@ -1029,6 +1148,7 @@ export declare namespace Connectors {
     type ConnectorUpdateParams as ConnectorUpdateParams,
     type ConnectorListParams as ConnectorListParams,
     type ConnectorCreateSecretParams as ConnectorCreateSecretParams,
+    type ConnectorDeleteSchemaObjectParams as ConnectorDeleteSchemaObjectParams,
     type ConnectorExploreParams as ConnectorExploreParams,
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
     type ConnectorListWithSnippetsParams as ConnectorListWithSnippetsParams,

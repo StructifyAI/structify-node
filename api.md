@@ -578,6 +578,8 @@ Types:
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorWithSnippets</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">CreateConnectorRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">CreateSecretRequest</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">DeleteSchemaObjectRequest</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">DeleteSchemaObjectResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ExplorationPhaseID</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ExplorationRun</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ExplorationRunsResponse</a></code>
@@ -587,6 +589,7 @@ Types:
 - <code><a href="./src/resources/connectors/connectors.ts">ExplorerChatResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ListTablesResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">LlmInformationStore</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">SchemaObjectID</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">UpdateColumnRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">UpdateConnectorRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">UpdateTableRequest</a></code>
@@ -603,6 +606,7 @@ Methods:
 - <code title="get /connectors">client.connectors.<a href="./src/resources/connectors/connectors.ts">list</a>({ ...params }) -> ConnectorWithSecretsJobsList</code>
 - <code title="delete /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">delete</a>(connectorId) -> void</code>
 - <code title="post /connectors/{connector_id}/secrets">client.connectors.<a href="./src/resources/connectors/connectors.ts">createSecret</a>(connectorId, { ...params }) -> void</code>
+- <code title="delete /connectors/{connector_id}/schema_object">client.connectors.<a href="./src/resources/connectors/connectors.ts">deleteSchemaObject</a>(connectorId, { ...params }) -> DeleteSchemaObjectResponse</code>
 - <code title="delete /connectors/{connector_id}/secrets/{secret_name}">client.connectors.<a href="./src/resources/connectors/connectors.ts">deleteSecret</a>(connectorId, secretName) -> void</code>
 - <code title="post /connectors/{connector_id}/explore">client.connectors.<a href="./src/resources/connectors/connectors.ts">explore</a>(connectorId, { ...params }) -> void</code>
 - <code title="get /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">get</a>(connectorId) -> ConnectorGetResponse</code>
