@@ -44,7 +44,6 @@ Types:
 
 - <code><a href="./src/resources/chat.ts">AddCollaboratorRequest</a></code>
 - <code><a href="./src/resources/chat.ts">AdminGrantAccessResponse</a></code>
-- <code><a href="./src/resources/chat.ts">ChatDependency</a></code>
 - <code><a href="./src/resources/chat.ts">ChatEvent</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSession</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSessionRole</a></code>
@@ -57,7 +56,6 @@ Types:
 - <code><a href="./src/resources/chat.ts">DeleteChatSessionResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ErrorResponse</a></code>
 - <code><a href="./src/resources/chat.ts">GetChatSessionResponse</a></code>
-- <code><a href="./src/resources/chat.ts">GetDependenciesResponse</a></code>
 - <code><a href="./src/resources/chat.ts">GrantAdminAccessRequest</a></code>
 - <code><a href="./src/resources/chat.ts">ListChatSessionsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ListCollaboratorsResponse</a></code>
@@ -85,7 +83,6 @@ Methods:
 - <code title="post /chat/sessions">client.chat.<a href="./src/resources/chat.ts">createSession</a>({ ...params }) -> CreateChatSessionResponse</code>
 - <code title="post /chat/files/delete/{chat_id}">client.chat.<a href="./src/resources/chat.ts">deleteFiles</a>(chatId, { ...params }) -> ChatDeleteFilesResponse</code>
 - <code title="delete /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">deleteSession</a>(sessionId) -> DeleteChatSessionResponse</code>
-- <code title="get /chat/sessions/{session_id}/dependencies">client.chat.<a href="./src/resources/chat.ts">getDependencies</a>(sessionId) -> GetDependenciesResponse</code>
 - <code title="get /chat/sessions/{chat_id}/commits/{commit_hash}">client.chat.<a href="./src/resources/chat.ts">getGitCommit</a>(chatId, commitHash) -> ChatGetGitCommitResponse</code>
 - <code title="get /chat/{chat_session_id}/partial-chats">client.chat.<a href="./src/resources/chat.ts">getPartialChats</a>(chatSessionId) -> ChatGetPartialChatsResponse</code>
 - <code title="get /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">getSession</a>(sessionId) -> GetChatSessionResponse</code>
