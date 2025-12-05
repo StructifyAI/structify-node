@@ -280,6 +280,8 @@ export interface UpdateTeamRequest {
   description?: string | null;
 
   name?: string | null;
+
+  pipedream_project_id?: string | null;
 }
 
 export interface UpdateTeamResponse {
@@ -341,6 +343,8 @@ export interface TeamUpdateParams {
   description?: string | null;
 
   name?: string | null;
+
+  pipedream_project_id?: string | null;
 }
 
 export interface TeamAcceptInvitationParams {
