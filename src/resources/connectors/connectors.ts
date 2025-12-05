@@ -795,6 +795,11 @@ export namespace ConnectorSearchTablesResponse {
     schema_name: string;
 
     /**
+     * Search relevance score (0 = exact match, higher = less relevant)
+     */
+    score: number;
+
+    /**
      * Represents a table (for relational databases) or resource (for APIs)
      */
     table: RankedResult.Table;
@@ -885,6 +890,11 @@ export namespace ConnectorSearchTablesResponse {
     database_name: string;
 
     schema_name: string;
+
+    /**
+     * Search relevance score (0 = exact match, higher = less relevant)
+     */
+    score: number;
 
     /**
      * Represents a table (for relational databases) or resource (for APIs)
