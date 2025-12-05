@@ -692,7 +692,17 @@ export namespace ChatEvent {
 
   export namespace ReviewRequest {
     export interface ReviewRequest {
-      message: string;
+      node_summaries: Array<ReviewRequest.NodeSummary>;
+    }
+
+    export namespace ReviewRequest {
+      export interface NodeSummary {
+        name: string;
+
+        data_preview?: string | null;
+
+        image?: Core.Uploadable | null;
+      }
     }
   }
 }
