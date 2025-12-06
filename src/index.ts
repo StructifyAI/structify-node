@@ -311,7 +311,6 @@ import {
   UpdateTeamRequest,
   UpdateTeamResponse,
   UsageGroupKey,
-  UserTeam,
 } from './resources/teams';
 import {
   CreateWikiPageRequest,
@@ -428,6 +427,8 @@ import { External } from './resources/external/external';
 import {
   EnrichUserParams,
   JwtToAPITokenRequest,
+  RefreshSessionRequest,
+  RefreshSessionResponse,
   SurveySubmissionRequest,
   SurveySubmissionResponse,
   TokenResponse,
@@ -436,6 +437,7 @@ import {
   UserEnrichParams,
   UserInfo,
   UserJwtToAPITokenParams,
+  UserRefreshParams,
   UserSurveySubmitParams,
   UserTransactionsResponse,
   UserUpdateParams,
@@ -453,7 +455,12 @@ export interface ClientOptions {
   /**
    * Defaults to process.env['STRUCTIFY_API_TOKEN'].
    */
-  apiKey?: string | undefined;
+  apiKey?: string | null | undefined;
+
+  /**
+   * Defaults to process.env['STRUCTIFY_SESSION_TOKEN'].
+   */
+  sessionToken?: string | null | undefined;
 
   /**
    * Specifies the environment to use for the API.
@@ -527,14 +534,16 @@ export interface ClientOptions {
  * API Client for interfacing with the Structify API.
  */
 export class Structify extends Core.APIClient {
-  apiKey: string;
+  apiKey: string | null;
+  sessionToken: string | null;
 
   private _options: ClientOptions;
 
   /**
    * API Client for interfacing with the Structify API.
    *
-   * @param {string | undefined} [opts.apiKey=process.env['STRUCTIFY_API_TOKEN'] ?? undefined]
+   * @param {string | null | undefined} [opts.apiKey=process.env['STRUCTIFY_API_TOKEN'] ?? null]
+   * @param {string | null | undefined} [opts.sessionToken=process.env['STRUCTIFY_SESSION_TOKEN'] ?? null]
    * @param {Environment} [opts.environment=production] - Specifies the environment URL to use for the API.
    * @param {string} [opts.baseURL=process.env['STRUCTIFY_BASE_URL'] ?? https://api.structify.ai] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
@@ -546,17 +555,13 @@ export class Structify extends Core.APIClient {
    */
   constructor({
     baseURL = Core.readEnv('STRUCTIFY_BASE_URL'),
-    apiKey = Core.readEnv('STRUCTIFY_API_TOKEN'),
+    apiKey = Core.readEnv('STRUCTIFY_API_TOKEN') ?? null,
+    sessionToken = Core.readEnv('STRUCTIFY_SESSION_TOKEN') ?? null,
     ...opts
   }: ClientOptions = {}) {
-    if (apiKey === undefined) {
-      throw new Errors.StructifyError(
-        "The STRUCTIFY_API_TOKEN environment variable is missing or empty; either provide it, or instantiate the Structify client with an apiKey option, like new Structify({ apiKey: 'My API Key' }).",
-      );
-    }
-
     const options: ClientOptions = {
       apiKey,
+      sessionToken,
       ...opts,
       baseURL,
       environment: opts.environment ?? 'production',
@@ -580,6 +585,7 @@ export class Structify extends Core.APIClient {
     this._options = options;
 
     this.apiKey = apiKey;
+    this.sessionToken = sessionToken;
   }
 
   user: API.User = new API.User(this);
@@ -627,8 +633,45 @@ export class Structify extends Core.APIClient {
     };
   }
 
+  protected override validateHeaders(headers: Core.Headers, customHeaders: Core.Headers) {
+    if (this.apiKey && headers['api_key']) {
+      return;
+    }
+    if (customHeaders['api_key'] === null) {
+      return;
+    }
+
+    if (this.sessionToken && headers['authorization']) {
+      return;
+    }
+    if (customHeaders['authorization'] === null) {
+      return;
+    }
+
+    throw new Error(
+      'Could not resolve authentication method. Expected either apiKey or sessionToken to be set. Or for one of the "api_key" or "Authorization" headers to be explicitly omitted',
+    );
+  }
+
   protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
+    return {
+      ...this.apiKeyAuth(opts),
+      ...this.sessionTokenAuth(opts),
+    };
+  }
+
+  protected apiKeyAuth(opts: Core.FinalRequestOptions): Core.Headers {
+    if (this.apiKey == null) {
+      return {};
+    }
     return { api_key: this.apiKey };
+  }
+
+  protected sessionTokenAuth(opts: Core.FinalRequestOptions): Core.Headers {
+    if (this.sessionToken == null) {
+      return {};
+    }
+    return { Authorization: `Bearer ${this.sessionToken}` };
   }
 
   protected override stringifyQuery(query: Record<string, unknown>): string {
@@ -698,6 +741,8 @@ export declare namespace Structify {
     User as User,
     type EnrichUserParams as EnrichUserParams,
     type JwtToAPITokenRequest as JwtToAPITokenRequest,
+    type RefreshSessionRequest as RefreshSessionRequest,
+    type RefreshSessionResponse as RefreshSessionResponse,
     type SurveySubmissionRequest as SurveySubmissionRequest,
     type SurveySubmissionResponse as SurveySubmissionResponse,
     type TokenResponse as TokenResponse,
@@ -708,6 +753,7 @@ export declare namespace Structify {
     type UserUpdateParams as UserUpdateParams,
     type UserEnrichParams as UserEnrichParams,
     type UserJwtToAPITokenParams as UserJwtToAPITokenParams,
+    type UserRefreshParams as UserRefreshParams,
     type UserSurveySubmitParams as UserSurveySubmitParams,
     type UserUsageParams as UserUsageParams,
   };
@@ -791,7 +837,6 @@ export declare namespace Structify {
     type UpdateTeamRequest as UpdateTeamRequest,
     type UpdateTeamResponse as UpdateTeamResponse,
     type UsageGroupKey as UsageGroupKey,
-    type UserTeam as UserTeam,
     type TeamCreateParams as TeamCreateParams,
     type TeamUpdateParams as TeamUpdateParams,
     type TeamAcceptInvitationParams as TeamAcceptInvitationParams,

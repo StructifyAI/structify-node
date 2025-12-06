@@ -4,6 +4,8 @@ Types:
 
 - <code><a href="./src/resources/user/user.ts">EnrichUserParams</a></code>
 - <code><a href="./src/resources/user/user.ts">JwtToAPITokenRequest</a></code>
+- <code><a href="./src/resources/user/user.ts">RefreshSessionRequest</a></code>
+- <code><a href="./src/resources/user/user.ts">RefreshSessionResponse</a></code>
 - <code><a href="./src/resources/user/user.ts">SurveySubmissionRequest</a></code>
 - <code><a href="./src/resources/user/user.ts">SurveySubmissionResponse</a></code>
 - <code><a href="./src/resources/user/user.ts">TokenResponse</a></code>
@@ -18,6 +20,7 @@ Methods:
 - <code title="post /user/enrich">client.user.<a href="./src/resources/user/user.ts">enrich</a>({ ...params }) -> void</code>
 - <code title="get /user/info">client.user.<a href="./src/resources/user/user.ts">info</a>() -> UserInfo</code>
 - <code title="post /user/jwt_to_api_token/{jwt}">client.user.<a href="./src/resources/user/user.ts">jwtToAPIToken</a>(jwt, { ...params }) -> TokenResponse</code>
+- <code title="post /user/refresh">client.user.<a href="./src/resources/user/user.ts">refresh</a>({ ...params }) -> RefreshSessionResponse</code>
 - <code title="post /user/survey/submit">client.user.<a href="./src/resources/user/user.ts">surveySubmit</a>({ ...params }) -> SurveySubmissionResponse</code>
 - <code title="get /user/transactions/list">client.user.<a href="./src/resources/user/user.ts">transactions</a>() -> UserTransactionsResponse</code>
 - <code title="get /user/usage">client.user.<a href="./src/resources/user/user.ts">usage</a>({ ...params }) -> UserUsageResponse</code>
@@ -37,6 +40,22 @@ Methods:
 - <code title="post /user/transactions/stripe/create_portal_session">client.user.stripe.<a href="./src/resources/user/stripe.ts">createPortalSession</a>({ ...params }) -> CreateSessionResponse</code>
 - <code title="post /user/transactions/stripe/create_session">client.user.stripe.<a href="./src/resources/user/stripe.ts">createSession</a>({ ...params }) -> CreateSessionResponse</code>
 - <code title="post /user/transactions/stripe/create_subscription">client.user.stripe.<a href="./src/resources/user/stripe.ts">createSubscription</a>({ ...params }) -> CreateSessionResponse</code>
+
+## APIKeys
+
+Types:
+
+- <code><a href="./src/resources/user/api-keys.ts">APIKeyInfo</a></code>
+- <code><a href="./src/resources/user/api-keys.ts">CreateAPIKeyRequest</a></code>
+- <code><a href="./src/resources/user/api-keys.ts">CreateAPIKeyResponse</a></code>
+- <code><a href="./src/resources/user/api-keys.ts">ListAPIKeysResponse</a></code>
+
+Methods:
+
+- <code title="post /user/api_keys">client.user.apiKeys.<a href="./src/resources/user/api-keys.ts">create</a>({ ...params }) -> CreateAPIKeyResponse</code>
+- <code title="get /user/api_keys">client.user.apiKeys.<a href="./src/resources/user/api-keys.ts">list</a>() -> ListAPIKeysResponse</code>
+- <code title="get /user/api_keys/{id}">client.user.apiKeys.<a href="./src/resources/user/api-keys.ts">get</a>(id) -> APIKeyInfo</code>
+- <code title="delete /user/api_keys/{id}">client.user.apiKeys.<a href="./src/resources/user/api-keys.ts">revoke</a>(id) -> void</code>
 
 # Chat
 
@@ -133,7 +152,6 @@ Types:
 - <code><a href="./src/resources/teams.ts">UpdateTeamRequest</a></code>
 - <code><a href="./src/resources/teams.ts">UpdateTeamResponse</a></code>
 - <code><a href="./src/resources/teams.ts">UsageGroupKey</a></code>
-- <code><a href="./src/resources/teams.ts">UserTeam</a></code>
 
 Methods:
 
@@ -319,19 +337,13 @@ Types:
 
 - <code><a href="./src/resources/admin/users.ts">User</a></code>
 - <code><a href="./src/resources/admin/users.ts">UserListResponse</a></code>
-- <code><a href="./src/resources/admin/users.ts">UserAddCreditsResponse</a></code>
-- <code><a href="./src/resources/admin/users.ts">UserGetCreditsResponse</a></code>
 - <code><a href="./src/resources/admin/users.ts">UserGetStatsResponse</a></code>
-- <code><a href="./src/resources/admin/users.ts">UserSetCreditsResponse</a></code>
 
 Methods:
 
 - <code title="post /admin/users/create">client.admin.users.<a href="./src/resources/admin/users.ts">create</a>({ ...params }) -> TokenResponse</code>
 - <code title="get /admin/users/list">client.admin.users.<a href="./src/resources/admin/users.ts">list</a>() -> UserListResponse</code>
-- <code title="post /admin/users/add_credits">client.admin.users.<a href="./src/resources/admin/users.ts">addCredits</a>({ ...params }) -> UserAddCreditsResponse</code>
-- <code title="post /admin/users/get_credits">client.admin.users.<a href="./src/resources/admin/users.ts">getCredits</a>({ ...params }) -> UserGetCreditsResponse</code>
 - <code title="post /admin/users/get_stats">client.admin.users.<a href="./src/resources/admin/users.ts">getStats</a>({ ...params }) -> UserGetStatsResponse</code>
-- <code title="post /admin/users/set_credits">client.admin.users.<a href="./src/resources/admin/users.ts">setCredits</a>({ ...params }) -> UserSetCreditsResponse</code>
 
 ## TrainingDatasets
 
