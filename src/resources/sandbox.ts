@@ -48,6 +48,8 @@ export interface Sandbox {
   updated_at: string;
 
   latest_node?: string | null;
+
+  session_id?: string | null;
 }
 
 export type SandboxListResponse = Array<Sandbox>;
@@ -62,6 +64,8 @@ export interface SandboxCreateParams {
   status: 'alive' | 'terminated';
 
   latest_node?: string | null;
+
+  session_id?: string | null;
 }
 
 export interface SandboxGetParams {

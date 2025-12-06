@@ -119,13 +119,7 @@ export {
   Users,
   type User,
   type UserListResponse,
-  type UserAddCreditsResponse,
-  type UserGetCreditsResponse,
   type UserGetStatsResponse,
-  type UserSetCreditsResponse,
   type UserCreateParams,
-  type UserAddCreditsParams,
-  type UserGetCreditsParams,
   type UserGetStatsParams,
-  type UserSetCreditsParams,
 } from './users';

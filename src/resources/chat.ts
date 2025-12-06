@@ -382,8 +382,6 @@ export namespace ChatEvent {
 
       name: 'WebSearch';
 
-      result_id?: string | null;
-
       result_text?: string | null;
     }
 
@@ -397,8 +395,6 @@ export namespace ChatEvent {
       input: UnionMember1.Input;
 
       name: 'WebNavigate';
-
-      result_id?: string | null;
 
       result_text?: string | null;
     }
@@ -414,8 +410,6 @@ export namespace ChatEvent {
 
       name: 'InspectDAG';
 
-      result_id?: string | null;
-
       result_text?: string | null;
     }
 
@@ -430,8 +424,6 @@ export namespace ChatEvent {
 
       name: 'DeleteFile';
 
-      result_id?: string | null;
-
       result_text?: string | null;
     }
 
@@ -445,8 +437,6 @@ export namespace ChatEvent {
       input: UnionMember4.Input;
 
       name: 'MoveFile';
-
-      result_id?: string | null;
 
       result_text?: string | null;
     }
@@ -463,8 +453,6 @@ export namespace ChatEvent {
       input: UnionMember5.Input;
 
       name: 'RunBash';
-
-      result_id?: string | null;
 
       result_text?: string | null;
     }
@@ -484,8 +472,6 @@ export namespace ChatEvent {
 
       name: 'RunPython';
 
-      result_id?: string | null;
-
       result_text?: string | null;
     }
 
@@ -504,8 +490,6 @@ export namespace ChatEvent {
 
       name: 'IssueFound';
 
-      result_id?: string | null;
-
       result_text?: string | null;
     }
 
@@ -521,8 +505,6 @@ export namespace ChatEvent {
       input: UnionMember8.Input;
 
       name: 'SaveDatabase';
-
-      result_id?: string | null;
 
       result_text?: string | null;
     }
@@ -542,8 +524,6 @@ export namespace ChatEvent {
 
       name: 'SaveSchema';
 
-      result_id?: string | null;
-
       result_text?: string | null;
     }
 
@@ -562,16 +542,12 @@ export namespace ChatEvent {
 
       name: 'SaveTable';
 
-      result_id?: string | null;
-
       result_text?: string | null;
     }
 
     export namespace UnionMember10 {
       export interface Input {
         name: string;
-
-        deprioritization_reason?: string | null;
 
         description?: string | null;
 
@@ -585,8 +561,6 @@ export namespace ChatEvent {
       input: UnionMember11.Input;
 
       name: 'SaveColumn';
-
-      result_id?: string | null;
 
       result_text?: string | null;
     }
@@ -605,8 +579,6 @@ export namespace ChatEvent {
       input: UnionMember12.Input;
 
       name: 'SaveApiResource';
-
-      result_id?: string | null;
 
       result_text?: string | null;
     }
@@ -628,8 +600,6 @@ export namespace ChatEvent {
 
       name: 'SaveMemory';
 
-      result_id?: string | null;
-
       result_text?: string | null;
     }
 
@@ -646,8 +616,6 @@ export namespace ChatEvent {
 
       name: 'SearchConnectorTables';
 
-      result_id?: string | null;
-
       result_text?: string | null;
     }
 
@@ -663,8 +631,6 @@ export namespace ChatEvent {
       input: UnionMember15.Input;
 
       name: 'RequestClarification';
-
-      result_id?: string | null;
 
       result_text?: string | null;
     }
@@ -683,8 +649,6 @@ export namespace ChatEvent {
       input: UnionMember16.Input;
 
       name: 'AddDependency';
-
-      result_id?: string | null;
 
       result_text?: string | null;
     }
@@ -728,7 +692,17 @@ export namespace ChatEvent {
 
   export namespace ReviewRequest {
     export interface ReviewRequest {
-      message: string;
+      node_summaries: Array<ReviewRequest.NodeSummary>;
+    }
+
+    export namespace ReviewRequest {
+      export interface NodeSummary {
+        name: string;
+
+        data_preview?: string | null;
+
+        image?: Core.Uploadable | null;
+      }
     }
   }
 }

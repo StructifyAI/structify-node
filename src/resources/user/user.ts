@@ -4,6 +4,15 @@ import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as UsersAPI from '../admin/users';
+import * as APIKeysAPI from './api-keys';
+import {
+  APIKeyCreateParams,
+  APIKeyInfo,
+  APIKeys,
+  CreateAPIKeyRequest,
+  CreateAPIKeyResponse,
+  ListAPIKeysResponse,
+} from './api-keys';
 import * as StripeAPI from './stripe';
 import {
   CreatePortalRequest,
@@ -19,6 +28,7 @@ import {
 
 export class User extends APIResource {
   stripe: StripeAPI.Stripe = new StripeAPI.Stripe(this._client);
+  apiKeys: APIKeysAPI.APIKeys = new APIKeysAPI.APIKeys(this._client);
 
   /**
    * Update a user's permissions and type.
@@ -66,6 +76,15 @@ export class User extends APIResource {
   }
 
   /**
+   * This endpoint allows clients to extend their session by providing both the
+   * current session token and refresh token. Upon successful refresh, a new session
+   * token is issued and the old session is revoked.
+   */
+  refresh(body: UserRefreshParams, options?: Core.RequestOptions): Core.APIPromise<RefreshSessionResponse> {
+    return this._client.post('/user/refresh', { body, ...options });
+  }
+
+  /**
    * Submit user onboarding survey
    */
   surveySubmit(
@@ -101,6 +120,24 @@ export interface EnrichUserParams {
 
 export interface JwtToAPITokenRequest {
   full_name?: string | null;
+
+  invitation_token?: string | null;
+}
+
+export interface RefreshSessionRequest {
+  refresh_token: string;
+
+  session_token: string;
+}
+
+export interface RefreshSessionResponse {
+  expires_at: string;
+
+  refresh_token: string;
+
+  refresh_token_expires_at: string;
+
+  session_token: string;
 }
 
 export interface SurveySubmissionRequest {
@@ -114,9 +151,13 @@ export interface SurveySubmissionResponse {
 }
 
 export interface TokenResponse {
-  token: string;
-
   permissions: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'>;
+
+  refresh_token: string;
+
+  session_expires_at: string;
+
+  session_token: string;
 }
 
 export interface UpdateUserParams {
@@ -224,9 +265,9 @@ export namespace UserTransactionsResponse {
 
     amount: number;
 
-    timestamp: string;
+    membership_id: string;
 
-    token_id: string;
+    timestamp: string;
 
     credit_grant_id?: string | null;
 
@@ -307,6 +348,14 @@ export interface UserEnrichParams {
 
 export interface UserJwtToAPITokenParams {
   full_name?: string | null;
+
+  invitation_token?: string | null;
+}
+
+export interface UserRefreshParams {
+  refresh_token: string;
+
+  session_token: string;
 }
 
 export interface UserSurveySubmitParams {
@@ -318,11 +367,14 @@ export interface UserUsageParams {
 }
 
 User.Stripe = Stripe;
+User.APIKeys = APIKeys;
 
 export declare namespace User {
   export {
     type EnrichUserParams as EnrichUserParams,
     type JwtToAPITokenRequest as JwtToAPITokenRequest,
+    type RefreshSessionRequest as RefreshSessionRequest,
+    type RefreshSessionResponse as RefreshSessionResponse,
     type SurveySubmissionRequest as SurveySubmissionRequest,
     type SurveySubmissionResponse as SurveySubmissionResponse,
     type TokenResponse as TokenResponse,
@@ -333,6 +385,7 @@ export declare namespace User {
     type UserUpdateParams as UserUpdateParams,
     type UserEnrichParams as UserEnrichParams,
     type UserJwtToAPITokenParams as UserJwtToAPITokenParams,
+    type UserRefreshParams as UserRefreshParams,
     type UserSurveySubmitParams as UserSurveySubmitParams,
     type UserUsageParams as UserUsageParams,
   };
@@ -347,5 +400,14 @@ export declare namespace User {
     type StripeCreatePortalSessionParams as StripeCreatePortalSessionParams,
     type StripeCreateSessionParams as StripeCreateSessionParams,
     type StripeCreateSubscriptionParams as StripeCreateSubscriptionParams,
+  };
+
+  export {
+    APIKeys as APIKeys,
+    type APIKeyInfo as APIKeyInfo,
+    type CreateAPIKeyRequest as CreateAPIKeyRequest,
+    type CreateAPIKeyResponse as CreateAPIKeyResponse,
+    type ListAPIKeysResponse as ListAPIKeysResponse,
+    type APIKeyCreateParams as APIKeyCreateParams,
   };
 }

@@ -760,9 +760,9 @@ export namespace EntityListJobsResponse {
 
     max_steps_without_save: number;
 
-    status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+    membership_id: string;
 
-    token_id: string;
+    status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
     updated_at: string;
 
