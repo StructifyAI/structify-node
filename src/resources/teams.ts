@@ -120,9 +120,40 @@ export interface AddMemberResponse {
   invitation_sent: boolean;
 
   /**
-   * Contains membership information and API token
+   * Contains membership information and API token value
    */
-  membership: UserTeam;
+  membership: AddMemberResponse.Membership;
+}
+
+export namespace AddMemberResponse {
+  /**
+   * Contains membership information and API token value
+   */
+  export interface Membership {
+    id: string;
+
+    created_at: string;
+
+    pending: boolean;
+
+    role: TeamsAPI.TeamRole;
+
+    team_id: string;
+
+    value: Core.Uploadable;
+
+    invitation_expires_at?: string | null;
+
+    invitation_token?: string | null;
+
+    invited_at?: string | null;
+
+    invited_by_user_id?: string | null;
+
+    invitee_email?: string | null;
+
+    user_id?: string | null;
+  }
 }
 
 export interface CreateProjectRequest {
@@ -216,7 +247,9 @@ export interface RemoveMemberResponse {
 }
 
 export interface SelectTeamResponse {
-  api_token: string;
+  refresh_token: string;
+
+  session_token: string;
 
   success: boolean;
 }
@@ -299,35 +332,6 @@ export type UsageGroupKey =
   | 'match'
   | 'connectorexplore'
   | 'other';
-
-/**
- * Contains membership information and API token
- */
-export interface UserTeam {
-  id: string;
-
-  created_at: string;
-
-  pending: boolean;
-
-  role: TeamRole;
-
-  team_id: string;
-
-  value: Core.Uploadable;
-
-  invitation_expires_at?: string | null;
-
-  invitation_token?: string | null;
-
-  invited_at?: string | null;
-
-  invited_by_user_id?: string | null;
-
-  invitee_email?: string | null;
-
-  user_id?: string | null;
-}
 
 export interface TeamCreateParams {
   name: string;
@@ -419,7 +423,6 @@ export declare namespace Teams {
     type UpdateTeamRequest as UpdateTeamRequest,
     type UpdateTeamResponse as UpdateTeamResponse,
     type UsageGroupKey as UsageGroupKey,
-    type UserTeam as UserTeam,
     type TeamCreateParams as TeamCreateParams,
     type TeamUpdateParams as TeamUpdateParams,
     type TeamAcceptInvitationParams as TeamAcceptInvitationParams,
