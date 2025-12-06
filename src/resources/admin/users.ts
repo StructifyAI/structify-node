@@ -7,7 +7,7 @@ import * as UserAPI from '../user/user';
 
 export class Users extends APIResource {
   /**
-   * Create a user, returing their API token.
+   * Create a user, returning their session token.
    */
   create(body: UserCreateParams, options?: Core.RequestOptions): Core.APIPromise<UserAPI.TokenResponse> {
     return this._client.post('/admin/users/create', { body, ...options });
@@ -20,38 +20,8 @@ export class Users extends APIResource {
     return this._client.get('/admin/users/list', options);
   }
 
-  /**
-   * Add credits to a user's account via a credit grant.
-   */
-  addCredits(
-    body: UserAddCreditsParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<UserAddCreditsResponse> {
-    return this._client.post('/admin/users/add_credits', { body, ...options });
-  }
-
-  /**
-   * get the credit balance of a user by email.
-   */
-  getCredits(
-    body: UserGetCreditsParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<UserGetCreditsResponse> {
-    return this._client.post('/admin/users/get_credits', { body, ...options });
-  }
-
   getStats(body: UserGetStatsParams, options?: Core.RequestOptions): Core.APIPromise<UserGetStatsResponse> {
     return this._client.post('/admin/users/get_stats', { body, ...options });
-  }
-
-  /**
-   * set the credit balance of a user, returing that new credit balance.
-   */
-  setCredits(
-    body: UserSetCreditsParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<UserSetCreditsResponse> {
-    return this._client.post('/admin/users/set_credits', { body, ...options });
   }
 }
 
@@ -123,14 +93,6 @@ export namespace UserListResponse {
   }
 }
 
-export interface UserAddCreditsResponse {
-  credit_count: number;
-}
-
-export interface UserGetCreditsResponse {
-  credit_count: number;
-}
-
 export type UserGetStatsResponse = Array<UserGetStatsResponse.UserGetStatsResponseItem>;
 
 export namespace UserGetStatsResponse {
@@ -139,10 +101,6 @@ export namespace UserGetStatsResponse {
 
     period: string;
   }
-}
-
-export interface UserSetCreditsResponse {
-  credit_count: number;
 }
 
 export interface UserCreateParams {
@@ -172,22 +130,6 @@ export interface UserCreateParams {
   test?: boolean;
 }
 
-export interface UserAddCreditsParams {
-  credit_amount: number;
-
-  user_email: string;
-
-  source_type?: string | null;
-
-  valid_for_days?: number | null;
-}
-
-export interface UserGetCreditsParams {
-  user_email?: string | null;
-
-  user_token?: string | null;
-}
-
 export interface UserGetStatsParams {
   bucket?: 'Second' | 'Minute' | 'Hour' | 'Day' | 'Week' | 'Month' | 'Quarter' | 'Year' | 'Decade';
 
@@ -200,24 +142,12 @@ export interface UserGetStatsParams {
   user_token?: string | null;
 }
 
-export interface UserSetCreditsParams {
-  credit_count: number;
-
-  user_email: string;
-}
-
 export declare namespace Users {
   export {
     type User as User,
     type UserListResponse as UserListResponse,
-    type UserAddCreditsResponse as UserAddCreditsResponse,
-    type UserGetCreditsResponse as UserGetCreditsResponse,
     type UserGetStatsResponse as UserGetStatsResponse,
-    type UserSetCreditsResponse as UserSetCreditsResponse,
     type UserCreateParams as UserCreateParams,
-    type UserAddCreditsParams as UserAddCreditsParams,
-    type UserGetCreditsParams as UserGetCreditsParams,
     type UserGetStatsParams as UserGetStatsParams,
-    type UserSetCreditsParams as UserSetCreditsParams,
   };
 }
