@@ -261,16 +261,14 @@ export { Server, type ServerInformation } from './server';
 export {
   Sessions,
   type AutofixContext,
+  type CreateWorkflowEdgeRequest,
+  type CreateWorkflowNodeRequest,
   type CreateWorkflowSessionRequest,
   type DashboardComponent,
   type DashboardLayout,
-  type EdgeSpec,
-  type FinalizeDagRequest,
-  type FinalizeDagResponse,
   type GetNodeLogsResponse,
   type JobEventBody,
   type MarkWorkflowSessionErroredRequest,
-  type NodeSpec,
   type UpdateWorkflowNodeProgressRequest,
   type UpdateWorkflowNodeRequest,
   type UploadDashboardLayoutRequest,
@@ -284,8 +282,9 @@ export {
   type SessionGetEventsResponse,
   type SessionGetNodeProgressResponse,
   type SessionKillJobsResponse,
+  type SessionCreateEdgeParams,
+  type SessionCreateNodeParams,
   type SessionCreateSessionParams,
-  type SessionFinalizeDagParams,
   type SessionGetEventsParams,
   type SessionKillJobsParams,
   type SessionMarkErroredParams,
@@ -306,16 +305,7 @@ export {
   type Relationship,
   type Table,
 } from './shared';
-export {
-  Slack,
-  type SlackAPIResponse,
-  type SlackConnectionStatus,
-  type SlackEventPayload,
-  type SlackUserMappingRequest,
-  type SlackUserMappingResponse,
-  type SlackEventsParams,
-  type SlackUserMappingParams,
-} from './slack';
+export { Slack, type SlackAPIResponse, type SlackEventPayload, type SlackEventsParams } from './slack';
 export {
   Sources,
   type DeleteSourceEntityParams,

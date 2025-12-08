@@ -12,23 +12,6 @@ export class Slack extends APIResource {
   events(body: SlackEventsParams, options?: Core.RequestOptions): Core.APIPromise<SlackAPIResponse> {
     return this._client.post('/slack/events', { body, ...options });
   }
-
-  /**
-   * Get current user's Slack connection status
-   */
-  status(options?: Core.RequestOptions): Core.APIPromise<SlackConnectionStatus> {
-    return this._client.get('/slack/status', options);
-  }
-
-  /**
-   * Create Slack user mapping directly from token data
-   */
-  userMapping(
-    body: SlackUserMappingParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<SlackUserMappingResponse> {
-    return this._client.post('/slack/user-mapping', { body, ...options });
-  }
 }
 
 export type SlackAPIResponse = SlackAPIResponse.SlackChallengeResponse | SlackAPIResponse.SlackEventResponse;
@@ -43,14 +26,6 @@ export namespace SlackAPIResponse {
 
     message?: string | null;
   }
-}
-
-export interface SlackConnectionStatus {
-  connected: boolean;
-
-  slack_team_id?: string | null;
-
-  slack_username?: string | null;
 }
 
 export type SlackEventPayload = SlackEventPayload.URLVerification | SlackEventPayload.EventCallback;
@@ -125,22 +100,6 @@ export namespace SlackEventPayload {
   }
 }
 
-export interface SlackUserMappingRequest {
-  slack_bot_token: string;
-
-  slack_team_id: string;
-
-  slack_user_id: string;
-
-  slack_username?: string | null;
-}
-
-export interface SlackUserMappingResponse {
-  message: string;
-
-  success: boolean;
-}
-
 export type SlackEventsParams = SlackEventsParams.Variant0 | SlackEventsParams.Variant1;
 
 export declare namespace SlackEventsParams {
@@ -213,24 +172,10 @@ export declare namespace SlackEventsParams {
   }
 }
 
-export interface SlackUserMappingParams {
-  slack_bot_token: string;
-
-  slack_team_id: string;
-
-  slack_user_id: string;
-
-  slack_username?: string | null;
-}
-
 export declare namespace Slack {
   export {
     type SlackAPIResponse as SlackAPIResponse,
-    type SlackConnectionStatus as SlackConnectionStatus,
     type SlackEventPayload as SlackEventPayload,
-    type SlackUserMappingRequest as SlackUserMappingRequest,
-    type SlackUserMappingResponse as SlackUserMappingResponse,
     type SlackEventsParams as SlackEventsParams,
-    type SlackUserMappingParams as SlackUserMappingParams,
   };
 }

@@ -38,6 +38,8 @@ describe('resource user', () => {
         linkedin_url: 'linkedin_url',
         onboarding_session_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         permissions: ['labeler'],
+        slack_user_id: 'slack_user_id',
+        slack_username: 'slack_username',
         survey_response: {},
         user_type: 'admin',
       },

@@ -188,18 +188,17 @@ import {
 import { Server, ServerInformation } from './resources/server';
 import {
   AutofixContext,
+  CreateWorkflowEdgeRequest,
+  CreateWorkflowNodeRequest,
   CreateWorkflowSessionRequest,
   DashboardComponent,
   DashboardLayout,
-  EdgeSpec,
-  FinalizeDagRequest,
-  FinalizeDagResponse,
   GetNodeLogsResponse,
   JobEventBody,
   MarkWorkflowSessionErroredRequest,
-  NodeSpec,
+  SessionCreateEdgeParams,
+  SessionCreateNodeParams,
   SessionCreateSessionParams,
-  SessionFinalizeDagParams,
   SessionGetEventsParams,
   SessionGetEventsResponse,
   SessionGetNodeProgressResponse,
@@ -234,16 +233,7 @@ import {
   Shared,
   Table,
 } from './resources/shared';
-import {
-  Slack,
-  SlackAPIResponse,
-  SlackConnectionStatus,
-  SlackEventPayload,
-  SlackEventsParams,
-  SlackUserMappingParams,
-  SlackUserMappingRequest,
-  SlackUserMappingResponse,
-} from './resources/slack';
+import { Slack, SlackAPIResponse, SlackEventPayload, SlackEventsParams } from './resources/slack';
 import {
   DeleteSourceEntityParams,
   DeleteSourceEntityResponse,
@@ -952,16 +942,14 @@ export declare namespace Structify {
   export {
     Sessions as Sessions,
     type AutofixContext as AutofixContext,
+    type CreateWorkflowEdgeRequest as CreateWorkflowEdgeRequest,
+    type CreateWorkflowNodeRequest as CreateWorkflowNodeRequest,
     type CreateWorkflowSessionRequest as CreateWorkflowSessionRequest,
     type DashboardComponent as DashboardComponent,
     type DashboardLayout as DashboardLayout,
-    type EdgeSpec as EdgeSpec,
-    type FinalizeDagRequest as FinalizeDagRequest,
-    type FinalizeDagResponse as FinalizeDagResponse,
     type GetNodeLogsResponse as GetNodeLogsResponse,
     type JobEventBody as JobEventBody,
     type MarkWorkflowSessionErroredRequest as MarkWorkflowSessionErroredRequest,
-    type NodeSpec as NodeSpec,
     type UpdateWorkflowNodeProgressRequest as UpdateWorkflowNodeProgressRequest,
     type UpdateWorkflowNodeRequest as UpdateWorkflowNodeRequest,
     type UploadDashboardLayoutRequest as UploadDashboardLayoutRequest,
@@ -975,8 +963,9 @@ export declare namespace Structify {
     type SessionGetEventsResponse as SessionGetEventsResponse,
     type SessionGetNodeProgressResponse as SessionGetNodeProgressResponse,
     type SessionKillJobsResponse as SessionKillJobsResponse,
+    type SessionCreateEdgeParams as SessionCreateEdgeParams,
+    type SessionCreateNodeParams as SessionCreateNodeParams,
     type SessionCreateSessionParams as SessionCreateSessionParams,
-    type SessionFinalizeDagParams as SessionFinalizeDagParams,
     type SessionGetEventsParams as SessionGetEventsParams,
     type SessionKillJobsParams as SessionKillJobsParams,
     type SessionMarkErroredParams as SessionMarkErroredParams,
@@ -1193,12 +1182,8 @@ export declare namespace Structify {
   export {
     Slack as Slack,
     type SlackAPIResponse as SlackAPIResponse,
-    type SlackConnectionStatus as SlackConnectionStatus,
     type SlackEventPayload as SlackEventPayload,
-    type SlackUserMappingRequest as SlackUserMappingRequest,
-    type SlackUserMappingResponse as SlackUserMappingResponse,
     type SlackEventsParams as SlackEventsParams,
-    type SlackUserMappingParams as SlackUserMappingParams,
   };
 }
 

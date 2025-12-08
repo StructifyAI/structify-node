@@ -816,6 +816,10 @@ export namespace ChatSessionWithMessages {
     content_proto?: Core.Uploadable | null;
 
     git_commit_id?: string | null;
+
+    slack_channel_id?: string | null;
+
+    slack_thread_ts?: string | null;
   }
 }
 
@@ -1181,6 +1185,10 @@ export namespace ChatGetSessionTimelineResponse {
     content_proto?: Core.Uploadable | null;
 
     git_commit_id?: string | null;
+
+    slack_channel_id?: string | null;
+
+    slack_thread_ts?: string | null;
   }
 
   export interface GitCommit {
