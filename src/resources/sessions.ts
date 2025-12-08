@@ -8,6 +8,22 @@ import * as SharedAPI from './shared';
 import { type Response } from '../_shims/index';
 
 export class Sessions extends APIResource {
+  createEdge(
+    sessionId: string,
+    body: SessionCreateEdgeParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<WorkflowSessionEdge> {
+    return this._client.post(`/sessions/${sessionId}/edges`, { body, ...options });
+  }
+
+  createNode(
+    sessionId: string,
+    body: SessionCreateNodeParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<WorkflowSessionNode> {
+    return this._client.post(`/sessions/${sessionId}/nodes`, { body, ...options });
+  }
+
   createSession(
     body: SessionCreateSessionParams,
     options?: Core.RequestOptions,
@@ -16,15 +32,13 @@ export class Sessions extends APIResource {
   }
 
   /**
-   * Finalize a workflow session DAG by creating all nodes/edges and marking it as
-   * ready
+   * Finalize a workflow session DAG by validating and marking it as ready
    */
-  finalizeDag(
-    sessionId: string,
-    body: SessionFinalizeDagParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<FinalizeDagResponse> {
-    return this._client.post(`/sessions/${sessionId}/dag_ready`, { body, ...options });
+  finalizeDag(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post(`/sessions/${sessionId}/dag_ready`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 
   getDag(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<WorkflowDag> {
@@ -135,6 +149,24 @@ export class Sessions extends APIResource {
 
 export type AutofixContext = 'creation' | 'execution' | 'visualization';
 
+export interface CreateWorkflowEdgeRequest {
+  source_node_id: string;
+
+  target_node_id: string;
+}
+
+export interface CreateWorkflowNodeRequest {
+  code_md5_hash: string;
+
+  docstring: string;
+
+  function_name: string;
+
+  connector_id?: string | null;
+
+  output_schema?: unknown;
+}
+
 export interface CreateWorkflowSessionRequest {
   chat_session_id: string;
 
@@ -157,24 +189,6 @@ export interface DashboardLayout {
   title: string;
 
   description?: string | null;
-}
-
-export interface EdgeSpec {
-  source_node_index: number;
-
-  target_node_index: number;
-}
-
-export interface FinalizeDagRequest {
-  edges: Array<EdgeSpec>;
-
-  nodes: Array<NodeSpec>;
-
-  dashboard_layout?: DashboardLayout | null;
-}
-
-export interface FinalizeDagResponse {
-  node_ids: Array<string>;
 }
 
 export interface GetNodeLogsResponse {
@@ -328,16 +342,6 @@ export interface MarkWorkflowSessionErroredRequest {
   autofix_context?: AutofixContext | null;
 
   error_traceback?: string | null;
-}
-
-export interface NodeSpec {
-  code_md5_hash: string;
-
-  docstring: string;
-
-  function_name: string;
-
-  connector_id?: string | null;
 }
 
 export interface UpdateWorkflowNodeProgressRequest {
@@ -537,18 +541,28 @@ export interface SessionKillJobsResponse {
   message: string;
 }
 
+export interface SessionCreateEdgeParams {
+  source_node_id: string;
+
+  target_node_id: string;
+}
+
+export interface SessionCreateNodeParams {
+  code_md5_hash: string;
+
+  docstring: string;
+
+  function_name: string;
+
+  connector_id?: string | null;
+
+  output_schema?: unknown;
+}
+
 export interface SessionCreateSessionParams {
   chat_session_id: string;
 
   workflow_schedule_id?: string | null;
-}
-
-export interface SessionFinalizeDagParams {
-  edges: Array<EdgeSpec>;
-
-  nodes: Array<NodeSpec>;
-
-  dashboard_layout?: DashboardLayout | null;
 }
 
 export interface SessionGetEventsParams {
@@ -610,16 +624,14 @@ export interface SessionUploadNodeVisualizationOutputParams {
 export declare namespace Sessions {
   export {
     type AutofixContext as AutofixContext,
+    type CreateWorkflowEdgeRequest as CreateWorkflowEdgeRequest,
+    type CreateWorkflowNodeRequest as CreateWorkflowNodeRequest,
     type CreateWorkflowSessionRequest as CreateWorkflowSessionRequest,
     type DashboardComponent as DashboardComponent,
     type DashboardLayout as DashboardLayout,
-    type EdgeSpec as EdgeSpec,
-    type FinalizeDagRequest as FinalizeDagRequest,
-    type FinalizeDagResponse as FinalizeDagResponse,
     type GetNodeLogsResponse as GetNodeLogsResponse,
     type JobEventBody as JobEventBody,
     type MarkWorkflowSessionErroredRequest as MarkWorkflowSessionErroredRequest,
-    type NodeSpec as NodeSpec,
     type UpdateWorkflowNodeProgressRequest as UpdateWorkflowNodeProgressRequest,
     type UpdateWorkflowNodeRequest as UpdateWorkflowNodeRequest,
     type UploadDashboardLayoutRequest as UploadDashboardLayoutRequest,
@@ -633,8 +645,9 @@ export declare namespace Sessions {
     type SessionGetEventsResponse as SessionGetEventsResponse,
     type SessionGetNodeProgressResponse as SessionGetNodeProgressResponse,
     type SessionKillJobsResponse as SessionKillJobsResponse,
+    type SessionCreateEdgeParams as SessionCreateEdgeParams,
+    type SessionCreateNodeParams as SessionCreateNodeParams,
     type SessionCreateSessionParams as SessionCreateSessionParams,
-    type SessionFinalizeDagParams as SessionFinalizeDagParams,
     type SessionGetEventsParams as SessionGetEventsParams,
     type SessionKillJobsParams as SessionKillJobsParams,
     type SessionMarkErroredParams as SessionMarkErroredParams,
