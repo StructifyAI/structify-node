@@ -119,10 +119,13 @@ import {
 } from './training-datasets';
 import * as UsersAPI from './users';
 import {
+  ImpersonateRequest,
+  ImpersonateResponse,
   User,
   UserCreateParams,
   UserGetStatsParams,
   UserGetStatsResponse,
+  UserImpersonateParams,
   UserListResponse,
   Users,
 } from './users';
@@ -250,11 +253,14 @@ export declare namespace Admin {
 
   export {
     Users as Users,
+    type ImpersonateRequest as ImpersonateRequest,
+    type ImpersonateResponse as ImpersonateResponse,
     type User as User,
     type UserListResponse as UserListResponse,
     type UserGetStatsResponse as UserGetStatsResponse,
     type UserCreateParams as UserCreateParams,
     type UserGetStatsParams as UserGetStatsParams,
+    type UserImpersonateParams as UserImpersonateParams,
   };
 
   export {
