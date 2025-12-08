@@ -9,52 +9,6 @@ const client = new Structify({
 });
 
 describe('resource sessions', () => {
-  test('createEdge: only required params', async () => {
-    const responsePromise = client.sessions.createEdge('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      source_node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      target_node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('createEdge: required and optional params', async () => {
-    const response = await client.sessions.createEdge('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      source_node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      target_node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
-  });
-
-  test('createNode: only required params', async () => {
-    const responsePromise = client.sessions.createNode('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      code_md5_hash: 'code_md5_hash',
-      docstring: 'docstring',
-      function_name: 'function_name',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('createNode: required and optional params', async () => {
-    const response = await client.sessions.createNode('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      code_md5_hash: 'code_md5_hash',
-      docstring: 'docstring',
-      function_name: 'function_name',
-      connector_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      output_schema: {},
-    });
-  });
-
   test('createSession: only required params', async () => {
     const responsePromise = client.sessions.createSession({
       chat_session_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -75,8 +29,11 @@ describe('resource sessions', () => {
     });
   });
 
-  test('finalizeDag', async () => {
-    const responsePromise = client.sessions.finalizeDag('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
+  test('finalizeDag: only required params', async () => {
+    const responsePromise = client.sessions.finalizeDag('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      edges: [{ source_node_index: 0, target_node_index: 0 }],
+      nodes: [{ code_md5_hash: 'code_md5_hash', docstring: 'docstring', function_name: 'function_name' }],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -86,13 +43,23 @@ describe('resource sessions', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('finalizeDag: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.sessions.finalizeDag('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(Structify.NotFoundError);
+  test('finalizeDag: required and optional params', async () => {
+    const response = await client.sessions.finalizeDag('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      edges: [{ source_node_index: 0, target_node_index: 0 }],
+      nodes: [
+        {
+          code_md5_hash: 'code_md5_hash',
+          docstring: 'docstring',
+          function_name: 'function_name',
+          connector_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        },
+      ],
+      dashboard_layout: {
+        components: [{ node_name: 'node_name', title: 'title', description: 'description', span: 0 }],
+        title: 'title',
+        description: 'description',
+      },
+    });
   });
 
   test('getDag', async () => {
