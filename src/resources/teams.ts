@@ -270,6 +270,12 @@ export interface Team {
   description?: string | null;
 
   pipedream_project_id?: string | null;
+
+  slack_team_icon?: string | null;
+
+  slack_team_id?: string | null;
+
+  slack_team_name?: string | null;
 }
 
 export type TeamRole = 'read_only' | 'member' | 'admin' | 'owner';
@@ -315,6 +321,14 @@ export interface UpdateTeamRequest {
   name?: string | null;
 
   pipedream_project_id?: string | null;
+
+  slack_bot_token?: string | null;
+
+  slack_team_icon?: string | null;
+
+  slack_team_id?: string | null;
+
+  slack_team_name?: string | null;
 }
 
 export interface UpdateTeamResponse {
@@ -349,6 +363,14 @@ export interface TeamUpdateParams {
   name?: string | null;
 
   pipedream_project_id?: string | null;
+
+  slack_bot_token?: string | null;
+
+  slack_team_icon?: string | null;
+
+  slack_team_id?: string | null;
+
+  slack_team_name?: string | null;
 }
 
 export interface TeamAcceptInvitationParams {

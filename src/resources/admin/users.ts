@@ -100,6 +100,10 @@ export interface User {
 
   onboarding_session_id?: string | null;
 
+  slack_user_id?: string | null;
+
+  slack_username?: string | null;
+
   survey_completed_at?: string | null;
 
   survey_response?: unknown;

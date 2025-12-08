@@ -507,16 +507,14 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/sessions.ts">AutofixContext</a></code>
+- <code><a href="./src/resources/sessions.ts">CreateWorkflowEdgeRequest</a></code>
+- <code><a href="./src/resources/sessions.ts">CreateWorkflowNodeRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">CreateWorkflowSessionRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">DashboardComponent</a></code>
 - <code><a href="./src/resources/sessions.ts">DashboardLayout</a></code>
-- <code><a href="./src/resources/sessions.ts">EdgeSpec</a></code>
-- <code><a href="./src/resources/sessions.ts">FinalizeDagRequest</a></code>
-- <code><a href="./src/resources/sessions.ts">FinalizeDagResponse</a></code>
 - <code><a href="./src/resources/sessions.ts">GetNodeLogsResponse</a></code>
 - <code><a href="./src/resources/sessions.ts">JobEventBody</a></code>
 - <code><a href="./src/resources/sessions.ts">MarkWorkflowSessionErroredRequest</a></code>
-- <code><a href="./src/resources/sessions.ts">NodeSpec</a></code>
 - <code><a href="./src/resources/sessions.ts">UpdateWorkflowNodeProgressRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">UpdateWorkflowNodeRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">UploadDashboardLayoutRequest</a></code>
@@ -533,8 +531,10 @@ Types:
 
 Methods:
 
+- <code title="post /sessions/{session_id}/edges">client.sessions.<a href="./src/resources/sessions.ts">createEdge</a>(sessionId, { ...params }) -> WorkflowSessionEdge</code>
+- <code title="post /sessions/{session_id}/nodes">client.sessions.<a href="./src/resources/sessions.ts">createNode</a>(sessionId, { ...params }) -> WorkflowSessionNode</code>
 - <code title="post /sessions">client.sessions.<a href="./src/resources/sessions.ts">createSession</a>({ ...params }) -> WorkflowSession</code>
-- <code title="post /sessions/{session_id}/dag_ready">client.sessions.<a href="./src/resources/sessions.ts">finalizeDag</a>(sessionId, { ...params }) -> FinalizeDagResponse</code>
+- <code title="post /sessions/{session_id}/dag_ready">client.sessions.<a href="./src/resources/sessions.ts">finalizeDag</a>(sessionId) -> void</code>
 - <code title="get /sessions/{session_id}/dag">client.sessions.<a href="./src/resources/sessions.ts">getDag</a>(sessionId) -> WorkflowDag</code>
 - <code title="get /sessions/nodes/{node_id}/events">client.sessions.<a href="./src/resources/sessions.ts">getEvents</a>(nodeId, { ...params }) -> SessionGetEventsResponse</code>
 - <code title="get /sessions/node/{node_id}/logs">client.sessions.<a href="./src/resources/sessions.ts">getNodeLogs</a>(nodeId) -> GetNodeLogsResponse</code>
@@ -931,13 +931,8 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/slack.ts">SlackAPIResponse</a></code>
-- <code><a href="./src/resources/slack.ts">SlackConnectionStatus</a></code>
 - <code><a href="./src/resources/slack.ts">SlackEventPayload</a></code>
-- <code><a href="./src/resources/slack.ts">SlackUserMappingRequest</a></code>
-- <code><a href="./src/resources/slack.ts">SlackUserMappingResponse</a></code>
 
 Methods:
 
 - <code title="post /slack/events">client.slack.<a href="./src/resources/slack.ts">events</a>({ ...params }) -> SlackAPIResponse</code>
-- <code title="get /slack/status">client.slack.<a href="./src/resources/slack.ts">status</a>() -> SlackConnectionStatus</code>
-- <code title="post /slack/user-mapping">client.slack.<a href="./src/resources/slack.ts">userMapping</a>({ ...params }) -> SlackUserMappingResponse</code>

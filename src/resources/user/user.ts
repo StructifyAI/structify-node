@@ -209,6 +209,10 @@ export namespace UpdateUserParams {
 
     permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'> | null;
 
+    slack_user_id?: string | null;
+
+    slack_username?: string | null;
+
     survey_response?: unknown;
 
     user_type?: 'admin' | 'public' | 'end_user' | null;
@@ -250,6 +254,10 @@ export interface UserInfo {
   last_selected_team_id?: string | null;
 
   onboarding_session_id?: string | null;
+
+  slack_user_id?: string | null;
+
+  slack_username?: string | null;
 
   survey_completed_at?: string | null;
 }
@@ -335,6 +343,10 @@ export namespace UserUpdateParams {
     onboarding_session_id?: string | null;
 
     permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'> | null;
+
+    slack_user_id?: string | null;
+
+    slack_username?: string | null;
 
     survey_response?: unknown;
 
