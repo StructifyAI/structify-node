@@ -48,4 +48,23 @@ describe('resource users', () => {
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
   });
+
+  test('impersonate: only required params', async () => {
+    const responsePromise = client.admin.users.impersonate({
+      membership_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('impersonate: required and optional params', async () => {
+    const response = await client.admin.users.impersonate({
+      membership_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+  });
 });

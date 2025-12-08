@@ -335,6 +335,8 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/admin/users.ts">ImpersonateRequest</a></code>
+- <code><a href="./src/resources/admin/users.ts">ImpersonateResponse</a></code>
 - <code><a href="./src/resources/admin/users.ts">User</a></code>
 - <code><a href="./src/resources/admin/users.ts">UserListResponse</a></code>
 - <code><a href="./src/resources/admin/users.ts">UserGetStatsResponse</a></code>
@@ -344,6 +346,7 @@ Methods:
 - <code title="post /admin/users/create">client.admin.users.<a href="./src/resources/admin/users.ts">create</a>({ ...params }) -> TokenResponse</code>
 - <code title="get /admin/users/list">client.admin.users.<a href="./src/resources/admin/users.ts">list</a>() -> UserListResponse</code>
 - <code title="post /admin/users/get_stats">client.admin.users.<a href="./src/resources/admin/users.ts">getStats</a>({ ...params }) -> UserGetStatsResponse</code>
+- <code title="post /admin/users/impersonate">client.admin.users.<a href="./src/resources/admin/users.ts">impersonate</a>({ ...params }) -> ImpersonateResponse</code>
 
 ## TrainingDatasets
 

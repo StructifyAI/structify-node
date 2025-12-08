@@ -117,9 +117,12 @@ export {
 } from './training-datasets';
 export {
   Users,
+  type ImpersonateRequest,
+  type ImpersonateResponse,
   type User,
   type UserListResponse,
   type UserGetStatsResponse,
   type UserCreateParams,
   type UserGetStatsParams,
+  type UserImpersonateParams,
 } from './users';
