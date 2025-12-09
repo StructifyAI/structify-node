@@ -67,31 +67,121 @@ import Structify, { toFile } from 'structifyai';
 const client = new Structify();
 
 // If you have access to Node `fs` we recommend using `fs.createReadStream()`:
-await client.admin.trainingDatasets.uploadLabeledStep({
-  dataset_name: fs.createReadStream('/path/to/file'),
-  step_bytes: fs.createReadStream('path/to/file'),
+await client.documents.structure({
+  dataset_descriptor: {
+    description: 'description',
+    name: 'name',
+    relationships: [
+      {
+        description: 'description',
+        name: 'name',
+        source_table: 'source_table',
+        target_table: 'target_table',
+      },
+    ],
+    tables: [
+      {
+        description: 'description',
+        name: 'name',
+        properties: [{ description: 'description', name: 'name' }],
+      },
+    ],
+  },
+  content: fs.createReadStream('/path/to/file'),
 });
 
 // Or if you have the web `File` API you can pass a `File` instance:
-await client.admin.trainingDatasets.uploadLabeledStep({
-  dataset_name: new File(['my bytes'], 'file'),
-  step_bytes: fs.createReadStream('path/to/file'),
+await client.documents.structure({
+  dataset_descriptor: {
+    description: 'description',
+    name: 'name',
+    relationships: [
+      {
+        description: 'description',
+        name: 'name',
+        source_table: 'source_table',
+        target_table: 'target_table',
+      },
+    ],
+    tables: [
+      {
+        description: 'description',
+        name: 'name',
+        properties: [{ description: 'description', name: 'name' }],
+      },
+    ],
+  },
+  content: new File(['my bytes'], 'file'),
 });
 
 // You can also pass a `fetch` `Response`:
-await client.admin.trainingDatasets.uploadLabeledStep({
-  dataset_name: await fetch('https://somesite/file'),
-  step_bytes: fs.createReadStream('path/to/file'),
+await client.documents.structure({
+  dataset_descriptor: {
+    description: 'description',
+    name: 'name',
+    relationships: [
+      {
+        description: 'description',
+        name: 'name',
+        source_table: 'source_table',
+        target_table: 'target_table',
+      },
+    ],
+    tables: [
+      {
+        description: 'description',
+        name: 'name',
+        properties: [{ description: 'description', name: 'name' }],
+      },
+    ],
+  },
+  content: await fetch('https://somesite/file'),
 });
 
 // Finally, if none of the above are convenient, you can use our `toFile` helper:
-await client.admin.trainingDatasets.uploadLabeledStep({
-  dataset_name: await toFile(Buffer.from('my bytes'), 'file'),
-  step_bytes: fs.createReadStream('path/to/file'),
+await client.documents.structure({
+  dataset_descriptor: {
+    description: 'description',
+    name: 'name',
+    relationships: [
+      {
+        description: 'description',
+        name: 'name',
+        source_table: 'source_table',
+        target_table: 'target_table',
+      },
+    ],
+    tables: [
+      {
+        description: 'description',
+        name: 'name',
+        properties: [{ description: 'description', name: 'name' }],
+      },
+    ],
+  },
+  content: await toFile(Buffer.from('my bytes'), 'file'),
 });
-await client.admin.trainingDatasets.uploadLabeledStep({
-  dataset_name: await toFile(new Uint8Array([0, 1, 2]), 'file'),
-  step_bytes: fs.createReadStream('path/to/file'),
+await client.documents.structure({
+  dataset_descriptor: {
+    description: 'description',
+    name: 'name',
+    relationships: [
+      {
+        description: 'description',
+        name: 'name',
+        source_table: 'source_table',
+        target_table: 'target_table',
+      },
+    ],
+    tables: [
+      {
+        description: 'description',
+        name: 'name',
+        properties: [{ description: 'description', name: 'name' }],
+      },
+    ],
+  },
+  content: await toFile(new Uint8Array([0, 1, 2]), 'file'),
 });
 ```
 
