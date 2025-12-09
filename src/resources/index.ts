@@ -229,17 +229,6 @@ export {
 } from './projects';
 export { PublicSessions } from './public-sessions';
 export {
-  Report,
-  type ReportMissingResponse,
-  type ReportRelationshipResponse,
-  type ReportStepResponse,
-  type ReportWrongResponse,
-  type ReportMissingParams,
-  type ReportRelationshipParams,
-  type ReportStepParams,
-  type ReportWrongParams,
-} from './report';
-export {
   SandboxResource,
   type GetSandboxRequest,
   type Sandbox,

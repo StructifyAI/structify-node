@@ -157,17 +157,6 @@ import {
 } from './resources/projects';
 import { PublicSessions } from './resources/public-sessions';
 import {
-  Report,
-  ReportMissingParams,
-  ReportMissingResponse,
-  ReportRelationshipParams,
-  ReportRelationshipResponse,
-  ReportStepParams,
-  ReportStepResponse,
-  ReportWrongParams,
-  ReportWrongResponse,
-} from './resources/report';
-import {
   GetSandboxRequest,
   Sandbox,
   SandboxCreateParams,
@@ -596,7 +585,6 @@ export class Structify extends Core.APIClient {
   server: API.Server = new API.Server(this);
   sources: API.Sources = new API.Sources(this);
   entities: API.Entities = new API.Entities(this);
-  report: API.Report = new API.Report(this);
   sandbox: API.SandboxResource = new API.SandboxResource(this);
   scrape: API.Scrape = new API.Scrape(this);
   code: API.Code = new API.Code(this);
@@ -712,7 +700,6 @@ Structify.ConnectorWithSecretsJobsList = ConnectorWithSecretsJobsList;
 Structify.Server = Server;
 Structify.Sources = Sources;
 Structify.Entities = Entities;
-Structify.Report = Report;
 Structify.SandboxResource = SandboxResource;
 Structify.Scrape = Scrape;
 Structify.Code = Code;
@@ -1101,18 +1088,6 @@ export declare namespace Structify {
     type EntityUploadParquetParams as EntityUploadParquetParams,
     type EntityVerifyParams as EntityVerifyParams,
     type EntityViewParams as EntityViewParams,
-  };
-
-  export {
-    Report as Report,
-    type ReportMissingResponse as ReportMissingResponse,
-    type ReportRelationshipResponse as ReportRelationshipResponse,
-    type ReportStepResponse as ReportStepResponse,
-    type ReportWrongResponse as ReportWrongResponse,
-    type ReportMissingParams as ReportMissingParams,
-    type ReportRelationshipParams as ReportRelationshipParams,
-    type ReportStepParams as ReportStepParams,
-    type ReportWrongParams as ReportWrongParams,
   };
 
   export {
