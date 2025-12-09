@@ -647,8 +647,6 @@ export namespace EntityGetSourceEntitiesResponse {
     location?: SourceEntity.Text | SourceEntity.Visual | SourceEntity.Page | null;
 
     scraper_id?: string | null;
-
-    step_id?: string | null;
   }
 
   export namespace SourceEntity {
@@ -1579,8 +1577,6 @@ export namespace EntityViewResponse {
     location?: Source.Text | Source.Visual | Source.Page | null;
 
     scraper_id?: string | null;
-
-    step_id?: string | null;
   }
 
   export namespace Source {

@@ -301,207 +301,6 @@ export namespace ChatPrompt {
   }
 }
 
-export interface ExecutionStep {
-  id: string;
-
-  prompt: ChatPrompt;
-
-  response: ExecutionStep.Response;
-}
-
-export namespace ExecutionStep {
-  export interface Response {
-    llm: string;
-
-    text: string;
-
-    tool_calls: Array<Response.ToolCall>;
-
-    reasoning?: string | null;
-
-    thinking?: string | null;
-  }
-
-  export namespace Response {
-    export interface ToolCall {
-      input:
-        | ToolCall.Save
-        | ToolCall.Scroll
-        | ToolCall.ScrollToBottom
-        | ToolCall.Exit
-        | ToolCall.Click
-        | ToolCall.Hover
-        | ToolCall.Wait
-        | ToolCall.Error
-        | ToolCall.Google
-        | ToolCall.Type;
-
-      name:
-        | 'Exit'
-        | 'Save'
-        | 'Wait'
-        | 'Type'
-        | 'Scroll'
-        | 'ScrollToBottom'
-        | 'Click'
-        | 'Hover'
-        | 'Error'
-        | 'Google';
-
-      result?: ToolCall.ToolQueued | ToolCall.ToolFail | ToolCall.InputParseFail | ToolCall.Success | null;
-    }
-
-    export namespace ToolCall {
-      export interface Save {
-        /**
-         * Knowledge graph info structured to deserialize and display in the same format
-         * that the LLM outputs. Also the first representation of an LLM output in the
-         * pipeline from raw tool output to being merged into a DB
-         */
-        Save: SharedAPI.KnowledgeGraph;
-      }
-
-      export interface Scroll {
-        /**
-         * For tools with no inputs.
-         */
-        Scroll: Scroll.Scroll;
-      }
-
-      export namespace Scroll {
-        /**
-         * For tools with no inputs.
-         */
-        export interface Scroll {
-          /**
-           * Dummy argument
-           */
-          reason: string;
-        }
-      }
-
-      export interface ScrollToBottom {
-        /**
-         * For tools with no inputs.
-         */
-        ScrollToBottom: ScrollToBottom.ScrollToBottom;
-      }
-
-      export namespace ScrollToBottom {
-        /**
-         * For tools with no inputs.
-         */
-        export interface ScrollToBottom {
-          /**
-           * Dummy argument
-           */
-          reason: string;
-        }
-      }
-
-      export interface Exit {
-        /**
-         * For tools with no inputs.
-         */
-        Exit: Exit.Exit;
-      }
-
-      export namespace Exit {
-        /**
-         * For tools with no inputs.
-         */
-        export interface Exit {
-          /**
-           * Dummy argument
-           */
-          reason: string;
-        }
-      }
-
-      export interface Click {
-        Click: Click.Click;
-      }
-
-      export namespace Click {
-        export interface Click {
-          flag: number;
-        }
-      }
-
-      export interface Hover {
-        Hover: Hover.Hover;
-      }
-
-      export namespace Hover {
-        export interface Hover {
-          flag: number;
-        }
-      }
-
-      export interface Wait {
-        Wait: Wait.Wait;
-      }
-
-      export namespace Wait {
-        export interface Wait {
-          /**
-           * Time in seconds to wait
-           */
-          seconds?: number;
-        }
-      }
-
-      export interface Error {
-        Error: Error.Error;
-      }
-
-      export namespace Error {
-        export interface Error {
-          error: string;
-        }
-      }
-
-      export interface Google {
-        Google: Google.Google;
-      }
-
-      export namespace Google {
-        export interface Google {
-          query: string;
-        }
-      }
-
-      export interface Type {
-        Type: Type.Type;
-      }
-
-      export namespace Type {
-        export interface Type {
-          flag: number;
-
-          input: string;
-        }
-      }
-
-      export interface ToolQueued {
-        ToolQueued: string;
-      }
-
-      export interface ToolFail {
-        ToolFail: string;
-      }
-
-      export interface InputParseFail {
-        InputParseFail: string;
-      }
-
-      export interface Success {
-        Success: string;
-      }
-    }
-  }
-}
-
 /**
  * It's an OR statement across these.
  */
@@ -601,31 +400,9 @@ export interface StructureEnhancePropertyParams {
 
   node_id?: string | null;
 
-  special_job_type?: 'HumanLLM' | null;
-
   starting_searches?: Array<string>;
 
   starting_urls?: Array<string>;
-
-  /**
-   * Configuration parameters for the StopChecker
-   */
-  stop_config?: StructureEnhancePropertyParams.StopConfig | null;
-}
-
-export namespace StructureEnhancePropertyParams {
-  /**
-   * Configuration parameters for the StopChecker
-   */
-  export interface StopConfig {
-    max_steps_without_save: number;
-
-    max_errors?: number | null;
-
-    max_execution_time_secs?: number | null;
-
-    max_total_steps?: number | null;
-  }
 }
 
 export interface StructureEnhanceRelationshipParams {
@@ -639,31 +416,9 @@ export interface StructureEnhanceRelationshipParams {
 
   node_id?: string | null;
 
-  special_job_type?: 'HumanLLM' | null;
-
   starting_searches?: Array<string>;
 
   starting_urls?: Array<string>;
-
-  /**
-   * Configuration parameters for the StopChecker
-   */
-  stop_config?: StructureEnhanceRelationshipParams.StopConfig | null;
-}
-
-export namespace StructureEnhanceRelationshipParams {
-  /**
-   * Configuration parameters for the StopChecker
-   */
-  export interface StopConfig {
-    max_steps_without_save: number;
-
-    max_errors?: number | null;
-
-    max_execution_time_secs?: number | null;
-
-    max_total_steps?: number | null;
-  }
 }
 
 export interface StructureFindRelationshipParams {
@@ -677,31 +432,9 @@ export interface StructureFindRelationshipParams {
 
   banned_domains?: Array<string>;
 
-  special_job_type?: 'HumanLLM' | null;
-
   starting_searches?: Array<string>;
 
   starting_urls?: Array<string>;
-
-  /**
-   * Configuration parameters for the StopChecker
-   */
-  stop_config?: StructureFindRelationshipParams.StopConfig | null;
-}
-
-export namespace StructureFindRelationshipParams {
-  /**
-   * Configuration parameters for the StopChecker
-   */
-  export interface StopConfig {
-    max_steps_without_save: number;
-
-    max_errors?: number | null;
-
-    max_execution_time_secs?: number | null;
-
-    max_total_steps?: number | null;
-  }
 }
 
 export type StructureIsCompleteParams = Array<string>;
@@ -734,13 +467,6 @@ export interface StructureRunAsyncParams {
    * pipeline from raw tool output to being merged into a DB
    */
   seeded_entity?: SharedAPI.KnowledgeGraph;
-
-  special_job_type?: 'HumanLLM' | null;
-
-  /**
-   * Configuration parameters for the StopChecker
-   */
-  stop_config?: StructureRunAsyncParams.StopConfig | null;
 }
 
 export namespace StructureRunAsyncParams {
@@ -773,25 +499,11 @@ export namespace StructureRunAsyncParams {
       starting_urls?: Array<string>;
     }
   }
-
-  /**
-   * Configuration parameters for the StopChecker
-   */
-  export interface StopConfig {
-    max_steps_without_save: number;
-
-    max_errors?: number | null;
-
-    max_execution_time_secs?: number | null;
-
-    max_total_steps?: number | null;
-  }
 }
 
 export declare namespace Structure {
   export {
     type ChatPrompt as ChatPrompt,
-    type ExecutionStep as ExecutionStep,
     type SaveRequirement as SaveRequirement,
     type ToolMetadata as ToolMetadata,
     type StructureEnhancePropertyResponse as StructureEnhancePropertyResponse,
