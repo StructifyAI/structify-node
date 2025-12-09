@@ -819,6 +819,8 @@ export namespace ChatSessionWithMessages {
 
     slack_channel_id?: string | null;
 
+    slack_message_ts?: string | null;
+
     slack_thread_ts?: string | null;
   }
 }
@@ -1187,6 +1189,8 @@ export namespace ChatGetSessionTimelineResponse {
     git_commit_id?: string | null;
 
     slack_channel_id?: string | null;
+
+    slack_message_ts?: string | null;
 
     slack_thread_ts?: string | null;
   }
