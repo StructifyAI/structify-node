@@ -116,8 +116,6 @@ export namespace SourceListResponse {
       | null;
 
     scraper_id?: string | null;
-
-    step_id?: string | null;
   }
 
   export namespace SourceListResponseItem {

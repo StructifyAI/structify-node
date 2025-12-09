@@ -30,15 +30,8 @@ describe('resource structure', () => {
       allow_extra_entities: true,
       banned_domains: ['string'],
       node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      special_job_type: 'HumanLLM',
       starting_searches: ['string'],
       starting_urls: ['string'],
-      stop_config: {
-        max_steps_without_save: 0,
-        max_errors: 0,
-        max_execution_time_secs: 0,
-        max_total_steps: 0,
-      },
     });
   });
 
@@ -63,15 +56,8 @@ describe('resource structure', () => {
       allow_extra_entities: true,
       banned_domains: ['string'],
       node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      special_job_type: 'HumanLLM',
       starting_searches: ['string'],
       starting_urls: ['string'],
-      stop_config: {
-        max_steps_without_save: 0,
-        max_errors: 0,
-        max_execution_time_secs: 0,
-        max_total_steps: 0,
-      },
     });
   });
 
@@ -97,15 +83,8 @@ describe('resource structure', () => {
       to_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       allow_extra_entities: true,
       banned_domains: ['string'],
-      special_job_type: 'HumanLLM',
       starting_searches: ['string'],
       starting_urls: ['string'],
-      stop_config: {
-        max_steps_without_save: 0,
-        max_errors: 0,
-        max_execution_time_secs: 0,
-        max_total_steps: 0,
-      },
     });
   });
 
@@ -165,13 +144,6 @@ describe('resource structure', () => {
       seeded_entity: {
         entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
         relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
-      },
-      special_job_type: 'HumanLLM',
-      stop_config: {
-        max_steps_without_save: 0,
-        max_errors: 0,
-        max_execution_time_secs: 0,
-        max_total_steps: 0,
       },
     });
   });

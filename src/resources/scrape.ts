@@ -35,11 +35,6 @@ export interface ScrapeListRequest {
 
   node_id?: string | null;
 
-  /**
-   * Configuration parameters for the StopChecker
-   */
-  stop_config?: ScrapeListRequest.StopConfig | null;
-
   use_proxy?: boolean | null;
 }
 
@@ -67,19 +62,6 @@ export namespace ScrapeListRequest {
       source_url_column: string;
     }
   }
-
-  /**
-   * Configuration parameters for the StopChecker
-   */
-  export interface StopConfig {
-    max_steps_without_save: number;
-
-    max_errors?: number | null;
-
-    max_execution_time_secs?: number | null;
-
-    max_total_steps?: number | null;
-  }
 }
 
 /**
@@ -101,27 +83,7 @@ export interface ScrapeRequest {
    */
   seeded_kg?: SharedAPI.KnowledgeGraph | null;
 
-  /**
-   * Configuration parameters for the StopChecker
-   */
-  stop_config?: ScrapeRequest.StopConfig | null;
-
   use_proxy?: boolean | null;
-}
-
-export namespace ScrapeRequest {
-  /**
-   * Configuration parameters for the StopChecker
-   */
-  export interface StopConfig {
-    max_steps_without_save: number;
-
-    max_errors?: number | null;
-
-    max_execution_time_secs?: number | null;
-
-    max_total_steps?: number | null;
-  }
 }
 
 /**
@@ -157,11 +119,6 @@ export interface ScrapeListParams {
 
   node_id?: string | null;
 
-  /**
-   * Configuration parameters for the StopChecker
-   */
-  stop_config?: ScrapeListParams.StopConfig | null;
-
   use_proxy?: boolean | null;
 }
 
@@ -189,19 +146,6 @@ export namespace ScrapeListParams {
       source_url_column: string;
     }
   }
-
-  /**
-   * Configuration parameters for the StopChecker
-   */
-  export interface StopConfig {
-    max_steps_without_save: number;
-
-    max_errors?: number | null;
-
-    max_execution_time_secs?: number | null;
-
-    max_total_steps?: number | null;
-  }
 }
 
 export interface ScrapeScrapeParams {
@@ -220,27 +164,7 @@ export interface ScrapeScrapeParams {
    */
   seeded_kg?: SharedAPI.KnowledgeGraph | null;
 
-  /**
-   * Configuration parameters for the StopChecker
-   */
-  stop_config?: ScrapeScrapeParams.StopConfig | null;
-
   use_proxy?: boolean | null;
-}
-
-export namespace ScrapeScrapeParams {
-  /**
-   * Configuration parameters for the StopChecker
-   */
-  export interface StopConfig {
-    max_steps_without_save: number;
-
-    max_errors?: number | null;
-
-    max_execution_time_secs?: number | null;
-
-    max_total_steps?: number | null;
-  }
 }
 
 export declare namespace Scrape {
