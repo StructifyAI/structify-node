@@ -373,7 +373,8 @@ export namespace ChatEvent {
       | ToolCall.UnionMember13
       | ToolCall.UnionMember14
       | ToolCall.UnionMember15
-      | ToolCall.UnionMember16;
+      | ToolCall.UnionMember16
+      | ToolCall.UnionMember17;
   }
 
   export namespace ToolCall {
@@ -658,6 +659,20 @@ export namespace ChatEvent {
         package_name: string;
 
         version_spec?: string | null;
+      }
+    }
+
+    export interface UnionMember17 {
+      input: UnionMember17.Input;
+
+      name: 'SelectData';
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember17 {
+      export interface Input {
+        node_ids: Array<string>;
       }
     }
   }
