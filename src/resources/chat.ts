@@ -822,6 +822,19 @@ export namespace ChatSessionWithMessages {
     slack_message_ts?: string | null;
 
     slack_thread_ts?: string | null;
+
+    stream_chunks?: Array<Message.StreamChunk> | null;
+  }
+
+  export namespace Message {
+    /**
+     * Entry for stream chunk logging - stored as JSONB array on chat_message
+     */
+    export interface StreamChunk {
+      chunk_type: string;
+
+      content: string;
+    }
   }
 }
 
@@ -1193,6 +1206,19 @@ export namespace ChatGetSessionTimelineResponse {
     slack_message_ts?: string | null;
 
     slack_thread_ts?: string | null;
+
+    stream_chunks?: Array<Message.StreamChunk> | null;
+  }
+
+  export namespace Message {
+    /**
+     * Entry for stream chunk logging - stored as JSONB array on chat_message
+     */
+    export interface StreamChunk {
+      chunk_type: string;
+
+      content: string;
+    }
   }
 
   export interface GitCommit {
