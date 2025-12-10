@@ -276,6 +276,7 @@ describe('resource sessions', () => {
   test('uploadNodeOutputData: required and optional params', async () => {
     const response = await client.sessions.uploadNodeOutputData('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      output_schema: 'output_schema',
     });
   });
 

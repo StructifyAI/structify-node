@@ -601,6 +601,8 @@ export interface SessionUploadDashboardLayoutParams {
 
 export interface SessionUploadNodeOutputDataParams {
   content: Core.Uploadable;
+
+  output_schema?: string | null;
 }
 
 export interface SessionUploadNodeVisualizationOutputParams {
