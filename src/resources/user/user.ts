@@ -290,8 +290,6 @@ export interface UserUsageResponse {
 
   num_entities: number;
 
-  num_jobs: number;
-
   num_relationships: number;
 }
 
