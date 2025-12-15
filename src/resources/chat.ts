@@ -294,6 +294,10 @@ export namespace ChatEvent {
 
   export namespace Thinking {
     export interface Thinking {
+      block_id: number;
+
+      complete: boolean;
+
       content: string;
     }
   }
@@ -312,6 +316,8 @@ export namespace ChatEvent {
      * When streaming, we start with the path only, then add the content as we go.
      */
     export interface File {
+      block_id: number;
+
       complete: boolean;
 
       path: string;
@@ -327,6 +333,10 @@ export namespace ChatEvent {
   export namespace Action {
     export interface Action {
       actions: Array<Action.Action>;
+
+      block_id: number;
+
+      complete: boolean;
     }
 
     export namespace Action {
@@ -383,6 +393,10 @@ export namespace ChatEvent {
 
       name: 'WebSearch';
 
+      block_id?: number;
+
+      complete?: boolean;
+
       result_text?: string | null;
     }
 
@@ -396,6 +410,10 @@ export namespace ChatEvent {
       input: UnionMember1.Input;
 
       name: 'WebNavigate';
+
+      block_id?: number;
+
+      complete?: boolean;
 
       result_text?: string | null;
     }
@@ -411,6 +429,10 @@ export namespace ChatEvent {
 
       name: 'InspectDAG';
 
+      block_id?: number;
+
+      complete?: boolean;
+
       result_text?: string | null;
     }
 
@@ -425,6 +447,10 @@ export namespace ChatEvent {
 
       name: 'DeleteFile';
 
+      block_id?: number;
+
+      complete?: boolean;
+
       result_text?: string | null;
     }
 
@@ -438,6 +464,10 @@ export namespace ChatEvent {
       input: UnionMember4.Input;
 
       name: 'MoveFile';
+
+      block_id?: number;
+
+      complete?: boolean;
 
       result_text?: string | null;
     }
@@ -454,6 +484,10 @@ export namespace ChatEvent {
       input: UnionMember5.Input;
 
       name: 'RunBash';
+
+      block_id?: number;
+
+      complete?: boolean;
 
       result_text?: string | null;
     }
@@ -473,6 +507,10 @@ export namespace ChatEvent {
 
       name: 'RunPython';
 
+      block_id?: number;
+
+      complete?: boolean;
+
       result_text?: string | null;
     }
 
@@ -491,6 +529,10 @@ export namespace ChatEvent {
 
       name: 'IssueFound';
 
+      block_id?: number;
+
+      complete?: boolean;
+
       result_text?: string | null;
     }
 
@@ -506,6 +548,10 @@ export namespace ChatEvent {
       input: UnionMember8.Input;
 
       name: 'SaveDatabase';
+
+      block_id?: number;
+
+      complete?: boolean;
 
       result_text?: string | null;
     }
@@ -525,6 +571,10 @@ export namespace ChatEvent {
 
       name: 'SaveSchema';
 
+      block_id?: number;
+
+      complete?: boolean;
+
       result_text?: string | null;
     }
 
@@ -542,6 +592,10 @@ export namespace ChatEvent {
       input: UnionMember10.Input;
 
       name: 'SaveTable';
+
+      block_id?: number;
+
+      complete?: boolean;
 
       result_text?: string | null;
     }
@@ -563,6 +617,10 @@ export namespace ChatEvent {
 
       name: 'SaveColumn';
 
+      block_id?: number;
+
+      complete?: boolean;
+
       result_text?: string | null;
     }
 
@@ -580,6 +638,10 @@ export namespace ChatEvent {
       input: UnionMember12.Input;
 
       name: 'SaveApiResource';
+
+      block_id?: number;
+
+      complete?: boolean;
 
       result_text?: string | null;
     }
@@ -601,6 +663,10 @@ export namespace ChatEvent {
 
       name: 'SaveMemory';
 
+      block_id?: number;
+
+      complete?: boolean;
+
       result_text?: string | null;
     }
 
@@ -617,6 +683,10 @@ export namespace ChatEvent {
 
       name: 'SearchConnectorTables';
 
+      block_id?: number;
+
+      complete?: boolean;
+
       result_text?: string | null;
     }
 
@@ -632,6 +702,10 @@ export namespace ChatEvent {
       input: UnionMember15.Input;
 
       name: 'RequestClarification';
+
+      block_id?: number;
+
+      complete?: boolean;
 
       result_text?: string | null;
     }
@@ -651,6 +725,10 @@ export namespace ChatEvent {
 
       name: 'AddDependency';
 
+      block_id?: number;
+
+      complete?: boolean;
+
       result_text?: string | null;
     }
 
@@ -666,6 +744,10 @@ export namespace ChatEvent {
       input: UnionMember17.Input;
 
       name: 'SelectData';
+
+      block_id?: number;
+
+      complete?: boolean;
 
       result_text?: string | null;
     }
@@ -683,6 +765,8 @@ export namespace ChatEvent {
 
   export namespace Question {
     export interface Question {
+      block_id: number;
+
       complete: boolean;
 
       content: string;
