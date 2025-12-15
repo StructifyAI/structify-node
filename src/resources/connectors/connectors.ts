@@ -220,6 +220,10 @@ export interface Connector {
 
   exploration_started_at?: string | null;
 
+  nango_connection_id?: string | null;
+
+  nango_integration_id?: string | null;
+
   pipedream_account_id?: string | null;
 
   pipedream_external_id?: string | null;
@@ -309,6 +313,16 @@ export interface CreateConnectorRequest {
   team_id: string;
 
   description?: string | null;
+
+  /**
+   * Nango connection ID for OAuth token management
+   */
+  nango_connection_id?: string | null;
+
+  /**
+   * Nango integration ID (e.g., "linear", "slack")
+   */
+  nango_integration_id?: string | null;
 
   pipedream_account_id?: string | null;
 
@@ -995,6 +1009,16 @@ export interface ConnectorCreateParams {
   team_id: string;
 
   description?: string | null;
+
+  /**
+   * Nango connection ID for OAuth token management
+   */
+  nango_connection_id?: string | null;
+
+  /**
+   * Nango integration ID (e.g., "linear", "slack")
+   */
+  nango_integration_id?: string | null;
 
   pipedream_account_id?: string | null;
 
