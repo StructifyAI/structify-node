@@ -369,6 +369,8 @@ export interface UploadNodeVisualizationOutputRequest {
 }
 
 export interface WorkflowDag {
+  aborted: boolean;
+
   edges: Array<WorkflowSessionEdge>;
 
   is_ready: boolean;
