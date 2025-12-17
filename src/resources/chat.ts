@@ -1066,6 +1066,8 @@ export namespace GetChatSessionResponse {
     name?: string | null;
 
     project_id?: string | null;
+
+    workflow_schedule_id?: string | null;
   }
 
   export namespace Session {
