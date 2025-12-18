@@ -212,6 +212,13 @@ export {
   type MatchListResultsParams,
 } from './match';
 export {
+  Nango,
+  type ConnectSession,
+  type Integration,
+  type NangoCreateSessionResponse,
+  type NangoListIntegrationsResponse,
+} from './nango';
+export {
   Projects,
   type DeleteProjectResponse,
   type Project,

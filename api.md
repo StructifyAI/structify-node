@@ -826,3 +826,17 @@ Types:
 Methods:
 
 - <code title="post /slack/events">client.slack.<a href="./src/resources/slack.ts">events</a>({ ...params }) -> SlackAPIResponse</code>
+
+# Nango
+
+Types:
+
+- <code><a href="./src/resources/nango.ts">ConnectSession</a></code>
+- <code><a href="./src/resources/nango.ts">Integration</a></code>
+- <code><a href="./src/resources/nango.ts">NangoCreateSessionResponse</a></code>
+- <code><a href="./src/resources/nango.ts">NangoListIntegrationsResponse</a></code>
+
+Methods:
+
+- <code title="post /nango/session">client.nango.<a href="./src/resources/nango.ts">createSession</a>() -> NangoCreateSessionResponse</code>
+- <code title="get /nango/integrations">client.nango.<a href="./src/resources/nango.ts">listIntegrations</a>() -> NangoListIntegrationsResponse</code>
