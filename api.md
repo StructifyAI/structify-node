@@ -464,7 +464,6 @@ Types:
 - <code><a href="./src/resources/workflow-schedule.ts">GetWorkflowScheduleSessionsResponse</a></code>
 - <code><a href="./src/resources/workflow-schedule.ts">UpdateWorkflowScheduleRequest</a></code>
 - <code><a href="./src/resources/workflow-schedule.ts">WorkflowScheduleInfo</a></code>
-- <code><a href="./src/resources/workflow-schedule.ts">WorkflowScheduleGetResponse</a></code>
 - <code><a href="./src/resources/workflow-schedule.ts">WorkflowScheduleGetAllResponse</a></code>
 
 Methods:
@@ -472,7 +471,7 @@ Methods:
 - <code title="post /workflow-schedule/{chat_session_id}">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">create</a>(chatSessionId, { ...params }) -> WorkflowScheduleInfo</code>
 - <code title="put /workflow-schedule/{schedule_id}">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">update</a>(scheduleId, { ...params }) -> WorkflowScheduleInfo</code>
 - <code title="delete /workflow-schedule/{schedule_id}">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">delete</a>(scheduleId) -> void</code>
-- <code title="get /workflow-schedule/{chat_session_id}">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">get</a>(chatSessionId) -> WorkflowScheduleGetResponse</code>
+- <code title="get /workflow-schedule/{chat_session_id}">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">get</a>(chatSessionId) -> WorkflowScheduleInfo | null</code>
 - <code title="get /workflow-schedule">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">getAll</a>() -> WorkflowScheduleGetAllResponse</code>
 - <code title="post /workflow-schedule/{schedule_id}/sessions">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">getSessions</a>(scheduleId, { ...params }) -> GetWorkflowScheduleSessionsResponse</code>
 - <code title="patch /workflow-schedule/{schedule_id}/pause">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">pause</a>(scheduleId, { ...params }) -> WorkflowScheduleInfo</code>

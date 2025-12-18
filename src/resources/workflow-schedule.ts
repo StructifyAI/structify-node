@@ -28,7 +28,7 @@ export class WorkflowSchedule extends APIResource {
     });
   }
 
-  get(chatSessionId: string, options?: Core.RequestOptions): Core.APIPromise<WorkflowScheduleGetResponse> {
+  get(chatSessionId: string, options?: Core.RequestOptions): Core.APIPromise<WorkflowScheduleInfo | null> {
     return this._client.get(`/workflow-schedule/${chatSessionId}`, options);
   }
 
@@ -106,8 +106,6 @@ export interface WorkflowScheduleInfo {
   next_run_time?: string | null;
 }
 
-export type WorkflowScheduleGetResponse = Array<WorkflowScheduleInfo>;
-
 export type WorkflowScheduleGetAllResponse = Array<WorkflowScheduleInfo>;
 
 export interface WorkflowScheduleCreateParams {
@@ -145,7 +143,6 @@ export declare namespace WorkflowSchedule {
     type GetWorkflowScheduleSessionsResponse as GetWorkflowScheduleSessionsResponse,
     type UpdateWorkflowScheduleRequest as UpdateWorkflowScheduleRequest,
     type WorkflowScheduleInfo as WorkflowScheduleInfo,
-    type WorkflowScheduleGetResponse as WorkflowScheduleGetResponse,
     type WorkflowScheduleGetAllResponse as WorkflowScheduleGetAllResponse,
     type WorkflowScheduleCreateParams as WorkflowScheduleCreateParams,
     type WorkflowScheduleUpdateParams as WorkflowScheduleUpdateParams,
