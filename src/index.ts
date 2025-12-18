@@ -140,6 +140,13 @@ import {
   MatchResultsJobsList,
 } from './resources/match';
 import {
+  ConnectSession,
+  Integration,
+  Nango,
+  NangoCreateSessionResponse,
+  NangoListIntegrationsResponse,
+} from './resources/nango';
+import {
   DeleteProjectResponse,
   Project,
   ProjectCollaboratorInput,
@@ -588,6 +595,7 @@ export class Structify extends Core.APIClient {
   shared: API.Shared = new API.Shared(this);
   external: API.External = new API.External(this);
   slack: API.Slack = new API.Slack(this);
+  nango: API.Nango = new API.Nango(this);
 
   /**
    * Check whether the base URL is set to its default.
@@ -703,6 +711,7 @@ Structify.PublicSessions = PublicSessions;
 Structify.Shared = Shared;
 Structify.External = External;
 Structify.Slack = Slack;
+Structify.Nango = Nango;
 
 export declare namespace Structify {
   export type RequestOptions = Core.RequestOptions;
@@ -1149,6 +1158,14 @@ export declare namespace Structify {
     type SlackAPIResponse as SlackAPIResponse,
     type SlackEventPayload as SlackEventPayload,
     type SlackEventsParams as SlackEventsParams,
+  };
+
+  export {
+    Nango as Nango,
+    type ConnectSession as ConnectSession,
+    type Integration as Integration,
+    type NangoCreateSessionResponse as NangoCreateSessionResponse,
+    type NangoListIntegrationsResponse as NangoListIntegrationsResponse,
   };
 }
 
