@@ -411,7 +411,6 @@ export {
   type GetWorkflowScheduleSessionsResponse,
   type UpdateWorkflowScheduleRequest,
   type WorkflowScheduleInfo,
-  type WorkflowScheduleGetResponse,
   type WorkflowScheduleGetAllResponse,
   type WorkflowScheduleCreateParams,
   type WorkflowScheduleUpdateParams,
