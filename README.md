@@ -259,6 +259,37 @@ On timeout, an `APIConnectionTimeoutError` is thrown.
 
 Note that requests which time out will be [retried twice by default](#retries).
 
+## Auto-pagination
+
+List methods in the Structify API are paginated.
+You can use the `for await … of` syntax to iterate through items across all pages:
+
+```ts
+async function fetchAllAdminTeamsListResponses(params) {
+  const allAdminTeamsListResponses = [];
+  // Automatically fetches more pages as needed.
+  for await (const adminTeamsListResponse of client.admin.teams.list()) {
+    allAdminTeamsListResponses.push(adminTeamsListResponse);
+  }
+  return allAdminTeamsListResponses;
+}
+```
+
+Alternatively, you can request a single page at a time:
+
+```ts
+let page = await client.admin.teams.list();
+for (const adminTeamsListResponse of page.items) {
+  console.log(adminTeamsListResponse);
+}
+
+// Convenience methods are provided for manually paginating:
+while (page.hasNextPage()) {
+  page = await page.getNextPage();
+  // ...
+}
+```
+
 ## Advanced Usage
 
 ### Accessing raw Response data (e.g., headers)
