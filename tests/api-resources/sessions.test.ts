@@ -32,7 +32,14 @@ describe('resource sessions', () => {
   test('finalizeDag: only required params', async () => {
     const responsePromise = client.sessions.finalizeDag('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       edges: [{ source_node_index: 0, target_node_index: 0 }],
-      nodes: [{ code_md5_hash: 'code_md5_hash', docstring: 'docstring', function_name: 'function_name' }],
+      nodes: [
+        {
+          code: 'code',
+          code_md5_hash: 'code_md5_hash',
+          docstring: 'docstring',
+          function_name: 'function_name',
+        },
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -48,6 +55,7 @@ describe('resource sessions', () => {
       edges: [{ source_node_index: 0, target_node_index: 0 }],
       nodes: [
         {
+          code: 'code',
           code_md5_hash: 'code_md5_hash',
           docstring: 'docstring',
           function_name: 'function_name',
