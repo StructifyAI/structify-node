@@ -331,8 +331,6 @@ export interface MarkWorkflowSessionErroredRequest {
 }
 
 export interface NodeSpec {
-  code: string;
-
   code_md5_hash: string;
 
   docstring: string;
@@ -460,8 +458,6 @@ export interface WorkflowSessionNode {
   session_id: string;
 
   updated_at: string;
-
-  code?: string | null;
 
   connector_id?: string | null;
 
