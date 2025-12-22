@@ -251,15 +251,7 @@ export interface UserInfo {
 
   username: string;
 
-  company_description?: string | null;
-
-  company_name?: string | null;
-
-  job_title?: string | null;
-
   last_selected_team_id?: string | null;
-
-  linkedin_url?: string | null;
 
   onboarding_session_id?: string | null;
 
