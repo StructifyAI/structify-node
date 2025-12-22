@@ -327,6 +327,15 @@ import {
 } from './resources/workflow-schedule';
 import { Admin } from './resources/admin/admin';
 import {
+  ConnectorAuthMethod,
+  ConnectorAuthMethodWithFields,
+  ConnectorCatalog,
+  ConnectorCatalogListResponse,
+  ConnectorCatalogResource,
+  ConnectorCatalogWithMethods,
+  ConnectorCredentialField,
+} from './resources/connector-catalog/connector-catalog';
+import {
   Connector,
   ConnectorCategory,
   ConnectorCreateParams,
@@ -583,6 +592,7 @@ export class Structify extends Core.APIClient {
   workflowSchedule: API.WorkflowSchedule = new API.WorkflowSchedule(this);
   workflow: API.Workflow = new API.Workflow(this);
   connectors: API.Connectors = new API.Connectors(this);
+  connectorCatalog: API.ConnectorCatalogResource = new API.ConnectorCatalogResource(this);
   server: API.Server = new API.Server(this);
   sources: API.Sources = new API.Sources(this);
   entities: API.Entities = new API.Entities(this);
@@ -699,6 +709,7 @@ Structify.WorkflowSchedule = WorkflowSchedule;
 Structify.Workflow = Workflow;
 Structify.Connectors = Connectors;
 Structify.ConnectorWithSecretsJobsList = ConnectorWithSecretsJobsList;
+Structify.ConnectorCatalogResource = ConnectorCatalogResource;
 Structify.Server = Server;
 Structify.Sources = Sources;
 Structify.Entities = Entities;
@@ -1027,6 +1038,16 @@ export declare namespace Structify {
     type ConnectorSearchTablesParams as ConnectorSearchTablesParams,
     type ConnectorUpdateColumnParams as ConnectorUpdateColumnParams,
     type ConnectorUpdateTableParams as ConnectorUpdateTableParams,
+  };
+
+  export {
+    ConnectorCatalogResource as ConnectorCatalogResource,
+    type ConnectorAuthMethod as ConnectorAuthMethod,
+    type ConnectorAuthMethodWithFields as ConnectorAuthMethodWithFields,
+    type ConnectorCatalog as ConnectorCatalog,
+    type ConnectorCatalogWithMethods as ConnectorCatalogWithMethods,
+    type ConnectorCredentialField as ConnectorCredentialField,
+    type ConnectorCatalogListResponse as ConnectorCatalogListResponse,
   };
 
   export { Server as Server, type ServerInformation as ServerInformation };
