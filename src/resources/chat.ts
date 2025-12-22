@@ -427,7 +427,7 @@ export namespace ChatEvent {
     export interface UnionMember2 {
       input: UnionMember2.Input;
 
-      name: 'InspectDAG';
+      name: 'InspectStep';
 
       block_id?: number;
 
@@ -438,7 +438,7 @@ export namespace ChatEvent {
 
     export namespace UnionMember2 {
       export interface Input {
-        node_function_name: string;
+        step_name: string;
       }
     }
 
