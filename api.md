@@ -557,49 +557,6 @@ Methods:
 
 - <code title="put /connector-type-snippets/{connector_type}">client.connectors.typeSnippets.<a href="./src/resources/connectors/type-snippets.ts">upsert</a>(connectorType, { ...params }) -> Snippet</code>
 
-# ConnectorCatalog
-
-Types:
-
-- <code><a href="./src/resources/connector-catalog/connector-catalog.ts">ConnectorAuthMethod</a></code>
-- <code><a href="./src/resources/connector-catalog/connector-catalog.ts">ConnectorAuthMethodWithFields</a></code>
-- <code><a href="./src/resources/connector-catalog/connector-catalog.ts">ConnectorCatalog</a></code>
-- <code><a href="./src/resources/connector-catalog/connector-catalog.ts">ConnectorCatalogWithMethods</a></code>
-- <code><a href="./src/resources/connector-catalog/connector-catalog.ts">ConnectorCredentialField</a></code>
-- <code><a href="./src/resources/connector-catalog/connector-catalog.ts">ConnectorCatalogListResponse</a></code>
-
-Methods:
-
-- <code title="get /connector-catalog">client.connectorCatalog.<a href="./src/resources/connector-catalog/connector-catalog.ts">list</a>() -> ConnectorCatalogListResponse</code>
-- <code title="get /connector-catalog/{slug}">client.connectorCatalog.<a href="./src/resources/connector-catalog/connector-catalog.ts">get</a>(slug) -> ConnectorCatalogWithMethods</code>
-
-## Admin
-
-Types:
-
-- <code><a href="./src/resources/connector-catalog/admin.ts">BatchCreateCredentialFieldsRequest</a></code>
-- <code><a href="./src/resources/connector-catalog/admin.ts">CreateAuthMethodRequest</a></code>
-- <code><a href="./src/resources/connector-catalog/admin.ts">CreateCatalogRequest</a></code>
-- <code><a href="./src/resources/connector-catalog/admin.ts">CreateCredentialFieldRequest</a></code>
-- <code><a href="./src/resources/connector-catalog/admin.ts">PendingNangoIntegration</a></code>
-- <code><a href="./src/resources/connector-catalog/admin.ts">UpdateAuthMethodRequest</a></code>
-- <code><a href="./src/resources/connector-catalog/admin.ts">UpdateCatalogRequest</a></code>
-- <code><a href="./src/resources/connector-catalog/admin.ts">UpdateCredentialFieldRequest</a></code>
-- <code><a href="./src/resources/connector-catalog/admin.ts">AdminBatchCreateCredentialFieldsResponse</a></code>
-- <code><a href="./src/resources/connector-catalog/admin.ts">AdminListNangoPendingResponse</a></code>
-
-Methods:
-
-- <code title="post /admin/connector-catalog/credential-fields/batch">client.connectorCatalog.admin.<a href="./src/resources/connector-catalog/admin.ts">batchCreateCredentialFields</a>({ ...params }) -> AdminBatchCreateCredentialFieldsResponse</code>
-- <code title="post /admin/connector-catalog/auth-methods">client.connectorCatalog.admin.<a href="./src/resources/connector-catalog/admin.ts">createAuthMethod</a>({ ...params }) -> ConnectorAuthMethod</code>
-- <code title="post /admin/connector-catalog">client.connectorCatalog.admin.<a href="./src/resources/connector-catalog/admin.ts">createCatalog</a>({ ...params }) -> ConnectorCatalog</code>
-- <code title="post /admin/connector-catalog/credential-fields">client.connectorCatalog.admin.<a href="./src/resources/connector-catalog/admin.ts">createCredentialField</a>({ ...params }) -> ConnectorCredentialField</code>
-- <code title="delete /admin/connector-catalog/credential-fields/{id}">client.connectorCatalog.admin.<a href="./src/resources/connector-catalog/admin.ts">deleteCredentialField</a>(id) -> void</code>
-- <code title="get /admin/connector-catalog/nango-pending">client.connectorCatalog.admin.<a href="./src/resources/connector-catalog/admin.ts">listNangoPending</a>() -> AdminListNangoPendingResponse</code>
-- <code title="patch /admin/connector-catalog/auth-methods/{id}">client.connectorCatalog.admin.<a href="./src/resources/connector-catalog/admin.ts">updateAuthMethod</a>(id, { ...params }) -> ConnectorAuthMethod</code>
-- <code title="patch /admin/connector-catalog/{id}">client.connectorCatalog.admin.<a href="./src/resources/connector-catalog/admin.ts">updateCatalog</a>(id, { ...params }) -> ConnectorCatalog</code>
-- <code title="patch /admin/connector-catalog/credential-fields/{id}">client.connectorCatalog.admin.<a href="./src/resources/connector-catalog/admin.ts">updateCredentialField</a>(id, { ...params }) -> ConnectorCredentialField</code>
-
 # Server
 
 Types:
