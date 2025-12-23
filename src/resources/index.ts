@@ -57,15 +57,6 @@ export {
   type CodeInterruptGenerationParams,
 } from './code';
 export {
-  ConnectorCatalogResource,
-  type ConnectorAuthMethod,
-  type ConnectorAuthMethodWithFields,
-  type ConnectorCatalog,
-  type ConnectorCatalogWithMethods,
-  type ConnectorCredentialField,
-  type ConnectorCatalogListResponse,
-} from './connector-catalog/connector-catalog';
-export {
   ConnectorWithSecretsJobsList,
   Connectors,
   type Connector,
