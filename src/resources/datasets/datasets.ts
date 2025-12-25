@@ -812,8 +812,6 @@ export interface DatasetCreateParams {
 
   ephemeral?: boolean;
 
-  generate_merge_criteria?: boolean;
-
   llm_override_field?: string | null;
 }
 
