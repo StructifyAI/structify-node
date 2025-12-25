@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
-import * as SharedAPI from './shared';
 
 export class Documents extends APIResource {
   /**
@@ -40,20 +39,6 @@ export class Documents extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<DocumentDownloadResponse> {
     return this._client.post('/documents/download', { body, ...options });
-  }
-
-  /**
-   * Returns the structured data as JSON.
-   */
-  structure(
-    params: DocumentStructureParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<DocumentStructureResponse> {
-    const { dataset_descriptor, ...body } = params;
-    return this._client.post(
-      '/documents/structure',
-      Core.multipartFormRequestOptions({ query: { dataset_descriptor }, body, ...options }),
-    );
   }
 
   /**
@@ -101,8 +86,6 @@ export interface DocumentDownloadResponse {
   content: Core.Uploadable;
 }
 
-export type DocumentStructureResponse = { [key: string]: unknown };
-
 export interface DocumentListParams {
   dataset?: string | null;
 
@@ -121,21 +104,6 @@ export interface DocumentDownloadParams {
    * The path of the file to delete
    */
   file_path: string;
-}
-
-export interface DocumentStructureParams {
-  /**
-   * Query param: A dataset is where you put multiple referential schemas.
-   *
-   * A dataset is a complete namespace where all references between schemas are held
-   * within the dataset.
-   */
-  dataset_descriptor: SharedAPI.DatasetDescriptor;
-
-  /**
-   * Body param:
-   */
-  content: Core.Uploadable;
 }
 
 export interface DocumentUploadParams {
@@ -169,11 +137,9 @@ export declare namespace Documents {
   export {
     type DocumentListResponse as DocumentListResponse,
     type DocumentDownloadResponse as DocumentDownloadResponse,
-    type DocumentStructureResponse as DocumentStructureResponse,
     type DocumentListParams as DocumentListParams,
     type DocumentDeleteParams as DocumentDeleteParams,
     type DocumentDownloadParams as DocumentDownloadParams,
-    type DocumentStructureParams as DocumentStructureParams,
     type DocumentUploadParams as DocumentUploadParams,
   };
 }

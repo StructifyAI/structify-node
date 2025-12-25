@@ -69,8 +69,6 @@ import {
   DocumentDownloadResponse,
   DocumentListParams,
   DocumentListResponse,
-  DocumentStructureParams,
-  DocumentStructureResponse,
   DocumentUploadParams,
   Documents,
 } from './resources/documents';
@@ -903,11 +901,9 @@ export declare namespace Structify {
     Documents as Documents,
     type DocumentListResponse as DocumentListResponse,
     type DocumentDownloadResponse as DocumentDownloadResponse,
-    type DocumentStructureResponse as DocumentStructureResponse,
     type DocumentListParams as DocumentListParams,
     type DocumentDeleteParams as DocumentDeleteParams,
     type DocumentDownloadParams as DocumentDownloadParams,
-    type DocumentStructureParams as DocumentStructureParams,
     type DocumentUploadParams as DocumentUploadParams,
   };
 
