@@ -69,7 +69,6 @@ describe('resource datasets', () => {
         },
       ],
       ephemeral: true,
-      generate_merge_criteria: true,
       llm_override_field: 'llm_override_field',
     });
   });
