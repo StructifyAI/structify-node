@@ -397,6 +397,8 @@ export namespace ChatEvent {
 
       complete?: boolean;
 
+      result_image?: Core.Uploadable | null;
+
       result_text?: string | null;
     }
 
@@ -414,6 +416,8 @@ export namespace ChatEvent {
       block_id?: number;
 
       complete?: boolean;
+
+      result_image?: Core.Uploadable | null;
 
       result_text?: string | null;
     }
@@ -433,6 +437,8 @@ export namespace ChatEvent {
 
       complete?: boolean;
 
+      result_image?: Core.Uploadable | null;
+
       result_text?: string | null;
     }
 
@@ -451,6 +457,8 @@ export namespace ChatEvent {
 
       complete?: boolean;
 
+      result_image?: Core.Uploadable | null;
+
       result_text?: string | null;
     }
 
@@ -468,6 +476,8 @@ export namespace ChatEvent {
       block_id?: number;
 
       complete?: boolean;
+
+      result_image?: Core.Uploadable | null;
 
       result_text?: string | null;
     }
@@ -488,6 +498,8 @@ export namespace ChatEvent {
       block_id?: number;
 
       complete?: boolean;
+
+      result_image?: Core.Uploadable | null;
 
       result_text?: string | null;
     }
@@ -511,6 +523,8 @@ export namespace ChatEvent {
 
       complete?: boolean;
 
+      result_image?: Core.Uploadable | null;
+
       result_text?: string | null;
     }
 
@@ -533,6 +547,8 @@ export namespace ChatEvent {
 
       complete?: boolean;
 
+      result_image?: Core.Uploadable | null;
+
       result_text?: string | null;
     }
 
@@ -552,6 +568,8 @@ export namespace ChatEvent {
       block_id?: number;
 
       complete?: boolean;
+
+      result_image?: Core.Uploadable | null;
 
       result_text?: string | null;
     }
@@ -575,6 +593,8 @@ export namespace ChatEvent {
 
       complete?: boolean;
 
+      result_image?: Core.Uploadable | null;
+
       result_text?: string | null;
     }
 
@@ -596,6 +616,8 @@ export namespace ChatEvent {
       block_id?: number;
 
       complete?: boolean;
+
+      result_image?: Core.Uploadable | null;
 
       result_text?: string | null;
     }
@@ -621,6 +643,8 @@ export namespace ChatEvent {
 
       complete?: boolean;
 
+      result_image?: Core.Uploadable | null;
+
       result_text?: string | null;
     }
 
@@ -642,6 +666,8 @@ export namespace ChatEvent {
       block_id?: number;
 
       complete?: boolean;
+
+      result_image?: Core.Uploadable | null;
 
       result_text?: string | null;
     }
@@ -667,6 +693,8 @@ export namespace ChatEvent {
 
       complete?: boolean;
 
+      result_image?: Core.Uploadable | null;
+
       result_text?: string | null;
     }
 
@@ -687,6 +715,8 @@ export namespace ChatEvent {
 
       complete?: boolean;
 
+      result_image?: Core.Uploadable | null;
+
       result_text?: string | null;
     }
 
@@ -706,6 +736,8 @@ export namespace ChatEvent {
       block_id?: number;
 
       complete?: boolean;
+
+      result_image?: Core.Uploadable | null;
 
       result_text?: string | null;
     }
@@ -729,6 +761,8 @@ export namespace ChatEvent {
 
       complete?: boolean;
 
+      result_image?: Core.Uploadable | null;
+
       result_text?: string | null;
     }
 
@@ -748,6 +782,8 @@ export namespace ChatEvent {
       block_id?: number;
 
       complete?: boolean;
+
+      result_image?: Core.Uploadable | null;
 
       result_text?: string | null;
     }
@@ -1085,23 +1121,17 @@ export namespace GetChatSessionResponse {
      * Model-layer message representation - streamlined for LLM transmission
      */
     export interface Message {
-      id: string;
-
-      chat_session_id: string;
-
       /**
        * Events in a chat session timeline, including messages and unified tool
        * calls/results
        */
       content: ChatAPI.ChatEvent;
 
-      created_at: string;
+      message_id: string;
 
       role: 'user' | 'system' | 'assistant';
 
       timestamp: string;
-
-      commit_hash?: string | null;
     }
   }
 }
