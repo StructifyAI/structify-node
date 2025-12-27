@@ -255,6 +255,8 @@ export interface UserInfo {
 
   company_name?: string | null;
 
+  impersonated_by_email?: string | null;
+
   job_title?: string | null;
 
   last_selected_team_id?: string | null;
