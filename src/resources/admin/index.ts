@@ -23,6 +23,8 @@ export {
   type CancelSubscriptionResponse,
   type CreateSubscriptionResponse,
   type CreateTeamSubscriptionRequest,
+  type ExpireGrantsRequest,
+  type ExpireGrantsResponse,
   type ExtendTrialRequest,
   type ExtendTrialResponse,
   type GrantCreditsRequest,
@@ -30,6 +32,7 @@ export {
   type TeamListParams,
   type TeamCancelSubscriptionParams,
   type TeamCreateSubscriptionParams,
+  type TeamExpireGrantsParams,
   type TeamExtendTrialParams,
   type TeamGrantCreditsParams,
 } from './teams';

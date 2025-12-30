@@ -46,6 +46,13 @@ export class Teams extends APIResource {
     return this._client.post('/admin/team/create_subscription', { body, ...options });
   }
 
+  expireGrants(
+    body: TeamExpireGrantsParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ExpireGrantsResponse> {
+    return this._client.post('/admin/team/expire_grants', { body, ...options });
+  }
+
   extendTrial(
     body: TeamExtendTrialParams,
     options?: Core.RequestOptions,
@@ -147,6 +154,18 @@ export interface CreateTeamSubscriptionRequest {
   external_subscription_id?: string | null;
 }
 
+export interface ExpireGrantsRequest {
+  source_type: string;
+
+  team_id: string;
+}
+
+export interface ExpireGrantsResponse {
+  expired_count: number;
+
+  team_id: string;
+}
+
 export interface ExtendTrialRequest {
   new_expires_at: string;
 
@@ -208,6 +227,12 @@ export interface TeamCreateSubscriptionParams {
   external_subscription_id?: string | null;
 }
 
+export interface TeamExpireGrantsParams {
+  source_type: string;
+
+  team_id: string;
+}
+
 export interface TeamExtendTrialParams {
   new_expires_at: string;
 
@@ -237,6 +262,8 @@ export declare namespace Teams {
     type CancelSubscriptionResponse as CancelSubscriptionResponse,
     type CreateSubscriptionResponse as CreateSubscriptionResponse,
     type CreateTeamSubscriptionRequest as CreateTeamSubscriptionRequest,
+    type ExpireGrantsRequest as ExpireGrantsRequest,
+    type ExpireGrantsResponse as ExpireGrantsResponse,
     type ExtendTrialRequest as ExtendTrialRequest,
     type ExtendTrialResponse as ExtendTrialResponse,
     type GrantCreditsRequest as GrantCreditsRequest,
@@ -245,6 +272,7 @@ export declare namespace Teams {
     type TeamListParams as TeamListParams,
     type TeamCancelSubscriptionParams as TeamCancelSubscriptionParams,
     type TeamCreateSubscriptionParams as TeamCreateSubscriptionParams,
+    type TeamExpireGrantsParams as TeamExpireGrantsParams,
     type TeamExtendTrialParams as TeamExtendTrialParams,
     type TeamGrantCreditsParams as TeamGrantCreditsParams,
   };
