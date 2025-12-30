@@ -81,6 +81,27 @@ describe('resource teams', () => {
     });
   });
 
+  test('expireGrants: only required params', async () => {
+    const responsePromise = client.admin.teams.expireGrants({
+      source_type: 'source_type',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('expireGrants: required and optional params', async () => {
+    const response = await client.admin.teams.expireGrants({
+      source_type: 'source_type',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+  });
+
   test('extendTrial: only required params', async () => {
     const responsePromise = client.admin.teams.extendTrial({
       new_expires_at: '2019-12-27T18:11:19.117Z',
