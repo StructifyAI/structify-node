@@ -384,7 +384,8 @@ export namespace ChatEvent {
       | ToolCall.UnionMember14
       | ToolCall.UnionMember15
       | ToolCall.UnionMember16
-      | ToolCall.UnionMember17;
+      | ToolCall.UnionMember17
+      | ToolCall.UnionMember18;
   }
 
   export namespace ToolCall {
@@ -451,7 +452,7 @@ export namespace ChatEvent {
     export interface UnionMember3 {
       input: UnionMember3.Input;
 
-      name: 'DeleteFile';
+      name: 'ReadNodeLogs';
 
       block_id?: number;
 
@@ -464,14 +465,20 @@ export namespace ChatEvent {
 
     export namespace UnionMember3 {
       export interface Input {
-        file: string;
+        end_line: number;
+
+        node_function_name: string;
+
+        start_line: number;
+
+        log_type?: string | null;
       }
     }
 
     export interface UnionMember4 {
       input: UnionMember4.Input;
 
-      name: 'MoveFile';
+      name: 'DeleteFile';
 
       block_id?: number;
 
@@ -485,15 +492,13 @@ export namespace ChatEvent {
     export namespace UnionMember4 {
       export interface Input {
         file: string;
-
-        new_path: string;
       }
     }
 
     export interface UnionMember5 {
       input: UnionMember5.Input;
 
-      name: 'RunBash';
+      name: 'MoveFile';
 
       block_id?: number;
 
@@ -506,18 +511,16 @@ export namespace ChatEvent {
 
     export namespace UnionMember5 {
       export interface Input {
-        command: string;
+        file: string;
 
-        connector?: string | null;
-
-        working_dir?: string | null;
+        new_path: string;
       }
     }
 
     export interface UnionMember6 {
       input: UnionMember6.Input;
 
-      name: 'RunPython';
+      name: 'RunBash';
 
       block_id?: number;
 
@@ -530,7 +533,7 @@ export namespace ChatEvent {
 
     export namespace UnionMember6 {
       export interface Input {
-        code: string;
+        command: string;
 
         connector?: string | null;
 
@@ -541,7 +544,7 @@ export namespace ChatEvent {
     export interface UnionMember7 {
       input: UnionMember7.Input;
 
-      name: 'IssueFound';
+      name: 'RunPython';
 
       block_id?: number;
 
@@ -554,16 +557,18 @@ export namespace ChatEvent {
 
     export namespace UnionMember7 {
       export interface Input {
-        description: string;
+        code: string;
 
-        title: string;
+        connector?: string | null;
+
+        working_dir?: string | null;
       }
     }
 
     export interface UnionMember8 {
       input: UnionMember8.Input;
 
-      name: 'SaveDatabase';
+      name: 'IssueFound';
 
       block_id?: number;
 
@@ -576,18 +581,16 @@ export namespace ChatEvent {
 
     export namespace UnionMember8 {
       export interface Input {
-        name: string;
+        description: string;
 
-        description?: string | null;
-
-        notes?: string | null;
+        title: string;
       }
     }
 
     export interface UnionMember9 {
       input: UnionMember9.Input;
 
-      name: 'SaveSchema';
+      name: 'SaveDatabase';
 
       block_id?: number;
 
@@ -611,7 +614,7 @@ export namespace ChatEvent {
     export interface UnionMember10 {
       input: UnionMember10.Input;
 
-      name: 'SaveTable';
+      name: 'SaveSchema';
 
       block_id?: number;
 
@@ -629,15 +632,13 @@ export namespace ChatEvent {
         description?: string | null;
 
         notes?: string | null;
-
-        tag?: string | null;
       }
     }
 
     export interface UnionMember11 {
       input: UnionMember11.Input;
 
-      name: 'SaveColumn';
+      name: 'SaveTable';
 
       block_id?: number;
 
@@ -650,18 +651,20 @@ export namespace ChatEvent {
 
     export namespace UnionMember11 {
       export interface Input {
-        column_name: string;
+        name: string;
 
-        column_type: string;
+        description?: string | null;
 
         notes?: string | null;
+
+        tag?: string | null;
       }
     }
 
     export interface UnionMember12 {
       input: UnionMember12.Input;
 
-      name: 'SaveApiResource';
+      name: 'SaveColumn';
 
       block_id?: number;
 
@@ -674,11 +677,9 @@ export namespace ChatEvent {
 
     export namespace UnionMember12 {
       export interface Input {
-        endpoint: string;
+        column_name: string;
 
-        name: string;
-
-        description?: string | null;
+        column_type: string;
 
         notes?: string | null;
       }
@@ -687,7 +688,7 @@ export namespace ChatEvent {
     export interface UnionMember13 {
       input: UnionMember13.Input;
 
-      name: 'SaveMemory';
+      name: 'SaveApiResource';
 
       block_id?: number;
 
@@ -700,16 +701,20 @@ export namespace ChatEvent {
 
     export namespace UnionMember13 {
       export interface Input {
-        key: string;
+        endpoint: string;
 
-        value: string;
+        name: string;
+
+        description?: string | null;
+
+        notes?: string | null;
       }
     }
 
     export interface UnionMember14 {
       input: UnionMember14.Input;
 
-      name: 'SearchConnectorTables';
+      name: 'SaveMemory';
 
       block_id?: number;
 
@@ -722,16 +727,16 @@ export namespace ChatEvent {
 
     export namespace UnionMember14 {
       export interface Input {
-        query: string;
+        key: string;
 
-        wiki_tag?: string | null;
+        value: string;
       }
     }
 
     export interface UnionMember15 {
       input: UnionMember15.Input;
 
-      name: 'RequestClarification';
+      name: 'SearchConnectorTables';
 
       block_id?: number;
 
@@ -744,18 +749,16 @@ export namespace ChatEvent {
 
     export namespace UnionMember15 {
       export interface Input {
-        question: string;
+        query: string;
 
-        table_name: string;
-
-        column_name?: string | null;
+        wiki_tag?: string | null;
       }
     }
 
     export interface UnionMember16 {
       input: UnionMember16.Input;
 
-      name: 'AddDependency';
+      name: 'RequestClarification';
 
       block_id?: number;
 
@@ -768,14 +771,38 @@ export namespace ChatEvent {
 
     export namespace UnionMember16 {
       export interface Input {
+        question: string;
+
+        table_name: string;
+
+        column_name?: string | null;
+      }
+    }
+
+    export interface UnionMember17 {
+      input: UnionMember17.Input;
+
+      name: 'AddDependency';
+
+      block_id?: number;
+
+      complete?: boolean;
+
+      result_image?: Core.Uploadable | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember17 {
+      export interface Input {
         package_name: string;
 
         version_spec?: string | null;
       }
     }
 
-    export interface UnionMember17 {
-      input: UnionMember17.Input;
+    export interface UnionMember18 {
+      input: UnionMember18.Input;
 
       name: 'SelectData';
 
@@ -788,7 +815,7 @@ export namespace ChatEvent {
       result_text?: string | null;
     }
 
-    export namespace UnionMember17 {
+    export namespace UnionMember18 {
       export interface Input {
         node_ids: Array<string>;
       }
