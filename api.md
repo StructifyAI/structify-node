@@ -415,6 +415,7 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/sessions.ts">AutofixContext</a></code>
+- <code><a href="./src/resources/sessions.ts">ConfirmNodeRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">CreateWorkflowSessionRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">DashboardComponent</a></code>
 - <code><a href="./src/resources/sessions.ts">DashboardLayout</a></code>
@@ -422,9 +423,11 @@ Types:
 - <code><a href="./src/resources/sessions.ts">FinalizeDagRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">FinalizeDagResponse</a></code>
 - <code><a href="./src/resources/sessions.ts">GetNodeLogsResponse</a></code>
+- <code><a href="./src/resources/sessions.ts">GetNodeResponse</a></code>
 - <code><a href="./src/resources/sessions.ts">JobEventBody</a></code>
 - <code><a href="./src/resources/sessions.ts">MarkWorkflowSessionErroredRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">NodeSpec</a></code>
+- <code><a href="./src/resources/sessions.ts">RequestConfirmationRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">UpdateWorkflowNodeProgressRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">UpdateWorkflowNodeRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">UploadDashboardLayoutRequest</a></code>
@@ -441,15 +444,18 @@ Types:
 
 Methods:
 
+- <code title="post /sessions/nodes/{node_id}/confirm">client.sessions.<a href="./src/resources/sessions.ts">confirmNode</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 - <code title="post /sessions">client.sessions.<a href="./src/resources/sessions.ts">createSession</a>({ ...params }) -> WorkflowSession</code>
 - <code title="post /sessions/{session_id}/dag_ready">client.sessions.<a href="./src/resources/sessions.ts">finalizeDag</a>(sessionId, { ...params }) -> FinalizeDagResponse</code>
 - <code title="get /sessions/{session_id}/dag">client.sessions.<a href="./src/resources/sessions.ts">getDag</a>(sessionId) -> WorkflowDag</code>
 - <code title="get /sessions/nodes/{node_id}/events">client.sessions.<a href="./src/resources/sessions.ts">getEvents</a>(nodeId, { ...params }) -> SessionGetEventsResponse</code>
+- <code title="get /sessions/nodes/{node_id}">client.sessions.<a href="./src/resources/sessions.ts">getNode</a>(nodeId) -> GetNodeResponse</code>
 - <code title="get /sessions/node/{node_id}/logs">client.sessions.<a href="./src/resources/sessions.ts">getNodeLogs</a>(nodeId) -> GetNodeLogsResponse</code>
 - <code title="get /sessions/nodes/{node_id}/output_data">client.sessions.<a href="./src/resources/sessions.ts">getNodeOutputData</a>(nodeId) -> Response</code>
 - <code title="get /sessions/nodes/{node_id}/progress">client.sessions.<a href="./src/resources/sessions.ts">getNodeProgress</a>(nodeId) -> SessionGetNodeProgressResponse</code>
 - <code title="post /sessions/{session_id}/kill_jobs">client.sessions.<a href="./src/resources/sessions.ts">killJobs</a>(sessionId, { ...params }) -> SessionKillJobsResponse</code>
 - <code title="patch /sessions/{session_id}/error">client.sessions.<a href="./src/resources/sessions.ts">markErrored</a>(sessionId, { ...params }) -> WorkflowSession</code>
+- <code title="post /sessions/nodes/{node_id}/request_confirmation">client.sessions.<a href="./src/resources/sessions.ts">requestConfirmation</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 - <code title="patch /sessions/nodes/{node_id}">client.sessions.<a href="./src/resources/sessions.ts">updateNode</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 - <code title="patch /sessions/nodes/{node_id}/progress">client.sessions.<a href="./src/resources/sessions.ts">updateNodeProgress</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 - <code title="post /sessions/{session_id}/dashboard_layout">client.sessions.<a href="./src/resources/sessions.ts">uploadDashboardLayout</a>(sessionId, { ...params }) -> WorkflowSession</code>
