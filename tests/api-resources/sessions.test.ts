@@ -9,6 +9,25 @@ const client = new Structify({
 });
 
 describe('resource sessions', () => {
+  test('confirmNode: only required params', async () => {
+    const responsePromise = client.sessions.confirmNode('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      confirmed: true,
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('confirmNode: required and optional params', async () => {
+    const response = await client.sessions.confirmNode('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      confirmed: true,
+    });
+  });
+
   test('createSession: only required params', async () => {
     const responsePromise = client.sessions.createSession({
       chat_session_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -117,6 +136,24 @@ describe('resource sessions', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
+  test('getNode', async () => {
+    const responsePromise = client.sessions.getNode('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('getNode: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.sessions.getNode('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
   test('getNodeLogs', async () => {
     const responsePromise = client.sessions.getNodeLogs('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();
@@ -196,6 +233,25 @@ describe('resource sessions', () => {
       autofix: true,
       autofix_context: 'creation',
       error_traceback: 'error_traceback',
+    });
+  });
+
+  test('requestConfirmation: only required params', async () => {
+    const responsePromise = client.sessions.requestConfirmation('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      row_count: 0,
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('requestConfirmation: required and optional params', async () => {
+    const response = await client.sessions.requestConfirmation('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      row_count: 0,
     });
   });
 

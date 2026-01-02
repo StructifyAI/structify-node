@@ -8,6 +8,14 @@ import * as SharedAPI from './shared';
 import { type Response } from '../_shims/index';
 
 export class Sessions extends APIResource {
+  confirmNode(
+    nodeId: string,
+    body: SessionConfirmNodeParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<WorkflowSessionNode> {
+    return this._client.post(`/sessions/nodes/${nodeId}/confirm`, { body, ...options });
+  }
+
   createSession(
     body: SessionCreateSessionParams,
     options?: Core.RequestOptions,
@@ -51,6 +59,10 @@ export class Sessions extends APIResource {
     return this._client.get(`/sessions/nodes/${nodeId}/events`, { query, ...options });
   }
 
+  getNode(nodeId: string, options?: Core.RequestOptions): Core.APIPromise<GetNodeResponse> {
+    return this._client.get(`/sessions/nodes/${nodeId}`, options);
+  }
+
   /**
    * Get terminal logs for a workflow node
    */
@@ -87,6 +99,14 @@ export class Sessions extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<WorkflowSession> {
     return this._client.patch(`/sessions/${sessionId}/error`, { body, ...options });
+  }
+
+  requestConfirmation(
+    nodeId: string,
+    body: SessionRequestConfirmationParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<WorkflowSessionNode> {
+    return this._client.post(`/sessions/nodes/${nodeId}/request_confirmation`, { body, ...options });
   }
 
   updateNode(
@@ -135,6 +155,10 @@ export class Sessions extends APIResource {
 
 export type AutofixContext = 'creation' | 'execution' | 'visualization';
 
+export interface ConfirmNodeRequest {
+  confirmed: boolean;
+}
+
 export interface CreateWorkflowSessionRequest {
   chat_session_id: string;
 
@@ -179,6 +203,10 @@ export interface FinalizeDagResponse {
 
 export interface GetNodeLogsResponse {
   logs: Array<WorkflowNodeLog>;
+}
+
+export interface GetNodeResponse {
+  node: WorkflowSessionNode;
 }
 
 /**
@@ -342,6 +370,10 @@ export interface NodeSpec {
   connector_id?: string | null;
 }
 
+export interface RequestConfirmationRequest {
+  row_count: number;
+}
+
 export interface UpdateWorkflowNodeProgressRequest {
   current: number;
 
@@ -390,7 +422,13 @@ export interface WorkflowDag {
   error_traceback?: string | null;
 }
 
-export type WorkflowNodeExecutionStatus = 'Unexecuted' | 'Success' | 'Failure' | 'Running' | 'Aborted';
+export type WorkflowNodeExecutionStatus =
+  | 'Unexecuted'
+  | 'Success'
+  | 'Failure'
+  | 'Running'
+  | 'Aborted'
+  | 'PendingConfirmation';
 
 export interface WorkflowNodeLog {
   id: string;
@@ -463,6 +501,8 @@ export interface WorkflowSessionNode {
 
   code?: string | null;
 
+  confirmation_status?: string | null;
+
   connector_id?: string | null;
 
   created_at?: string | null;
@@ -471,7 +511,11 @@ export interface WorkflowSessionNode {
 
   error_traceback?: string | null;
 
+  estimated_cost?: number | null;
+
   execution_time_ms?: number | null;
+
+  input_row_count?: number | null;
 
   original_node?: string | null;
 
@@ -543,6 +587,10 @@ export interface SessionKillJobsResponse {
   message: string;
 }
 
+export interface SessionConfirmNodeParams {
+  confirmed: boolean;
+}
+
 export interface SessionCreateSessionParams {
   chat_session_id: string;
 
@@ -579,6 +627,10 @@ export interface SessionMarkErroredParams {
   autofix_context?: AutofixContext | null;
 
   error_traceback?: string | null;
+}
+
+export interface SessionRequestConfirmationParams {
+  row_count: number;
 }
 
 export interface SessionUpdateNodeParams {
@@ -618,6 +670,7 @@ export interface SessionUploadNodeVisualizationOutputParams {
 export declare namespace Sessions {
   export {
     type AutofixContext as AutofixContext,
+    type ConfirmNodeRequest as ConfirmNodeRequest,
     type CreateWorkflowSessionRequest as CreateWorkflowSessionRequest,
     type DashboardComponent as DashboardComponent,
     type DashboardLayout as DashboardLayout,
@@ -625,9 +678,11 @@ export declare namespace Sessions {
     type FinalizeDagRequest as FinalizeDagRequest,
     type FinalizeDagResponse as FinalizeDagResponse,
     type GetNodeLogsResponse as GetNodeLogsResponse,
+    type GetNodeResponse as GetNodeResponse,
     type JobEventBody as JobEventBody,
     type MarkWorkflowSessionErroredRequest as MarkWorkflowSessionErroredRequest,
     type NodeSpec as NodeSpec,
+    type RequestConfirmationRequest as RequestConfirmationRequest,
     type UpdateWorkflowNodeProgressRequest as UpdateWorkflowNodeProgressRequest,
     type UpdateWorkflowNodeRequest as UpdateWorkflowNodeRequest,
     type UploadDashboardLayoutRequest as UploadDashboardLayoutRequest,
@@ -641,11 +696,13 @@ export declare namespace Sessions {
     type SessionGetEventsResponse as SessionGetEventsResponse,
     type SessionGetNodeProgressResponse as SessionGetNodeProgressResponse,
     type SessionKillJobsResponse as SessionKillJobsResponse,
+    type SessionConfirmNodeParams as SessionConfirmNodeParams,
     type SessionCreateSessionParams as SessionCreateSessionParams,
     type SessionFinalizeDagParams as SessionFinalizeDagParams,
     type SessionGetEventsParams as SessionGetEventsParams,
     type SessionKillJobsParams as SessionKillJobsParams,
     type SessionMarkErroredParams as SessionMarkErroredParams,
+    type SessionRequestConfirmationParams as SessionRequestConfirmationParams,
     type SessionUpdateNodeParams as SessionUpdateNodeParams,
     type SessionUpdateNodeProgressParams as SessionUpdateNodeProgressParams,
     type SessionUploadDashboardLayoutParams as SessionUploadDashboardLayoutParams,
