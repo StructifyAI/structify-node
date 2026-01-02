@@ -4,9 +4,12 @@ export { Admin } from './admin';
 export {
   AdminListJobsResponsesJobsList,
   Jobs,
+  type AdminDeleteJobsRequest,
+  type AdminDeleteJobsResponse,
   type AdminListJobsRequestParams,
   type AdminListJobsResponse,
   type JobListParams,
+  type JobDeleteParams,
 } from './jobs';
 export {
   AdminSandboxesJobsList,

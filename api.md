@@ -249,12 +249,15 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/admin/jobs.ts">AdminDeleteJobsRequest</a></code>
+- <code><a href="./src/resources/admin/jobs.ts">AdminDeleteJobsResponse</a></code>
 - <code><a href="./src/resources/admin/jobs.ts">AdminListJobsRequestParams</a></code>
 - <code><a href="./src/resources/admin/jobs.ts">AdminListJobsResponse</a></code>
 
 Methods:
 
 - <code title="get /admin/jobs/list">client.admin.jobs.<a href="./src/resources/admin/jobs.ts">list</a>({ ...params }) -> AdminListJobsResponsesJobsList</code>
+- <code title="post /admin/jobs/delete">client.admin.jobs.<a href="./src/resources/admin/jobs.ts">delete</a>({ ...params }) -> AdminDeleteJobsResponse</code>
 
 ## Sandbox
 

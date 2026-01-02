@@ -19,9 +19,21 @@ export class Jobs extends APIResource {
   ): Core.PagePromise<AdminListJobsResponsesJobsList, AdminListJobsResponse> {
     return this._client.getAPIList('/admin/jobs/list', AdminListJobsResponsesJobsList, { query, ...options });
   }
+
+  delete(body: JobDeleteParams, options?: Core.RequestOptions): Core.APIPromise<AdminDeleteJobsResponse> {
+    return this._client.post('/admin/jobs/delete', { body, ...options });
+  }
 }
 
 export class AdminListJobsResponsesJobsList extends JobsList<AdminListJobsResponse> {}
+
+export interface AdminDeleteJobsRequest {
+  job_ids: Array<string>;
+}
+
+export interface AdminDeleteJobsResponse {
+  deleted_jobs: number;
+}
 
 export interface AdminListJobsRequestParams {
   dataset_id?: string | null;
@@ -201,13 +213,20 @@ export interface JobListParams extends JobsListParams {
   status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
 }
 
+export interface JobDeleteParams {
+  job_ids: Array<string>;
+}
+
 Jobs.AdminListJobsResponsesJobsList = AdminListJobsResponsesJobsList;
 
 export declare namespace Jobs {
   export {
+    type AdminDeleteJobsRequest as AdminDeleteJobsRequest,
+    type AdminDeleteJobsResponse as AdminDeleteJobsResponse,
     type AdminListJobsRequestParams as AdminListJobsRequestParams,
     type AdminListJobsResponse as AdminListJobsResponse,
     AdminListJobsResponsesJobsList as AdminListJobsResponsesJobsList,
     type JobListParams as JobListParams,
+    type JobDeleteParams as JobDeleteParams,
   };
 }
