@@ -21,9 +21,12 @@ import {
 } from './functional-tests';
 import * as JobsAPI from './jobs';
 import {
+  AdminDeleteJobsRequest,
+  AdminDeleteJobsResponse,
   AdminListJobsRequestParams,
   AdminListJobsResponse,
   AdminListJobsResponsesJobsList,
+  JobDeleteParams,
   JobListParams,
   Jobs,
 } from './jobs';
@@ -114,10 +117,13 @@ export declare namespace Admin {
 
   export {
     Jobs as Jobs,
+    type AdminDeleteJobsRequest as AdminDeleteJobsRequest,
+    type AdminDeleteJobsResponse as AdminDeleteJobsResponse,
     type AdminListJobsRequestParams as AdminListJobsRequestParams,
     type AdminListJobsResponse as AdminListJobsResponse,
     AdminListJobsResponsesJobsList as AdminListJobsResponsesJobsList,
     type JobListParams as JobListParams,
+    type JobDeleteParams as JobDeleteParams,
   };
 
   export {
