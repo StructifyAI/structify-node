@@ -313,56 +313,39 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/datasets/datasets.ts">MergeConfig</a></code>
-- <code><a href="./src/resources/datasets/datasets.ts">RelationshipMergeStrategy</a></code>
-- <code><a href="./src/resources/datasets/datasets.ts">Strategy</a></code>
-- <code><a href="./src/resources/datasets/datasets.ts">DatasetCreateResponse</a></code>
-- <code><a href="./src/resources/datasets/datasets.ts">DatasetListResponse</a></code>
-- <code><a href="./src/resources/datasets/datasets.ts">DatasetCountMissingEmbeddingsResponse</a></code>
-- <code><a href="./src/resources/datasets/datasets.ts">DatasetEnrichmentProgressResponse</a></code>
-- <code><a href="./src/resources/datasets/datasets.ts">DatasetGetResponse</a></code>
-- <code><a href="./src/resources/datasets/datasets.ts">DatasetMatchResponse</a></code>
-- <code><a href="./src/resources/datasets/datasets.ts">DatasetViewRelationshipsResponse</a></code>
-- <code><a href="./src/resources/datasets/datasets.ts">DatasetViewTableResponse</a></code>
-- <code><a href="./src/resources/datasets/datasets.ts">DatasetViewTablesWithRelationshipsResponse</a></code>
+- <code><a href="./src/resources/datasets.ts">MergeConfig</a></code>
+- <code><a href="./src/resources/datasets.ts">RelationshipMergeStrategy</a></code>
+- <code><a href="./src/resources/datasets.ts">Strategy</a></code>
+- <code><a href="./src/resources/datasets.ts">DatasetCreateResponse</a></code>
+- <code><a href="./src/resources/datasets.ts">DatasetListResponse</a></code>
+- <code><a href="./src/resources/datasets.ts">DatasetCountMissingEmbeddingsResponse</a></code>
+- <code><a href="./src/resources/datasets.ts">DatasetEnrichmentProgressResponse</a></code>
+- <code><a href="./src/resources/datasets.ts">DatasetGetResponse</a></code>
+- <code><a href="./src/resources/datasets.ts">DatasetMatchResponse</a></code>
+- <code><a href="./src/resources/datasets.ts">DatasetViewRelationshipsResponse</a></code>
+- <code><a href="./src/resources/datasets.ts">DatasetViewTableResponse</a></code>
+- <code><a href="./src/resources/datasets.ts">DatasetViewTablesWithRelationshipsResponse</a></code>
 
 Methods:
 
-- <code title="post /dataset/create">client.datasets.<a href="./src/resources/datasets/datasets.ts">create</a>({ ...params }) -> string</code>
-- <code title="get /dataset/list">client.datasets.<a href="./src/resources/datasets/datasets.ts">list</a>() -> DatasetListResponse</code>
-- <code title="delete /dataset/delete">client.datasets.<a href="./src/resources/datasets/datasets.ts">delete</a>({ ...params }) -> void</code>
-- <code title="post /dataset/add_property">client.datasets.<a href="./src/resources/datasets/datasets.ts">addProperty</a>({ ...params }) -> void</code>
-- <code title="get /dataset/count_missing_embeddings">client.datasets.<a href="./src/resources/datasets/datasets.ts">countMissingEmbeddings</a>({ ...params }) -> DatasetCountMissingEmbeddingsResponse</code>
-- <code title="get /dataset/enrichment_progress">client.datasets.<a href="./src/resources/datasets/datasets.ts">enrichmentProgress</a>({ ...params }) -> DatasetEnrichmentProgressResponse</code>
-- <code title="get /dataset/export_to_csv">client.datasets.<a href="./src/resources/datasets/datasets.ts">exportToCsv</a>({ ...params }) -> void</code>
-- <code title="get /dataset/export_to_excel">client.datasets.<a href="./src/resources/datasets/datasets.ts">exportToExcel</a>({ ...params }) -> void</code>
-- <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets/datasets.ts">get</a>({ ...params }) -> DatasetGetResponse</code>
-- <code title="post /dataset/match">client.datasets.<a href="./src/resources/datasets/datasets.ts">match</a>({ ...params }) -> DatasetMatchResponse</code>
-- <code title="post /dataset/remove_property">client.datasets.<a href="./src/resources/datasets/datasets.ts">removeProperty</a>({ ...params }) -> void</code>
-- <code title="post /dataset/reorder_properties">client.datasets.<a href="./src/resources/datasets/datasets.ts">reorderProperties</a>({ ...params }) -> void</code>
-- <code title="post /dataset/set_primary_column">client.datasets.<a href="./src/resources/datasets/datasets.ts">setPrimaryColumn</a>({ ...params }) -> void</code>
-- <code title="post /dataset/update_property">client.datasets.<a href="./src/resources/datasets/datasets.ts">updateProperty</a>({ ...params }) -> void</code>
-- <code title="post /dataset/update_relationship">client.datasets.<a href="./src/resources/datasets/datasets.ts">updateRelationship</a>({ ...params }) -> void</code>
-- <code title="get /dataset/view_relationships">client.datasets.<a href="./src/resources/datasets/datasets.ts">viewRelationships</a>({ ...params }) -> DatasetViewRelationshipsResponsesJobsList</code>
-- <code title="get /dataset/view_table">client.datasets.<a href="./src/resources/datasets/datasets.ts">viewTable</a>({ ...params }) -> DatasetViewTableResponsesJobsList</code>
-- <code title="get /dataset/view_tables_with_relationships">client.datasets.<a href="./src/resources/datasets/datasets.ts">viewTablesWithRelationships</a>({ ...params }) -> DatasetViewTablesWithRelationshipsResponse</code>
-
-## Evaluate
-
-Types:
-
-- <code><a href="./src/resources/datasets/evaluate.ts">EvaluateListResponse</a></code>
-- <code><a href="./src/resources/datasets/evaluate.ts">EvaluateGetResponse</a></code>
-- <code><a href="./src/resources/datasets/evaluate.ts">EvaluateRunResponse</a></code>
-- <code><a href="./src/resources/datasets/evaluate.ts">EvaluateStatusResponse</a></code>
-
-Methods:
-
-- <code title="get /dataset/evaluate/list">client.datasets.evaluate.<a href="./src/resources/datasets/evaluate.ts">list</a>({ ...params }) -> EvaluateListResponsesJobsList</code>
-- <code title="delete /dataset/evaluate/delete">client.datasets.evaluate.<a href="./src/resources/datasets/evaluate.ts">delete</a>({ ...params }) -> void</code>
-- <code title="get /dataset/evaluate/get">client.datasets.evaluate.<a href="./src/resources/datasets/evaluate.ts">get</a>({ ...params }) -> EvaluateGetResponse</code>
-- <code title="post /dataset/evaluate/run">client.datasets.evaluate.<a href="./src/resources/datasets/evaluate.ts">run</a>({ ...params }) -> string</code>
-- <code title="get /dataset/evaluate/status">client.datasets.evaluate.<a href="./src/resources/datasets/evaluate.ts">status</a>({ ...params }) -> EvaluateStatusResponse</code>
+- <code title="post /dataset/create">client.datasets.<a href="./src/resources/datasets.ts">create</a>({ ...params }) -> string</code>
+- <code title="get /dataset/list">client.datasets.<a href="./src/resources/datasets.ts">list</a>() -> DatasetListResponse</code>
+- <code title="delete /dataset/delete">client.datasets.<a href="./src/resources/datasets.ts">delete</a>({ ...params }) -> void</code>
+- <code title="post /dataset/add_property">client.datasets.<a href="./src/resources/datasets.ts">addProperty</a>({ ...params }) -> void</code>
+- <code title="get /dataset/count_missing_embeddings">client.datasets.<a href="./src/resources/datasets.ts">countMissingEmbeddings</a>({ ...params }) -> DatasetCountMissingEmbeddingsResponse</code>
+- <code title="get /dataset/enrichment_progress">client.datasets.<a href="./src/resources/datasets.ts">enrichmentProgress</a>({ ...params }) -> DatasetEnrichmentProgressResponse</code>
+- <code title="get /dataset/export_to_csv">client.datasets.<a href="./src/resources/datasets.ts">exportToCsv</a>({ ...params }) -> void</code>
+- <code title="get /dataset/export_to_excel">client.datasets.<a href="./src/resources/datasets.ts">exportToExcel</a>({ ...params }) -> void</code>
+- <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets.ts">get</a>({ ...params }) -> DatasetGetResponse</code>
+- <code title="post /dataset/match">client.datasets.<a href="./src/resources/datasets.ts">match</a>({ ...params }) -> DatasetMatchResponse</code>
+- <code title="post /dataset/remove_property">client.datasets.<a href="./src/resources/datasets.ts">removeProperty</a>({ ...params }) -> void</code>
+- <code title="post /dataset/reorder_properties">client.datasets.<a href="./src/resources/datasets.ts">reorderProperties</a>({ ...params }) -> void</code>
+- <code title="post /dataset/set_primary_column">client.datasets.<a href="./src/resources/datasets.ts">setPrimaryColumn</a>({ ...params }) -> void</code>
+- <code title="post /dataset/update_property">client.datasets.<a href="./src/resources/datasets.ts">updateProperty</a>({ ...params }) -> void</code>
+- <code title="post /dataset/update_relationship">client.datasets.<a href="./src/resources/datasets.ts">updateRelationship</a>({ ...params }) -> void</code>
+- <code title="get /dataset/view_relationships">client.datasets.<a href="./src/resources/datasets.ts">viewRelationships</a>({ ...params }) -> DatasetViewRelationshipsResponsesJobsList</code>
+- <code title="get /dataset/view_table">client.datasets.<a href="./src/resources/datasets.ts">viewTable</a>({ ...params }) -> DatasetViewTableResponsesJobsList</code>
+- <code title="get /dataset/view_tables_with_relationships">client.datasets.<a href="./src/resources/datasets.ts">viewTablesWithRelationships</a>({ ...params }) -> DatasetViewTablesWithRelationshipsResponse</code>
 
 # Documents
 
@@ -645,19 +628,15 @@ Types:
 - <code><a href="./src/resources/entities.ts">EntityAddResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityAddBatchResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityAddRelationshipResponse</a></code>
-- <code><a href="./src/resources/entities.ts">EntityAgentMergeResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityDeleteRelationshipResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityDeriveResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityDeriveAllResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityGetResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityGetLocalSubgraphResponse</a></code>
-- <code><a href="./src/resources/entities.ts">EntityGetMergesResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityGetSourceEntitiesResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityListJobsResponse</a></code>
-- <code><a href="./src/resources/entities.ts">EntityMergeResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntitySearchResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntitySummarizeResponse</a></code>
-- <code><a href="./src/resources/entities.ts">EntityTriggerMergeResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityUpdatePropertyResponse</a></code>
 - <code><a href="./src/resources/entities.ts">EntityViewResponse</a></code>
 
@@ -667,19 +646,15 @@ Methods:
 - <code title="post /entity/add">client.entities.<a href="./src/resources/entities.ts">add</a>({ ...params }) -> EntityAddResponse</code>
 - <code title="post /entity/add_batch">client.entities.<a href="./src/resources/entities.ts">addBatch</a>({ ...params }) -> EntityAddBatchResponse</code>
 - <code title="post /entity/add_relationship">client.entities.<a href="./src/resources/entities.ts">addRelationship</a>({ ...params }) -> EntityAddRelationshipResponse</code>
-- <code title="post /entity/agent_merge">client.entities.<a href="./src/resources/entities.ts">agentMerge</a>({ ...params }) -> EntityAgentMergeResponse</code>
 - <code title="post /entity/delete_relationship">client.entities.<a href="./src/resources/entities.ts">deleteRelationship</a>({ ...params }) -> unknown</code>
 - <code title="post /entity/derive">client.entities.<a href="./src/resources/entities.ts">derive</a>({ ...params }) -> string</code>
 - <code title="post /entity/derive_all">client.entities.<a href="./src/resources/entities.ts">deriveAll</a>({ ...params }) -> EntityDeriveAllResponse</code>
 - <code title="get /entity/get">client.entities.<a href="./src/resources/entities.ts">get</a>({ ...params }) -> EntityGetResponse</code>
 - <code title="get /entity/get_local_subgraph">client.entities.<a href="./src/resources/entities.ts">getLocalSubgraph</a>({ ...params }) -> EntityGetLocalSubgraphResponse</code>
-- <code title="get /entity/get_merges">client.entities.<a href="./src/resources/entities.ts">getMerges</a>({ ...params }) -> EntityGetMergesResponse</code>
 - <code title="get /entity/get_source_entities">client.entities.<a href="./src/resources/entities.ts">getSourceEntities</a>({ ...params }) -> EntityGetSourceEntitiesResponse</code>
 - <code title="get /entity/list_jobs">client.entities.<a href="./src/resources/entities.ts">listJobs</a>({ ...params }) -> EntityListJobsResponse</code>
-- <code title="post /entity/merge">client.entities.<a href="./src/resources/entities.ts">merge</a>({ ...params }) -> EntityMergeResponse</code>
 - <code title="post /entity/search">client.entities.<a href="./src/resources/entities.ts">search</a>({ ...params }) -> EntitySearchResponse</code>
 - <code title="post /entity/summarize">client.entities.<a href="./src/resources/entities.ts">summarize</a>({ ...params }) -> EntitySummarizeResponse</code>
-- <code title="post /entity/trigger_merge">client.entities.<a href="./src/resources/entities.ts">triggerMerge</a>({ ...params }) -> EntityTriggerMergeResponse</code>
 - <code title="post /entity/update">client.entities.<a href="./src/resources/entities.ts">updateProperty</a>({ ...params }) -> EntityUpdatePropertyResponse</code>
 - <code title="post /entity/upload_parquet">client.entities.<a href="./src/resources/entities.ts">uploadParquet</a>({ ...params }) -> void</code>
 - <code title="post /entity/verify">client.entities.<a href="./src/resources/entities.ts">verify</a>({ ...params }) -> KnowledgeGraph</code>

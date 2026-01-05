@@ -111,29 +111,6 @@ describe('resource entities', () => {
     });
   });
 
-  test('agentMerge: only required params', async () => {
-    const responsePromise = client.entities.agentMerge({
-      dataset: 'dataset',
-      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('agentMerge: required and optional params', async () => {
-    const response = await client.entities.agentMerge({
-      dataset: 'dataset',
-      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      force_consider_entities: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
-      top_k: 0,
-    });
-  });
-
   test('deleteRelationship: only required params', async () => {
     const responsePromise = client.entities.deleteRelationship({
       dataset: 'dataset',
@@ -243,21 +220,6 @@ describe('resource entities', () => {
     });
   });
 
-  test('getMerges: only required params', async () => {
-    const responsePromise = client.entities.getMerges({ entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('getMerges: required and optional params', async () => {
-    const response = await client.entities.getMerges({ entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
-  });
-
   test('getSourceEntities: only required params', async () => {
     const responsePromise = client.entities.getSourceEntities({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
@@ -286,28 +248,6 @@ describe('resource entities', () => {
 
   test('listJobs: required and optional params', async () => {
     const response = await client.entities.listJobs({ id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
-  });
-
-  test('merge: only required params', async () => {
-    const responsePromise = client.entities.merge({
-      entity_1_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      entity_2_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('merge: required and optional params', async () => {
-    const response = await client.entities.merge({
-      entity_1_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      entity_2_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      debug: true,
-    });
   });
 
   test('search: only required params', async () => {
@@ -354,25 +294,6 @@ describe('resource entities', () => {
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       properties: ['string'],
       extra_instructions: ['string'],
-    });
-  });
-
-  test('triggerMerge: only required params', async () => {
-    const responsePromise = client.entities.triggerMerge({
-      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('triggerMerge: required and optional params', async () => {
-    const response = await client.entities.triggerMerge({
-      entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 
