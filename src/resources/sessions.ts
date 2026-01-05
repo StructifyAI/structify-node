@@ -217,6 +217,8 @@ export type JobEventBody =
   | JobEventBody.AgentSearched
   | JobEventBody.AgentSaved
   | JobEventBody.AgentExited
+  | JobEventBody.APINetworkCaptured
+  | JobEventBody.APIJsExecuted
   | JobEventBody.DerivedProperty
   | JobEventBody.Failed
   | JobEventBody.Completed
@@ -265,6 +267,24 @@ export namespace JobEventBody {
     event_type: 'agent_exited';
 
     reason?: string | null;
+  }
+
+  export interface APINetworkCaptured {
+    api_candidate_count: number;
+
+    event_type: 'api_network_captured';
+
+    request_count: number;
+
+    url: string;
+  }
+
+  export interface APIJsExecuted {
+    code_preview: string;
+
+    event_type: 'api_js_executed';
+
+    success: boolean;
   }
 
   export interface DerivedProperty {
