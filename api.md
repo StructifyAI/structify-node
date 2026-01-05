@@ -69,6 +69,7 @@ Types:
 - <code><a href="./src/resources/chat.ts">ChatSessionRole</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSessionUser</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSessionWithMessages</a></code>
+- <code><a href="./src/resources/chat.ts">ChatTemplate</a></code>
 - <code><a href="./src/resources/chat.ts">ChatVisibility</a></code>
 - <code><a href="./src/resources/chat.ts">CopyChatSessionRequest</a></code>
 - <code><a href="./src/resources/chat.ts">CreateChatSessionRequest</a></code>
@@ -91,6 +92,7 @@ Types:
 - <code><a href="./src/resources/chat.ts">ChatGetGitCommitResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetPartialChatsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetSessionTimelineResponse</a></code>
+- <code><a href="./src/resources/chat.ts">ChatListTemplatesResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatLoadFilesResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatRevertToCommitResponse</a></code>
 
@@ -112,6 +114,7 @@ Methods:
 - <code title="post /chat/sessions/{chat_id}/admin_override">client.chat.<a href="./src/resources/chat.ts">grantAdminOverride</a>(chatId, { ...params }) -> AdminGrantAccessResponse</code>
 - <code title="get /chat/sessions/{chat_id}/collaborators">client.chat.<a href="./src/resources/chat.ts">listCollaborators</a>(chatId) -> ListCollaboratorsResponse</code>
 - <code title="get /chat/sessions">client.chat.<a href="./src/resources/chat.ts">listSessions</a>({ ...params }) -> ListChatSessionsResponse</code>
+- <code title="get /chat/templates">client.chat.<a href="./src/resources/chat.ts">listTemplates</a>() -> ChatListTemplatesResponse</code>
 - <code title="post /chat/files/load">client.chat.<a href="./src/resources/chat.ts">loadFiles</a>({ ...params }) -> ChatLoadFilesResponse</code>
 - <code title="patch /chat/sessions/{session_id}/make-permanent">client.chat.<a href="./src/resources/chat.ts">makePermanent</a>(sessionId) -> void</code>
 - <code title="delete /chat/sessions/{chat_id}/collaborators/{user_id}">client.chat.<a href="./src/resources/chat.ts">removeCollaborator</a>(chatId, userId) -> void</code>
@@ -308,6 +311,21 @@ Methods:
 - <code title="get /admin/users/list">client.admin.users.<a href="./src/resources/admin/users.ts">list</a>() -> UserListResponse</code>
 - <code title="post /admin/users/get_stats">client.admin.users.<a href="./src/resources/admin/users.ts">getStats</a>({ ...params }) -> UserGetStatsResponse</code>
 - <code title="post /admin/users/impersonate">client.admin.users.<a href="./src/resources/admin/users.ts">impersonate</a>({ ...params }) -> ImpersonateResponse</code>
+
+## ChatTemplates
+
+Types:
+
+- <code><a href="./src/resources/admin/chat-templates.ts">AdminChatTemplateListQuery</a></code>
+- <code><a href="./src/resources/admin/chat-templates.ts">CreateChatTemplateRequest</a></code>
+- <code><a href="./src/resources/admin/chat-templates.ts">UpdateChatTemplateRequest</a></code>
+- <code><a href="./src/resources/admin/chat-templates.ts">ChatTemplateListResponse</a></code>
+
+Methods:
+
+- <code title="post /admin/chat/templates">client.admin.chatTemplates.<a href="./src/resources/admin/chat-templates.ts">create</a>({ ...params }) -> ChatTemplate</code>
+- <code title="patch /admin/chat/templates/{template_id}">client.admin.chatTemplates.<a href="./src/resources/admin/chat-templates.ts">update</a>(templateId, { ...params }) -> ChatTemplate</code>
+- <code title="get /admin/chat/templates">client.admin.chatTemplates.<a href="./src/resources/admin/chat-templates.ts">list</a>({ ...params }) -> ChatTemplateListResponse</code>
 
 # Datasets
 
