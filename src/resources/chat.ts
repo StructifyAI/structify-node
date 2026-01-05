@@ -949,6 +949,12 @@ export interface ChatSessionWithMessages {
   name?: string | null;
 
   project_id?: string | null;
+
+  slack_channel_id?: string | null;
+
+  slack_team_id?: string | null;
+
+  slack_thread_ts?: string | null;
 }
 
 export namespace ChatSessionWithMessages {
@@ -1129,6 +1135,12 @@ export namespace GetChatSessionResponse {
     name?: string | null;
 
     project_id?: string | null;
+
+    slack_channel_id?: string | null;
+
+    slack_team_id?: string | null;
+
+    slack_thread_ts?: string | null;
 
     workflow_schedule_id?: string | null;
   }
