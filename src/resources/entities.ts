@@ -43,17 +43,6 @@ export class Entities extends APIResource {
   }
 
   /**
-   * Use LLM to analyze and automatically merge entities based on sources and
-   * properties
-   */
-  agentMerge(
-    body: EntityAgentMergeParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EntityAgentMergeResponse> {
-    return this._client.post('/entity/agent_merge', { body, ...options });
-  }
-
-  /**
    * delete a relationship between two entities in a dataset
    */
   deleteRelationship(
@@ -99,16 +88,6 @@ export class Entities extends APIResource {
     return this._client.get('/entity/get_local_subgraph', { query, ...options });
   }
 
-  /**
-   * Get all historical merges for a given entity
-   */
-  getMerges(
-    query: EntityGetMergesParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EntityGetMergesResponse> {
-    return this._client.get('/entity/get_merges', { query, ...options });
-  }
-
   getSourceEntities(
     query: EntityGetSourceEntitiesParams,
     options?: Core.RequestOptions,
@@ -127,13 +106,6 @@ export class Entities extends APIResource {
   }
 
   /**
-   * merge an entity manually
-   */
-  merge(body: EntityMergeParams, options?: Core.RequestOptions): Core.APIPromise<EntityMergeResponse> {
-    return this._client.post('/entity/merge', { body, ...options });
-  }
-
-  /**
    * Search for entities based on the given query
    */
   search(body: EntitySearchParams, options?: Core.RequestOptions): Core.APIPromise<EntitySearchResponse> {
@@ -148,17 +120,6 @@ export class Entities extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<EntitySummarizeResponse> {
     return this._client.post('/entity/summarize', { body, ...options });
-  }
-
-  /**
-   * Trigger our merge process for a given entity
-   */
-  triggerMerge(
-    params: EntityTriggerMergeParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<EntityTriggerMergeResponse> {
-    const { entity_id } = params;
-    return this._client.post('/entity/trigger_merge', { query: { entity_id }, ...options });
   }
 
   /**
@@ -298,14 +259,6 @@ export namespace EntityAddRelationshipResponse {
 
     original_address: string;
   }
-}
-
-export interface EntityAgentMergeResponse {
-  final_entity_id: string;
-
-  merged_entities: Array<string>;
-
-  reasoning?: string | null;
 }
 
 export type EntityDeleteRelationshipResponse = unknown;
@@ -599,8 +552,6 @@ export namespace EntityGetLocalSubgraphResponse {
   }
 }
 
-export type EntityGetMergesResponse = Array<SharedAPI.EntityMatch>;
-
 export interface EntityGetSourceEntitiesResponse {
   source_entities: Array<Array<EntityGetSourceEntitiesResponse.SourceEntity>>;
 }
@@ -802,12 +753,6 @@ export namespace EntityListJobsResponse {
   }
 }
 
-export interface EntityMergeResponse {
-  match_object?: SharedAPI.EntityMatch | null;
-
-  merged_entity_id?: string | null;
-}
-
 export type EntitySearchResponse = Array<EntitySearchResponse.EntitySearchResponseItem>;
 
 export namespace EntitySearchResponse {
@@ -995,97 +940,6 @@ export namespace EntitySummarizeResponse {
 
       original_address: string;
     }
-  }
-}
-
-export interface EntityTriggerMergeResponse {
-  id: string;
-
-  created_at: string;
-
-  dataset_id: string;
-
-  label: string;
-
-  properties: {
-    [key: string]:
-      | string
-      | boolean
-      | number
-      | EntityTriggerMergeResponse.PartialDateObject
-      | string
-      | string
-      | EntityTriggerMergeResponse.URLObject
-      | string
-      | EntityTriggerMergeResponse.MoneyObject
-      | SharedAPI.Image
-      | EntityTriggerMergeResponse.PersonName
-      | EntityTriggerMergeResponse.AddressObject
-      | string;
-  };
-
-  updated_at: string;
-}
-
-export namespace EntityTriggerMergeResponse {
-  export interface PartialDateObject {
-    original_string: string;
-
-    year: number;
-
-    day?: number | null;
-
-    month?: number | null;
-  }
-
-  export interface URLObject {
-    original_string: string;
-
-    url: string;
-  }
-
-  export interface MoneyObject {
-    amount: number;
-
-    currency_code:
-      | 'USD'
-      | 'EUR'
-      | 'GBP'
-      | 'JPY'
-      | 'CNY'
-      | 'INR'
-      | 'RUB'
-      | 'CAD'
-      | 'AUD'
-      | 'CHF'
-      | 'ILS'
-      | 'NZD'
-      | 'SGD'
-      | 'HKD'
-      | 'NOK'
-      | 'SEK'
-      | 'PLN'
-      | 'TRY'
-      | 'DKK'
-      | 'MXN'
-      | 'ZAR'
-      | 'PHP'
-      | 'VND'
-      | 'THB'
-      | 'BRL'
-      | 'KRW';
-
-    original_string: string;
-  }
-
-  export interface PersonName {
-    name: string;
-  }
-
-  export interface AddressObject {
-    components: { [key: string]: string };
-
-    original_address: string;
   }
 }
 
@@ -1697,16 +1551,6 @@ export interface EntityAddRelationshipParams {
   properties?: { [key: string]: string | boolean | number };
 }
 
-export interface EntityAgentMergeParams {
-  dataset: string;
-
-  entity_id: string;
-
-  force_consider_entities?: Array<string>;
-
-  top_k?: number;
-}
-
 export interface EntityDeleteRelationshipParams {
   dataset: string;
 
@@ -1749,24 +1593,12 @@ export interface EntityGetLocalSubgraphParams {
   radius?: number;
 }
 
-export interface EntityGetMergesParams {
-  entity_id: string;
-}
-
 export interface EntityGetSourceEntitiesParams {
   id: string;
 }
 
 export interface EntityListJobsParams {
   id: string;
-}
-
-export interface EntityMergeParams {
-  entity_1_id: string;
-
-  entity_2_id: string;
-
-  debug?: boolean;
 }
 
 export interface EntitySearchParams {
@@ -1788,10 +1620,6 @@ export interface EntitySummarizeParams {
    * A list of instructions for each property to guide the summarization process
    */
   extra_instructions?: Array<string> | null;
-}
-
-export interface EntityTriggerMergeParams {
-  entity_id: string;
 }
 
 export interface EntityUpdatePropertyParams {
@@ -1867,38 +1695,30 @@ export declare namespace Entities {
     type EntityAddResponse as EntityAddResponse,
     type EntityAddBatchResponse as EntityAddBatchResponse,
     type EntityAddRelationshipResponse as EntityAddRelationshipResponse,
-    type EntityAgentMergeResponse as EntityAgentMergeResponse,
     type EntityDeleteRelationshipResponse as EntityDeleteRelationshipResponse,
     type EntityDeriveResponse as EntityDeriveResponse,
     type EntityDeriveAllResponse as EntityDeriveAllResponse,
     type EntityGetResponse as EntityGetResponse,
     type EntityGetLocalSubgraphResponse as EntityGetLocalSubgraphResponse,
-    type EntityGetMergesResponse as EntityGetMergesResponse,
     type EntityGetSourceEntitiesResponse as EntityGetSourceEntitiesResponse,
     type EntityListJobsResponse as EntityListJobsResponse,
-    type EntityMergeResponse as EntityMergeResponse,
     type EntitySearchResponse as EntitySearchResponse,
     type EntitySummarizeResponse as EntitySummarizeResponse,
-    type EntityTriggerMergeResponse as EntityTriggerMergeResponse,
     type EntityUpdatePropertyResponse as EntityUpdatePropertyResponse,
     type EntityViewResponse as EntityViewResponse,
     type EntityDeleteParams as EntityDeleteParams,
     type EntityAddParams as EntityAddParams,
     type EntityAddBatchParams as EntityAddBatchParams,
     type EntityAddRelationshipParams as EntityAddRelationshipParams,
-    type EntityAgentMergeParams as EntityAgentMergeParams,
     type EntityDeleteRelationshipParams as EntityDeleteRelationshipParams,
     type EntityDeriveParams as EntityDeriveParams,
     type EntityDeriveAllParams as EntityDeriveAllParams,
     type EntityGetParams as EntityGetParams,
     type EntityGetLocalSubgraphParams as EntityGetLocalSubgraphParams,
-    type EntityGetMergesParams as EntityGetMergesParams,
     type EntityGetSourceEntitiesParams as EntityGetSourceEntitiesParams,
     type EntityListJobsParams as EntityListJobsParams,
-    type EntityMergeParams as EntityMergeParams,
     type EntitySearchParams as EntitySearchParams,
     type EntitySummarizeParams as EntitySummarizeParams,
-    type EntityTriggerMergeParams as EntityTriggerMergeParams,
     type EntityUpdatePropertyParams as EntityUpdatePropertyParams,
     type EntityUploadParquetParams as EntityUploadParquetParams,
     type EntityVerifyParams as EntityVerifyParams,
