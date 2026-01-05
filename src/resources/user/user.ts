@@ -190,6 +190,7 @@ export namespace UpdateUserParams {
       | 'cerebras_codegen'
       | 'gemini25pro'
       | 'claude_sonnet4'
+      | 'allow_job_deletion'
       | 'none'
     > | null;
 
@@ -236,6 +237,7 @@ export interface UserInfo {
     | 'cerebras_codegen'
     | 'gemini25pro'
     | 'claude_sonnet4'
+    | 'allow_job_deletion'
     | 'none'
   >;
 
@@ -333,6 +335,7 @@ export namespace UserUpdateParams {
       | 'cerebras_codegen'
       | 'gemini25pro'
       | 'claude_sonnet4'
+      | 'allow_job_deletion'
       | 'none'
     > | null;
 
