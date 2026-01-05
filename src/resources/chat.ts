@@ -167,6 +167,13 @@ export class Chat extends APIResource {
   }
 
   /**
+   * List active chat templates for the /chat page
+   */
+  listTemplates(options?: Core.RequestOptions): Core.APIPromise<ChatListTemplatesResponse> {
+    return this._client.get('/chat/templates', options);
+  }
+
+  /**
    * Load files from a chat session's git repository
    */
   loadFiles(
@@ -1006,6 +1013,30 @@ export namespace ChatSessionWithMessages {
   }
 }
 
+export interface ChatTemplate {
+  id: string;
+
+  chat_session_id: string;
+
+  created_at: string;
+
+  created_by: string;
+
+  description: string;
+
+  display_order: number;
+
+  image_url: string;
+
+  is_active: boolean;
+
+  title: string;
+
+  updated_at: string;
+
+  updated_by: string;
+}
+
 export type ChatVisibility = 'private' | 'shared_with_team' | 'public';
 
 export interface CopyChatSessionRequest {
@@ -1404,6 +1435,8 @@ export namespace ChatGetSessionTimelineResponse {
   }
 }
 
+export type ChatListTemplatesResponse = Array<ChatTemplate>;
+
 export interface ChatLoadFilesResponse {
   commit_hash: string;
 
@@ -1577,6 +1610,7 @@ export declare namespace Chat {
     type ChatSessionRole as ChatSessionRole,
     type ChatSessionUser as ChatSessionUser,
     type ChatSessionWithMessages as ChatSessionWithMessages,
+    type ChatTemplate as ChatTemplate,
     type ChatVisibility as ChatVisibility,
     type CopyChatSessionRequest as CopyChatSessionRequest,
     type CreateChatSessionRequest as CreateChatSessionRequest,
@@ -1599,6 +1633,7 @@ export declare namespace Chat {
     type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
     type ChatGetPartialChatsResponse as ChatGetPartialChatsResponse,
     type ChatGetSessionTimelineResponse as ChatGetSessionTimelineResponse,
+    type ChatListTemplatesResponse as ChatListTemplatesResponse,
     type ChatLoadFilesResponse as ChatLoadFilesResponse,
     type ChatRevertToCommitResponse as ChatRevertToCommitResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,

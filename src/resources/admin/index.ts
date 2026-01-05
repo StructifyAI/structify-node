@@ -39,6 +39,16 @@ export {
   type TeamExtendTrialParams,
   type TeamGrantCreditsParams,
 } from './teams';
+export {
+  ChatTemplates,
+  type AdminChatTemplateListQuery,
+  type CreateChatTemplateRequest,
+  type UpdateChatTemplateRequest,
+  type ChatTemplateListResponse,
+  type ChatTemplateCreateParams,
+  type ChatTemplateUpdateParams,
+  type ChatTemplateListParams,
+} from './chat-templates';
 export { Dataset, type AdminDatasetReturn, type DatasetGetByIDParams } from './dataset';
 export {
   FunctionalTests,

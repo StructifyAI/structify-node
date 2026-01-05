@@ -330,6 +330,24 @@ describe('resource chat', () => {
     });
   });
 
+  test('listTemplates', async () => {
+    const responsePromise = client.chat.listTemplates();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('listTemplates: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.chat.listTemplates({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Structify.NotFoundError,
+    );
+  });
+
   test('loadFiles: only required params', async () => {
     const responsePromise = client.chat.loadFiles({ chat_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();

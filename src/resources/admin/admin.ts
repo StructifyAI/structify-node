@@ -1,6 +1,17 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import * as ChatTemplatesAPI from './chat-templates';
+import {
+  AdminChatTemplateListQuery,
+  ChatTemplateCreateParams,
+  ChatTemplateListParams,
+  ChatTemplateListResponse,
+  ChatTemplateUpdateParams,
+  ChatTemplates,
+  CreateChatTemplateRequest,
+  UpdateChatTemplateRequest,
+} from './chat-templates';
 import * as DatasetAPI from './dataset';
 import { AdminDatasetReturn, Dataset, DatasetGetByIDParams } from './dataset';
 import * as FunctionalTestsAPI from './functional-tests';
@@ -74,6 +85,7 @@ export class Admin extends APIResource {
   sandbox: SandboxAPI.Sandbox = new SandboxAPI.Sandbox(this._client);
   functionalTests: FunctionalTestsAPI.FunctionalTests = new FunctionalTestsAPI.FunctionalTests(this._client);
   users: UsersAPI.Users = new UsersAPI.Users(this._client);
+  chatTemplates: ChatTemplatesAPI.ChatTemplates = new ChatTemplatesAPI.ChatTemplates(this._client);
 }
 
 Admin.Teams = Teams;
@@ -85,6 +97,7 @@ Admin.Sandbox = Sandbox;
 Admin.AdminSandboxesJobsList = AdminSandboxesJobsList;
 Admin.FunctionalTests = FunctionalTests;
 Admin.Users = Users;
+Admin.ChatTemplates = ChatTemplates;
 
 export declare namespace Admin {
   export {
@@ -160,5 +173,16 @@ export declare namespace Admin {
     type UserCreateParams as UserCreateParams,
     type UserGetStatsParams as UserGetStatsParams,
     type UserImpersonateParams as UserImpersonateParams,
+  };
+
+  export {
+    ChatTemplates as ChatTemplates,
+    type AdminChatTemplateListQuery as AdminChatTemplateListQuery,
+    type CreateChatTemplateRequest as CreateChatTemplateRequest,
+    type UpdateChatTemplateRequest as UpdateChatTemplateRequest,
+    type ChatTemplateListResponse as ChatTemplateListResponse,
+    type ChatTemplateCreateParams as ChatTemplateCreateParams,
+    type ChatTemplateUpdateParams as ChatTemplateUpdateParams,
+    type ChatTemplateListParams as ChatTemplateListParams,
   };
 }
