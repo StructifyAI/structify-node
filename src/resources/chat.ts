@@ -392,7 +392,9 @@ export namespace ChatEvent {
       | ToolCall.UnionMember15
       | ToolCall.UnionMember16
       | ToolCall.UnionMember17
-      | ToolCall.UnionMember18;
+      | ToolCall.UnionMember18
+      | ToolCall.UnionMember19
+      | ToolCall.UnionMember20;
   }
 
   export namespace ToolCall {
@@ -825,6 +827,52 @@ export namespace ChatEvent {
     export namespace UnionMember18 {
       export interface Input {
         node_ids: Array<string>;
+      }
+    }
+
+    export interface UnionMember19 {
+      input: UnionMember19.Input;
+
+      name: 'CreateConnector';
+
+      block_id?: number;
+
+      complete?: boolean;
+
+      result_image?: Core.Uploadable | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember19 {
+      export interface Input {
+        connector_type: string;
+
+        name: string;
+
+        description?: string | null;
+
+        secrets?: Array<string>;
+      }
+    }
+
+    export interface UnionMember20 {
+      input: UnionMember20.Input;
+
+      name: 'SearchConnectorTypes';
+
+      block_id?: number;
+
+      complete?: boolean;
+
+      result_image?: Core.Uploadable | null;
+
+      result_text?: string | null;
+    }
+
+    export namespace UnionMember20 {
+      export interface Input {
+        query?: string | null;
       }
     }
   }
