@@ -82,7 +82,14 @@ describe('resource sessions', () => {
         },
       ],
       dashboard_layout: {
-        components: [{ node_name: 'node_name', title: 'title', description: 'description', span: 0 }],
+        components: [
+          {
+            node_name: 'node_name',
+            title: 'title',
+            description: 'description',
+            span: 0,
+          },
+        ],
         title: 'title',
         description: 'description',
       },
@@ -130,7 +137,12 @@ describe('resource sessions', () => {
     await expect(
       client.sessions.getEvents(
         '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        { limit: 0, offset: 0, search_term: 'search_term', status: 'Queued' },
+        {
+          limit: 0,
+          offset: 0,
+          search_term: 'search_term',
+          status: 'Queued',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Structify.NotFoundError);
@@ -317,7 +329,14 @@ describe('resource sessions', () => {
   test('uploadDashboardLayout: required and optional params', async () => {
     const response = await client.sessions.uploadDashboardLayout('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       layout: {
-        components: [{ node_name: 'node_name', title: 'title', description: 'description', span: 0 }],
+        components: [
+          {
+            node_name: 'node_name',
+            title: 'title',
+            description: 'description',
+            span: 0,
+          },
+        ],
         title: 'title',
         description: 'description',
       },
