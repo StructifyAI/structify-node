@@ -142,8 +142,21 @@ describe('resource structure', () => {
       node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       save_requirement: [{ relationship_name: 'relationship_name' }],
       seeded_entity: {
-        entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
-        relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
+        entities: [
+          {
+            id: 0,
+            properties: { foo: 'string' },
+            type: 'type',
+          },
+        ],
+        relationships: [
+          {
+            source: 0,
+            target: 0,
+            type: 'type',
+            properties: { foo: 'string' },
+          },
+        ],
       },
     });
   });

@@ -71,7 +71,11 @@ describe('resource news', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.external.news.sources(
-        { category: 'category', country: 'country', language: 'language' },
+        {
+          category: 'category',
+          country: 'country',
+          language: 'language',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Structify.NotFoundError);
@@ -99,7 +103,14 @@ describe('resource news', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.external.news.topHeadlines(
-        { category: 'category', country: 'country', page: 0, page_size: 0, q: 'q', sources: 'sources' },
+        {
+          category: 'category',
+          country: 'country',
+          page: 0,
+          page_size: 0,
+          q: 'q',
+          sources: 'sources',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Structify.NotFoundError);

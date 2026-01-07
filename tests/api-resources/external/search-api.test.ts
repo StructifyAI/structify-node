@@ -145,7 +145,12 @@ describe('resource searchAPI', () => {
   });
 
   test('googleMapsSearch: required and optional params', async () => {
-    const response = await client.external.searchAPI.googleMapsSearch({ q: 'q', gl: 'gl', hl: 'hl', num: 0 });
+    const response = await client.external.searchAPI.googleMapsSearch({
+      q: 'q',
+      gl: 'gl',
+      hl: 'hl',
+      num: 0,
+    });
   });
 
   test('googleScholarAuthorSearch: only required params', async () => {
@@ -243,6 +248,11 @@ describe('resource searchAPI', () => {
   });
 
   test('locationSearch: required and optional params', async () => {
-    const response = await client.external.searchAPI.locationSearch({ q: 'q', gl: 'gl', hl: 'hl', num: 0 });
+    const response = await client.external.searchAPI.locationSearch({
+      q: 'q',
+      gl: 'gl',
+      hl: 'hl',
+      num: 0,
+    });
   });
 });

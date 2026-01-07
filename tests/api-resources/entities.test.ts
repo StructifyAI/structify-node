@@ -33,7 +33,15 @@ describe('resource entities', () => {
   test('add: only required params', async () => {
     const responsePromise = client.entities.add({
       dataset: 'dataset',
-      entity_graph: { entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }] },
+      entity_graph: {
+        entities: [
+          {
+            id: 0,
+            properties: { foo: 'string' },
+            type: 'type',
+          },
+        ],
+      },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -48,8 +56,21 @@ describe('resource entities', () => {
     const response = await client.entities.add({
       dataset: 'dataset',
       entity_graph: {
-        entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
-        relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
+        entities: [
+          {
+            id: 0,
+            properties: { foo: 'string' },
+            type: 'type',
+          },
+        ],
+        relationships: [
+          {
+            source: 0,
+            target: 0,
+            type: 'type',
+            properties: { foo: 'string' },
+          },
+        ],
       },
       attempt_merge: true,
       source: 'None',
@@ -59,7 +80,17 @@ describe('resource entities', () => {
   test('addBatch: only required params', async () => {
     const responsePromise = client.entities.addBatch({
       dataset: 'dataset',
-      entity_graphs: [{ entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }] }],
+      entity_graphs: [
+        {
+          entities: [
+            {
+              id: 0,
+              properties: { foo: 'string' },
+              type: 'type',
+            },
+          ],
+        },
+      ],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -75,8 +106,21 @@ describe('resource entities', () => {
       dataset: 'dataset',
       entity_graphs: [
         {
-          entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
-          relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
+          entities: [
+            {
+              id: 0,
+              properties: { foo: 'string' },
+              type: 'type',
+            },
+          ],
+          relationships: [
+            {
+              source: 0,
+              target: 0,
+              type: 'type',
+              properties: { foo: 'string' },
+            },
+          ],
         },
       ],
       attempt_merge: true,
@@ -347,7 +391,15 @@ describe('resource entities', () => {
   test('verify: only required params', async () => {
     const responsePromise = client.entities.verify({
       dataset: 'dataset',
-      entity_graph: { entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }] },
+      entity_graph: {
+        entities: [
+          {
+            id: 0,
+            properties: { foo: 'string' },
+            type: 'type',
+          },
+        ],
+      },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -362,8 +414,21 @@ describe('resource entities', () => {
     const response = await client.entities.verify({
       dataset: 'dataset',
       entity_graph: {
-        entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
-        relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
+        entities: [
+          {
+            id: 0,
+            properties: { foo: 'string' },
+            type: 'type',
+          },
+        ],
+        relationships: [
+          {
+            source: 0,
+            target: 0,
+            type: 'type',
+            properties: { foo: 'string' },
+          },
+        ],
       },
       fix: true,
     });
