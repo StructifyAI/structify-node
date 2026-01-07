@@ -53,7 +53,12 @@ describe('resource datasets', () => {
             target_cardinality_given_source_match: 0,
           },
           properties: [
-            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+            {
+              description: 'description',
+              name: 'name',
+              merge_strategy: 'Unique',
+              prop_type: 'String',
+            },
           ],
         },
       ],
@@ -62,7 +67,12 @@ describe('resource datasets', () => {
           description: 'description',
           name: 'name',
           properties: [
-            { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+            {
+              description: 'description',
+              name: 'name',
+              merge_strategy: 'Unique',
+              prop_type: 'String',
+            },
           ],
           expected_cardinality: 0,
           primary_column: 'primary_column',
@@ -124,7 +134,12 @@ describe('resource datasets', () => {
   test('addProperty: required and optional params', async () => {
     const response = await client.datasets.addProperty({
       dataset_name: 'dataset_name',
-      property: { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+      property: {
+        description: 'description',
+        name: 'name',
+        merge_strategy: 'Unique',
+        prop_type: 'String',
+      },
       table_name: 'table_name',
     });
   });
@@ -207,7 +222,15 @@ describe('resource datasets', () => {
   test('match: only required params', async () => {
     const responsePromise = client.datasets.match({
       dataset: 'dataset',
-      query_kg: { entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }] },
+      query_kg: {
+        entities: [
+          {
+            id: 0,
+            properties: { foo: 'string' },
+            type: 'type',
+          },
+        ],
+      },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -222,8 +245,21 @@ describe('resource datasets', () => {
     const response = await client.datasets.match({
       dataset: 'dataset',
       query_kg: {
-        entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
-        relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
+        entities: [
+          {
+            id: 0,
+            properties: { foo: 'string' },
+            type: 'type',
+          },
+        ],
+        relationships: [
+          {
+            source: 0,
+            target: 0,
+            type: 'type',
+            properties: { foo: 'string' },
+          },
+        ],
       },
       match_threshold: 0,
     });
@@ -369,7 +405,10 @@ describe('resource datasets', () => {
       last_updated: '2019-12-27T18:11:19.117Z',
       limit: 0,
       offset: 0,
-      sort_by: { col_id: { user_defined_column: 'user_defined_column' }, sort: 'asc' },
+      sort_by: {
+        col_id: { user_defined_column: 'user_defined_column' },
+        sort: 'asc',
+      },
     });
   });
 
@@ -392,7 +431,10 @@ describe('resource datasets', () => {
       last_updated: '2019-12-27T18:11:19.117Z',
       limit: 0,
       offset: 0,
-      sort_by: { col_id: { user_defined_column: 'user_defined_column' }, sort: 'asc' },
+      sort_by: {
+        col_id: { user_defined_column: 'user_defined_column' },
+        sort: 'asc',
+      },
     });
   });
 
@@ -415,7 +457,10 @@ describe('resource datasets', () => {
       last_updated: '2019-12-27T18:11:19.117Z',
       limit: 0,
       offset: 0,
-      sort_by: { col_id: { user_defined_column: 'user_defined_column' }, sort: 'asc' },
+      sort_by: {
+        col_id: { user_defined_column: 'user_defined_column' },
+        sort: 'asc',
+      },
     });
   });
 });

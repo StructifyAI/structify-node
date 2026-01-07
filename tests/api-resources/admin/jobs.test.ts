@@ -10,7 +10,11 @@ const client = new Structify({
 
 describe('resource jobs', () => {
   test('list: only required params', async () => {
-    const responsePromise = client.admin.jobs.list({ filter_test_users: true, limit: 0, offset: 0 });
+    const responsePromise = client.admin.jobs.list({
+      filter_test_users: true,
+      limit: 0,
+      offset: 0,
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

@@ -58,7 +58,12 @@ describe('resource scrape', () => {
               target_cardinality_given_source_match: 0,
             },
             properties: [
-              { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+              {
+                description: 'description',
+                name: 'name',
+                merge_strategy: 'Unique',
+                prop_type: 'String',
+              },
             ],
           },
         ],
@@ -67,7 +72,12 @@ describe('resource scrape', () => {
             description: 'description',
             name: 'name',
             properties: [
-              { description: 'description', name: 'name', merge_strategy: 'Unique', prop_type: 'String' },
+              {
+                description: 'description',
+                name: 'name',
+                merge_strategy: 'Unique',
+                prop_type: 'String',
+              },
             ],
             expected_cardinality: 0,
             primary_column: 'primary_column',
@@ -105,8 +115,21 @@ describe('resource scrape', () => {
       url: 'url',
       node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       seeded_kg: {
-        entities: [{ id: 0, properties: { foo: 'string' }, type: 'type' }],
-        relationships: [{ source: 0, target: 0, type: 'type', properties: { foo: 'string' } }],
+        entities: [
+          {
+            id: 0,
+            properties: { foo: 'string' },
+            type: 'type',
+          },
+        ],
+        relationships: [
+          {
+            source: 0,
+            target: 0,
+            type: 'type',
+            properties: { foo: 'string' },
+          },
+        ],
       },
       use_proxy: true,
     });
