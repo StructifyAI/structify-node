@@ -935,6 +935,8 @@ export interface ChatSession {
 
   review_required: boolean;
 
+  skip_confirmations: boolean;
+
   slack_completion_notified: boolean;
 
   team_id: string;
@@ -988,6 +990,8 @@ export interface ChatSessionWithMessages {
   is_favorite: boolean;
 
   messages: Array<ChatSessionWithMessages.Message>;
+
+  skip_confirmations: boolean;
 
   team_id: string;
 
@@ -1364,6 +1368,8 @@ export interface UpdateChatSessionRequest {
   name?: string | null;
 
   project_id?: string | null;
+
+  skip_confirmations?: boolean | null;
 }
 
 export interface UpdateVisibilityRequest {
@@ -1638,6 +1644,8 @@ export interface ChatUpdateSessionParams {
   name?: string | null;
 
   project_id?: string | null;
+
+  skip_confirmations?: boolean | null;
 }
 
 export interface ChatUpdateSessionFavoriteParams {
