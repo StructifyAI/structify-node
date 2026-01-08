@@ -94,6 +94,17 @@ export class Admin extends APIResource {
   ): Core.APIPromise<ConnectorCatalogAPI.ConnectorCredentialField> {
     return this._client.patch(`/admin/connector-catalog/credential-fields/${id}`, { body, ...options });
   }
+
+  uploadLogo(
+    slug: string,
+    body: AdminUploadLogoParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<UploadLogoResponse> {
+    return this._client.put(
+      `/admin/connector-catalog/${slug}/logo`,
+      Core.multipartFormRequestOptions({ body, ...options }),
+    );
+  }
 }
 
 export interface BatchCreateCredentialFieldsRequest {
@@ -122,8 +133,6 @@ export interface CreateCatalogRequest {
   categories?: Array<string>;
 
   description?: string | null;
-
-  logo_path?: string | null;
 
   priority?: number | null;
 }
@@ -171,8 +180,6 @@ export interface UpdateCatalogRequest {
 
   description?: string | null;
 
-  logo_path?: string | null;
-
   name?: string | null;
 
   priority?: number | null;
@@ -194,6 +201,10 @@ export interface UpdateCredentialFieldRequest {
   name?: string | null;
 
   options?: unknown;
+}
+
+export interface UploadLogoResponse {
+  slug: string;
 }
 
 export type AdminBatchCreateCredentialFieldsResponse = Array<ConnectorCatalogAPI.ConnectorCredentialField>;
@@ -226,8 +237,6 @@ export interface AdminCreateCatalogParams {
   categories?: Array<string>;
 
   description?: string | null;
-
-  logo_path?: string | null;
 
   priority?: number | null;
 }
@@ -265,8 +274,6 @@ export interface AdminUpdateCatalogParams {
 
   description?: string | null;
 
-  logo_path?: string | null;
-
   name?: string | null;
 
   priority?: number | null;
@@ -290,6 +297,10 @@ export interface AdminUpdateCredentialFieldParams {
   options?: unknown;
 }
 
+export interface AdminUploadLogoParams {
+  file: Core.Uploadable;
+}
+
 export declare namespace Admin {
   export {
     type BatchCreateCredentialFieldsRequest as BatchCreateCredentialFieldsRequest,
@@ -300,6 +311,7 @@ export declare namespace Admin {
     type UpdateAuthMethodRequest as UpdateAuthMethodRequest,
     type UpdateCatalogRequest as UpdateCatalogRequest,
     type UpdateCredentialFieldRequest as UpdateCredentialFieldRequest,
+    type UploadLogoResponse as UploadLogoResponse,
     type AdminBatchCreateCredentialFieldsResponse as AdminBatchCreateCredentialFieldsResponse,
     type AdminListNangoPendingResponse as AdminListNangoPendingResponse,
     type AdminBatchCreateCredentialFieldsParams as AdminBatchCreateCredentialFieldsParams,
@@ -309,5 +321,6 @@ export declare namespace Admin {
     type AdminUpdateAuthMethodParams as AdminUpdateAuthMethodParams,
     type AdminUpdateCatalogParams as AdminUpdateCatalogParams,
     type AdminUpdateCredentialFieldParams as AdminUpdateCredentialFieldParams,
+    type AdminUploadLogoParams as AdminUploadLogoParams,
   };
 }

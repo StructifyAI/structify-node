@@ -5,7 +5,12 @@ import * as qs from './internal/qs';
 import * as Core from './core';
 import * as Errors from './error';
 import * as Pagination from './pagination';
-import { type JobsListParams, JobsListResponse } from './pagination';
+import {
+  type JobsListParams,
+  JobsListResponse,
+  type ListConnectorCatalogParams,
+  ListConnectorCatalogResponse,
+} from './pagination';
 import * as Uploads from './uploads';
 import * as API from './resources/index';
 import {
@@ -361,6 +366,7 @@ import {
   ConnectorAuthMethod,
   ConnectorAuthMethodWithFields,
   ConnectorCatalog,
+  ConnectorCatalogListParams,
   ConnectorCatalogListResponse,
   ConnectorCatalogResource,
   ConnectorCatalogWithMethods,
@@ -726,6 +732,12 @@ export declare namespace Structify {
   export import JobsList = Pagination.JobsList;
   export { type JobsListParams as JobsListParams, type JobsListResponse as JobsListResponse };
 
+  export import ListConnectorCatalog = Pagination.ListConnectorCatalog;
+  export {
+    type ListConnectorCatalogParams as ListConnectorCatalogParams,
+    type ListConnectorCatalogResponse as ListConnectorCatalogResponse,
+  };
+
   export {
     User as User,
     type EnrichUserParams as EnrichUserParams,
@@ -1050,6 +1062,7 @@ export declare namespace Structify {
     type ConnectorCatalogWithMethods as ConnectorCatalogWithMethods,
     type ConnectorCredentialField as ConnectorCredentialField,
     type ConnectorCatalogListResponse as ConnectorCatalogListResponse,
+    type ConnectorCatalogListParams as ConnectorCatalogListParams,
   };
 
   export { Server as Server, type ServerInformation as ServerInformation };
