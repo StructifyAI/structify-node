@@ -41,6 +41,8 @@ describe('resource user', () => {
         slack_user_id: 'slack_user_id',
         slack_username: 'slack_username',
         survey_response: {},
+        teams_user_id: 'teams_user_id',
+        teams_user_name: 'teams_user_name',
         user_type: 'admin',
       },
       current_email: 'current_email',
