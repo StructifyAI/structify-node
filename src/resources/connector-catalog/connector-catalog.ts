@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as AdminAPI from './admin';
 import {
@@ -14,6 +15,7 @@ import {
   AdminUpdateAuthMethodParams,
   AdminUpdateCatalogParams,
   AdminUpdateCredentialFieldParams,
+  AdminUploadLogoParams,
   BatchCreateCredentialFieldsRequest,
   CreateAuthMethodRequest,
   CreateCatalogRequest,
@@ -22,16 +24,29 @@ import {
   UpdateAuthMethodRequest,
   UpdateCatalogRequest,
   UpdateCredentialFieldRequest,
+  UploadLogoResponse,
 } from './admin';
+import { type Response } from '../../_shims/index';
 
 export class ConnectorCatalogResource extends APIResource {
   admin: AdminAPI.Admin = new AdminAPI.Admin(this._client);
 
   /**
-   * List all connector catalog entries with their active auth methods
+   * List all connector catalog entries with their active auth methods and logos
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<ConnectorCatalogListResponse> {
-    return this._client.get('/connector-catalog', options);
+  list(
+    query?: ConnectorCatalogListParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ConnectorCatalogListResponse>;
+  list(options?: Core.RequestOptions): Core.APIPromise<ConnectorCatalogListResponse>;
+  list(
+    query: ConnectorCatalogListParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ConnectorCatalogListResponse> {
+    if (isRequestOptions(query)) {
+      return this.list({}, query);
+    }
+    return this._client.get('/connector-catalog', { query, ...options });
   }
 
   /**
@@ -39,6 +54,14 @@ export class ConnectorCatalogResource extends APIResource {
    */
   get(slug: string, options?: Core.RequestOptions): Core.APIPromise<ConnectorCatalogWithMethods> {
     return this._client.get(`/connector-catalog/${slug}`, options);
+  }
+
+  getLogo(slug: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
+    return this._client.get(`/connector-catalog/${slug}/logo`, {
+      ...options,
+      headers: { Accept: 'application/octet-stream', ...options?.headers },
+      __binaryResponse: true,
+    });
   }
 }
 
@@ -81,13 +104,16 @@ export interface ConnectorCatalog {
 
   description?: string | null;
 
-  logo_path?: string | null;
-
   priority?: number | null;
 }
 
 export interface ConnectorCatalogWithMethods extends ConnectorCatalog {
   auth_methods: Array<ConnectorAuthMethodWithFields>;
+
+  /**
+   * Base64 data URI for the logo (e.g., "data:image/svg+xml;base64,...")
+   */
+  logo_url?: string | null;
 }
 
 export interface ConnectorCredentialField {
@@ -116,7 +142,17 @@ export interface ConnectorCredentialField {
   options?: unknown;
 }
 
-export type ConnectorCatalogListResponse = Array<ConnectorCatalogWithMethods>;
+export interface ConnectorCatalogListResponse {
+  items: Array<ConnectorCatalogWithMethods>;
+
+  total_count: number;
+}
+
+export interface ConnectorCatalogListParams {
+  limit?: number;
+
+  offset?: number;
+}
 
 ConnectorCatalogResource.Admin = Admin;
 
@@ -128,6 +164,7 @@ export declare namespace ConnectorCatalogResource {
     type ConnectorCatalogWithMethods as ConnectorCatalogWithMethods,
     type ConnectorCredentialField as ConnectorCredentialField,
     type ConnectorCatalogListResponse as ConnectorCatalogListResponse,
+    type ConnectorCatalogListParams as ConnectorCatalogListParams,
   };
 
   export {
@@ -140,6 +177,7 @@ export declare namespace ConnectorCatalogResource {
     type UpdateAuthMethodRequest as UpdateAuthMethodRequest,
     type UpdateCatalogRequest as UpdateCatalogRequest,
     type UpdateCredentialFieldRequest as UpdateCredentialFieldRequest,
+    type UploadLogoResponse as UploadLogoResponse,
     type AdminBatchCreateCredentialFieldsResponse as AdminBatchCreateCredentialFieldsResponse,
     type AdminListNangoPendingResponse as AdminListNangoPendingResponse,
     type AdminBatchCreateCredentialFieldsParams as AdminBatchCreateCredentialFieldsParams,
@@ -149,5 +187,6 @@ export declare namespace ConnectorCatalogResource {
     type AdminUpdateAuthMethodParams as AdminUpdateAuthMethodParams,
     type AdminUpdateCatalogParams as AdminUpdateCatalogParams,
     type AdminUpdateCredentialFieldParams as AdminUpdateCredentialFieldParams,
+    type AdminUploadLogoParams as AdminUploadLogoParams,
   };
 }

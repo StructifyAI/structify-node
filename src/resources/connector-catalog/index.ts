@@ -10,6 +10,7 @@ export {
   type UpdateAuthMethodRequest,
   type UpdateCatalogRequest,
   type UpdateCredentialFieldRequest,
+  type UploadLogoResponse,
   type AdminBatchCreateCredentialFieldsResponse,
   type AdminListNangoPendingResponse,
   type AdminBatchCreateCredentialFieldsParams,
@@ -19,6 +20,7 @@ export {
   type AdminUpdateAuthMethodParams,
   type AdminUpdateCatalogParams,
   type AdminUpdateCredentialFieldParams,
+  type AdminUploadLogoParams,
 } from './admin';
 export {
   ConnectorCatalogResource,
@@ -28,4 +30,5 @@ export {
   type ConnectorCatalogWithMethods,
   type ConnectorCredentialField,
   type ConnectorCatalogListResponse,
+  type ConnectorCatalogListParams,
 } from './connector-catalog';

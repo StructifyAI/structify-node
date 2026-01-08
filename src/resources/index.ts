@@ -66,6 +66,7 @@ export {
   type ConnectorCatalogWithMethods,
   type ConnectorCredentialField,
   type ConnectorCatalogListResponse,
+  type ConnectorCatalogListParams,
 } from './connector-catalog/connector-catalog';
 export {
   ConnectorWithSecretsJobsList,

@@ -581,8 +581,9 @@ Types:
 
 Methods:
 
-- <code title="get /connector-catalog">client.connectorCatalog.<a href="./src/resources/connector-catalog/connector-catalog.ts">list</a>() -> ConnectorCatalogListResponse</code>
+- <code title="get /connector-catalog">client.connectorCatalog.<a href="./src/resources/connector-catalog/connector-catalog.ts">list</a>({ ...params }) -> ConnectorCatalogListResponse</code>
 - <code title="get /connector-catalog/{slug}">client.connectorCatalog.<a href="./src/resources/connector-catalog/connector-catalog.ts">get</a>(slug) -> ConnectorCatalogWithMethods</code>
+- <code title="get /connector-catalog/{slug}/logo">client.connectorCatalog.<a href="./src/resources/connector-catalog/connector-catalog.ts">getLogo</a>(slug) -> Response</code>
 
 ## Admin
 
@@ -596,6 +597,7 @@ Types:
 - <code><a href="./src/resources/connector-catalog/admin.ts">UpdateAuthMethodRequest</a></code>
 - <code><a href="./src/resources/connector-catalog/admin.ts">UpdateCatalogRequest</a></code>
 - <code><a href="./src/resources/connector-catalog/admin.ts">UpdateCredentialFieldRequest</a></code>
+- <code><a href="./src/resources/connector-catalog/admin.ts">UploadLogoResponse</a></code>
 - <code><a href="./src/resources/connector-catalog/admin.ts">AdminBatchCreateCredentialFieldsResponse</a></code>
 - <code><a href="./src/resources/connector-catalog/admin.ts">AdminListNangoPendingResponse</a></code>
 
@@ -610,6 +612,7 @@ Methods:
 - <code title="patch /admin/connector-catalog/auth-methods/{id}">client.connectorCatalog.admin.<a href="./src/resources/connector-catalog/admin.ts">updateAuthMethod</a>(id, { ...params }) -> ConnectorAuthMethod</code>
 - <code title="patch /admin/connector-catalog/{id}">client.connectorCatalog.admin.<a href="./src/resources/connector-catalog/admin.ts">updateCatalog</a>(id, { ...params }) -> ConnectorCatalog</code>
 - <code title="patch /admin/connector-catalog/credential-fields/{id}">client.connectorCatalog.admin.<a href="./src/resources/connector-catalog/admin.ts">updateCredentialField</a>(id, { ...params }) -> ConnectorCredentialField</code>
+- <code title="put /admin/connector-catalog/{slug}/logo">client.connectorCatalog.admin.<a href="./src/resources/connector-catalog/admin.ts">uploadLogo</a>(slug, { ...params }) -> UploadLogoResponse</code>
 
 # Server
 

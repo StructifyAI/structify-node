@@ -27,6 +27,13 @@ describe('resource connectorCatalog', () => {
     );
   });
 
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.connectorCatalog.list({ limit: 0, offset: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
   test('get', async () => {
     const responsePromise = client.connectorCatalog.get('slug');
     const rawResponse = await responsePromise.asResponse();
@@ -43,5 +50,12 @@ describe('resource connectorCatalog', () => {
     await expect(client.connectorCatalog.get('slug', { path: '/_stainless_unknown_path' })).rejects.toThrow(
       Structify.NotFoundError,
     );
+  });
+
+  test('getLogo: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.connectorCatalog.getLogo('slug', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Structify.NotFoundError);
   });
 });
