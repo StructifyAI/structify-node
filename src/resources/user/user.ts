@@ -216,6 +216,10 @@ export namespace UpdateUserParams {
 
     survey_response?: unknown;
 
+    teams_user_id?: string | null;
+
+    teams_user_name?: string | null;
+
     user_type?: 'admin' | 'public' | 'end_user' | null;
   }
 }
@@ -360,6 +364,10 @@ export namespace UserUpdateParams {
     slack_username?: string | null;
 
     survey_response?: unknown;
+
+    teams_user_id?: string | null;
+
+    teams_user_name?: string | null;
 
     user_type?: 'admin' | 'public' | 'end_user' | null;
   }

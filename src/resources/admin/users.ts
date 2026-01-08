@@ -108,6 +108,10 @@ export interface User {
   survey_completed_at?: string | null;
 
   survey_response?: unknown;
+
+  teams_user_id?: string | null;
+
+  teams_user_name?: string | null;
 }
 
 export type UserListResponse = Array<UserListResponse.UserListResponseItem>;

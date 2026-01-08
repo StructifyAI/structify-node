@@ -272,6 +272,12 @@ export interface Team {
   slack_team_id?: string | null;
 
   slack_team_name?: string | null;
+
+  teams_app_id?: string | null;
+
+  teams_service_url?: string | null;
+
+  teams_tenant_id?: string | null;
 }
 
 export type TeamRole = 'read_only' | 'member' | 'admin' | 'owner';
