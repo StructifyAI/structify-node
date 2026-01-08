@@ -263,10 +263,6 @@ export interface Team {
 
   updated_at: string;
 
-  datahub_host?: string | null;
-
-  datahub_token?: string | null;
-
   description?: string | null;
 
   pipedream_project_id?: string | null;
@@ -312,10 +308,6 @@ export interface UpdateMemberRoleResponse {
 }
 
 export interface UpdateTeamRequest {
-  datahub_host?: string | null;
-
-  datahub_token?: string | null;
-
   description?: string | null;
 
   name?: string | null;
@@ -354,10 +346,6 @@ export interface TeamCreateParams {
 }
 
 export interface TeamUpdateParams {
-  datahub_host?: string | null;
-
-  datahub_token?: string | null;
-
   description?: string | null;
 
   name?: string | null;
