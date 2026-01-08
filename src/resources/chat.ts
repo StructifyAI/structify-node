@@ -941,6 +941,8 @@ export interface ChatSession {
 
   team_id: string;
 
+  teams_completion_notified: boolean;
+
   updated_at: string;
 
   user_message_needed: boolean;
@@ -958,6 +960,12 @@ export interface ChatSession {
   slack_team_id?: string | null;
 
   slack_thread_ts?: string | null;
+
+  teams_channel_id?: string | null;
+
+  teams_conversation_id?: string | null;
+
+  teams_tenant_id?: string | null;
 }
 
 export type ChatSessionRole = 'viewer' | 'editor' | 'owner';
@@ -1051,6 +1059,12 @@ export namespace ChatSessionWithMessages {
     slack_thread_ts?: string | null;
 
     stream_chunks?: Array<Message.StreamChunk> | null;
+
+    teams_channel_id?: string | null;
+
+    teams_conversation_id?: string | null;
+
+    teams_message_id?: string | null;
   }
 
   export namespace Message {
@@ -1463,6 +1477,12 @@ export namespace ChatGetSessionTimelineResponse {
     slack_thread_ts?: string | null;
 
     stream_chunks?: Array<Message.StreamChunk> | null;
+
+    teams_channel_id?: string | null;
+
+    teams_conversation_id?: string | null;
+
+    teams_message_id?: string | null;
   }
 
   export namespace Message {
