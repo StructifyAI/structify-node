@@ -546,6 +546,8 @@ export namespace ChatEvent {
 
         connector?: string | null;
 
+        timeout_seconds?: number | null;
+
         working_dir?: string | null;
       }
     }
