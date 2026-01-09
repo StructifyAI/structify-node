@@ -176,6 +176,8 @@ export namespace UpdateUserParams {
 
     completed_onboarding?: boolean | null;
 
+    cost_confirmation_threshold?: number | null;
+
     cufinder_data?: unknown;
 
     email?: string | null;
@@ -261,6 +263,8 @@ export interface UserInfo {
 
   company_name?: string | null;
 
+  cost_confirmation_threshold?: number | null;
+
   impersonated_by_email?: string | null;
 
   job_title?: string | null;
@@ -322,6 +326,8 @@ export namespace UserUpdateParams {
     company_name?: string | null;
 
     completed_onboarding?: boolean | null;
+
+    cost_confirmation_threshold?: number | null;
 
     cufinder_data?: unknown;
 
