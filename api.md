@@ -82,6 +82,8 @@ Types:
 - <code><a href="./src/resources/chat.ts">ListChatSessionsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ListCollaboratorsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">Message</a></code>
+- <code><a href="./src/resources/chat.ts">ToolInvocation</a></code>
+- <code><a href="./src/resources/chat.ts">ToolResult</a></code>
 - <code><a href="./src/resources/chat.ts">UpdateChatSessionFavoriteRequest</a></code>
 - <code><a href="./src/resources/chat.ts">UpdateChatSessionRequest</a></code>
 - <code><a href="./src/resources/chat.ts">UpdateVisibilityRequest</a></code>
