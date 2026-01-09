@@ -27,6 +27,7 @@ describe('resource user', () => {
         company_description: 'company_description',
         company_name: 'company_name',
         completed_onboarding: true,
+        cost_confirmation_threshold: 0,
         cufinder_data: {},
         email: 'email',
         feature_flags: ['functional_test'],

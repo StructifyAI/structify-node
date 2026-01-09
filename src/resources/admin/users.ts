@@ -89,6 +89,8 @@ export interface User {
 
   company_name?: string | null;
 
+  cost_confirmation_threshold?: number | null;
+
   cufinder_data?: unknown;
 
   job_title?: string | null;
