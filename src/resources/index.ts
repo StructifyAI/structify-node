@@ -24,6 +24,8 @@ export {
   type ListChatSessionsResponse,
   type ListCollaboratorsResponse,
   type Message,
+  type ToolInvocation,
+  type ToolResult,
   type UpdateChatSessionFavoriteRequest,
   type UpdateChatSessionRequest,
   type UpdateVisibilityRequest,
