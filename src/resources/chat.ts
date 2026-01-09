@@ -373,509 +373,18 @@ export namespace ChatEvent {
   }
 
   export interface ToolCall {
-    ToolCall:
-      | ToolCall.UnionMember0
-      | ToolCall.UnionMember1
-      | ToolCall.UnionMember2
-      | ToolCall.UnionMember3
-      | ToolCall.UnionMember4
-      | ToolCall.UnionMember5
-      | ToolCall.UnionMember6
-      | ToolCall.UnionMember7
-      | ToolCall.UnionMember8
-      | ToolCall.UnionMember9
-      | ToolCall.UnionMember10
-      | ToolCall.UnionMember11
-      | ToolCall.UnionMember12
-      | ToolCall.UnionMember13
-      | ToolCall.UnionMember14
-      | ToolCall.UnionMember15
-      | ToolCall.UnionMember16
-      | ToolCall.UnionMember17
-      | ToolCall.UnionMember18
-      | ToolCall.UnionMember19
-      | ToolCall.UnionMember20;
+    ToolCall: ToolCall.ToolCall;
   }
 
   export namespace ToolCall {
-    export interface UnionMember0 {
-      input: UnionMember0.Input;
+    export interface ToolCall {
+      block_id: number;
 
-      name: 'WebSearch';
+      complete: boolean;
 
-      block_id?: number;
+      invocation: ChatAPI.ToolInvocation;
 
-      complete?: boolean;
-
-      result_image?: Core.Uploadable | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember0 {
-      export interface Input {
-        query: string;
-      }
-    }
-
-    export interface UnionMember1 {
-      input: UnionMember1.Input;
-
-      name: 'WebNavigate';
-
-      block_id?: number;
-
-      complete?: boolean;
-
-      result_image?: Core.Uploadable | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember1 {
-      export interface Input {
-        url: string;
-      }
-    }
-
-    export interface UnionMember2 {
-      input: UnionMember2.Input;
-
-      name: 'InspectStep';
-
-      block_id?: number;
-
-      complete?: boolean;
-
-      result_image?: Core.Uploadable | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember2 {
-      export interface Input {
-        step_name: string;
-      }
-    }
-
-    export interface UnionMember3 {
-      input: UnionMember3.Input;
-
-      name: 'ReadNodeLogs';
-
-      block_id?: number;
-
-      complete?: boolean;
-
-      result_image?: Core.Uploadable | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember3 {
-      export interface Input {
-        end_line: number;
-
-        node_function_name: string;
-
-        start_line: number;
-
-        log_type?: string | null;
-      }
-    }
-
-    export interface UnionMember4 {
-      input: UnionMember4.Input;
-
-      name: 'DeleteFile';
-
-      block_id?: number;
-
-      complete?: boolean;
-
-      result_image?: Core.Uploadable | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember4 {
-      export interface Input {
-        file: string;
-      }
-    }
-
-    export interface UnionMember5 {
-      input: UnionMember5.Input;
-
-      name: 'MoveFile';
-
-      block_id?: number;
-
-      complete?: boolean;
-
-      result_image?: Core.Uploadable | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember5 {
-      export interface Input {
-        file: string;
-
-        new_path: string;
-      }
-    }
-
-    export interface UnionMember6 {
-      input: UnionMember6.Input;
-
-      name: 'RunBash';
-
-      block_id?: number;
-
-      complete?: boolean;
-
-      result_image?: Core.Uploadable | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember6 {
-      export interface Input {
-        command: string;
-
-        connector?: string | null;
-
-        working_dir?: string | null;
-      }
-    }
-
-    export interface UnionMember7 {
-      input: UnionMember7.Input;
-
-      name: 'RunPython';
-
-      block_id?: number;
-
-      complete?: boolean;
-
-      result_image?: Core.Uploadable | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember7 {
-      export interface Input {
-        code: string;
-
-        connector?: string | null;
-
-        timeout_seconds?: number | null;
-
-        working_dir?: string | null;
-      }
-    }
-
-    export interface UnionMember8 {
-      input: UnionMember8.Input;
-
-      name: 'IssueFound';
-
-      block_id?: number;
-
-      complete?: boolean;
-
-      result_image?: Core.Uploadable | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember8 {
-      export interface Input {
-        description: string;
-
-        title: string;
-      }
-    }
-
-    export interface UnionMember9 {
-      input: UnionMember9.Input;
-
-      name: 'SaveDatabase';
-
-      block_id?: number;
-
-      complete?: boolean;
-
-      result_image?: Core.Uploadable | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember9 {
-      export interface Input {
-        name: string;
-
-        description?: string | null;
-
-        notes?: string | null;
-      }
-    }
-
-    export interface UnionMember10 {
-      input: UnionMember10.Input;
-
-      name: 'SaveSchema';
-
-      block_id?: number;
-
-      complete?: boolean;
-
-      result_image?: Core.Uploadable | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember10 {
-      export interface Input {
-        name: string;
-
-        description?: string | null;
-
-        notes?: string | null;
-      }
-    }
-
-    export interface UnionMember11 {
-      input: UnionMember11.Input;
-
-      name: 'SaveTable';
-
-      block_id?: number;
-
-      complete?: boolean;
-
-      result_image?: Core.Uploadable | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember11 {
-      export interface Input {
-        name: string;
-
-        description?: string | null;
-
-        notes?: string | null;
-
-        tag?: string | null;
-      }
-    }
-
-    export interface UnionMember12 {
-      input: UnionMember12.Input;
-
-      name: 'SaveColumn';
-
-      block_id?: number;
-
-      complete?: boolean;
-
-      result_image?: Core.Uploadable | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember12 {
-      export interface Input {
-        column_name: string;
-
-        column_type: string;
-
-        notes?: string | null;
-      }
-    }
-
-    export interface UnionMember13 {
-      input: UnionMember13.Input;
-
-      name: 'SaveApiResource';
-
-      block_id?: number;
-
-      complete?: boolean;
-
-      result_image?: Core.Uploadable | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember13 {
-      export interface Input {
-        endpoint: string;
-
-        name: string;
-
-        description?: string | null;
-
-        notes?: string | null;
-      }
-    }
-
-    export interface UnionMember14 {
-      input: UnionMember14.Input;
-
-      name: 'SaveMemory';
-
-      block_id?: number;
-
-      complete?: boolean;
-
-      result_image?: Core.Uploadable | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember14 {
-      export interface Input {
-        key: string;
-
-        value: string;
-      }
-    }
-
-    export interface UnionMember15 {
-      input: UnionMember15.Input;
-
-      name: 'SearchConnectorTables';
-
-      block_id?: number;
-
-      complete?: boolean;
-
-      result_image?: Core.Uploadable | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember15 {
-      export interface Input {
-        query: string;
-
-        wiki_tag?: string | null;
-      }
-    }
-
-    export interface UnionMember16 {
-      input: UnionMember16.Input;
-
-      name: 'RequestClarification';
-
-      block_id?: number;
-
-      complete?: boolean;
-
-      result_image?: Core.Uploadable | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember16 {
-      export interface Input {
-        question: string;
-
-        table_name: string;
-
-        column_name?: string | null;
-      }
-    }
-
-    export interface UnionMember17 {
-      input: UnionMember17.Input;
-
-      name: 'AddDependency';
-
-      block_id?: number;
-
-      complete?: boolean;
-
-      result_image?: Core.Uploadable | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember17 {
-      export interface Input {
-        package_name: string;
-
-        version_spec?: string | null;
-      }
-    }
-
-    export interface UnionMember18 {
-      input: UnionMember18.Input;
-
-      name: 'SelectData';
-
-      block_id?: number;
-
-      complete?: boolean;
-
-      result_image?: Core.Uploadable | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember18 {
-      export interface Input {
-        node_ids: Array<string>;
-      }
-    }
-
-    export interface UnionMember19 {
-      input: UnionMember19.Input;
-
-      name: 'CreateConnector';
-
-      block_id?: number;
-
-      complete?: boolean;
-
-      result_image?: Core.Uploadable | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember19 {
-      export interface Input {
-        connector_type: string;
-
-        name: string;
-
-        description?: string | null;
-
-        secrets?: Array<string>;
-      }
-    }
-
-    export interface UnionMember20 {
-      input: UnionMember20.Input;
-
-      name: 'SearchConnectorTypes';
-
-      block_id?: number;
-
-      complete?: boolean;
-
-      result_image?: Core.Uploadable | null;
-
-      result_text?: string | null;
-    }
-
-    export namespace UnionMember20 {
-      export interface Input {
-        query?: string | null;
-      }
+      tool_result: ChatAPI.ToolResult;
     }
   }
 
@@ -1376,6 +885,435 @@ export namespace Message {
   }
 }
 
+export type ToolInvocation =
+  | ToolInvocation.WebSearch
+  | ToolInvocation.WebNavigate
+  | ToolInvocation.InspectStep
+  | ToolInvocation.ReadNodeLogs
+  | ToolInvocation.DeleteFile
+  | ToolInvocation.MoveFile
+  | ToolInvocation.RunBash
+  | ToolInvocation.RunPython
+  | ToolInvocation.IssueFound
+  | ToolInvocation.SaveDatabase
+  | ToolInvocation.SaveSchema
+  | ToolInvocation.SaveTable
+  | ToolInvocation.SaveColumn
+  | ToolInvocation.SaveAPIResource
+  | ToolInvocation.SaveMemory
+  | ToolInvocation.SearchConnectorTables
+  | ToolInvocation.RequestClarification
+  | ToolInvocation.AddDependency
+  | ToolInvocation.SelectData
+  | ToolInvocation.CreateConnector
+  | ToolInvocation.SearchConnectorTypes;
+
+export namespace ToolInvocation {
+  export interface WebSearch {
+    input: WebSearch.Input;
+
+    name: 'WebSearch';
+  }
+
+  export namespace WebSearch {
+    export interface Input {
+      query: string;
+    }
+  }
+
+  export interface WebNavigate {
+    input: WebNavigate.Input;
+
+    name: 'WebNavigate';
+  }
+
+  export namespace WebNavigate {
+    export interface Input {
+      url: string;
+    }
+  }
+
+  export interface InspectStep {
+    input: InspectStep.Input;
+
+    name: 'InspectStep';
+  }
+
+  export namespace InspectStep {
+    export interface Input {
+      step_name: string;
+    }
+  }
+
+  export interface ReadNodeLogs {
+    input: ReadNodeLogs.Input;
+
+    name: 'ReadNodeLogs';
+  }
+
+  export namespace ReadNodeLogs {
+    export interface Input {
+      end_line: number;
+
+      node_function_name: string;
+
+      start_line: number;
+
+      log_type?: string | null;
+    }
+  }
+
+  export interface DeleteFile {
+    input: DeleteFile.Input;
+
+    name: 'DeleteFile';
+  }
+
+  export namespace DeleteFile {
+    export interface Input {
+      file: string;
+    }
+  }
+
+  export interface MoveFile {
+    input: MoveFile.Input;
+
+    name: 'MoveFile';
+  }
+
+  export namespace MoveFile {
+    export interface Input {
+      file: string;
+
+      new_path: string;
+    }
+  }
+
+  export interface RunBash {
+    input: RunBash.Input;
+
+    name: 'RunBash';
+  }
+
+  export namespace RunBash {
+    export interface Input {
+      command: string;
+
+      connector?: string | null;
+
+      working_dir?: string | null;
+    }
+  }
+
+  export interface RunPython {
+    input: RunPython.Input;
+
+    name: 'RunPython';
+  }
+
+  export namespace RunPython {
+    export interface Input {
+      code: string;
+
+      connector?: string | null;
+
+      timeout_seconds?: number | null;
+
+      working_dir?: string | null;
+    }
+  }
+
+  export interface IssueFound {
+    input: IssueFound.Input;
+
+    name: 'IssueFound';
+  }
+
+  export namespace IssueFound {
+    export interface Input {
+      description: string;
+
+      title: string;
+    }
+  }
+
+  export interface SaveDatabase {
+    input: SaveDatabase.Input;
+
+    name: 'SaveDatabase';
+  }
+
+  export namespace SaveDatabase {
+    export interface Input {
+      name: string;
+
+      description?: string | null;
+
+      notes?: string | null;
+    }
+  }
+
+  export interface SaveSchema {
+    input: SaveSchema.Input;
+
+    name: 'SaveSchema';
+  }
+
+  export namespace SaveSchema {
+    export interface Input {
+      name: string;
+
+      description?: string | null;
+
+      notes?: string | null;
+    }
+  }
+
+  export interface SaveTable {
+    input: SaveTable.Input;
+
+    name: 'SaveTable';
+  }
+
+  export namespace SaveTable {
+    export interface Input {
+      name: string;
+
+      description?: string | null;
+
+      notes?: string | null;
+
+      tag?: string | null;
+    }
+  }
+
+  export interface SaveColumn {
+    input: SaveColumn.Input;
+
+    name: 'SaveColumn';
+  }
+
+  export namespace SaveColumn {
+    export interface Input {
+      column_name: string;
+
+      column_type: string;
+
+      notes?: string | null;
+    }
+  }
+
+  export interface SaveAPIResource {
+    input: SaveAPIResource.Input;
+
+    name: 'SaveApiResource';
+  }
+
+  export namespace SaveAPIResource {
+    export interface Input {
+      endpoint: string;
+
+      name: string;
+
+      description?: string | null;
+
+      notes?: string | null;
+    }
+  }
+
+  export interface SaveMemory {
+    input: SaveMemory.Input;
+
+    name: 'SaveMemory';
+  }
+
+  export namespace SaveMemory {
+    export interface Input {
+      key: string;
+
+      value: string;
+    }
+  }
+
+  export interface SearchConnectorTables {
+    input: SearchConnectorTables.Input;
+
+    name: 'SearchConnectorTables';
+  }
+
+  export namespace SearchConnectorTables {
+    export interface Input {
+      query: string;
+
+      wiki_tag?: string | null;
+    }
+  }
+
+  export interface RequestClarification {
+    input: RequestClarification.Input;
+
+    name: 'RequestClarification';
+  }
+
+  export namespace RequestClarification {
+    export interface Input {
+      question: string;
+
+      table_name: string;
+
+      column_name?: string | null;
+    }
+  }
+
+  export interface AddDependency {
+    input: AddDependency.Input;
+
+    name: 'AddDependency';
+  }
+
+  export namespace AddDependency {
+    export interface Input {
+      package_name: string;
+
+      version_spec?: string | null;
+    }
+  }
+
+  export interface SelectData {
+    input: SelectData.Input;
+
+    name: 'SelectData';
+  }
+
+  export namespace SelectData {
+    export interface Input {
+      node_ids: Array<string>;
+    }
+  }
+
+  export interface CreateConnector {
+    input: CreateConnector.Input;
+
+    name: 'CreateConnector';
+  }
+
+  export namespace CreateConnector {
+    export interface Input {
+      connector_type: string;
+
+      name: string;
+
+      description?: string | null;
+
+      secrets?: Array<string>;
+    }
+  }
+
+  export interface SearchConnectorTypes {
+    input: SearchConnectorTypes.Input;
+
+    name: 'SearchConnectorTypes';
+  }
+
+  export namespace SearchConnectorTypes {
+    export interface Input {
+      query?: string | null;
+    }
+  }
+}
+
+export type ToolResult =
+  | 'Pending'
+  | 'NoResult'
+  | ToolResult.Error
+  | ToolResult.Text
+  | ToolResult.Image
+  | ToolResult.CodeExecution
+  | ToolResult.WebMarkdown
+  | ToolResult.WebSearch
+  | ToolResult.ConnectorSearch
+  | ToolResult.NodeLogs;
+
+export namespace ToolResult {
+  export interface Error {
+    Error: string;
+  }
+
+  export interface Text {
+    Text: string;
+  }
+
+  export interface Image {
+    Image: Core.Uploadable;
+  }
+
+  export interface CodeExecution {
+    CodeExecution: CodeExecution.CodeExecution;
+  }
+
+  export namespace CodeExecution {
+    export interface CodeExecution {
+      return_code: number;
+
+      stderr: string;
+
+      stdout: string;
+    }
+  }
+
+  export interface WebMarkdown {
+    WebMarkdown: string;
+  }
+
+  export interface WebSearch {
+    WebSearch: Array<WebSearch.WebSearch>;
+  }
+
+  export namespace WebSearch {
+    export interface WebSearch {
+      snippet: string;
+
+      title: string;
+
+      url: string;
+    }
+  }
+
+  export interface ConnectorSearch {
+    ConnectorSearch: Array<ConnectorSearch.ConnectorSearch>;
+  }
+
+  export namespace ConnectorSearch {
+    export interface ConnectorSearch {
+      columns: Array<ConnectorSearch.Column>;
+
+      database: string;
+
+      schema: string;
+
+      table_name: string;
+
+      description?: string | null;
+
+      notes?: string | null;
+    }
+
+    export namespace ConnectorSearch {
+      export interface Column {
+        name: string;
+
+        type: string;
+
+        notes?: string | null;
+      }
+    }
+  }
+
+  export interface NodeLogs {
+    NodeLogs: Array<string>;
+  }
+}
+
 export interface UpdateChatSessionFavoriteRequest {
   is_favorite: boolean;
 }
@@ -1701,6 +1639,8 @@ export declare namespace Chat {
     type ListChatSessionsResponse as ListChatSessionsResponse,
     type ListCollaboratorsResponse as ListCollaboratorsResponse,
     type Message as Message,
+    type ToolInvocation as ToolInvocation,
+    type ToolResult as ToolResult,
     type UpdateChatSessionFavoriteRequest as UpdateChatSessionFavoriteRequest,
     type UpdateChatSessionRequest as UpdateChatSessionRequest,
     type UpdateVisibilityRequest as UpdateVisibilityRequest,
