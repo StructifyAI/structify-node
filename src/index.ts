@@ -416,7 +416,6 @@ import {
   UpdateTableRequest,
   UpdateTableResponse,
 } from './resources/connectors/connectors';
-import { External } from './resources/external/external';
 import {
   EnrichUserParams,
   JwtToAPITokenRequest,
@@ -605,7 +604,6 @@ export class Structify extends Core.APIClient {
   structure: API.Structure = new API.Structure(this);
   publicSessions: API.PublicSessions = new API.PublicSessions(this);
   shared: API.Shared = new API.Shared(this);
-  external: API.External = new API.External(this);
   slack: API.Slack = new API.Slack(this);
   nango: API.Nango = new API.Nango(this);
 
@@ -722,7 +720,6 @@ Structify.Code = Code;
 Structify.Structure = Structure;
 Structify.PublicSessions = PublicSessions;
 Structify.Shared = Shared;
-Structify.External = External;
 Structify.Slack = Slack;
 Structify.Nango = Nango;
 
@@ -1176,8 +1173,6 @@ export declare namespace Structify {
     type Relationship as Relationship,
     type Table as Table,
   };
-
-  export { External as External };
 
   export {
     Slack as Slack,
