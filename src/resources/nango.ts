@@ -4,8 +4,11 @@ import { APIResource } from '../resource';
 import * as Core from '../core';
 
 export class Nango extends APIResource {
-  createSession(options?: Core.RequestOptions): Core.APIPromise<NangoCreateSessionResponse> {
-    return this._client.post('/nango/session', options);
+  createSession(
+    body: NangoCreateSessionParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<NangoCreateSessionResponse> {
+    return this._client.post('/nango/session', { body, ...options });
   }
 
   listIntegrations(options?: Core.RequestOptions): Core.APIPromise<NangoListIntegrationsResponse> {
@@ -20,6 +23,20 @@ export interface ConnectSession {
   token: string;
 
   expires_at: string;
+}
+
+/**
+ * Request body for creating a Nango session with optional scope selection
+ */
+export interface CreateNangoSessionRequest {
+  connector_auth_method_id?: string | null;
+
+  /**
+   * Specific scope IDs to use. If not provided, defaults to required + recommended
+   * scopes. If the auth method has no scopes in the database, Nango's default scopes
+   * are used.
+   */
+  selected_scope_ids?: Array<string> | null;
 }
 
 /**
@@ -70,11 +87,24 @@ export namespace NangoListIntegrationsResponse {
   }
 }
 
+export interface NangoCreateSessionParams {
+  connector_auth_method_id?: string | null;
+
+  /**
+   * Specific scope IDs to use. If not provided, defaults to required + recommended
+   * scopes. If the auth method has no scopes in the database, Nango's default scopes
+   * are used.
+   */
+  selected_scope_ids?: Array<string> | null;
+}
+
 export declare namespace Nango {
   export {
     type ConnectSession as ConnectSession,
+    type CreateNangoSessionRequest as CreateNangoSessionRequest,
     type Integration as Integration,
     type NangoCreateSessionResponse as NangoCreateSessionResponse,
     type NangoListIntegrationsResponse as NangoListIntegrationsResponse,
+    type NangoCreateSessionParams as NangoCreateSessionParams,
   };
 }

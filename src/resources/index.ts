@@ -217,9 +217,11 @@ export {
 export {
   Nango,
   type ConnectSession,
+  type CreateNangoSessionRequest,
   type Integration,
   type NangoCreateSessionResponse,
   type NangoListIntegrationsResponse,
+  type NangoCreateSessionParams,
 } from './nango';
 export {
   Projects,
@@ -361,8 +363,6 @@ export {
   type TeamRole,
   type TeamSubscriptionStatus,
   type TeamWithRole,
-  type TeamsLinkCodeRequest,
-  type TeamsLinkCodeResponse,
   type UpdateMemberRoleRequest,
   type UpdateMemberRoleResponse,
   type UpdateTeamRequest,
@@ -372,7 +372,6 @@ export {
   type TeamUpdateParams,
   type TeamAcceptInvitationParams,
   type TeamAddMemberParams,
-  type TeamCreateLinkCodeParams,
   type TeamCreateProjectParams,
   type TeamCreditsUsageParams,
   type TeamUpdateMemberRoleParams,

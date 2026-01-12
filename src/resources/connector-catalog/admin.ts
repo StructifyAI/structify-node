@@ -15,6 +15,13 @@ export class Admin extends APIResource {
     return this._client.post('/admin/connector-catalog/credential-fields/batch', { body, ...options });
   }
 
+  batchCreateScopes(
+    body: AdminBatchCreateScopesParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<BatchCreateScopesResponse> {
+    return this._client.post('/admin/connector-catalog/scopes/batch', { body, ...options });
+  }
+
   /**
    * Create a new connector auth method
    */
@@ -45,6 +52,13 @@ export class Admin extends APIResource {
     return this._client.post('/admin/connector-catalog/credential-fields', { body, ...options });
   }
 
+  createScope(
+    body: AdminCreateScopeParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ConnectorAuthMethodScope> {
+    return this._client.post('/admin/connector-catalog/scopes', { body, ...options });
+  }
+
   /**
    * Delete a connector credential field
    */
@@ -55,11 +69,25 @@ export class Admin extends APIResource {
     });
   }
 
+  deleteScope(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/admin/connector-catalog/scopes/${id}`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
   /**
    * List Nango integrations that are not yet in the connector catalog
    */
   listNangoPending(options?: Core.RequestOptions): Core.APIPromise<AdminListNangoPendingResponse> {
     return this._client.get('/admin/connector-catalog/nango-pending', options);
+  }
+
+  listScopes(
+    query: AdminListScopesParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ListScopesResponse> {
+    return this._client.get('/admin/connector-catalog/scopes', { query, ...options });
   }
 
   /**
@@ -95,6 +123,14 @@ export class Admin extends APIResource {
     return this._client.patch(`/admin/connector-catalog/credential-fields/${id}`, { body, ...options });
   }
 
+  updateScope(
+    id: string,
+    body: AdminUpdateScopeParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ConnectorAuthMethodScope> {
+    return this._client.patch(`/admin/connector-catalog/scopes/${id}`, { body, ...options });
+  }
+
   uploadLogo(
     slug: string,
     body: AdminUploadLogoParams,
@@ -109,6 +145,32 @@ export class Admin extends APIResource {
 
 export interface BatchCreateCredentialFieldsRequest {
   fields: Array<CreateCredentialFieldRequest>;
+}
+
+export interface BatchCreateScopesRequest {
+  scopes: Array<CreateScopeRequest>;
+}
+
+export interface BatchCreateScopesResponse {
+  scopes: Array<ConnectorAuthMethodScope>;
+}
+
+export interface ConnectorAuthMethodScope {
+  id: string;
+
+  connector_auth_method_id: string;
+
+  created_at: string;
+
+  is_recommended: boolean;
+
+  is_required: boolean;
+
+  query_parameter: string;
+
+  scope_value: string;
+
+  updated_at: string;
 }
 
 export interface CreateAuthMethodRequest {
@@ -157,6 +219,22 @@ export interface CreateCredentialFieldRequest {
   options?: unknown;
 }
 
+export interface CreateScopeRequest {
+  connector_auth_method_id: string;
+
+  scope_value: string;
+
+  is_recommended?: boolean;
+
+  is_required?: boolean;
+
+  query_parameter?: string;
+}
+
+export interface ListScopesResponse {
+  scopes: Array<ConnectorAuthMethodScope>;
+}
+
 export interface PendingNangoIntegration {
   provider: string;
 
@@ -203,6 +281,16 @@ export interface UpdateCredentialFieldRequest {
   options?: unknown;
 }
 
+export interface UpdateScopeRequest {
+  is_recommended?: boolean | null;
+
+  is_required?: boolean | null;
+
+  query_parameter?: string | null;
+
+  scope_value?: string | null;
+}
+
 export interface UploadLogoResponse {
   slug: string;
 }
@@ -213,6 +301,10 @@ export type AdminListNangoPendingResponse = Array<PendingNangoIntegration>;
 
 export interface AdminBatchCreateCredentialFieldsParams {
   fields: Array<CreateCredentialFieldRequest>;
+}
+
+export interface AdminBatchCreateScopesParams {
+  scopes: Array<CreateScopeRequest>;
 }
 
 export interface AdminCreateAuthMethodParams {
@@ -261,6 +353,22 @@ export interface AdminCreateCredentialFieldParams {
   options?: unknown;
 }
 
+export interface AdminCreateScopeParams {
+  connector_auth_method_id: string;
+
+  scope_value: string;
+
+  is_recommended?: boolean;
+
+  is_required?: boolean;
+
+  query_parameter?: string;
+}
+
+export interface AdminListScopesParams {
+  connector_auth_method_id: string;
+}
+
 export interface AdminUpdateAuthMethodParams {
   is_active?: boolean | null;
 
@@ -297,6 +405,16 @@ export interface AdminUpdateCredentialFieldParams {
   options?: unknown;
 }
 
+export interface AdminUpdateScopeParams {
+  is_recommended?: boolean | null;
+
+  is_required?: boolean | null;
+
+  query_parameter?: string | null;
+
+  scope_value?: string | null;
+}
+
 export interface AdminUploadLogoParams {
   file: Core.Uploadable;
 }
@@ -304,23 +422,33 @@ export interface AdminUploadLogoParams {
 export declare namespace Admin {
   export {
     type BatchCreateCredentialFieldsRequest as BatchCreateCredentialFieldsRequest,
+    type BatchCreateScopesRequest as BatchCreateScopesRequest,
+    type BatchCreateScopesResponse as BatchCreateScopesResponse,
+    type ConnectorAuthMethodScope as ConnectorAuthMethodScope,
     type CreateAuthMethodRequest as CreateAuthMethodRequest,
     type CreateCatalogRequest as CreateCatalogRequest,
     type CreateCredentialFieldRequest as CreateCredentialFieldRequest,
+    type CreateScopeRequest as CreateScopeRequest,
+    type ListScopesResponse as ListScopesResponse,
     type PendingNangoIntegration as PendingNangoIntegration,
     type UpdateAuthMethodRequest as UpdateAuthMethodRequest,
     type UpdateCatalogRequest as UpdateCatalogRequest,
     type UpdateCredentialFieldRequest as UpdateCredentialFieldRequest,
+    type UpdateScopeRequest as UpdateScopeRequest,
     type UploadLogoResponse as UploadLogoResponse,
     type AdminBatchCreateCredentialFieldsResponse as AdminBatchCreateCredentialFieldsResponse,
     type AdminListNangoPendingResponse as AdminListNangoPendingResponse,
     type AdminBatchCreateCredentialFieldsParams as AdminBatchCreateCredentialFieldsParams,
+    type AdminBatchCreateScopesParams as AdminBatchCreateScopesParams,
     type AdminCreateAuthMethodParams as AdminCreateAuthMethodParams,
     type AdminCreateCatalogParams as AdminCreateCatalogParams,
     type AdminCreateCredentialFieldParams as AdminCreateCredentialFieldParams,
+    type AdminCreateScopeParams as AdminCreateScopeParams,
+    type AdminListScopesParams as AdminListScopesParams,
     type AdminUpdateAuthMethodParams as AdminUpdateAuthMethodParams,
     type AdminUpdateCatalogParams as AdminUpdateCatalogParams,
     type AdminUpdateCredentialFieldParams as AdminUpdateCredentialFieldParams,
+    type AdminUpdateScopeParams as AdminUpdateScopeParams,
     type AdminUploadLogoParams as AdminUploadLogoParams,
   };
 }
