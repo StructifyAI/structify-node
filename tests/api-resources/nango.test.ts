@@ -9,8 +9,10 @@ const client = new Structify({
 });
 
 describe('resource nango', () => {
-  test('createSession', async () => {
-    const responsePromise = client.nango.createSession({});
+  test('createSession: only required params', async () => {
+    const responsePromise = client.nango.createSession({
+      connector_auth_method_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -18,6 +20,13 @@ describe('resource nango', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('createSession: required and optional params', async () => {
+    const response = await client.nango.createSession({
+      connector_auth_method_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      selected_scope_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
+    });
   });
 
   test('listIntegrations', async () => {
