@@ -1,5 +1,38 @@
 # Changelog
 
+## 1.171.0 (2026-01-12)
+
+Full Changelog: [v1.170.0...v1.171.0](https://github.com/StructifyAI/structify-node/compare/v1.170.0...v1.171.0)
+
+### Features
+
+* **api:** api update ([e732fb1](https://github.com/StructifyAI/structify-node/commit/e732fb14f4d000908faaeb7596e574d5e68ba781))
+* **api:** api update ([a2cd4c1](https://github.com/StructifyAI/structify-node/commit/a2cd4c1f07b7a8dbc91f4aa593eee6fdceb1251d))
+* **api:** manual updates ([1f231b7](https://github.com/StructifyAI/structify-node/commit/1f231b7e4680ef348296612d13bb87becf861580))
+* Update from Structify backend changes ([7a4dfd3](https://github.com/StructifyAI/structify-node/commit/7a4dfd319ff447755329870012782835c28750b8))
+* Update from Structify backend changes ([bc0433e](https://github.com/StructifyAI/structify-node/commit/bc0433e8c13b0006de7830d3751ce9a2eb7da4bc))
+* Update from Structify backend changes ([d0e4502](https://github.com/StructifyAI/structify-node/commit/d0e45028302e58bc35d630a198f0560a6e45814d))
+* Update from Structify backend changes ([5f3b10a](https://github.com/StructifyAI/structify-node/commit/5f3b10a6e1bfe0f0c78832197d55d444753e0f76))
+* Update from Structify backend changes ([9846275](https://github.com/StructifyAI/structify-node/commit/9846275250d5a3ce308fe6487b8439e46721a43d))
+* Update from Structify backend changes ([847075a](https://github.com/StructifyAI/structify-node/commit/847075a17f9060ba5b0e54baeb156b4b822d0555))
+* Update from Structify backend changes ([7ab3df6](https://github.com/StructifyAI/structify-node/commit/7ab3df69e213d446b9ad2e66a6c5da30ec3472bc))
+* Update from Structify backend changes ([7a4d7ae](https://github.com/StructifyAI/structify-node/commit/7a4d7aea2846140e5de05de0a195fb5531a17e7f))
+* Update from Structify backend changes ([86682c9](https://github.com/StructifyAI/structify-node/commit/86682c990b8b976419d82bdeada081c672ac336e))
+* Update from Structify backend changes ([355950a](https://github.com/StructifyAI/structify-node/commit/355950a0bd9039f4c9b5475a35fb3dae55e7c9ce))
+* Update from Structify backend changes ([4bafe0c](https://github.com/StructifyAI/structify-node/commit/4bafe0c7db9ff9453a19831e0dd0bb3fa6ad44f9))
+* Update from Structify backend changes ([d3e2d16](https://github.com/StructifyAI/structify-node/commit/d3e2d1612eaf59fe5f153ddbb4873c5f91028d93))
+* Update from Structify backend changes ([24e0f0a](https://github.com/StructifyAI/structify-node/commit/24e0f0a383b774ebd78d1485e2a3262e7748ed34))
+* Update from Structify backend changes ([5452c92](https://github.com/StructifyAI/structify-node/commit/5452c9245cc2da3cbcdf8d45b532eb77e3f86618))
+* Update from Structify backend changes ([9c2ad26](https://github.com/StructifyAI/structify-node/commit/9c2ad2640aaef034e39334d7abbcd55858f22ac2))
+* Update from Structify backend changes ([28e1e63](https://github.com/StructifyAI/structify-node/commit/28e1e6359eb0e9f0e9c6daaf8a9662bb17dfde87))
+* Update from Structify backend changes ([7184f48](https://github.com/StructifyAI/structify-node/commit/7184f483fc852c3a585741492e20526d50bf44e9))
+* Update from Structify backend changes ([4fbf805](https://github.com/StructifyAI/structify-node/commit/4fbf80570cd0264dd3463951770683af2f18531d))
+
+
+### Chores
+
+* break long lines in snippets into multiline ([6ae135d](https://github.com/StructifyAI/structify-node/commit/6ae135d765975afa8cc6bbbda53c38fcf5131c62))
+
 ## 1.170.0 (2025-12-27)
 
 Full Changelog: [v1.169.0...v1.170.0](https://github.com/StructifyAI/structify-node/compare/v1.169.0...v1.170.0)
