@@ -8,22 +8,32 @@ import {
   Admin,
   AdminBatchCreateCredentialFieldsParams,
   AdminBatchCreateCredentialFieldsResponse,
+  AdminBatchCreateScopesParams,
   AdminCreateAuthMethodParams,
   AdminCreateCatalogParams,
   AdminCreateCredentialFieldParams,
+  AdminCreateScopeParams,
   AdminListNangoPendingResponse,
+  AdminListScopesParams,
   AdminUpdateAuthMethodParams,
   AdminUpdateCatalogParams,
   AdminUpdateCredentialFieldParams,
+  AdminUpdateScopeParams,
   AdminUploadLogoParams,
   BatchCreateCredentialFieldsRequest,
+  BatchCreateScopesRequest,
+  BatchCreateScopesResponse,
+  ConnectorAuthMethodScope,
   CreateAuthMethodRequest,
   CreateCatalogRequest,
   CreateCredentialFieldRequest,
+  CreateScopeRequest,
+  ListScopesResponse,
   PendingNangoIntegration,
   UpdateAuthMethodRequest,
   UpdateCatalogRequest,
   UpdateCredentialFieldRequest,
+  UpdateScopeRequest,
   UploadLogoResponse,
 } from './admin';
 import { type Response } from '../../_shims/index';
@@ -87,6 +97,8 @@ export interface ConnectorAuthMethod {
 
 export interface ConnectorAuthMethodWithFields extends ConnectorAuthMethod {
   credential_fields: Array<ConnectorCredentialField>;
+
+  scopes: Array<AdminAPI.ConnectorAuthMethodScope>;
 }
 
 export interface ConnectorCatalog {
@@ -170,23 +182,33 @@ export declare namespace ConnectorCatalogResource {
   export {
     Admin as Admin,
     type BatchCreateCredentialFieldsRequest as BatchCreateCredentialFieldsRequest,
+    type BatchCreateScopesRequest as BatchCreateScopesRequest,
+    type BatchCreateScopesResponse as BatchCreateScopesResponse,
+    type ConnectorAuthMethodScope as ConnectorAuthMethodScope,
     type CreateAuthMethodRequest as CreateAuthMethodRequest,
     type CreateCatalogRequest as CreateCatalogRequest,
     type CreateCredentialFieldRequest as CreateCredentialFieldRequest,
+    type CreateScopeRequest as CreateScopeRequest,
+    type ListScopesResponse as ListScopesResponse,
     type PendingNangoIntegration as PendingNangoIntegration,
     type UpdateAuthMethodRequest as UpdateAuthMethodRequest,
     type UpdateCatalogRequest as UpdateCatalogRequest,
     type UpdateCredentialFieldRequest as UpdateCredentialFieldRequest,
+    type UpdateScopeRequest as UpdateScopeRequest,
     type UploadLogoResponse as UploadLogoResponse,
     type AdminBatchCreateCredentialFieldsResponse as AdminBatchCreateCredentialFieldsResponse,
     type AdminListNangoPendingResponse as AdminListNangoPendingResponse,
     type AdminBatchCreateCredentialFieldsParams as AdminBatchCreateCredentialFieldsParams,
+    type AdminBatchCreateScopesParams as AdminBatchCreateScopesParams,
     type AdminCreateAuthMethodParams as AdminCreateAuthMethodParams,
     type AdminCreateCatalogParams as AdminCreateCatalogParams,
     type AdminCreateCredentialFieldParams as AdminCreateCredentialFieldParams,
+    type AdminCreateScopeParams as AdminCreateScopeParams,
+    type AdminListScopesParams as AdminListScopesParams,
     type AdminUpdateAuthMethodParams as AdminUpdateAuthMethodParams,
     type AdminUpdateCatalogParams as AdminUpdateCatalogParams,
     type AdminUpdateCredentialFieldParams as AdminUpdateCredentialFieldParams,
+    type AdminUpdateScopeParams as AdminUpdateScopeParams,
     type AdminUploadLogoParams as AdminUploadLogoParams,
   };
 }

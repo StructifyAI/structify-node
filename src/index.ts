@@ -174,8 +174,10 @@ import {
 } from './resources/match';
 import {
   ConnectSession,
+  CreateNangoSessionRequest,
   Integration,
   Nango,
+  NangoCreateSessionParams,
   NangoCreateSessionResponse,
   NangoListIntegrationsResponse,
 } from './resources/nango';
@@ -317,7 +319,6 @@ import {
   Team,
   TeamAcceptInvitationParams,
   TeamAddMemberParams,
-  TeamCreateLinkCodeParams,
   TeamCreateParams,
   TeamCreateProjectParams,
   TeamCreditsUsageParams,
@@ -327,8 +328,6 @@ import {
   TeamUpdateParams,
   TeamWithRole,
   Teams,
-  TeamsLinkCodeRequest,
-  TeamsLinkCodeResponse,
   UpdateMemberRoleRequest,
   UpdateMemberRoleResponse,
   UpdateTeamRequest,
@@ -839,8 +838,6 @@ export declare namespace Structify {
     type TeamRole as TeamRole,
     type TeamSubscriptionStatus as TeamSubscriptionStatus,
     type TeamWithRole as TeamWithRole,
-    type TeamsLinkCodeRequest as TeamsLinkCodeRequest,
-    type TeamsLinkCodeResponse as TeamsLinkCodeResponse,
     type UpdateMemberRoleRequest as UpdateMemberRoleRequest,
     type UpdateMemberRoleResponse as UpdateMemberRoleResponse,
     type UpdateTeamRequest as UpdateTeamRequest,
@@ -850,7 +847,6 @@ export declare namespace Structify {
     type TeamUpdateParams as TeamUpdateParams,
     type TeamAcceptInvitationParams as TeamAcceptInvitationParams,
     type TeamAddMemberParams as TeamAddMemberParams,
-    type TeamCreateLinkCodeParams as TeamCreateLinkCodeParams,
     type TeamCreateProjectParams as TeamCreateProjectParams,
     type TeamCreditsUsageParams as TeamCreditsUsageParams,
     type TeamUpdateMemberRoleParams as TeamUpdateMemberRoleParams,
@@ -1194,9 +1190,11 @@ export declare namespace Structify {
   export {
     Nango as Nango,
     type ConnectSession as ConnectSession,
+    type CreateNangoSessionRequest as CreateNangoSessionRequest,
     type Integration as Integration,
     type NangoCreateSessionResponse as NangoCreateSessionResponse,
     type NangoListIntegrationsResponse as NangoListIntegrationsResponse,
+    type NangoCreateSessionParams as NangoCreateSessionParams,
   };
 }
 
