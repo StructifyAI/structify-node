@@ -152,6 +152,8 @@ Types:
 - <code><a href="./src/resources/teams.ts">TeamRole</a></code>
 - <code><a href="./src/resources/teams.ts">TeamSubscriptionStatus</a></code>
 - <code><a href="./src/resources/teams.ts">TeamWithRole</a></code>
+- <code><a href="./src/resources/teams.ts">TeamsLinkCodeRequest</a></code>
+- <code><a href="./src/resources/teams.ts">TeamsLinkCodeResponse</a></code>
 - <code><a href="./src/resources/teams.ts">UpdateMemberRoleRequest</a></code>
 - <code><a href="./src/resources/teams.ts">UpdateMemberRoleResponse</a></code>
 - <code><a href="./src/resources/teams.ts">UpdateTeamRequest</a></code>
@@ -166,6 +168,7 @@ Methods:
 - <code title="delete /team/{team_id}">client.teams.<a href="./src/resources/teams.ts">delete</a>(teamId) -> DeleteTeamResponse</code>
 - <code title="post /team/invitations/accept">client.teams.<a href="./src/resources/teams.ts">acceptInvitation</a>({ ...params }) -> AcceptInvitationResponse</code>
 - <code title="post /team/{team_id}/members">client.teams.<a href="./src/resources/teams.ts">addMember</a>(teamId, { ...params }) -> AddMemberResponse</code>
+- <code title="post /teams/link-code">client.teams.<a href="./src/resources/teams.ts">createLinkCode</a>({ ...params }) -> TeamsLinkCodeResponse</code>
 - <code title="post /team/{team_id}/projects">client.teams.<a href="./src/resources/teams.ts">createProject</a>(teamId, { ...params }) -> Project</code>
 - <code title="get /team/{team_id}/credits/usage">client.teams.<a href="./src/resources/teams.ts">creditsUsage</a>(teamId, { ...params }) -> CreditsUsageResponse</code>
 - <code title="get /team/{team_id}">client.teams.<a href="./src/resources/teams.ts">get</a>(teamId) -> GetTeamResponse</code>
