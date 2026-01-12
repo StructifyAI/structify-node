@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.172.0 (2026-01-12)
+
+Full Changelog: [v1.171.0...v1.172.0](https://github.com/StructifyAI/structify-node/compare/v1.171.0...v1.172.0)
+
+### Features
+
+* **api:** manual updates ([77f30ec](https://github.com/StructifyAI/structify-node/commit/77f30ec56e062f4b378da08256b87551e9821a76))
+* Update from Structify backend changes ([3b84124](https://github.com/StructifyAI/structify-node/commit/3b84124968919e06c566b23af58725a10415243a))
+
 ## 1.171.0 (2026-01-12)
 
 Full Changelog: [v1.170.0...v1.171.0](https://github.com/StructifyAI/structify-node/compare/v1.170.0...v1.171.0)
