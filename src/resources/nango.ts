@@ -29,7 +29,7 @@ export interface ConnectSession {
  * Request body for creating a Nango session with optional scope selection
  */
 export interface CreateNangoSessionRequest {
-  connector_auth_method_id?: string | null;
+  connector_auth_method_id: string;
 
   /**
    * Specific scope IDs to use. If not provided, defaults to required + recommended
@@ -88,7 +88,7 @@ export namespace NangoListIntegrationsResponse {
 }
 
 export interface NangoCreateSessionParams {
-  connector_auth_method_id?: string | null;
+  connector_auth_method_id: string;
 
   /**
    * Specific scope IDs to use. If not provided, defaults to required + recommended
