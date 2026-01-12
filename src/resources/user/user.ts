@@ -194,6 +194,7 @@ export namespace UpdateUserParams {
       | 'claude_sonnet4'
       | 'allow_job_deletion'
       | 'none'
+      | null
     > | null;
 
     feature_overrides?: unknown;
@@ -210,7 +211,7 @@ export namespace UpdateUserParams {
 
     onboarding_session_id?: string | null;
 
-    permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'> | null;
+    permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none' | null> | null;
 
     slack_user_id?: string | null;
 
@@ -345,6 +346,7 @@ export namespace UserUpdateParams {
       | 'claude_sonnet4'
       | 'allow_job_deletion'
       | 'none'
+      | null
     > | null;
 
     feature_overrides?: unknown;
@@ -361,7 +363,7 @@ export namespace UserUpdateParams {
 
     onboarding_session_id?: string | null;
 
-    permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'> | null;
+    permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none' | null> | null;
 
     slack_user_id?: string | null;
 
