@@ -41,13 +41,6 @@ export class Teams extends APIResource {
     return this._client.post(`/team/${teamId}/members`, { body, ...options });
   }
 
-  createLinkCode(
-    body: TeamCreateLinkCodeParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TeamsLinkCodeResponse> {
-    return this._client.post('/teams/link-code', { body, ...options });
-  }
-
   createProject(
     teamId: string,
     body: TeamCreateProjectParams,
@@ -312,16 +305,6 @@ export interface TeamWithRole extends Team {
   subscription_status: TeamSubscriptionStatus;
 }
 
-export interface TeamsLinkCodeRequest {
-  team_id: string;
-}
-
-export interface TeamsLinkCodeResponse {
-  code: string;
-
-  expires_at: string;
-}
-
 export interface UpdateMemberRoleRequest {
   role: TeamRole;
 }
@@ -394,10 +377,6 @@ export interface TeamAddMemberParams {
   role: TeamRole;
 }
 
-export interface TeamCreateLinkCodeParams {
-  team_id: string;
-}
-
 export interface TeamCreateProjectParams {
   name: string;
 
@@ -455,8 +434,6 @@ export declare namespace Teams {
     type TeamRole as TeamRole,
     type TeamSubscriptionStatus as TeamSubscriptionStatus,
     type TeamWithRole as TeamWithRole,
-    type TeamsLinkCodeRequest as TeamsLinkCodeRequest,
-    type TeamsLinkCodeResponse as TeamsLinkCodeResponse,
     type UpdateMemberRoleRequest as UpdateMemberRoleRequest,
     type UpdateMemberRoleResponse as UpdateMemberRoleResponse,
     type UpdateTeamRequest as UpdateTeamRequest,
@@ -466,7 +443,6 @@ export declare namespace Teams {
     type TeamUpdateParams as TeamUpdateParams,
     type TeamAcceptInvitationParams as TeamAcceptInvitationParams,
     type TeamAddMemberParams as TeamAddMemberParams,
-    type TeamCreateLinkCodeParams as TeamCreateLinkCodeParams,
     type TeamCreateProjectParams as TeamCreateProjectParams,
     type TeamCreditsUsageParams as TeamCreditsUsageParams,
     type TeamUpdateMemberRoleParams as TeamUpdateMemberRoleParams,

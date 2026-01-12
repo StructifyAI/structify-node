@@ -10,7 +10,7 @@ const client = new Structify({
 
 describe('resource nango', () => {
   test('createSession', async () => {
-    const responsePromise = client.nango.createSession();
+    const responsePromise = client.nango.createSession({});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -18,13 +18,6 @@ describe('resource nango', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('createSession: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.nango.createSession({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Structify.NotFoundError,
-    );
   });
 
   test('listIntegrations', async () => {
