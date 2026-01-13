@@ -337,6 +337,7 @@ import {
   UpdateTeamResponse,
   UsageGroupKey,
 } from './resources/teams';
+import { EstimateCostResponse, Whitelabel } from './resources/whitelabel';
 import {
   CreateWikiPageRequest,
   TeamWikiPage,
@@ -587,6 +588,7 @@ export class Structify extends Core.APIClient {
     this.sessionToken = sessionToken;
   }
 
+  whitelabel: API.Whitelabel = new API.Whitelabel(this);
   user: API.User = new API.User(this);
   chat: API.Chat = new API.Chat(this);
   teams: API.Teams = new API.Teams(this);
@@ -698,6 +700,7 @@ export class Structify extends Core.APIClient {
   static fileFromPath = Uploads.fileFromPath;
 }
 
+Structify.Whitelabel = Whitelabel;
 Structify.User = User;
 Structify.Chat = Chat;
 Structify.Teams = Teams;
@@ -741,6 +744,8 @@ export declare namespace Structify {
     type ListConnectorCatalogParams as ListConnectorCatalogParams,
     type ListConnectorCatalogResponse as ListConnectorCatalogResponse,
   };
+
+  export { Whitelabel as Whitelabel, type EstimateCostResponse as EstimateCostResponse };
 
   export {
     User as User,

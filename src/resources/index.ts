@@ -399,6 +399,7 @@ export {
   type UserSurveySubmitParams,
   type UserUsageParams,
 } from './user/user';
+export { Whitelabel, type EstimateCostResponse } from './whitelabel';
 export {
   Wiki,
   type CreateWikiPageRequest,
