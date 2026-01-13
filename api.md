@@ -524,6 +524,8 @@ Types:
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorCategory</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorExplorerChat</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorStoreResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorSummariesRequest</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorSummary</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorTableInfo</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorWithSecrets</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorWithSnippets</a></code>
@@ -549,6 +551,7 @@ Types:
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorGetClarificationRequestsResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorListWithSnippetsResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorSearchTablesResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorSummariesResponse</a></code>
 
 Methods:
 
@@ -570,6 +573,7 @@ Methods:
 - <code title="get /connectors/with-snippets">client.connectors.<a href="./src/resources/connectors/connectors.ts">listWithSnippets</a>({ ...params }) -> ConnectorListWithSnippetsResponse</code>
 - <code title="patch /connectors/clarification-requests/{clarification_id}/resolve">client.connectors.<a href="./src/resources/connectors/connectors.ts">resolveClarification</a>(clarificationId) -> void</code>
 - <code title="get /connectors/search-tables">client.connectors.<a href="./src/resources/connectors/connectors.ts">searchTables</a>({ ...params }) -> ConnectorSearchTablesResponse</code>
+- <code title="post /connectors/summaries">client.connectors.<a href="./src/resources/connectors/connectors.ts">summaries</a>({ ...params }) -> ConnectorSummariesResponse</code>
 - <code title="patch /connectors/columns/{column_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">updateColumn</a>(columnId, { ...params }) -> void</code>
 - <code title="patch /connectors/tables/{table_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">updateTable</a>(tableId, { ...params }) -> UpdateTableResponse</code>
 
