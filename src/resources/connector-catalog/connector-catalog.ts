@@ -164,6 +164,12 @@ export interface ConnectorCatalogListParams {
   limit?: number;
 
   offset?: number;
+
+  /**
+   * Optional search query to filter by name, slug, or category (case-insensitive
+   * substring match)
+   */
+  search?: string | null;
 }
 
 ConnectorCatalogResource.Admin = Admin;
