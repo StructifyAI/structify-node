@@ -176,6 +176,9 @@ export namespace UpdateUserParams {
 
     completed_onboarding?: boolean | null;
 
+    /**
+     * Cost confirmation threshold in credits (thousandth of a cent).
+     */
     cost_confirmation_threshold?: number | null;
 
     cufinder_data?: unknown;
@@ -264,6 +267,9 @@ export interface UserInfo {
 
   company_name?: string | null;
 
+  /**
+   * Cost confirmation threshold in credits (thousandth of a cent).
+   */
   cost_confirmation_threshold?: number | null;
 
   impersonated_by_email?: string | null;
@@ -328,6 +334,9 @@ export namespace UserUpdateParams {
 
     completed_onboarding?: boolean | null;
 
+    /**
+     * Cost confirmation threshold in credits (thousandth of a cent).
+     */
     cost_confirmation_threshold?: number | null;
 
     cufinder_data?: unknown;
