@@ -108,27 +108,27 @@ export interface DocumentDownloadParams {
 
 export interface DocumentUploadParams {
   /**
-   * Body param:
+   * Body param
    */
   content: Core.Uploadable;
 
   /**
-   * Body param:
+   * Body param
    */
   file_type: 'Text' | 'PDF' | 'SEC';
 
   /**
-   * Body param:
+   * Body param
    */
   path: Core.Uploadable;
 
   /**
-   * Query param:
+   * Query param
    */
   dataset?: string | null;
 
   /**
-   * Query param:
+   * Query param
    */
   project_id?: string | null;
 }
