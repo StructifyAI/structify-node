@@ -139,6 +139,8 @@ describe('resource structure', () => {
     const response = await client.structure.runAsync({
       dataset: 'dataset',
       source: { PDF: { path: 'path' } },
+      instructions: 'instructions',
+      model: 'model',
       node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       save_requirement: [{ relationship_name: 'relationship_name' }],
       seeded_entity: {

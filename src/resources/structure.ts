@@ -457,6 +457,10 @@ export interface StructureRunAsyncParams {
    */
   source: StructureRunAsyncParams.Pdf | StructureRunAsyncParams.Web;
 
+  instructions?: string | null;
+
+  model?: string | null;
+
   node_id?: string | null;
 
   save_requirement?: Array<SaveRequirement>;
