@@ -84,6 +84,10 @@ export namespace AdminListJobsResponse {
       | Parameters.ScrapeFromURLProperty
       | Parameters.ScrapeURL
       | Parameters.ConnectorExploration;
+
+    instructions?: string | null;
+
+    model?: string | null;
   }
 
   export namespace Parameters {
