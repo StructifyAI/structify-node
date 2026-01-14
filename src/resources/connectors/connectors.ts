@@ -203,11 +203,11 @@ export class ConnectorWithSecretsJobsList extends JobsList<ConnectorWithSecrets>
 export interface Connector {
   id: string;
 
+  connector_catalouge_id: string;
+
   created_at: string;
 
   exploration_status: ExplorationStatus;
-
-  known_connector_type: string;
 
   name: string;
 
@@ -330,7 +330,7 @@ export interface ConnectorWithSnippets extends Connector {
 }
 
 export interface CreateConnectorRequest {
-  known_connector_type: string;
+  connector_catalouge_id: string;
 
   name: string;
 
@@ -682,9 +682,9 @@ export interface UpdateColumnRequest {
 }
 
 export interface UpdateConnectorRequest {
-  description?: string | null;
+  connector_catalouge_id: string;
 
-  known_connector_type?: string | null;
+  description?: string | null;
 
   name?: string | null;
 
@@ -1028,7 +1028,7 @@ export namespace ConnectorSearchTablesResponse {
 export type ConnectorSummariesResponse = Array<ConnectorSummary>;
 
 export interface ConnectorCreateParams {
-  known_connector_type: string;
+  connector_catalouge_id: string;
 
   name: string;
 
@@ -1064,9 +1064,9 @@ export interface ConnectorCreateParams {
 }
 
 export interface ConnectorUpdateParams {
-  description?: string | null;
+  connector_catalouge_id: string;
 
-  known_connector_type?: string | null;
+  description?: string | null;
 
   name?: string | null;
 
