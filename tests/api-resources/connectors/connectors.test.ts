@@ -11,7 +11,7 @@ const client = new Structify({
 describe('resource connectors', () => {
   test('create: only required params', async () => {
     const responsePromise = client.connectors.create({
-      known_connector_type: 'known_connector_type',
+      connector_catalouge_id: 'connector_catalouge_id',
       name: 'name',
       team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
@@ -26,7 +26,7 @@ describe('resource connectors', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.connectors.create({
-      known_connector_type: 'known_connector_type',
+      connector_catalouge_id: 'connector_catalouge_id',
       name: 'name',
       team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       description: 'description',
@@ -40,8 +40,10 @@ describe('resource connectors', () => {
     });
   });
 
-  test('update', async () => {
-    const responsePromise = client.connectors.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {});
+  test('update: only required params', async () => {
+    const responsePromise = client.connectors.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      connector_catalouge_id: 'connector_catalouge_id',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -49,6 +51,16 @@ describe('resource connectors', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('update: required and optional params', async () => {
+    const response = await client.connectors.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      connector_catalouge_id: 'connector_catalouge_id',
+      description: 'description',
+      name: 'name',
+      refresh_script: 'refresh_script',
+      usage_snippet_override: 'usage_snippet_override',
+    });
   });
 
   test('list: only required params', async () => {
