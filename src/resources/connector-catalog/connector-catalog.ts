@@ -164,9 +164,9 @@ export interface ConnectorCatalogListResponse {
 
 export namespace ConnectorCatalogListResponse {
   export interface CategoryCount {
-    count: number;
+    category: string;
 
-    category?: string | null;
+    count: number;
   }
 }
 
