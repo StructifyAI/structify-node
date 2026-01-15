@@ -155,6 +155,9 @@ export interface ConnectorCredentialField {
 }
 
 export interface ConnectorCatalogListResponse {
+  /**
+   * Counts of catalog entries grouped by primary category.
+   */
   category_counts: Array<ConnectorCatalogListResponse.CategoryCount>;
 
   items: Array<ConnectorCatalogWithMethods>;
@@ -164,8 +167,14 @@ export interface ConnectorCatalogListResponse {
 
 export namespace ConnectorCatalogListResponse {
   export interface CategoryCount {
+    /**
+     * Primary category label used for catalog filtering.
+     */
     category: string;
 
+    /**
+     * Number of catalog entries in this category.
+     */
     count: number;
   }
 }
