@@ -227,7 +227,8 @@ export type JobEventBody =
   | JobEventBody.DatahubDatabasesCreated
   | JobEventBody.DatahubSchemasCreated
   | JobEventBody.DatahubTablesProcessed
-  | JobEventBody.DatahubEmbeddingBatch;
+  | JobEventBody.DatahubEmbeddingBatch
+  | JobEventBody.ViewedPdfPage;
 
 export namespace JobEventBody {
   export interface AgentNavigated {
@@ -365,6 +366,12 @@ export namespace JobEventBody {
     tables_in_batch: number;
 
     total_batches: number;
+  }
+
+  export interface ViewedPdfPage {
+    event_type: 'viewed_pdf_page';
+
+    page_index: number;
   }
 }
 
