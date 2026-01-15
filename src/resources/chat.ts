@@ -41,6 +41,17 @@ export class Chat extends APIResource {
   }
 
   /**
+   * Add an IssueFound tool call as an admin-only auto-review message
+   */
+  adminIssueFound(
+    chatId: string,
+    body: ChatAdminIssueFoundParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<AdminIssueFoundResponse> {
+    return this._client.post(`/chat/sessions/${chatId}/admin/issue_found`, { body, ...options });
+  }
+
+  /**
    * Copy a chat session with its workflows and git files
    */
   copy(body: ChatCopyParams, options?: Core.RequestOptions): Core.APIPromise<ChatSessionWithMessages> {
@@ -252,6 +263,16 @@ export interface AdminGrantAccessResponse {
   expires_at: string;
 
   role: ChatSessionRole;
+}
+
+export interface AdminIssueFoundRequest {
+  message: string;
+
+  title: string;
+}
+
+export interface AdminIssueFoundResponse {
+  message_id: string;
 }
 
 /**
@@ -1031,6 +1052,8 @@ export namespace ToolInvocation {
 
   export namespace IssueFound {
     export interface Input {
+      admin_override: boolean;
+
       description: string;
 
       title: string;
@@ -1485,6 +1508,12 @@ export interface ChatAddGitCommitParams {
   commit_hash: string;
 }
 
+export interface ChatAdminIssueFoundParams {
+  message: string;
+
+  title: string;
+}
+
 export interface ChatCopyParams {
   copy_name: string;
 
@@ -1620,6 +1649,8 @@ export declare namespace Chat {
   export {
     type AddCollaboratorRequest as AddCollaboratorRequest,
     type AdminGrantAccessResponse as AdminGrantAccessResponse,
+    type AdminIssueFoundRequest as AdminIssueFoundRequest,
+    type AdminIssueFoundResponse as AdminIssueFoundResponse,
     type ChatDependency as ChatDependency,
     type ChatEvent as ChatEvent,
     type ChatSession as ChatSession,
@@ -1656,6 +1687,7 @@ export declare namespace Chat {
     type ChatRevertToCommitResponse as ChatRevertToCommitResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
+    type ChatAdminIssueFoundParams as ChatAdminIssueFoundParams,
     type ChatCopyParams as ChatCopyParams,
     type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
