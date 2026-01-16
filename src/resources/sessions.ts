@@ -320,6 +320,8 @@ export namespace JobEventBody {
     target: { [key: string]: string | boolean | number };
 
     match_idx?: number | null;
+
+    raw_text?: string | null;
   }
 
   export interface DatahubPageFetched {
