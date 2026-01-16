@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as ChatAPI from './chat';
+import * as SharedAPI from './shared';
 import * as StructureAPI from './structure';
 
 export class Chat extends APIResource {
@@ -910,6 +911,14 @@ export namespace Message {
 export type ToolInvocation =
   | ToolInvocation.WebSearch
   | ToolInvocation.WebNavigate
+  | ToolInvocation.ViewPage
+  | ToolInvocation.Save
+  | ToolInvocation.SaveEntities
+  | ToolInvocation.Exit
+  | ToolInvocation.APIExecute
+  | ToolInvocation.Javascript
+  | ToolInvocation.NavigateToIFrame
+  | ToolInvocation.InfiniteScroll
   | ToolInvocation.InspectStep
   | ToolInvocation.ReadNodeLogs
   | ToolInvocation.DeleteFile
@@ -952,7 +961,112 @@ export namespace ToolInvocation {
   export namespace WebNavigate {
     export interface Input {
       url: string;
+
+      output_format?: 'Text' | 'Visual' | null;
     }
+  }
+
+  export interface ViewPage {
+    input: ViewPage.Input;
+
+    name: 'ViewPage';
+  }
+
+  export namespace ViewPage {
+    export interface Input {
+      page_number: number;
+    }
+  }
+
+  export interface Save {
+    input: Save.Input;
+
+    name: 'Save';
+  }
+
+  export namespace Save {
+    export interface Input {
+      /**
+       * Knowledge graph info structured to deserialize and display in the same format
+       * that the LLM outputs. Also the first representation of an LLM output in the
+       * pipeline from raw tool output to being merged into a DB
+       */
+      knowledge_graph: SharedAPI.KnowledgeGraph;
+
+      reason: string;
+
+      sources: Array<string>;
+    }
+  }
+
+  export interface SaveEntities {
+    input: SaveEntities.Input;
+
+    name: 'SaveEntities';
+  }
+
+  export namespace SaveEntities {
+    export interface Input {
+      entities: Array<{ [key: string]: { [key: string]: unknown } }>;
+
+      reason: string;
+
+      sources: Array<string>;
+    }
+  }
+
+  export interface Exit {
+    input: Exit.Input;
+
+    name: 'Exit';
+  }
+
+  export namespace Exit {
+    export interface Input {
+      reason: string;
+    }
+  }
+
+  export interface APIExecute {
+    input: APIExecute.Input;
+
+    name: 'ApiExecute';
+  }
+
+  export namespace APIExecute {
+    export interface Input {
+      code: string;
+    }
+  }
+
+  export interface Javascript {
+    input: Javascript.Input;
+
+    name: 'Javascript';
+  }
+
+  export namespace Javascript {
+    export interface Input {
+      code: string;
+    }
+  }
+
+  export interface NavigateToIFrame {
+    input: NavigateToIFrame.Input;
+
+    name: 'NavigateToIFrame';
+  }
+
+  export namespace NavigateToIFrame {
+    export interface Input {
+      index: number;
+    }
+  }
+
+  export interface InfiniteScroll {
+    input: unknown;
+
+    name: 'InfiniteScroll';
   }
 
   export interface InspectStep {
