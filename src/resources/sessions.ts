@@ -222,6 +222,7 @@ export type JobEventBody =
   | JobEventBody.DerivedProperty
   | JobEventBody.Failed
   | JobEventBody.Completed
+  | JobEventBody.CacheHit
   | JobEventBody.AttemptedMatch
   | JobEventBody.DatahubPageFetched
   | JobEventBody.DatahubDatabasesCreated
@@ -306,6 +307,14 @@ export namespace JobEventBody {
 
   export interface Completed {
     event_type: 'completed';
+
+    message?: string | null;
+  }
+
+  export interface CacheHit {
+    cached_from_job_id: string;
+
+    event_type: 'cache_hit';
 
     message?: string | null;
   }
