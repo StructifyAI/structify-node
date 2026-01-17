@@ -5,6 +5,8 @@ export {
   Chat,
   type AddCollaboratorRequest,
   type AdminGrantAccessResponse,
+  type AdminIssueFoundRequest,
+  type AdminIssueFoundResponse,
   type ChatDependency,
   type ChatEvent,
   type ChatSession,
@@ -41,6 +43,7 @@ export {
   type ChatRevertToCommitResponse,
   type ChatAddCollaboratorParams,
   type ChatAddGitCommitParams,
+  type ChatAdminIssueFoundParams,
   type ChatCopyParams,
   type ChatCopyNodeOutputByCodeHashParams,
   type ChatCreateSessionParams,
@@ -77,6 +80,8 @@ export {
   type ConnectorCategory,
   type ConnectorExplorerChat,
   type ConnectorStoreResponse,
+  type ConnectorSummariesRequest,
+  type ConnectorSummary,
   type ConnectorTableInfo,
   type ConnectorWithSecrets,
   type ConnectorWithSnippets,
@@ -102,6 +107,7 @@ export {
   type ConnectorGetClarificationRequestsResponse,
   type ConnectorListWithSnippetsResponse,
   type ConnectorSearchTablesResponse,
+  type ConnectorSummariesResponse,
   type ConnectorCreateParams,
   type ConnectorUpdateParams,
   type ConnectorListParams,
@@ -111,6 +117,7 @@ export {
   type ConnectorGetExplorerChatParams,
   type ConnectorListWithSnippetsParams,
   type ConnectorSearchTablesParams,
+  type ConnectorSummariesParams,
   type ConnectorUpdateColumnParams,
   type ConnectorUpdateTableParams,
 } from './connectors/connectors';
@@ -399,6 +406,7 @@ export {
   type UserSurveySubmitParams,
   type UserUsageParams,
 } from './user/user';
+export { Whitelabel, type EstimateCostResponse } from './whitelabel';
 export {
   Wiki,
   type CreateWikiPageRequest,

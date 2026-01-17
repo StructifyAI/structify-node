@@ -141,6 +141,10 @@ export namespace JobListResponse {
       | Parameters.ScrapeFromURLProperty
       | Parameters.ScrapeURL
       | Parameters.ConnectorExploration;
+
+    instructions?: string | null;
+
+    model?: string | null;
   }
 
   export namespace Parameters {
@@ -165,6 +169,8 @@ export namespace JobListResponse {
          */
         export interface Pdf {
           path: string;
+
+          single_agent?: boolean;
         }
       }
 

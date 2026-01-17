@@ -1652,17 +1652,17 @@ export namespace EntityUpdatePropertyParams {
 
 export interface EntityUploadParquetParams {
   /**
-   * Query param:
+   * Query param
    */
   dataset: string;
 
   /**
-   * Query param:
+   * Query param
    */
   table_name: string;
 
   /**
-   * Body param:
+   * Body param
    */
   content: Core.Uploadable;
 }

@@ -8,9 +8,9 @@ const client = new Structify({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource connectorCatalog', () => {
-  test('list', async () => {
-    const responsePromise = client.connectorCatalog.list();
+describe('resource whitelabel', () => {
+  test('estimateCost', async () => {
+    const responsePromise = client.whitelabel.estimateCost('service', 'path');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -20,29 +20,15 @@ describe('resource connectorCatalog', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.connectorCatalog.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Structify.NotFoundError,
-    );
-  });
-
-  test('list: request options and params are passed correctly', async () => {
+  test('estimateCost: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.connectorCatalog.list(
-        {
-          limit: 0,
-          offset: 0,
-          search: 'search',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
+      client.whitelabel.estimateCost('service', 'path', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
-  test('get', async () => {
-    const responsePromise = client.connectorCatalog.get('slug');
+  test('proxyGet', async () => {
+    const responsePromise = client.whitelabel.proxyGet('service', 'path');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -52,17 +38,10 @@ describe('resource connectorCatalog', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('get: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.connectorCatalog.get('slug', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Structify.NotFoundError,
-    );
-  });
-
-  test('getLogo: request options instead of params are passed correctly', async () => {
+  test('proxyGet: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.connectorCatalog.getLogo('slug', { path: '/_stainless_unknown_path' }),
+      client.whitelabel.proxyGet('service', 'path', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Structify.NotFoundError);
   });
 });

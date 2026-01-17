@@ -1,3 +1,14 @@
+# Whitelabel
+
+Types:
+
+- <code><a href="./src/resources/whitelabel.ts">EstimateCostResponse</a></code>
+
+Methods:
+
+- <code title="get /whitelabel/{service}/estimate-cost/{path}">client.whitelabel.<a href="./src/resources/whitelabel.ts">estimateCost</a>(service, path\_) -> EstimateCostResponse</code>
+- <code title="get /whitelabel/{service}/{path}">client.whitelabel.<a href="./src/resources/whitelabel.ts">proxyGet</a>(service, path\_) -> void</code>
+
 # User
 
 Types:
@@ -63,6 +74,8 @@ Types:
 
 - <code><a href="./src/resources/chat.ts">AddCollaboratorRequest</a></code>
 - <code><a href="./src/resources/chat.ts">AdminGrantAccessResponse</a></code>
+- <code><a href="./src/resources/chat.ts">AdminIssueFoundRequest</a></code>
+- <code><a href="./src/resources/chat.ts">AdminIssueFoundResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatDependency</a></code>
 - <code><a href="./src/resources/chat.ts">ChatEvent</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSession</a></code>
@@ -103,6 +116,7 @@ Methods:
 - <code title="post /chat/sessions/{chat_id}/collaborators">client.chat.<a href="./src/resources/chat.ts">addCollaborator</a>(chatId, { ...params }) -> void</code>
 - <code title="post /chat/sessions/{session_id}/commits">client.chat.<a href="./src/resources/chat.ts">addGitCommit</a>(sessionId, { ...params }) -> ChatAddGitCommitResponse</code>
 - <code title="get /chat/sessions/{session_id}/admin/chat_prompt">client.chat.<a href="./src/resources/chat.ts">adminGetChatPrompt</a>(sessionId) -> ChatPrompt</code>
+- <code title="post /chat/sessions/{chat_id}/admin/issue_found">client.chat.<a href="./src/resources/chat.ts">adminIssueFound</a>(chatId, { ...params }) -> AdminIssueFoundResponse</code>
 - <code title="post /chat/copy">client.chat.<a href="./src/resources/chat.ts">copy</a>({ ...params }) -> ChatSessionWithMessages</code>
 - <code title="post /chat/sessions/{session_id}/nodes/by_code_hash">client.chat.<a href="./src/resources/chat.ts">copyNodeOutputByCodeHash</a>(sessionId, { ...params }) -> string</code>
 - <code title="post /chat/sessions">client.chat.<a href="./src/resources/chat.ts">createSession</a>({ ...params }) -> CreateChatSessionResponse</code>
@@ -513,6 +527,8 @@ Types:
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorCategory</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorExplorerChat</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorStoreResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorSummariesRequest</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorSummary</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorTableInfo</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorWithSecrets</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorWithSnippets</a></code>
@@ -538,6 +554,7 @@ Types:
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorGetClarificationRequestsResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorListWithSnippetsResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorSearchTablesResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorSummariesResponse</a></code>
 
 Methods:
 
@@ -559,6 +576,7 @@ Methods:
 - <code title="get /connectors/with-snippets">client.connectors.<a href="./src/resources/connectors/connectors.ts">listWithSnippets</a>({ ...params }) -> ConnectorListWithSnippetsResponse</code>
 - <code title="patch /connectors/clarification-requests/{clarification_id}/resolve">client.connectors.<a href="./src/resources/connectors/connectors.ts">resolveClarification</a>(clarificationId) -> void</code>
 - <code title="get /connectors/search-tables">client.connectors.<a href="./src/resources/connectors/connectors.ts">searchTables</a>({ ...params }) -> ConnectorSearchTablesResponse</code>
+- <code title="post /connectors/summaries">client.connectors.<a href="./src/resources/connectors/connectors.ts">summaries</a>({ ...params }) -> ConnectorSummariesResponse</code>
 - <code title="patch /connectors/columns/{column_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">updateColumn</a>(columnId, { ...params }) -> void</code>
 - <code title="patch /connectors/tables/{table_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">updateTable</a>(tableId, { ...params }) -> UpdateTableResponse</code>
 

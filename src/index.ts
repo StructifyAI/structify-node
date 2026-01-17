@@ -16,10 +16,13 @@ import * as API from './resources/index';
 import {
   AddCollaboratorRequest,
   AdminGrantAccessResponse,
+  AdminIssueFoundRequest,
+  AdminIssueFoundResponse,
   Chat,
   ChatAddCollaboratorParams,
   ChatAddGitCommitParams,
   ChatAddGitCommitResponse,
+  ChatAdminIssueFoundParams,
   ChatCopyNodeOutputByCodeHashParams,
   ChatCopyNodeOutputByCodeHashResponse,
   ChatCopyParams,
@@ -337,6 +340,7 @@ import {
   UpdateTeamResponse,
   UsageGroupKey,
 } from './resources/teams';
+import { EstimateCostResponse, Whitelabel } from './resources/whitelabel';
 import {
   CreateWikiPageRequest,
   TeamWikiPage,
@@ -396,6 +400,10 @@ import {
   ConnectorSearchTablesParams,
   ConnectorSearchTablesResponse,
   ConnectorStoreResponse,
+  ConnectorSummariesParams,
+  ConnectorSummariesRequest,
+  ConnectorSummariesResponse,
+  ConnectorSummary,
   ConnectorTableInfo,
   ConnectorUpdateColumnParams,
   ConnectorUpdateParams,
@@ -587,6 +595,7 @@ export class Structify extends Core.APIClient {
     this.sessionToken = sessionToken;
   }
 
+  whitelabel: API.Whitelabel = new API.Whitelabel(this);
   user: API.User = new API.User(this);
   chat: API.Chat = new API.Chat(this);
   teams: API.Teams = new API.Teams(this);
@@ -698,6 +707,7 @@ export class Structify extends Core.APIClient {
   static fileFromPath = Uploads.fileFromPath;
 }
 
+Structify.Whitelabel = Whitelabel;
 Structify.User = User;
 Structify.Chat = Chat;
 Structify.Teams = Teams;
@@ -742,6 +752,8 @@ export declare namespace Structify {
     type ListConnectorCatalogResponse as ListConnectorCatalogResponse,
   };
 
+  export { Whitelabel as Whitelabel, type EstimateCostResponse as EstimateCostResponse };
+
   export {
     User as User,
     type EnrichUserParams as EnrichUserParams,
@@ -767,6 +779,8 @@ export declare namespace Structify {
     Chat as Chat,
     type AddCollaboratorRequest as AddCollaboratorRequest,
     type AdminGrantAccessResponse as AdminGrantAccessResponse,
+    type AdminIssueFoundRequest as AdminIssueFoundRequest,
+    type AdminIssueFoundResponse as AdminIssueFoundResponse,
     type ChatDependency as ChatDependency,
     type ChatEvent as ChatEvent,
     type ChatSession as ChatSession,
@@ -803,6 +817,7 @@ export declare namespace Structify {
     type ChatRevertToCommitResponse as ChatRevertToCommitResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
+    type ChatAdminIssueFoundParams as ChatAdminIssueFoundParams,
     type ChatCopyParams as ChatCopyParams,
     type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
@@ -1024,6 +1039,8 @@ export declare namespace Structify {
     type ConnectorCategory as ConnectorCategory,
     type ConnectorExplorerChat as ConnectorExplorerChat,
     type ConnectorStoreResponse as ConnectorStoreResponse,
+    type ConnectorSummariesRequest as ConnectorSummariesRequest,
+    type ConnectorSummary as ConnectorSummary,
     type ConnectorTableInfo as ConnectorTableInfo,
     type ConnectorWithSecrets as ConnectorWithSecrets,
     type ConnectorWithSnippets as ConnectorWithSnippets,
@@ -1049,6 +1066,7 @@ export declare namespace Structify {
     type ConnectorGetClarificationRequestsResponse as ConnectorGetClarificationRequestsResponse,
     type ConnectorListWithSnippetsResponse as ConnectorListWithSnippetsResponse,
     type ConnectorSearchTablesResponse as ConnectorSearchTablesResponse,
+    type ConnectorSummariesResponse as ConnectorSummariesResponse,
     ConnectorWithSecretsJobsList as ConnectorWithSecretsJobsList,
     type ConnectorCreateParams as ConnectorCreateParams,
     type ConnectorUpdateParams as ConnectorUpdateParams,
@@ -1059,6 +1077,7 @@ export declare namespace Structify {
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
     type ConnectorListWithSnippetsParams as ConnectorListWithSnippetsParams,
     type ConnectorSearchTablesParams as ConnectorSearchTablesParams,
+    type ConnectorSummariesParams as ConnectorSummariesParams,
     type ConnectorUpdateColumnParams as ConnectorUpdateColumnParams,
     type ConnectorUpdateTableParams as ConnectorUpdateTableParams,
   };

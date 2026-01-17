@@ -155,15 +155,31 @@ export interface ConnectorCredentialField {
 }
 
 export interface ConnectorCatalogListResponse {
+  category_counts: Array<ConnectorCatalogListResponse.CategoryCount>;
+
   items: Array<ConnectorCatalogWithMethods>;
 
   total_count: number;
+}
+
+export namespace ConnectorCatalogListResponse {
+  export interface CategoryCount {
+    category: string;
+
+    count: number;
+  }
 }
 
 export interface ConnectorCatalogListParams {
   limit?: number;
 
   offset?: number;
+
+  /**
+   * Optional search query to filter by name, slug, or category (case-insensitive
+   * substring match)
+   */
+  search?: string | null;
 }
 
 ConnectorCatalogResource.Admin = Admin;

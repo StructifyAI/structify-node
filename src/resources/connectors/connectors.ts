@@ -164,6 +164,13 @@ export class Connectors extends APIResource {
     return this._client.get('/connectors/search-tables', { query, ...options });
   }
 
+  summaries(
+    body: ConnectorSummariesParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ConnectorSummariesResponse> {
+    return this._client.post('/connectors/summaries', { body, ...options });
+  }
+
   /**
    * Update column metadata (notes)
    */
@@ -272,6 +279,23 @@ export interface ConnectorStoreResponse {
    * - API: all tables have `endpoint: Some(...)`
    */
   store?: LlmInformationStore | null;
+}
+
+export interface ConnectorSummariesRequest {
+  connector_ids: Array<string>;
+
+  team_id: string;
+}
+
+export interface ConnectorSummary {
+  id: string;
+
+  name: string;
+
+  /**
+   * Base64 data URI for the logo (e.g., "data:image/svg+xml;base64,...")
+   */
+  logo_url?: string | null;
 }
 
 export interface ConnectorTableInfo {
@@ -1001,6 +1025,8 @@ export namespace ConnectorSearchTablesResponse {
   }
 }
 
+export type ConnectorSummariesResponse = Array<ConnectorSummary>;
+
 export interface ConnectorCreateParams {
   known_connector_type: string;
 
@@ -1133,6 +1159,12 @@ export interface ConnectorSearchTablesParams {
   team_id: string;
 }
 
+export interface ConnectorSummariesParams {
+  connector_ids: Array<string>;
+
+  team_id: string;
+}
+
 export interface ConnectorUpdateColumnParams {
   notes?: string | null;
 }
@@ -1152,6 +1184,8 @@ export declare namespace Connectors {
     type ConnectorCategory as ConnectorCategory,
     type ConnectorExplorerChat as ConnectorExplorerChat,
     type ConnectorStoreResponse as ConnectorStoreResponse,
+    type ConnectorSummariesRequest as ConnectorSummariesRequest,
+    type ConnectorSummary as ConnectorSummary,
     type ConnectorTableInfo as ConnectorTableInfo,
     type ConnectorWithSecrets as ConnectorWithSecrets,
     type ConnectorWithSnippets as ConnectorWithSnippets,
@@ -1177,6 +1211,7 @@ export declare namespace Connectors {
     type ConnectorGetClarificationRequestsResponse as ConnectorGetClarificationRequestsResponse,
     type ConnectorListWithSnippetsResponse as ConnectorListWithSnippetsResponse,
     type ConnectorSearchTablesResponse as ConnectorSearchTablesResponse,
+    type ConnectorSummariesResponse as ConnectorSummariesResponse,
     ConnectorWithSecretsJobsList as ConnectorWithSecretsJobsList,
     type ConnectorCreateParams as ConnectorCreateParams,
     type ConnectorUpdateParams as ConnectorUpdateParams,
@@ -1187,6 +1222,7 @@ export declare namespace Connectors {
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
     type ConnectorListWithSnippetsParams as ConnectorListWithSnippetsParams,
     type ConnectorSearchTablesParams as ConnectorSearchTablesParams,
+    type ConnectorSummariesParams as ConnectorSummariesParams,
     type ConnectorUpdateColumnParams as ConnectorUpdateColumnParams,
     type ConnectorUpdateTableParams as ConnectorUpdateTableParams,
   };

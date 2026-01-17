@@ -363,6 +363,27 @@ describe('resource connectors', () => {
     });
   });
 
+  test('summaries: only required params', async () => {
+    const responsePromise = client.connectors.summaries({
+      connector_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('summaries: required and optional params', async () => {
+    const response = await client.connectors.summaries({
+      connector_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+  });
+
   test('updateColumn', async () => {
     const responsePromise = client.connectors.updateColumn('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {});
     const rawResponse = await responsePromise.asResponse();

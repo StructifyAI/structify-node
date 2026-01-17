@@ -222,12 +222,14 @@ export type JobEventBody =
   | JobEventBody.DerivedProperty
   | JobEventBody.Failed
   | JobEventBody.Completed
+  | JobEventBody.CacheHit
   | JobEventBody.AttemptedMatch
   | JobEventBody.DatahubPageFetched
   | JobEventBody.DatahubDatabasesCreated
   | JobEventBody.DatahubSchemasCreated
   | JobEventBody.DatahubTablesProcessed
-  | JobEventBody.DatahubEmbeddingBatch;
+  | JobEventBody.DatahubEmbeddingBatch
+  | JobEventBody.ViewedPdfPage;
 
 export namespace JobEventBody {
   export interface AgentNavigated {
@@ -309,6 +311,14 @@ export namespace JobEventBody {
     message?: string | null;
   }
 
+  export interface CacheHit {
+    cached_from_job_id: string;
+
+    event_type: 'cache_hit';
+
+    message?: string | null;
+  }
+
   export interface AttemptedMatch {
     candidates: Array<{ [key: string]: string | boolean | number }>;
 
@@ -319,6 +329,8 @@ export namespace JobEventBody {
     target: { [key: string]: string | boolean | number };
 
     match_idx?: number | null;
+
+    raw_text?: string | null;
   }
 
   export interface DatahubPageFetched {
@@ -365,6 +377,12 @@ export namespace JobEventBody {
     tables_in_batch: number;
 
     total_batches: number;
+  }
+
+  export interface ViewedPdfPage {
+    event_type: 'viewed_pdf_page';
+
+    page_index: number;
   }
 }
 
