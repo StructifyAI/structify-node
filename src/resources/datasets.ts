@@ -414,6 +414,8 @@ export interface DatasetViewTableResponse {
 
   dataset_id: string;
 
+  job_ids: Array<string>;
+
   label: string;
 
   properties: {
