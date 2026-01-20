@@ -359,6 +359,7 @@ export type UsageGroupKey =
   | 'searchapi'
   | 'newsapi'
   | 'secapi'
+  | 'cufinder'
   | 'match'
   | 'connectorexplore'
   | 'other';
