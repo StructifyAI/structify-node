@@ -165,22 +165,186 @@ export interface CreateWorkflowSessionRequest {
   workflow_schedule_id?: string | null;
 }
 
-export interface DashboardComponent {
-  node_name: string;
+/**
+ * A page is the top-level container with title/description Can contain multiple
+ * dashboards with different datasets
+ */
+export interface Dashboard {
+  /**
+   * One or more dashboards on this page
+   */
+  dashboards: Array<DashboardPage>;
 
+  /**
+   * Page title
+   */
   title: string;
 
+  /**
+   * Optional page description
+   */
+  description?: string | null;
+}
+
+/**
+ * A component references a viz node and optionally includes mosaic metadata
+ */
+export interface DashboardComponent {
+  /**
+   * Function name of the viz node that outputs the chart spec
+   */
+  node_name: string;
+
+  /**
+   * Display title (overrides viz node title)
+   */
+  title: string;
+
+  /**
+   * Description (optional, can override viz node's description)
+   */
   description?: string | null;
 
+  mosaic?: DashboardComponent.Mosaic | null;
+
+  /**
+   * Grid span: 1 (quarter), 2 (half), 3 (three-quarters), 4 (full width)
+   */
   span?: number | null;
 }
 
-export interface DashboardLayout {
+export namespace DashboardComponent {
+  export interface Mosaic {
+    fields: { [key: string]: string | boolean | Mosaic.UnionMember2 };
+
+    bin?: Mosaic.Bin | null;
+
+    groupBy?: Array<string> | null;
+
+    limit?: number | null;
+
+    orderBy?: string | null;
+
+    /**
+     * Table name - optional, derived from datasetNodeName in dashboard config
+     */
+    table?: string | null;
+  }
+
+  export namespace Mosaic {
+    export interface UnionMember2 {
+      expr: string;
+
+      /**
+       * Optional Plotly property path (e.g., marker.color) to assign this column to
+       */
+      target?: string | null;
+    }
+
+    export interface Bin {
+      as: string;
+
+      field: string;
+
+      step: number;
+    }
+  }
+}
+
+/**
+ * A dashboard groups components that share a common dataset. If dataset_node_name
+ * is None, components render static viz without Mosaic cross-filtering.
+ */
+export interface DashboardPage {
+  /**
+   * Components (charts) in this dashboard
+   */
   components: Array<DashboardComponent>;
 
+  /**
+   * Title for this dashboard section
+   */
   title: string;
 
+  /**
+   * Control filters (dropdowns, checkboxes, ranges) for this dashboard
+   */
+  controls?: Array<DashboardPage.Dropdown | DashboardPage.Range | DashboardPage.Checkbox> | null;
+
+  /**
+   * Function name of the node that returns the dataset (DataFrame/Parquet). If None,
+   * no cross-filtering is available.
+   */
+  datasetNodeName?: string | null;
+
+  /**
+   * Optional description
+   */
   description?: string | null;
+}
+
+export namespace DashboardPage {
+  export interface Dropdown {
+    id: string;
+
+    field: string;
+
+    label: string;
+
+    options: Array<Dropdown.Option>;
+
+    type: 'dropdown';
+
+    default_value?: string | null;
+  }
+
+  export namespace Dropdown {
+    export interface Option {
+      label: string;
+
+      value: string;
+    }
+  }
+
+  export interface Range {
+    id: string;
+
+    field: string;
+
+    label: string;
+
+    max: number;
+
+    min: number;
+
+    type: 'range';
+
+    default_value?: Array<number> | null;
+
+    step?: number | null;
+  }
+
+  export interface Checkbox {
+    id: string;
+
+    field: string;
+
+    label: string;
+
+    options: Array<Checkbox.Option>;
+
+    type: 'checkbox';
+
+    default_value?: Array<string> | null;
+  }
+
+  export namespace Checkbox {
+    export interface Option {
+      label: string;
+
+      value: string;
+    }
+  }
 }
 
 export interface EdgeSpec {
@@ -194,7 +358,11 @@ export interface FinalizeDagRequest {
 
   nodes: Array<NodeSpec>;
 
-  dashboard_layout?: DashboardLayout | null;
+  /**
+   * A page is the top-level container with title/description Can contain multiple
+   * dashboards with different datasets
+   */
+  dashboard_layout?: Dashboard | null;
 }
 
 export interface FinalizeDagResponse {
@@ -433,7 +601,11 @@ export interface UpdateWorkflowNodeRequest {
 }
 
 export interface UploadDashboardLayoutRequest {
-  layout: DashboardLayout;
+  /**
+   * A page is the top-level container with title/description Can contain multiple
+   * dashboards with different datasets
+   */
+  layout: Dashboard;
 }
 
 export interface UploadNodeVisualizationOutputRequest {
@@ -453,7 +625,11 @@ export interface WorkflowDag {
 
   dag_ready_at?: string | null;
 
-  dashboard_layout?: DashboardLayout | null;
+  /**
+   * A page is the top-level container with title/description Can contain multiple
+   * dashboards with different datasets
+   */
+  dashboard_layout?: Dashboard | null;
 
   error?: string | null;
 
@@ -640,7 +816,11 @@ export interface SessionFinalizeDagParams {
 
   nodes: Array<NodeSpec>;
 
-  dashboard_layout?: DashboardLayout | null;
+  /**
+   * A page is the top-level container with title/description Can contain multiple
+   * dashboards with different datasets
+   */
+  dashboard_layout?: Dashboard | null;
 }
 
 export interface SessionGetEventsParams {
@@ -692,7 +872,11 @@ export interface SessionUpdateNodeProgressParams {
 }
 
 export interface SessionUploadDashboardLayoutParams {
-  layout: DashboardLayout;
+  /**
+   * A page is the top-level container with title/description Can contain multiple
+   * dashboards with different datasets
+   */
+  layout: Dashboard;
 }
 
 export interface SessionUploadNodeOutputDataParams {
@@ -710,8 +894,9 @@ export declare namespace Sessions {
     type AutofixContext as AutofixContext,
     type ConfirmNodeRequest as ConfirmNodeRequest,
     type CreateWorkflowSessionRequest as CreateWorkflowSessionRequest,
+    type Dashboard as Dashboard,
     type DashboardComponent as DashboardComponent,
-    type DashboardLayout as DashboardLayout,
+    type DashboardPage as DashboardPage,
     type EdgeSpec as EdgeSpec,
     type FinalizeDagRequest as FinalizeDagRequest,
     type FinalizeDagResponse as FinalizeDagResponse,
