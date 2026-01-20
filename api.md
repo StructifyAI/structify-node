@@ -8,6 +8,7 @@ Methods:
 
 - <code title="get /whitelabel/{service}/estimate-cost/{path}">client.whitelabel.<a href="./src/resources/whitelabel.ts">estimateCost</a>(service, path\_) -> EstimateCostResponse</code>
 - <code title="get /whitelabel/{service}/{path}">client.whitelabel.<a href="./src/resources/whitelabel.ts">proxyGet</a>(service, path\_) -> void</code>
+- <code title="post /whitelabel/{service}/{path}">client.whitelabel.<a href="./src/resources/whitelabel.ts">proxyPost</a>(service, path\_) -> void</code>
 
 # User
 
