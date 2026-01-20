@@ -358,6 +358,7 @@ export type UsageGroupKey =
   | 'apollo'
   | 'searchapi'
   | 'newsapi'
+  | 'secapi'
   | 'match'
   | 'connectorexplore'
   | 'other';

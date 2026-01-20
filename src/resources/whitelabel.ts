@@ -18,6 +18,13 @@ export class Whitelabel extends APIResource {
       headers: { Accept: '*/*', ...options?.headers },
     });
   }
+
+  proxyPost(service: string, path_: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post(`/whitelabel/${service}/${path_}`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
 }
 
 export interface EstimateCostResponse {
