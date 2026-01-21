@@ -113,7 +113,7 @@ export namespace AdminListJobsResponse {
         export interface Pdf {
           path: string;
 
-          single_agent?: boolean;
+          page?: number | null;
         }
       }
 
