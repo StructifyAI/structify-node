@@ -769,6 +769,7 @@ Types:
 - <code><a href="./src/resources/structure.ts">StructureFindRelationshipResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureIsCompleteResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureJobStatusResponse</a></code>
+- <code><a href="./src/resources/structure.ts">StructurePdfResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureRunAsyncResponse</a></code>
 
 Methods:
@@ -778,6 +779,7 @@ Methods:
 - <code title="post /structure/find_relationship">client.structure.<a href="./src/resources/structure.ts">findRelationship</a>({ ...params }) -> string</code>
 - <code title="post /structure/is_complete">client.structure.<a href="./src/resources/structure.ts">isComplete</a>([ ...job ]) -> string</code>
 - <code title="post /structure/job_status">client.structure.<a href="./src/resources/structure.ts">jobStatus</a>({ ...params }) -> StructureJobStatusResponse</code>
+- <code title="post /structure/pdf">client.structure.<a href="./src/resources/structure.ts">pdf</a>({ ...params }) -> StructurePdfResponse</code>
 - <code title="post /structure/run_async">client.structure.<a href="./src/resources/structure.ts">runAsync</a>({ ...params }) -> string</code>
 
 # PublicSessions
