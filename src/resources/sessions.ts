@@ -409,6 +409,8 @@ export interface NodeSpec {
 }
 
 export interface RequestConfirmationRequest {
+  operation: 'tag' | 'pdf' | 'web' | 'match';
+
   row_count: number;
 }
 
@@ -668,6 +670,8 @@ export interface SessionMarkErroredParams {
 }
 
 export interface SessionRequestConfirmationParams {
+  operation: 'tag' | 'pdf' | 'web' | 'match';
+
   row_count: number;
 }
 
