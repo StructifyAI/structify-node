@@ -441,8 +441,9 @@ Types:
 - <code><a href="./src/resources/sessions.ts">AutofixContext</a></code>
 - <code><a href="./src/resources/sessions.ts">ConfirmNodeRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">CreateWorkflowSessionRequest</a></code>
+- <code><a href="./src/resources/sessions.ts">Dashboard</a></code>
 - <code><a href="./src/resources/sessions.ts">DashboardComponent</a></code>
-- <code><a href="./src/resources/sessions.ts">DashboardLayout</a></code>
+- <code><a href="./src/resources/sessions.ts">DashboardPage</a></code>
 - <code><a href="./src/resources/sessions.ts">EdgeSpec</a></code>
 - <code><a href="./src/resources/sessions.ts">FinalizeDagRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">FinalizeDagResponse</a></code>
