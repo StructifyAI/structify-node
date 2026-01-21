@@ -72,6 +72,14 @@ export class Structure extends APIResource {
   }
 
   /**
+   * For single mode, creates one job for the entire PDF. For batch mode, creates one
+   * job per PDF page.
+   */
+  pdf(body: StructurePdfParams, options?: Core.RequestOptions): Core.APIPromise<StructurePdfResponse> {
+    return this._client.post('/structure/pdf', { body, ...options });
+  }
+
+  /**
    * Returns a token that can be waited on until the request is finished.
    */
   runAsync(body: StructureRunAsyncParams, options?: Core.RequestOptions): Core.APIPromise<string> {
@@ -387,6 +395,10 @@ export namespace StructureJobStatusResponse {
   }
 }
 
+export interface StructurePdfResponse {
+  job_ids: Array<string>;
+}
+
 export type StructureRunAsyncResponse = string;
 
 export interface StructureEnhancePropertyParams {
@@ -449,6 +461,20 @@ export namespace StructureJobStatusParams {
   }
 }
 
+export interface StructurePdfParams {
+  dataset: string;
+
+  path: string;
+
+  instructions?: string | null;
+
+  mode?: 'Single' | 'Batch';
+
+  model?: string | null;
+
+  node_id?: string | null;
+}
+
 export interface StructureRunAsyncParams {
   dataset: string;
 
@@ -488,7 +514,7 @@ export namespace StructureRunAsyncParams {
     export interface Pdf {
       path: string;
 
-      single_agent?: boolean;
+      page?: number | null;
     }
   }
 
@@ -517,12 +543,14 @@ export declare namespace Structure {
     type StructureFindRelationshipResponse as StructureFindRelationshipResponse,
     type StructureIsCompleteResponse as StructureIsCompleteResponse,
     type StructureJobStatusResponse as StructureJobStatusResponse,
+    type StructurePdfResponse as StructurePdfResponse,
     type StructureRunAsyncResponse as StructureRunAsyncResponse,
     type StructureEnhancePropertyParams as StructureEnhancePropertyParams,
     type StructureEnhanceRelationshipParams as StructureEnhanceRelationshipParams,
     type StructureFindRelationshipParams as StructureFindRelationshipParams,
     type StructureIsCompleteParams as StructureIsCompleteParams,
     type StructureJobStatusParams as StructureJobStatusParams,
+    type StructurePdfParams as StructurePdfParams,
     type StructureRunAsyncParams as StructureRunAsyncParams,
   };
 }

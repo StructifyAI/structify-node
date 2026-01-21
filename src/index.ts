@@ -294,6 +294,8 @@ import {
   StructureIsCompleteResponse,
   StructureJobStatusParams,
   StructureJobStatusResponse,
+  StructurePdfParams,
+  StructurePdfResponse,
   StructureRunAsyncParams,
   StructureRunAsyncResponse,
   ToolMetadata,
@@ -1180,12 +1182,14 @@ export declare namespace Structify {
     type StructureFindRelationshipResponse as StructureFindRelationshipResponse,
     type StructureIsCompleteResponse as StructureIsCompleteResponse,
     type StructureJobStatusResponse as StructureJobStatusResponse,
+    type StructurePdfResponse as StructurePdfResponse,
     type StructureRunAsyncResponse as StructureRunAsyncResponse,
     type StructureEnhancePropertyParams as StructureEnhancePropertyParams,
     type StructureEnhanceRelationshipParams as StructureEnhanceRelationshipParams,
     type StructureFindRelationshipParams as StructureFindRelationshipParams,
     type StructureIsCompleteParams as StructureIsCompleteParams,
     type StructureJobStatusParams as StructureJobStatusParams,
+    type StructurePdfParams as StructurePdfParams,
     type StructureRunAsyncParams as StructureRunAsyncParams,
   };
 
