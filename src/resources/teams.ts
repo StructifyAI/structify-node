@@ -274,6 +274,8 @@ export interface Team {
 
   pipedream_project_id?: string | null;
 
+  sandbox_provider?: string | null;
+
   slack_team_icon?: string | null;
 
   slack_team_id?: string | null;
