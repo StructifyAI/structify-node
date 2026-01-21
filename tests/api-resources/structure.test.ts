@@ -121,6 +121,28 @@ describe('resource structure', () => {
     });
   });
 
+  test('pdf: only required params', async () => {
+    const responsePromise = client.structure.pdf({ dataset: 'dataset', path: 'path' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('pdf: required and optional params', async () => {
+    const response = await client.structure.pdf({
+      dataset: 'dataset',
+      path: 'path',
+      instructions: 'instructions',
+      mode: 'Single',
+      model: 'model',
+      node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+  });
+
   test('runAsync: only required params', async () => {
     const responsePromise = client.structure.runAsync({
       dataset: 'dataset',
@@ -138,7 +160,7 @@ describe('resource structure', () => {
   test('runAsync: required and optional params', async () => {
     const response = await client.structure.runAsync({
       dataset: 'dataset',
-      source: { PDF: { path: 'path', single_agent: true } },
+      source: { PDF: { path: 'path', page: 0 } },
       instructions: 'instructions',
       model: 'model',
       node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
