@@ -199,7 +199,6 @@ import { PublicSessions } from './resources/public-sessions';
 import {
   GetSandboxRequest,
   Sandbox,
-  SandboxCreateParams,
   SandboxGetParams,
   SandboxListResponse,
   SandboxResource,
@@ -295,8 +294,6 @@ import {
   StructureIsCompleteResponse,
   StructureJobStatusParams,
   StructureJobStatusResponse,
-  StructurePdfParams,
-  StructurePdfResponse,
   StructureRunAsyncParams,
   StructureRunAsyncResponse,
   ToolMetadata,
@@ -1151,7 +1148,6 @@ export declare namespace Structify {
     type GetSandboxRequest as GetSandboxRequest,
     type Sandbox as Sandbox,
     type SandboxListResponse as SandboxListResponse,
-    type SandboxCreateParams as SandboxCreateParams,
     type SandboxGetParams as SandboxGetParams,
     type SandboxUpdateStatusParams as SandboxUpdateStatusParams,
   };
@@ -1184,14 +1180,12 @@ export declare namespace Structify {
     type StructureFindRelationshipResponse as StructureFindRelationshipResponse,
     type StructureIsCompleteResponse as StructureIsCompleteResponse,
     type StructureJobStatusResponse as StructureJobStatusResponse,
-    type StructurePdfResponse as StructurePdfResponse,
     type StructureRunAsyncResponse as StructureRunAsyncResponse,
     type StructureEnhancePropertyParams as StructureEnhancePropertyParams,
     type StructureEnhanceRelationshipParams as StructureEnhanceRelationshipParams,
     type StructureFindRelationshipParams as StructureFindRelationshipParams,
     type StructureIsCompleteParams as StructureIsCompleteParams,
     type StructureJobStatusParams as StructureJobStatusParams,
-    type StructurePdfParams as StructurePdfParams,
     type StructureRunAsyncParams as StructureRunAsyncParams,
   };
 
