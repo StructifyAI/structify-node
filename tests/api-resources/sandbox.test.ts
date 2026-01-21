@@ -9,33 +9,6 @@ const client = new Structify({
 });
 
 describe('resource sandbox', () => {
-  test('create: only required params', async () => {
-    const responsePromise = client.sandbox.create('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      chat_session_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      modal_id: 'modal_id',
-      modal_url: 'modal_url',
-      status: 'alive',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('create: required and optional params', async () => {
-    const response = await client.sandbox.create('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      chat_session_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      modal_id: 'modal_id',
-      modal_url: 'modal_url',
-      status: 'alive',
-      latest_node: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      session_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
-  });
-
   test('list', async () => {
     const responsePromise = client.sandbox.list('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();

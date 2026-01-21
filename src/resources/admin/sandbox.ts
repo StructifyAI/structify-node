@@ -31,11 +31,15 @@ export interface AdminSandbox {
 
   created_at: string;
 
+  provider: 'modal' | 'daytona';
+
   sandbox_type: SandboxType;
 
   status: 'alive' | 'terminated';
 
   updated_at: string;
+
+  api_url?: string | null;
 
   chat_session_id?: string | null;
 
@@ -43,9 +47,9 @@ export interface AdminSandbox {
 
   latest_node?: string | null;
 
-  modal_id?: string | null;
+  provider_id?: string | null;
 
-  modal_url?: string | null;
+  tunnel_url?: string | null;
 }
 
 export type SandboxType = 'dora' | 'diego';
