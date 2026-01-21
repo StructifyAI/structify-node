@@ -336,12 +336,14 @@ export {
   type StructureFindRelationshipResponse,
   type StructureIsCompleteResponse,
   type StructureJobStatusResponse,
+  type StructurePdfResponse,
   type StructureRunAsyncResponse,
   type StructureEnhancePropertyParams,
   type StructureEnhanceRelationshipParams,
   type StructureFindRelationshipParams,
   type StructureIsCompleteParams,
   type StructureJobStatusParams,
+  type StructurePdfParams,
   type StructureRunAsyncParams,
 } from './structure';
 export {
