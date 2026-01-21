@@ -250,6 +250,7 @@ describe('resource sessions', () => {
 
   test('requestConfirmation: only required params', async () => {
     const responsePromise = client.sessions.requestConfirmation('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      operation: 'tag',
       row_count: 0,
     });
     const rawResponse = await responsePromise.asResponse();
@@ -263,6 +264,7 @@ describe('resource sessions', () => {
 
   test('requestConfirmation: required and optional params', async () => {
     const response = await client.sessions.requestConfirmation('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      operation: 'tag',
       row_count: 0,
     });
   });
