@@ -699,6 +699,8 @@ export namespace CreateChatSessionRequest {
       | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
 
+    max_steps?: number | null;
+
     reminder_message?: string | null;
 
     system_prompt?: string | null;
@@ -1363,14 +1365,15 @@ export namespace ToolInvocation {
 export type ToolResult =
   | 'Pending'
   | 'NoResult'
+  | 'Completed'
   | ToolResult.Error
   | ToolResult.Text
-  | ToolResult.Image
   | ToolResult.CodeExecution
   | ToolResult.WebMarkdown
   | ToolResult.WebSearch
   | ToolResult.ConnectorSearch
-  | ToolResult.NodeLogs;
+  | ToolResult.NodeLogs
+  | ToolResult.Image;
 
 export namespace ToolResult {
   export interface Error {
@@ -1379,10 +1382,6 @@ export namespace ToolResult {
 
   export interface Text {
     Text: string;
-  }
-
-  export interface Image {
-    Image: Core.Uploadable;
   }
 
   export interface CodeExecution {
@@ -1449,6 +1448,18 @@ export namespace ToolResult {
 
   export interface NodeLogs {
     NodeLogs: Array<string>;
+  }
+
+  export interface Image {
+    Image: Image.Image;
+  }
+
+  export namespace Image {
+    export interface Image {
+      image_bytes: Core.Uploadable;
+
+      ocr_text?: string | null;
+    }
   }
 }
 
@@ -1695,6 +1706,8 @@ export namespace ChatCreateSessionParams {
       | 'gemini.gemini-3-pro-preview'
       | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
+
+    max_steps?: number | null;
 
     reminder_message?: string | null;
 
