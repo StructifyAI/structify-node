@@ -347,6 +347,18 @@ Methods:
 - <code title="patch /admin/chat/templates/{template_id}">client.admin.chatTemplates.<a href="./src/resources/admin/chat-templates.ts">update</a>(templateId, { ...params }) -> ChatTemplate</code>
 - <code title="get /admin/chat/templates">client.admin.chatTemplates.<a href="./src/resources/admin/chat-templates.ts">list</a>({ ...params }) -> ChatTemplateListResponse</code>
 
+## Connector
+
+Types:
+
+- <code><a href="./src/resources/admin/connector.ts">CloneConnectorItem</a></code>
+- <code><a href="./src/resources/admin/connector.ts">CloneConnectorsRequest</a></code>
+- <code><a href="./src/resources/admin/connector.ts">CloneConnectorsResponse</a></code>
+
+Methods:
+
+- <code title="post /admin/connector/clone">client.admin.connector.<a href="./src/resources/admin/connector.ts">clone</a>({ ...params }) -> CloneConnectorsResponse</code>
+
 # Datasets
 
 Types:

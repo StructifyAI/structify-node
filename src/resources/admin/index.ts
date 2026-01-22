@@ -49,6 +49,13 @@ export {
   type ChatTemplateUpdateParams,
   type ChatTemplateListParams,
 } from './chat-templates';
+export {
+  Connector,
+  type CloneConnectorItem,
+  type CloneConnectorsRequest,
+  type CloneConnectorsResponse,
+  type ConnectorCloneParams,
+} from './connector';
 export { Dataset, type AdminDatasetReturn, type DatasetGetByIDParams } from './dataset';
 export {
   FunctionalTests,
