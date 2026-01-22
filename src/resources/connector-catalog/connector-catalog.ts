@@ -42,7 +42,7 @@ export class ConnectorCatalogResource extends APIResource {
   admin: AdminAPI.Admin = new AdminAPI.Admin(this._client);
 
   /**
-   * List all connector catalog entries with their active auth methods and logos
+   * List all connector catalog entries with their auth methods and logos
    */
   list(
     query?: ConnectorCatalogListParams,
@@ -171,6 +171,11 @@ export namespace ConnectorCatalogListResponse {
 }
 
 export interface ConnectorCatalogListParams {
+  /**
+   * Include inactive auth methods (admin only)
+   */
+  include_inactive?: boolean;
+
   limit?: number;
 
   offset?: number;
