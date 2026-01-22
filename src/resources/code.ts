@@ -83,6 +83,8 @@ export namespace GenerateCodeRequest {
       | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
 
+    max_steps?: number | null;
+
     reminder_message?: string | null;
 
     system_prompt?: string | null;
@@ -143,6 +145,8 @@ export namespace CodeGenerateCodeParams {
       | 'gemini.gemini-3-pro-preview'
       | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
+
+    max_steps?: number | null;
 
     reminder_message?: string | null;
 
