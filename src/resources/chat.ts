@@ -447,6 +447,8 @@ export namespace ChatEvent {
 
     export namespace ReviewRequest {
       export interface NodeSummary {
+        in_dashboard: boolean;
+
         name: string;
 
         data_preview?: string | null;
