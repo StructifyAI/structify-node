@@ -304,7 +304,9 @@ export type ChatEvent =
   | ChatEvent.ToolCall
   | ChatEvent.Question
   | ChatEvent.InternalError
-  | ChatEvent.ReviewRequest;
+  | ChatEvent.ReviewRequest
+  | ChatEvent.AttachedFile
+  | ChatEvent.ConnectorRequest;
 
 export namespace ChatEvent {
   export interface TextMessage {
@@ -455,6 +457,28 @@ export namespace ChatEvent {
 
         image?: Core.Uploadable | null;
       }
+    }
+  }
+
+  export interface AttachedFile {
+    AttachedFile: AttachedFile.AttachedFile;
+  }
+
+  export namespace AttachedFile {
+    export interface AttachedFile {
+      path: string;
+
+      image_bytes?: Core.Uploadable | null;
+    }
+  }
+
+  export interface ConnectorRequest {
+    ConnectorRequest: ConnectorRequest.ConnectorRequest;
+  }
+
+  export namespace ConnectorRequest {
+    export interface ConnectorRequest {
+      connector_id: string;
     }
   }
 }
