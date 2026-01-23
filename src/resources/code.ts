@@ -44,6 +44,10 @@ export interface GenerateCodeRequest {
    */
   config?: GenerateCodeRequest.Config | null;
 
+  connectorIds?: Array<string>;
+
+  filePaths?: Array<string>;
+
   triggerWorkflowExecution?: boolean;
 
   userMessageId?: string | null;
@@ -106,6 +110,10 @@ export interface CodeGenerateCodeParams {
    * Configuration for chat session with system prompt and LLM key
    */
   config?: CodeGenerateCodeParams.Config | null;
+
+  connectorIds?: Array<string>;
+
+  filePaths?: Array<string>;
 
   triggerWorkflowExecution?: boolean;
 
