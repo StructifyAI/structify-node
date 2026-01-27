@@ -42,6 +42,8 @@ export namespace SlackEventPayload {
   export interface EventCallback {
     event: EventCallback.Event;
 
+    event_id: string;
+
     team_id: string;
 
     type: 'event_callback';
@@ -51,8 +53,6 @@ export namespace SlackEventPayload {
     authed_users?: Array<string> | null;
 
     event_context?: string | null;
-
-    event_id?: string | null;
 
     event_time?: number | null;
   }
@@ -114,6 +114,8 @@ export declare namespace SlackEventsParams {
   export interface Variant1 {
     event: Variant1.Event;
 
+    event_id: string;
+
     team_id: string;
 
     type: 'event_callback';
@@ -123,8 +125,6 @@ export declare namespace SlackEventsParams {
     authed_users?: Array<string> | null;
 
     event_context?: string | null;
-
-    event_id?: string | null;
 
     event_time?: number | null;
   }
