@@ -345,14 +345,15 @@ import {
 import { EstimateCostResponse, Whitelabel } from './resources/whitelabel';
 import {
   CreateWikiPageRequest,
-  TeamWikiPage,
   UpdateWikiPageRequest,
   Wiki,
   WikiConnectorReference,
   WikiCreateParams,
+  WikiCreateResponse,
   WikiListResponse,
   WikiPageWithReferences,
   WikiUpdateParams,
+  WikiUpdateResponse,
 } from './resources/wiki';
 import {
   RunWorkflowRequest,
@@ -878,10 +879,11 @@ export declare namespace Structify {
   export {
     Wiki as Wiki,
     type CreateWikiPageRequest as CreateWikiPageRequest,
-    type TeamWikiPage as TeamWikiPage,
     type UpdateWikiPageRequest as UpdateWikiPageRequest,
     type WikiConnectorReference as WikiConnectorReference,
     type WikiPageWithReferences as WikiPageWithReferences,
+    type WikiCreateResponse as WikiCreateResponse,
+    type WikiUpdateResponse as WikiUpdateResponse,
     type WikiListResponse as WikiListResponse,
     type WikiCreateParams as WikiCreateParams,
     type WikiUpdateParams as WikiUpdateParams,

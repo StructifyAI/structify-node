@@ -199,16 +199,17 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/wiki.ts">CreateWikiPageRequest</a></code>
-- <code><a href="./src/resources/wiki.ts">TeamWikiPage</a></code>
 - <code><a href="./src/resources/wiki.ts">UpdateWikiPageRequest</a></code>
 - <code><a href="./src/resources/wiki.ts">WikiConnectorReference</a></code>
 - <code><a href="./src/resources/wiki.ts">WikiPageWithReferences</a></code>
+- <code><a href="./src/resources/wiki.ts">WikiCreateResponse</a></code>
+- <code><a href="./src/resources/wiki.ts">WikiUpdateResponse</a></code>
 - <code><a href="./src/resources/wiki.ts">WikiListResponse</a></code>
 
 Methods:
 
-- <code title="post /team/{team_id}/wiki">client.wiki.<a href="./src/resources/wiki.ts">create</a>(teamId, { ...params }) -> TeamWikiPage</code>
-- <code title="put /team/{team_id}/wiki/{slug}">client.wiki.<a href="./src/resources/wiki.ts">update</a>(teamId, slug, { ...params }) -> TeamWikiPage</code>
+- <code title="post /team/{team_id}/wiki">client.wiki.<a href="./src/resources/wiki.ts">create</a>(teamId, { ...params }) -> WikiCreateResponse</code>
+- <code title="put /team/{team_id}/wiki/{slug}">client.wiki.<a href="./src/resources/wiki.ts">update</a>(teamId, slug, { ...params }) -> WikiUpdateResponse</code>
 - <code title="get /team/{team_id}/wiki">client.wiki.<a href="./src/resources/wiki.ts">list</a>(teamId) -> WikiListResponse</code>
 - <code title="delete /team/{team_id}/wiki/{slug}">client.wiki.<a href="./src/resources/wiki.ts">delete</a>(teamId, slug) -> void</code>
 - <code title="get /team/{team_id}/wiki/{slug}">client.wiki.<a href="./src/resources/wiki.ts">get</a>(teamId, slug) -> WikiPageWithReferences</code>

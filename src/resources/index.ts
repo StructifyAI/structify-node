@@ -412,10 +412,11 @@ export { Whitelabel, type EstimateCostResponse } from './whitelabel';
 export {
   Wiki,
   type CreateWikiPageRequest,
-  type TeamWikiPage,
   type UpdateWikiPageRequest,
   type WikiConnectorReference,
   type WikiPageWithReferences,
+  type WikiCreateResponse,
+  type WikiUpdateResponse,
   type WikiListResponse,
   type WikiCreateParams,
   type WikiUpdateParams,
