@@ -88,6 +88,29 @@ describe('resource connectors', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
+  test('addSchemaObject: only required params', async () => {
+    const responsePromise = client.connectors.addSchemaObject('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      name: 'name',
+      type: 'database',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('addSchemaObject: required and optional params', async () => {
+    const response = await client.connectors.addSchemaObject('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      name: 'name',
+      type: 'database',
+      description: 'description',
+      notes: 'notes',
+    });
+  });
+
   test('createSecret: only required params', async () => {
     const responsePromise = client.connectors.createSecret('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       secret_name: 'secret_name',

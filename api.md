@@ -565,6 +565,7 @@ Types:
 - <code><a href="./src/resources/connectors/connectors.ts">UpdateConnectorRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">UpdateTableRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">UpdateTableResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorAddSchemaObjectResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorGetResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorGetClarificationRequestsResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorListWithSnippetsResponse</a></code>
@@ -577,6 +578,7 @@ Methods:
 - <code title="patch /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">update</a>(connectorId, { ...params }) -> void</code>
 - <code title="get /connectors">client.connectors.<a href="./src/resources/connectors/connectors.ts">list</a>({ ...params }) -> ConnectorWithSecretsJobsList</code>
 - <code title="delete /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">delete</a>(connectorId) -> void</code>
+- <code title="post /connectors/{connector_id}/schema_object">client.connectors.<a href="./src/resources/connectors/connectors.ts">addSchemaObject</a>(connectorId, { ...params }) -> ConnectorAddSchemaObjectResponse</code>
 - <code title="post /connectors/{connector_id}/secrets">client.connectors.<a href="./src/resources/connectors/connectors.ts">createSecret</a>(connectorId, { ...params }) -> void</code>
 - <code title="delete /connectors/{connector_id}/schema_object">client.connectors.<a href="./src/resources/connectors/connectors.ts">deleteSchemaObject</a>(connectorId, { ...params }) -> DeleteSchemaObjectResponse</code>
 - <code title="delete /connectors/{connector_id}/secrets/{secret_name}">client.connectors.<a href="./src/resources/connectors/connectors.ts">deleteSecret</a>(connectorId, secretName) -> void</code>

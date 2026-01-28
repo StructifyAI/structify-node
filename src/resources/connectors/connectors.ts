@@ -41,6 +41,14 @@ export class Connectors extends APIResource {
     });
   }
 
+  addSchemaObject(
+    connectorId: string,
+    body: ConnectorAddSchemaObjectParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ConnectorAddSchemaObjectResponse> {
+    return this._client.post(`/connectors/${connectorId}/schema_object`, { body, ...options });
+  }
+
   createSecret(
     connectorId: string,
     body: ConnectorCreateSecretParams,
@@ -762,6 +770,38 @@ export namespace UpdateTableResponse {
   }
 }
 
+export type ConnectorAddSchemaObjectResponse =
+  | ConnectorAddSchemaObjectResponse.UnionMember0
+  | ConnectorAddSchemaObjectResponse.UnionMember1
+  | ConnectorAddSchemaObjectResponse.UnionMember2
+  | ConnectorAddSchemaObjectResponse.UnionMember3;
+
+export namespace ConnectorAddSchemaObjectResponse {
+  export interface UnionMember0 {
+    id: string;
+
+    type: 'database';
+  }
+
+  export interface UnionMember1 {
+    id: string;
+
+    type: 'schema';
+  }
+
+  export interface UnionMember2 {
+    id: string;
+
+    type: 'table';
+  }
+
+  export interface UnionMember3 {
+    id: string;
+
+    type: 'column';
+  }
+}
+
 export interface ConnectorGetResponse extends Connector {
   secrets: Array<ConnectorGetResponse.Secret>;
 }
@@ -1082,6 +1122,62 @@ export interface ConnectorListParams extends JobsListParams {
   team_id: string;
 }
 
+export type ConnectorAddSchemaObjectParams =
+  | ConnectorAddSchemaObjectParams.Variant0
+  | ConnectorAddSchemaObjectParams.Variant1
+  | ConnectorAddSchemaObjectParams.Variant2
+  | ConnectorAddSchemaObjectParams.Variant3;
+
+export declare namespace ConnectorAddSchemaObjectParams {
+  export interface Variant0 {
+    name: string;
+
+    type: 'database';
+
+    description?: string | null;
+
+    notes?: string | null;
+  }
+
+  export interface Variant1 {
+    database_id: string;
+
+    name: string;
+
+    type: 'schema';
+
+    description?: string | null;
+
+    notes?: string | null;
+  }
+
+  export interface Variant2 {
+    name: string;
+
+    schema_id: string;
+
+    type: 'table';
+
+    description?: string | null;
+
+    endpoint?: string | null;
+
+    notes?: string | null;
+  }
+
+  export interface Variant3 {
+    column_type: string;
+
+    name: string;
+
+    table_id: string;
+
+    type: 'column';
+
+    notes?: string | null;
+  }
+}
+
 export interface ConnectorCreateSecretParams {
   secret_name: string;
 
@@ -1207,6 +1303,7 @@ export declare namespace Connectors {
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type UpdateTableRequest as UpdateTableRequest,
     type UpdateTableResponse as UpdateTableResponse,
+    type ConnectorAddSchemaObjectResponse as ConnectorAddSchemaObjectResponse,
     type ConnectorGetResponse as ConnectorGetResponse,
     type ConnectorGetClarificationRequestsResponse as ConnectorGetClarificationRequestsResponse,
     type ConnectorListWithSnippetsResponse as ConnectorListWithSnippetsResponse,
@@ -1216,6 +1313,7 @@ export declare namespace Connectors {
     type ConnectorCreateParams as ConnectorCreateParams,
     type ConnectorUpdateParams as ConnectorUpdateParams,
     type ConnectorListParams as ConnectorListParams,
+    type ConnectorAddSchemaObjectParams as ConnectorAddSchemaObjectParams,
     type ConnectorCreateSecretParams as ConnectorCreateSecretParams,
     type ConnectorDeleteSchemaObjectParams as ConnectorDeleteSchemaObjectParams,
     type ConnectorExploreParams as ConnectorExploreParams,
