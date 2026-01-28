@@ -388,6 +388,8 @@ import {
 } from './resources/connector-catalog/connector-catalog';
 import {
   Connector,
+  ConnectorAddSchemaObjectParams,
+  ConnectorAddSchemaObjectResponse,
   ConnectorCategory,
   ConnectorCreateParams,
   ConnectorCreateSecretParams,
@@ -1067,6 +1069,7 @@ export declare namespace Structify {
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type UpdateTableRequest as UpdateTableRequest,
     type UpdateTableResponse as UpdateTableResponse,
+    type ConnectorAddSchemaObjectResponse as ConnectorAddSchemaObjectResponse,
     type ConnectorGetResponse as ConnectorGetResponse,
     type ConnectorGetClarificationRequestsResponse as ConnectorGetClarificationRequestsResponse,
     type ConnectorListWithSnippetsResponse as ConnectorListWithSnippetsResponse,
@@ -1076,6 +1079,7 @@ export declare namespace Structify {
     type ConnectorCreateParams as ConnectorCreateParams,
     type ConnectorUpdateParams as ConnectorUpdateParams,
     type ConnectorListParams as ConnectorListParams,
+    type ConnectorAddSchemaObjectParams as ConnectorAddSchemaObjectParams,
     type ConnectorCreateSecretParams as ConnectorCreateSecretParams,
     type ConnectorDeleteSchemaObjectParams as ConnectorDeleteSchemaObjectParams,
     type ConnectorExploreParams as ConnectorExploreParams,

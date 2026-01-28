@@ -237,8 +237,6 @@ export interface UserInfo {
 
   credits_used: number;
 
-  data_docs_enabled: boolean;
-
   feature_flags: Array<
     | 'functional_test'
     | 'pdf_parsing'
