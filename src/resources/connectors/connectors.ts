@@ -572,6 +572,8 @@ export namespace LlmInformationStore {
    * Database within a connector
    */
   export interface Database {
+    id: string;
+
     name: string;
 
     schemas: Array<Database.Schema>;
@@ -586,6 +588,8 @@ export namespace LlmInformationStore {
      * Schema within a database
      */
     export interface Schema {
+      id: string;
+
       name: string;
 
       tables: Array<Schema.Table>;
