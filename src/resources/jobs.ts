@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
+import * as ChatAPI from './chat';
 import * as SessionsAPI from './sessions';
 import * as SharedAPI from './shared';
 import * as SourcesAPI from './sources';
@@ -141,6 +142,10 @@ export namespace JobListResponse {
       | Parameters.ScrapeFromURLProperty
       | Parameters.ScrapeURL
       | Parameters.ConnectorExploration;
+
+    instructions?: string | null;
+
+    model?: string | null;
   }
 
   export namespace Parameters {
@@ -165,6 +170,8 @@ export namespace JobListResponse {
          */
         export interface Pdf {
           path: string;
+
+          page?: number | null;
         }
       }
 
@@ -313,6 +320,8 @@ export namespace JobGetScrapersResponse {
     chat?: StructureAPI.ChatPrompt | null;
 
     code?: string | null;
+
+    events?: Array<ChatAPI.ChatEvent> | null;
 
     next_page_code?: string | null;
   }

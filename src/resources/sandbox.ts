@@ -4,10 +4,6 @@ import { APIResource } from '../resource';
 import * as Core from '../core';
 
 export class SandboxResource extends APIResource {
-  create(chatId: string, body: SandboxCreateParams, options?: Core.RequestOptions): Core.APIPromise<Sandbox> {
-    return this._client.post(`/sandbox/${chatId}`, { body, ...options });
-  }
-
   list(chatId: string, options?: Core.RequestOptions): Core.APIPromise<SandboxListResponse> {
     return this._client.get(`/sandbox/list/${chatId}`, options);
   }
@@ -39,13 +35,17 @@ export interface Sandbox {
 
   created_at: string;
 
-  modal_id: string;
+  provider: 'modal' | 'daytona';
 
-  modal_url: string;
+  provider_id: string;
 
   status: 'alive' | 'terminated';
 
+  tunnel_url: string;
+
   updated_at: string;
+
+  api_url?: string | null;
 
   latest_node?: string | null;
 
@@ -53,20 +53,6 @@ export interface Sandbox {
 }
 
 export type SandboxListResponse = Array<Sandbox>;
-
-export interface SandboxCreateParams {
-  chat_session_id: string;
-
-  modal_id: string;
-
-  modal_url: string;
-
-  status: 'alive' | 'terminated';
-
-  latest_node?: string | null;
-
-  session_id?: string | null;
-}
 
 export interface SandboxGetParams {
   /**
@@ -84,7 +70,6 @@ export declare namespace SandboxResource {
     type GetSandboxRequest as GetSandboxRequest,
     type Sandbox as Sandbox,
     type SandboxListResponse as SandboxListResponse,
-    type SandboxCreateParams as SandboxCreateParams,
     type SandboxGetParams as SandboxGetParams,
     type SandboxUpdateStatusParams as SandboxUpdateStatusParams,
   };

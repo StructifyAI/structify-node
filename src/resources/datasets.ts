@@ -414,6 +414,8 @@ export interface DatasetViewTableResponse {
 
   dataset_id: string;
 
+  job_ids: Array<string>;
+
   label: string;
 
   properties: {
@@ -514,6 +516,8 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     dataset_id: string;
 
+    job_ids: Array<string>;
+
     label: string;
 
     properties: {
@@ -604,6 +608,8 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
     created_at: string;
 
     dataset_id: string;
+
+    job_ids: Array<string>;
 
     label: string;
 

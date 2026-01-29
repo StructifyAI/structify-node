@@ -84,6 +84,10 @@ export namespace AdminListJobsResponse {
       | Parameters.ScrapeFromURLProperty
       | Parameters.ScrapeURL
       | Parameters.ConnectorExploration;
+
+    instructions?: string | null;
+
+    model?: string | null;
   }
 
   export namespace Parameters {
@@ -108,6 +112,8 @@ export namespace AdminListJobsResponse {
          */
         export interface Pdf {
           path: string;
+
+          page?: number | null;
         }
       }
 

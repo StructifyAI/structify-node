@@ -44,6 +44,10 @@ export interface GenerateCodeRequest {
    */
   config?: GenerateCodeRequest.Config | null;
 
+  connectorIds?: Array<string>;
+
+  filePaths?: Array<string>;
+
   triggerWorkflowExecution?: boolean;
 
   userMessageId?: string | null;
@@ -76,11 +80,15 @@ export namespace GenerateCodeRequest {
       | 'bedrock.claude-sonnet-4-bedrock'
       | 'bedrock.claude-sonnet-4-5-bedrock'
       | 'bedrock.claude-opus-4-5-bedrock'
+      | 'bedrock.claude-haiku-4-5-bedrock'
       | 'gemini.gemini-2.5-pro'
       | 'gemini.gemini-2.5-flash'
       | 'gemini.gemini-3-pro-preview'
+      | 'gemini.gemini-3-flash-preview'
       | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
+
+    max_steps?: number | null;
 
     reminder_message?: string | null;
 
@@ -103,6 +111,10 @@ export interface CodeGenerateCodeParams {
    * Configuration for chat session with system prompt and LLM key
    */
   config?: CodeGenerateCodeParams.Config | null;
+
+  connectorIds?: Array<string>;
+
+  filePaths?: Array<string>;
 
   triggerWorkflowExecution?: boolean;
 
@@ -136,11 +148,15 @@ export namespace CodeGenerateCodeParams {
       | 'bedrock.claude-sonnet-4-bedrock'
       | 'bedrock.claude-sonnet-4-5-bedrock'
       | 'bedrock.claude-opus-4-5-bedrock'
+      | 'bedrock.claude-haiku-4-5-bedrock'
       | 'gemini.gemini-2.5-pro'
       | 'gemini.gemini-2.5-flash'
       | 'gemini.gemini-3-pro-preview'
+      | 'gemini.gemini-3-flash-preview'
       | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
+
+    max_steps?: number | null;
 
     reminder_message?: string | null;
 

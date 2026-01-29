@@ -12,6 +12,14 @@ import {
   CreateChatTemplateRequest,
   UpdateChatTemplateRequest,
 } from './chat-templates';
+import * as ConnectorAPI from './connector';
+import {
+  CloneConnectorItem,
+  CloneConnectorsRequest,
+  CloneConnectorsResponse,
+  Connector,
+  ConnectorCloneParams,
+} from './connector';
 import * as DatasetAPI from './dataset';
 import { AdminDatasetReturn, Dataset, DatasetGetByIDParams } from './dataset';
 import * as FunctionalTestsAPI from './functional-tests';
@@ -86,6 +94,7 @@ export class Admin extends APIResource {
   functionalTests: FunctionalTestsAPI.FunctionalTests = new FunctionalTestsAPI.FunctionalTests(this._client);
   users: UsersAPI.Users = new UsersAPI.Users(this._client);
   chatTemplates: ChatTemplatesAPI.ChatTemplates = new ChatTemplatesAPI.ChatTemplates(this._client);
+  connector: ConnectorAPI.Connector = new ConnectorAPI.Connector(this._client);
 }
 
 Admin.Teams = Teams;
@@ -98,6 +107,7 @@ Admin.AdminSandboxesJobsList = AdminSandboxesJobsList;
 Admin.FunctionalTests = FunctionalTests;
 Admin.Users = Users;
 Admin.ChatTemplates = ChatTemplates;
+Admin.Connector = Connector;
 
 export declare namespace Admin {
   export {
@@ -184,5 +194,13 @@ export declare namespace Admin {
     type ChatTemplateCreateParams as ChatTemplateCreateParams,
     type ChatTemplateUpdateParams as ChatTemplateUpdateParams,
     type ChatTemplateListParams as ChatTemplateListParams,
+  };
+
+  export {
+    Connector as Connector,
+    type CloneConnectorItem as CloneConnectorItem,
+    type CloneConnectorsRequest as CloneConnectorsRequest,
+    type CloneConnectorsResponse as CloneConnectorsResponse,
+    type ConnectorCloneParams as ConnectorCloneParams,
   };
 }

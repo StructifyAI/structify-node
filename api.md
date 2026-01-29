@@ -1,3 +1,15 @@
+# Whitelabel
+
+Types:
+
+- <code><a href="./src/resources/whitelabel.ts">EstimateCostResponse</a></code>
+
+Methods:
+
+- <code title="get /whitelabel/{service}/estimate-cost/{path}">client.whitelabel.<a href="./src/resources/whitelabel.ts">estimateCost</a>(service, path\_) -> EstimateCostResponse</code>
+- <code title="get /whitelabel/{service}/{path}">client.whitelabel.<a href="./src/resources/whitelabel.ts">proxyGet</a>(service, path\_) -> void</code>
+- <code title="post /whitelabel/{service}/{path}">client.whitelabel.<a href="./src/resources/whitelabel.ts">proxyPost</a>(service, path\_) -> void</code>
+
 # User
 
 Types:
@@ -63,6 +75,8 @@ Types:
 
 - <code><a href="./src/resources/chat.ts">AddCollaboratorRequest</a></code>
 - <code><a href="./src/resources/chat.ts">AdminGrantAccessResponse</a></code>
+- <code><a href="./src/resources/chat.ts">AdminIssueFoundRequest</a></code>
+- <code><a href="./src/resources/chat.ts">AdminIssueFoundResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatDependency</a></code>
 - <code><a href="./src/resources/chat.ts">ChatEvent</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSession</a></code>
@@ -103,6 +117,7 @@ Methods:
 - <code title="post /chat/sessions/{chat_id}/collaborators">client.chat.<a href="./src/resources/chat.ts">addCollaborator</a>(chatId, { ...params }) -> void</code>
 - <code title="post /chat/sessions/{session_id}/commits">client.chat.<a href="./src/resources/chat.ts">addGitCommit</a>(sessionId, { ...params }) -> ChatAddGitCommitResponse</code>
 - <code title="get /chat/sessions/{session_id}/admin/chat_prompt">client.chat.<a href="./src/resources/chat.ts">adminGetChatPrompt</a>(sessionId) -> ChatPrompt</code>
+- <code title="post /chat/sessions/{chat_id}/admin/issue_found">client.chat.<a href="./src/resources/chat.ts">adminIssueFound</a>(chatId, { ...params }) -> AdminIssueFoundResponse</code>
 - <code title="post /chat/copy">client.chat.<a href="./src/resources/chat.ts">copy</a>({ ...params }) -> ChatSessionWithMessages</code>
 - <code title="post /chat/sessions/{session_id}/nodes/by_code_hash">client.chat.<a href="./src/resources/chat.ts">copyNodeOutputByCodeHash</a>(sessionId, { ...params }) -> string</code>
 - <code title="post /chat/sessions">client.chat.<a href="./src/resources/chat.ts">createSession</a>({ ...params }) -> CreateChatSessionResponse</code>
@@ -184,16 +199,17 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/wiki.ts">CreateWikiPageRequest</a></code>
-- <code><a href="./src/resources/wiki.ts">TeamWikiPage</a></code>
 - <code><a href="./src/resources/wiki.ts">UpdateWikiPageRequest</a></code>
 - <code><a href="./src/resources/wiki.ts">WikiConnectorReference</a></code>
 - <code><a href="./src/resources/wiki.ts">WikiPageWithReferences</a></code>
+- <code><a href="./src/resources/wiki.ts">WikiCreateResponse</a></code>
+- <code><a href="./src/resources/wiki.ts">WikiUpdateResponse</a></code>
 - <code><a href="./src/resources/wiki.ts">WikiListResponse</a></code>
 
 Methods:
 
-- <code title="post /team/{team_id}/wiki">client.wiki.<a href="./src/resources/wiki.ts">create</a>(teamId, { ...params }) -> TeamWikiPage</code>
-- <code title="put /team/{team_id}/wiki/{slug}">client.wiki.<a href="./src/resources/wiki.ts">update</a>(teamId, slug, { ...params }) -> TeamWikiPage</code>
+- <code title="post /team/{team_id}/wiki">client.wiki.<a href="./src/resources/wiki.ts">create</a>(teamId, { ...params }) -> WikiCreateResponse</code>
+- <code title="put /team/{team_id}/wiki/{slug}">client.wiki.<a href="./src/resources/wiki.ts">update</a>(teamId, slug, { ...params }) -> WikiUpdateResponse</code>
 - <code title="get /team/{team_id}/wiki">client.wiki.<a href="./src/resources/wiki.ts">list</a>(teamId) -> WikiListResponse</code>
 - <code title="delete /team/{team_id}/wiki/{slug}">client.wiki.<a href="./src/resources/wiki.ts">delete</a>(teamId, slug) -> void</code>
 - <code title="get /team/{team_id}/wiki/{slug}">client.wiki.<a href="./src/resources/wiki.ts">get</a>(teamId, slug) -> WikiPageWithReferences</code>
@@ -332,6 +348,18 @@ Methods:
 - <code title="patch /admin/chat/templates/{template_id}">client.admin.chatTemplates.<a href="./src/resources/admin/chat-templates.ts">update</a>(templateId, { ...params }) -> ChatTemplate</code>
 - <code title="get /admin/chat/templates">client.admin.chatTemplates.<a href="./src/resources/admin/chat-templates.ts">list</a>({ ...params }) -> ChatTemplateListResponse</code>
 
+## Connector
+
+Types:
+
+- <code><a href="./src/resources/admin/connector.ts">CloneConnectorItem</a></code>
+- <code><a href="./src/resources/admin/connector.ts">CloneConnectorsRequest</a></code>
+- <code><a href="./src/resources/admin/connector.ts">CloneConnectorsResponse</a></code>
+
+Methods:
+
+- <code title="post /admin/connector/clone">client.admin.connector.<a href="./src/resources/admin/connector.ts">clone</a>({ ...params }) -> CloneConnectorsResponse</code>
+
 # Datasets
 
 Types:
@@ -426,8 +454,9 @@ Types:
 - <code><a href="./src/resources/sessions.ts">AutofixContext</a></code>
 - <code><a href="./src/resources/sessions.ts">ConfirmNodeRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">CreateWorkflowSessionRequest</a></code>
+- <code><a href="./src/resources/sessions.ts">Dashboard</a></code>
 - <code><a href="./src/resources/sessions.ts">DashboardComponent</a></code>
-- <code><a href="./src/resources/sessions.ts">DashboardLayout</a></code>
+- <code><a href="./src/resources/sessions.ts">DashboardPage</a></code>
 - <code><a href="./src/resources/sessions.ts">EdgeSpec</a></code>
 - <code><a href="./src/resources/sessions.ts">FinalizeDagRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">FinalizeDagResponse</a></code>
@@ -513,6 +542,8 @@ Types:
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorCategory</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorExplorerChat</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorStoreResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorSummariesRequest</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorSummary</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorTableInfo</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorWithSecrets</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorWithSnippets</a></code>
@@ -534,10 +565,12 @@ Types:
 - <code><a href="./src/resources/connectors/connectors.ts">UpdateConnectorRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">UpdateTableRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">UpdateTableResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorAddSchemaObjectResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorGetResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorGetClarificationRequestsResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorListWithSnippetsResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorSearchTablesResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorSummariesResponse</a></code>
 
 Methods:
 
@@ -545,6 +578,7 @@ Methods:
 - <code title="patch /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">update</a>(connectorId, { ...params }) -> void</code>
 - <code title="get /connectors">client.connectors.<a href="./src/resources/connectors/connectors.ts">list</a>({ ...params }) -> ConnectorWithSecretsJobsList</code>
 - <code title="delete /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">delete</a>(connectorId) -> void</code>
+- <code title="post /connectors/{connector_id}/schema_object">client.connectors.<a href="./src/resources/connectors/connectors.ts">addSchemaObject</a>(connectorId, { ...params }) -> ConnectorAddSchemaObjectResponse</code>
 - <code title="post /connectors/{connector_id}/secrets">client.connectors.<a href="./src/resources/connectors/connectors.ts">createSecret</a>(connectorId, { ...params }) -> void</code>
 - <code title="delete /connectors/{connector_id}/schema_object">client.connectors.<a href="./src/resources/connectors/connectors.ts">deleteSchemaObject</a>(connectorId, { ...params }) -> DeleteSchemaObjectResponse</code>
 - <code title="delete /connectors/{connector_id}/secrets/{secret_name}">client.connectors.<a href="./src/resources/connectors/connectors.ts">deleteSecret</a>(connectorId, secretName) -> void</code>
@@ -559,6 +593,7 @@ Methods:
 - <code title="get /connectors/with-snippets">client.connectors.<a href="./src/resources/connectors/connectors.ts">listWithSnippets</a>({ ...params }) -> ConnectorListWithSnippetsResponse</code>
 - <code title="patch /connectors/clarification-requests/{clarification_id}/resolve">client.connectors.<a href="./src/resources/connectors/connectors.ts">resolveClarification</a>(clarificationId) -> void</code>
 - <code title="get /connectors/search-tables">client.connectors.<a href="./src/resources/connectors/connectors.ts">searchTables</a>({ ...params }) -> ConnectorSearchTablesResponse</code>
+- <code title="post /connectors/summaries">client.connectors.<a href="./src/resources/connectors/connectors.ts">summaries</a>({ ...params }) -> ConnectorSummariesResponse</code>
 - <code title="patch /connectors/columns/{column_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">updateColumn</a>(columnId, { ...params }) -> void</code>
 - <code title="patch /connectors/tables/{table_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">updateTable</a>(tableId, { ...params }) -> UpdateTableResponse</code>
 
@@ -707,7 +742,6 @@ Types:
 
 Methods:
 
-- <code title="post /sandbox/{chat_id}">client.sandbox.<a href="./src/resources/sandbox.ts">create</a>(chatId, { ...params }) -> Sandbox</code>
 - <code title="get /sandbox/list/{chat_id}">client.sandbox.<a href="./src/resources/sandbox.ts">list</a>(chatId) -> SandboxListResponse</code>
 - <code title="post /sandbox/live/{chat_id}">client.sandbox.<a href="./src/resources/sandbox.ts">get</a>(chatId, { ...params }) -> Sandbox</code>
 - <code title="patch /sandbox/{sandbox_id}/status">client.sandbox.<a href="./src/resources/sandbox.ts">updateStatus</a>(sandboxId, { ...params }) -> Sandbox</code>
@@ -750,6 +784,7 @@ Types:
 - <code><a href="./src/resources/structure.ts">StructureFindRelationshipResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureIsCompleteResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureJobStatusResponse</a></code>
+- <code><a href="./src/resources/structure.ts">StructurePdfResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureRunAsyncResponse</a></code>
 
 Methods:
@@ -759,6 +794,7 @@ Methods:
 - <code title="post /structure/find_relationship">client.structure.<a href="./src/resources/structure.ts">findRelationship</a>({ ...params }) -> string</code>
 - <code title="post /structure/is_complete">client.structure.<a href="./src/resources/structure.ts">isComplete</a>([ ...job ]) -> string</code>
 - <code title="post /structure/job_status">client.structure.<a href="./src/resources/structure.ts">jobStatus</a>({ ...params }) -> StructureJobStatusResponse</code>
+- <code title="post /structure/pdf">client.structure.<a href="./src/resources/structure.ts">pdf</a>({ ...params }) -> StructurePdfResponse</code>
 - <code title="post /structure/run_async">client.structure.<a href="./src/resources/structure.ts">runAsync</a>({ ...params }) -> string</code>
 
 # PublicSessions

@@ -41,6 +41,14 @@ export class Connectors extends APIResource {
     });
   }
 
+  addSchemaObject(
+    connectorId: string,
+    body: ConnectorAddSchemaObjectParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ConnectorAddSchemaObjectResponse> {
+    return this._client.post(`/connectors/${connectorId}/schema_object`, { body, ...options });
+  }
+
   createSecret(
     connectorId: string,
     body: ConnectorCreateSecretParams,
@@ -164,6 +172,13 @@ export class Connectors extends APIResource {
     return this._client.get('/connectors/search-tables', { query, ...options });
   }
 
+  summaries(
+    body: ConnectorSummariesParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ConnectorSummariesResponse> {
+    return this._client.post('/connectors/summaries', { body, ...options });
+  }
+
   /**
    * Update column metadata (notes)
    */
@@ -272,6 +287,23 @@ export interface ConnectorStoreResponse {
    * - API: all tables have `endpoint: Some(...)`
    */
   store?: LlmInformationStore | null;
+}
+
+export interface ConnectorSummariesRequest {
+  connector_ids: Array<string>;
+
+  team_id: string;
+}
+
+export interface ConnectorSummary {
+  id: string;
+
+  name: string;
+
+  /**
+   * Base64 data URI for the logo (e.g., "data:image/svg+xml;base64,...")
+   */
+  logo_url?: string | null;
 }
 
 export interface ConnectorTableInfo {
@@ -540,6 +572,8 @@ export namespace LlmInformationStore {
    * Database within a connector
    */
   export interface Database {
+    id: string;
+
     name: string;
 
     schemas: Array<Database.Schema>;
@@ -554,6 +588,8 @@ export namespace LlmInformationStore {
      * Schema within a database
      */
     export interface Schema {
+      id: string;
+
       name: string;
 
       tables: Array<Schema.Table>;
@@ -735,6 +771,38 @@ export namespace UpdateTableResponse {
        */
       notes?: string | null;
     }
+  }
+}
+
+export type ConnectorAddSchemaObjectResponse =
+  | ConnectorAddSchemaObjectResponse.UnionMember0
+  | ConnectorAddSchemaObjectResponse.UnionMember1
+  | ConnectorAddSchemaObjectResponse.UnionMember2
+  | ConnectorAddSchemaObjectResponse.UnionMember3;
+
+export namespace ConnectorAddSchemaObjectResponse {
+  export interface UnionMember0 {
+    id: string;
+
+    type: 'database';
+  }
+
+  export interface UnionMember1 {
+    id: string;
+
+    type: 'schema';
+  }
+
+  export interface UnionMember2 {
+    id: string;
+
+    type: 'table';
+  }
+
+  export interface UnionMember3 {
+    id: string;
+
+    type: 'column';
   }
 }
 
@@ -1001,6 +1069,8 @@ export namespace ConnectorSearchTablesResponse {
   }
 }
 
+export type ConnectorSummariesResponse = Array<ConnectorSummary>;
+
 export interface ConnectorCreateParams {
   known_connector_type: string;
 
@@ -1054,6 +1124,62 @@ export interface ConnectorListParams extends JobsListParams {
    * Team ID to list connectors for
    */
   team_id: string;
+}
+
+export type ConnectorAddSchemaObjectParams =
+  | ConnectorAddSchemaObjectParams.Variant0
+  | ConnectorAddSchemaObjectParams.Variant1
+  | ConnectorAddSchemaObjectParams.Variant2
+  | ConnectorAddSchemaObjectParams.Variant3;
+
+export declare namespace ConnectorAddSchemaObjectParams {
+  export interface Variant0 {
+    name: string;
+
+    type: 'database';
+
+    description?: string | null;
+
+    notes?: string | null;
+  }
+
+  export interface Variant1 {
+    database_id: string;
+
+    name: string;
+
+    type: 'schema';
+
+    description?: string | null;
+
+    notes?: string | null;
+  }
+
+  export interface Variant2 {
+    name: string;
+
+    schema_id: string;
+
+    type: 'table';
+
+    description?: string | null;
+
+    endpoint?: string | null;
+
+    notes?: string | null;
+  }
+
+  export interface Variant3 {
+    column_type: string;
+
+    name: string;
+
+    table_id: string;
+
+    type: 'column';
+
+    notes?: string | null;
+  }
 }
 
 export interface ConnectorCreateSecretParams {
@@ -1133,6 +1259,12 @@ export interface ConnectorSearchTablesParams {
   team_id: string;
 }
 
+export interface ConnectorSummariesParams {
+  connector_ids: Array<string>;
+
+  team_id: string;
+}
+
 export interface ConnectorUpdateColumnParams {
   notes?: string | null;
 }
@@ -1152,6 +1284,8 @@ export declare namespace Connectors {
     type ConnectorCategory as ConnectorCategory,
     type ConnectorExplorerChat as ConnectorExplorerChat,
     type ConnectorStoreResponse as ConnectorStoreResponse,
+    type ConnectorSummariesRequest as ConnectorSummariesRequest,
+    type ConnectorSummary as ConnectorSummary,
     type ConnectorTableInfo as ConnectorTableInfo,
     type ConnectorWithSecrets as ConnectorWithSecrets,
     type ConnectorWithSnippets as ConnectorWithSnippets,
@@ -1173,20 +1307,24 @@ export declare namespace Connectors {
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type UpdateTableRequest as UpdateTableRequest,
     type UpdateTableResponse as UpdateTableResponse,
+    type ConnectorAddSchemaObjectResponse as ConnectorAddSchemaObjectResponse,
     type ConnectorGetResponse as ConnectorGetResponse,
     type ConnectorGetClarificationRequestsResponse as ConnectorGetClarificationRequestsResponse,
     type ConnectorListWithSnippetsResponse as ConnectorListWithSnippetsResponse,
     type ConnectorSearchTablesResponse as ConnectorSearchTablesResponse,
+    type ConnectorSummariesResponse as ConnectorSummariesResponse,
     ConnectorWithSecretsJobsList as ConnectorWithSecretsJobsList,
     type ConnectorCreateParams as ConnectorCreateParams,
     type ConnectorUpdateParams as ConnectorUpdateParams,
     type ConnectorListParams as ConnectorListParams,
+    type ConnectorAddSchemaObjectParams as ConnectorAddSchemaObjectParams,
     type ConnectorCreateSecretParams as ConnectorCreateSecretParams,
     type ConnectorDeleteSchemaObjectParams as ConnectorDeleteSchemaObjectParams,
     type ConnectorExploreParams as ConnectorExploreParams,
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
     type ConnectorListWithSnippetsParams as ConnectorListWithSnippetsParams,
     type ConnectorSearchTablesParams as ConnectorSearchTablesParams,
+    type ConnectorSummariesParams as ConnectorSummariesParams,
     type ConnectorUpdateColumnParams as ConnectorUpdateColumnParams,
     type ConnectorUpdateTableParams as ConnectorUpdateTableParams,
   };

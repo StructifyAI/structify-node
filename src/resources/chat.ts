@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as ChatAPI from './chat';
+import * as SharedAPI from './shared';
 import * as StructureAPI from './structure';
 
 export class Chat extends APIResource {
@@ -38,6 +39,17 @@ export class Chat extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<StructureAPI.ChatPrompt> {
     return this._client.get(`/chat/sessions/${sessionId}/admin/chat_prompt`, options);
+  }
+
+  /**
+   * Add an IssueFound tool call as an admin-only auto-review message
+   */
+  adminIssueFound(
+    chatId: string,
+    body: ChatAdminIssueFoundParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<AdminIssueFoundResponse> {
+    return this._client.post(`/chat/sessions/${chatId}/admin/issue_found`, { body, ...options });
   }
 
   /**
@@ -254,6 +266,16 @@ export interface AdminGrantAccessResponse {
   role: ChatSessionRole;
 }
 
+export interface AdminIssueFoundRequest {
+  message: string;
+
+  title: string;
+}
+
+export interface AdminIssueFoundResponse {
+  message_id: string;
+}
+
 /**
  * A chat session dependency
  */
@@ -282,7 +304,9 @@ export type ChatEvent =
   | ChatEvent.ToolCall
   | ChatEvent.Question
   | ChatEvent.InternalError
-  | ChatEvent.ReviewRequest;
+  | ChatEvent.ReviewRequest
+  | ChatEvent.AttachedFile
+  | ChatEvent.ConnectorRequest;
 
 export namespace ChatEvent {
   export interface TextMessage {
@@ -425,12 +449,36 @@ export namespace ChatEvent {
 
     export namespace ReviewRequest {
       export interface NodeSummary {
+        in_dashboard: boolean;
+
         name: string;
 
         data_preview?: string | null;
 
         image?: Core.Uploadable | null;
       }
+    }
+  }
+
+  export interface AttachedFile {
+    AttachedFile: AttachedFile.AttachedFile;
+  }
+
+  export namespace AttachedFile {
+    export interface AttachedFile {
+      path: string;
+
+      image_bytes?: Core.Uploadable | null;
+    }
+  }
+
+  export interface ConnectorRequest {
+    ConnectorRequest: ConnectorRequest.ConnectorRequest;
+  }
+
+  export namespace ConnectorRequest {
+    export interface ConnectorRequest {
+      connector_id: string;
     }
   }
 }
@@ -670,11 +718,15 @@ export namespace CreateChatSessionRequest {
       | 'bedrock.claude-sonnet-4-bedrock'
       | 'bedrock.claude-sonnet-4-5-bedrock'
       | 'bedrock.claude-opus-4-5-bedrock'
+      | 'bedrock.claude-haiku-4-5-bedrock'
       | 'gemini.gemini-2.5-pro'
       | 'gemini.gemini-2.5-flash'
       | 'gemini.gemini-3-pro-preview'
+      | 'gemini.gemini-3-flash-preview'
       | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
+
+    max_steps?: number | null;
 
     reminder_message?: string | null;
 
@@ -888,6 +940,14 @@ export namespace Message {
 export type ToolInvocation =
   | ToolInvocation.WebSearch
   | ToolInvocation.WebNavigate
+  | ToolInvocation.ViewPage
+  | ToolInvocation.Save
+  | ToolInvocation.SaveEntities
+  | ToolInvocation.Exit
+  | ToolInvocation.APIExecute
+  | ToolInvocation.Javascript
+  | ToolInvocation.NavigateToIFrame
+  | ToolInvocation.InfiniteScroll
   | ToolInvocation.InspectStep
   | ToolInvocation.ReadNodeLogs
   | ToolInvocation.DeleteFile
@@ -930,7 +990,112 @@ export namespace ToolInvocation {
   export namespace WebNavigate {
     export interface Input {
       url: string;
+
+      output_format?: 'Text' | 'Visual' | null;
     }
+  }
+
+  export interface ViewPage {
+    input: ViewPage.Input;
+
+    name: 'ViewPage';
+  }
+
+  export namespace ViewPage {
+    export interface Input {
+      page_number: number;
+    }
+  }
+
+  export interface Save {
+    input: Save.Input;
+
+    name: 'Save';
+  }
+
+  export namespace Save {
+    export interface Input {
+      /**
+       * Knowledge graph info structured to deserialize and display in the same format
+       * that the LLM outputs. Also the first representation of an LLM output in the
+       * pipeline from raw tool output to being merged into a DB
+       */
+      knowledge_graph: SharedAPI.KnowledgeGraph;
+
+      reason: string;
+
+      sources: Array<string>;
+    }
+  }
+
+  export interface SaveEntities {
+    input: SaveEntities.Input;
+
+    name: 'SaveEntities';
+  }
+
+  export namespace SaveEntities {
+    export interface Input {
+      entities: Array<{ [key: string]: { [key: string]: unknown } }>;
+
+      reason: string;
+
+      sources: Array<string>;
+    }
+  }
+
+  export interface Exit {
+    input: Exit.Input;
+
+    name: 'Exit';
+  }
+
+  export namespace Exit {
+    export interface Input {
+      reason: string;
+    }
+  }
+
+  export interface APIExecute {
+    input: APIExecute.Input;
+
+    name: 'ApiExecute';
+  }
+
+  export namespace APIExecute {
+    export interface Input {
+      code: string;
+    }
+  }
+
+  export interface Javascript {
+    input: Javascript.Input;
+
+    name: 'Javascript';
+  }
+
+  export namespace Javascript {
+    export interface Input {
+      code: string;
+    }
+  }
+
+  export interface NavigateToIFrame {
+    input: NavigateToIFrame.Input;
+
+    name: 'NavigateToIFrame';
+  }
+
+  export namespace NavigateToIFrame {
+    export interface Input {
+      index: number;
+    }
+  }
+
+  export interface InfiniteScroll {
+    input: unknown;
+
+    name: 'InfiniteScroll';
   }
 
   export interface InspectStep {
@@ -1031,6 +1196,8 @@ export namespace ToolInvocation {
 
   export namespace IssueFound {
     export interface Input {
+      admin_override: boolean;
+
       description: string;
 
       title: string;
@@ -1225,14 +1392,15 @@ export namespace ToolInvocation {
 export type ToolResult =
   | 'Pending'
   | 'NoResult'
+  | 'Completed'
   | ToolResult.Error
   | ToolResult.Text
-  | ToolResult.Image
   | ToolResult.CodeExecution
   | ToolResult.WebMarkdown
   | ToolResult.WebSearch
   | ToolResult.ConnectorSearch
-  | ToolResult.NodeLogs;
+  | ToolResult.NodeLogs
+  | ToolResult.Image;
 
 export namespace ToolResult {
   export interface Error {
@@ -1241,10 +1409,6 @@ export namespace ToolResult {
 
   export interface Text {
     Text: string;
-  }
-
-  export interface Image {
-    Image: Core.Uploadable;
   }
 
   export interface CodeExecution {
@@ -1311,6 +1475,18 @@ export namespace ToolResult {
 
   export interface NodeLogs {
     NodeLogs: Array<string>;
+  }
+
+  export interface Image {
+    Image: Image.Image;
+  }
+
+  export namespace Image {
+    export interface Image {
+      image_bytes: Core.Uploadable;
+
+      ocr_text?: string | null;
+    }
   }
 }
 
@@ -1485,6 +1661,12 @@ export interface ChatAddGitCommitParams {
   commit_hash: string;
 }
 
+export interface ChatAdminIssueFoundParams {
+  message: string;
+
+  title: string;
+}
+
 export interface ChatCopyParams {
   copy_name: string;
 
@@ -1545,11 +1727,15 @@ export namespace ChatCreateSessionParams {
       | 'bedrock.claude-sonnet-4-bedrock'
       | 'bedrock.claude-sonnet-4-5-bedrock'
       | 'bedrock.claude-opus-4-5-bedrock'
+      | 'bedrock.claude-haiku-4-5-bedrock'
       | 'gemini.gemini-2.5-pro'
       | 'gemini.gemini-2.5-flash'
       | 'gemini.gemini-3-pro-preview'
+      | 'gemini.gemini-3-flash-preview'
       | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
+
+    max_steps?: number | null;
 
     reminder_message?: string | null;
 
@@ -1620,6 +1806,8 @@ export declare namespace Chat {
   export {
     type AddCollaboratorRequest as AddCollaboratorRequest,
     type AdminGrantAccessResponse as AdminGrantAccessResponse,
+    type AdminIssueFoundRequest as AdminIssueFoundRequest,
+    type AdminIssueFoundResponse as AdminIssueFoundResponse,
     type ChatDependency as ChatDependency,
     type ChatEvent as ChatEvent,
     type ChatSession as ChatSession,
@@ -1656,6 +1844,7 @@ export declare namespace Chat {
     type ChatRevertToCommitResponse as ChatRevertToCommitResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
+    type ChatAdminIssueFoundParams as ChatAdminIssueFoundParams,
     type ChatCopyParams as ChatCopyParams,
     type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,

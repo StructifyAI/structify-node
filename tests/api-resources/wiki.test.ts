@@ -11,7 +11,7 @@ const client = new Structify({
 describe('resource wiki', () => {
   test('create: only required params', async () => {
     const responsePromise = client.wiki.create('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      content: { foo: 'bar' },
+      markdown: 'markdown',
       slug: 'slug',
       title: 'title',
     });
@@ -26,7 +26,7 @@ describe('resource wiki', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.wiki.create('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      content: { foo: 'bar' },
+      markdown: 'markdown',
       slug: 'slug',
       title: 'title',
     });
@@ -34,7 +34,7 @@ describe('resource wiki', () => {
 
   test('update: only required params', async () => {
     const responsePromise = client.wiki.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', 'slug', {
-      content: { foo: 'bar' },
+      markdown: 'markdown',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -47,7 +47,8 @@ describe('resource wiki', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.wiki.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', 'slug', {
-      content: { foo: 'bar' },
+      markdown: 'markdown',
+      base_version: 0,
       title: 'title',
     });
   });

@@ -16,10 +16,13 @@ import * as API from './resources/index';
 import {
   AddCollaboratorRequest,
   AdminGrantAccessResponse,
+  AdminIssueFoundRequest,
+  AdminIssueFoundResponse,
   Chat,
   ChatAddCollaboratorParams,
   ChatAddGitCommitParams,
   ChatAddGitCommitResponse,
+  ChatAdminIssueFoundParams,
   ChatCopyNodeOutputByCodeHashParams,
   ChatCopyNodeOutputByCodeHashResponse,
   ChatCopyParams,
@@ -196,7 +199,6 @@ import { PublicSessions } from './resources/public-sessions';
 import {
   GetSandboxRequest,
   Sandbox,
-  SandboxCreateParams,
   SandboxGetParams,
   SandboxListResponse,
   SandboxResource,
@@ -216,8 +218,9 @@ import {
   AutofixContext,
   ConfirmNodeRequest,
   CreateWorkflowSessionRequest,
+  Dashboard,
   DashboardComponent,
-  DashboardLayout,
+  DashboardPage,
   EdgeSpec,
   FinalizeDagRequest,
   FinalizeDagResponse,
@@ -292,6 +295,8 @@ import {
   StructureIsCompleteResponse,
   StructureJobStatusParams,
   StructureJobStatusResponse,
+  StructurePdfParams,
+  StructurePdfResponse,
   StructureRunAsyncParams,
   StructureRunAsyncResponse,
   ToolMetadata,
@@ -337,16 +342,18 @@ import {
   UpdateTeamResponse,
   UsageGroupKey,
 } from './resources/teams';
+import { EstimateCostResponse, Whitelabel } from './resources/whitelabel';
 import {
   CreateWikiPageRequest,
-  TeamWikiPage,
   UpdateWikiPageRequest,
   Wiki,
   WikiConnectorReference,
   WikiCreateParams,
+  WikiCreateResponse,
   WikiListResponse,
   WikiPageWithReferences,
   WikiUpdateParams,
+  WikiUpdateResponse,
 } from './resources/wiki';
 import {
   RunWorkflowRequest,
@@ -381,6 +388,8 @@ import {
 } from './resources/connector-catalog/connector-catalog';
 import {
   Connector,
+  ConnectorAddSchemaObjectParams,
+  ConnectorAddSchemaObjectResponse,
   ConnectorCategory,
   ConnectorCreateParams,
   ConnectorCreateSecretParams,
@@ -396,6 +405,10 @@ import {
   ConnectorSearchTablesParams,
   ConnectorSearchTablesResponse,
   ConnectorStoreResponse,
+  ConnectorSummariesParams,
+  ConnectorSummariesRequest,
+  ConnectorSummariesResponse,
+  ConnectorSummary,
   ConnectorTableInfo,
   ConnectorUpdateColumnParams,
   ConnectorUpdateParams,
@@ -587,6 +600,7 @@ export class Structify extends Core.APIClient {
     this.sessionToken = sessionToken;
   }
 
+  whitelabel: API.Whitelabel = new API.Whitelabel(this);
   user: API.User = new API.User(this);
   chat: API.Chat = new API.Chat(this);
   teams: API.Teams = new API.Teams(this);
@@ -698,6 +712,7 @@ export class Structify extends Core.APIClient {
   static fileFromPath = Uploads.fileFromPath;
 }
 
+Structify.Whitelabel = Whitelabel;
 Structify.User = User;
 Structify.Chat = Chat;
 Structify.Teams = Teams;
@@ -742,6 +757,8 @@ export declare namespace Structify {
     type ListConnectorCatalogResponse as ListConnectorCatalogResponse,
   };
 
+  export { Whitelabel as Whitelabel, type EstimateCostResponse as EstimateCostResponse };
+
   export {
     User as User,
     type EnrichUserParams as EnrichUserParams,
@@ -767,6 +784,8 @@ export declare namespace Structify {
     Chat as Chat,
     type AddCollaboratorRequest as AddCollaboratorRequest,
     type AdminGrantAccessResponse as AdminGrantAccessResponse,
+    type AdminIssueFoundRequest as AdminIssueFoundRequest,
+    type AdminIssueFoundResponse as AdminIssueFoundResponse,
     type ChatDependency as ChatDependency,
     type ChatEvent as ChatEvent,
     type ChatSession as ChatSession,
@@ -803,6 +822,7 @@ export declare namespace Structify {
     type ChatRevertToCommitResponse as ChatRevertToCommitResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
+    type ChatAdminIssueFoundParams as ChatAdminIssueFoundParams,
     type ChatCopyParams as ChatCopyParams,
     type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
@@ -861,10 +881,11 @@ export declare namespace Structify {
   export {
     Wiki as Wiki,
     type CreateWikiPageRequest as CreateWikiPageRequest,
-    type TeamWikiPage as TeamWikiPage,
     type UpdateWikiPageRequest as UpdateWikiPageRequest,
     type WikiConnectorReference as WikiConnectorReference,
     type WikiPageWithReferences as WikiPageWithReferences,
+    type WikiCreateResponse as WikiCreateResponse,
+    type WikiUpdateResponse as WikiUpdateResponse,
     type WikiListResponse as WikiListResponse,
     type WikiCreateParams as WikiCreateParams,
     type WikiUpdateParams as WikiUpdateParams,
@@ -958,8 +979,9 @@ export declare namespace Structify {
     type AutofixContext as AutofixContext,
     type ConfirmNodeRequest as ConfirmNodeRequest,
     type CreateWorkflowSessionRequest as CreateWorkflowSessionRequest,
+    type Dashboard as Dashboard,
     type DashboardComponent as DashboardComponent,
-    type DashboardLayout as DashboardLayout,
+    type DashboardPage as DashboardPage,
     type EdgeSpec as EdgeSpec,
     type FinalizeDagRequest as FinalizeDagRequest,
     type FinalizeDagResponse as FinalizeDagResponse,
@@ -1024,6 +1046,8 @@ export declare namespace Structify {
     type ConnectorCategory as ConnectorCategory,
     type ConnectorExplorerChat as ConnectorExplorerChat,
     type ConnectorStoreResponse as ConnectorStoreResponse,
+    type ConnectorSummariesRequest as ConnectorSummariesRequest,
+    type ConnectorSummary as ConnectorSummary,
     type ConnectorTableInfo as ConnectorTableInfo,
     type ConnectorWithSecrets as ConnectorWithSecrets,
     type ConnectorWithSnippets as ConnectorWithSnippets,
@@ -1045,20 +1069,24 @@ export declare namespace Structify {
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type UpdateTableRequest as UpdateTableRequest,
     type UpdateTableResponse as UpdateTableResponse,
+    type ConnectorAddSchemaObjectResponse as ConnectorAddSchemaObjectResponse,
     type ConnectorGetResponse as ConnectorGetResponse,
     type ConnectorGetClarificationRequestsResponse as ConnectorGetClarificationRequestsResponse,
     type ConnectorListWithSnippetsResponse as ConnectorListWithSnippetsResponse,
     type ConnectorSearchTablesResponse as ConnectorSearchTablesResponse,
+    type ConnectorSummariesResponse as ConnectorSummariesResponse,
     ConnectorWithSecretsJobsList as ConnectorWithSecretsJobsList,
     type ConnectorCreateParams as ConnectorCreateParams,
     type ConnectorUpdateParams as ConnectorUpdateParams,
     type ConnectorListParams as ConnectorListParams,
+    type ConnectorAddSchemaObjectParams as ConnectorAddSchemaObjectParams,
     type ConnectorCreateSecretParams as ConnectorCreateSecretParams,
     type ConnectorDeleteSchemaObjectParams as ConnectorDeleteSchemaObjectParams,
     type ConnectorExploreParams as ConnectorExploreParams,
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
     type ConnectorListWithSnippetsParams as ConnectorListWithSnippetsParams,
     type ConnectorSearchTablesParams as ConnectorSearchTablesParams,
+    type ConnectorSummariesParams as ConnectorSummariesParams,
     type ConnectorUpdateColumnParams as ConnectorUpdateColumnParams,
     type ConnectorUpdateTableParams as ConnectorUpdateTableParams,
   };
@@ -1130,7 +1158,6 @@ export declare namespace Structify {
     type GetSandboxRequest as GetSandboxRequest,
     type Sandbox as Sandbox,
     type SandboxListResponse as SandboxListResponse,
-    type SandboxCreateParams as SandboxCreateParams,
     type SandboxGetParams as SandboxGetParams,
     type SandboxUpdateStatusParams as SandboxUpdateStatusParams,
   };
@@ -1163,12 +1190,14 @@ export declare namespace Structify {
     type StructureFindRelationshipResponse as StructureFindRelationshipResponse,
     type StructureIsCompleteResponse as StructureIsCompleteResponse,
     type StructureJobStatusResponse as StructureJobStatusResponse,
+    type StructurePdfResponse as StructurePdfResponse,
     type StructureRunAsyncResponse as StructureRunAsyncResponse,
     type StructureEnhancePropertyParams as StructureEnhancePropertyParams,
     type StructureEnhanceRelationshipParams as StructureEnhanceRelationshipParams,
     type StructureFindRelationshipParams as StructureFindRelationshipParams,
     type StructureIsCompleteParams as StructureIsCompleteParams,
     type StructureJobStatusParams as StructureJobStatusParams,
+    type StructurePdfParams as StructurePdfParams,
     type StructureRunAsyncParams as StructureRunAsyncParams,
   };
 

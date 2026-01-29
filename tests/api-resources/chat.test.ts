@@ -69,6 +69,27 @@ describe('resource chat', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
+  test('adminIssueFound: only required params', async () => {
+    const responsePromise = client.chat.adminIssueFound('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      message: 'message',
+      title: 'title',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('adminIssueFound: required and optional params', async () => {
+    const response = await client.chat.adminIssueFound('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      message: 'message',
+      title: 'title',
+    });
+  });
+
   test('copy: only required params', async () => {
     const responsePromise = client.chat.copy({
       copy_name: 'copy_name',
@@ -132,6 +153,7 @@ describe('resource chat', () => {
       config: {
         is_onboarding_session: true,
         llm_key: 'vllm.gpt-5-mini-2025-08-07',
+        max_steps: 0,
         reminder_message: 'reminder_message',
         system_prompt: 'system_prompt',
       },

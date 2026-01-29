@@ -8,9 +8,9 @@ const client = new Structify({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource sandbox', () => {
-  test('list', async () => {
-    const responsePromise = client.sandbox.list('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
+describe('resource whitelabel', () => {
+  test('estimateCost', async () => {
+    const responsePromise = client.whitelabel.estimateCost('service', 'path');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -20,15 +20,15 @@ describe('resource sandbox', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: request options instead of params are passed correctly', async () => {
+  test('estimateCost: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.sandbox.list('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: '/_stainless_unknown_path' }),
+      client.whitelabel.estimateCost('service', 'path', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
-  test('get', async () => {
-    const responsePromise = client.sandbox.get('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {});
+  test('proxyGet', async () => {
+    const responsePromise = client.whitelabel.proxyGet('service', 'path');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -38,10 +38,15 @@ describe('resource sandbox', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('updateStatus: only required params', async () => {
-    const responsePromise = client.sandbox.updateStatus('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      status: 'status',
-    });
+  test('proxyGet: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.whitelabel.proxyGet('service', 'path', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
+  test('proxyPost', async () => {
+    const responsePromise = client.whitelabel.proxyPost('service', 'path');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -51,9 +56,10 @@ describe('resource sandbox', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('updateStatus: required and optional params', async () => {
-    const response = await client.sandbox.updateStatus('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      status: 'status',
-    });
+  test('proxyPost: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.whitelabel.proxyPost('service', 'path', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Structify.NotFoundError);
   });
 });

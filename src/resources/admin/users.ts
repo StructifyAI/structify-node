@@ -89,6 +89,9 @@ export interface User {
 
   company_name?: string | null;
 
+  /**
+   * Cost confirmation threshold in credits (thousandth of a cent).
+   */
   cost_confirmation_threshold?: number | null;
 
   cufinder_data?: unknown;
