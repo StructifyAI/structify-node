@@ -4,11 +4,7 @@ import { APIResource } from '../resource';
 import * as Core from '../core';
 
 export class Wiki extends APIResource {
-  create(
-    teamId: string,
-    body: WikiCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<WikiCreateResponse> {
+  create(teamId: string, body: WikiCreateParams, options?: Core.RequestOptions): Core.APIPromise<WikiPage> {
     return this._client.post(`/team/${teamId}/wiki`, { body, ...options });
   }
 
@@ -17,7 +13,7 @@ export class Wiki extends APIResource {
     slug: string,
     body: WikiUpdateParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<WikiUpdateResponse> {
+  ): Core.APIPromise<WikiPage> {
     return this._client.put(`/team/${teamId}/wiki/${slug}`, { body, ...options });
   }
 
@@ -100,83 +96,29 @@ export namespace WikiConnectorReference {
   }
 }
 
-export interface WikiPageWithReferences {
+export interface WikiPage {
   id: string;
 
   created_at: string;
 
   markdown: string;
 
+  slug: string;
+
+  team_id: string;
+
+  title: string;
+
+  updated_at: string;
+
+  version: number;
+}
+
+export interface WikiPageWithReferences extends WikiPage {
   references: Array<WikiConnectorReference>;
-
-  slug: string;
-
-  team_id: string;
-
-  title: string;
-
-  updated_at: string;
-
-  version: number;
 }
 
-export interface WikiCreateResponse {
-  id: string;
-
-  created_at: string;
-
-  markdown: string;
-
-  slug: string;
-
-  team_id: string;
-
-  title: string;
-
-  updated_at: string;
-
-  version: number;
-}
-
-export interface WikiUpdateResponse {
-  id: string;
-
-  created_at: string;
-
-  markdown: string;
-
-  slug: string;
-
-  team_id: string;
-
-  title: string;
-
-  updated_at: string;
-
-  version: number;
-}
-
-export type WikiListResponse = Array<WikiListResponse.WikiListResponseItem>;
-
-export namespace WikiListResponse {
-  export interface WikiListResponseItem {
-    id: string;
-
-    created_at: string;
-
-    markdown: string;
-
-    slug: string;
-
-    team_id: string;
-
-    title: string;
-
-    updated_at: string;
-
-    version: number;
-  }
-}
+export type WikiListResponse = Array<WikiPage>;
 
 export interface WikiCreateParams {
   markdown: string;
@@ -199,9 +141,8 @@ export declare namespace Wiki {
     type CreateWikiPageRequest as CreateWikiPageRequest,
     type UpdateWikiPageRequest as UpdateWikiPageRequest,
     type WikiConnectorReference as WikiConnectorReference,
+    type WikiPage as WikiPage,
     type WikiPageWithReferences as WikiPageWithReferences,
-    type WikiCreateResponse as WikiCreateResponse,
-    type WikiUpdateResponse as WikiUpdateResponse,
     type WikiListResponse as WikiListResponse,
     type WikiCreateParams as WikiCreateParams,
     type WikiUpdateParams as WikiUpdateParams,
