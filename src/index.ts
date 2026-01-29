@@ -349,11 +349,10 @@ import {
   Wiki,
   WikiConnectorReference,
   WikiCreateParams,
-  WikiCreateResponse,
   WikiListResponse,
+  WikiPage,
   WikiPageWithReferences,
   WikiUpdateParams,
-  WikiUpdateResponse,
 } from './resources/wiki';
 import {
   RunWorkflowRequest,
@@ -883,9 +882,8 @@ export declare namespace Structify {
     type CreateWikiPageRequest as CreateWikiPageRequest,
     type UpdateWikiPageRequest as UpdateWikiPageRequest,
     type WikiConnectorReference as WikiConnectorReference,
+    type WikiPage as WikiPage,
     type WikiPageWithReferences as WikiPageWithReferences,
-    type WikiCreateResponse as WikiCreateResponse,
-    type WikiUpdateResponse as WikiUpdateResponse,
     type WikiListResponse as WikiListResponse,
     type WikiCreateParams as WikiCreateParams,
     type WikiUpdateParams as WikiUpdateParams,
