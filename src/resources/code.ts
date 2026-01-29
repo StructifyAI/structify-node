@@ -84,6 +84,7 @@ export namespace GenerateCodeRequest {
       | 'gemini.gemini-2.5-pro'
       | 'gemini.gemini-2.5-flash'
       | 'gemini.gemini-3-pro-preview'
+      | 'gemini.gemini-3-flash-preview'
       | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
 
@@ -151,6 +152,7 @@ export namespace CodeGenerateCodeParams {
       | 'gemini.gemini-2.5-pro'
       | 'gemini.gemini-2.5-flash'
       | 'gemini.gemini-3-pro-preview'
+      | 'gemini.gemini-3-flash-preview'
       | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
 
