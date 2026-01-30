@@ -59,6 +59,13 @@ export class Admin extends APIResource {
     return this._client.post('/admin/connector-catalog/scopes', { body, ...options });
   }
 
+  deleteCatalog(id: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/admin/connector-catalog/${id}`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
   /**
    * Delete a connector credential field
    */
