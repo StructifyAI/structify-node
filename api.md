@@ -654,6 +654,7 @@ Methods:
 - <code title="post /admin/connector-catalog">client.connectorCatalog.admin.<a href="./src/resources/connector-catalog/admin.ts">createCatalog</a>({ ...params }) -> ConnectorCatalog</code>
 - <code title="post /admin/connector-catalog/credential-fields">client.connectorCatalog.admin.<a href="./src/resources/connector-catalog/admin.ts">createCredentialField</a>({ ...params }) -> ConnectorCredentialField</code>
 - <code title="post /admin/connector-catalog/scopes">client.connectorCatalog.admin.<a href="./src/resources/connector-catalog/admin.ts">createScope</a>({ ...params }) -> ConnectorAuthMethodScope</code>
+- <code title="delete /admin/connector-catalog/{id}">client.connectorCatalog.admin.<a href="./src/resources/connector-catalog/admin.ts">deleteCatalog</a>(id) -> void</code>
 - <code title="delete /admin/connector-catalog/credential-fields/{id}">client.connectorCatalog.admin.<a href="./src/resources/connector-catalog/admin.ts">deleteCredentialField</a>(id) -> void</code>
 - <code title="delete /admin/connector-catalog/scopes/{id}">client.connectorCatalog.admin.<a href="./src/resources/connector-catalog/admin.ts">deleteScope</a>(id) -> void</code>
 - <code title="get /admin/connector-catalog/nango-pending">client.connectorCatalog.admin.<a href="./src/resources/connector-catalog/admin.ts">listNangoPending</a>() -> AdminListNangoPendingResponse</code>
