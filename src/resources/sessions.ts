@@ -23,6 +23,18 @@ export class Sessions extends APIResource {
     return this._client.post('/sessions', { body, ...options });
   }
 
+  editNodeOutput(
+    nodeId: string,
+    body: SessionEditNodeOutputParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post(`/sessions/nodes/${nodeId}/edit_output`, {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
   /**
    * Finalize a workflow session DAG by creating all nodes/edges and marking it as
    * ready
@@ -154,6 +166,14 @@ export class Sessions extends APIResource {
 }
 
 export type AutofixContext = 'creation' | 'execution' | 'visualization';
+
+export interface CellEdit {
+  column_name: string;
+
+  row_index: number;
+
+  value: string;
+}
 
 export interface ConfirmNodeRequest {
   confirmed: boolean;
@@ -351,6 +371,10 @@ export interface EdgeSpec {
   source_node_index: number;
 
   target_node_index: number;
+}
+
+export interface EditNodeOutputRequest {
+  edits: Array<CellEdit>;
 }
 
 export interface FinalizeDagRequest {
@@ -705,6 +729,8 @@ export interface WorkflowSessionNode {
 
   function_name: string;
 
+  manually_edited: boolean;
+
   node_index: number;
 
   node_name: string;
@@ -813,6 +839,10 @@ export interface SessionCreateSessionParams {
   workflow_schedule_id?: string | null;
 }
 
+export interface SessionEditNodeOutputParams {
+  edits: Array<CellEdit>;
+}
+
 export interface SessionFinalizeDagParams {
   edges: Array<EdgeSpec>;
 
@@ -896,12 +926,14 @@ export interface SessionUploadNodeVisualizationOutputParams {
 export declare namespace Sessions {
   export {
     type AutofixContext as AutofixContext,
+    type CellEdit as CellEdit,
     type ConfirmNodeRequest as ConfirmNodeRequest,
     type CreateWorkflowSessionRequest as CreateWorkflowSessionRequest,
     type Dashboard as Dashboard,
     type DashboardComponent as DashboardComponent,
     type DashboardPage as DashboardPage,
     type EdgeSpec as EdgeSpec,
+    type EditNodeOutputRequest as EditNodeOutputRequest,
     type FinalizeDagRequest as FinalizeDagRequest,
     type FinalizeDagResponse as FinalizeDagResponse,
     type GetNodeLogsResponse as GetNodeLogsResponse,
@@ -925,6 +957,7 @@ export declare namespace Sessions {
     type SessionKillJobsResponse as SessionKillJobsResponse,
     type SessionConfirmNodeParams as SessionConfirmNodeParams,
     type SessionCreateSessionParams as SessionCreateSessionParams,
+    type SessionEditNodeOutputParams as SessionEditNodeOutputParams,
     type SessionFinalizeDagParams as SessionFinalizeDagParams,
     type SessionGetEventsParams as SessionGetEventsParams,
     type SessionKillJobsParams as SessionKillJobsParams,
