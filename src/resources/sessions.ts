@@ -525,6 +525,8 @@ export namespace JobEventBody {
     match_idx?: number | null;
 
     raw_text?: string | null;
+
+    source_entity_index?: number | null;
   }
 
   export interface DatahubPageFetched {
