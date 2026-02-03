@@ -374,7 +374,7 @@ export interface EdgeSpec {
 }
 
 export interface EditNodeOutputRequest {
-  edits: Array<CellEdit>;
+  edits: Array<ParquetEdit>;
 }
 
 export interface FinalizeDagRequest {
@@ -598,6 +598,26 @@ export interface NodeSpec {
   function_name: string;
 
   connector_id?: string | null;
+}
+
+export type ParquetEdit = ParquetEdit.EditCell | ParquetEdit.DeleteRow | ParquetEdit.AddRow;
+
+export namespace ParquetEdit {
+  export interface EditCell extends SessionsAPI.CellEdit {
+    type: 'edit_cell';
+  }
+
+  export interface DeleteRow {
+    row_index: number;
+
+    type: 'delete_row';
+  }
+
+  export interface AddRow {
+    type: 'add_row';
+
+    values: { [key: string]: string };
+  }
 }
 
 export interface RequestConfirmationRequest {
@@ -840,7 +860,7 @@ export interface SessionCreateSessionParams {
 }
 
 export interface SessionEditNodeOutputParams {
-  edits: Array<CellEdit>;
+  edits: Array<ParquetEdit>;
 }
 
 export interface SessionFinalizeDagParams {
@@ -941,6 +961,7 @@ export declare namespace Sessions {
     type JobEventBody as JobEventBody,
     type MarkWorkflowSessionErroredRequest as MarkWorkflowSessionErroredRequest,
     type NodeSpec as NodeSpec,
+    type ParquetEdit as ParquetEdit,
     type RequestConfirmationRequest as RequestConfirmationRequest,
     type UpdateWorkflowNodeProgressRequest as UpdateWorkflowNodeProgressRequest,
     type UpdateWorkflowNodeRequest as UpdateWorkflowNodeRequest,

@@ -280,6 +280,7 @@ export {
   type JobEventBody,
   type MarkWorkflowSessionErroredRequest,
   type NodeSpec,
+  type ParquetEdit,
   type RequestConfirmationRequest,
   type UpdateWorkflowNodeProgressRequest,
   type UpdateWorkflowNodeRequest,

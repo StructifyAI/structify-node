@@ -466,6 +466,7 @@ Types:
 - <code><a href="./src/resources/sessions.ts">JobEventBody</a></code>
 - <code><a href="./src/resources/sessions.ts">MarkWorkflowSessionErroredRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">NodeSpec</a></code>
+- <code><a href="./src/resources/sessions.ts">ParquetEdit</a></code>
 - <code><a href="./src/resources/sessions.ts">RequestConfirmationRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">UpdateWorkflowNodeProgressRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">UpdateWorkflowNodeRequest</a></code>
