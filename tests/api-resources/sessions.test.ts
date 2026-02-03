@@ -55,6 +55,7 @@ describe('resource sessions', () => {
           column_name: 'column_name',
           row_index: 0,
           value: 'value',
+          type: 'edit_cell',
         },
       ],
     });
@@ -74,6 +75,7 @@ describe('resource sessions', () => {
           column_name: 'column_name',
           row_index: 0,
           value: 'value',
+          type: 'edit_cell',
         },
       ],
     });
