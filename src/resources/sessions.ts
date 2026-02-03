@@ -520,6 +520,8 @@ export namespace JobEventBody {
 
     target: { [key: string]: string | boolean | number };
 
+    candidate_indices?: Array<number>;
+
     match_idx?: number | null;
 
     raw_text?: string | null;
