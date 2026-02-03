@@ -48,6 +48,37 @@ describe('resource sessions', () => {
     });
   });
 
+  test('editNodeOutput: only required params', async () => {
+    const responsePromise = client.sessions.editNodeOutput('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      edits: [
+        {
+          column_name: 'column_name',
+          row_index: 0,
+          value: 'value',
+        },
+      ],
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('editNodeOutput: required and optional params', async () => {
+    const response = await client.sessions.editNodeOutput('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      edits: [
+        {
+          column_name: 'column_name',
+          row_index: 0,
+          value: 'value',
+        },
+      ],
+    });
+  });
+
   test('finalizeDag: only required params', async () => {
     const responsePromise = client.sessions.finalizeDag('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       edges: [{ source_node_index: 0, target_node_index: 0 }],
