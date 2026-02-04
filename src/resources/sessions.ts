@@ -278,11 +278,6 @@ export interface DashboardPage {
   components: Array<DashboardComponent>;
 
   /**
-   * Title for this dashboard section
-   */
-  title: string;
-
-  /**
    * Control filters (dropdowns, checkboxes, ranges) for this dashboard
    */
   controls?: Array<DashboardPage.Dropdown | DashboardPage.Range | DashboardPage.Checkbox> | null;
@@ -297,6 +292,11 @@ export interface DashboardPage {
    * Optional description
    */
   description?: string | null;
+
+  /**
+   * Title for this dashboard section
+   */
+  title?: string | null;
 }
 
 export namespace DashboardPage {

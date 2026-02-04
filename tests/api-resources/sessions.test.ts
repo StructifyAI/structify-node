@@ -137,7 +137,6 @@ describe('resource sessions', () => {
                 span: 0,
               },
             ],
-            title: 'title',
             controls: [
               {
                 id: 'id',
@@ -150,6 +149,7 @@ describe('resource sessions', () => {
             ],
             datasetNodeName: 'datasetNodeName',
             description: 'description',
+            title: 'title',
           },
         ],
         title: 'title',
@@ -379,10 +379,7 @@ describe('resource sessions', () => {
 
   test('uploadDashboardLayout: only required params', async () => {
     const responsePromise = client.sessions.uploadDashboardLayout('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      layout: {
-        dashboards: [{ components: [{ node_name: 'node_name', title: 'title' }], title: 'title' }],
-        title: 'title',
-      },
+      layout: { dashboards: [{ components: [{ node_name: 'node_name', title: 'title' }] }], title: 'title' },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -418,7 +415,6 @@ describe('resource sessions', () => {
                 span: 0,
               },
             ],
-            title: 'title',
             controls: [
               {
                 id: 'id',
@@ -431,6 +427,7 @@ describe('resource sessions', () => {
             ],
             datasetNodeName: 'datasetNodeName',
             description: 'description',
+            title: 'title',
           },
         ],
         title: 'title',
