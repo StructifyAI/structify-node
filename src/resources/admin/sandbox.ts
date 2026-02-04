@@ -27,8 +27,6 @@ export class AdminSandboxesJobsList extends JobsList<AdminSandbox> {}
 export interface AdminSandbox {
   id: string;
 
-  active_count: number;
-
   created_at: string;
 
   provider: 'modal' | 'daytona';
