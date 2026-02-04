@@ -478,6 +478,7 @@ Types:
 - <code><a href="./src/resources/sessions.ts">WorkflowSession</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowSessionEdge</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowSessionNode</a></code>
+- <code><a href="./src/resources/sessions.ts">SessionEditNodeOutputResponse</a></code>
 - <code><a href="./src/resources/sessions.ts">SessionGetEventsResponse</a></code>
 - <code><a href="./src/resources/sessions.ts">SessionGetNodeProgressResponse</a></code>
 - <code><a href="./src/resources/sessions.ts">SessionKillJobsResponse</a></code>
@@ -486,7 +487,7 @@ Methods:
 
 - <code title="post /sessions/nodes/{node_id}/confirm">client.sessions.<a href="./src/resources/sessions.ts">confirmNode</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 - <code title="post /sessions">client.sessions.<a href="./src/resources/sessions.ts">createSession</a>({ ...params }) -> WorkflowSession</code>
-- <code title="post /sessions/nodes/{node_id}/edit_output">client.sessions.<a href="./src/resources/sessions.ts">editNodeOutput</a>(nodeId, { ...params }) -> void</code>
+- <code title="post /sessions/nodes/{node_id}/edit_output">client.sessions.<a href="./src/resources/sessions.ts">editNodeOutput</a>(nodeId, { ...params }) -> SessionEditNodeOutputResponse</code>
 - <code title="post /sessions/{session_id}/dag_ready">client.sessions.<a href="./src/resources/sessions.ts">finalizeDag</a>(sessionId, { ...params }) -> FinalizeDagResponse</code>
 - <code title="get /sessions/{session_id}/dag">client.sessions.<a href="./src/resources/sessions.ts">getDag</a>(sessionId) -> WorkflowDag</code>
 - <code title="get /sessions/nodes/{node_id}/events">client.sessions.<a href="./src/resources/sessions.ts">getEvents</a>(nodeId, { ...params }) -> SessionGetEventsResponse</code>

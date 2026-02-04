@@ -292,6 +292,7 @@ export {
   type WorkflowSession,
   type WorkflowSessionEdge,
   type WorkflowSessionNode,
+  type SessionEditNodeOutputResponse,
   type SessionGetEventsResponse,
   type SessionGetNodeProgressResponse,
   type SessionKillJobsResponse,

@@ -27,12 +27,8 @@ export class Sessions extends APIResource {
     nodeId: string,
     body: SessionEditNodeOutputParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.post(`/sessions/nodes/${nodeId}/edit_output`, {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
+  ): Core.APIPromise<SessionEditNodeOutputResponse> {
+    return this._client.post(`/sessions/nodes/${nodeId}/edit_output`, { body, ...options });
   }
 
   /**
@@ -794,6 +790,10 @@ export interface WorkflowSessionNode {
   visualization_output?: unknown;
 }
 
+export interface SessionEditNodeOutputResponse {
+  error_message?: string | null;
+}
+
 export interface SessionGetEventsResponse {
   count: number;
 
@@ -977,6 +977,7 @@ export declare namespace Sessions {
     type WorkflowSession as WorkflowSession,
     type WorkflowSessionEdge as WorkflowSessionEdge,
     type WorkflowSessionNode as WorkflowSessionNode,
+    type SessionEditNodeOutputResponse as SessionEditNodeOutputResponse,
     type SessionGetEventsResponse as SessionGetEventsResponse,
     type SessionGetNodeProgressResponse as SessionGetNodeProgressResponse,
     type SessionKillJobsResponse as SessionKillJobsResponse,
