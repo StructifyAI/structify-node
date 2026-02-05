@@ -287,6 +287,10 @@ export interface UserInfo {
   slack_username?: string | null;
 
   survey_completed_at?: string | null;
+
+  teams_user_id?: string | null;
+
+  teams_user_name?: string | null;
 }
 
 export type UserTransactionsResponse = Array<UserTransactionsResponse.UserTransactionsResponseItem>;
