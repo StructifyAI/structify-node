@@ -203,68 +203,28 @@ export interface Dashboard {
 }
 
 /**
- * A component references a viz node and optionally includes mosaic metadata
+ * A component references a viz node and optional display metadata.
  */
 export interface DashboardComponent {
   /**
-   * Function name of the viz node that outputs the chart spec
+   * Function name of the viz node that outputs the chart spec.
    */
   node_name: string;
 
   /**
-   * Display title (overrides viz node title)
+   * Display title shown in the dashboard layout.
    */
   title: string;
 
   /**
-   * Description (optional, can override viz node's description)
+   * Optional description shown under the component title.
    */
   description?: string | null;
 
-  mosaic?: DashboardComponent.Mosaic | null;
-
   /**
-   * Grid span: 1 (quarter), 2 (half), 3 (three-quarters), 4 (full width)
+   * Grid span: 1 (quarter), 2 (half), 3 (three-quarters), 4 (full width).
    */
   span?: number | null;
-}
-
-export namespace DashboardComponent {
-  export interface Mosaic {
-    fields: { [key: string]: string | boolean | Mosaic.UnionMember2 };
-
-    bin?: Mosaic.Bin | null;
-
-    groupBy?: Array<string> | null;
-
-    limit?: number | null;
-
-    orderBy?: string | null;
-
-    /**
-     * Table name - optional, derived from datasetNodeName in dashboard config
-     */
-    table?: string | null;
-  }
-
-  export namespace Mosaic {
-    export interface UnionMember2 {
-      expr: string;
-
-      /**
-       * Optional Plotly property path (e.g., marker.color) to assign this column to
-       */
-      target?: string | null;
-    }
-
-    export interface Bin {
-      as: string;
-
-      field: string;
-
-      step: number;
-    }
-  }
 }
 
 /**
