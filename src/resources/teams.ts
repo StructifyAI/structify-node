@@ -347,6 +347,7 @@ export type UsageGroupKey =
   | 'derive'
   | 'scrape'
   | 'apollo'
+  | 'apify'
   | 'searchapi'
   | 'newsapi'
   | 'secapi'
