@@ -581,6 +581,12 @@ export interface ChatSessionWithMessages {
   slack_team_id?: string | null;
 
   slack_thread_ts?: string | null;
+
+  teams_channel_id?: string | null;
+
+  teams_conversation_id?: string | null;
+
+  teams_tenant_id?: string | null;
 }
 
 export namespace ChatSessionWithMessages {
@@ -802,6 +808,12 @@ export namespace GetChatSessionResponse {
     slack_team_id?: string | null;
 
     slack_thread_ts?: string | null;
+
+    teams_channel_id?: string | null;
+
+    teams_conversation_id?: string | null;
+
+    teams_tenant_id?: string | null;
 
     workflow_schedule_id?: string | null;
   }
