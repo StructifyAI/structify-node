@@ -478,9 +478,6 @@ export interface StructurePdfParams {
 export interface StructureRunAsyncParams {
   dataset: string;
 
-  /**
-   * These are all the types that can be converted into a BasicInputType
-   */
   source: StructureRunAsyncParams.Pdf | StructureRunAsyncParams.Web;
 
   instructions?: string | null;
