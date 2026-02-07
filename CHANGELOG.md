@@ -1,5 +1,32 @@
 # Changelog
 
+## 1.174.0 (2026-02-07)
+
+Full Changelog: [v1.173.0...v1.174.0](https://github.com/StructifyAI/structify-node/compare/v1.173.0...v1.174.0)
+
+### Features
+
+* Update from Structify backend changes ([d1a1a62](https://github.com/StructifyAI/structify-node/commit/d1a1a621e2df705e216d7814bf2a36aa301ce487))
+* Update from Structify backend changes ([1111970](https://github.com/StructifyAI/structify-node/commit/1111970c9124b3ee6fae69342cb2a80a82cfbdfc))
+* Update from Structify backend changes ([2d9a1e7](https://github.com/StructifyAI/structify-node/commit/2d9a1e7acce8d08487aee88647f3a33373cdd82d))
+* Update from Structify backend changes ([d456762](https://github.com/StructifyAI/structify-node/commit/d4567623dbb3540fc72e0d80d676c66ab16ffbcd))
+* Update from Structify backend changes ([14f7ee5](https://github.com/StructifyAI/structify-node/commit/14f7ee5574f90ab9e7237c364de4fa8bb56278e1))
+* Update from Structify backend changes ([abb3d1e](https://github.com/StructifyAI/structify-node/commit/abb3d1e83d65cb5051acc1dc773c5c82a2a23cd0))
+* Update from Structify backend changes ([a5b0037](https://github.com/StructifyAI/structify-node/commit/a5b0037f48505a7c292da8f9d614969107245adc))
+* Update from Structify backend changes ([7e5d74e](https://github.com/StructifyAI/structify-node/commit/7e5d74eb0b794ce5c2c806396d0970d36b7d2079))
+* Update from Structify backend changes ([edbcb50](https://github.com/StructifyAI/structify-node/commit/edbcb50b9bf346d5c56dffde4bb166856805168f))
+* Update from Structify backend changes ([4c612a9](https://github.com/StructifyAI/structify-node/commit/4c612a9e6d4a3a4d76001c1fd928ea58b7f217a0))
+* Update from Structify backend changes ([9491cc6](https://github.com/StructifyAI/structify-node/commit/9491cc6e9702d3213fca9d09a54cb4bb646b25a6))
+* Update from Structify backend changes ([2019fce](https://github.com/StructifyAI/structify-node/commit/2019fce84b00446cbf8a1310e8502e28d29c48c4))
+* Update from Structify backend changes ([369bbec](https://github.com/StructifyAI/structify-node/commit/369bbec64979fb1f3e630298d7f5ad8f9e674a9d))
+* Update from Structify backend changes ([588ea09](https://github.com/StructifyAI/structify-node/commit/588ea094da64232e0d063ce021ae421365bd4a0c))
+* Update from Structify backend changes ([9b04557](https://github.com/StructifyAI/structify-node/commit/9b045578daad3b5700fd5f91cabd10d50a8161a7))
+
+
+### Chores
+
+* **client:** do not parse responses with empty content-length ([23ccabb](https://github.com/StructifyAI/structify-node/commit/23ccabb1fe23262edb7a78654f8e38ac8ef2d7aa))
+
 ## 1.173.0 (2026-01-30)
 
 Full Changelog: [v1.172.0...v1.173.0](https://github.com/StructifyAI/structify-node/compare/v1.172.0...v1.173.0)
