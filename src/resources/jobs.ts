@@ -150,9 +150,6 @@ export namespace JobListResponse {
 
   export namespace Parameters {
     export interface Agent {
-      /**
-       * These are all the types that can be converted into a BasicInputType
-       */
       Agent: Agent.Pdf | Agent.Web;
     }
 

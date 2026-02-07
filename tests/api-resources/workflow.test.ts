@@ -27,6 +27,7 @@ describe('resource workflow', () => {
     const response = await client.workflow.run({
       chat_session_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       use_node_cache: true,
+      edited_node_name: 'edited_node_name',
     });
   });
 

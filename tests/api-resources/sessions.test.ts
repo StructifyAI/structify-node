@@ -31,6 +31,7 @@ describe('resource sessions', () => {
   test('createSession: only required params', async () => {
     const responsePromise = client.sessions.createSession({
       chat_session_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      git_commit: 'git_commit',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -44,7 +45,41 @@ describe('resource sessions', () => {
   test('createSession: required and optional params', async () => {
     const response = await client.sessions.createSession({
       chat_session_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      git_commit: 'git_commit',
       workflow_schedule_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+  });
+
+  test('editNodeOutput: only required params', async () => {
+    const responsePromise = client.sessions.editNodeOutput('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      edits: [
+        {
+          column_name: 'column_name',
+          row_index: 0,
+          value: 'value',
+          type: 'edit_cell',
+        },
+      ],
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('editNodeOutput: required and optional params', async () => {
+    const response = await client.sessions.editNodeOutput('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      edits: [
+        {
+          column_name: 'column_name',
+          row_index: 0,
+          value: 'value',
+          type: 'edit_cell',
+        },
+      ],
     });
   });
 
@@ -89,22 +124,9 @@ describe('resource sessions', () => {
                 node_name: 'node_name',
                 title: 'title',
                 description: 'description',
-                mosaic: {
-                  fields: { foo: 'string' },
-                  bin: {
-                    as: 'as',
-                    field: 'field',
-                    step: 0,
-                  },
-                  groupBy: ['string'],
-                  limit: 0,
-                  orderBy: 'orderBy',
-                  table: 'table',
-                },
                 span: 0,
               },
             ],
-            title: 'title',
             controls: [
               {
                 id: 'id',
@@ -117,6 +139,7 @@ describe('resource sessions', () => {
             ],
             datasetNodeName: 'datasetNodeName',
             description: 'description',
+            title: 'title',
           },
         ],
         title: 'title',
@@ -346,10 +369,7 @@ describe('resource sessions', () => {
 
   test('uploadDashboardLayout: only required params', async () => {
     const responsePromise = client.sessions.uploadDashboardLayout('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      layout: {
-        dashboards: [{ components: [{ node_name: 'node_name', title: 'title' }], title: 'title' }],
-        title: 'title',
-      },
+      layout: { dashboards: [{ components: [{ node_name: 'node_name', title: 'title' }] }], title: 'title' },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -370,22 +390,9 @@ describe('resource sessions', () => {
                 node_name: 'node_name',
                 title: 'title',
                 description: 'description',
-                mosaic: {
-                  fields: { foo: 'string' },
-                  bin: {
-                    as: 'as',
-                    field: 'field',
-                    step: 0,
-                  },
-                  groupBy: ['string'],
-                  limit: 0,
-                  orderBy: 'orderBy',
-                  table: 'table',
-                },
                 span: 0,
               },
             ],
-            title: 'title',
             controls: [
               {
                 id: 'id',
@@ -398,6 +405,7 @@ describe('resource sessions', () => {
             ],
             datasetNodeName: 'datasetNodeName',
             description: 'description',
+            title: 'title',
           },
         ],
         title: 'title',

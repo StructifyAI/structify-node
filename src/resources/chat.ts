@@ -581,6 +581,12 @@ export interface ChatSessionWithMessages {
   slack_team_id?: string | null;
 
   slack_thread_ts?: string | null;
+
+  teams_channel_id?: string | null;
+
+  teams_conversation_id?: string | null;
+
+  teams_tenant_id?: string | null;
 }
 
 export namespace ChatSessionWithMessages {
@@ -718,6 +724,7 @@ export namespace CreateChatSessionRequest {
       | 'bedrock.claude-sonnet-4-bedrock'
       | 'bedrock.claude-sonnet-4-5-bedrock'
       | 'bedrock.claude-opus-4-5-bedrock'
+      | 'bedrock.claude-opus-4-6-bedrock'
       | 'bedrock.claude-haiku-4-5-bedrock'
       | 'gemini.gemini-2.5-pro'
       | 'gemini.gemini-2.5-flash'
@@ -801,6 +808,12 @@ export namespace GetChatSessionResponse {
     slack_team_id?: string | null;
 
     slack_thread_ts?: string | null;
+
+    teams_channel_id?: string | null;
+
+    teams_conversation_id?: string | null;
+
+    teams_tenant_id?: string | null;
 
     workflow_schedule_id?: string | null;
   }
@@ -1727,6 +1740,7 @@ export namespace ChatCreateSessionParams {
       | 'bedrock.claude-sonnet-4-bedrock'
       | 'bedrock.claude-sonnet-4-5-bedrock'
       | 'bedrock.claude-opus-4-5-bedrock'
+      | 'bedrock.claude-opus-4-6-bedrock'
       | 'bedrock.claude-haiku-4-5-bedrock'
       | 'gemini.gemini-2.5-pro'
       | 'gemini.gemini-2.5-flash'
