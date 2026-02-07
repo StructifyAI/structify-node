@@ -713,8 +713,6 @@ export interface WorkflowSessionNode {
 
   function_name: string;
 
-  manually_edited: boolean;
-
   node_index: number;
 
   node_name: string;
@@ -742,6 +740,8 @@ export interface WorkflowSessionNode {
   execution_time_ms?: number | null;
 
   input_row_count?: number | null;
+
+  manually_edited?: boolean;
 
   original_node?: string | null;
 
