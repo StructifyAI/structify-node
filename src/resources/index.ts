@@ -366,7 +366,6 @@ export {
   type CreditsUsageRequest,
   type CreditsUsageResponse,
   type CreditsUsageTimeseriesPoint,
-  type DeleteTeamResponse,
   type GetTeamResponse,
   type Granularity,
   type InvitationDetailsResponse,
