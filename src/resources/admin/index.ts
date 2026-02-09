@@ -12,13 +12,6 @@ export {
   type JobDeleteParams,
 } from './jobs';
 export {
-  AdminSandboxesJobsList,
-  Sandbox,
-  type AdminSandbox,
-  type SandboxType,
-  type SandboxListParams,
-} from './sandbox';
-export {
   AdminTeamsListResponsesJobsList,
   Teams,
   type AdminTeamsListResponse,
@@ -72,6 +65,7 @@ export {
   type FunctionalTestLinkChatParams,
   type FunctionalTestUpdateResultsParams,
 } from './functional-tests';
+export { Sandbox, type SandboxListParams } from './sandbox';
 export {
   Users,
   type ImpersonateRequest,
