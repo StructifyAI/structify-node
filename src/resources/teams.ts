@@ -22,10 +22,6 @@ export class Teams extends APIResource {
     return this._client.get('/team/list', options);
   }
 
-  delete(teamId: string, options?: Core.RequestOptions): Core.APIPromise<DeleteTeamResponse> {
-    return this._client.delete(`/team/${teamId}`, options);
-  }
-
   acceptInvitation(
     body: TeamAcceptInvitationParams,
     options?: Core.RequestOptions,
@@ -194,10 +190,6 @@ export interface CreditsUsageTimeseriesPoint {
   bucket_start: string;
 
   groups: { [key: string]: number };
-}
-
-export interface DeleteTeamResponse {
-  success: boolean;
 }
 
 export interface GetTeamResponse {
@@ -438,7 +430,6 @@ export declare namespace Teams {
     type CreditsUsageRequest as CreditsUsageRequest,
     type CreditsUsageResponse as CreditsUsageResponse,
     type CreditsUsageTimeseriesPoint as CreditsUsageTimeseriesPoint,
-    type DeleteTeamResponse as DeleteTeamResponse,
     type GetTeamResponse as GetTeamResponse,
     type Granularity as Granularity,
     type InvitationDetailsResponse as InvitationDetailsResponse,

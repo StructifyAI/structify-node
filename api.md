@@ -154,7 +154,6 @@ Types:
 - <code><a href="./src/resources/teams.ts">CreditsUsageRequest</a></code>
 - <code><a href="./src/resources/teams.ts">CreditsUsageResponse</a></code>
 - <code><a href="./src/resources/teams.ts">CreditsUsageTimeseriesPoint</a></code>
-- <code><a href="./src/resources/teams.ts">DeleteTeamResponse</a></code>
 - <code><a href="./src/resources/teams.ts">GetTeamResponse</a></code>
 - <code><a href="./src/resources/teams.ts">Granularity</a></code>
 - <code><a href="./src/resources/teams.ts">InvitationDetailsResponse</a></code>
@@ -178,7 +177,6 @@ Methods:
 - <code title="post /team/create">client.teams.<a href="./src/resources/teams.ts">create</a>({ ...params }) -> CreateTeamResponse</code>
 - <code title="put /team/{team_id}">client.teams.<a href="./src/resources/teams.ts">update</a>(teamId, { ...params }) -> UpdateTeamResponse</code>
 - <code title="get /team/list">client.teams.<a href="./src/resources/teams.ts">list</a>() -> ListTeamsResponse</code>
-- <code title="delete /team/{team_id}">client.teams.<a href="./src/resources/teams.ts">delete</a>(teamId) -> DeleteTeamResponse</code>
 - <code title="post /team/invitations/accept">client.teams.<a href="./src/resources/teams.ts">acceptInvitation</a>({ ...params }) -> AcceptInvitationResponse</code>
 - <code title="post /team/{team_id}/members">client.teams.<a href="./src/resources/teams.ts">addMember</a>(teamId, { ...params }) -> AddMemberResponse</code>
 - <code title="post /team/{team_id}/projects">client.teams.<a href="./src/resources/teams.ts">createProject</a>(teamId, { ...params }) -> Project</code>
