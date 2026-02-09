@@ -50,7 +50,7 @@ import {
   Jobs,
 } from './jobs';
 import * as SandboxAPI from './sandbox';
-import { AdminSandbox, AdminSandboxesJobsList, Sandbox, SandboxListParams, SandboxType } from './sandbox';
+import { Sandbox, SandboxListParams } from './sandbox';
 import * as TeamsAPI from './teams';
 import {
   AdminTeamsListResponse,
@@ -103,7 +103,6 @@ Admin.Dataset = Dataset;
 Admin.Jobs = Jobs;
 Admin.AdminListJobsResponsesJobsList = AdminListJobsResponsesJobsList;
 Admin.Sandbox = Sandbox;
-Admin.AdminSandboxesJobsList = AdminSandboxesJobsList;
 Admin.FunctionalTests = FunctionalTests;
 Admin.Users = Users;
 Admin.ChatTemplates = ChatTemplates;
@@ -149,13 +148,7 @@ export declare namespace Admin {
     type JobDeleteParams as JobDeleteParams,
   };
 
-  export {
-    Sandbox as Sandbox,
-    type AdminSandbox as AdminSandbox,
-    type SandboxType as SandboxType,
-    AdminSandboxesJobsList as AdminSandboxesJobsList,
-    type SandboxListParams as SandboxListParams,
-  };
+  export { Sandbox as Sandbox, type SandboxListParams as SandboxListParams };
 
   export {
     FunctionalTests as FunctionalTests,

@@ -279,14 +279,9 @@ Methods:
 
 ## Sandbox
 
-Types:
-
-- <code><a href="./src/resources/admin/sandbox.ts">AdminSandbox</a></code>
-- <code><a href="./src/resources/admin/sandbox.ts">SandboxType</a></code>
-
 Methods:
 
-- <code title="get /admin/sandbox/list">client.admin.sandbox.<a href="./src/resources/admin/sandbox.ts">list</a>({ ...params }) -> AdminSandboxesJobsList</code>
+- <code title="get /admin/sandbox/list">client.admin.sandbox.<a href="./src/resources/admin/sandbox.ts">list</a>({ ...params }) -> SandboxesJobsList</code>
 
 ## FunctionalTests
 

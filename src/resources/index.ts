@@ -245,6 +245,7 @@ export {
 } from './projects';
 export { PublicSessions } from './public-sessions';
 export {
+  SandboxesJobsList,
   SandboxResource,
   type GetSandboxRequest,
   type Sandbox,
