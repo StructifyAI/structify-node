@@ -193,6 +193,8 @@ export interface CreditsUsageTimeseriesPoint {
 }
 
 export interface GetTeamResponse {
+  max_seats: number;
+
   subscription_status: TeamSubscriptionStatus;
 
   team: Team;
@@ -261,6 +263,8 @@ export interface Team {
 
   sandbox_provider?: string | null;
 
+  seats_override?: number | null;
+
   slack_team_icon?: string | null;
 
   slack_team_id?: string | null;
@@ -294,6 +298,8 @@ export interface TeamSubscriptionStatus {
 }
 
 export interface TeamWithRole extends Team {
+  max_seats: number;
+
   role: TeamRole;
 
   subscription_status: TeamSubscriptionStatus;
