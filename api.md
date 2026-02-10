@@ -232,6 +232,11 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/admin/teams.ts">AdminAddMemberRequest</a></code>
+- <code><a href="./src/resources/admin/teams.ts">AdminAddMemberResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">AdminListMembersResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">AdminRemoveMemberRequest</a></code>
+- <code><a href="./src/resources/admin/teams.ts">AdminRemoveMemberResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">AdminTeamsListResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">CancelSubscriptionRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">CancelSubscriptionResponse</a></code>
@@ -243,15 +248,21 @@ Types:
 - <code><a href="./src/resources/admin/teams.ts">ExtendTrialResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">GrantCreditsRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">GrantCreditsResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">UpdateSeatsOverrideRequest</a></code>
+- <code><a href="./src/resources/admin/teams.ts">UpdateSeatsOverrideResponse</a></code>
 
 Methods:
 
 - <code title="get /admin/team/list">client.admin.teams.<a href="./src/resources/admin/teams.ts">list</a>({ ...params }) -> AdminTeamsListResponsesJobsList</code>
+- <code title="post /admin/team/add_member">client.admin.teams.<a href="./src/resources/admin/teams.ts">addMember</a>({ ...params }) -> AdminAddMemberResponse</code>
 - <code title="post /admin/team/cancel_subscription">client.admin.teams.<a href="./src/resources/admin/teams.ts">cancelSubscription</a>({ ...params }) -> CancelSubscriptionResponse</code>
 - <code title="post /admin/team/create_subscription">client.admin.teams.<a href="./src/resources/admin/teams.ts">createSubscription</a>({ ...params }) -> CreateSubscriptionResponse</code>
 - <code title="post /admin/team/expire_grants">client.admin.teams.<a href="./src/resources/admin/teams.ts">expireGrants</a>({ ...params }) -> ExpireGrantsResponse</code>
 - <code title="post /admin/team/extend_trial">client.admin.teams.<a href="./src/resources/admin/teams.ts">extendTrial</a>({ ...params }) -> ExtendTrialResponse</code>
 - <code title="post /admin/team/grant_credits">client.admin.teams.<a href="./src/resources/admin/teams.ts">grantCredits</a>({ ...params }) -> GrantCreditsResponse</code>
+- <code title="get /admin/team/{team_id}/members">client.admin.teams.<a href="./src/resources/admin/teams.ts">listMembers</a>(teamId) -> AdminListMembersResponse</code>
+- <code title="post /admin/team/remove_member">client.admin.teams.<a href="./src/resources/admin/teams.ts">removeMember</a>({ ...params }) -> AdminRemoveMemberResponse</code>
+- <code title="post /admin/team/update_seats_override">client.admin.teams.<a href="./src/resources/admin/teams.ts">updateSeatsOverride</a>({ ...params }) -> UpdateSeatsOverrideResponse</code>
 
 ## Dataset
 

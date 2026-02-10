@@ -53,6 +53,11 @@ import * as SandboxAPI from './sandbox';
 import { Sandbox, SandboxListParams } from './sandbox';
 import * as TeamsAPI from './teams';
 import {
+  AdminAddMemberRequest,
+  AdminAddMemberResponse,
+  AdminListMembersResponse,
+  AdminRemoveMemberRequest,
+  AdminRemoveMemberResponse,
   AdminTeamsListResponse,
   AdminTeamsListResponsesJobsList,
   CancelSubscriptionRequest,
@@ -65,13 +70,18 @@ import {
   ExtendTrialResponse,
   GrantCreditsRequest,
   GrantCreditsResponse,
+  TeamAddMemberParams,
   TeamCancelSubscriptionParams,
   TeamCreateSubscriptionParams,
   TeamExpireGrantsParams,
   TeamExtendTrialParams,
   TeamGrantCreditsParams,
   TeamListParams,
+  TeamRemoveMemberParams,
+  TeamUpdateSeatsOverrideParams,
   Teams,
+  UpdateSeatsOverrideRequest,
+  UpdateSeatsOverrideResponse,
 } from './teams';
 import * as UsersAPI from './users';
 import {
@@ -111,6 +121,11 @@ Admin.Connector = Connector;
 export declare namespace Admin {
   export {
     Teams as Teams,
+    type AdminAddMemberRequest as AdminAddMemberRequest,
+    type AdminAddMemberResponse as AdminAddMemberResponse,
+    type AdminListMembersResponse as AdminListMembersResponse,
+    type AdminRemoveMemberRequest as AdminRemoveMemberRequest,
+    type AdminRemoveMemberResponse as AdminRemoveMemberResponse,
     type AdminTeamsListResponse as AdminTeamsListResponse,
     type CancelSubscriptionRequest as CancelSubscriptionRequest,
     type CancelSubscriptionResponse as CancelSubscriptionResponse,
@@ -122,13 +137,18 @@ export declare namespace Admin {
     type ExtendTrialResponse as ExtendTrialResponse,
     type GrantCreditsRequest as GrantCreditsRequest,
     type GrantCreditsResponse as GrantCreditsResponse,
+    type UpdateSeatsOverrideRequest as UpdateSeatsOverrideRequest,
+    type UpdateSeatsOverrideResponse as UpdateSeatsOverrideResponse,
     AdminTeamsListResponsesJobsList as AdminTeamsListResponsesJobsList,
     type TeamListParams as TeamListParams,
+    type TeamAddMemberParams as TeamAddMemberParams,
     type TeamCancelSubscriptionParams as TeamCancelSubscriptionParams,
     type TeamCreateSubscriptionParams as TeamCreateSubscriptionParams,
     type TeamExpireGrantsParams as TeamExpireGrantsParams,
     type TeamExtendTrialParams as TeamExtendTrialParams,
     type TeamGrantCreditsParams as TeamGrantCreditsParams,
+    type TeamRemoveMemberParams as TeamRemoveMemberParams,
+    type TeamUpdateSeatsOverrideParams as TeamUpdateSeatsOverrideParams,
   };
 
   export {

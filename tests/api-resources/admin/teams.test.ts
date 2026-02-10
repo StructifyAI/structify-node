@@ -34,6 +34,29 @@ describe('resource teams', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
+  test('addMember: only required params', async () => {
+    const responsePromise = client.admin.teams.addMember({
+      email: 'email',
+      role: 'read_only',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('addMember: required and optional params', async () => {
+    const response = await client.admin.teams.addMember({
+      email: 'email',
+      role: 'read_only',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+  });
+
   test('cancelSubscription: only required params', async () => {
     const responsePromise = client.admin.teams.cancelSubscription({
       team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -146,6 +169,67 @@ describe('resource teams', () => {
       expires_at: '2019-12-27T18:11:19.117Z',
       source_ref: 'source_ref',
       starts_at: '2019-12-27T18:11:19.117Z',
+    });
+  });
+
+  test('listMembers', async () => {
+    const responsePromise = client.admin.teams.listMembers('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('listMembers: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.admin.teams.listMembers('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
+  test('removeMember: only required params', async () => {
+    const responsePromise = client.admin.teams.removeMember({
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      user_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('removeMember: required and optional params', async () => {
+    const response = await client.admin.teams.removeMember({
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      user_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+  });
+
+  test('updateSeatsOverride: only required params', async () => {
+    const responsePromise = client.admin.teams.updateSeatsOverride({
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('updateSeatsOverride: required and optional params', async () => {
+    const response = await client.admin.teams.updateSeatsOverride({
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      seats_override: 0,
     });
   });
 });
