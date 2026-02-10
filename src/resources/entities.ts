@@ -136,11 +136,11 @@ export class Entities extends APIResource {
    * Add multiple entities to a dataset from a Parquet file with fast batch insert
    */
   uploadParquet(params: EntityUploadParquetParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { dataset, table_name, ...body } = params;
+    const { dataset, table_name, start_embedding, ...body } = params;
     return this._client.post(
       '/entity/upload_parquet',
       Core.multipartFormRequestOptions({
-        query: { dataset, table_name },
+        query: { dataset, table_name, start_embedding },
         body,
         ...options,
         headers: { Accept: '*/*', ...options?.headers },
@@ -1665,6 +1665,11 @@ export interface EntityUploadParquetParams {
    * Body param
    */
   content: Core.Uploadable;
+
+  /**
+   * Query param
+   */
+  start_embedding?: boolean;
 }
 
 export interface EntityVerifyParams {
