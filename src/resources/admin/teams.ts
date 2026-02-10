@@ -151,11 +151,13 @@ export namespace AdminListMembersResponse {
 
     email: string;
 
+    pending: boolean;
+
     role: TeamsAPI.TeamRole;
 
     team_id: string;
 
-    user_id: string;
+    user_id?: string | null;
   }
 }
 

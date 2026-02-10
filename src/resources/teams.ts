@@ -37,6 +37,19 @@ export class Teams extends APIResource {
     return this._client.post(`/team/${teamId}/members`, { body, ...options });
   }
 
+  cancelInvitation(
+    teamId: string,
+    params: TeamCancelInvitationParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    const { email } = params;
+    return this._client.delete(`/team/${teamId}/invitations`, {
+      query: { email },
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
   createProject(
     teamId: string,
     body: TeamCreateProjectParams,
@@ -220,11 +233,13 @@ export namespace ListMembersResponse {
 
     email: string;
 
+    pending: boolean;
+
     role: TeamsAPI.TeamRole;
 
     team_id: string;
 
-    user_id: string;
+    user_id?: string | null;
   }
 }
 
@@ -392,6 +407,10 @@ export interface TeamAddMemberParams {
   role: TeamRole;
 }
 
+export interface TeamCancelInvitationParams {
+  email: string;
+}
+
 export interface TeamCreateProjectParams {
   name: string;
 
@@ -457,6 +476,7 @@ export declare namespace Teams {
     type TeamUpdateParams as TeamUpdateParams,
     type TeamAcceptInvitationParams as TeamAcceptInvitationParams,
     type TeamAddMemberParams as TeamAddMemberParams,
+    type TeamCancelInvitationParams as TeamCancelInvitationParams,
     type TeamCreateProjectParams as TeamCreateProjectParams,
     type TeamCreditsUsageParams as TeamCreditsUsageParams,
     type TeamUpdateMemberRoleParams as TeamUpdateMemberRoleParams,

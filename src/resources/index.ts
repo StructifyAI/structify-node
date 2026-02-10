@@ -388,6 +388,7 @@ export {
   type TeamUpdateParams,
   type TeamAcceptInvitationParams,
   type TeamAddMemberParams,
+  type TeamCancelInvitationParams,
   type TeamCreateProjectParams,
   type TeamCreditsUsageParams,
   type TeamUpdateMemberRoleParams,
