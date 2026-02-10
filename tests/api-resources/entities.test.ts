@@ -385,6 +385,7 @@ describe('resource entities', () => {
       dataset: 'dataset',
       table_name: 'table_name',
       content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      start_embedding: true,
     });
   });
 
