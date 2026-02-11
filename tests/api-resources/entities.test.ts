@@ -72,7 +72,6 @@ describe('resource entities', () => {
           },
         ],
       },
-      attempt_merge: true,
       source: 'None',
     });
   });
@@ -123,7 +122,6 @@ describe('resource entities', () => {
           ],
         },
       ],
-      attempt_merge: true,
       skip_malformed_entities: true,
       source: 'None',
     });

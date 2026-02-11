@@ -1484,11 +1484,6 @@ export interface EntityAddParams {
    */
   entity_graph: SharedAPI.KnowledgeGraph;
 
-  /**
-   * If true, attempt to merge with existing entities in the dataset
-   */
-  attempt_merge?: boolean;
-
   source?: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage | EntityAddParams.SecFiling;
 }
 
@@ -1510,11 +1505,6 @@ export interface EntityAddBatchParams {
   dataset: string;
 
   entity_graphs: Array<SharedAPI.KnowledgeGraph>;
-
-  /**
-   * If true, attempt to merge with existing entities in the dataset
-   */
-  attempt_merge?: boolean;
 
   skip_malformed_entities?: boolean;
 
