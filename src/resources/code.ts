@@ -48,6 +48,8 @@ export interface GenerateCodeRequest {
 
   filePaths?: Array<string>;
 
+  overridePreviousMessageId?: string | null;
+
   triggerWorkflowExecution?: boolean;
 
   userMessageId?: string | null;
@@ -116,6 +118,8 @@ export interface CodeGenerateCodeParams {
   connectorIds?: Array<string>;
 
   filePaths?: Array<string>;
+
+  overridePreviousMessageId?: string | null;
 
   triggerWorkflowExecution?: boolean;
 
