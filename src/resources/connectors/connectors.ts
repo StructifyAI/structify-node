@@ -637,6 +637,8 @@ export namespace LlmInformationStore {
          * Represents a column in a table or API resource
          */
         export interface Column {
+          id: string;
+
           /**
            * Name of the column
            */
@@ -756,6 +758,8 @@ export namespace UpdateTableResponse {
      * Represents a column in a table or API resource
      */
     export interface Column {
+      id: string;
+
       /**
        * Name of the column
        */
@@ -892,6 +896,8 @@ export namespace ConnectorSearchTablesResponse {
      * Represents a column in a table or API resource
      */
     export interface Column {
+      id: string;
+
       /**
        * Name of the column
        */
@@ -945,6 +951,8 @@ export namespace ConnectorSearchTablesResponse {
        * Represents a column in a table or API resource
        */
       export interface Column {
+        id: string;
+
         /**
          * Name of the column
          */
@@ -989,6 +997,8 @@ export namespace ConnectorSearchTablesResponse {
      * Represents a column in a table or API resource
      */
     export interface Column {
+      id: string;
+
       /**
        * Name of the column
        */
@@ -1042,6 +1052,8 @@ export namespace ConnectorSearchTablesResponse {
        * Represents a column in a table or API resource
        */
       export interface Column {
+        id: string;
+
         /**
          * Name of the column
          */
