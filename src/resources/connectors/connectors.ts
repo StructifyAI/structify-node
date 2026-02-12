@@ -239,10 +239,6 @@ export interface Connector {
 
   nango_integration_id?: string | null;
 
-  pipedream_account_id?: string | null;
-
-  pipedream_external_id?: string | null;
-
   refresh_script?: string | null;
 
   usage_snippet_override?: string | null;
@@ -355,15 +351,6 @@ export interface CreateConnectorRequest {
    * Nango integration ID (e.g., "linear", "slack")
    */
   nango_integration_id?: string | null;
-
-  pipedream_account_id?: string | null;
-
-  /**
-   * Unique external ID for Pipedream routing (required for Pipedream connectors)
-   */
-  pipedream_external_id?: string | null;
-
-  pipedream_project_id?: string | null;
 
   refresh_script?: string | null;
 
@@ -1101,15 +1088,6 @@ export interface ConnectorCreateParams {
    * Nango integration ID (e.g., "linear", "slack")
    */
   nango_integration_id?: string | null;
-
-  pipedream_account_id?: string | null;
-
-  /**
-   * Unique external ID for Pipedream routing (required for Pipedream connectors)
-   */
-  pipedream_external_id?: string | null;
-
-  pipedream_project_id?: string | null;
 
   refresh_script?: string | null;
 
