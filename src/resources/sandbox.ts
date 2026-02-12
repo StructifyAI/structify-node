@@ -42,6 +42,8 @@ export interface Sandbox {
 
   status: 'alive' | 'terminated';
 
+  team_id: string;
+
   updated_at: string;
 
   api_url?: string | null;

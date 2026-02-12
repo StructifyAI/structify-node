@@ -329,6 +329,8 @@ export interface UpdateMemberRoleResponse {
 }
 
 export interface UpdateTeamRequest {
+  daytona_credentials?: UpdateTeamRequest.DaytonaCredentials | null;
+
   description?: string | null;
 
   name?: string | null;
@@ -348,6 +350,22 @@ export interface UpdateTeamRequest {
   teams_app_password?: string | null;
 
   teams_tenant_id?: string | null;
+
+  workflow_bucket?: UpdateTeamRequest.WorkflowBucket | null;
+}
+
+export namespace UpdateTeamRequest {
+  export interface DaytonaCredentials {
+    api_key?: string | null;
+
+    api_url?: string | null;
+  }
+
+  export interface WorkflowBucket {
+    bucket_url: string;
+
+    gcp_credentials_json?: string | null;
+  }
 }
 
 export interface UpdateTeamResponse {
@@ -376,6 +394,8 @@ export interface TeamCreateParams {
 }
 
 export interface TeamUpdateParams {
+  daytona_credentials?: TeamUpdateParams.DaytonaCredentials | null;
+
   description?: string | null;
 
   name?: string | null;
@@ -395,6 +415,22 @@ export interface TeamUpdateParams {
   teams_app_password?: string | null;
 
   teams_tenant_id?: string | null;
+
+  workflow_bucket?: TeamUpdateParams.WorkflowBucket | null;
+}
+
+export namespace TeamUpdateParams {
+  export interface DaytonaCredentials {
+    api_key?: string | null;
+
+    api_url?: string | null;
+  }
+
+  export interface WorkflowBucket {
+    bucket_url: string;
+
+    gcp_credentials_json?: string | null;
+  }
 }
 
 export interface TeamAcceptInvitationParams {
