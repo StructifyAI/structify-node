@@ -282,12 +282,14 @@ Types:
 - <code><a href="./src/resources/admin/jobs.ts">AdminDeleteJobsRequest</a></code>
 - <code><a href="./src/resources/admin/jobs.ts">AdminDeleteJobsResponse</a></code>
 - <code><a href="./src/resources/admin/jobs.ts">AdminListJobsRequestParams</a></code>
-- <code><a href="./src/resources/admin/jobs.ts">AdminListJobsResponse</a></code>
+- <code><a href="./src/resources/admin/jobs.ts">JobListResponse</a></code>
+- <code><a href="./src/resources/admin/jobs.ts">JobKillByUserResponse</a></code>
 
 Methods:
 
-- <code title="get /admin/jobs/list">client.admin.jobs.<a href="./src/resources/admin/jobs.ts">list</a>({ ...params }) -> AdminListJobsResponsesJobsList</code>
+- <code title="get /admin/jobs/list">client.admin.jobs.<a href="./src/resources/admin/jobs.ts">list</a>({ ...params }) -> JobListResponsesJobsList</code>
 - <code title="post /admin/jobs/delete">client.admin.jobs.<a href="./src/resources/admin/jobs.ts">delete</a>({ ...params }) -> AdminDeleteJobsResponse</code>
+- <code title="post /admin/jobs/kill_by_user">client.admin.jobs.<a href="./src/resources/admin/jobs.ts">killByUser</a>({ ...params }) -> JobKillByUserResponse</code>
 
 ## Sandbox
 
@@ -420,17 +422,15 @@ Types:
 - <code><a href="./src/resources/jobs.ts">GetJobEventsResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobListResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobCancelResponse</a></code>
-- <code><a href="./src/resources/jobs.ts">JobGetScrapersResponse</a></code>
-- <code><a href="./src/resources/jobs.ts">JobGetSourceEntitiesResponse</a></code>
+- <code><a href="./src/resources/jobs.ts">JobGetResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobStatusResponse</a></code>
 
 Methods:
 
 - <code title="get /jobs/list">client.jobs.<a href="./src/resources/jobs.ts">list</a>({ ...params }) -> JobListResponsesJobsList</code>
 - <code title="post /jobs/cancel/{uuid}">client.jobs.<a href="./src/resources/jobs.ts">cancel</a>(uuid) -> JobCancelResponse</code>
+- <code title="get /jobs/get/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">get</a>(jobId) -> JobGetResponse</code>
 - <code title="get /jobs/{job_id}/events">client.jobs.<a href="./src/resources/jobs.ts">getEvents</a>(jobId) -> GetJobEventsResponse</code>
-- <code title="get /jobs/get_scrapers/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">getScrapers</a>(jobId) -> JobGetScrapersResponse</code>
-- <code title="get /jobs/get_source_entities/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">getSourceEntities</a>(jobId) -> JobGetSourceEntitiesResponse</code>
 - <code title="post /jobs/schedule">client.jobs.<a href="./src/resources/jobs.ts">schedule</a>() -> void</code>
 - <code title="post /jobs/status_aggregated">client.jobs.<a href="./src/resources/jobs.ts">status</a>({ ...params }) -> JobStatusResponse</code>
 

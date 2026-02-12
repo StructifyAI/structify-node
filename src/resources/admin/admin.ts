@@ -43,10 +43,12 @@ import {
   AdminDeleteJobsRequest,
   AdminDeleteJobsResponse,
   AdminListJobsRequestParams,
-  AdminListJobsResponse,
-  AdminListJobsResponsesJobsList,
   JobDeleteParams,
+  JobKillByUserParams,
+  JobKillByUserResponse,
   JobListParams,
+  JobListResponse,
+  JobListResponsesJobsList,
   Jobs,
 } from './jobs';
 import * as SandboxAPI from './sandbox';
@@ -111,7 +113,7 @@ Admin.Teams = Teams;
 Admin.AdminTeamsListResponsesJobsList = AdminTeamsListResponsesJobsList;
 Admin.Dataset = Dataset;
 Admin.Jobs = Jobs;
-Admin.AdminListJobsResponsesJobsList = AdminListJobsResponsesJobsList;
+Admin.JobListResponsesJobsList = JobListResponsesJobsList;
 Admin.Sandbox = Sandbox;
 Admin.FunctionalTests = FunctionalTests;
 Admin.Users = Users;
@@ -162,10 +164,12 @@ export declare namespace Admin {
     type AdminDeleteJobsRequest as AdminDeleteJobsRequest,
     type AdminDeleteJobsResponse as AdminDeleteJobsResponse,
     type AdminListJobsRequestParams as AdminListJobsRequestParams,
-    type AdminListJobsResponse as AdminListJobsResponse,
-    AdminListJobsResponsesJobsList as AdminListJobsResponsesJobsList,
+    type JobListResponse as JobListResponse,
+    type JobKillByUserResponse as JobKillByUserResponse,
+    JobListResponsesJobsList as JobListResponsesJobsList,
     type JobListParams as JobListParams,
     type JobDeleteParams as JobDeleteParams,
+    type JobKillByUserParams as JobKillByUserParams,
   };
 
   export { Sandbox as Sandbox, type SandboxListParams as SandboxListParams };

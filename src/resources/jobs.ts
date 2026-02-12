@@ -37,25 +37,12 @@ export class Jobs extends APIResource {
     return this._client.post(`/jobs/cancel/${uuid}`, options);
   }
 
+  get(jobId: string, options?: Core.RequestOptions): Core.APIPromise<JobGetResponse> {
+    return this._client.get(`/jobs/get/${jobId}`, options);
+  }
+
   getEvents(jobId: string, options?: Core.RequestOptions): Core.APIPromise<GetJobEventsResponse> {
     return this._client.get(`/jobs/${jobId}/events`, options);
-  }
-
-  /**
-   * Retrieve scrapers associated with a job from structify.
-   */
-  getScrapers(jobId: string, options?: Core.RequestOptions): Core.APIPromise<JobGetScrapersResponse> {
-    return this._client.get(`/jobs/get_scrapers/${jobId}`, options);
-  }
-
-  /**
-   * Get all source entities and their associated sources for a specific job
-   */
-  getSourceEntities(
-    jobId: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<JobGetSourceEntitiesResponse> {
-    return this._client.get(`/jobs/get_source_entities/${jobId}`, options);
   }
 
   /**
@@ -300,10 +287,16 @@ export interface JobCancelResponse {
   seeded_kg_search_term?: string | null;
 }
 
-export type JobGetScrapersResponse = Array<JobGetScrapersResponse.JobGetScrapersResponseItem>;
+export interface JobGetResponse {
+  agents: Array<JobGetResponse.Agent>;
 
-export namespace JobGetScrapersResponse {
-  export interface JobGetScrapersResponseItem {
+  info: JobGetResponse.Info;
+
+  saved: Array<Array<JobGetResponse.Saved>>;
+}
+
+export namespace JobGetResponse {
+  export interface Agent {
     base_url: string;
 
     is_newly_created: boolean;
@@ -322,14 +315,157 @@ export namespace JobGetScrapersResponse {
 
     next_page_code?: string | null;
   }
-}
 
-export interface JobGetSourceEntitiesResponse {
-  source_entities: Array<Array<JobGetSourceEntitiesResponse.SourceEntity>>;
-}
+  export interface Info {
+    id: string;
 
-export namespace JobGetSourceEntitiesResponse {
-  export interface SourceEntity {
+    created_at: string;
+
+    dataset_id: string;
+
+    job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore';
+
+    status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+    user_id: string;
+
+    message?: string | null;
+
+    parameters?: Info.Parameters | null;
+
+    reason?: string | null;
+
+    run_started_time?: string | null;
+
+    run_time_milliseconds?: number | null;
+
+    special_job_type?: 'HumanLLM' | null;
+  }
+
+  export namespace Info {
+    export interface Parameters {
+      allow_extra_entities: boolean;
+
+      extraction_criteria: Array<StructureAPI.SaveRequirement>;
+
+      /**
+       * Knowledge graph info structured to deserialize and display in the same format
+       * that the LLM outputs. Also the first representation of an LLM output in the
+       * pipeline from raw tool output to being merged into a DB
+       */
+      seeded_kg: SharedAPI.KnowledgeGraph;
+
+      structuring_input:
+        | Parameters.Agent
+        | Parameters.TransformationPrompt
+        | Parameters.ScrapeFromURLProperty
+        | Parameters.ScrapeURL
+        | Parameters.ConnectorExploration;
+
+      instructions?: string | null;
+
+      model?: string | null;
+    }
+
+    export namespace Parameters {
+      export interface Agent {
+        Agent: Agent.Pdf | Agent.Web;
+      }
+
+      export namespace Agent {
+        export interface Pdf {
+          /**
+           * Ingest all pages of a PDF and process them independently.
+           */
+          PDF: Pdf.Pdf;
+        }
+
+        export namespace Pdf {
+          /**
+           * Ingest all pages of a PDF and process them independently.
+           */
+          export interface Pdf {
+            path: string;
+
+            page?: number | null;
+          }
+        }
+
+        export interface Web {
+          Web: Web.Web;
+        }
+
+        export namespace Web {
+          export interface Web {
+            banned_domains?: Array<string>;
+
+            starting_searches?: Array<string>;
+
+            starting_urls?: Array<string>;
+          }
+        }
+      }
+
+      export interface TransformationPrompt {
+        TransformationPrompt: string;
+      }
+
+      export interface ScrapeFromURLProperty {
+        ScrapeFromUrlProperty: ScrapeFromURLProperty.ScrapeFromURLProperty;
+      }
+
+      export namespace ScrapeFromURLProperty {
+        export interface ScrapeFromURLProperty {
+          batch_scrape: boolean;
+
+          url_property_name: string;
+
+          use_markdown: boolean;
+        }
+      }
+
+      export interface ScrapeURL {
+        ScrapeUrl: ScrapeURL.ScrapeURL;
+      }
+
+      export namespace ScrapeURL {
+        export interface ScrapeURL {
+          batch_scrape: boolean;
+
+          url: string;
+
+          use_markdown: boolean;
+        }
+      }
+
+      export interface ConnectorExploration {
+        ConnectorExploration: ConnectorExploration.ConnectorExploration;
+      }
+
+      export namespace ConnectorExploration {
+        export interface ConnectorExploration {
+          connector_id: string;
+
+          /**
+           * Identifies the phase of connector exploration
+           *
+           * This enum is used to track which phase of exploration a chat session belongs to.
+           * It's stored as JSONB in the database to allow for flexible phase identification.
+           */
+          exploration_phase_id: ConnectorsAPI.ExplorationPhaseID;
+
+          exploration_run_id: string;
+
+          /**
+           * Which exploration stage to run
+           */
+          stage: 'both' | 'ingestion' | 'annotation';
+        }
+      }
+    }
+  }
+
+  export interface Saved {
     id: string;
 
     created_at: string;
@@ -345,15 +481,15 @@ export namespace JobGetSourceEntitiesResponse {
         | string
         | boolean
         | number
-        | SourceEntity.PartialDateObject
+        | Saved.PartialDateObject
         | string
         | string
-        | SourceEntity.URLObject
+        | Saved.URLObject
         | string
-        | SourceEntity.MoneyObject
+        | Saved.MoneyObject
         | SharedAPI.Image
-        | SourceEntity.PersonName
-        | SourceEntity.AddressObject
+        | Saved.PersonName
+        | Saved.AddressObject
         | string;
     };
 
@@ -367,12 +503,12 @@ export namespace JobGetSourceEntitiesResponse {
 
     link?: SourcesAPI.Source | null;
 
-    location?: SourceEntity.Text | SourceEntity.Visual | SourceEntity.Page | null;
+    location?: Saved.Text | Saved.Visual | Saved.Page | null;
 
     scraper_id?: string | null;
   }
 
-  export namespace SourceEntity {
+  export namespace Saved {
     export interface PartialDateObject {
       original_string: string;
 
@@ -526,8 +662,7 @@ export declare namespace Jobs {
     type GetJobEventsResponse as GetJobEventsResponse,
     type JobListResponse as JobListResponse,
     type JobCancelResponse as JobCancelResponse,
-    type JobGetScrapersResponse as JobGetScrapersResponse,
-    type JobGetSourceEntitiesResponse as JobGetSourceEntitiesResponse,
+    type JobGetResponse as JobGetResponse,
     type JobStatusResponse as JobStatusResponse,
     JobListResponsesJobsList as JobListResponsesJobsList,
     type JobListParams as JobListParams,
