@@ -274,8 +274,6 @@ export interface Team {
 
   description?: string | null;
 
-  pipedream_project_id?: string | null;
-
   sandbox_provider?: string | null;
 
   seats_override?: number | null;
@@ -334,8 +332,6 @@ export interface UpdateTeamRequest {
   description?: string | null;
 
   name?: string | null;
-
-  pipedream_project_id?: string | null;
 
   slack_bot_token?: string | null;
 
@@ -399,8 +395,6 @@ export interface TeamUpdateParams {
   description?: string | null;
 
   name?: string | null;
-
-  pipedream_project_id?: string | null;
 
   slack_bot_token?: string | null;
 
