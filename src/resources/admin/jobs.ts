@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as SharedAPI from '../shared';
 import * as StructureAPI from '../structure';
@@ -8,24 +9,34 @@ import * as ConnectorsAPI from '../connectors/connectors';
 import { JobsList, type JobsListParams } from '../../pagination';
 
 export class Jobs extends APIResource {
-  /**
-   * This endpoint allows admins to list jobs from all users without user ownership
-   * restrictions. Optionally filter out test users (users with functional_test
-   * feature flag or debug permission).
-   */
   list(
-    query: JobListParams,
+    query?: JobListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<AdminListJobsResponsesJobsList, AdminListJobsResponse> {
-    return this._client.getAPIList('/admin/jobs/list', AdminListJobsResponsesJobsList, { query, ...options });
+  ): Core.PagePromise<JobListResponsesJobsList, JobListResponse>;
+  list(options?: Core.RequestOptions): Core.PagePromise<JobListResponsesJobsList, JobListResponse>;
+  list(
+    query: JobListParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<JobListResponsesJobsList, JobListResponse> {
+    if (isRequestOptions(query)) {
+      return this.list({}, query);
+    }
+    return this._client.getAPIList('/admin/jobs/list', JobListResponsesJobsList, { query, ...options });
   }
 
   delete(body: JobDeleteParams, options?: Core.RequestOptions): Core.APIPromise<AdminDeleteJobsResponse> {
     return this._client.post('/admin/jobs/delete', { body, ...options });
   }
+
+  killByUser(
+    body: JobKillByUserParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<JobKillByUserResponse> {
+    return this._client.post('/admin/jobs/kill_by_user', { body, ...options });
+  }
 }
 
-export class AdminListJobsResponsesJobsList extends JobsList<AdminListJobsResponse> {}
+export class JobListResponsesJobsList extends JobsList<JobListResponse> {}
 
 export interface AdminDeleteJobsRequest {
   job_ids: Array<string>;
@@ -36,23 +47,21 @@ export interface AdminDeleteJobsResponse {
 }
 
 export interface AdminListJobsRequestParams {
-  dataset_id?: string | null;
-
-  /**
-   * Filter out jobs from test users (users with functional_test feature flag or
-   * debug permission)
-   */
-  filter_test_users?: boolean;
+  job_type?: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | null;
 
   limit?: number;
 
   offset?: number;
 
   status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
+
+  user_id?: string | null;
 }
 
-export interface AdminListJobsResponse {
+export interface JobListResponse {
   id: string;
+
+  created_at: string;
 
   dataset_id: string;
 
@@ -62,10 +71,20 @@ export interface AdminListJobsResponse {
 
   user_id: string;
 
-  parameters?: AdminListJobsResponse.Parameters | null;
+  message?: string | null;
+
+  parameters?: JobListResponse.Parameters | null;
+
+  reason?: string | null;
+
+  run_started_time?: string | null;
+
+  run_time_milliseconds?: number | null;
+
+  special_job_type?: 'HumanLLM' | null;
 }
 
-export namespace AdminListJobsResponse {
+export namespace JobListResponse {
   export interface Parameters {
     allow_extra_entities: boolean;
 
@@ -188,48 +207,38 @@ export namespace AdminListJobsResponse {
   }
 }
 
+export interface JobKillByUserResponse {
+  killed_jobs: number;
+}
+
 export interface JobListParams extends JobsListParams {
-  /**
-   * Filter out jobs from test users (users with functional_test feature flag or
-   * debug permission)
-   */
-  filter_test_users: boolean;
+  job_type?: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | null;
 
-  /**
-   * Dataset ID to optionally filter jobs by
-   */
-  dataset_id?: string | null;
-
-  /**
-   * Seeded kg search term
-   */
-  seeded_kg_search_term?: string | null;
-
-  /**
-   * List since a specific timestamp
-   */
-  since?: string | null;
-
-  /**
-   * Status to optionally filter jobs by
-   */
   status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
+
+  user_id?: string | null;
 }
 
 export interface JobDeleteParams {
   job_ids: Array<string>;
 }
 
-Jobs.AdminListJobsResponsesJobsList = AdminListJobsResponsesJobsList;
+export interface JobKillByUserParams {
+  user_id: string;
+}
+
+Jobs.JobListResponsesJobsList = JobListResponsesJobsList;
 
 export declare namespace Jobs {
   export {
     type AdminDeleteJobsRequest as AdminDeleteJobsRequest,
     type AdminDeleteJobsResponse as AdminDeleteJobsResponse,
     type AdminListJobsRequestParams as AdminListJobsRequestParams,
-    type AdminListJobsResponse as AdminListJobsResponse,
-    AdminListJobsResponsesJobsList as AdminListJobsResponsesJobsList,
+    type JobListResponse as JobListResponse,
+    type JobKillByUserResponse as JobKillByUserResponse,
+    JobListResponsesJobsList as JobListResponsesJobsList,
     type JobListParams as JobListParams,
     type JobDeleteParams as JobDeleteParams,
+    type JobKillByUserParams as JobKillByUserParams,
   };
 }
