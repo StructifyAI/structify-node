@@ -239,8 +239,6 @@ export interface Connector {
 
   nango_integration_id?: string | null;
 
-  refresh_script?: string | null;
-
   usage_snippet_override?: string | null;
 }
 
@@ -351,8 +349,6 @@ export interface CreateConnectorRequest {
    * Nango integration ID (e.g., "linear", "slack")
    */
   nango_integration_id?: string | null;
-
-  refresh_script?: string | null;
 
   /**
    * Optional secrets/environment variables for the connector
@@ -688,8 +684,6 @@ export interface UpdateConnectorRequest {
   known_connector_type?: string | null;
 
   name?: string | null;
-
-  refresh_script?: string | null;
 
   usage_snippet_override?: string | null;
 }
@@ -1089,8 +1083,6 @@ export interface ConnectorCreateParams {
    */
   nango_integration_id?: string | null;
 
-  refresh_script?: string | null;
-
   /**
    * Optional secrets/environment variables for the connector
    */
@@ -1103,8 +1095,6 @@ export interface ConnectorUpdateParams {
   known_connector_type?: string | null;
 
   name?: string | null;
-
-  refresh_script?: string | null;
 
   usage_snippet_override?: string | null;
 }
