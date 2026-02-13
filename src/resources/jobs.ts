@@ -106,8 +106,6 @@ export interface JobListResponse {
   run_started_time?: string | null;
 
   run_time_milliseconds?: number | null;
-
-  special_job_type?: 'HumanLLM' | null;
 }
 
 export namespace JobListResponse {
@@ -338,8 +336,6 @@ export namespace JobGetResponse {
     run_started_time?: string | null;
 
     run_time_milliseconds?: number | null;
-
-    special_job_type?: 'HumanLLM' | null;
   }
 
   export namespace Info {
