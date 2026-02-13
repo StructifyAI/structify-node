@@ -899,6 +899,12 @@ export namespace ListChatSessionsResponse {
     owner_email?: string | null;
 
     project_id?: string | null;
+
+    slack_channel_id?: string | null;
+
+    teams_channel_id?: string | null;
+
+    teams_conversation_id?: string | null;
   }
 }
 
