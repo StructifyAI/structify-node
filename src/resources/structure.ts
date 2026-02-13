@@ -468,11 +468,11 @@ export interface StructurePdfParams {
 
   instructions?: string | null;
 
-  mode?: 'Single' | 'Batch';
-
   model?: string | null;
 
   node_id?: string | null;
+
+  pages?: Array<number> | null;
 }
 
 export interface StructureRunAsyncParams {
