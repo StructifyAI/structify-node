@@ -294,6 +294,8 @@ export interface EntityGetResponse {
   };
 
   updated_at: string;
+
+  job_id?: string | null;
 }
 
 export namespace EntityGetResponse {
@@ -392,6 +394,8 @@ export namespace EntityGetLocalSubgraphResponse {
     };
 
     updated_at: string;
+
+    job_id?: string | null;
   }
 
   export namespace Neighbor {
@@ -783,6 +787,8 @@ export namespace EntitySearchResponse {
     };
 
     updated_at: string;
+
+    job_id?: string | null;
   }
 
   export namespace EntitySearchResponseItem {
@@ -878,6 +884,8 @@ export namespace EntitySummarizeResponse {
     };
 
     updated_at: string;
+
+    job_id?: string | null;
   }
 
   export namespace EntitySummarizeResponseItem {
@@ -970,6 +978,8 @@ export interface EntityUpdatePropertyResponse {
   };
 
   updated_at: string;
+
+  job_id?: string | null;
 }
 
 export namespace EntityUpdatePropertyResponse {
@@ -1076,6 +1086,8 @@ export namespace EntityViewResponse {
     };
 
     updated_at: string;
+
+    job_id?: string | null;
   }
 
   export namespace ConnectedEntity {
@@ -1167,6 +1179,8 @@ export namespace EntityViewResponse {
     };
 
     updated_at: string;
+
+    job_id?: string | null;
   }
 
   export namespace Entity {
@@ -1353,6 +1367,8 @@ export namespace EntityViewResponse {
     };
 
     updated_at: string;
+
+    job_id?: string | null;
   }
 
   export namespace SimilarEntity {

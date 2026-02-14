@@ -414,8 +414,6 @@ export interface DatasetViewTableResponse {
 
   dataset_id: string;
 
-  job_ids: Array<string>;
-
   label: string;
 
   properties: {
@@ -436,6 +434,8 @@ export interface DatasetViewTableResponse {
   };
 
   updated_at: string;
+
+  job_id?: string | null;
 }
 
 export namespace DatasetViewTableResponse {
@@ -516,8 +516,6 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     dataset_id: string;
 
-    job_ids: Array<string>;
-
     label: string;
 
     properties: {
@@ -538,6 +536,8 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
     };
 
     updated_at: string;
+
+    job_id?: string | null;
   }
 
   export namespace ConnectedEntity {
@@ -609,8 +609,6 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
 
     dataset_id: string;
 
-    job_ids: Array<string>;
-
     label: string;
 
     properties: {
@@ -631,6 +629,8 @@ export namespace DatasetViewTablesWithRelationshipsResponse {
     };
 
     updated_at: string;
+
+    job_id?: string | null;
   }
 
   export namespace Entity {
