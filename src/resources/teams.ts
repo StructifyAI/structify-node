@@ -333,6 +333,8 @@ export interface UpdateTeamRequest {
 
   name?: string | null;
 
+  sandbox_provider?: 'modal' | 'daytona' | null;
+
   slack_bot_token?: string | null;
 
   slack_team_icon?: string | null;
@@ -395,6 +397,8 @@ export interface TeamUpdateParams {
   description?: string | null;
 
   name?: string | null;
+
+  sandbox_provider?: 'modal' | 'daytona' | null;
 
   slack_bot_token?: string | null;
 
