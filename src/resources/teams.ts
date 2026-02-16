@@ -272,6 +272,8 @@ export interface Team {
 
   updated_at: string;
 
+  daytona_credentials?: Team.DaytonaCredentials | null;
+
   description?: string | null;
 
   sandbox_provider?: string | null;
@@ -289,6 +291,22 @@ export interface Team {
   teams_service_url?: string | null;
 
   teams_tenant_id?: string | null;
+
+  workflow_bucket?: Team.WorkflowBucket | null;
+}
+
+export namespace Team {
+  export interface DaytonaCredentials {
+    api_key?: string | null;
+
+    api_url?: string | null;
+  }
+
+  export interface WorkflowBucket {
+    bucket_url: string;
+
+    gcp_credentials_json?: string | null;
+  }
 }
 
 export type TeamRole = 'read_only' | 'member' | 'admin' | 'owner';
