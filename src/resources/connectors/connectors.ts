@@ -221,6 +221,8 @@ export interface Connector {
 
   team_id: string;
 
+  team_visibility: 'Team' | 'Private';
+
   updated_at: string;
 
   connector_category?: ConnectorCategory | null;
