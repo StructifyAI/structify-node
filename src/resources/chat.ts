@@ -3,6 +3,7 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as ChatAPI from './chat';
+import * as SessionsAPI from './sessions';
 import * as SharedAPI from './shared';
 import * as StructureAPI from './structure';
 
@@ -525,6 +526,8 @@ export interface ChatSession {
   teams_conversation_id?: string | null;
 
   teams_tenant_id?: string | null;
+
+  user_message_head?: string | null;
 }
 
 export type ChatSessionRole = 'viewer' | 'editor' | 'owner';
@@ -587,6 +590,8 @@ export interface ChatSessionWithMessages {
   teams_conversation_id?: string | null;
 
   teams_tenant_id?: string | null;
+
+  user_message_head?: string | null;
 }
 
 export namespace ChatSessionWithMessages {
@@ -799,6 +804,8 @@ export namespace GetChatSessionResponse {
 
     visibility: ChatAPI.ChatVisibility;
 
+    workflow_sessions: Array<SessionsAPI.WorkflowSession>;
+
     latest_workflow_session_id?: string | null;
 
     name?: string | null;
@@ -816,6 +823,8 @@ export namespace GetChatSessionResponse {
     teams_conversation_id?: string | null;
 
     teams_tenant_id?: string | null;
+
+    user_message_head?: string | null;
 
     workflow_schedule_id?: string | null;
   }
@@ -846,6 +855,8 @@ export namespace GetChatSessionResponse {
       role: 'user' | 'system' | 'assistant';
 
       timestamp: string;
+
+      previous_message_id?: string | null;
     }
   }
 }
@@ -1521,6 +1532,8 @@ export interface UpdateChatSessionRequest {
   project_id?: string | null;
 
   skip_confirmations?: boolean | null;
+
+  user_message_head?: string | null;
 }
 
 export interface UpdateVisibilityRequest {
@@ -1816,6 +1829,8 @@ export interface ChatUpdateSessionParams {
   project_id?: string | null;
 
   skip_confirmations?: boolean | null;
+
+  user_message_head?: string | null;
 }
 
 export interface ChatUpdateSessionFavoriteParams {

@@ -180,6 +180,8 @@ export interface CreateWorkflowSessionRequest {
 
   git_commit: string;
 
+  parent_chat_message_id?: string | null;
+
   workflow_schedule_id?: string | null;
 }
 
@@ -687,6 +689,8 @@ export interface WorkflowSession {
 
   git_commit?: string | null;
 
+  parent_chat_message_id?: string | null;
+
   workflow_schedule_id?: string | null;
 }
 
@@ -825,6 +829,8 @@ export interface SessionCreateSessionParams {
   chat_session_id: string;
 
   git_commit: string;
+
+  parent_chat_message_id?: string | null;
 
   workflow_schedule_id?: string | null;
 }
