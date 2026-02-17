@@ -46,6 +46,7 @@ describe('resource sessions', () => {
     const response = await client.sessions.createSession({
       chat_session_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       git_commit: 'git_commit',
+      parent_chat_message_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       workflow_schedule_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
