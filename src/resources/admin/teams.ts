@@ -4,32 +4,23 @@ import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as TeamsAPI from '../teams';
-import { JobsList, type JobsListParams } from '../../pagination';
 
 export class Teams extends APIResource {
   /**
    * Lists teams in the system along with their subscription information, credit
-   * grants, and member counts. Supports optional pagination via limit and offset
-   * query parameters.
+   * grants, and member counts. Supports optional pagination via limit, offset, and
+   * search query parameters.
    */
-  list(
-    query?: TeamListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<AdminTeamsListResponsesJobsList, AdminTeamsListResponse>;
-  list(
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<AdminTeamsListResponsesJobsList, AdminTeamsListResponse>;
+  list(query?: TeamListParams, options?: Core.RequestOptions): Core.APIPromise<TeamListResponse>;
+  list(options?: Core.RequestOptions): Core.APIPromise<TeamListResponse>;
   list(
     query: TeamListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<AdminTeamsListResponsesJobsList, AdminTeamsListResponse> {
+  ): Core.APIPromise<TeamListResponse> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.getAPIList('/admin/team/list', AdminTeamsListResponsesJobsList, {
-      query,
-      ...options,
-    });
+    return this._client.get('/admin/team/list', { query, ...options });
   }
 
   addMember(
@@ -92,8 +83,6 @@ export class Teams extends APIResource {
     return this._client.post('/admin/team/update_seats_override', { body, ...options });
   }
 }
-
-export class AdminTeamsListResponsesJobsList extends JobsList<AdminTeamsListResponse> {}
 
 export interface AdminAddMemberRequest {
   email: string;
@@ -315,7 +304,19 @@ export interface UpdateSeatsOverrideResponse {
   seats_override?: number | null;
 }
 
-export interface TeamListParams extends JobsListParams {}
+export interface TeamListResponse {
+  items: Array<AdminTeamsListResponse>;
+
+  total_count: number;
+}
+
+export interface TeamListParams {
+  limit?: number | null;
+
+  offset?: number | null;
+
+  search?: string | null;
+}
 
 export interface TeamAddMemberParams {
   email: string;
@@ -386,8 +387,6 @@ export interface TeamUpdateSeatsOverrideParams {
   seats_override?: number | null;
 }
 
-Teams.AdminTeamsListResponsesJobsList = AdminTeamsListResponsesJobsList;
-
 export declare namespace Teams {
   export {
     type AdminAddMemberRequest as AdminAddMemberRequest,
@@ -408,7 +407,7 @@ export declare namespace Teams {
     type GrantCreditsResponse as GrantCreditsResponse,
     type UpdateSeatsOverrideRequest as UpdateSeatsOverrideRequest,
     type UpdateSeatsOverrideResponse as UpdateSeatsOverrideResponse,
-    AdminTeamsListResponsesJobsList as AdminTeamsListResponsesJobsList,
+    type TeamListResponse as TeamListResponse,
     type TeamListParams as TeamListParams,
     type TeamAddMemberParams as TeamAddMemberParams,
     type TeamCancelSubscriptionParams as TeamCancelSubscriptionParams,

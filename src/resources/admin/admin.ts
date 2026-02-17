@@ -61,7 +61,6 @@ import {
   AdminRemoveMemberRequest,
   AdminRemoveMemberResponse,
   AdminTeamsListResponse,
-  AdminTeamsListResponsesJobsList,
   CancelSubscriptionRequest,
   CancelSubscriptionResponse,
   CreateSubscriptionResponse,
@@ -79,6 +78,7 @@ import {
   TeamExtendTrialParams,
   TeamGrantCreditsParams,
   TeamListParams,
+  TeamListResponse,
   TeamRemoveMemberParams,
   TeamUpdateSeatsOverrideParams,
   Teams,
@@ -110,7 +110,6 @@ export class Admin extends APIResource {
 }
 
 Admin.Teams = Teams;
-Admin.AdminTeamsListResponsesJobsList = AdminTeamsListResponsesJobsList;
 Admin.Dataset = Dataset;
 Admin.Jobs = Jobs;
 Admin.JobListResponsesJobsList = JobListResponsesJobsList;
@@ -141,7 +140,7 @@ export declare namespace Admin {
     type GrantCreditsResponse as GrantCreditsResponse,
     type UpdateSeatsOverrideRequest as UpdateSeatsOverrideRequest,
     type UpdateSeatsOverrideResponse as UpdateSeatsOverrideResponse,
-    AdminTeamsListResponsesJobsList as AdminTeamsListResponsesJobsList,
+    type TeamListResponse as TeamListResponse,
     type TeamListParams as TeamListParams,
     type TeamAddMemberParams as TeamAddMemberParams,
     type TeamCancelSubscriptionParams as TeamCancelSubscriptionParams,

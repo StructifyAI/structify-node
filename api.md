@@ -251,10 +251,11 @@ Types:
 - <code><a href="./src/resources/admin/teams.ts">GrantCreditsResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">UpdateSeatsOverrideRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">UpdateSeatsOverrideResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">TeamListResponse</a></code>
 
 Methods:
 
-- <code title="get /admin/team/list">client.admin.teams.<a href="./src/resources/admin/teams.ts">list</a>({ ...params }) -> AdminTeamsListResponsesJobsList</code>
+- <code title="get /admin/team/list">client.admin.teams.<a href="./src/resources/admin/teams.ts">list</a>({ ...params }) -> TeamListResponse</code>
 - <code title="post /admin/team/add_member">client.admin.teams.<a href="./src/resources/admin/teams.ts">addMember</a>({ ...params }) -> AdminAddMemberResponse</code>
 - <code title="post /admin/team/cancel_subscription">client.admin.teams.<a href="./src/resources/admin/teams.ts">cancelSubscription</a>({ ...params }) -> CancelSubscriptionResponse</code>
 - <code title="post /admin/team/create_subscription">client.admin.teams.<a href="./src/resources/admin/teams.ts">createSubscription</a>({ ...params }) -> CreateSubscriptionResponse</code>
