@@ -681,13 +681,25 @@ export interface UpdateColumnRequest {
 }
 
 export interface UpdateConnectorRequest {
+  connector_category?: ConnectorCategory | null;
+
+  datahub_urn?: string | null;
+
   description?: string | null;
 
   known_connector_type?: string | null;
 
   name?: string | null;
 
+  nango_connection_id?: string | null;
+
+  nango_integration_id?: string | null;
+
+  team_visibility?: 'Team' | 'Private' | null;
+
   usage_snippet_override?: string | null;
+
+  user_ids?: Array<string> | null;
 }
 
 export interface UpdateTableRequest {
@@ -1092,13 +1104,25 @@ export interface ConnectorCreateParams {
 }
 
 export interface ConnectorUpdateParams {
+  connector_category?: ConnectorCategory | null;
+
+  datahub_urn?: string | null;
+
   description?: string | null;
 
   known_connector_type?: string | null;
 
   name?: string | null;
 
+  nango_connection_id?: string | null;
+
+  nango_integration_id?: string | null;
+
+  team_visibility?: 'Team' | 'Private' | null;
+
   usage_snippet_override?: string | null;
+
+  user_ids?: Array<string> | null;
 }
 
 export interface ConnectorListParams extends JobsListParams {
