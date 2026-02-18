@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import * as Core from '../../core';
 import * as ChatTemplatesAPI from './chat-templates';
 import {
   AdminChatTemplateListQuery,
@@ -107,6 +108,22 @@ export class Admin extends APIResource {
   users: UsersAPI.Users = new UsersAPI.Users(this._client);
   chatTemplates: ChatTemplatesAPI.ChatTemplates = new ChatTemplatesAPI.ChatTemplates(this._client);
   connector: ConnectorAPI.Connector = new ConnectorAPI.Connector(this._client);
+
+  reportCritical(body: AdminReportCriticalParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/admin/critical', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+}
+
+export interface ReportCriticalRequest {
+  message: string;
+}
+
+export interface AdminReportCriticalParams {
+  message: string;
 }
 
 Admin.Teams = Teams;
@@ -120,6 +137,11 @@ Admin.ChatTemplates = ChatTemplates;
 Admin.Connector = Connector;
 
 export declare namespace Admin {
+  export {
+    type ReportCriticalRequest as ReportCriticalRequest,
+    type AdminReportCriticalParams as AdminReportCriticalParams,
+  };
+
   export {
     Teams as Teams,
     type AdminAddMemberRequest as AdminAddMemberRequest,
