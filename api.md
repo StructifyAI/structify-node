@@ -229,6 +229,14 @@ Methods:
 
 # Admin
 
+Types:
+
+- <code><a href="./src/resources/admin/admin.ts">ReportCriticalRequest</a></code>
+
+Methods:
+
+- <code title="post /admin/critical">client.admin.<a href="./src/resources/admin/admin.ts">reportCritical</a>({ ...params }) -> void</code>
+
 ## Teams
 
 Types:

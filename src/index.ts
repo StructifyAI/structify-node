@@ -375,7 +375,7 @@ import {
   WorkflowSchedulePauseParams,
   WorkflowScheduleUpdateParams,
 } from './resources/workflow-schedule';
-import { Admin } from './resources/admin/admin';
+import { Admin, AdminReportCriticalParams, ReportCriticalRequest } from './resources/admin/admin';
 import {
   ConnectorAuthMethod,
   ConnectorAuthMethodWithFields,
@@ -899,7 +899,11 @@ export declare namespace Structify {
     type ProjectUpdateParams as ProjectUpdateParams,
   };
 
-  export { Admin as Admin };
+  export {
+    Admin as Admin,
+    type ReportCriticalRequest as ReportCriticalRequest,
+    type AdminReportCriticalParams as AdminReportCriticalParams,
+  };
 
   export {
     Datasets as Datasets,
