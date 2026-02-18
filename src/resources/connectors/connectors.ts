@@ -807,6 +807,8 @@ export namespace ConnectorAddSchemaObjectResponse {
 
 export interface ConnectorGetResponse extends Connector {
   secrets: Array<ConnectorGetResponse.Secret>;
+
+  shared_user_ids: Array<string>;
 }
 
 export namespace ConnectorGetResponse {
