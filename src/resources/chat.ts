@@ -511,6 +511,8 @@ export interface ChatSession {
 
   config_proto?: Core.Uploadable | null;
 
+  message_head?: string | null;
+
   name?: string | null;
 
   project_id?: string | null;
@@ -526,8 +528,6 @@ export interface ChatSession {
   teams_conversation_id?: string | null;
 
   teams_tenant_id?: string | null;
-
-  user_message_head?: string | null;
 }
 
 export type ChatSessionRole = 'viewer' | 'editor' | 'owner';
@@ -575,6 +575,8 @@ export interface ChatSessionWithMessages {
 
   latest_workflow_session_id?: string | null;
 
+  message_head?: string | null;
+
   name?: string | null;
 
   project_id?: string | null;
@@ -590,8 +592,6 @@ export interface ChatSessionWithMessages {
   teams_conversation_id?: string | null;
 
   teams_tenant_id?: string | null;
-
-  user_message_head?: string | null;
 }
 
 export namespace ChatSessionWithMessages {
@@ -808,6 +808,8 @@ export namespace GetChatSessionResponse {
 
     latest_workflow_session_id?: string | null;
 
+    message_head?: string | null;
+
     name?: string | null;
 
     project_id?: string | null;
@@ -823,8 +825,6 @@ export namespace GetChatSessionResponse {
     teams_conversation_id?: string | null;
 
     teams_tenant_id?: string | null;
-
-    user_message_head?: string | null;
 
     workflow_schedule_id?: string | null;
   }
@@ -1527,13 +1527,13 @@ export interface UpdateChatSessionFavoriteRequest {
 }
 
 export interface UpdateChatSessionRequest {
+  message_head?: string | null;
+
   name?: string | null;
 
   project_id?: string | null;
 
   skip_confirmations?: boolean | null;
-
-  user_message_head?: string | null;
 }
 
 export interface UpdateVisibilityRequest {
@@ -1824,13 +1824,13 @@ export interface ChatRevertToCommitParams {
 }
 
 export interface ChatUpdateSessionParams {
+  message_head?: string | null;
+
   name?: string | null;
 
   project_id?: string | null;
 
   skip_confirmations?: boolean | null;
-
-  user_message_head?: string | null;
 }
 
 export interface ChatUpdateSessionFavoriteParams {
