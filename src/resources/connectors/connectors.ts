@@ -241,6 +241,8 @@ export interface Connector {
 
   nango_integration_id?: string | null;
 
+  oauth_scopes?: Array<string | null> | null;
+
   usage_snippet_override?: string | null;
 }
 
@@ -695,6 +697,8 @@ export interface UpdateConnectorRequest {
 
   nango_integration_id?: string | null;
 
+  oauth_scopes?: Array<string | null> | null;
+
   team_visibility?: 'Team' | 'Private' | null;
 
   usage_snippet_override?: string | null;
@@ -1119,6 +1123,8 @@ export interface ConnectorUpdateParams {
   nango_connection_id?: string | null;
 
   nango_integration_id?: string | null;
+
+  oauth_scopes?: Array<string | null> | null;
 
   team_visibility?: 'Team' | 'Private' | null;
 
