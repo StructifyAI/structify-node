@@ -40,7 +40,7 @@ export interface Sandbox {
 
   provider_id: string;
 
-  status: 'alive' | 'terminated';
+  status: 'alive' | 'paused' | 'terminated';
 
   team_id: string;
 
@@ -53,6 +53,8 @@ export interface Sandbox {
   exploration_run_id?: string | null;
 
   latest_node?: string | null;
+
+  resumed_at?: string | null;
 
   session_id?: string | null;
 
