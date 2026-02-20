@@ -675,7 +675,7 @@ export interface ChatTemplate {
   updated_by: string;
 }
 
-export type ChatVisibility = 'private' | 'shared_with_team' | 'public';
+export type ChatVisibility = 'private' | 'shared_with_team' | 'shared_with_team_view' | 'public';
 
 export interface CopyChatSessionRequest {
   copy_name: string;
