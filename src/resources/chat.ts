@@ -1,11 +1,13 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../resource';
+import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as ChatAPI from './chat';
 import * as SessionsAPI from './sessions';
 import * as SharedAPI from './shared';
 import * as StructureAPI from './structure';
+import { type Response } from '../_shims/index';
 
 export class Chat extends APIResource {
   addCollaborator(
@@ -29,17 +31,6 @@ export class Chat extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<ChatAddGitCommitResponse> {
     return this._client.post(`/chat/sessions/${sessionId}/commits`, { body, ...options });
-  }
-
-  /**
-   * Get the actual chat prompt that the LLM will see on its next message (admin
-   * only)
-   */
-  adminGetChatPrompt(
-    sessionId: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<StructureAPI.ChatPrompt> {
-    return this._client.get(`/chat/sessions/${sessionId}/admin/chat_prompt`, options);
   }
 
   /**
@@ -79,14 +70,14 @@ export class Chat extends APIResource {
   }
 
   /**
-   * Delete files from a chat session's git repository
+   * Delete input files from a chat session
    */
-  deleteFiles(
+  deleteInputFile(
     chatId: string,
-    body: ChatDeleteFilesParams,
+    body: ChatDeleteInputFileParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<ChatDeleteFilesResponse> {
-    return this._client.post(`/chat/files/delete/${chatId}`, { body, ...options });
+  ): Core.APIPromise<ChatDeleteInputFileResponse> {
+    return this._client.post(`/chat/input-files/delete/${chatId}`, { body, ...options });
   }
 
   /**
@@ -169,6 +160,13 @@ export class Chat extends APIResource {
   }
 
   /**
+   * List input files for a chat session
+   */
+  listInputFiles(chatId: string, options?: Core.RequestOptions): Core.APIPromise<ChatListInputFilesResponse> {
+    return this._client.get(`/chat/input-files/list/${chatId}`, options);
+  }
+
+  /**
    * List all chat sessions for the authenticated user within a specific team and
    * project.
    */
@@ -194,6 +192,39 @@ export class Chat extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<ChatLoadFilesResponse> {
     return this._client.post('/chat/files/load', { body, ...options });
+  }
+
+  /**
+   * Download a single input file by chat ID and filename
+   */
+  loadInputFile(chatId: string, filename: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
+    return this._client.get(`/chat/input-files/download/${chatId}/${filename}`, {
+      ...options,
+      headers: { Accept: 'application/octet-stream', ...options?.headers },
+      __binaryResponse: true,
+    });
+  }
+
+  /**
+   * Pass `since` query param (RFC 3339 timestamp) to only get files created/updated
+   * after that time. The response includes `latest_timestamp` which can be passed as
+   * `since` on the next call.
+   */
+  loadInputFiles(
+    chatId: string,
+    query?: ChatLoadInputFilesParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatLoadInputFilesResponse>;
+  loadInputFiles(chatId: string, options?: Core.RequestOptions): Core.APIPromise<ChatLoadInputFilesResponse>;
+  loadInputFiles(
+    chatId: string,
+    query: ChatLoadInputFilesParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatLoadInputFilesResponse> {
+    if (isRequestOptions(query)) {
+      return this.loadInputFiles(chatId, {}, query);
+    }
+    return this._client.get(`/chat/input-files/download-all/${chatId}`, { query, ...options });
   }
 
   /**
@@ -249,6 +280,20 @@ export class Chat extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<UpdateVisibilityResponse> {
     return this._client.put(`/chat/sessions/${sessionId}/visibility`, { body, ...options });
+  }
+
+  /**
+   * Upload an input file to a chat session's bucket storage
+   */
+  uploadInputFile(
+    chatId: string,
+    body: ChatUploadInputFileParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatUploadInputFileResponse> {
+    return this._client.post(
+      `/chat/input-files/upload/${chatId}`,
+      Core.multipartFormRequestOptions({ body, ...options }),
+    );
   }
 }
 
@@ -307,7 +352,8 @@ export type ChatEvent =
   | ChatEvent.InternalError
   | ChatEvent.ReviewRequest
   | ChatEvent.AttachedFile
-  | ChatEvent.ConnectorRequest;
+  | ChatEvent.ConnectorRequest
+  | ChatEvent.UserInterrupted;
 
 export namespace ChatEvent {
   export interface TextMessage {
@@ -482,6 +528,10 @@ export namespace ChatEvent {
       connector_id: string;
     }
   }
+
+  export interface UserInterrupted {
+    UserInterrupted: unknown;
+  }
 }
 
 export interface ChatSession {
@@ -620,7 +670,7 @@ export namespace ChatSessionWithMessages {
 
     content_proto?: Core.Uploadable | null;
 
-    git_commit_id?: string | null;
+    git_hash?: string | null;
 
     previous_message_id?: string | null;
 
@@ -698,8 +748,6 @@ export interface CreateChatSessionRequest {
   config?: CreateChatSessionRequest.Config | null;
 
   ephemeral?: boolean | null;
-
-  initial_message?: string | null;
 
   project_id?: string | null;
 }
@@ -855,6 +903,8 @@ export namespace GetChatSessionResponse {
       role: 'user' | 'system' | 'assistant';
 
       timestamp: string;
+
+      git_hash?: string | null;
 
       previous_message_id?: string | null;
     }
@@ -1565,7 +1615,7 @@ export namespace ChatAddGitCommitResponse {
 
 export type ChatCopyNodeOutputByCodeHashResponse = string | null;
 
-export interface ChatDeleteFilesResponse {
+export interface ChatDeleteInputFileResponse {
   files_deleted: number;
 }
 
@@ -1618,7 +1668,7 @@ export namespace ChatGetSessionTimelineResponse {
 
     content_proto?: Core.Uploadable | null;
 
-    git_commit_id?: string | null;
+    git_hash?: string | null;
 
     previous_message_id?: string | null;
 
@@ -1661,12 +1711,34 @@ export namespace ChatGetSessionTimelineResponse {
   }
 }
 
+export type ChatListInputFilesResponse = Array<ChatListInputFilesResponse.ChatListInputFilesResponseItem>;
+
+export namespace ChatListInputFilesResponse {
+  export interface ChatListInputFilesResponseItem {
+    chat_session_id: string;
+
+    content_type: string;
+
+    created_at: string;
+
+    file_size: number;
+
+    filename: string;
+  }
+}
+
 export type ChatListTemplatesResponse = Array<ChatTemplate>;
 
 export interface ChatLoadFilesResponse {
   commit_hash: string;
 
   files: { [key: string]: string };
+}
+
+export interface ChatLoadInputFilesResponse {
+  files: { [key: string]: string };
+
+  latest_timestamp?: string | null;
 }
 
 /**
@@ -1682,6 +1754,24 @@ export interface ChatRevertToCommitResponse {
    * Timestamp when the revert occurred
    */
   reverted_at: string;
+}
+
+export interface ChatUploadInputFileResponse {
+  file: ChatUploadInputFileResponse.File;
+}
+
+export namespace ChatUploadInputFileResponse {
+  export interface File {
+    chat_session_id: string;
+
+    content_type: string;
+
+    created_at: string;
+
+    file_size: number;
+
+    filename: string;
+  }
 }
 
 export interface ChatAddCollaboratorParams {
@@ -1731,8 +1821,6 @@ export interface ChatCreateSessionParams {
 
   ephemeral?: boolean | null;
 
-  initial_message?: string | null;
-
   project_id?: string | null;
 }
 
@@ -1780,8 +1868,8 @@ export namespace ChatCreateSessionParams {
   }
 }
 
-export interface ChatDeleteFilesParams {
-  paths: Array<string>;
+export interface ChatDeleteInputFileParams {
+  filenames: Array<string>;
 }
 
 export interface ChatGrantAdminOverrideParams {
@@ -1816,6 +1904,10 @@ export interface ChatLoadFilesParams {
   commit_hash?: string | null;
 }
 
+export interface ChatLoadInputFilesParams {
+  since?: string | null;
+}
+
 export interface ChatRevertToCommitParams {
   /**
    * The git commit hash to revert to (must be 40 characters)
@@ -1839,6 +1931,14 @@ export interface ChatUpdateSessionFavoriteParams {
 
 export interface ChatUpdateVisibilityParams {
   visibility: ChatVisibility;
+}
+
+export interface ChatUploadInputFileParams {
+  content: Core.Uploadable;
+
+  content_type: string;
+
+  file_name: string;
 }
 
 export declare namespace Chat {
@@ -1874,26 +1974,31 @@ export declare namespace Chat {
     type UpdateVisibilityResponse as UpdateVisibilityResponse,
     type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
     type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
-    type ChatDeleteFilesResponse as ChatDeleteFilesResponse,
+    type ChatDeleteInputFileResponse as ChatDeleteInputFileResponse,
     type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
     type ChatGetPartialChatsResponse as ChatGetPartialChatsResponse,
     type ChatGetSessionTimelineResponse as ChatGetSessionTimelineResponse,
+    type ChatListInputFilesResponse as ChatListInputFilesResponse,
     type ChatListTemplatesResponse as ChatListTemplatesResponse,
     type ChatLoadFilesResponse as ChatLoadFilesResponse,
+    type ChatLoadInputFilesResponse as ChatLoadInputFilesResponse,
     type ChatRevertToCommitResponse as ChatRevertToCommitResponse,
+    type ChatUploadInputFileResponse as ChatUploadInputFileResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAdminIssueFoundParams as ChatAdminIssueFoundParams,
     type ChatCopyParams as ChatCopyParams,
     type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
-    type ChatDeleteFilesParams as ChatDeleteFilesParams,
+    type ChatDeleteInputFileParams as ChatDeleteInputFileParams,
     type ChatGrantAdminOverrideParams as ChatGrantAdminOverrideParams,
     type ChatListSessionsParams as ChatListSessionsParams,
     type ChatLoadFilesParams as ChatLoadFilesParams,
+    type ChatLoadInputFilesParams as ChatLoadInputFilesParams,
     type ChatRevertToCommitParams as ChatRevertToCommitParams,
     type ChatUpdateSessionParams as ChatUpdateSessionParams,
     type ChatUpdateSessionFavoriteParams as ChatUpdateSessionFavoriteParams,
     type ChatUpdateVisibilityParams as ChatUpdateVisibilityParams,
+    type ChatUploadInputFileParams as ChatUploadInputFileParams,
   };
 }

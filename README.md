@@ -67,36 +67,36 @@ import Structify, { toFile } from 'structifyai';
 const client = new Structify();
 
 // If you have access to Node `fs` we recommend using `fs.createReadStream()`:
-await client.documents.upload({
+await client.chat.uploadInputFile('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
   content: fs.createReadStream('/path/to/file'),
-  file_type: 'Text',
-  path: fs.createReadStream('path/to/file'),
+  content_type: 'content_type',
+  file_name: 'file_name',
 });
 
 // Or if you have the web `File` API you can pass a `File` instance:
-await client.documents.upload({
+await client.chat.uploadInputFile('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
   content: new File(['my bytes'], 'file'),
-  file_type: 'Text',
-  path: fs.createReadStream('path/to/file'),
+  content_type: 'content_type',
+  file_name: 'file_name',
 });
 
 // You can also pass a `fetch` `Response`:
-await client.documents.upload({
+await client.chat.uploadInputFile('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
   content: await fetch('https://somesite/file'),
-  file_type: 'Text',
-  path: fs.createReadStream('path/to/file'),
+  content_type: 'content_type',
+  file_name: 'file_name',
 });
 
 // Finally, if none of the above are convenient, you can use our `toFile` helper:
-await client.documents.upload({
+await client.chat.uploadInputFile('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
   content: await toFile(Buffer.from('my bytes'), 'file'),
-  file_type: 'Text',
-  path: fs.createReadStream('path/to/file'),
+  content_type: 'content_type',
+  file_name: 'file_name',
 });
-await client.documents.upload({
+await client.chat.uploadInputFile('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
   content: await toFile(new Uint8Array([0, 1, 2]), 'file'),
-  file_type: 'Text',
-  path: fs.createReadStream('path/to/file'),
+  content_type: 'content_type',
+  file_name: 'file_name',
 });
 ```
 
