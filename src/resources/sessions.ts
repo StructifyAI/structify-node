@@ -178,8 +178,6 @@ export interface ConfirmNodeRequest {
 export interface CreateWorkflowSessionRequest {
   chat_session_id: string;
 
-  git_commit: string;
-
   parent_chat_message_id?: string | null;
 
   workflow_schedule_id?: string | null;
@@ -687,8 +685,6 @@ export interface WorkflowSession {
 
   error_traceback?: string | null;
 
-  git_commit?: string | null;
-
   parent_chat_message_id?: string | null;
 
   workflow_schedule_id?: string | null;
@@ -827,8 +823,6 @@ export interface SessionConfirmNodeParams {
 
 export interface SessionCreateSessionParams {
   chat_session_id: string;
-
-  git_commit: string;
 
   parent_chat_message_id?: string | null;
 
