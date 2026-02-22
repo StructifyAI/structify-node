@@ -353,7 +353,8 @@ export type ChatEvent =
   | ChatEvent.ReviewRequest
   | ChatEvent.AttachedFile
   | ChatEvent.ConnectorRequest
-  | ChatEvent.UserInterrupted;
+  | ChatEvent.UserInterrupted
+  | ChatEvent.IssueFound;
 
 export namespace ChatEvent {
   export interface TextMessage {
@@ -531,6 +532,20 @@ export namespace ChatEvent {
 
   export interface UserInterrupted {
     UserInterrupted: unknown;
+  }
+
+  export interface IssueFound {
+    IssueFound: IssueFound.IssueFound;
+  }
+
+  export namespace IssueFound {
+    export interface IssueFound {
+      admin_override: boolean;
+
+      description: string;
+
+      title: string;
+    }
   }
 }
 
