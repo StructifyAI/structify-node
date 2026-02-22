@@ -4,32 +4,30 @@ import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as TeamsAPI from '../teams';
-import { JobsList, type JobsListParams } from '../../pagination';
 
 export class Teams extends APIResource {
   /**
    * Lists teams in the system along with their subscription information, credit
-   * grants, and member counts. Supports optional pagination via limit and offset
-   * query parameters.
+   * grants, and member counts. Supports optional pagination via limit, offset, and
+   * search query parameters.
    */
-  list(
-    query?: TeamListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<AdminTeamsListResponsesJobsList, AdminTeamsListResponse>;
-  list(
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<AdminTeamsListResponsesJobsList, AdminTeamsListResponse>;
+  list(query?: TeamListParams, options?: Core.RequestOptions): Core.APIPromise<TeamListResponse>;
+  list(options?: Core.RequestOptions): Core.APIPromise<TeamListResponse>;
   list(
     query: TeamListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<AdminTeamsListResponsesJobsList, AdminTeamsListResponse> {
+  ): Core.APIPromise<TeamListResponse> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.getAPIList('/admin/team/list', AdminTeamsListResponsesJobsList, {
-      query,
-      ...options,
-    });
+    return this._client.get('/admin/team/list', { query, ...options });
+  }
+
+  addMember(
+    body: TeamAddMemberParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<AdminAddMemberResponse> {
+    return this._client.post('/admin/team/add_member', { body, ...options });
   }
 
   cancelSubscription(
@@ -66,9 +64,101 @@ export class Teams extends APIResource {
   ): Core.APIPromise<GrantCreditsResponse> {
     return this._client.post('/admin/team/grant_credits', { body, ...options });
   }
+
+  listMembers(teamId: string, options?: Core.RequestOptions): Core.APIPromise<AdminListMembersResponse> {
+    return this._client.get(`/admin/team/${teamId}/members`, options);
+  }
+
+  removeMember(
+    body: TeamRemoveMemberParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<AdminRemoveMemberResponse> {
+    return this._client.post('/admin/team/remove_member', { body, ...options });
+  }
+
+  updateSeatsOverride(
+    body: TeamUpdateSeatsOverrideParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<UpdateSeatsOverrideResponse> {
+    return this._client.post('/admin/team/update_seats_override', { body, ...options });
+  }
 }
 
-export class AdminTeamsListResponsesJobsList extends JobsList<AdminTeamsListResponse> {}
+export interface AdminAddMemberRequest {
+  email: string;
+
+  role: TeamsAPI.TeamRole;
+
+  team_id: string;
+}
+
+export interface AdminAddMemberResponse {
+  /**
+   * Contains membership information and API token value
+   */
+  membership: AdminAddMemberResponse.Membership;
+}
+
+export namespace AdminAddMemberResponse {
+  /**
+   * Contains membership information and API token value
+   */
+  export interface Membership {
+    id: string;
+
+    created_at: string;
+
+    pending: boolean;
+
+    role: TeamsAPI.TeamRole;
+
+    team_id: string;
+
+    value: Core.Uploadable;
+
+    invitation_expires_at?: string | null;
+
+    invitation_token?: string | null;
+
+    invited_at?: string | null;
+
+    invited_by_user_id?: string | null;
+
+    invitee_email?: string | null;
+
+    user_id?: string | null;
+  }
+}
+
+export interface AdminListMembersResponse {
+  members: Array<AdminListMembersResponse.Member>;
+}
+
+export namespace AdminListMembersResponse {
+  export interface Member {
+    created_at: string;
+
+    email: string;
+
+    pending: boolean;
+
+    role: TeamsAPI.TeamRole;
+
+    team_id: string;
+
+    user_id?: string | null;
+  }
+}
+
+export interface AdminRemoveMemberRequest {
+  team_id: string;
+
+  user_id: string;
+}
+
+export interface AdminRemoveMemberResponse {
+  success: boolean;
+}
 
 export interface AdminTeamsListResponse extends TeamsAPI.Team {
   grants: Array<AdminTeamsListResponse.Grant>;
@@ -202,7 +292,39 @@ export interface GrantCreditsResponse {
   team_id: string;
 }
 
-export interface TeamListParams extends JobsListParams {}
+export interface UpdateSeatsOverrideRequest {
+  team_id: string;
+
+  seats_override?: number | null;
+}
+
+export interface UpdateSeatsOverrideResponse {
+  team_id: string;
+
+  seats_override?: number | null;
+}
+
+export interface TeamListResponse {
+  items: Array<AdminTeamsListResponse>;
+
+  total_count: number;
+}
+
+export interface TeamListParams {
+  limit?: number | null;
+
+  offset?: number | null;
+
+  search?: string | null;
+}
+
+export interface TeamAddMemberParams {
+  email: string;
+
+  role: TeamsAPI.TeamRole;
+
+  team_id: string;
+}
 
 export interface TeamCancelSubscriptionParams {
   team_id: string;
@@ -253,10 +375,25 @@ export interface TeamGrantCreditsParams {
   starts_at?: string | null;
 }
 
-Teams.AdminTeamsListResponsesJobsList = AdminTeamsListResponsesJobsList;
+export interface TeamRemoveMemberParams {
+  team_id: string;
+
+  user_id: string;
+}
+
+export interface TeamUpdateSeatsOverrideParams {
+  team_id: string;
+
+  seats_override?: number | null;
+}
 
 export declare namespace Teams {
   export {
+    type AdminAddMemberRequest as AdminAddMemberRequest,
+    type AdminAddMemberResponse as AdminAddMemberResponse,
+    type AdminListMembersResponse as AdminListMembersResponse,
+    type AdminRemoveMemberRequest as AdminRemoveMemberRequest,
+    type AdminRemoveMemberResponse as AdminRemoveMemberResponse,
     type AdminTeamsListResponse as AdminTeamsListResponse,
     type CancelSubscriptionRequest as CancelSubscriptionRequest,
     type CancelSubscriptionResponse as CancelSubscriptionResponse,
@@ -268,12 +405,17 @@ export declare namespace Teams {
     type ExtendTrialResponse as ExtendTrialResponse,
     type GrantCreditsRequest as GrantCreditsRequest,
     type GrantCreditsResponse as GrantCreditsResponse,
-    AdminTeamsListResponsesJobsList as AdminTeamsListResponsesJobsList,
+    type UpdateSeatsOverrideRequest as UpdateSeatsOverrideRequest,
+    type UpdateSeatsOverrideResponse as UpdateSeatsOverrideResponse,
+    type TeamListResponse as TeamListResponse,
     type TeamListParams as TeamListParams,
+    type TeamAddMemberParams as TeamAddMemberParams,
     type TeamCancelSubscriptionParams as TeamCancelSubscriptionParams,
     type TeamCreateSubscriptionParams as TeamCreateSubscriptionParams,
     type TeamExpireGrantsParams as TeamExpireGrantsParams,
     type TeamExtendTrialParams as TeamExtendTrialParams,
     type TeamGrantCreditsParams as TeamGrantCreditsParams,
+    type TeamRemoveMemberParams as TeamRemoveMemberParams,
+    type TeamUpdateSeatsOverrideParams as TeamUpdateSeatsOverrideParams,
   };
 }

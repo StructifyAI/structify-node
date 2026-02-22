@@ -23,6 +23,14 @@ export class Sessions extends APIResource {
     return this._client.post('/sessions', { body, ...options });
   }
 
+  editNodeOutput(
+    nodeId: string,
+    body: SessionEditNodeOutputParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<SessionEditNodeOutputResponse> {
+    return this._client.post(`/sessions/nodes/${nodeId}/edit_output`, { body, ...options });
+  }
+
   /**
    * Finalize a workflow session DAG by creating all nodes/edges and marking it as
    * ready
@@ -155,12 +163,22 @@ export class Sessions extends APIResource {
 
 export type AutofixContext = 'creation' | 'execution' | 'visualization';
 
+export interface CellEdit {
+  column_name: string;
+
+  row_index: number;
+
+  value: string;
+}
+
 export interface ConfirmNodeRequest {
   confirmed: boolean;
 }
 
 export interface CreateWorkflowSessionRequest {
   chat_session_id: string;
+
+  parent_chat_message_id?: string | null;
 
   workflow_schedule_id?: string | null;
 }
@@ -187,68 +205,28 @@ export interface Dashboard {
 }
 
 /**
- * A component references a viz node and optionally includes mosaic metadata
+ * A component references a viz node and optional display metadata.
  */
 export interface DashboardComponent {
   /**
-   * Function name of the viz node that outputs the chart spec
+   * Function name of the viz node that outputs the chart spec.
    */
   node_name: string;
 
   /**
-   * Display title (overrides viz node title)
+   * Display title shown in the dashboard layout.
    */
   title: string;
 
   /**
-   * Description (optional, can override viz node's description)
+   * Optional description shown under the component title.
    */
   description?: string | null;
 
-  mosaic?: DashboardComponent.Mosaic | null;
-
   /**
-   * Grid span: 1 (quarter), 2 (half), 3 (three-quarters), 4 (full width)
+   * Grid span: 1 (quarter), 2 (half), 3 (three-quarters), 4 (full width).
    */
   span?: number | null;
-}
-
-export namespace DashboardComponent {
-  export interface Mosaic {
-    fields: { [key: string]: string | boolean | Mosaic.UnionMember2 };
-
-    bin?: Mosaic.Bin | null;
-
-    groupBy?: Array<string> | null;
-
-    limit?: number | null;
-
-    orderBy?: string | null;
-
-    /**
-     * Table name - optional, derived from datasetNodeName in dashboard config
-     */
-    table?: string | null;
-  }
-
-  export namespace Mosaic {
-    export interface UnionMember2 {
-      expr: string;
-
-      /**
-       * Optional Plotly property path (e.g., marker.color) to assign this column to
-       */
-      target?: string | null;
-    }
-
-    export interface Bin {
-      as: string;
-
-      field: string;
-
-      step: number;
-    }
-  }
 }
 
 /**
@@ -260,11 +238,6 @@ export interface DashboardPage {
    * Components (charts) in this dashboard
    */
   components: Array<DashboardComponent>;
-
-  /**
-   * Title for this dashboard section
-   */
-  title: string;
 
   /**
    * Control filters (dropdowns, checkboxes, ranges) for this dashboard
@@ -281,6 +254,11 @@ export interface DashboardPage {
    * Optional description
    */
   description?: string | null;
+
+  /**
+   * Title for this dashboard section
+   */
+  title?: string | null;
 }
 
 export namespace DashboardPage {
@@ -351,6 +329,10 @@ export interface EdgeSpec {
   source_node_index: number;
 
   target_node_index: number;
+}
+
+export interface EditNodeOutputRequest {
+  edits: Array<ParquetEdit>;
 }
 
 export interface FinalizeDagRequest {
@@ -496,9 +478,13 @@ export namespace JobEventBody {
 
     target: { [key: string]: string | boolean | number };
 
+    candidate_indices?: Array<number>;
+
     match_idx?: number | null;
 
     raw_text?: string | null;
+
+    source_entity_index?: number | null;
   }
 
   export interface DatahubPageFetched {
@@ -574,6 +560,26 @@ export interface NodeSpec {
   function_name: string;
 
   connector_id?: string | null;
+}
+
+export type ParquetEdit = ParquetEdit.EditCell | ParquetEdit.DeleteRow | ParquetEdit.AddRow;
+
+export namespace ParquetEdit {
+  export interface EditCell extends SessionsAPI.CellEdit {
+    type: 'edit_cell';
+  }
+
+  export interface DeleteRow {
+    row_index: number;
+
+    type: 'delete_row';
+  }
+
+  export interface AddRow {
+    type: 'add_row';
+
+    values: { [key: string]: string };
+  }
 }
 
 export interface RequestConfirmationRequest {
@@ -679,6 +685,8 @@ export interface WorkflowSession {
 
   error_traceback?: string | null;
 
+  parent_chat_message_id?: string | null;
+
   workflow_schedule_id?: string | null;
 }
 
@@ -733,6 +741,8 @@ export interface WorkflowSessionNode {
 
   input_row_count?: number | null;
 
+  manually_edited?: boolean;
+
   original_node?: string | null;
 
   output_blob_name?: string | null;
@@ -742,6 +752,10 @@ export interface WorkflowSessionNode {
   progress?: unknown;
 
   visualization_output?: unknown;
+}
+
+export interface SessionEditNodeOutputResponse {
+  error_message?: string | null;
 }
 
 export interface SessionGetEventsResponse {
@@ -810,7 +824,13 @@ export interface SessionConfirmNodeParams {
 export interface SessionCreateSessionParams {
   chat_session_id: string;
 
+  parent_chat_message_id?: string | null;
+
   workflow_schedule_id?: string | null;
+}
+
+export interface SessionEditNodeOutputParams {
+  edits: Array<ParquetEdit>;
 }
 
 export interface SessionFinalizeDagParams {
@@ -896,12 +916,14 @@ export interface SessionUploadNodeVisualizationOutputParams {
 export declare namespace Sessions {
   export {
     type AutofixContext as AutofixContext,
+    type CellEdit as CellEdit,
     type ConfirmNodeRequest as ConfirmNodeRequest,
     type CreateWorkflowSessionRequest as CreateWorkflowSessionRequest,
     type Dashboard as Dashboard,
     type DashboardComponent as DashboardComponent,
     type DashboardPage as DashboardPage,
     type EdgeSpec as EdgeSpec,
+    type EditNodeOutputRequest as EditNodeOutputRequest,
     type FinalizeDagRequest as FinalizeDagRequest,
     type FinalizeDagResponse as FinalizeDagResponse,
     type GetNodeLogsResponse as GetNodeLogsResponse,
@@ -909,6 +931,7 @@ export declare namespace Sessions {
     type JobEventBody as JobEventBody,
     type MarkWorkflowSessionErroredRequest as MarkWorkflowSessionErroredRequest,
     type NodeSpec as NodeSpec,
+    type ParquetEdit as ParquetEdit,
     type RequestConfirmationRequest as RequestConfirmationRequest,
     type UpdateWorkflowNodeProgressRequest as UpdateWorkflowNodeProgressRequest,
     type UpdateWorkflowNodeRequest as UpdateWorkflowNodeRequest,
@@ -920,11 +943,13 @@ export declare namespace Sessions {
     type WorkflowSession as WorkflowSession,
     type WorkflowSessionEdge as WorkflowSessionEdge,
     type WorkflowSessionNode as WorkflowSessionNode,
+    type SessionEditNodeOutputResponse as SessionEditNodeOutputResponse,
     type SessionGetEventsResponse as SessionGetEventsResponse,
     type SessionGetNodeProgressResponse as SessionGetNodeProgressResponse,
     type SessionKillJobsResponse as SessionKillJobsResponse,
     type SessionConfirmNodeParams as SessionConfirmNodeParams,
     type SessionCreateSessionParams as SessionCreateSessionParams,
+    type SessionEditNodeOutputParams as SessionEditNodeOutputParams,
     type SessionFinalizeDagParams as SessionFinalizeDagParams,
     type SessionGetEventsParams as SessionGetEventsParams,
     type SessionKillJobsParams as SessionKillJobsParams,

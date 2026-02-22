@@ -221,6 +221,8 @@ export interface Connector {
 
   team_id: string;
 
+  team_visibility: 'Team' | 'Private';
+
   updated_at: string;
 
   connector_category?: ConnectorCategory | null;
@@ -239,11 +241,7 @@ export interface Connector {
 
   nango_integration_id?: string | null;
 
-  pipedream_account_id?: string | null;
-
-  pipedream_external_id?: string | null;
-
-  refresh_script?: string | null;
+  oauth_scopes?: Array<string | null> | null;
 
   usage_snippet_override?: string | null;
 }
@@ -355,17 +353,6 @@ export interface CreateConnectorRequest {
    * Nango integration ID (e.g., "linear", "slack")
    */
   nango_integration_id?: string | null;
-
-  pipedream_account_id?: string | null;
-
-  /**
-   * Unique external ID for Pipedream routing (required for Pipedream connectors)
-   */
-  pipedream_external_id?: string | null;
-
-  pipedream_project_id?: string | null;
-
-  refresh_script?: string | null;
 
   /**
    * Optional secrets/environment variables for the connector
@@ -637,6 +624,8 @@ export namespace LlmInformationStore {
          * Represents a column in a table or API resource
          */
         export interface Column {
+          id: string;
+
           /**
            * Name of the column
            */
@@ -694,15 +683,27 @@ export interface UpdateColumnRequest {
 }
 
 export interface UpdateConnectorRequest {
+  connector_category?: ConnectorCategory | null;
+
+  datahub_urn?: string | null;
+
   description?: string | null;
 
   known_connector_type?: string | null;
 
   name?: string | null;
 
-  refresh_script?: string | null;
+  nango_connection_id?: string | null;
+
+  nango_integration_id?: string | null;
+
+  oauth_scopes?: Array<string | null> | null;
+
+  team_visibility?: 'Team' | 'Private' | null;
 
   usage_snippet_override?: string | null;
+
+  user_ids?: Array<string> | null;
 }
 
 export interface UpdateTableRequest {
@@ -756,6 +757,8 @@ export namespace UpdateTableResponse {
      * Represents a column in a table or API resource
      */
     export interface Column {
+      id: string;
+
       /**
        * Name of the column
        */
@@ -808,6 +811,8 @@ export namespace ConnectorAddSchemaObjectResponse {
 
 export interface ConnectorGetResponse extends Connector {
   secrets: Array<ConnectorGetResponse.Secret>;
+
+  shared_user_ids: Array<string>;
 }
 
 export namespace ConnectorGetResponse {
@@ -892,6 +897,8 @@ export namespace ConnectorSearchTablesResponse {
      * Represents a column in a table or API resource
      */
     export interface Column {
+      id: string;
+
       /**
        * Name of the column
        */
@@ -945,6 +952,8 @@ export namespace ConnectorSearchTablesResponse {
        * Represents a column in a table or API resource
        */
       export interface Column {
+        id: string;
+
         /**
          * Name of the column
          */
@@ -989,6 +998,8 @@ export namespace ConnectorSearchTablesResponse {
      * Represents a column in a table or API resource
      */
     export interface Column {
+      id: string;
+
       /**
        * Name of the column
        */
@@ -1042,6 +1053,8 @@ export namespace ConnectorSearchTablesResponse {
        * Represents a column in a table or API resource
        */
       export interface Column {
+        id: string;
+
         /**
          * Name of the column
          */
@@ -1090,17 +1103,6 @@ export interface ConnectorCreateParams {
    */
   nango_integration_id?: string | null;
 
-  pipedream_account_id?: string | null;
-
-  /**
-   * Unique external ID for Pipedream routing (required for Pipedream connectors)
-   */
-  pipedream_external_id?: string | null;
-
-  pipedream_project_id?: string | null;
-
-  refresh_script?: string | null;
-
   /**
    * Optional secrets/environment variables for the connector
    */
@@ -1108,15 +1110,27 @@ export interface ConnectorCreateParams {
 }
 
 export interface ConnectorUpdateParams {
+  connector_category?: ConnectorCategory | null;
+
+  datahub_urn?: string | null;
+
   description?: string | null;
 
   known_connector_type?: string | null;
 
   name?: string | null;
 
-  refresh_script?: string | null;
+  nango_connection_id?: string | null;
+
+  nango_integration_id?: string | null;
+
+  oauth_scopes?: Array<string | null> | null;
+
+  team_visibility?: 'Team' | 'Private' | null;
 
   usage_snippet_override?: string | null;
+
+  user_ids?: Array<string> | null;
 }
 
 export interface ConnectorListParams extends JobsListParams {

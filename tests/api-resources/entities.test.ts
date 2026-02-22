@@ -72,7 +72,6 @@ describe('resource entities', () => {
           },
         ],
       },
-      attempt_merge: true,
       source: 'None',
     });
   });
@@ -123,7 +122,6 @@ describe('resource entities', () => {
           ],
         },
       ],
-      attempt_merge: true,
       skip_malformed_entities: true,
       source: 'None',
     });
@@ -385,6 +383,7 @@ describe('resource entities', () => {
       dataset: 'dataset',
       table_name: 'table_name',
       content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      start_embedding: true,
     });
   });
 

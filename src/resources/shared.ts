@@ -105,6 +105,8 @@ export namespace EntityMatch {
     };
 
     updated_at: string;
+
+    job_id?: string | null;
   }
 
   export namespace EntityA {
@@ -196,6 +198,8 @@ export namespace EntityMatch {
     };
 
     updated_at: string;
+
+    job_id?: string | null;
   }
 
   export namespace EntityB {

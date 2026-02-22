@@ -2,6 +2,7 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
+import { JobsList } from '../pagination';
 
 export class SandboxResource extends APIResource {
   list(chatId: string, options?: Core.RequestOptions): Core.APIPromise<SandboxListResponse> {
@@ -21,6 +22,8 @@ export class SandboxResource extends APIResource {
   }
 }
 
+export class SandboxesJobsList extends JobsList<Sandbox> {}
+
 export interface GetSandboxRequest {
   /**
    * Override URL for the modal control service (for testing/development)
@@ -31,25 +34,31 @@ export interface GetSandboxRequest {
 export interface Sandbox {
   id: string;
 
-  chat_session_id: string;
-
   created_at: string;
 
   provider: 'modal' | 'daytona';
 
   provider_id: string;
 
-  status: 'alive' | 'terminated';
+  status: 'alive' | 'paused' | 'terminated';
 
-  tunnel_url: string;
+  team_id: string;
 
   updated_at: string;
 
   api_url?: string | null;
 
+  chat_session_id?: string | null;
+
+  exploration_run_id?: string | null;
+
   latest_node?: string | null;
 
+  resumed_at?: string | null;
+
   session_id?: string | null;
+
+  tunnel_url?: string | null;
 }
 
 export type SandboxListResponse = Array<Sandbox>;

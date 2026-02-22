@@ -468,19 +468,16 @@ export interface StructurePdfParams {
 
   instructions?: string | null;
 
-  mode?: 'Single' | 'Batch';
-
   model?: string | null;
 
   node_id?: string | null;
+
+  pages?: Array<number> | null;
 }
 
 export interface StructureRunAsyncParams {
   dataset: string;
 
-  /**
-   * These are all the types that can be converted into a BasicInputType
-   */
   source: StructureRunAsyncParams.Pdf | StructureRunAsyncParams.Web;
 
   instructions?: string | null;

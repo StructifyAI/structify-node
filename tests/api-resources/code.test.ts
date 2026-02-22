@@ -37,6 +37,7 @@ describe('resource code', () => {
       },
       connectorIds: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
       filePaths: ['string'],
+      overridePreviousMessageId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       triggerWorkflowExecution: true,
       userMessageId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });

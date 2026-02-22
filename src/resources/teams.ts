@@ -22,10 +22,6 @@ export class Teams extends APIResource {
     return this._client.get('/team/list', options);
   }
 
-  delete(teamId: string, options?: Core.RequestOptions): Core.APIPromise<DeleteTeamResponse> {
-    return this._client.delete(`/team/${teamId}`, options);
-  }
-
   acceptInvitation(
     body: TeamAcceptInvitationParams,
     options?: Core.RequestOptions,
@@ -41,11 +37,17 @@ export class Teams extends APIResource {
     return this._client.post(`/team/${teamId}/members`, { body, ...options });
   }
 
-  createLinkCode(
-    body: TeamCreateLinkCodeParams,
+  cancelInvitation(
+    teamId: string,
+    params: TeamCancelInvitationParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<TeamsLinkCodeResponse> {
-    return this._client.post('/teams/link-code', { body, ...options });
+  ): Core.APIPromise<void> {
+    const { email } = params;
+    return this._client.delete(`/team/${teamId}/invitations`, {
+      query: { email },
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 
   createProject(
@@ -203,11 +205,9 @@ export interface CreditsUsageTimeseriesPoint {
   groups: { [key: string]: number };
 }
 
-export interface DeleteTeamResponse {
-  success: boolean;
-}
-
 export interface GetTeamResponse {
+  max_seats: number;
+
   subscription_status: TeamSubscriptionStatus;
 
   team: Team;
@@ -233,11 +233,13 @@ export namespace ListMembersResponse {
 
     email: string;
 
+    pending: boolean;
+
     role: TeamsAPI.TeamRole;
 
     team_id: string;
 
-    user_id: string;
+    user_id?: string | null;
   }
 }
 
@@ -270,11 +272,13 @@ export interface Team {
 
   updated_at: string;
 
+  daytona_credentials?: Team.DaytonaCredentials | null;
+
   description?: string | null;
 
-  pipedream_project_id?: string | null;
-
   sandbox_provider?: string | null;
+
+  seats_override?: number | null;
 
   slack_team_icon?: string | null;
 
@@ -287,6 +291,22 @@ export interface Team {
   teams_service_url?: string | null;
 
   teams_tenant_id?: string | null;
+
+  workflow_bucket?: Team.WorkflowBucket | null;
+}
+
+export namespace Team {
+  export interface DaytonaCredentials {
+    api_key?: string | null;
+
+    api_url?: string | null;
+  }
+
+  export interface WorkflowBucket {
+    bucket_url: string;
+
+    gcp_credentials_json?: string | null;
+  }
 }
 
 export type TeamRole = 'read_only' | 'member' | 'admin' | 'owner';
@@ -309,19 +329,11 @@ export interface TeamSubscriptionStatus {
 }
 
 export interface TeamWithRole extends Team {
+  max_seats: number;
+
   role: TeamRole;
 
   subscription_status: TeamSubscriptionStatus;
-}
-
-export interface TeamsLinkCodeRequest {
-  team_id: string;
-}
-
-export interface TeamsLinkCodeResponse {
-  code: string;
-
-  expires_at: string;
 }
 
 export interface UpdateMemberRoleRequest {
@@ -333,11 +345,13 @@ export interface UpdateMemberRoleResponse {
 }
 
 export interface UpdateTeamRequest {
+  daytona_credentials?: UpdateTeamRequest.DaytonaCredentials | null;
+
   description?: string | null;
 
   name?: string | null;
 
-  pipedream_project_id?: string | null;
+  sandbox_provider?: 'modal' | 'daytona' | null;
 
   slack_bot_token?: string | null;
 
@@ -346,6 +360,28 @@ export interface UpdateTeamRequest {
   slack_team_id?: string | null;
 
   slack_team_name?: string | null;
+
+  teams_app_id?: string | null;
+
+  teams_app_password?: string | null;
+
+  teams_tenant_id?: string | null;
+
+  workflow_bucket?: UpdateTeamRequest.WorkflowBucket | null;
+}
+
+export namespace UpdateTeamRequest {
+  export interface DaytonaCredentials {
+    api_key?: string | null;
+
+    api_url?: string | null;
+  }
+
+  export interface WorkflowBucket {
+    bucket_url: string;
+
+    gcp_credentials_json?: string | null;
+  }
 }
 
 export interface UpdateTeamResponse {
@@ -358,6 +394,7 @@ export type UsageGroupKey =
   | 'derive'
   | 'scrape'
   | 'apollo'
+  | 'apify'
   | 'searchapi'
   | 'newsapi'
   | 'secapi'
@@ -373,11 +410,13 @@ export interface TeamCreateParams {
 }
 
 export interface TeamUpdateParams {
+  daytona_credentials?: TeamUpdateParams.DaytonaCredentials | null;
+
   description?: string | null;
 
   name?: string | null;
 
-  pipedream_project_id?: string | null;
+  sandbox_provider?: 'modal' | 'daytona' | null;
 
   slack_bot_token?: string | null;
 
@@ -386,6 +425,28 @@ export interface TeamUpdateParams {
   slack_team_id?: string | null;
 
   slack_team_name?: string | null;
+
+  teams_app_id?: string | null;
+
+  teams_app_password?: string | null;
+
+  teams_tenant_id?: string | null;
+
+  workflow_bucket?: TeamUpdateParams.WorkflowBucket | null;
+}
+
+export namespace TeamUpdateParams {
+  export interface DaytonaCredentials {
+    api_key?: string | null;
+
+    api_url?: string | null;
+  }
+
+  export interface WorkflowBucket {
+    bucket_url: string;
+
+    gcp_credentials_json?: string | null;
+  }
 }
 
 export interface TeamAcceptInvitationParams {
@@ -398,8 +459,8 @@ export interface TeamAddMemberParams {
   role: TeamRole;
 }
 
-export interface TeamCreateLinkCodeParams {
-  team_id: string;
+export interface TeamCancelInvitationParams {
+  email: string;
 }
 
 export interface TeamCreateProjectParams {
@@ -446,7 +507,6 @@ export declare namespace Teams {
     type CreditsUsageRequest as CreditsUsageRequest,
     type CreditsUsageResponse as CreditsUsageResponse,
     type CreditsUsageTimeseriesPoint as CreditsUsageTimeseriesPoint,
-    type DeleteTeamResponse as DeleteTeamResponse,
     type GetTeamResponse as GetTeamResponse,
     type Granularity as Granularity,
     type InvitationDetailsResponse as InvitationDetailsResponse,
@@ -459,8 +519,6 @@ export declare namespace Teams {
     type TeamRole as TeamRole,
     type TeamSubscriptionStatus as TeamSubscriptionStatus,
     type TeamWithRole as TeamWithRole,
-    type TeamsLinkCodeRequest as TeamsLinkCodeRequest,
-    type TeamsLinkCodeResponse as TeamsLinkCodeResponse,
     type UpdateMemberRoleRequest as UpdateMemberRoleRequest,
     type UpdateMemberRoleResponse as UpdateMemberRoleResponse,
     type UpdateTeamRequest as UpdateTeamRequest,
@@ -470,7 +528,7 @@ export declare namespace Teams {
     type TeamUpdateParams as TeamUpdateParams,
     type TeamAcceptInvitationParams as TeamAcceptInvitationParams,
     type TeamAddMemberParams as TeamAddMemberParams,
-    type TeamCreateLinkCodeParams as TeamCreateLinkCodeParams,
+    type TeamCancelInvitationParams as TeamCancelInvitationParams,
     type TeamCreateProjectParams as TeamCreateProjectParams,
     type TeamCreditsUsageParams as TeamCreditsUsageParams,
     type TeamUpdateMemberRoleParams as TeamUpdateMemberRoleParams,

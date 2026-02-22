@@ -1,44 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { Admin } from './admin';
-export {
-  AdminListJobsResponsesJobsList,
-  Jobs,
-  type AdminDeleteJobsRequest,
-  type AdminDeleteJobsResponse,
-  type AdminListJobsRequestParams,
-  type AdminListJobsResponse,
-  type JobListParams,
-  type JobDeleteParams,
-} from './jobs';
-export {
-  AdminSandboxesJobsList,
-  Sandbox,
-  type AdminSandbox,
-  type SandboxType,
-  type SandboxListParams,
-} from './sandbox';
-export {
-  AdminTeamsListResponsesJobsList,
-  Teams,
-  type AdminTeamsListResponse,
-  type CancelSubscriptionRequest,
-  type CancelSubscriptionResponse,
-  type CreateSubscriptionResponse,
-  type CreateTeamSubscriptionRequest,
-  type ExpireGrantsRequest,
-  type ExpireGrantsResponse,
-  type ExtendTrialRequest,
-  type ExtendTrialResponse,
-  type GrantCreditsRequest,
-  type GrantCreditsResponse,
-  type TeamListParams,
-  type TeamCancelSubscriptionParams,
-  type TeamCreateSubscriptionParams,
-  type TeamExpireGrantsParams,
-  type TeamExtendTrialParams,
-  type TeamGrantCreditsParams,
-} from './teams';
+export { Admin, type ReportCriticalRequest, type AdminReportCriticalParams } from './admin';
 export {
   ChatTemplates,
   type AdminChatTemplateListQuery,
@@ -72,6 +34,50 @@ export {
   type FunctionalTestLinkChatParams,
   type FunctionalTestUpdateResultsParams,
 } from './functional-tests';
+export {
+  JobListResponsesJobsList,
+  Jobs,
+  type AdminDeleteJobsRequest,
+  type AdminDeleteJobsResponse,
+  type AdminListJobsRequestParams,
+  type JobListResponse,
+  type JobKillByUserResponse,
+  type JobListParams,
+  type JobDeleteParams,
+  type JobKillByUserParams,
+} from './jobs';
+export { Sandbox, type SandboxListParams } from './sandbox';
+export {
+  Teams,
+  type AdminAddMemberRequest,
+  type AdminAddMemberResponse,
+  type AdminListMembersResponse,
+  type AdminRemoveMemberRequest,
+  type AdminRemoveMemberResponse,
+  type AdminTeamsListResponse,
+  type CancelSubscriptionRequest,
+  type CancelSubscriptionResponse,
+  type CreateSubscriptionResponse,
+  type CreateTeamSubscriptionRequest,
+  type ExpireGrantsRequest,
+  type ExpireGrantsResponse,
+  type ExtendTrialRequest,
+  type ExtendTrialResponse,
+  type GrantCreditsRequest,
+  type GrantCreditsResponse,
+  type UpdateSeatsOverrideRequest,
+  type UpdateSeatsOverrideResponse,
+  type TeamListResponse,
+  type TeamListParams,
+  type TeamAddMemberParams,
+  type TeamCancelSubscriptionParams,
+  type TeamCreateSubscriptionParams,
+  type TeamExpireGrantsParams,
+  type TeamExtendTrialParams,
+  type TeamGrantCreditsParams,
+  type TeamRemoveMemberParams,
+  type TeamUpdateSeatsOverrideParams,
+} from './teams';
 export {
   Users,
   type ImpersonateRequest,
