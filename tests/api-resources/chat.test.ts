@@ -387,7 +387,8 @@ describe('resource chat', () => {
     });
   });
 
-  test('loadInputFile: request options instead of params are passed correctly', async () => {
+  // Mock server doesn't support application/octet-stream responses
+  test.skip('loadInputFile: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.chat.loadInputFile('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', 'filename', {
