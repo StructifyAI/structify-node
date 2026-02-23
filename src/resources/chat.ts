@@ -1653,7 +1653,17 @@ export namespace ChatGetGitCommitResponse {
   }
 }
 
-export type ChatGetPartialChatsResponse = Array<StructureAPI.ChatPrompt>;
+export type ChatGetPartialChatsResponse = Array<ChatGetPartialChatsResponse.ChatGetPartialChatsResponseItem>;
+
+export namespace ChatGetPartialChatsResponse {
+  export interface ChatGetPartialChatsResponseItem {
+    chat_prompt: StructureAPI.ChatPrompt;
+
+    created_at: string;
+
+    message_id?: string | null;
+  }
+}
 
 /**
  * Response structure for getting session timeline
