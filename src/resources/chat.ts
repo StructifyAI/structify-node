@@ -1063,7 +1063,8 @@ export type ToolInvocation =
   | ToolInvocation.AddDependency
   | ToolInvocation.SelectData
   | ToolInvocation.CreateConnector
-  | ToolInvocation.SearchConnectorTypes;
+  | ToolInvocation.SearchConnectorTypes
+  | ToolInvocation.PinPreviousTool;
 
 export namespace ToolInvocation {
   export interface WebSearch {
@@ -1484,6 +1485,18 @@ export namespace ToolInvocation {
       query?: string | null;
     }
   }
+
+  export interface PinPreviousTool {
+    input: PinPreviousTool.Input;
+
+    name: 'PinPreviousTool';
+  }
+
+  export namespace PinPreviousTool {
+    export interface Input {
+      path: string;
+    }
+  }
 }
 
 export type ToolResult =
@@ -1497,7 +1510,8 @@ export type ToolResult =
   | ToolResult.WebSearch
   | ToolResult.ConnectorSearch
   | ToolResult.NodeLogs
-  | ToolResult.Image;
+  | ToolResult.Image
+  | ToolResult.Pinned;
 
 export namespace ToolResult {
   export interface Error {
@@ -1584,6 +1598,10 @@ export namespace ToolResult {
 
       ocr_text?: string | null;
     }
+  }
+
+  export interface Pinned {
+    Pinned: string;
   }
 }
 
