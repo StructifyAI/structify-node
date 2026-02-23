@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as ChatAPI from '../chat';
 import * as StructureAPI from '../structure';
@@ -28,9 +29,17 @@ export class Connectors extends APIResource {
   }
 
   list(
-    query: ConnectorListParams,
+    query?: ConnectorListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<ConnectorWithSecretsJobsList, ConnectorWithSecrets>;
+  list(options?: Core.RequestOptions): Core.PagePromise<ConnectorWithSecretsJobsList, ConnectorWithSecrets>;
+  list(
+    query: ConnectorListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.PagePromise<ConnectorWithSecretsJobsList, ConnectorWithSecrets> {
+    if (isRequestOptions(query)) {
+      return this.list({}, query);
+    }
     return this._client.getAPIList('/connectors', ConnectorWithSecretsJobsList, { query, ...options });
   }
 
@@ -148,11 +157,8 @@ export class Connectors extends APIResource {
     return this._client.get(`/connectors/${connectorId}/tables`, options);
   }
 
-  listWithSnippets(
-    query: ConnectorListWithSnippetsParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ConnectorListWithSnippetsResponse> {
-    return this._client.get('/connectors/with-snippets', { query, ...options });
+  listWithSnippets(options?: Core.RequestOptions): Core.APIPromise<ConnectorListWithSnippetsResponse> {
+    return this._client.get('/connectors/with-snippets', options);
   }
 
   /**
@@ -218,6 +224,8 @@ export interface Connector {
   known_connector_type: string;
 
   name: string;
+
+  owner_user_id: string;
 
   team_id: string;
 
@@ -289,8 +297,6 @@ export interface ConnectorStoreResponse {
 
 export interface ConnectorSummariesRequest {
   connector_ids: Array<string>;
-
-  team_id: string;
 }
 
 export interface ConnectorSummary {
@@ -339,8 +345,6 @@ export interface CreateConnectorRequest {
   known_connector_type: string;
 
   name: string;
-
-  team_id: string;
 
   description?: string | null;
 
@@ -1089,8 +1093,6 @@ export interface ConnectorCreateParams {
 
   name: string;
 
-  team_id: string;
-
   description?: string | null;
 
   /**
@@ -1133,12 +1135,7 @@ export interface ConnectorUpdateParams {
   user_ids?: Array<string> | null;
 }
 
-export interface ConnectorListParams extends JobsListParams {
-  /**
-   * Team ID to list connectors for
-   */
-  team_id: string;
-}
+export interface ConnectorListParams extends JobsListParams {}
 
 export type ConnectorAddSchemaObjectParams =
   | ConnectorAddSchemaObjectParams.Variant0
@@ -1254,29 +1251,15 @@ export interface ConnectorGetExplorerChatParams {
   run_id: string;
 }
 
-export interface ConnectorListWithSnippetsParams {
-  /**
-   * Team ID to list connectors for
-   */
-  team_id: string;
-}
-
 export interface ConnectorSearchTablesParams {
   /**
    * Search query string
    */
   query: string;
-
-  /**
-   * Team ID to search tables for
-   */
-  team_id: string;
 }
 
 export interface ConnectorSummariesParams {
   connector_ids: Array<string>;
-
-  team_id: string;
 }
 
 export interface ConnectorUpdateColumnParams {
@@ -1336,7 +1319,6 @@ export declare namespace Connectors {
     type ConnectorDeleteSchemaObjectParams as ConnectorDeleteSchemaObjectParams,
     type ConnectorExploreParams as ConnectorExploreParams,
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
-    type ConnectorListWithSnippetsParams as ConnectorListWithSnippetsParams,
     type ConnectorSearchTablesParams as ConnectorSearchTablesParams,
     type ConnectorSummariesParams as ConnectorSummariesParams,
     type ConnectorUpdateColumnParams as ConnectorUpdateColumnParams,

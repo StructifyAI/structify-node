@@ -44,7 +44,6 @@ export {
   type ConnectorDeleteSchemaObjectParams,
   type ConnectorExploreParams,
   type ConnectorGetExplorerChatParams,
-  type ConnectorListWithSnippetsParams,
   type ConnectorSearchTablesParams,
   type ConnectorSummariesParams,
   type ConnectorUpdateColumnParams,
