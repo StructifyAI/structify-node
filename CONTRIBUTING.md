@@ -60,7 +60,7 @@ $ yarn link structifyai
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global structifyai
+$ pnpm link --global structifyai
 ```
 
 ## Running tests
