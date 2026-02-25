@@ -254,6 +254,7 @@ export {
   type GetSandboxRequest,
   type Sandbox,
   type SandboxListResponse,
+  type SandboxGetMetricsResponse,
   type SandboxGetParams,
   type SandboxUpdateStatusParams,
 } from './sandbox';
