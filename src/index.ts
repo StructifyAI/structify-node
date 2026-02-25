@@ -203,6 +203,7 @@ import { PublicSessions } from './resources/public-sessions';
 import {
   GetSandboxRequest,
   Sandbox,
+  SandboxGetMetricsResponse,
   SandboxGetParams,
   SandboxListResponse,
   SandboxResource,
@@ -1172,6 +1173,7 @@ export declare namespace Structify {
     type GetSandboxRequest as GetSandboxRequest,
     type Sandbox as Sandbox,
     type SandboxListResponse as SandboxListResponse,
+    type SandboxGetMetricsResponse as SandboxGetMetricsResponse,
     type SandboxGetParams as SandboxGetParams,
     type SandboxUpdateStatusParams as SandboxUpdateStatusParams,
   };
