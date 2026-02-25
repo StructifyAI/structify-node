@@ -88,6 +88,7 @@ export {
   type ConnectorSummariesRequest,
   type ConnectorSummary,
   type ConnectorTableInfo,
+  type ConnectorTablePathResponse,
   type ConnectorWithSecrets,
   type ConnectorWithSnippets,
   type CreateConnectorRequest,
