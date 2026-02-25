@@ -148,6 +148,10 @@ export class Connectors extends APIResource {
     return this._client.get(`/connectors/${connectorId}/store`, options);
   }
 
+  getTablePath(tableId: string, options?: Core.RequestOptions): Core.APIPromise<ConnectorTablePathResponse> {
+    return this._client.get(`/connectors/tables/${tableId}/path`, options);
+  }
+
   /**
    * Returns all tables across all databases and schemas for the given connector.
    * Useful for finding table IDs to pass to the explore endpoint for single-table
@@ -316,6 +320,16 @@ export interface ConnectorTableInfo {
   name: string;
 
   description?: string | null;
+}
+
+export interface ConnectorTablePathResponse {
+  connector_id: string;
+
+  database_name: string;
+
+  schema_name: string;
+
+  table_name: string;
 }
 
 export interface ConnectorWithSecrets extends Connector {
@@ -1256,6 +1270,11 @@ export interface ConnectorSearchTablesParams {
    * Search query string
    */
   query: string;
+
+  /**
+   * Team ID to scope table search
+   */
+  team_id: string;
 }
 
 export interface ConnectorSummariesParams {
@@ -1284,6 +1303,7 @@ export declare namespace Connectors {
     type ConnectorSummariesRequest as ConnectorSummariesRequest,
     type ConnectorSummary as ConnectorSummary,
     type ConnectorTableInfo as ConnectorTableInfo,
+    type ConnectorTablePathResponse as ConnectorTablePathResponse,
     type ConnectorWithSecrets as ConnectorWithSecrets,
     type ConnectorWithSnippets as ConnectorWithSnippets,
     type CreateConnectorRequest as CreateConnectorRequest,

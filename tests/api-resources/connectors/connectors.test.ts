@@ -306,6 +306,26 @@ describe('resource connectors', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
+  test('getTablePath', async () => {
+    const responsePromise = client.connectors.getTablePath('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('getTablePath: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.connectors.getTablePath('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
   test('listTables', async () => {
     const responsePromise = client.connectors.listTables('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();
@@ -365,7 +385,10 @@ describe('resource connectors', () => {
   });
 
   test('searchTables: only required params', async () => {
-    const responsePromise = client.connectors.searchTables({ query: 'query' });
+    const responsePromise = client.connectors.searchTables({
+      query: 'query',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -376,7 +399,10 @@ describe('resource connectors', () => {
   });
 
   test('searchTables: required and optional params', async () => {
-    const response = await client.connectors.searchTables({ query: 'query' });
+    const response = await client.connectors.searchTables({
+      query: 'query',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
   });
 
   test('summaries: only required params', async () => {

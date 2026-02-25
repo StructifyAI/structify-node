@@ -566,6 +566,7 @@ Types:
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorSummariesRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorSummary</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorTableInfo</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorTablePathResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorWithSecrets</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorWithSnippets</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">CreateConnectorRequest</a></code>
@@ -610,6 +611,7 @@ Methods:
 - <code title="get /connectors/{connector_id}/explore/status">client.connectors.<a href="./src/resources/connectors/connectors.ts">getExplorationStatus</a>(connectorId) -> ExploreStatusResponse</code>
 - <code title="get /connectors/{connector_id}/explore/chat">client.connectors.<a href="./src/resources/connectors/connectors.ts">getExplorerChat</a>(connectorId, { ...params }) -> ExplorerChatResponse</code>
 - <code title="get /connectors/{connector_id}/store">client.connectors.<a href="./src/resources/connectors/connectors.ts">getStore</a>(connectorId) -> ConnectorStoreResponse</code>
+- <code title="get /connectors/tables/{table_id}/path">client.connectors.<a href="./src/resources/connectors/connectors.ts">getTablePath</a>(tableId) -> ConnectorTablePathResponse</code>
 - <code title="get /connectors/{connector_id}/tables">client.connectors.<a href="./src/resources/connectors/connectors.ts">listTables</a>(connectorId) -> ListTablesResponse</code>
 - <code title="get /connectors/with-snippets">client.connectors.<a href="./src/resources/connectors/connectors.ts">listWithSnippets</a>() -> ConnectorListWithSnippetsResponse</code>
 - <code title="patch /connectors/clarification-requests/{clarification_id}/resolve">client.connectors.<a href="./src/resources/connectors/connectors.ts">resolveClarification</a>(clarificationId) -> void</code>
