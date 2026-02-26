@@ -717,6 +717,8 @@ export interface UpdateConnectorRequest {
 
   oauth_scopes?: Array<string | null> | null;
 
+  owner_user_id?: string | null;
+
   team_visibility?: 'Team' | 'Private' | null;
 
   usage_snippet_override?: string | null;
@@ -1141,6 +1143,8 @@ export interface ConnectorUpdateParams {
   nango_integration_id?: string | null;
 
   oauth_scopes?: Array<string | null> | null;
+
+  owner_user_id?: string | null;
 
   team_visibility?: 'Team' | 'Private' | null;
 
