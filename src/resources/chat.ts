@@ -255,6 +255,17 @@ export class Chat extends APIResource {
     return this._client.post(`/chat/sessions/${sessionId}/revert`, { body, ...options });
   }
 
+  /**
+   * any messages to the database.
+   */
+  simulatePrompt(
+    chatSessionId: string,
+    body: ChatSimulatePromptParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<SimulatePromptResponse> {
+    return this._client.post(`/chat/${chatSessionId}/simulate-prompt`, { body, ...options });
+  }
+
   updateSession(
     sessionId: string,
     body: ChatUpdateSessionParams,
@@ -1032,6 +1043,14 @@ export namespace Message {
   export interface Image {
     Image: Core.Uploadable;
   }
+}
+
+export interface SimulatePromptRequest {
+  chat_prompt: StructureAPI.ChatPrompt;
+}
+
+export interface SimulatePromptResponse {
+  response: string;
 }
 
 export type ToolInvocation =
@@ -1958,6 +1977,10 @@ export interface ChatRevertToCommitParams {
   commit_hash: string;
 }
 
+export interface ChatSimulatePromptParams {
+  chat_prompt: StructureAPI.ChatPrompt;
+}
+
 export interface ChatUpdateSessionParams {
   message_head?: string | null;
 
@@ -2009,6 +2032,8 @@ export declare namespace Chat {
     type ListChatSessionsResponse as ListChatSessionsResponse,
     type ListCollaboratorsResponse as ListCollaboratorsResponse,
     type Message as Message,
+    type SimulatePromptRequest as SimulatePromptRequest,
+    type SimulatePromptResponse as SimulatePromptResponse,
     type ToolInvocation as ToolInvocation,
     type ToolResult as ToolResult,
     type UpdateChatSessionFavoriteRequest as UpdateChatSessionFavoriteRequest,
@@ -2039,6 +2064,7 @@ export declare namespace Chat {
     type ChatLoadFilesParams as ChatLoadFilesParams,
     type ChatLoadInputFilesParams as ChatLoadInputFilesParams,
     type ChatRevertToCommitParams as ChatRevertToCommitParams,
+    type ChatSimulatePromptParams as ChatSimulatePromptParams,
     type ChatUpdateSessionParams as ChatUpdateSessionParams,
     type ChatUpdateSessionFavoriteParams as ChatUpdateSessionFavoriteParams,
     type ChatUpdateVisibilityParams as ChatUpdateVisibilityParams,

@@ -96,6 +96,8 @@ Types:
 - <code><a href="./src/resources/chat.ts">ListChatSessionsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ListCollaboratorsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">Message</a></code>
+- <code><a href="./src/resources/chat.ts">SimulatePromptRequest</a></code>
+- <code><a href="./src/resources/chat.ts">SimulatePromptResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ToolInvocation</a></code>
 - <code><a href="./src/resources/chat.ts">ToolResult</a></code>
 - <code><a href="./src/resources/chat.ts">UpdateChatSessionFavoriteRequest</a></code>
@@ -141,6 +143,7 @@ Methods:
 - <code title="patch /chat/sessions/{session_id}/make-permanent">client.chat.<a href="./src/resources/chat.ts">makePermanent</a>(sessionId) -> void</code>
 - <code title="delete /chat/sessions/{chat_id}/collaborators/{user_id}">client.chat.<a href="./src/resources/chat.ts">removeCollaborator</a>(chatId, userId) -> void</code>
 - <code title="post /chat/sessions/{session_id}/revert">client.chat.<a href="./src/resources/chat.ts">revertToCommit</a>(sessionId, { ...params }) -> ChatRevertToCommitResponse</code>
+- <code title="post /chat/{chat_session_id}/simulate-prompt">client.chat.<a href="./src/resources/chat.ts">simulatePrompt</a>(chatSessionId, { ...params }) -> SimulatePromptResponse</code>
 - <code title="patch /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">updateSession</a>(sessionId, { ...params }) -> ChatSession</code>
 - <code title="patch /chat/sessions/{session_id}/favorite">client.chat.<a href="./src/resources/chat.ts">updateSessionFavorite</a>(sessionId, { ...params }) -> ChatSession</code>
 - <code title="put /chat/sessions/{session_id}/visibility">client.chat.<a href="./src/resources/chat.ts">updateVisibility</a>(sessionId, { ...params }) -> UpdateVisibilityResponse</code>
