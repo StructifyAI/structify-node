@@ -29,7 +29,6 @@ describe('resource connectors', () => {
       name: 'name',
       description: 'description',
       nango_connection_id: 'nango_connection_id',
-      nango_integration_id: 'nango_integration_id',
       secrets: { foo: 'string' },
     });
   });
