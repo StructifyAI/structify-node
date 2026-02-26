@@ -490,6 +490,151 @@ describe('resource chat', () => {
     });
   });
 
+  test('simulatePrompt: only required params', async () => {
+    const responsePromise = client.chat.simulatePrompt('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      chat_prompt: {
+        decoding_params: { parameters: [{ MaxTokens: 0 }] },
+        messages: [{ content: [{ Text: 'Text' }], role: 'user' }],
+        metadata: {
+          dataset_descriptor: {
+            description: 'description',
+            name: 'name',
+            relationships: [
+              {
+                description: 'description',
+                name: 'name',
+                source_table: 'source_table',
+                target_table: 'target_table',
+              },
+            ],
+            tables: [
+              {
+                description: 'description',
+                name: 'name',
+                properties: [{ description: 'description', name: 'name' }],
+              },
+            ],
+          },
+          extracted_entities: [
+            {
+              entities: [
+                {
+                  id: 0,
+                  properties: { foo: 'string' },
+                  type: 'type',
+                },
+              ],
+            },
+          ],
+          extraction_criteria: [{ relationship_name: 'relationship_name' }],
+          formatter_specific: { ImageMeta: { image: 'image' } },
+          tool_metadata: [
+            {
+              description: 'description',
+              name: 'Exit',
+              regex_validator: 'regex_validator',
+            },
+          ],
+        },
+      },
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('simulatePrompt: required and optional params', async () => {
+    const response = await client.chat.simulatePrompt('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      chat_prompt: {
+        decoding_params: { parameters: [{ MaxTokens: 0 }] },
+        messages: [{ content: [{ Text: 'Text' }], role: 'user' }],
+        metadata: {
+          dataset_descriptor: {
+            description: 'description',
+            name: 'name',
+            relationships: [
+              {
+                description: 'description',
+                name: 'name',
+                source_table: 'source_table',
+                target_table: 'target_table',
+                merge_strategy: {
+                  source_cardinality_given_target_match: 0,
+                  target_cardinality_given_source_match: 0,
+                },
+                properties: [
+                  {
+                    description: 'description',
+                    name: 'name',
+                    merge_strategy: 'Unique',
+                    prop_type: 'String',
+                  },
+                ],
+              },
+            ],
+            tables: [
+              {
+                description: 'description',
+                name: 'name',
+                properties: [
+                  {
+                    description: 'description',
+                    name: 'name',
+                    merge_strategy: 'Unique',
+                    prop_type: 'String',
+                  },
+                ],
+                expected_cardinality: 0,
+                primary_column: 'primary_column',
+              },
+            ],
+            llm_override_field: 'llm_override_field',
+          },
+          extracted_entities: [
+            {
+              entities: [
+                {
+                  id: 0,
+                  properties: { foo: 'string' },
+                  type: 'type',
+                },
+              ],
+              relationships: [
+                {
+                  source: 0,
+                  target: 0,
+                  type: 'type',
+                  properties: { foo: 'string' },
+                },
+              ],
+            },
+          ],
+          extraction_criteria: [{ relationship_name: 'relationship_name' }],
+          formatter_specific: {
+            ImageMeta: {
+              image: 'image',
+              document_name: 'document_name',
+              document_page: 0,
+              ocr_content: 'ocr_content',
+            },
+          },
+          tool_metadata: [
+            {
+              description: 'description',
+              name: 'Exit',
+              regex_validator: 'regex_validator',
+            },
+          ],
+          qa_potentially_sus_response: 'qa_potentially_sus_response',
+        },
+      },
+    });
+  });
+
   test('updateSession', async () => {
     const responsePromise = client.chat.updateSession('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {});
     const rawResponse = await responsePromise.asResponse();
