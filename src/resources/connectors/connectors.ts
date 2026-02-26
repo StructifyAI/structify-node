@@ -251,8 +251,6 @@ export interface Connector {
 
   nango_connection_id?: string | null;
 
-  nango_integration_id?: string | null;
-
   oauth_scopes?: Array<string | null> | null;
 
   usage_snippet_override?: string | null;
@@ -366,11 +364,6 @@ export interface CreateConnectorRequest {
    * Nango connection ID for OAuth token management
    */
   nango_connection_id?: string | null;
-
-  /**
-   * Nango integration ID (e.g., "linear", "slack")
-   */
-  nango_integration_id?: string | null;
 
   /**
    * Optional secrets/environment variables for the connector
@@ -712,8 +705,6 @@ export interface UpdateConnectorRequest {
   name?: string | null;
 
   nango_connection_id?: string | null;
-
-  nango_integration_id?: string | null;
 
   oauth_scopes?: Array<string | null> | null;
 
@@ -1117,11 +1108,6 @@ export interface ConnectorCreateParams {
   nango_connection_id?: string | null;
 
   /**
-   * Nango integration ID (e.g., "linear", "slack")
-   */
-  nango_integration_id?: string | null;
-
-  /**
    * Optional secrets/environment variables for the connector
    */
   secrets?: { [key: string]: string };
@@ -1139,8 +1125,6 @@ export interface ConnectorUpdateParams {
   name?: string | null;
 
   nango_connection_id?: string | null;
-
-  nango_integration_id?: string | null;
 
   oauth_scopes?: Array<string | null> | null;
 
