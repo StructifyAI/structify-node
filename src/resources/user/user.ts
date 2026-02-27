@@ -212,6 +212,8 @@ export namespace UpdateUserParams {
 
     linkedin_url?: string | null;
 
+    notify_for_interaction?: boolean | null;
+
     onboarding_session_id?: string | null;
 
     permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none' | null> | null;
@@ -254,6 +256,8 @@ export interface UserInfo {
   full_name: string;
 
   is_developer: boolean;
+
+  notify_for_interaction: boolean;
 
   permissions: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'>;
 
@@ -373,6 +377,8 @@ export namespace UserUpdateParams {
     last_selected_team_id?: string | null;
 
     linkedin_url?: string | null;
+
+    notify_for_interaction?: boolean | null;
 
     onboarding_session_id?: string | null;
 
