@@ -77,6 +77,8 @@ export interface User {
 
   is_developer: boolean;
 
+  notify_for_interaction: boolean;
+
   permissions: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none' | null>;
 
   updated_at: string;
