@@ -25,6 +25,8 @@ export interface RunWorkflowRequest {
   chat_session_id: string;
 
   use_node_cache: boolean;
+
+  edited_node_name?: string | null;
 }
 
 export interface StopWorkflowRequest {
@@ -35,6 +37,8 @@ export interface WorkflowRunParams {
   chat_session_id: string;
 
   use_node_cache: boolean;
+
+  edited_node_name?: string | null;
 }
 
 export interface WorkflowStopParams {

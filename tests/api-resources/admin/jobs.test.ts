@@ -9,12 +9,8 @@ const client = new Structify({
 });
 
 describe('resource jobs', () => {
-  test('list: only required params', async () => {
-    const responsePromise = client.admin.jobs.list({
-      filter_test_users: true,
-      limit: 0,
-      offset: 0,
-    });
+  test('list', async () => {
+    const responsePromise = client.admin.jobs.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -24,16 +20,27 @@ describe('resource jobs', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: required and optional params', async () => {
-    const response = await client.admin.jobs.list({
-      filter_test_users: true,
-      limit: 0,
-      offset: 0,
-      dataset_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      seeded_kg_search_term: 'seeded_kg_search_term',
-      since: '2019-12-27T18:11:19.117Z',
-      status: 'Queued',
-    });
+  test('list: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.admin.jobs.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Structify.NotFoundError,
+    );
+  });
+
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.admin.jobs.list(
+        {
+          job_type: 'Web',
+          limit: 0,
+          offset: 0,
+          status: 'Queued',
+          user_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Structify.NotFoundError);
   });
 
   test('delete: only required params', async () => {
@@ -49,5 +56,20 @@ describe('resource jobs', () => {
 
   test('delete: required and optional params', async () => {
     const response = await client.admin.jobs.delete({ job_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'] });
+  });
+
+  test('killByUser: only required params', async () => {
+    const responsePromise = client.admin.jobs.killByUser({ user_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('killByUser: required and optional params', async () => {
+    const response = await client.admin.jobs.killByUser({ user_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
   });
 });

@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as ChatAPI from '../chat';
 import * as StructureAPI from '../structure';
@@ -28,9 +29,17 @@ export class Connectors extends APIResource {
   }
 
   list(
-    query: ConnectorListParams,
+    query?: ConnectorListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<ConnectorWithSecretsJobsList, ConnectorWithSecrets>;
+  list(options?: Core.RequestOptions): Core.PagePromise<ConnectorWithSecretsJobsList, ConnectorWithSecrets>;
+  list(
+    query: ConnectorListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.PagePromise<ConnectorWithSecretsJobsList, ConnectorWithSecrets> {
+    if (isRequestOptions(query)) {
+      return this.list({}, query);
+    }
     return this._client.getAPIList('/connectors', ConnectorWithSecretsJobsList, { query, ...options });
   }
 
@@ -139,6 +148,10 @@ export class Connectors extends APIResource {
     return this._client.get(`/connectors/${connectorId}/store`, options);
   }
 
+  getTablePath(tableId: string, options?: Core.RequestOptions): Core.APIPromise<ConnectorTablePathResponse> {
+    return this._client.get(`/connectors/tables/${tableId}/path`, options);
+  }
+
   /**
    * Returns all tables across all databases and schemas for the given connector.
    * Useful for finding table IDs to pass to the explore endpoint for single-table
@@ -148,11 +161,8 @@ export class Connectors extends APIResource {
     return this._client.get(`/connectors/${connectorId}/tables`, options);
   }
 
-  listWithSnippets(
-    query: ConnectorListWithSnippetsParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ConnectorListWithSnippetsResponse> {
-    return this._client.get('/connectors/with-snippets', { query, ...options });
+  listWithSnippets(options?: Core.RequestOptions): Core.APIPromise<ConnectorListWithSnippetsResponse> {
+    return this._client.get('/connectors/with-snippets', options);
   }
 
   /**
@@ -219,7 +229,11 @@ export interface Connector {
 
   name: string;
 
+  owner_user_id: string;
+
   team_id: string;
+
+  team_visibility: 'Team' | 'Private';
 
   updated_at: string;
 
@@ -237,13 +251,7 @@ export interface Connector {
 
   nango_connection_id?: string | null;
 
-  nango_integration_id?: string | null;
-
-  pipedream_account_id?: string | null;
-
-  pipedream_external_id?: string | null;
-
-  refresh_script?: string | null;
+  oauth_scopes?: Array<string | null> | null;
 
   usage_snippet_override?: string | null;
 }
@@ -291,8 +299,6 @@ export interface ConnectorStoreResponse {
 
 export interface ConnectorSummariesRequest {
   connector_ids: Array<string>;
-
-  team_id: string;
 }
 
 export interface ConnectorSummary {
@@ -312,6 +318,16 @@ export interface ConnectorTableInfo {
   name: string;
 
   description?: string | null;
+}
+
+export interface ConnectorTablePathResponse {
+  connector_id: string;
+
+  database_name: string;
+
+  schema_name: string;
+
+  table_name: string;
 }
 
 export interface ConnectorWithSecrets extends Connector {
@@ -342,30 +358,12 @@ export interface CreateConnectorRequest {
 
   name: string;
 
-  team_id: string;
-
   description?: string | null;
 
   /**
    * Nango connection ID for OAuth token management
    */
   nango_connection_id?: string | null;
-
-  /**
-   * Nango integration ID (e.g., "linear", "slack")
-   */
-  nango_integration_id?: string | null;
-
-  pipedream_account_id?: string | null;
-
-  /**
-   * Unique external ID for Pipedream routing (required for Pipedream connectors)
-   */
-  pipedream_external_id?: string | null;
-
-  pipedream_project_id?: string | null;
-
-  refresh_script?: string | null;
 
   /**
    * Optional secrets/environment variables for the connector
@@ -637,6 +635,8 @@ export namespace LlmInformationStore {
          * Represents a column in a table or API resource
          */
         export interface Column {
+          id: string;
+
           /**
            * Name of the column
            */
@@ -694,15 +694,27 @@ export interface UpdateColumnRequest {
 }
 
 export interface UpdateConnectorRequest {
+  connector_category?: ConnectorCategory | null;
+
+  datahub_urn?: string | null;
+
   description?: string | null;
 
   known_connector_type?: string | null;
 
   name?: string | null;
 
-  refresh_script?: string | null;
+  nango_connection_id?: string | null;
+
+  oauth_scopes?: Array<string | null> | null;
+
+  owner_user_id?: string | null;
+
+  team_visibility?: 'Team' | 'Private' | null;
 
   usage_snippet_override?: string | null;
+
+  user_ids?: Array<string> | null;
 }
 
 export interface UpdateTableRequest {
@@ -756,6 +768,8 @@ export namespace UpdateTableResponse {
      * Represents a column in a table or API resource
      */
     export interface Column {
+      id: string;
+
       /**
        * Name of the column
        */
@@ -808,6 +822,8 @@ export namespace ConnectorAddSchemaObjectResponse {
 
 export interface ConnectorGetResponse extends Connector {
   secrets: Array<ConnectorGetResponse.Secret>;
+
+  shared_user_ids: Array<string>;
 }
 
 export namespace ConnectorGetResponse {
@@ -892,6 +908,8 @@ export namespace ConnectorSearchTablesResponse {
      * Represents a column in a table or API resource
      */
     export interface Column {
+      id: string;
+
       /**
        * Name of the column
        */
@@ -945,6 +963,8 @@ export namespace ConnectorSearchTablesResponse {
        * Represents a column in a table or API resource
        */
       export interface Column {
+        id: string;
+
         /**
          * Name of the column
          */
@@ -989,6 +1009,8 @@ export namespace ConnectorSearchTablesResponse {
      * Represents a column in a table or API resource
      */
     export interface Column {
+      id: string;
+
       /**
        * Name of the column
        */
@@ -1042,6 +1064,8 @@ export namespace ConnectorSearchTablesResponse {
        * Represents a column in a table or API resource
        */
       export interface Column {
+        id: string;
+
         /**
          * Name of the column
          */
@@ -1076,8 +1100,6 @@ export interface ConnectorCreateParams {
 
   name: string;
 
-  team_id: string;
-
   description?: string | null;
 
   /**
@@ -1086,45 +1108,36 @@ export interface ConnectorCreateParams {
   nango_connection_id?: string | null;
 
   /**
-   * Nango integration ID (e.g., "linear", "slack")
-   */
-  nango_integration_id?: string | null;
-
-  pipedream_account_id?: string | null;
-
-  /**
-   * Unique external ID for Pipedream routing (required for Pipedream connectors)
-   */
-  pipedream_external_id?: string | null;
-
-  pipedream_project_id?: string | null;
-
-  refresh_script?: string | null;
-
-  /**
    * Optional secrets/environment variables for the connector
    */
   secrets?: { [key: string]: string };
 }
 
 export interface ConnectorUpdateParams {
+  connector_category?: ConnectorCategory | null;
+
+  datahub_urn?: string | null;
+
   description?: string | null;
 
   known_connector_type?: string | null;
 
   name?: string | null;
 
-  refresh_script?: string | null;
+  nango_connection_id?: string | null;
+
+  oauth_scopes?: Array<string | null> | null;
+
+  owner_user_id?: string | null;
+
+  team_visibility?: 'Team' | 'Private' | null;
 
   usage_snippet_override?: string | null;
+
+  user_ids?: Array<string> | null;
 }
 
-export interface ConnectorListParams extends JobsListParams {
-  /**
-   * Team ID to list connectors for
-   */
-  team_id: string;
-}
+export interface ConnectorListParams extends JobsListParams {}
 
 export type ConnectorAddSchemaObjectParams =
   | ConnectorAddSchemaObjectParams.Variant0
@@ -1240,13 +1253,6 @@ export interface ConnectorGetExplorerChatParams {
   run_id: string;
 }
 
-export interface ConnectorListWithSnippetsParams {
-  /**
-   * Team ID to list connectors for
-   */
-  team_id: string;
-}
-
 export interface ConnectorSearchTablesParams {
   /**
    * Search query string
@@ -1254,15 +1260,13 @@ export interface ConnectorSearchTablesParams {
   query: string;
 
   /**
-   * Team ID to search tables for
+   * Team ID to scope table search
    */
   team_id: string;
 }
 
 export interface ConnectorSummariesParams {
   connector_ids: Array<string>;
-
-  team_id: string;
 }
 
 export interface ConnectorUpdateColumnParams {
@@ -1287,6 +1291,7 @@ export declare namespace Connectors {
     type ConnectorSummariesRequest as ConnectorSummariesRequest,
     type ConnectorSummary as ConnectorSummary,
     type ConnectorTableInfo as ConnectorTableInfo,
+    type ConnectorTablePathResponse as ConnectorTablePathResponse,
     type ConnectorWithSecrets as ConnectorWithSecrets,
     type ConnectorWithSnippets as ConnectorWithSnippets,
     type CreateConnectorRequest as CreateConnectorRequest,
@@ -1322,7 +1327,6 @@ export declare namespace Connectors {
     type ConnectorDeleteSchemaObjectParams as ConnectorDeleteSchemaObjectParams,
     type ConnectorExploreParams as ConnectorExploreParams,
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
-    type ConnectorListWithSnippetsParams as ConnectorListWithSnippetsParams,
     type ConnectorSearchTablesParams as ConnectorSearchTablesParams,
     type ConnectorSummariesParams as ConnectorSummariesParams,
     type ConnectorUpdateColumnParams as ConnectorUpdateColumnParams,

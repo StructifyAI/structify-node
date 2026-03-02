@@ -212,6 +212,8 @@ export namespace UpdateUserParams {
 
     linkedin_url?: string | null;
 
+    notify_for_interaction?: boolean | null;
+
     onboarding_session_id?: string | null;
 
     permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none' | null> | null;
@@ -255,6 +257,8 @@ export interface UserInfo {
 
   is_developer: boolean;
 
+  notify_for_interaction: boolean;
+
   permissions: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'>;
 
   user_id: string;
@@ -287,6 +291,10 @@ export interface UserInfo {
   slack_username?: string | null;
 
   survey_completed_at?: string | null;
+
+  teams_user_id?: string | null;
+
+  teams_user_name?: string | null;
 }
 
 export type UserTransactionsResponse = Array<UserTransactionsResponse.UserTransactionsResponseItem>;
@@ -369,6 +377,8 @@ export namespace UserUpdateParams {
     last_selected_team_id?: string | null;
 
     linkedin_url?: string | null;
+
+    notify_for_interaction?: boolean | null;
 
     onboarding_session_id?: string | null;
 

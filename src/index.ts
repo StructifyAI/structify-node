@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { type Agent } from './_shims/index';
-import * as qs from './internal/qs';
+import { stringifyQuery } from './internal/utils/query';
 import * as Core from './core';
 import * as Errors from './error';
 import * as Pagination from './pagination';
@@ -27,28 +27,34 @@ import {
   ChatCopyNodeOutputByCodeHashResponse,
   ChatCopyParams,
   ChatCreateSessionParams,
-  ChatDeleteFilesParams,
-  ChatDeleteFilesResponse,
+  ChatDeleteInputFileParams,
+  ChatDeleteInputFileResponse,
   ChatDependency,
   ChatEvent,
   ChatGetGitCommitResponse,
   ChatGetPartialChatsResponse,
   ChatGetSessionTimelineResponse,
   ChatGrantAdminOverrideParams,
+  ChatListInputFilesResponse,
   ChatListSessionsParams,
   ChatListTemplatesResponse,
   ChatLoadFilesParams,
   ChatLoadFilesResponse,
+  ChatLoadInputFilesParams,
+  ChatLoadInputFilesResponse,
   ChatRevertToCommitParams,
   ChatRevertToCommitResponse,
   ChatSession,
   ChatSessionRole,
   ChatSessionUser,
   ChatSessionWithMessages,
+  ChatSimulatePromptParams,
   ChatTemplate,
   ChatUpdateSessionFavoriteParams,
   ChatUpdateSessionParams,
   ChatUpdateVisibilityParams,
+  ChatUploadInputFileParams,
+  ChatUploadInputFileResponse,
   ChatVisibility,
   CopyChatSessionRequest,
   CreateChatSessionRequest,
@@ -61,6 +67,8 @@ import {
   ListChatSessionsResponse,
   ListCollaboratorsResponse,
   Message,
+  SimulatePromptRequest,
+  SimulatePromptResponse,
   ToolInvocation,
   ToolResult,
   UpdateChatSessionFavoriteRequest,
@@ -156,8 +164,7 @@ import {
 import {
   GetJobEventsResponse,
   JobCancelResponse,
-  JobGetScrapersResponse,
-  JobGetSourceEntitiesResponse,
+  JobGetResponse,
   JobListParams,
   JobListResponse,
   JobListResponsesJobsList,
@@ -199,6 +206,7 @@ import { PublicSessions } from './resources/public-sessions';
 import {
   GetSandboxRequest,
   Sandbox,
+  SandboxGetMetricsResponse,
   SandboxGetParams,
   SandboxListResponse,
   SandboxResource,
@@ -216,12 +224,14 @@ import {
 import { Server, ServerInformation } from './resources/server';
 import {
   AutofixContext,
+  CellEdit,
   ConfirmNodeRequest,
   CreateWorkflowSessionRequest,
   Dashboard,
   DashboardComponent,
   DashboardPage,
   EdgeSpec,
+  EditNodeOutputRequest,
   FinalizeDagRequest,
   FinalizeDagResponse,
   GetNodeLogsResponse,
@@ -229,9 +239,12 @@ import {
   JobEventBody,
   MarkWorkflowSessionErroredRequest,
   NodeSpec,
+  ParquetEdit,
   RequestConfirmationRequest,
   SessionConfirmNodeParams,
   SessionCreateSessionParams,
+  SessionEditNodeOutputParams,
+  SessionEditNodeOutputResponse,
   SessionFinalizeDagParams,
   SessionGetEventsParams,
   SessionGetEventsResponse,
@@ -312,7 +325,6 @@ import {
   CreditsUsageRequest,
   CreditsUsageResponse,
   CreditsUsageTimeseriesPoint,
-  DeleteTeamResponse,
   GetTeamResponse,
   Granularity,
   InvitationDetailsResponse,
@@ -324,7 +336,7 @@ import {
   Team,
   TeamAcceptInvitationParams,
   TeamAddMemberParams,
-  TeamCreateLinkCodeParams,
+  TeamCancelInvitationParams,
   TeamCreateParams,
   TeamCreateProjectParams,
   TeamCreditsUsageParams,
@@ -334,8 +346,6 @@ import {
   TeamUpdateParams,
   TeamWithRole,
   Teams,
-  TeamsLinkCodeRequest,
-  TeamsLinkCodeResponse,
   UpdateMemberRoleRequest,
   UpdateMemberRoleResponse,
   UpdateTeamRequest,
@@ -374,7 +384,7 @@ import {
   WorkflowSchedulePauseParams,
   WorkflowScheduleUpdateParams,
 } from './resources/workflow-schedule';
-import { Admin } from './resources/admin/admin';
+import { Admin, AdminReportCriticalParams, ReportCriticalRequest } from './resources/admin/admin';
 import {
   ConnectorAuthMethod,
   ConnectorAuthMethodWithFields,
@@ -399,7 +409,6 @@ import {
   ConnectorGetExplorerChatParams,
   ConnectorGetResponse,
   ConnectorListParams,
-  ConnectorListWithSnippetsParams,
   ConnectorListWithSnippetsResponse,
   ConnectorSearchTablesParams,
   ConnectorSearchTablesResponse,
@@ -409,6 +418,7 @@ import {
   ConnectorSummariesResponse,
   ConnectorSummary,
   ConnectorTableInfo,
+  ConnectorTablePathResponse,
   ConnectorUpdateColumnParams,
   ConnectorUpdateParams,
   ConnectorUpdateTableParams,
@@ -686,8 +696,8 @@ export class Structify extends Core.APIClient {
     return { Authorization: `Bearer ${this.sessionToken}` };
   }
 
-  protected override stringifyQuery(query: Record<string, unknown>): string {
-    return qs.stringify(query, { arrayFormat: 'comma' });
+  protected override stringifyQuery(query: object | Record<string, unknown>): string {
+    return stringifyQuery(query);
   }
 
   static Structify = this;
@@ -804,6 +814,8 @@ export declare namespace Structify {
     type ListChatSessionsResponse as ListChatSessionsResponse,
     type ListCollaboratorsResponse as ListCollaboratorsResponse,
     type Message as Message,
+    type SimulatePromptRequest as SimulatePromptRequest,
+    type SimulatePromptResponse as SimulatePromptResponse,
     type ToolInvocation as ToolInvocation,
     type ToolResult as ToolResult,
     type UpdateChatSessionFavoriteRequest as UpdateChatSessionFavoriteRequest,
@@ -812,27 +824,33 @@ export declare namespace Structify {
     type UpdateVisibilityResponse as UpdateVisibilityResponse,
     type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
     type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
-    type ChatDeleteFilesResponse as ChatDeleteFilesResponse,
+    type ChatDeleteInputFileResponse as ChatDeleteInputFileResponse,
     type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
     type ChatGetPartialChatsResponse as ChatGetPartialChatsResponse,
     type ChatGetSessionTimelineResponse as ChatGetSessionTimelineResponse,
+    type ChatListInputFilesResponse as ChatListInputFilesResponse,
     type ChatListTemplatesResponse as ChatListTemplatesResponse,
     type ChatLoadFilesResponse as ChatLoadFilesResponse,
+    type ChatLoadInputFilesResponse as ChatLoadInputFilesResponse,
     type ChatRevertToCommitResponse as ChatRevertToCommitResponse,
+    type ChatUploadInputFileResponse as ChatUploadInputFileResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAdminIssueFoundParams as ChatAdminIssueFoundParams,
     type ChatCopyParams as ChatCopyParams,
     type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
-    type ChatDeleteFilesParams as ChatDeleteFilesParams,
+    type ChatDeleteInputFileParams as ChatDeleteInputFileParams,
     type ChatGrantAdminOverrideParams as ChatGrantAdminOverrideParams,
     type ChatListSessionsParams as ChatListSessionsParams,
     type ChatLoadFilesParams as ChatLoadFilesParams,
+    type ChatLoadInputFilesParams as ChatLoadInputFilesParams,
     type ChatRevertToCommitParams as ChatRevertToCommitParams,
+    type ChatSimulatePromptParams as ChatSimulatePromptParams,
     type ChatUpdateSessionParams as ChatUpdateSessionParams,
     type ChatUpdateSessionFavoriteParams as ChatUpdateSessionFavoriteParams,
     type ChatUpdateVisibilityParams as ChatUpdateVisibilityParams,
+    type ChatUploadInputFileParams as ChatUploadInputFileParams,
   };
 
   export {
@@ -847,7 +865,6 @@ export declare namespace Structify {
     type CreditsUsageRequest as CreditsUsageRequest,
     type CreditsUsageResponse as CreditsUsageResponse,
     type CreditsUsageTimeseriesPoint as CreditsUsageTimeseriesPoint,
-    type DeleteTeamResponse as DeleteTeamResponse,
     type GetTeamResponse as GetTeamResponse,
     type Granularity as Granularity,
     type InvitationDetailsResponse as InvitationDetailsResponse,
@@ -860,8 +877,6 @@ export declare namespace Structify {
     type TeamRole as TeamRole,
     type TeamSubscriptionStatus as TeamSubscriptionStatus,
     type TeamWithRole as TeamWithRole,
-    type TeamsLinkCodeRequest as TeamsLinkCodeRequest,
-    type TeamsLinkCodeResponse as TeamsLinkCodeResponse,
     type UpdateMemberRoleRequest as UpdateMemberRoleRequest,
     type UpdateMemberRoleResponse as UpdateMemberRoleResponse,
     type UpdateTeamRequest as UpdateTeamRequest,
@@ -871,7 +886,7 @@ export declare namespace Structify {
     type TeamUpdateParams as TeamUpdateParams,
     type TeamAcceptInvitationParams as TeamAcceptInvitationParams,
     type TeamAddMemberParams as TeamAddMemberParams,
-    type TeamCreateLinkCodeParams as TeamCreateLinkCodeParams,
+    type TeamCancelInvitationParams as TeamCancelInvitationParams,
     type TeamCreateProjectParams as TeamCreateProjectParams,
     type TeamCreditsUsageParams as TeamCreditsUsageParams,
     type TeamUpdateMemberRoleParams as TeamUpdateMemberRoleParams,
@@ -901,7 +916,11 @@ export declare namespace Structify {
     type ProjectUpdateParams as ProjectUpdateParams,
   };
 
-  export { Admin as Admin };
+  export {
+    Admin as Admin,
+    type ReportCriticalRequest as ReportCriticalRequest,
+    type AdminReportCriticalParams as AdminReportCriticalParams,
+  };
 
   export {
     Datasets as Datasets,
@@ -953,8 +972,7 @@ export declare namespace Structify {
     type GetJobEventsResponse as GetJobEventsResponse,
     type JobListResponse as JobListResponse,
     type JobCancelResponse as JobCancelResponse,
-    type JobGetScrapersResponse as JobGetScrapersResponse,
-    type JobGetSourceEntitiesResponse as JobGetSourceEntitiesResponse,
+    type JobGetResponse as JobGetResponse,
     type JobStatusResponse as JobStatusResponse,
     JobListResponsesJobsList as JobListResponsesJobsList,
     type JobListParams as JobListParams,
@@ -975,12 +993,14 @@ export declare namespace Structify {
   export {
     Sessions as Sessions,
     type AutofixContext as AutofixContext,
+    type CellEdit as CellEdit,
     type ConfirmNodeRequest as ConfirmNodeRequest,
     type CreateWorkflowSessionRequest as CreateWorkflowSessionRequest,
     type Dashboard as Dashboard,
     type DashboardComponent as DashboardComponent,
     type DashboardPage as DashboardPage,
     type EdgeSpec as EdgeSpec,
+    type EditNodeOutputRequest as EditNodeOutputRequest,
     type FinalizeDagRequest as FinalizeDagRequest,
     type FinalizeDagResponse as FinalizeDagResponse,
     type GetNodeLogsResponse as GetNodeLogsResponse,
@@ -988,6 +1008,7 @@ export declare namespace Structify {
     type JobEventBody as JobEventBody,
     type MarkWorkflowSessionErroredRequest as MarkWorkflowSessionErroredRequest,
     type NodeSpec as NodeSpec,
+    type ParquetEdit as ParquetEdit,
     type RequestConfirmationRequest as RequestConfirmationRequest,
     type UpdateWorkflowNodeProgressRequest as UpdateWorkflowNodeProgressRequest,
     type UpdateWorkflowNodeRequest as UpdateWorkflowNodeRequest,
@@ -999,11 +1020,13 @@ export declare namespace Structify {
     type WorkflowSession as WorkflowSession,
     type WorkflowSessionEdge as WorkflowSessionEdge,
     type WorkflowSessionNode as WorkflowSessionNode,
+    type SessionEditNodeOutputResponse as SessionEditNodeOutputResponse,
     type SessionGetEventsResponse as SessionGetEventsResponse,
     type SessionGetNodeProgressResponse as SessionGetNodeProgressResponse,
     type SessionKillJobsResponse as SessionKillJobsResponse,
     type SessionConfirmNodeParams as SessionConfirmNodeParams,
     type SessionCreateSessionParams as SessionCreateSessionParams,
+    type SessionEditNodeOutputParams as SessionEditNodeOutputParams,
     type SessionFinalizeDagParams as SessionFinalizeDagParams,
     type SessionGetEventsParams as SessionGetEventsParams,
     type SessionKillJobsParams as SessionKillJobsParams,
@@ -1047,6 +1070,7 @@ export declare namespace Structify {
     type ConnectorSummariesRequest as ConnectorSummariesRequest,
     type ConnectorSummary as ConnectorSummary,
     type ConnectorTableInfo as ConnectorTableInfo,
+    type ConnectorTablePathResponse as ConnectorTablePathResponse,
     type ConnectorWithSecrets as ConnectorWithSecrets,
     type ConnectorWithSnippets as ConnectorWithSnippets,
     type CreateConnectorRequest as CreateConnectorRequest,
@@ -1082,7 +1106,6 @@ export declare namespace Structify {
     type ConnectorDeleteSchemaObjectParams as ConnectorDeleteSchemaObjectParams,
     type ConnectorExploreParams as ConnectorExploreParams,
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
-    type ConnectorListWithSnippetsParams as ConnectorListWithSnippetsParams,
     type ConnectorSearchTablesParams as ConnectorSearchTablesParams,
     type ConnectorSummariesParams as ConnectorSummariesParams,
     type ConnectorUpdateColumnParams as ConnectorUpdateColumnParams,
@@ -1156,6 +1179,7 @@ export declare namespace Structify {
     type GetSandboxRequest as GetSandboxRequest,
     type Sandbox as Sandbox,
     type SandboxListResponse as SandboxListResponse,
+    type SandboxGetMetricsResponse as SandboxGetMetricsResponse,
     type SandboxGetParams as SandboxGetParams,
     type SandboxUpdateStatusParams as SandboxUpdateStatusParams,
   };

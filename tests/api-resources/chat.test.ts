@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Structify from 'structifyai';
+import Structify, { toFile } from 'structifyai';
 import { Response } from 'node-fetch';
 
 const client = new Structify({
@@ -47,26 +47,6 @@ describe('resource chat', () => {
     const response = await client.chat.addGitCommit('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       commit_hash: 'commit_hash',
     });
-  });
-
-  test('adminGetChatPrompt', async () => {
-    const responsePromise = client.chat.adminGetChatPrompt('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('adminGetChatPrompt: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.chat.adminGetChatPrompt('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(Structify.NotFoundError);
   });
 
   test('adminIssueFound: only required params', async () => {
@@ -158,14 +138,13 @@ describe('resource chat', () => {
         system_prompt: 'system_prompt',
       },
       ephemeral: true,
-      initial_message: 'initial_message',
       project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 
-  test('deleteFiles: only required params', async () => {
-    const responsePromise = client.chat.deleteFiles('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      paths: ['string'],
+  test('deleteInputFile: only required params', async () => {
+    const responsePromise = client.chat.deleteInputFile('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      filenames: ['string'],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -176,9 +155,9 @@ describe('resource chat', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('deleteFiles: required and optional params', async () => {
-    const response = await client.chat.deleteFiles('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      paths: ['string'],
+  test('deleteInputFile: required and optional params', async () => {
+    const response = await client.chat.deleteInputFile('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      filenames: ['string'],
     });
   });
 
@@ -333,6 +312,26 @@ describe('resource chat', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
+  test('listInputFiles', async () => {
+    const responsePromise = client.chat.listInputFiles('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('listInputFiles: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.chat.listInputFiles('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
   test('listSessions: only required params', async () => {
     const responsePromise = client.chat.listSessions({ team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
@@ -386,6 +385,47 @@ describe('resource chat', () => {
       chat_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       commit_hash: 'commit_hash',
     });
+  });
+
+  // Mock server doesn't support application/octet-stream responses
+  test.skip('loadInputFile: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.chat.loadInputFile('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', 'filename', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
+  test('loadInputFiles', async () => {
+    const responsePromise = client.chat.loadInputFiles('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('loadInputFiles: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.chat.loadInputFiles('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
+  test('loadInputFiles: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.chat.loadInputFiles(
+        '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        { since: '2019-12-27T18:11:19.117Z' },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Structify.NotFoundError);
   });
 
   test('makePermanent', async () => {
@@ -450,6 +490,151 @@ describe('resource chat', () => {
     });
   });
 
+  test('simulatePrompt: only required params', async () => {
+    const responsePromise = client.chat.simulatePrompt('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      chat_prompt: {
+        decoding_params: { parameters: [{ MaxTokens: 0 }] },
+        messages: [{ content: [{ Text: 'Text' }], role: 'user' }],
+        metadata: {
+          dataset_descriptor: {
+            description: 'description',
+            name: 'name',
+            relationships: [
+              {
+                description: 'description',
+                name: 'name',
+                source_table: 'source_table',
+                target_table: 'target_table',
+              },
+            ],
+            tables: [
+              {
+                description: 'description',
+                name: 'name',
+                properties: [{ description: 'description', name: 'name' }],
+              },
+            ],
+          },
+          extracted_entities: [
+            {
+              entities: [
+                {
+                  id: 0,
+                  properties: { foo: 'string' },
+                  type: 'type',
+                },
+              ],
+            },
+          ],
+          extraction_criteria: [{ relationship_name: 'relationship_name' }],
+          formatter_specific: { ImageMeta: { image: 'image' } },
+          tool_metadata: [
+            {
+              description: 'description',
+              name: 'Exit',
+              regex_validator: 'regex_validator',
+            },
+          ],
+        },
+      },
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('simulatePrompt: required and optional params', async () => {
+    const response = await client.chat.simulatePrompt('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      chat_prompt: {
+        decoding_params: { parameters: [{ MaxTokens: 0 }] },
+        messages: [{ content: [{ Text: 'Text' }], role: 'user' }],
+        metadata: {
+          dataset_descriptor: {
+            description: 'description',
+            name: 'name',
+            relationships: [
+              {
+                description: 'description',
+                name: 'name',
+                source_table: 'source_table',
+                target_table: 'target_table',
+                merge_strategy: {
+                  source_cardinality_given_target_match: 0,
+                  target_cardinality_given_source_match: 0,
+                },
+                properties: [
+                  {
+                    description: 'description',
+                    name: 'name',
+                    merge_strategy: 'Unique',
+                    prop_type: 'String',
+                  },
+                ],
+              },
+            ],
+            tables: [
+              {
+                description: 'description',
+                name: 'name',
+                properties: [
+                  {
+                    description: 'description',
+                    name: 'name',
+                    merge_strategy: 'Unique',
+                    prop_type: 'String',
+                  },
+                ],
+                expected_cardinality: 0,
+                primary_column: 'primary_column',
+              },
+            ],
+            llm_override_field: 'llm_override_field',
+          },
+          extracted_entities: [
+            {
+              entities: [
+                {
+                  id: 0,
+                  properties: { foo: 'string' },
+                  type: 'type',
+                },
+              ],
+              relationships: [
+                {
+                  source: 0,
+                  target: 0,
+                  type: 'type',
+                  properties: { foo: 'string' },
+                },
+              ],
+            },
+          ],
+          extraction_criteria: [{ relationship_name: 'relationship_name' }],
+          formatter_specific: {
+            ImageMeta: {
+              image: 'image',
+              document_name: 'document_name',
+              document_page: 0,
+              ocr_content: 'ocr_content',
+            },
+          },
+          tool_metadata: [
+            {
+              description: 'description',
+              name: 'Exit',
+              regex_validator: 'regex_validator',
+            },
+          ],
+          qa_potentially_sus_response: 'qa_potentially_sus_response',
+        },
+      },
+    });
+  });
+
   test('updateSession', async () => {
     const responsePromise = client.chat.updateSession('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {});
     const rawResponse = await responsePromise.asResponse();
@@ -493,5 +678,28 @@ describe('resource chat', () => {
 
   test('updateVisibility: required and optional params', async () => {
     const response = await client.chat.updateVisibility('session_id', { visibility: 'private' });
+  });
+
+  test('uploadInputFile: only required params', async () => {
+    const responsePromise = client.chat.uploadInputFile('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      content_type: 'content_type',
+      file_name: 'file_name',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('uploadInputFile: required and optional params', async () => {
+    const response = await client.chat.uploadInputFile('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      content_type: 'content_type',
+      file_name: 'file_name',
+    });
   });
 });

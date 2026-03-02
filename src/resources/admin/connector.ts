@@ -21,6 +21,10 @@ export interface CloneConnectorItem {
 export interface CloneConnectorsRequest {
   connectors: Array<CloneConnectorItem>;
 
+  source_membership_id: string;
+
+  source_team_id: string;
+
   target_team_id: string;
 }
 
@@ -30,6 +34,10 @@ export interface CloneConnectorsResponse {
 
 export interface ConnectorCloneParams {
   connectors: Array<CloneConnectorItem>;
+
+  source_membership_id: string;
+
+  source_team_id: string;
 
   target_team_id: string;
 }

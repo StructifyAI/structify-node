@@ -53,24 +53,6 @@ describe('resource teams', () => {
     );
   });
 
-  test('delete', async () => {
-    const responsePromise = client.teams.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('delete: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.teams.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Structify.NotFoundError);
-  });
-
   test('acceptInvitation: only required params', async () => {
     const responsePromise = client.teams.acceptInvitation({ token: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
@@ -107,8 +89,10 @@ describe('resource teams', () => {
     });
   });
 
-  test('createLinkCode: only required params', async () => {
-    const responsePromise = client.teams.createLinkCode({ team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
+  test('cancelInvitation: only required params', async () => {
+    const responsePromise = client.teams.cancelInvitation('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      email: 'email',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -118,8 +102,10 @@ describe('resource teams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createLinkCode: required and optional params', async () => {
-    const response = await client.teams.createLinkCode({ team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
+  test('cancelInvitation: required and optional params', async () => {
+    const response = await client.teams.cancelInvitation('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      email: 'email',
+    });
   });
 
   test('createProject: only required params', async () => {

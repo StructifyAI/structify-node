@@ -13,7 +13,6 @@ describe('resource connectors', () => {
     const responsePromise = client.connectors.create({
       known_connector_type: 'known_connector_type',
       name: 'name',
-      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -28,14 +27,8 @@ describe('resource connectors', () => {
     const response = await client.connectors.create({
       known_connector_type: 'known_connector_type',
       name: 'name',
-      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       description: 'description',
       nango_connection_id: 'nango_connection_id',
-      nango_integration_id: 'nango_integration_id',
-      pipedream_account_id: 'pipedream_account_id',
-      pipedream_external_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      pipedream_project_id: 'pipedream_project_id',
-      refresh_script: 'refresh_script',
       secrets: { foo: 'string' },
     });
   });
@@ -51,8 +44,8 @@ describe('resource connectors', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: only required params', async () => {
-    const responsePromise = client.connectors.list({ team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
+  test('list', async () => {
+    const responsePromise = client.connectors.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -62,12 +55,18 @@ describe('resource connectors', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: required and optional params', async () => {
-    const response = await client.connectors.list({
-      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      limit: 0,
-      offset: 0,
-    });
+  test('list: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.connectors.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Structify.NotFoundError,
+    );
+  });
+
+  test('list: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.connectors.list({ limit: 0, offset: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Structify.NotFoundError);
   });
 
   test('delete', async () => {
@@ -306,6 +305,26 @@ describe('resource connectors', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
+  test('getTablePath', async () => {
+    const responsePromise = client.connectors.getTablePath('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('getTablePath: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.connectors.getTablePath('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
   test('listTables', async () => {
     const responsePromise = client.connectors.listTables('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();
@@ -326,10 +345,8 @@ describe('resource connectors', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
-  test('listWithSnippets: only required params', async () => {
-    const responsePromise = client.connectors.listWithSnippets({
-      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
+  test('listWithSnippets', async () => {
+    const responsePromise = client.connectors.listWithSnippets();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -339,10 +356,11 @@ describe('resource connectors', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('listWithSnippets: required and optional params', async () => {
-    const response = await client.connectors.listWithSnippets({
-      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
+  test('listWithSnippets: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.connectors.listWithSnippets({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Structify.NotFoundError,
+    );
   });
 
   test('resolveClarification', async () => {
@@ -389,7 +407,6 @@ describe('resource connectors', () => {
   test('summaries: only required params', async () => {
     const responsePromise = client.connectors.summaries({
       connector_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
-      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -403,7 +420,6 @@ describe('resource connectors', () => {
   test('summaries: required and optional params', async () => {
     const response = await client.connectors.summaries({
       connector_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
-      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 

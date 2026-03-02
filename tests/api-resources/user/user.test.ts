@@ -37,6 +37,7 @@ describe('resource user', () => {
         job_title: 'job_title',
         last_selected_team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         linkedin_url: 'linkedin_url',
+        notify_for_interaction: true,
         onboarding_session_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         permissions: ['labeler'],
         slack_user_id: 'slack_user_id',

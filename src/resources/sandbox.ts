@@ -2,6 +2,7 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
+import { JobsList } from '../pagination';
 
 export class SandboxResource extends APIResource {
   list(chatId: string, options?: Core.RequestOptions): Core.APIPromise<SandboxListResponse> {
@@ -10,6 +11,10 @@ export class SandboxResource extends APIResource {
 
   get(chatId: string, body: SandboxGetParams, options?: Core.RequestOptions): Core.APIPromise<Sandbox> {
     return this._client.post(`/sandbox/live/${chatId}`, { body, ...options });
+  }
+
+  getMetrics(sandboxId: string, options?: Core.RequestOptions): Core.APIPromise<SandboxGetMetricsResponse> {
+    return this._client.get(`/sandbox/${sandboxId}/metrics`, options);
   }
 
   updateStatus(
@@ -21,6 +26,8 @@ export class SandboxResource extends APIResource {
   }
 }
 
+export class SandboxesJobsList extends JobsList<Sandbox> {}
+
 export interface GetSandboxRequest {
   /**
    * Override URL for the modal control service (for testing/development)
@@ -31,28 +38,72 @@ export interface GetSandboxRequest {
 export interface Sandbox {
   id: string;
 
-  chat_session_id: string;
-
   created_at: string;
 
   provider: 'modal' | 'daytona';
 
   provider_id: string;
 
-  status: 'alive' | 'terminated';
+  status: 'alive' | 'paused' | 'terminated';
 
-  tunnel_url: string;
+  team_id: string;
 
   updated_at: string;
 
   api_url?: string | null;
 
+  chat_session_id?: string | null;
+
+  exploration_run_id?: string | null;
+
   latest_node?: string | null;
 
+  resumed_at?: string | null;
+
   session_id?: string | null;
+
+  tunnel_url?: string | null;
 }
 
 export type SandboxListResponse = Array<Sandbox>;
+
+export interface SandboxGetMetricsResponse {
+  cpu_percent: number;
+
+  memory: SandboxGetMetricsResponse.Memory;
+
+  process: SandboxGetMetricsResponse.Process;
+
+  sandbox: SandboxGetMetricsResponse.Sandbox;
+}
+
+export namespace SandboxGetMetricsResponse {
+  export interface Memory {
+    available_mb: number;
+
+    percent: number;
+
+    total_mb: number;
+
+    used_mb: number;
+  }
+
+  export interface Process {
+    cpu_percent: number;
+
+    memory_mb: number;
+  }
+
+  export interface Sandbox {
+    remaining_seconds: number;
+
+    start_time: number;
+
+    total_timeout_seconds: number;
+
+    uptime_seconds: number;
+  }
+}
 
 export interface SandboxGetParams {
   /**
@@ -70,6 +121,7 @@ export declare namespace SandboxResource {
     type GetSandboxRequest as GetSandboxRequest,
     type Sandbox as Sandbox,
     type SandboxListResponse as SandboxListResponse,
+    type SandboxGetMetricsResponse as SandboxGetMetricsResponse,
     type SandboxGetParams as SandboxGetParams,
     type SandboxUpdateStatusParams as SandboxUpdateStatusParams,
   };
