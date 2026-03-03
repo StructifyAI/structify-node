@@ -531,7 +531,7 @@ describe('resource chat', () => {
           tool_metadata: [
             {
               description: 'description',
-              name: 'Exit',
+              name: 'WebSearch',
               regex_validator: 'regex_validator',
             },
           ],
@@ -625,7 +625,7 @@ describe('resource chat', () => {
           tool_metadata: [
             {
               description: 'description',
-              name: 'Exit',
+              name: 'WebSearch',
               regex_validator: 'regex_validator',
             },
           ],

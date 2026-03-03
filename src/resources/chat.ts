@@ -1068,6 +1068,7 @@ export type ToolInvocation =
   | ToolInvocation.ReadNodeLogs
   | ToolInvocation.DeleteFile
   | ToolInvocation.MoveFile
+  | ToolInvocation.ApplyPatch
   | ToolInvocation.RunBash
   | ToolInvocation.RunPython
   | ToolInvocation.IssueFound
@@ -1268,6 +1269,30 @@ export namespace ToolInvocation {
       file: string;
 
       new_path: string;
+    }
+  }
+
+  export interface ApplyPatch {
+    input: ApplyPatch.Input;
+
+    name: 'ApplyPatch';
+  }
+
+  export namespace ApplyPatch {
+    export interface Input {
+      apply_all: boolean;
+
+      edits: Array<Input.Edit>;
+
+      file: string;
+    }
+
+    export namespace Input {
+      export interface Edit {
+        new_string: string;
+
+        old_string: string;
+      }
     }
   }
 
