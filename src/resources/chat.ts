@@ -55,7 +55,7 @@ export class Chat extends APIResource {
     sessionId: string,
     body: ChatCopyNodeOutputByCodeHashParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
+  ): Core.APIPromise<ChatCopyNodeOutputByCodeHashResponse> {
     return this._client.post(`/chat/sessions/${sessionId}/nodes/by_code_hash`, { body, ...options });
   }
 
@@ -1690,7 +1690,9 @@ export namespace ChatAddGitCommitResponse {
   }
 }
 
-export type ChatCopyNodeOutputByCodeHashResponse = string | null;
+export interface ChatCopyNodeOutputByCodeHashResponse {
+  cached_node_id?: string | null;
+}
 
 export interface ChatDeleteInputFileResponse {
   files_deleted: number;
