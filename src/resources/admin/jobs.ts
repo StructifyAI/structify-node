@@ -8,6 +8,9 @@ import * as StructureAPI from '../structure';
 import * as ConnectorsAPI from '../connectors/connectors';
 import { JobsList, type JobsListParams } from '../../pagination';
 
+/**
+ * Admin endpoints
+ */
 export class Jobs extends APIResource {
   list(
     query?: JobListParams,

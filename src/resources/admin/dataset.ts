@@ -4,6 +4,9 @@ import { APIResource } from '../../resource';
 import * as Core from '../../core';
 import * as SharedAPI from '../shared';
 
+/**
+ * Admin endpoints
+ */
 export class Dataset extends APIResource {
   getById(query: DatasetGetByIDParams, options?: Core.RequestOptions): Core.APIPromise<AdminDatasetReturn> {
     return this._client.get('/admin/dataset/get_by_id', { query, ...options });

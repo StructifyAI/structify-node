@@ -3,6 +3,9 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 
+/**
+ * Team wiki page management endpoints
+ */
 export class Wiki extends APIResource {
   create(teamId: string, body: WikiCreateParams, options?: Core.RequestOptions): Core.APIPromise<WikiPage> {
     return this._client.post(`/team/${teamId}/wiki`, { body, ...options });

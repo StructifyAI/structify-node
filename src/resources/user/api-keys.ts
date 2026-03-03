@@ -3,6 +3,9 @@
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
 
+/**
+ * All the accessible information about your account through our API
+ */
 export class APIKeys extends APIResource {
   create(body: APIKeyCreateParams, options?: Core.RequestOptions): Core.APIPromise<CreateAPIKeyResponse> {
     return this._client.post('/user/api_keys', { body, ...options });

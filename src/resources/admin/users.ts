@@ -6,6 +6,9 @@ import * as UsersAPI from './users';
 import * as TeamsAPI from '../teams';
 import * as UserAPI from '../user/user';
 
+/**
+ * Admin endpoints
+ */
 export class Users extends APIResource {
   /**
    * Create a user, returning their session token.

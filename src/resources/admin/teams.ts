@@ -5,6 +5,9 @@ import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as TeamsAPI from '../teams';
 
+/**
+ * Admin endpoints
+ */
 export class Teams extends APIResource {
   /**
    * Lists teams in the system along with their subscription information, credit
