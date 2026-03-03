@@ -339,8 +339,6 @@ export namespace ConnectorWithSecrets {
    * Response model for listing secrets (without sensitive data)
    */
   export interface Secret {
-    id: string;
-
     created_at: string;
 
     secret_name: string;
