@@ -349,16 +349,37 @@ export interface ToolMetadata {
   description: string;
 
   name:
-    | 'Exit'
+    | 'WebSearch'
+    | 'WebNavigate'
+    | 'ViewPage'
     | 'Save'
-    | 'Wait'
-    | 'Type'
-    | 'Scroll'
-    | 'ScrollToBottom'
-    | 'Click'
-    | 'Hover'
-    | 'Error'
-    | 'Google';
+    | 'SaveEntities'
+    | 'Exit'
+    | 'ApiExecute'
+    | 'Javascript'
+    | 'NavigateToIFrame'
+    | 'InfiniteScroll'
+    | 'InspectStep'
+    | 'ReadNodeLogs'
+    | 'DeleteFile'
+    | 'MoveFile'
+    | 'ApplyPatch'
+    | 'RunBash'
+    | 'RunPython'
+    | 'IssueFound'
+    | 'SaveDatabase'
+    | 'SaveSchema'
+    | 'SaveTable'
+    | 'SaveColumn'
+    | 'SaveApiResource'
+    | 'SaveMemory'
+    | 'SearchConnectorTables'
+    | 'RequestClarification'
+    | 'AddDependency'
+    | 'SelectData'
+    | 'CreateConnector'
+    | 'SearchConnectorTypes'
+    | 'PinPreviousTool';
 
   regex_validator: string;
 }
