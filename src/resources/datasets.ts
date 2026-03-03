@@ -6,6 +6,9 @@ import * as DatasetsAPI from './datasets';
 import * as SharedAPI from './shared';
 import { JobsList, type JobsListParams } from '../pagination';
 
+/**
+ * Dataset management endpoints
+ */
 export class Datasets extends APIResource {
   /**
    * Creates a dataset.

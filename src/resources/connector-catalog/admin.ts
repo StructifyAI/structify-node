@@ -4,6 +4,9 @@ import { APIResource } from '../../resource';
 import * as Core from '../../core';
 import * as ConnectorCatalogAPI from './connector-catalog';
 
+/**
+ * Admin endpoints
+ */
 export class Admin extends APIResource {
   /**
    * Batch create connector credential fields

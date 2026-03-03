@@ -4,6 +4,9 @@ import { APIResource } from '../resource';
 import * as Core from '../core';
 import { JobsList } from '../pagination';
 
+/**
+ * Sandbox management endpoints
+ */
 export class SandboxResource extends APIResource {
   list(chatId: string, options?: Core.RequestOptions): Core.APIPromise<SandboxListResponse> {
     return this._client.get(`/sandbox/list/${chatId}`, options);

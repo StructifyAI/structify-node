@@ -3,6 +3,9 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 
+/**
+ * Whitelabeled service proxy endpoints
+ */
 export class Whitelabel extends APIResource {
   estimateCost(
     service: string,

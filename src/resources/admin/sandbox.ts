@@ -7,6 +7,9 @@ import * as SandboxAPI from '../sandbox';
 import { SandboxesJobsList } from '../sandbox';
 import { type JobsListParams } from '../../pagination';
 
+/**
+ * Admin endpoints
+ */
 export class Sandbox extends APIResource {
   list(
     query?: SandboxListParams,

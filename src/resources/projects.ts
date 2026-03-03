@@ -4,6 +4,9 @@ import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as ChatAPI from './chat';
 
+/**
+ * Project management endpoints
+ */
 export class Projects extends APIResource {
   update(
     teamId: string,

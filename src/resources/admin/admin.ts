@@ -99,6 +99,9 @@ import {
   Users,
 } from './users';
 
+/**
+ * Admin endpoints
+ */
 export class Admin extends APIResource {
   teams: TeamsAPI.Teams = new TeamsAPI.Teams(this._client);
   dataset: DatasetAPI.Dataset = new DatasetAPI.Dataset(this._client);

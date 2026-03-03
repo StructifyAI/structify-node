@@ -4,6 +4,9 @@ import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 
+/**
+ * Admin endpoints
+ */
 export class FunctionalTests extends APIResource {
   /**
    * Creates a new functional test with optional model and prompt overrides.

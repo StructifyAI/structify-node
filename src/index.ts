@@ -609,13 +609,28 @@ export class Structify extends Core.APIClient {
     this.sessionToken = sessionToken;
   }
 
+  /**
+   * Whitelabeled service proxy endpoints
+   */
   whitelabel: API.Whitelabel = new API.Whitelabel(this);
   user: API.User = new API.User(this);
   chat: API.Chat = new API.Chat(this);
   teams: API.Teams = new API.Teams(this);
+  /**
+   * Team wiki page management endpoints
+   */
   wiki: API.Wiki = new API.Wiki(this);
+  /**
+   * Project management endpoints
+   */
   projects: API.Projects = new API.Projects(this);
+  /**
+   * Admin endpoints
+   */
   admin: API.Admin = new API.Admin(this);
+  /**
+   * Dataset management endpoints
+   */
   datasets: API.Datasets = new API.Datasets(this);
   documents: API.Documents = new API.Documents(this);
   jobs: API.Jobs = new API.Jobs(this);
@@ -628,8 +643,14 @@ export class Structify extends Core.APIClient {
   server: API.Server = new API.Server(this);
   sources: API.Sources = new API.Sources(this);
   entities: API.Entities = new API.Entities(this);
+  /**
+   * Sandbox management endpoints
+   */
   sandbox: API.SandboxResource = new API.SandboxResource(this);
   scrape: API.Scrape = new API.Scrape(this);
+  /**
+   * Code generation endpoints
+   */
   code: API.Code = new API.Code(this);
   structure: API.Structure = new API.Structure(this);
   publicSessions: API.PublicSessions = new API.PublicSessions(this);

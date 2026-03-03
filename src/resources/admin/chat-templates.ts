@@ -5,6 +5,9 @@ import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as ChatAPI from '../chat';
 
+/**
+ * Admin endpoints
+ */
 export class ChatTemplates extends APIResource {
   create(
     body: ChatTemplateCreateParams,

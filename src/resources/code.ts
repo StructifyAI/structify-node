@@ -3,6 +3,9 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 
+/**
+ * Code generation endpoints
+ */
 export class Code extends APIResource {
   /**
    * Events are streamed via WebSocket connection. This endpoint returns immediately
