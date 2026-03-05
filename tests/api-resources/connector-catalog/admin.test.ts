@@ -121,6 +121,7 @@ describe('resource admin', () => {
       slug: 'slug',
       categories: ['string'],
       description: 'description',
+      enterprise_only: true,
       priority: 0,
     });
   });
