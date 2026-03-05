@@ -108,6 +108,8 @@ export interface ConnectorCatalog {
 
   created_at: string;
 
+  enterprise_only: boolean;
+
   name: string;
 
   slug: string;

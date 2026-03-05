@@ -206,6 +206,8 @@ export interface CreateCatalogRequest {
 
   description?: string | null;
 
+  enterprise_only?: boolean;
+
   priority?: number | null;
 }
 
@@ -267,6 +269,8 @@ export interface UpdateCatalogRequest {
   categories?: Array<string> | null;
 
   description?: string | null;
+
+  enterprise_only?: boolean | null;
 
   name?: string | null;
 
@@ -340,6 +344,8 @@ export interface AdminCreateCatalogParams {
 
   description?: string | null;
 
+  enterprise_only?: boolean;
+
   priority?: number | null;
 }
 
@@ -391,6 +397,8 @@ export interface AdminUpdateCatalogParams {
   categories?: Array<string> | null;
 
   description?: string | null;
+
+  enterprise_only?: boolean | null;
 
   name?: string | null;
 
