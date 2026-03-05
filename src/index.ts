@@ -77,7 +77,9 @@ import {
   UpdateVisibilityResponse,
 } from './resources/chat';
 import {
+  ApplyManualEditRequest,
   Code,
+  CodeApplyManualEditParams,
   CodeGenerateCodeParams,
   CodeInterruptGenerationParams,
   GenerateCodeRequest,
@@ -1217,8 +1219,10 @@ export declare namespace Structify {
 
   export {
     Code as Code,
+    type ApplyManualEditRequest as ApplyManualEditRequest,
     type GenerateCodeRequest as GenerateCodeRequest,
     type InterruptGenerationRequest as InterruptGenerationRequest,
+    type CodeApplyManualEditParams as CodeApplyManualEditParams,
     type CodeGenerateCodeParams as CodeGenerateCodeParams,
     type CodeInterruptGenerationParams as CodeInterruptGenerationParams,
   };
