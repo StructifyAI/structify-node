@@ -494,6 +494,16 @@ export namespace ChatEvent {
   export namespace InternalError {
     export interface InternalError {
       message: string;
+
+      /**
+       * Categorizes the kind of internal error that occurred during LLM generation. This
+       * allows the frontend to render appropriate error messages without regex matching.
+       *
+       * Classification logic lives in `LlmError::kind()` (in the inference crate) so
+       * that errors are categorized at the source. This enum is the serializable
+       * representation used in ChatEvent / proto / OpenAPI.
+       */
+      error_kind?: 'unknown' | 'context_limit' | 'rate_limited' | 'timeout' | 'connection_error';
     }
   }
 
