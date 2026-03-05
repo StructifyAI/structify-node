@@ -192,6 +192,8 @@ export namespace AdminTeamsListResponse {
     source_ref?: string | null;
 
     starts_at?: string | null;
+
+    stripe_event_id?: string | null;
   }
 
   export interface Subscription {
