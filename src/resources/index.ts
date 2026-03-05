@@ -66,8 +66,10 @@ export {
 } from './chat';
 export {
   Code,
+  type ApplyManualEditRequest,
   type GenerateCodeRequest,
   type InterruptGenerationRequest,
+  type CodeApplyManualEditParams,
   type CodeGenerateCodeParams,
   type CodeInterruptGenerationParams,
 } from './code';

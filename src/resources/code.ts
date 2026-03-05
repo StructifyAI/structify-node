@@ -7,6 +7,18 @@ import * as Core from '../core';
  * Code generation endpoints
  */
 export class Code extends APIResource {
+  applyManualEdit(
+    chatId: string,
+    body: CodeApplyManualEditParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post(`/code/apply-manual-edit/${chatId}`, {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
   /**
    * Events are streamed via WebSocket connection. This endpoint returns immediately
    * after starting the generation process.
@@ -33,6 +45,12 @@ export class Code extends APIResource {
       headers: { Accept: '*/*', ...options?.headers },
     });
   }
+}
+
+export interface ApplyManualEditRequest {
+  code: string;
+
+  filename: string;
 }
 
 export interface GenerateCodeRequest {
@@ -104,6 +122,12 @@ export namespace GenerateCodeRequest {
 
 export interface InterruptGenerationRequest {
   chatSessionId: string;
+}
+
+export interface CodeApplyManualEditParams {
+  code: string;
+
+  filename: string;
 }
 
 export interface CodeGenerateCodeParams {
@@ -179,8 +203,10 @@ export interface CodeInterruptGenerationParams {
 
 export declare namespace Code {
   export {
+    type ApplyManualEditRequest as ApplyManualEditRequest,
     type GenerateCodeRequest as GenerateCodeRequest,
     type InterruptGenerationRequest as InterruptGenerationRequest,
+    type CodeApplyManualEditParams as CodeApplyManualEditParams,
     type CodeGenerateCodeParams as CodeGenerateCodeParams,
     type CodeInterruptGenerationParams as CodeInterruptGenerationParams,
   };

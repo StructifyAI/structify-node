@@ -9,6 +9,27 @@ const client = new Structify({
 });
 
 describe('resource code', () => {
+  test('applyManualEdit: only required params', async () => {
+    const responsePromise = client.code.applyManualEdit('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      code: 'code',
+      filename: 'filename',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('applyManualEdit: required and optional params', async () => {
+    const response = await client.code.applyManualEdit('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      code: 'code',
+      filename: 'filename',
+    });
+  });
+
   test('generateCode: only required params', async () => {
     const responsePromise = client.code.generateCode({
       chatSessionId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
