@@ -723,6 +723,18 @@ export interface WorkflowSessionNode {
 
   updated_at: string;
 
+  cache_final_rows?: number | null;
+
+  cache_final_size_bytes?: number | null;
+
+  cache_max_bytes?: number | null;
+
+  cache_original_rows?: number | null;
+
+  cache_original_size_bytes?: number | null;
+
+  cache_truncated?: boolean;
+
   code?: string | null;
 
   confirmation_status?: string | null;
@@ -905,6 +917,18 @@ export interface SessionUploadDashboardLayoutParams {
 
 export interface SessionUploadNodeOutputDataParams {
   content: Core.Uploadable;
+
+  cache_final_rows?: number | null;
+
+  cache_final_size_bytes?: number | null;
+
+  cache_max_bytes?: number | null;
+
+  cache_original_rows?: number | null;
+
+  cache_original_size_bytes?: number | null;
+
+  cache_truncated?: boolean | null;
 
   output_schema?: string | null;
 }
