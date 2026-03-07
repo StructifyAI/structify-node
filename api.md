@@ -88,6 +88,7 @@ Types:
 - <code><a href="./src/resources/chat.ts">CopyChatSessionRequest</a></code>
 - <code><a href="./src/resources/chat.ts">CreateChatSessionRequest</a></code>
 - <code><a href="./src/resources/chat.ts">CreateChatSessionResponse</a></code>
+- <code><a href="./src/resources/chat.ts">DashboardItem</a></code>
 - <code><a href="./src/resources/chat.ts">DeleteChatSessionResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ErrorResponse</a></code>
 - <code><a href="./src/resources/chat.ts">GetChatSessionResponse</a></code>
@@ -95,6 +96,7 @@ Types:
 - <code><a href="./src/resources/chat.ts">GrantAdminAccessRequest</a></code>
 - <code><a href="./src/resources/chat.ts">ListChatSessionsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ListCollaboratorsResponse</a></code>
+- <code><a href="./src/resources/chat.ts">ListDashboardsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">Message</a></code>
 - <code><a href="./src/resources/chat.ts">SimulatePromptRequest</a></code>
 - <code><a href="./src/resources/chat.ts">SimulatePromptResponse</a></code>
@@ -134,6 +136,7 @@ Methods:
 - <code title="get /chat/sessions/{session_id}/timeline">client.chat.<a href="./src/resources/chat.ts">getSessionTimeline</a>(sessionId) -> ChatGetSessionTimelineResponse</code>
 - <code title="post /chat/sessions/{chat_id}/admin_override">client.chat.<a href="./src/resources/chat.ts">grantAdminOverride</a>(chatId, { ...params }) -> AdminGrantAccessResponse</code>
 - <code title="get /chat/sessions/{chat_id}/collaborators">client.chat.<a href="./src/resources/chat.ts">listCollaborators</a>(chatId) -> ListCollaboratorsResponse</code>
+- <code title="get /chat/sessions/{chat_id}/dashboards">client.chat.<a href="./src/resources/chat.ts">listDashboards</a>(chatId, { ...params }) -> ListDashboardsResponse</code>
 - <code title="get /chat/input-files/list/{chat_id}">client.chat.<a href="./src/resources/chat.ts">listInputFiles</a>(chatId) -> ChatListInputFilesResponse</code>
 - <code title="get /chat/sessions">client.chat.<a href="./src/resources/chat.ts">listSessions</a>({ ...params }) -> ListChatSessionsResponse</code>
 - <code title="get /chat/templates">client.chat.<a href="./src/resources/chat.ts">listTemplates</a>() -> ChatListTemplatesResponse</code>
@@ -477,6 +480,7 @@ Types:
 - <code><a href="./src/resources/sessions.ts">Dashboard</a></code>
 - <code><a href="./src/resources/sessions.ts">DashboardComponent</a></code>
 - <code><a href="./src/resources/sessions.ts">DashboardPage</a></code>
+- <code><a href="./src/resources/sessions.ts">DashboardSpec</a></code>
 - <code><a href="./src/resources/sessions.ts">EdgeSpec</a></code>
 - <code><a href="./src/resources/sessions.ts">EditNodeOutputRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">FinalizeDagRequest</a></code>
@@ -492,6 +496,20 @@ Types:
 - <code><a href="./src/resources/sessions.ts">UpdateWorkflowNodeRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">UploadDashboardLayoutRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">UploadNodeVisualizationOutputRequest</a></code>
+- <code><a href="./src/resources/sessions.ts">VizBooleanControl</a></code>
+- <code><a href="./src/resources/sessions.ts">VizBooleanControlType</a></code>
+- <code><a href="./src/resources/sessions.ts">VizControlOption</a></code>
+- <code><a href="./src/resources/sessions.ts">VizDateControl</a></code>
+- <code><a href="./src/resources/sessions.ts">VizDateControlType</a></code>
+- <code><a href="./src/resources/sessions.ts">VizFigure</a></code>
+- <code><a href="./src/resources/sessions.ts">VizFigureDefinition</a></code>
+- <code><a href="./src/resources/sessions.ts">VizFigureKind</a></code>
+- <code><a href="./src/resources/sessions.ts">VizNumberControl</a></code>
+- <code><a href="./src/resources/sessions.ts">VizNumberControlType</a></code>
+- <code><a href="./src/resources/sessions.ts">VizParam</a></code>
+- <code><a href="./src/resources/sessions.ts">VizQuery</a></code>
+- <code><a href="./src/resources/sessions.ts">VizStringControl</a></code>
+- <code><a href="./src/resources/sessions.ts">VizStringControlType</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowDag</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowNodeExecutionStatus</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowNodeLog</a></code>
