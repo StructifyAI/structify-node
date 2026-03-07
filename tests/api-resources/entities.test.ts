@@ -367,7 +367,7 @@ describe('resource entities', () => {
     const responsePromise = client.entities.uploadParquet({
       dataset: 'dataset',
       table_name: 'table_name',
-      content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      content: await toFile(Buffer.from('Example data'), 'README.md'),
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -382,7 +382,7 @@ describe('resource entities', () => {
     const response = await client.entities.uploadParquet({
       dataset: 'dataset',
       table_name: 'table_name',
-      content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      content: await toFile(Buffer.from('Example data'), 'README.md'),
       start_embedding: true,
     });
   });

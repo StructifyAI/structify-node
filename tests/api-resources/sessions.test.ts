@@ -416,7 +416,7 @@ describe('resource sessions', () => {
 
   test('uploadNodeOutputData: only required params', async () => {
     const responsePromise = client.sessions.uploadNodeOutputData('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      content: await toFile(Buffer.from('Example data'), 'README.md'),
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -429,7 +429,7 @@ describe('resource sessions', () => {
 
   test('uploadNodeOutputData: required and optional params', async () => {
     const response = await client.sessions.uploadNodeOutputData('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      content: await toFile(Buffer.from('Example data'), 'README.md'),
       cache_final_rows: 0,
       cache_final_size_bytes: 0,
       cache_max_bytes: 0,

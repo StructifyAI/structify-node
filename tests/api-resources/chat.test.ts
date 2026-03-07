@@ -711,7 +711,7 @@ describe('resource chat', () => {
 
   test('uploadInputFile: only required params', async () => {
     const responsePromise = client.chat.uploadInputFile('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      content: await toFile(Buffer.from('Example data'), 'README.md'),
       content_type: 'content_type',
       file_name: 'file_name',
     });
@@ -726,7 +726,7 @@ describe('resource chat', () => {
 
   test('uploadInputFile: required and optional params', async () => {
     const response = await client.chat.uploadInputFile('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      content: await toFile(Buffer.from('Example data'), 'README.md'),
       content_type: 'content_type',
       file_name: 'file_name',
     });
