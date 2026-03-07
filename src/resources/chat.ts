@@ -160,6 +160,26 @@ export class Chat extends APIResource {
   }
 
   /**
+   * List dashboard specs for a chat session at a specific commit hash.
+   */
+  listDashboards(
+    chatId: string,
+    query?: ChatListDashboardsParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ListDashboardsResponse>;
+  listDashboards(chatId: string, options?: Core.RequestOptions): Core.APIPromise<ListDashboardsResponse>;
+  listDashboards(
+    chatId: string,
+    query: ChatListDashboardsParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ListDashboardsResponse> {
+    if (isRequestOptions(query)) {
+      return this.listDashboards(chatId, {}, query);
+    }
+    return this._client.get(`/chat/sessions/${chatId}/dashboards`, { query, ...options });
+  }
+
+  /**
    * List input files for a chat session
    */
   listInputFiles(chatId: string, options?: Core.RequestOptions): Core.APIPromise<ChatListInputFilesResponse> {
@@ -839,6 +859,15 @@ export interface CreateChatSessionResponse {
   session: ChatSessionWithMessages;
 }
 
+export interface DashboardItem {
+  /**
+   * File path relative to repository root.
+   */
+  file_name: string;
+
+  spec: SessionsAPI.DashboardSpec;
+}
+
 /**
  * Success response for delete operations
  */
@@ -1027,6 +1056,18 @@ export namespace ListCollaboratorsResponse {
 
     user_id: string;
   }
+}
+
+export interface ListDashboardsResponse {
+  /**
+   * Commit hash used to load dashboard specs.
+   */
+  commit_hash: string;
+
+  /**
+   * All dashboard specs in src/visualizations/\*.viz.json.
+   */
+  dashboards: Array<DashboardItem>;
 }
 
 /**
@@ -1980,6 +2021,13 @@ export interface ChatGrantAdminOverrideParams {
   role: ChatSessionRole;
 }
 
+export interface ChatListDashboardsParams {
+  /**
+   * Optional commit hash. If omitted, uses the chat session latest commit.
+   */
+  commit_hash?: string | null;
+}
+
 export interface ChatListSessionsParams {
   /**
    * Team ID to filter chat sessions
@@ -2061,6 +2109,7 @@ export declare namespace Chat {
     type CopyChatSessionRequest as CopyChatSessionRequest,
     type CreateChatSessionRequest as CreateChatSessionRequest,
     type CreateChatSessionResponse as CreateChatSessionResponse,
+    type DashboardItem as DashboardItem,
     type DeleteChatSessionResponse as DeleteChatSessionResponse,
     type ErrorResponse as ErrorResponse,
     type GetChatSessionResponse as GetChatSessionResponse,
@@ -2068,6 +2117,7 @@ export declare namespace Chat {
     type GrantAdminAccessRequest as GrantAdminAccessRequest,
     type ListChatSessionsResponse as ListChatSessionsResponse,
     type ListCollaboratorsResponse as ListCollaboratorsResponse,
+    type ListDashboardsResponse as ListDashboardsResponse,
     type Message as Message,
     type SimulatePromptRequest as SimulatePromptRequest,
     type SimulatePromptResponse as SimulatePromptResponse,
@@ -2097,6 +2147,7 @@ export declare namespace Chat {
     type ChatCreateSessionParams as ChatCreateSessionParams,
     type ChatDeleteInputFileParams as ChatDeleteInputFileParams,
     type ChatGrantAdminOverrideParams as ChatGrantAdminOverrideParams,
+    type ChatListDashboardsParams as ChatListDashboardsParams,
     type ChatListSessionsParams as ChatListSessionsParams,
     type ChatLoadFilesParams as ChatLoadFilesParams,
     type ChatLoadInputFilesParams as ChatLoadInputFilesParams,

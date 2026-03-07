@@ -325,6 +325,22 @@ export namespace DashboardPage {
   }
 }
 
+export interface DashboardSpec {
+  dataset: string;
+
+  description: string;
+
+  figures: Array<VizFigure>;
+
+  params: { [key: string]: VizParam };
+
+  queries: Array<VizQuery>;
+
+  title: string;
+
+  version: string;
+}
+
 export interface EdgeSpec {
   source_node_index: number;
 
@@ -608,17 +624,143 @@ export interface UpdateWorkflowNodeRequest {
   execution_time_ms?: number | null;
 }
 
-export interface UploadDashboardLayoutRequest {
-  /**
-   * A page is the top-level container with title/description Can contain multiple
-   * dashboards with different datasets
-   */
-  layout: Dashboard;
+export type UploadDashboardLayoutRequest =
+  | UploadDashboardLayoutRequest.Layout
+  | UploadDashboardLayoutRequest.DashboardSpecs;
+
+export namespace UploadDashboardLayoutRequest {
+  export interface Layout {
+    /**
+     * A page is the top-level container with title/description Can contain multiple
+     * dashboards with different datasets
+     */
+    layout: SessionsAPI.Dashboard;
+  }
+
+  export interface DashboardSpecs {
+    dashboard_specs: Array<DashboardSpecs.DashboardSpec>;
+  }
+
+  export namespace DashboardSpecs {
+    export interface DashboardSpec {
+      file_name: string;
+
+      spec: SessionsAPI.DashboardSpec;
+    }
+  }
 }
 
 export interface UploadNodeVisualizationOutputRequest {
   visualization_output: { [key: string]: unknown };
 }
+
+export interface VizBooleanControl {
+  label: string;
+
+  type: VizBooleanControlType;
+}
+
+export type VizBooleanControlType = 'checkbox';
+
+export interface VizControlOption {
+  label: string;
+
+  value: string;
+}
+
+export interface VizDateControl {
+  label: string;
+
+  type: VizDateControlType;
+}
+
+export type VizDateControlType = 'date';
+
+export interface VizFigure {
+  id: string;
+
+  figure: VizFigureDefinition;
+
+  description?: string;
+
+  span?: number;
+
+  title?: string;
+}
+
+export interface VizFigureDefinition {
+  expression: string;
+
+  kind: VizFigureKind;
+}
+
+export type VizFigureKind = 'js' | 'vega-lite';
+
+export interface VizNumberControl {
+  label: string;
+
+  max: number;
+
+  min: number;
+
+  type: VizNumberControlType;
+
+  step?: number;
+}
+
+export type VizNumberControlType = 'range';
+
+export type VizParam = VizParam.String | VizParam.Number | VizParam.Boolean | VizParam.Date;
+
+export namespace VizParam {
+  export interface String {
+    type: 'string';
+
+    value: string;
+
+    control?: SessionsAPI.VizStringControl;
+  }
+
+  export interface Number {
+    type: 'number';
+
+    value: number;
+
+    control?: SessionsAPI.VizNumberControl;
+  }
+
+  export interface Boolean {
+    type: 'boolean';
+
+    value: boolean;
+
+    control?: SessionsAPI.VizBooleanControl;
+  }
+
+  export interface Date {
+    type: 'date';
+
+    value: string;
+
+    control?: SessionsAPI.VizDateControl;
+  }
+}
+
+export interface VizQuery {
+  id: string;
+
+  sql: string;
+}
+
+export interface VizStringControl {
+  label: string;
+
+  options: Array<VizControlOption>;
+
+  type: VizStringControlType;
+}
+
+export type VizStringControlType = 'dropdown';
 
 export interface WorkflowDag {
   aborted: boolean;
@@ -907,12 +1049,30 @@ export interface SessionUpdateNodeProgressParams {
   total?: number | null;
 }
 
-export interface SessionUploadDashboardLayoutParams {
-  /**
-   * A page is the top-level container with title/description Can contain multiple
-   * dashboards with different datasets
-   */
-  layout: Dashboard;
+export type SessionUploadDashboardLayoutParams =
+  | SessionUploadDashboardLayoutParams.Variant0
+  | SessionUploadDashboardLayoutParams.Variant1;
+
+export declare namespace SessionUploadDashboardLayoutParams {
+  export interface Variant0 {
+    /**
+     * A page is the top-level container with title/description Can contain multiple
+     * dashboards with different datasets
+     */
+    layout: Dashboard;
+  }
+
+  export interface Variant1 {
+    dashboard_specs: Array<Variant1.DashboardSpec>;
+  }
+
+  export namespace Variant1 {
+    export interface DashboardSpec {
+      file_name: string;
+
+      spec: SessionsAPI.DashboardSpec;
+    }
+  }
 }
 
 export interface SessionUploadNodeOutputDataParams {
@@ -946,6 +1106,7 @@ export declare namespace Sessions {
     type Dashboard as Dashboard,
     type DashboardComponent as DashboardComponent,
     type DashboardPage as DashboardPage,
+    type DashboardSpec as DashboardSpec,
     type EdgeSpec as EdgeSpec,
     type EditNodeOutputRequest as EditNodeOutputRequest,
     type FinalizeDagRequest as FinalizeDagRequest,
@@ -961,6 +1122,20 @@ export declare namespace Sessions {
     type UpdateWorkflowNodeRequest as UpdateWorkflowNodeRequest,
     type UploadDashboardLayoutRequest as UploadDashboardLayoutRequest,
     type UploadNodeVisualizationOutputRequest as UploadNodeVisualizationOutputRequest,
+    type VizBooleanControl as VizBooleanControl,
+    type VizBooleanControlType as VizBooleanControlType,
+    type VizControlOption as VizControlOption,
+    type VizDateControl as VizDateControl,
+    type VizDateControlType as VizDateControlType,
+    type VizFigure as VizFigure,
+    type VizFigureDefinition as VizFigureDefinition,
+    type VizFigureKind as VizFigureKind,
+    type VizNumberControl as VizNumberControl,
+    type VizNumberControlType as VizNumberControlType,
+    type VizParam as VizParam,
+    type VizQuery as VizQuery,
+    type VizStringControl as VizStringControl,
+    type VizStringControlType as VizStringControlType,
     type WorkflowDag as WorkflowDag,
     type WorkflowNodeExecutionStatus as WorkflowNodeExecutionStatus,
     type WorkflowNodeLog as WorkflowNodeLog,
