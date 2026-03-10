@@ -367,7 +367,6 @@ export {
   Structure,
   type ChatPrompt,
   type SaveRequirement,
-  type ToolMetadata,
   type StructureEnhancePropertyResponse,
   type StructureEnhanceRelationshipResponse,
   type StructureFindRelationshipResponse,

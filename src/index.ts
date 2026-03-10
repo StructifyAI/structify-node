@@ -332,7 +332,6 @@ import {
   StructurePdfResponse,
   StructureRunAsyncParams,
   StructureRunAsyncResponse,
-  ToolMetadata,
 } from './resources/structure';
 import {
   AcceptInvitationRequest,
@@ -1267,7 +1266,6 @@ export declare namespace Structify {
     Structure as Structure,
     type ChatPrompt as ChatPrompt,
     type SaveRequirement as SaveRequirement,
-    type ToolMetadata as ToolMetadata,
     type StructureEnhancePropertyResponse as StructureEnhancePropertyResponse,
     type StructureEnhanceRelationshipResponse as StructureEnhanceRelationshipResponse,
     type StructureFindRelationshipResponse as StructureFindRelationshipResponse,
