@@ -557,13 +557,6 @@ describe('resource chat', () => {
           ],
           extraction_criteria: [{ relationship_name: 'relationship_name' }],
           formatter_specific: { ImageMeta: { image: 'image' } },
-          tool_metadata: [
-            {
-              description: 'description',
-              name: 'WebSearch',
-              regex_validator: 'regex_validator',
-            },
-          ],
         },
       },
     });
@@ -651,13 +644,6 @@ describe('resource chat', () => {
               ocr_content: 'ocr_content',
             },
           },
-          tool_metadata: [
-            {
-              description: 'description',
-              name: 'WebSearch',
-              regex_validator: 'regex_validator',
-            },
-          ],
           qa_potentially_sus_response: 'qa_potentially_sus_response',
         },
       },

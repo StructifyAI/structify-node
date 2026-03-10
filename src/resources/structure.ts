@@ -216,8 +216,6 @@ export namespace ChatPrompt {
 
     formatter_specific: Metadata.ImageMeta | Metadata.WebMeta | Metadata.TextMeta | Metadata.ScraperMeta;
 
-    tool_metadata: Array<StructureAPI.ToolMetadata>;
-
     qa_potentially_sus_response?: string | null;
   }
 
@@ -343,45 +341,6 @@ export namespace SaveRequirement {
      */
     table_name: string;
   }
-}
-
-export interface ToolMetadata {
-  description: string;
-
-  name:
-    | 'WebSearch'
-    | 'WebNavigate'
-    | 'ViewPage'
-    | 'Save'
-    | 'SaveEntities'
-    | 'Exit'
-    | 'ApiExecute'
-    | 'Javascript'
-    | 'NavigateToIFrame'
-    | 'InfiniteScroll'
-    | 'InspectStep'
-    | 'ReadNodeLogs'
-    | 'DeleteFile'
-    | 'MoveFile'
-    | 'ApplyPatch'
-    | 'RunBash'
-    | 'RunPython'
-    | 'IssueFound'
-    | 'SaveDatabase'
-    | 'SaveSchema'
-    | 'SaveTable'
-    | 'SaveColumn'
-    | 'SaveApiResource'
-    | 'SaveMemory'
-    | 'SearchConnectorTables'
-    | 'RequestClarification'
-    | 'AddDependency'
-    | 'SelectData'
-    | 'CreateConnector'
-    | 'SearchConnectorTypes'
-    | 'PinPreviousTool';
-
-  regex_validator: string;
 }
 
 export type StructureEnhancePropertyResponse = string;
@@ -555,7 +514,6 @@ export declare namespace Structure {
   export {
     type ChatPrompt as ChatPrompt,
     type SaveRequirement as SaveRequirement,
-    type ToolMetadata as ToolMetadata,
     type StructureEnhancePropertyResponse as StructureEnhancePropertyResponse,
     type StructureEnhanceRelationshipResponse as StructureEnhanceRelationshipResponse,
     type StructureFindRelationshipResponse as StructureFindRelationshipResponse,
