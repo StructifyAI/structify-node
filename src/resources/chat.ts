@@ -1131,7 +1131,8 @@ export type ToolInvocation =
   | ToolInvocation.SelectData
   | ToolInvocation.CreateConnector
   | ToolInvocation.SearchConnectorTypes
-  | ToolInvocation.PinPreviousTool;
+  | ToolInvocation.PinPreviousTool
+  | ToolInvocation.RunPipeline;
 
 export namespace ToolInvocation {
   export interface WebSearch {
@@ -1586,6 +1587,18 @@ export namespace ToolInvocation {
   export namespace PinPreviousTool {
     export interface Input {
       path: string;
+    }
+  }
+
+  export interface RunPipeline {
+    input: RunPipeline.Input;
+
+    name: 'RunPipeline';
+  }
+
+  export namespace RunPipeline {
+    export interface Input {
+      rerun_all_steps?: boolean;
     }
   }
 }
