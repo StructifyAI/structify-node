@@ -316,6 +316,7 @@ export {
   type VizStringControl,
   type VizStringControlType,
   type WorkflowDag,
+  type WorkflowDashboardItem,
   type WorkflowNodeExecutionStatus,
   type WorkflowNodeLog,
   type WorkflowSession,

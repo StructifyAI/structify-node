@@ -4,6 +4,7 @@ import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as SessionsAPI from './sessions';
+import * as ChatAPI from './chat';
 import * as SharedAPI from './shared';
 import { type Response } from '../_shims/index';
 
@@ -765,6 +766,8 @@ export type VizStringControlType = 'dropdown';
 export interface WorkflowDag {
   aborted: boolean;
 
+  dashboard_specs: Array<ChatAPI.DashboardItem>;
+
   edges: Array<WorkflowSessionEdge>;
 
   is_ready: boolean;
@@ -784,6 +787,15 @@ export interface WorkflowDag {
   error?: string | null;
 
   error_traceback?: string | null;
+}
+
+export interface WorkflowDashboardItem {
+  /**
+   * File path relative to repository root.
+   */
+  file_name: string;
+
+  spec: DashboardSpec;
 }
 
 export type WorkflowNodeExecutionStatus =
@@ -1137,6 +1149,7 @@ export declare namespace Sessions {
     type VizStringControl as VizStringControl,
     type VizStringControlType as VizStringControlType,
     type WorkflowDag as WorkflowDag,
+    type WorkflowDashboardItem as WorkflowDashboardItem,
     type WorkflowNodeExecutionStatus as WorkflowNodeExecutionStatus,
     type WorkflowNodeLog as WorkflowNodeLog,
     type WorkflowSession as WorkflowSession,
