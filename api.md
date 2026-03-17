@@ -511,6 +511,7 @@ Types:
 - <code><a href="./src/resources/sessions.ts">VizStringControl</a></code>
 - <code><a href="./src/resources/sessions.ts">VizStringControlType</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowDag</a></code>
+- <code><a href="./src/resources/sessions.ts">WorkflowDashboardItem</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowNodeExecutionStatus</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowNodeLog</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowSession</a></code>
