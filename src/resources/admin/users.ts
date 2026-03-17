@@ -78,8 +78,6 @@ export interface User {
 
   full_name: string;
 
-  is_developer: boolean;
-
   notify_for_interaction: boolean;
 
   permissions: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none' | null>;
