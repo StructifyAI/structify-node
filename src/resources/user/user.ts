@@ -204,8 +204,6 @@ export namespace UpdateUserParams {
 
     full_name?: string | null;
 
-    is_developer?: boolean | null;
-
     job_title?: string | null;
 
     last_selected_team_id?: string | null;
@@ -254,8 +252,6 @@ export interface UserInfo {
   >;
 
   full_name: string;
-
-  is_developer: boolean;
 
   notify_for_interaction: boolean;
 
@@ -369,8 +365,6 @@ export namespace UserUpdateParams {
     feature_overrides?: unknown;
 
     full_name?: string | null;
-
-    is_developer?: boolean | null;
 
     job_title?: string | null;
 
