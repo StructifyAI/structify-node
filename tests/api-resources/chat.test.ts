@@ -92,6 +92,7 @@ describe('resource chat', () => {
       team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       copy_inputs: true,
       project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      template_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 
@@ -268,6 +269,24 @@ describe('resource chat', () => {
       client.chat.getSessionTimeline('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
         path: '/_stainless_unknown_path',
       }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
+  test('getTemplate', async () => {
+    const responsePromise = client.chat.getTemplate('template_id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('getTemplate: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.chat.getTemplate('template_id', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Structify.NotFoundError);
   });
 

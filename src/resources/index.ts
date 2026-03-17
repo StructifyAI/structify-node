@@ -30,6 +30,7 @@ export {
   type Message,
   type SimulatePromptRequest,
   type SimulatePromptResponse,
+  type TemplateQuestion,
   type ToolInvocation,
   type ToolResult,
   type UpdateChatSessionFavoriteRequest,

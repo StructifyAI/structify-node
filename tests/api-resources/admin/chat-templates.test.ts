@@ -16,6 +16,7 @@ describe('resource chatTemplates', () => {
       display_order: 0,
       image_url: 'image_url',
       is_active: true,
+      questions: [{ prompt: 'prompt' }],
       title: 'title',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -34,6 +35,7 @@ describe('resource chatTemplates', () => {
       display_order: 0,
       image_url: 'image_url',
       is_active: true,
+      questions: [{ prompt: 'prompt', options: ['string'] }],
       title: 'title',
     });
   });

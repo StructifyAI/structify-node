@@ -55,6 +55,8 @@ export interface CreateChatTemplateRequest {
 
   is_active: boolean;
 
+  questions: Array<ChatAPI.TemplateQuestion>;
+
   title: string;
 }
 
@@ -66,6 +68,8 @@ export interface UpdateChatTemplateRequest {
   image_url?: string | null;
 
   is_active?: boolean | null;
+
+  questions?: Array<ChatAPI.TemplateQuestion> | null;
 
   title?: string | null;
 
@@ -85,6 +89,8 @@ export interface ChatTemplateCreateParams {
 
   is_active: boolean;
 
+  questions: Array<ChatAPI.TemplateQuestion>;
+
   title: string;
 }
 
@@ -96,6 +102,8 @@ export interface ChatTemplateUpdateParams {
   image_url?: string | null;
 
   is_active?: boolean | null;
+
+  questions?: Array<ChatAPI.TemplateQuestion> | null;
 
   title?: string | null;
 
