@@ -1285,11 +1285,7 @@ export namespace ToolInvocation {
 
   export namespace ReadNodeLogs {
     export interface Input {
-      end_line: number;
-
       node_function_name: string;
-
-      start_line: number;
 
       log_type?: string | null;
     }
