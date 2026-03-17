@@ -612,6 +612,7 @@ Types:
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorAddSchemaObjectResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorGetResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorGetClarificationRequestsResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorListStoresResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorListWithSnippetsResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorSearchTablesResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorSummariesResponse</a></code>
@@ -634,6 +635,7 @@ Methods:
 - <code title="get /connectors/{connector_id}/explore/chat">client.connectors.<a href="./src/resources/connectors/connectors.ts">getExplorerChat</a>(connectorId, { ...params }) -> ExplorerChatResponse</code>
 - <code title="get /connectors/{connector_id}/store">client.connectors.<a href="./src/resources/connectors/connectors.ts">getStore</a>(connectorId) -> ConnectorStoreResponse</code>
 - <code title="get /connectors/tables/{table_id}/path">client.connectors.<a href="./src/resources/connectors/connectors.ts">getTablePath</a>(tableId) -> ConnectorTablePathResponse</code>
+- <code title="get /connectors/stores">client.connectors.<a href="./src/resources/connectors/connectors.ts">listStores</a>() -> ConnectorListStoresResponse</code>
 - <code title="get /connectors/{connector_id}/tables">client.connectors.<a href="./src/resources/connectors/connectors.ts">listTables</a>(connectorId) -> ListTablesResponse</code>
 - <code title="get /connectors/with-snippets">client.connectors.<a href="./src/resources/connectors/connectors.ts">listWithSnippets</a>() -> ConnectorListWithSnippetsResponse</code>
 - <code title="patch /connectors/clarification-requests/{clarification_id}/resolve">client.connectors.<a href="./src/resources/connectors/connectors.ts">resolveClarification</a>(clarificationId) -> void</code>

@@ -120,6 +120,7 @@ export {
   type ConnectorAddSchemaObjectResponse,
   type ConnectorGetResponse,
   type ConnectorGetClarificationRequestsResponse,
+  type ConnectorListStoresResponse,
   type ConnectorListWithSnippetsResponse,
   type ConnectorSearchTablesResponse,
   type ConnectorSummariesResponse,
