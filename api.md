@@ -100,6 +100,7 @@ Types:
 - <code><a href="./src/resources/chat.ts">Message</a></code>
 - <code><a href="./src/resources/chat.ts">SimulatePromptRequest</a></code>
 - <code><a href="./src/resources/chat.ts">SimulatePromptResponse</a></code>
+- <code><a href="./src/resources/chat.ts">TemplateQuestion</a></code>
 - <code><a href="./src/resources/chat.ts">ToolInvocation</a></code>
 - <code><a href="./src/resources/chat.ts">ToolResult</a></code>
 - <code><a href="./src/resources/chat.ts">UpdateChatSessionFavoriteRequest</a></code>
@@ -134,6 +135,7 @@ Methods:
 - <code title="get /chat/{chat_session_id}/partial-chats">client.chat.<a href="./src/resources/chat.ts">getPartialChats</a>(chatSessionId) -> ChatGetPartialChatsResponse</code>
 - <code title="get /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">getSession</a>(sessionId) -> GetChatSessionResponse</code>
 - <code title="get /chat/sessions/{session_id}/timeline">client.chat.<a href="./src/resources/chat.ts">getSessionTimeline</a>(sessionId) -> ChatGetSessionTimelineResponse</code>
+- <code title="get /chat/templates/{template_id}">client.chat.<a href="./src/resources/chat.ts">getTemplate</a>(templateId) -> ChatTemplate</code>
 - <code title="post /chat/sessions/{chat_id}/admin_override">client.chat.<a href="./src/resources/chat.ts">grantAdminOverride</a>(chatId, { ...params }) -> AdminGrantAccessResponse</code>
 - <code title="get /chat/sessions/{chat_id}/collaborators">client.chat.<a href="./src/resources/chat.ts">listCollaborators</a>(chatId) -> ListCollaboratorsResponse</code>
 - <code title="get /chat/sessions/{chat_id}/dashboards">client.chat.<a href="./src/resources/chat.ts">listDashboards</a>(chatId, { ...params }) -> ListDashboardsResponse</code>

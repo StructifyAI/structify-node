@@ -138,6 +138,10 @@ export class Chat extends APIResource {
     return this._client.get(`/chat/sessions/${sessionId}/timeline`, options);
   }
 
+  getTemplate(templateId: string, options?: Core.RequestOptions): Core.APIPromise<ChatTemplate> {
+    return this._client.get(`/chat/templates/${templateId}`, options);
+  }
+
   /**
    * Grant temporary admin override access for the calling admin to a chat session
    */
@@ -613,6 +617,8 @@ export interface ChatSession {
 
   config_proto?: Core.Uploadable | null;
 
+  instantiated_from_template_id?: string | null;
+
   message_head?: string | null;
 
   name?: string | null;
@@ -657,6 +663,8 @@ export interface ChatSessionWithMessages {
 
   created_at: string;
 
+  ephemeral: boolean;
+
   git_application_token: string;
 
   is_favorite: boolean;
@@ -674,6 +682,8 @@ export interface ChatSessionWithMessages {
   user_role: ChatSessionRole;
 
   visibility: ChatVisibility;
+
+  instantiated_from_template_id?: string | null;
 
   latest_workflow_session_id?: string | null;
 
@@ -770,6 +780,8 @@ export interface ChatTemplate {
 
   is_active: boolean;
 
+  questions: Array<TemplateQuestion>;
+
   title: string;
 
   updated_at: string;
@@ -789,6 +801,8 @@ export interface CopyChatSessionRequest {
   copy_inputs?: boolean;
 
   project_id?: string | null;
+
+  template_id?: string | null;
 }
 
 export interface CreateChatSessionRequest {
@@ -896,6 +910,8 @@ export namespace GetChatSessionResponse {
 
     created_at: string;
 
+    ephemeral: boolean;
+
     git_application_token: string;
 
     is_favorite: boolean;
@@ -915,6 +931,8 @@ export namespace GetChatSessionResponse {
     visibility: ChatAPI.ChatVisibility;
 
     workflow_sessions: Array<SessionsAPI.WorkflowSession>;
+
+    instantiated_from_template_id?: string | null;
 
     latest_workflow_session_id?: string | null;
 
@@ -1099,6 +1117,12 @@ export interface SimulatePromptRequest {
 
 export interface SimulatePromptResponse {
   response: string;
+}
+
+export interface TemplateQuestion {
+  prompt: string;
+
+  options?: Array<string> | null;
 }
 
 export type ToolInvocation =
@@ -1949,6 +1973,8 @@ export interface ChatCopyParams {
   copy_inputs?: boolean;
 
   project_id?: string | null;
+
+  template_id?: string | null;
 }
 
 export interface ChatCopyNodeOutputByCodeHashParams {
@@ -2128,6 +2154,7 @@ export declare namespace Chat {
     type Message as Message,
     type SimulatePromptRequest as SimulatePromptRequest,
     type SimulatePromptResponse as SimulatePromptResponse,
+    type TemplateQuestion as TemplateQuestion,
     type ToolInvocation as ToolInvocation,
     type ToolResult as ToolResult,
     type UpdateChatSessionFavoriteRequest as UpdateChatSessionFavoriteRequest,
