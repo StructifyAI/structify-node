@@ -152,6 +152,10 @@ export class Connectors extends APIResource {
     return this._client.get(`/connectors/tables/${tableId}/path`, options);
   }
 
+  listStores(options?: Core.RequestOptions): Core.APIPromise<ConnectorListStoresResponse> {
+    return this._client.get('/connectors/stores', options);
+  }
+
   /**
    * Returns all tables across all databases and schemas for the given connector.
    * Useful for finding table IDs to pass to the explore endpoint for single-table
@@ -869,6 +873,8 @@ export namespace ConnectorGetClarificationRequestsResponse {
   }
 }
 
+export type ConnectorListStoresResponse = { [key: string]: LlmInformationStore };
+
 export type ConnectorListWithSnippetsResponse = Array<ConnectorWithSnippets>;
 
 export interface ConnectorSearchTablesResponse {
@@ -1313,6 +1319,7 @@ export declare namespace Connectors {
     type ConnectorAddSchemaObjectResponse as ConnectorAddSchemaObjectResponse,
     type ConnectorGetResponse as ConnectorGetResponse,
     type ConnectorGetClarificationRequestsResponse as ConnectorGetClarificationRequestsResponse,
+    type ConnectorListStoresResponse as ConnectorListStoresResponse,
     type ConnectorListWithSnippetsResponse as ConnectorListWithSnippetsResponse,
     type ConnectorSearchTablesResponse as ConnectorSearchTablesResponse,
     type ConnectorSummariesResponse as ConnectorSummariesResponse,
