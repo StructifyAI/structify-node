@@ -122,7 +122,6 @@ describe('resource admin', () => {
       categories: ['string'],
       description: 'description',
       enterprise_only: true,
-      onboarding_priority: 0,
       priority: 0,
     });
   });
