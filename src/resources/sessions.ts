@@ -118,6 +118,10 @@ export class Sessions extends APIResource {
     return this._client.post(`/sessions/nodes/${nodeId}/request_confirmation`, { body, ...options });
   }
 
+  triggerReview(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<TriggerReviewResponse> {
+    return this._client.post(`/sessions/${sessionId}/trigger_review`, options);
+  }
+
   updateNode(
     nodeId: string,
     body: SessionUpdateNodeParams,
@@ -603,6 +607,10 @@ export interface RequestConfirmationRequest {
   operation: 'tag' | 'pdf' | 'web' | 'match';
 
   row_count: number;
+}
+
+export interface TriggerReviewResponse {
+  triggered: boolean;
 }
 
 export interface UpdateWorkflowNodeProgressRequest {
@@ -1130,6 +1138,7 @@ export declare namespace Sessions {
     type NodeSpec as NodeSpec,
     type ParquetEdit as ParquetEdit,
     type RequestConfirmationRequest as RequestConfirmationRequest,
+    type TriggerReviewResponse as TriggerReviewResponse,
     type UpdateWorkflowNodeProgressRequest as UpdateWorkflowNodeProgressRequest,
     type UpdateWorkflowNodeRequest as UpdateWorkflowNodeRequest,
     type UploadDashboardLayoutRequest as UploadDashboardLayoutRequest,

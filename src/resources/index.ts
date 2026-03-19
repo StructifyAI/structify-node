@@ -299,6 +299,7 @@ export {
   type NodeSpec,
   type ParquetEdit,
   type RequestConfirmationRequest,
+  type TriggerReviewResponse,
   type UpdateWorkflowNodeProgressRequest,
   type UpdateWorkflowNodeRequest,
   type UploadDashboardLayoutRequest,
