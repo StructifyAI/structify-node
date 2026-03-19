@@ -137,7 +137,6 @@ export {
   type ConnectorSummariesParams,
   type ConnectorUpdateColumnParams,
   type ConnectorUpdateTableParams,
-  type ConnectorUploadDatahubArtifactParams,
 } from './connectors/connectors';
 export {
   DatasetViewRelationshipsResponsesJobsList,
