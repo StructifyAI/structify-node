@@ -1015,6 +1015,11 @@ export interface GrantAdminAccessRequest {
  */
 export interface ListChatSessionsResponse {
   sessions: Array<ListChatSessionsResponse.Session>;
+
+  /**
+   * Total number of chat sessions matching the query (for pagination)
+   */
+  total_count: number;
 }
 
 export namespace ListChatSessionsResponse {
@@ -2071,6 +2076,11 @@ export interface ChatListSessionsParams {
    * Maximum number of sessions to return (default: 50)
    */
   limit?: number | null;
+
+  /**
+   * Number of sessions to skip (default: 0)
+   */
+  offset?: number | null;
 
   /**
    * Project ID to filter chat sessions
