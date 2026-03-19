@@ -89,13 +89,13 @@ export interface JobListResponse {
 
   created_at: string;
 
-  dataset_id: string;
-
-  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore';
+  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | 'DatahubIngestion';
 
   status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
   user_id: string;
+
+  dataset_id?: string | null;
 
   message?: string | null;
 
@@ -114,23 +114,24 @@ export namespace JobListResponse {
 
     extraction_criteria: Array<StructureAPI.SaveRequirement>;
 
-    /**
-     * Knowledge graph info structured to deserialize and display in the same format
-     * that the LLM outputs. Also the first representation of an LLM output in the
-     * pipeline from raw tool output to being merged into a DB
-     */
-    seeded_kg: SharedAPI.KnowledgeGraph;
-
     structuring_input:
       | Parameters.Agent
       | Parameters.TransformationPrompt
       | Parameters.ScrapeFromURLProperty
       | Parameters.ScrapeURL
+      | Parameters.DatahubIngestion
       | Parameters.ConnectorExploration;
 
     instructions?: string | null;
 
     model?: string | null;
+
+    /**
+     * Knowledge graph info structured to deserialize and display in the same format
+     * that the LLM outputs. Also the first representation of an LLM output in the
+     * pipeline from raw tool output to being merged into a DB
+     */
+    seeded_kg?: SharedAPI.KnowledgeGraph | null;
   }
 
   export namespace Parameters {
@@ -204,6 +205,20 @@ export namespace JobListResponse {
       }
     }
 
+    export interface DatahubIngestion {
+      DatahubIngestion: DatahubIngestion.DatahubIngestion;
+    }
+
+    export namespace DatahubIngestion {
+      export interface DatahubIngestion {
+        connector_id: string;
+
+        exploration_run_id: string;
+
+        only_do_datahub: boolean;
+      }
+    }
+
     export interface ConnectorExploration {
       ConnectorExploration: ConnectorExploration.ConnectorExploration;
     }
@@ -222,10 +237,7 @@ export namespace JobListResponse {
 
         exploration_run_id: string;
 
-        /**
-         * Which exploration stage to run
-         */
-        stage: 'both' | 'ingestion' | 'annotation';
+        strategy: 'full' | 'diff';
       }
     }
   }
@@ -236,9 +248,7 @@ export interface JobCancelResponse {
 
   created_at: string;
 
-  dataset_id: string;
-
-  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore';
+  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | 'DatahubIngestion';
 
   max_steps_without_save: number;
 
@@ -251,6 +261,8 @@ export interface JobCancelResponse {
   use_proxy: boolean;
 
   user_id: string;
+
+  dataset_id?: string | null;
 
   max_errors?: number | null;
 
@@ -319,13 +331,13 @@ export namespace JobGetResponse {
 
     created_at: string;
 
-    dataset_id: string;
-
-    job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore';
+    job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | 'DatahubIngestion';
 
     status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
     user_id: string;
+
+    dataset_id?: string | null;
 
     message?: string | null;
 
@@ -344,23 +356,24 @@ export namespace JobGetResponse {
 
       extraction_criteria: Array<StructureAPI.SaveRequirement>;
 
-      /**
-       * Knowledge graph info structured to deserialize and display in the same format
-       * that the LLM outputs. Also the first representation of an LLM output in the
-       * pipeline from raw tool output to being merged into a DB
-       */
-      seeded_kg: SharedAPI.KnowledgeGraph;
-
       structuring_input:
         | Parameters.Agent
         | Parameters.TransformationPrompt
         | Parameters.ScrapeFromURLProperty
         | Parameters.ScrapeURL
+        | Parameters.DatahubIngestion
         | Parameters.ConnectorExploration;
 
       instructions?: string | null;
 
       model?: string | null;
+
+      /**
+       * Knowledge graph info structured to deserialize and display in the same format
+       * that the LLM outputs. Also the first representation of an LLM output in the
+       * pipeline from raw tool output to being merged into a DB
+       */
+      seeded_kg?: SharedAPI.KnowledgeGraph | null;
     }
 
     export namespace Parameters {
@@ -434,6 +447,20 @@ export namespace JobGetResponse {
         }
       }
 
+      export interface DatahubIngestion {
+        DatahubIngestion: DatahubIngestion.DatahubIngestion;
+      }
+
+      export namespace DatahubIngestion {
+        export interface DatahubIngestion {
+          connector_id: string;
+
+          exploration_run_id: string;
+
+          only_do_datahub: boolean;
+        }
+      }
+
       export interface ConnectorExploration {
         ConnectorExploration: ConnectorExploration.ConnectorExploration;
       }
@@ -452,10 +479,7 @@ export namespace JobGetResponse {
 
           exploration_run_id: string;
 
-          /**
-           * Which exploration stage to run
-           */
-          stage: 'both' | 'ingestion' | 'annotation';
+          strategy: 'full' | 'diff';
         }
       }
     }
@@ -620,7 +644,7 @@ export interface JobListParams extends JobsListParams {
   /**
    * Type of job to optionally filter jobs by
    */
-  job_type?: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | null;
+  job_type?: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | 'DatahubIngestion' | null;
 
   /**
    * Node ID to optionally filter jobs by
