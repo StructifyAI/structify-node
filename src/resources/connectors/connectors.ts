@@ -8,7 +8,6 @@ import * as StructureAPI from '../structure';
 import * as TypeSnippetsAPI from './type-snippets';
 import { Snippet, TypeSnippetUpsertParams, TypeSnippets, UpsertRequest } from './type-snippets';
 import { JobsList, type JobsListParams } from '../../pagination';
-import { type Response } from '../../_shims/index';
 
 export class Connectors extends APIResource {
   typeSnippets: TypeSnippetsAPI.TypeSnippets = new TypeSnippetsAPI.TypeSnippets(this._client);
@@ -87,18 +86,6 @@ export class Connectors extends APIResource {
     return this._client.delete(`/connectors/${connectorId}/secrets/${secretName}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
-    });
-  }
-
-  downloadDatahubArtifact(
-    connectorId: string,
-    kind: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response> {
-    return this._client.get(`/internal/connectors/${connectorId}/datahub-artifacts/${kind}`, {
-      ...options,
-      headers: { Accept: 'application/octet-stream', ...options?.headers },
-      __binaryResponse: true,
     });
   }
 
@@ -230,18 +217,6 @@ export class Connectors extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<UpdateTableResponse> {
     return this._client.patch(`/connectors/tables/${tableId}`, { body, ...options });
-  }
-
-  uploadDatahubArtifact(
-    connectorId: string,
-    kind: string,
-    body: ConnectorUploadDatahubArtifactParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.put(
-      `/internal/connectors/${connectorId}/datahub-artifacts/${kind}`,
-      Core.multipartFormRequestOptions({ body, ...options, headers: { Accept: '*/*', ...options?.headers } }),
-    );
   }
 }
 
@@ -541,12 +516,12 @@ export type ExplorationStatus = 'NotStarted' | 'Running' | 'Completed' | 'Failed
 export interface ExploreConnectorRequest {
   database_id?: string | null;
 
-  /**
-   * If true, run only DataHub ingestion without queuing Diego annotation jobs.
-   */
-  only_do_datahub?: boolean | null;
-
   schema_id?: string | null;
+
+  /**
+   * Which exploration stage to run
+   */
+  stage?: 'both' | 'ingestion' | 'annotation' | null;
 
   table_id?: string | null;
 }
@@ -1265,12 +1240,12 @@ export declare namespace ConnectorDeleteSchemaObjectParams {
 export interface ConnectorExploreParams {
   database_id?: string | null;
 
-  /**
-   * If true, run only DataHub ingestion without queuing Diego annotation jobs.
-   */
-  only_do_datahub?: boolean | null;
-
   schema_id?: string | null;
+
+  /**
+   * Which exploration stage to run
+   */
+  stage?: 'both' | 'ingestion' | 'annotation' | null;
 
   table_id?: string | null;
 }
@@ -1306,10 +1281,6 @@ export interface ConnectorUpdateTableParams {
   description?: string | null;
 
   notes?: string | null;
-}
-
-export interface ConnectorUploadDatahubArtifactParams {
-  file: Core.Uploadable;
 }
 
 Connectors.ConnectorWithSecretsJobsList = ConnectorWithSecretsJobsList;
@@ -1365,7 +1336,6 @@ export declare namespace Connectors {
     type ConnectorSummariesParams as ConnectorSummariesParams,
     type ConnectorUpdateColumnParams as ConnectorUpdateColumnParams,
     type ConnectorUpdateTableParams as ConnectorUpdateTableParams,
-    type ConnectorUploadDatahubArtifactParams as ConnectorUploadDatahubArtifactParams,
   };
 
   export {

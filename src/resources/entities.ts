@@ -707,7 +707,9 @@ export namespace EntityListJobsResponse {
 
     created_at: string;
 
-    job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | 'DatahubIngestion';
+    dataset_id: string;
+
+    job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore';
 
     max_steps_without_save: number;
 
@@ -720,8 +722,6 @@ export namespace EntityListJobsResponse {
     use_proxy: boolean;
 
     user_id: string;
-
-    dataset_id?: string | null;
 
     max_errors?: number | null;
 
