@@ -2073,11 +2073,6 @@ export interface ChatListSessionsParams {
   limit?: number | null;
 
   /**
-   * Number of sessions to skip for pagination (default: 0)
-   */
-  offset?: number | null;
-
-  /**
    * Project ID to filter chat sessions
    */
   project_id?: string | null;
