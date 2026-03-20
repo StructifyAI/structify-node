@@ -399,6 +399,7 @@ export type JobEventBody =
   | JobEventBody.DatahubDatabasesCreated
   | JobEventBody.DatahubSchemasCreated
   | JobEventBody.DatahubTablesProcessed
+  | JobEventBody.DatahubAnnotationsQueued
   | JobEventBody.DatahubEmbeddingBatch
   | JobEventBody.ViewedPdfPage;
 
@@ -541,7 +542,17 @@ export namespace JobEventBody {
 
     tables_failed: number;
 
+    tables_removed: number;
+
     tables_updated: number;
+  }
+
+  export interface DatahubAnnotationsQueued {
+    diff_annotations_queued: number;
+
+    event_type: 'datahub_annotations_queued';
+
+    full_annotations_queued: number;
   }
 
   export interface DatahubEmbeddingBatch {
@@ -703,7 +714,7 @@ export interface VizFigureDefinition {
   kind: VizFigureKind;
 }
 
-export type VizFigureKind = 'js' | 'vega-lite';
+export type VizFigureKind = 'js' | 'vega-lite' | 'data-table';
 
 export interface VizNumberControl {
   label: string;

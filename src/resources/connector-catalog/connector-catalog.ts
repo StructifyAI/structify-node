@@ -118,6 +118,8 @@ export interface ConnectorCatalog {
 
   description?: string | null;
 
+  onboarding_priority?: number | null;
+
   priority?: number | null;
 }
 
