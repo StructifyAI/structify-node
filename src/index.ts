@@ -57,6 +57,7 @@ import {
   ChatUploadInputFileParams,
   ChatUploadInputFileResponse,
   ChatVisibility,
+  CompressChatResponse,
   CopyChatSessionRequest,
   CreateChatSessionRequest,
   CreateChatSessionResponse,
@@ -445,7 +446,6 @@ import {
   ConnectorUpdateColumnParams,
   ConnectorUpdateParams,
   ConnectorUpdateTableParams,
-  ConnectorUploadDatahubArtifactParams,
   ConnectorWithSecrets,
   ConnectorWithSecretsJobsList,
   ConnectorWithSnippets,
@@ -848,6 +848,7 @@ export declare namespace Structify {
     type ChatSessionWithMessages as ChatSessionWithMessages,
     type ChatTemplate as ChatTemplate,
     type ChatVisibility as ChatVisibility,
+    type CompressChatResponse as CompressChatResponse,
     type CopyChatSessionRequest as CopyChatSessionRequest,
     type CreateChatSessionRequest as CreateChatSessionRequest,
     type CreateChatSessionResponse as CreateChatSessionResponse,
@@ -1177,7 +1178,6 @@ export declare namespace Structify {
     type ConnectorSummariesParams as ConnectorSummariesParams,
     type ConnectorUpdateColumnParams as ConnectorUpdateColumnParams,
     type ConnectorUpdateTableParams as ConnectorUpdateTableParams,
-    type ConnectorUploadDatahubArtifactParams as ConnectorUploadDatahubArtifactParams,
   };
 
   export {
