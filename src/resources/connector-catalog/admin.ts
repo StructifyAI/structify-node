@@ -208,6 +208,8 @@ export interface CreateCatalogRequest {
 
   enterprise_only?: boolean;
 
+  onboarding_priority?: number | null;
+
   priority?: number | null;
 }
 
@@ -273,6 +275,8 @@ export interface UpdateCatalogRequest {
   enterprise_only?: boolean | null;
 
   name?: string | null;
+
+  onboarding_priority?: number | null;
 
   priority?: number | null;
 }
@@ -346,6 +350,8 @@ export interface AdminCreateCatalogParams {
 
   enterprise_only?: boolean;
 
+  onboarding_priority?: number | null;
+
   priority?: number | null;
 }
 
@@ -401,6 +407,8 @@ export interface AdminUpdateCatalogParams {
   enterprise_only?: boolean | null;
 
   name?: string | null;
+
+  onboarding_priority?: number | null;
 
   priority?: number | null;
 }

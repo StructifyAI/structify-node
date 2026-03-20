@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Structify from 'structifyai';
+import Structify, { toFile } from 'structifyai';
 import { Response } from 'node-fetch';
 
 const client = new Structify({
@@ -170,6 +170,15 @@ describe('resource connectors', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.connectors.deleteSecret('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', 'secret_name', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
+  test('downloadDatahubArtifact: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.connectors.downloadDatahubArtifact('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', 'kind', {
         path: '/_stainless_unknown_path',
       }),
     ).rejects.toThrow(Structify.NotFoundError);
@@ -461,5 +470,28 @@ describe('resource connectors', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('uploadDatahubArtifact: only required params', async () => {
+    const responsePromise = client.connectors.uploadDatahubArtifact(
+      '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      'kind',
+      { file: await toFile(Buffer.from('Example data'), 'README.md') },
+    );
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('uploadDatahubArtifact: required and optional params', async () => {
+    const response = await client.connectors.uploadDatahubArtifact(
+      '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      'kind',
+      { file: await toFile(Buffer.from('Example data'), 'README.md') },
+    );
   });
 });

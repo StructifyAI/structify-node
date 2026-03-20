@@ -446,6 +446,7 @@ import {
   ConnectorUpdateColumnParams,
   ConnectorUpdateParams,
   ConnectorUpdateTableParams,
+  ConnectorUploadDatahubArtifactParams,
   ConnectorWithSecrets,
   ConnectorWithSecretsJobsList,
   ConnectorWithSnippets,
@@ -1178,6 +1179,7 @@ export declare namespace Structify {
     type ConnectorSummariesParams as ConnectorSummariesParams,
     type ConnectorUpdateColumnParams as ConnectorUpdateColumnParams,
     type ConnectorUpdateTableParams as ConnectorUpdateTableParams,
+    type ConnectorUploadDatahubArtifactParams as ConnectorUploadDatahubArtifactParams,
   };
 
   export {
