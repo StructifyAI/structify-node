@@ -184,6 +184,18 @@ describe('resource connectors', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
+  test('downloadDatahubArtifact: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.connectors.downloadDatahubArtifact(
+        '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        'kind',
+        { exploration_run_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
   test('explore', async () => {
     const responsePromise = client.connectors.explore('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {});
     const rawResponse = await responsePromise.asResponse();
@@ -476,7 +488,10 @@ describe('resource connectors', () => {
     const responsePromise = client.connectors.uploadDatahubArtifact(
       '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       'kind',
-      { file: await toFile(Buffer.from('Example data'), 'README.md') },
+      {
+        exploration_run_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        file: await toFile(Buffer.from('Example data'), 'README.md'),
+      },
     );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -491,7 +506,10 @@ describe('resource connectors', () => {
     const response = await client.connectors.uploadDatahubArtifact(
       '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       'kind',
-      { file: await toFile(Buffer.from('Example data'), 'README.md') },
+      {
+        exploration_run_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        file: await toFile(Buffer.from('Example data'), 'README.md'),
+      },
     );
   });
 });

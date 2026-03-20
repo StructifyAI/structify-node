@@ -132,6 +132,7 @@ export {
   type ConnectorAddSchemaObjectParams,
   type ConnectorCreateSecretParams,
   type ConnectorDeleteSchemaObjectParams,
+  type ConnectorDownloadDatahubArtifactParams,
   type ConnectorExploreParams,
   type ConnectorGetExplorerChatParams,
   type ConnectorSearchTablesParams,

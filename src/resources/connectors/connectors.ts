@@ -93,9 +93,25 @@ export class Connectors extends APIResource {
   downloadDatahubArtifact(
     connectorId: string,
     kind: string,
+    query?: ConnectorDownloadDatahubArtifactParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Response>;
+  downloadDatahubArtifact(
+    connectorId: string,
+    kind: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Response>;
+  downloadDatahubArtifact(
+    connectorId: string,
+    kind: string,
+    query: ConnectorDownloadDatahubArtifactParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<Response> {
+    if (isRequestOptions(query)) {
+      return this.downloadDatahubArtifact(connectorId, kind, {}, query);
+    }
     return this._client.get(`/internal/connectors/${connectorId}/datahub-artifacts/${kind}`, {
+      query,
       ...options,
       headers: { Accept: 'application/octet-stream', ...options?.headers },
       __binaryResponse: true,
@@ -235,12 +251,18 @@ export class Connectors extends APIResource {
   uploadDatahubArtifact(
     connectorId: string,
     kind: string,
-    body: ConnectorUploadDatahubArtifactParams,
+    params: ConnectorUploadDatahubArtifactParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
+    const { exploration_run_id, ...body } = params;
     return this._client.put(
       `/internal/connectors/${connectorId}/datahub-artifacts/${kind}`,
-      Core.multipartFormRequestOptions({ body, ...options, headers: { Accept: '*/*', ...options?.headers } }),
+      Core.multipartFormRequestOptions({
+        query: { exploration_run_id },
+        body,
+        ...options,
+        headers: { Accept: '*/*', ...options?.headers },
+      }),
     );
   }
 }
@@ -532,6 +554,10 @@ export interface ExplorationRun {
   connector_id: string;
 
   created_at: string;
+
+  checkpoint_blob_name?: string | null;
+
+  latest_snapshot_blob_name?: string | null;
 
   triggered_by?: string | null;
 }
@@ -1266,6 +1292,10 @@ export declare namespace ConnectorDeleteSchemaObjectParams {
   }
 }
 
+export interface ConnectorDownloadDatahubArtifactParams {
+  exploration_run_id?: string | null;
+}
+
 export interface ConnectorExploreParams {
   database_id?: string | null;
 
@@ -1313,6 +1343,14 @@ export interface ConnectorUpdateTableParams {
 }
 
 export interface ConnectorUploadDatahubArtifactParams {
+  /**
+   * Query param
+   */
+  exploration_run_id: string;
+
+  /**
+   * Body param
+   */
   file: Core.Uploadable;
 }
 
@@ -1363,6 +1401,7 @@ export declare namespace Connectors {
     type ConnectorAddSchemaObjectParams as ConnectorAddSchemaObjectParams,
     type ConnectorCreateSecretParams as ConnectorCreateSecretParams,
     type ConnectorDeleteSchemaObjectParams as ConnectorDeleteSchemaObjectParams,
+    type ConnectorDownloadDatahubArtifactParams as ConnectorDownloadDatahubArtifactParams,
     type ConnectorExploreParams as ConnectorExploreParams,
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
     type ConnectorSearchTablesParams as ConnectorSearchTablesParams,
