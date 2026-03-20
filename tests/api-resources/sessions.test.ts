@@ -237,8 +237,7 @@ describe('resource sessions', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
-  // Mock server doesn't support application/octet-stream responses
-  test.skip('getNodeOutputData: request options instead of params are passed correctly', async () => {
+  test('getNodeOutputData: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.sessions.getNodeOutputData('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
