@@ -60,8 +60,7 @@ describe('resource connectorCatalog', () => {
     );
   });
 
-  // Mock server doesn't support application/octet-stream responses
-  test.skip('getLogo: request options instead of params are passed correctly', async () => {
+  test('getLogo: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.connectorCatalog.getLogo('slug', { path: '/_stainless_unknown_path' }),
