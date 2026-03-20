@@ -85,6 +85,7 @@ Types:
 - <code><a href="./src/resources/chat.ts">ChatSessionWithMessages</a></code>
 - <code><a href="./src/resources/chat.ts">ChatTemplate</a></code>
 - <code><a href="./src/resources/chat.ts">ChatVisibility</a></code>
+- <code><a href="./src/resources/chat.ts">CompressChatResponse</a></code>
 - <code><a href="./src/resources/chat.ts">CopyChatSessionRequest</a></code>
 - <code><a href="./src/resources/chat.ts">CreateChatSessionRequest</a></code>
 - <code><a href="./src/resources/chat.ts">CreateChatSessionResponse</a></code>
@@ -125,6 +126,7 @@ Methods:
 - <code title="post /chat/sessions/{chat_id}/collaborators">client.chat.<a href="./src/resources/chat.ts">addCollaborator</a>(chatId, { ...params }) -> void</code>
 - <code title="post /chat/sessions/{session_id}/commits">client.chat.<a href="./src/resources/chat.ts">addGitCommit</a>(sessionId, { ...params }) -> ChatAddGitCommitResponse</code>
 - <code title="post /chat/sessions/{chat_id}/admin/issue_found">client.chat.<a href="./src/resources/chat.ts">adminIssueFound</a>(chatId, { ...params }) -> AdminIssueFoundResponse</code>
+- <code title="post /chat/sessions/{session_id}/compress">client.chat.<a href="./src/resources/chat.ts">compress</a>(sessionId) -> CompressChatResponse</code>
 - <code title="post /chat/copy">client.chat.<a href="./src/resources/chat.ts">copy</a>({ ...params }) -> ChatSessionWithMessages</code>
 - <code title="post /chat/sessions/{session_id}/nodes/by_code_hash">client.chat.<a href="./src/resources/chat.ts">copyNodeOutputByCodeHash</a>(sessionId, { ...params }) -> ChatCopyNodeOutputByCodeHashResponse</code>
 - <code title="post /chat/sessions">client.chat.<a href="./src/resources/chat.ts">createSession</a>({ ...params }) -> CreateChatSessionResponse</code>
@@ -631,7 +633,6 @@ Methods:
 - <code title="post /connectors/{connector_id}/secrets">client.connectors.<a href="./src/resources/connectors/connectors.ts">createSecret</a>(connectorId, { ...params }) -> void</code>
 - <code title="delete /connectors/{connector_id}/schema_object">client.connectors.<a href="./src/resources/connectors/connectors.ts">deleteSchemaObject</a>(connectorId, { ...params }) -> DeleteSchemaObjectResponse</code>
 - <code title="delete /connectors/{connector_id}/secrets/{secret_name}">client.connectors.<a href="./src/resources/connectors/connectors.ts">deleteSecret</a>(connectorId, secretName) -> void</code>
-- <code title="get /internal/connectors/{connector_id}/datahub-artifacts/{kind}">client.connectors.<a href="./src/resources/connectors/connectors.ts">downloadDatahubArtifact</a>(connectorId, kind) -> Response</code>
 - <code title="post /connectors/{connector_id}/explore">client.connectors.<a href="./src/resources/connectors/connectors.ts">explore</a>(connectorId, { ...params }) -> void</code>
 - <code title="get /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">get</a>(connectorId) -> ConnectorGetResponse</code>
 - <code title="get /connectors/{connector_id}/clarification-requests">client.connectors.<a href="./src/resources/connectors/connectors.ts">getClarificationRequests</a>(connectorId) -> ConnectorGetClarificationRequestsResponse</code>
@@ -648,7 +649,6 @@ Methods:
 - <code title="post /connectors/summaries">client.connectors.<a href="./src/resources/connectors/connectors.ts">summaries</a>({ ...params }) -> ConnectorSummariesResponse</code>
 - <code title="patch /connectors/columns/{column_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">updateColumn</a>(columnId, { ...params }) -> void</code>
 - <code title="patch /connectors/tables/{table_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">updateTable</a>(tableId, { ...params }) -> UpdateTableResponse</code>
-- <code title="put /internal/connectors/{connector_id}/datahub-artifacts/{kind}">client.connectors.<a href="./src/resources/connectors/connectors.ts">uploadDatahubArtifact</a>(connectorId, kind, { ...params }) -> void</code>
 
 ## TypeSnippets
 

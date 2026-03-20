@@ -15,6 +15,7 @@ export {
   type ChatSessionWithMessages,
   type ChatTemplate,
   type ChatVisibility,
+  type CompressChatResponse,
   type CopyChatSessionRequest,
   type CreateChatSessionRequest,
   type CreateChatSessionResponse,
@@ -137,7 +138,6 @@ export {
   type ConnectorSummariesParams,
   type ConnectorUpdateColumnParams,
   type ConnectorUpdateTableParams,
-  type ConnectorUploadDatahubArtifactParams,
 } from './connectors/connectors';
 export {
   DatasetViewRelationshipsResponsesJobsList,
