@@ -1024,6 +1024,16 @@ export interface GrantAdminAccessRequest {
  */
 export interface ListChatSessionsResponse {
   sessions: Array<ListChatSessionsResponse.Session>;
+
+  /**
+   * Per-tab counts for chat session listing
+   */
+  tab_counts: ListChatSessionsResponse.TabCounts;
+
+  /**
+   * Total number of chat sessions matching the query (for pagination)
+   */
+  total_count: number;
 }
 
 export namespace ListChatSessionsResponse {
@@ -1055,6 +1065,23 @@ export namespace ListChatSessionsResponse {
     teams_channel_id?: string | null;
 
     teams_conversation_id?: string | null;
+  }
+
+  /**
+   * Per-tab counts for chat session listing
+   */
+  export interface TabCounts {
+    favorites: number;
+
+    from_messaging: number;
+
+    my_chats: number;
+
+    recents: number;
+
+    shared: number;
+
+    team: number;
   }
 }
 
@@ -2083,9 +2110,24 @@ export interface ChatListSessionsParams {
   limit?: number | null;
 
   /**
+   * Number of sessions to skip (default: 0)
+   */
+  offset?: number | null;
+
+  /**
    * Project ID to filter chat sessions
    */
   project_id?: string | null;
+
+  /**
+   * Search query to filter sessions by name (case-insensitive)
+   */
+  search?: string | null;
+
+  /**
+   * Tab filter for chat sessions
+   */
+  tab?: 'my_chats' | 'favorites' | 'shared' | 'team' | 'recents' | 'from_messaging' | null;
 }
 
 export interface ChatLoadFilesParams {
