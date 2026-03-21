@@ -723,6 +723,8 @@ export namespace EntityListJobsResponse {
 
     dataset_id?: string | null;
 
+    exploration_run_id?: string | null;
+
     max_errors?: number | null;
 
     max_execution_time_secs?: number | null;

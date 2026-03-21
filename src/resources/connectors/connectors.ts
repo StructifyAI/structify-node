@@ -282,8 +282,6 @@ export interface Connector {
 
   created_at: string;
 
-  exploration_status: ExplorationStatus;
-
   known_connector_type: string;
 
   name: string;
@@ -303,10 +301,6 @@ export interface Connector {
   deleted_at?: string | null;
 
   description?: string | null;
-
-  exploration_error?: string | null;
-
-  exploration_started_at?: string | null;
 
   nango_connection_id?: string | null;
 
@@ -563,6 +557,8 @@ export interface ExplorationRun {
 
   created_at: string;
 
+  status: ExplorationStatus;
+
   checkpoint_blob_name?: string | null;
 
   latest_snapshot_blob_name?: string | null;
@@ -591,8 +587,6 @@ export interface ExploreConnectorRequest {
 
 export interface ExploreStatusResponse {
   status: ExplorationStatus;
-
-  error?: string | null;
 
   started_at?: string | null;
 }
