@@ -1042,6 +1042,8 @@ export namespace ListChatSessionsResponse {
 
     created_at: string;
 
+    has_workflow_schedule: boolean;
+
     is_favorite: boolean;
 
     team_id: string;
@@ -2103,6 +2105,11 @@ export interface ChatListSessionsParams {
    * Team ID to filter chat sessions
    */
   team_id: string;
+
+  /**
+   * Connector ID to filter chat sessions that use this connector
+   */
+  connector_id?: string | null;
 
   /**
    * Maximum number of sessions to return (default: 50)
