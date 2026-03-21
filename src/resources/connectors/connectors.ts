@@ -162,14 +162,22 @@ export class Connectors extends APIResource {
   }
 
   /**
-   * Returns chats for all phases (table discovery, column discovery for each table,
-   * etc.)
+   * Optionally filter by run, database, schema, or table
    */
   getExplorerChat(
     connectorId: string,
-    query: ConnectorGetExplorerChatParams,
+    query?: ConnectorGetExplorerChatParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ExplorerChatResponse>;
+  getExplorerChat(connectorId: string, options?: Core.RequestOptions): Core.APIPromise<ExplorerChatResponse>;
+  getExplorerChat(
+    connectorId: string,
+    query: ConnectorGetExplorerChatParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<ExplorerChatResponse> {
+    if (isRequestOptions(query)) {
+      return this.getExplorerChat(connectorId, {}, query);
+    }
     return this._client.get(`/connectors/${connectorId}/explore/chat`, { query, ...options });
   }
 
@@ -1310,10 +1318,13 @@ export interface ConnectorExploreParams {
 }
 
 export interface ConnectorGetExplorerChatParams {
-  /**
-   * Exploration run ID (required)
-   */
-  run_id: string;
+  database_id?: string | null;
+
+  run_id?: string | null;
+
+  schema_id?: string | null;
+
+  table_id?: string | null;
 }
 
 export interface ConnectorSearchTablesParams {
