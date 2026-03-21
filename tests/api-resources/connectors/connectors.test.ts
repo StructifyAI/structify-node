@@ -287,10 +287,8 @@ describe('resource connectors', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
-  test('getExplorerChat: only required params', async () => {
-    const responsePromise = client.connectors.getExplorerChat('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      run_id: 'run_id',
-    });
+  test('getExplorerChat', async () => {
+    const responsePromise = client.connectors.getExplorerChat('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -300,10 +298,29 @@ describe('resource connectors', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('getExplorerChat: required and optional params', async () => {
-    const response = await client.connectors.getExplorerChat('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      run_id: 'run_id',
-    });
+  test('getExplorerChat: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.connectors.getExplorerChat('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
+  test('getExplorerChat: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.connectors.getExplorerChat(
+        '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        {
+          database_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          run_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          schema_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          table_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Structify.NotFoundError);
   });
 
   test('getStore', async () => {
