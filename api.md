@@ -380,6 +380,7 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/admin/connector.ts">AdminListConnectorsResponse</a></code>
 - <code><a href="./src/resources/admin/connector.ts">CloneConnectorItem</a></code>
 - <code><a href="./src/resources/admin/connector.ts">CloneConnectorsRequest</a></code>
 - <code><a href="./src/resources/admin/connector.ts">CloneConnectorsResponse</a></code>
@@ -391,6 +392,7 @@ Types:
 Methods:
 
 - <code title="post /admin/connector/clone">client.admin.connector.<a href="./src/resources/admin/connector.ts">clone</a>({ ...params }) -> CloneConnectorsResponse</code>
+- <code title="get /admin/connector/team/{team_id}">client.admin.connector.<a href="./src/resources/admin/connector.ts">listTeamConnectors</a>(teamId) -> AdminListConnectorsResponse</code>
 - <code title="post /admin/connector/datahub-config">client.admin.connector.<a href="./src/resources/admin/connector.ts">setDatahubConfig</a>({ ...params }) -> Connector</code>
 
 # Datasets
@@ -621,7 +623,6 @@ Types:
 - <code><a href="./src/resources/connectors/connectors.ts">UpdateTableRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">UpdateTableResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorAddSchemaObjectResponse</a></code>
-- <code><a href="./src/resources/connectors/connectors.ts">ConnectorExploreResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorGetResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorGetClarificationRequestsResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorListStoresResponse</a></code>
@@ -640,7 +641,7 @@ Methods:
 - <code title="delete /connectors/{connector_id}/schema_object">client.connectors.<a href="./src/resources/connectors/connectors.ts">deleteSchemaObject</a>(connectorId, { ...params }) -> DeleteSchemaObjectResponse</code>
 - <code title="delete /connectors/{connector_id}/secrets/{secret_name}">client.connectors.<a href="./src/resources/connectors/connectors.ts">deleteSecret</a>(connectorId, secretName) -> void</code>
 - <code title="get /internal/connectors/{connector_id}/datahub-artifacts/{kind}">client.connectors.<a href="./src/resources/connectors/connectors.ts">downloadDatahubArtifact</a>(connectorId, kind, { ...params }) -> Response</code>
-- <code title="post /connectors/{connector_id}/explore">client.connectors.<a href="./src/resources/connectors/connectors.ts">explore</a>(connectorId, { ...params }) -> ConnectorExploreResponse</code>
+- <code title="post /connectors/{connector_id}/explore">client.connectors.<a href="./src/resources/connectors/connectors.ts">explore</a>(connectorId, { ...params }) -> void</code>
 - <code title="get /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">get</a>(connectorId) -> ConnectorGetResponse</code>
 - <code title="get /connectors/{connector_id}/clarification-requests">client.connectors.<a href="./src/resources/connectors/connectors.ts">getClarificationRequests</a>(connectorId) -> ConnectorGetClarificationRequestsResponse</code>
 - <code title="get /connectors/{connector_id}/explore/runs">client.connectors.<a href="./src/resources/connectors/connectors.ts">getExplorationRuns</a>(connectorId) -> ExplorationRunsResponse</code>
