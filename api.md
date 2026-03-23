@@ -15,9 +15,13 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/user/user.ts">EnrichUserParams</a></code>
+- <code><a href="./src/resources/user/user.ts">GetOnboardingAnswersResponse</a></code>
 - <code><a href="./src/resources/user/user.ts">JwtToAPITokenRequest</a></code>
+- <code><a href="./src/resources/user/user.ts">OnboardingAnswers</a></code>
 - <code><a href="./src/resources/user/user.ts">RefreshSessionRequest</a></code>
 - <code><a href="./src/resources/user/user.ts">RefreshSessionResponse</a></code>
+- <code><a href="./src/resources/user/user.ts">SaveOnboardingAnswersRequest</a></code>
+- <code><a href="./src/resources/user/user.ts">SaveOnboardingAnswersResponse</a></code>
 - <code><a href="./src/resources/user/user.ts">SurveySubmissionRequest</a></code>
 - <code><a href="./src/resources/user/user.ts">SurveySubmissionResponse</a></code>
 - <code><a href="./src/resources/user/user.ts">TokenResponse</a></code>
@@ -30,9 +34,11 @@ Methods:
 
 - <code title="put /user/update">client.user.<a href="./src/resources/user/user.ts">update</a>({ ...params }) -> User</code>
 - <code title="post /user/enrich">client.user.<a href="./src/resources/user/user.ts">enrich</a>({ ...params }) -> void</code>
+- <code title="get /user/onboarding/answers">client.user.<a href="./src/resources/user/user.ts">getOnboardingAnswers</a>() -> GetOnboardingAnswersResponse</code>
 - <code title="get /user/info">client.user.<a href="./src/resources/user/user.ts">info</a>() -> UserInfo</code>
 - <code title="post /user/jwt_to_api_token/{jwt}">client.user.<a href="./src/resources/user/user.ts">jwtToAPIToken</a>(jwt, { ...params }) -> TokenResponse</code>
 - <code title="post /user/refresh">client.user.<a href="./src/resources/user/user.ts">refresh</a>({ ...params }) -> RefreshSessionResponse</code>
+- <code title="put /user/onboarding/answers">client.user.<a href="./src/resources/user/user.ts">saveOnboardingAnswers</a>({ ...params }) -> SaveOnboardingAnswersResponse</code>
 - <code title="post /user/survey/submit">client.user.<a href="./src/resources/user/user.ts">surveySubmit</a>({ ...params }) -> SurveySubmissionResponse</code>
 - <code title="get /user/transactions/list">client.user.<a href="./src/resources/user/user.ts">transactions</a>() -> UserTransactionsResponse</code>
 - <code title="get /user/usage">client.user.<a href="./src/resources/user/user.ts">usage</a>({ ...params }) -> UserUsageResponse</code>
@@ -383,15 +389,14 @@ Types:
 - <code><a href="./src/resources/admin/connector.ts">AdminListConnectorsResponse</a></code>
 - <code><a href="./src/resources/admin/connector.ts">CloneConnectorItem</a></code>
 - <code><a href="./src/resources/admin/connector.ts">CloneConnectorsRequest</a></code>
-- <code><a href="./src/resources/admin/connector.ts">CloneConnectorsResponse</a></code>
 - <code><a href="./src/resources/admin/connector.ts">DatahubIngestionKey</a></code>
 - <code><a href="./src/resources/admin/connector.ts">DatahubIngestionType</a></code>
-- <code><a href="./src/resources/admin/connector.ts">DatahubSecretMap</a></code>
 - <code><a href="./src/resources/admin/connector.ts">SetDatahubConfigRequest</a></code>
+- <code><a href="./src/resources/admin/connector.ts">ConnectorCloneResponse</a></code>
 
 Methods:
 
-- <code title="post /admin/connector/clone">client.admin.connector.<a href="./src/resources/admin/connector.ts">clone</a>({ ...params }) -> CloneConnectorsResponse</code>
+- <code title="post /admin/connector/clone">client.admin.connector.<a href="./src/resources/admin/connector.ts">clone</a>({ ...params }) -> ConnectorCloneResponse</code>
 - <code title="get /admin/connector/team/{team_id}">client.admin.connector.<a href="./src/resources/admin/connector.ts">listTeamConnectors</a>(teamId) -> AdminListConnectorsResponse</code>
 - <code title="post /admin/connector/datahub-config">client.admin.connector.<a href="./src/resources/admin/connector.ts">setDatahubConfig</a>({ ...params }) -> Connector</code>
 
@@ -606,17 +611,20 @@ Types:
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorWithSnippets</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">CreateConnectorRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">CreateSecretRequest</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">DatahubProgress</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">DatahubSecretMap</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">DeleteSchemaObjectRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">DeleteSchemaObjectResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ExplorationPhaseID</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ExplorationProgress</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ExplorationRun</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ExplorationRunsResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ExplorationStatus</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ExploreConnectorRequest</a></code>
-- <code><a href="./src/resources/connectors/connectors.ts">ExploreStatusResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ExplorerChatResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ListTablesResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">LlmInformationStore</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">PhaseActivity</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">SchemaObjectID</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">UpdateColumnRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">UpdateConnectorRequest</a></code>
@@ -644,9 +652,10 @@ Methods:
 - <code title="get /internal/connectors/{connector_id}/datahub-artifacts/{kind}">client.connectors.<a href="./src/resources/connectors/connectors.ts">downloadDatahubArtifact</a>(connectorId, kind, { ...params }) -> Response</code>
 - <code title="post /connectors/{connector_id}/explore">client.connectors.<a href="./src/resources/connectors/connectors.ts">explore</a>(connectorId, { ...params }) -> ConnectorExploreResponse</code>
 - <code title="get /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">get</a>(connectorId) -> ConnectorGetResponse</code>
+- <code title="get /connectors/{connector_id}/explore/active-run">client.connectors.<a href="./src/resources/connectors/connectors.ts">getActiveExplorationRun</a>(connectorId) -> ExplorationRun | null</code>
 - <code title="get /connectors/{connector_id}/clarification-requests">client.connectors.<a href="./src/resources/connectors/connectors.ts">getClarificationRequests</a>(connectorId) -> ConnectorGetClarificationRequestsResponse</code>
+- <code title="get /connectors/{connector_id}/explore/runs/{run_id}/progress">client.connectors.<a href="./src/resources/connectors/connectors.ts">getExplorationRunProgress</a>(connectorId, runId) -> ExplorationProgress</code>
 - <code title="get /connectors/{connector_id}/explore/runs">client.connectors.<a href="./src/resources/connectors/connectors.ts">getExplorationRuns</a>(connectorId) -> ExplorationRunsResponse</code>
-- <code title="get /connectors/{connector_id}/explore/status">client.connectors.<a href="./src/resources/connectors/connectors.ts">getExplorationStatus</a>(connectorId) -> ExploreStatusResponse</code>
 - <code title="get /connectors/{connector_id}/explore/chat">client.connectors.<a href="./src/resources/connectors/connectors.ts">getExplorerChat</a>(connectorId, { ...params }) -> ExplorerChatResponse</code>
 - <code title="get /connectors/{connector_id}/store">client.connectors.<a href="./src/resources/connectors/connectors.ts">getStore</a>(connectorId) -> ConnectorStoreResponse</code>
 - <code title="get /connectors/tables/{table_id}/path">client.connectors.<a href="./src/resources/connectors/connectors.ts">getTablePath</a>(tableId) -> ConnectorTablePathResponse</code>

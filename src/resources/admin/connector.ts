@@ -8,7 +8,7 @@ import * as ConnectorsAPI from '../connectors/connectors';
  * Admin endpoints
  */
 export class Connector extends APIResource {
-  clone(body: ConnectorCloneParams, options?: Core.RequestOptions): Core.APIPromise<CloneConnectorsResponse> {
+  clone(body: ConnectorCloneParams, options?: Core.RequestOptions): Core.APIPromise<ConnectorCloneResponse> {
     return this._client.post('/admin/connector/clone', { body, ...options });
   }
 
@@ -49,10 +49,6 @@ export interface CloneConnectorsRequest {
   target_team_id: string;
 }
 
-export interface CloneConnectorsResponse {
-  connectors: Array<ConnectorsAPI.Connector>;
-}
-
 /**
  * Keys used in the datahub secret map, each corresponding to a field in the
  * ingestion request.
@@ -73,12 +69,6 @@ export type DatahubIngestionKey =
 
 export type DatahubIngestionType = 'postgres' | 'snowflake' | 'salesforce' | 'hubspot' | 'bigquery';
 
-/**
- * Maps DatahubIngestionKey to the name of the connector secret that holds the
- * value.
- */
-export type DatahubSecretMap = { [key: string]: string };
-
 export interface SetDatahubConfigRequest {
   connector_id: string;
 
@@ -88,7 +78,11 @@ export interface SetDatahubConfigRequest {
    * Maps DatahubIngestionKey to the name of the connector secret that holds the
    * value.
    */
-  datahub_secret_map?: DatahubSecretMap | null;
+  datahub_secret_map?: ConnectorsAPI.DatahubSecretMap | null;
+}
+
+export interface ConnectorCloneResponse {
+  connectors: Array<ConnectorsAPI.Connector>;
 }
 
 export interface ConnectorCloneParams {
@@ -110,7 +104,7 @@ export interface ConnectorSetDatahubConfigParams {
    * Maps DatahubIngestionKey to the name of the connector secret that holds the
    * value.
    */
-  datahub_secret_map?: DatahubSecretMap | null;
+  datahub_secret_map?: ConnectorsAPI.DatahubSecretMap | null;
 }
 
 export declare namespace Connector {
@@ -118,11 +112,10 @@ export declare namespace Connector {
     type AdminListConnectorsResponse as AdminListConnectorsResponse,
     type CloneConnectorItem as CloneConnectorItem,
     type CloneConnectorsRequest as CloneConnectorsRequest,
-    type CloneConnectorsResponse as CloneConnectorsResponse,
     type DatahubIngestionKey as DatahubIngestionKey,
     type DatahubIngestionType as DatahubIngestionType,
-    type DatahubSecretMap as DatahubSecretMap,
     type SetDatahubConfigRequest as SetDatahubConfigRequest,
+    type ConnectorCloneResponse as ConnectorCloneResponse,
     type ConnectorCloneParams as ConnectorCloneParams,
     type ConnectorSetDatahubConfigParams as ConnectorSetDatahubConfigParams,
   };

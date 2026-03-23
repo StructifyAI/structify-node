@@ -5,7 +5,6 @@ import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as ChatAPI from '../chat';
 import * as StructureAPI from '../structure';
-import * as ConnectorAPI from '../admin/connector';
 import * as TypeSnippetsAPI from './type-snippets';
 import { Snippet, TypeSnippetUpsertParams, TypeSnippets, UpsertRequest } from './type-snippets';
 import { JobsList, type JobsListParams } from '../../pagination';
@@ -131,6 +130,13 @@ export class Connectors extends APIResource {
     return this._client.get(`/connectors/${connectorId}`, options);
   }
 
+  getActiveExplorationRun(
+    connectorId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ExplorationRun | null> {
+    return this._client.get(`/connectors/${connectorId}/explore/active-run`, options);
+  }
+
   /**
    * Get all clarification requests for a connector
    */
@@ -141,6 +147,14 @@ export class Connectors extends APIResource {
     return this._client.get(`/connectors/${connectorId}/clarification-requests`, options);
   }
 
+  getExplorationRunProgress(
+    connectorId: string,
+    runId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ExplorationProgress> {
+    return this._client.get(`/connectors/${connectorId}/explore/runs/${runId}/progress`, options);
+  }
+
   /**
    * Get all exploration runs for a connector (requires debug permission)
    */
@@ -149,13 +163,6 @@ export class Connectors extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<ExplorationRunsResponse> {
     return this._client.get(`/connectors/${connectorId}/explore/runs`, options);
-  }
-
-  getExplorationStatus(
-    connectorId: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ExploreStatusResponse> {
-    return this._client.get(`/connectors/${connectorId}/explore/status`, options);
   }
 
   /**
@@ -299,7 +306,7 @@ export interface Connector {
    * Maps DatahubIngestionKey to the name of the connector secret that holds the
    * value.
    */
-  datahub_secret_map?: ConnectorAPI.DatahubSecretMap | null;
+  datahub_secret_map?: DatahubSecretMap | null;
 
   datahub_urn?: string | null;
 
@@ -437,6 +444,28 @@ export interface CreateSecretRequest {
   secret_value: string;
 }
 
+export interface DatahubProgress {
+  databases_created: number;
+
+  job_id: string;
+
+  job_status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+  pages_fetched: number;
+
+  schemas_created: number;
+
+  tables_processed: number;
+
+  total_datasets: number;
+}
+
+/**
+ * Maps DatahubIngestionKey to the name of the connector secret that holds the
+ * value.
+ */
+export type DatahubSecretMap = { [key: string]: string };
+
 export type DeleteSchemaObjectRequest =
   | DeleteSchemaObjectRequest.UnionMember0
   | DeleteSchemaObjectRequest.UnionMember1
@@ -559,6 +588,12 @@ export namespace ExplorationPhaseID {
   }
 }
 
+export interface ExplorationProgress {
+  phases: Array<PhaseActivity>;
+
+  datahub?: DatahubProgress | null;
+}
+
 export interface ExplorationRun {
   id: string;
 
@@ -592,12 +627,6 @@ export interface ExploreConnectorRequest {
   schema_id?: string | null;
 
   table_id?: string | null;
-}
-
-export interface ExploreStatusResponse {
-  status: ExplorationStatus;
-
-  started_at?: string | null;
 }
 
 export interface ExplorerChatResponse {
@@ -725,6 +754,22 @@ export namespace LlmInformationStore {
   }
 }
 
+export interface PhaseActivity {
+  job_id: string;
+
+  /**
+   * Identifies the phase of connector exploration
+   *
+   * This enum is used to track which phase of exploration a chat session belongs to.
+   * It's stored as JSONB in the database to allow for flexible phase identification.
+   */
+  phase_id: ExplorationPhaseID;
+
+  status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+  chat_id?: string | null;
+}
+
 export type SchemaObjectID =
   | SchemaObjectID.Column
   | SchemaObjectID.Table
@@ -770,7 +815,7 @@ export interface UpdateConnectorRequest {
    * Maps DatahubIngestionKey to the name of the connector secret that holds the
    * value.
    */
-  datahub_secret_map?: ConnectorAPI.DatahubSecretMap | null;
+  datahub_secret_map?: DatahubSecretMap | null;
 
   datahub_urn?: string | null;
 
@@ -1258,7 +1303,7 @@ export interface ConnectorUpdateParams {
    * Maps DatahubIngestionKey to the name of the connector secret that holds the
    * value.
    */
-  datahub_secret_map?: ConnectorAPI.DatahubSecretMap | null;
+  datahub_secret_map?: DatahubSecretMap | null;
 
   datahub_urn?: string | null;
 
@@ -1461,17 +1506,20 @@ export declare namespace Connectors {
     type ConnectorWithSnippets as ConnectorWithSnippets,
     type CreateConnectorRequest as CreateConnectorRequest,
     type CreateSecretRequest as CreateSecretRequest,
+    type DatahubProgress as DatahubProgress,
+    type DatahubSecretMap as DatahubSecretMap,
     type DeleteSchemaObjectRequest as DeleteSchemaObjectRequest,
     type DeleteSchemaObjectResponse as DeleteSchemaObjectResponse,
     type ExplorationPhaseID as ExplorationPhaseID,
+    type ExplorationProgress as ExplorationProgress,
     type ExplorationRun as ExplorationRun,
     type ExplorationRunsResponse as ExplorationRunsResponse,
     type ExplorationStatus as ExplorationStatus,
     type ExploreConnectorRequest as ExploreConnectorRequest,
-    type ExploreStatusResponse as ExploreStatusResponse,
     type ExplorerChatResponse as ExplorerChatResponse,
     type ListTablesResponse as ListTablesResponse,
     type LlmInformationStore as LlmInformationStore,
+    type PhaseActivity as PhaseActivity,
     type SchemaObjectID as SchemaObjectID,
     type UpdateColumnRequest as UpdateColumnRequest,
     type UpdateConnectorRequest as UpdateConnectorRequest,

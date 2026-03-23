@@ -16,11 +16,10 @@ export {
   type AdminListConnectorsResponse,
   type CloneConnectorItem,
   type CloneConnectorsRequest,
-  type CloneConnectorsResponse,
   type DatahubIngestionKey,
   type DatahubIngestionType,
-  type DatahubSecretMap,
   type SetDatahubConfigRequest,
+  type ConnectorCloneResponse,
   type ConnectorCloneParams,
   type ConnectorSetDatahubConfigParams,
 } from './connector';
