@@ -15,6 +15,7 @@ import {
 } from './chat-templates';
 import * as ConnectorAPI from './connector';
 import {
+  AdminListConnectorsResponse,
   CloneConnectorItem,
   CloneConnectorsRequest,
   CloneConnectorsResponse,
@@ -244,6 +245,7 @@ export declare namespace Admin {
 
   export {
     Connector as Connector,
+    type AdminListConnectorsResponse as AdminListConnectorsResponse,
     type CloneConnectorItem as CloneConnectorItem,
     type CloneConnectorsRequest as CloneConnectorsRequest,
     type CloneConnectorsResponse as CloneConnectorsResponse,

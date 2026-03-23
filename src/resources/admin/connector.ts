@@ -12,12 +12,23 @@ export class Connector extends APIResource {
     return this._client.post('/admin/connector/clone', { body, ...options });
   }
 
+  listTeamConnectors(
+    teamId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<AdminListConnectorsResponse> {
+    return this._client.get(`/admin/connector/team/${teamId}`, options);
+  }
+
   setDatahubConfig(
     body: ConnectorSetDatahubConfigParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<ConnectorsAPI.Connector> {
     return this._client.post('/admin/connector/datahub-config', { body, ...options });
   }
+}
+
+export interface AdminListConnectorsResponse {
+  connectors: Array<ConnectorsAPI.Connector>;
 }
 
 export interface CloneConnectorItem {
@@ -56,11 +67,9 @@ export type DatahubIngestionKey =
   | 'warehouse'
   | 'role'
   | 'instance_url'
-  | 'access_token'
-  | 'project_id'
-  | 'credential_json';
+  | 'access_token';
 
-export type DatahubIngestionType = 'postgres' | 'snowflake' | 'salesforce' | 'hubspot' | 'bigquery';
+export type DatahubIngestionType = 'postgres' | 'snowflake' | 'salesforce' | 'hubspot';
 
 /**
  * Maps DatahubIngestionKey to the name of the connector secret that holds the
@@ -104,6 +113,7 @@ export interface ConnectorSetDatahubConfigParams {
 
 export declare namespace Connector {
   export {
+    type AdminListConnectorsResponse as AdminListConnectorsResponse,
     type CloneConnectorItem as CloneConnectorItem,
     type CloneConnectorsRequest as CloneConnectorsRequest,
     type CloneConnectorsResponse as CloneConnectorsResponse,

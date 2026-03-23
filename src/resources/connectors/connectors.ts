@@ -123,8 +123,12 @@ export class Connectors extends APIResource {
     connectorId: string,
     body: ConnectorExploreParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<ConnectorExploreResponse> {
-    return this._client.post(`/connectors/${connectorId}/explore`, { body, ...options });
+  ): Core.APIPromise<void> {
+    return this._client.post(`/connectors/${connectorId}/explore`, {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 
   get(connectorId: string, options?: Core.RequestOptions): Core.APIPromise<ConnectorGetResponse> {
@@ -892,62 +896,6 @@ export namespace ConnectorAddSchemaObjectResponse {
   }
 }
 
-export interface ConnectorExploreResponse {
-  id: string;
-
-  created_at: string;
-
-  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | 'DatahubIngestion';
-
-  max_steps_without_save: number;
-
-  membership_id: string;
-
-  status: 'Queued' | 'Running' | 'Completed' | 'Failed';
-
-  updated_at: string;
-
-  use_proxy: boolean;
-
-  user_id: string;
-
-  dataset_id?: string | null;
-
-  exploration_run_id?: string | null;
-
-  max_errors?: number | null;
-
-  max_execution_time_secs?: number | null;
-
-  max_total_steps?: number | null;
-
-  /**
-   * A message about the status of the job at completion
-   */
-  message?: string | null;
-
-  node_id?: string | null;
-
-  /**
-   * Proto for JobInput
-   */
-  parameters?: Core.Uploadable | null;
-
-  /**
-   * A reason for the job's existence
-   */
-  reason?: string | null;
-
-  /**
-   * What time did the job start running?
-   */
-  run_started_time?: string | null;
-
-  run_time_milliseconds?: number | null;
-
-  seeded_kg_search_term?: string | null;
-}
-
 export interface ConnectorGetResponse extends Connector {
   secrets: Array<ConnectorGetResponse.Secret>;
 
@@ -1470,7 +1418,6 @@ export declare namespace Connectors {
     type UpdateTableRequest as UpdateTableRequest,
     type UpdateTableResponse as UpdateTableResponse,
     type ConnectorAddSchemaObjectResponse as ConnectorAddSchemaObjectResponse,
-    type ConnectorExploreResponse as ConnectorExploreResponse,
     type ConnectorGetResponse as ConnectorGetResponse,
     type ConnectorGetClarificationRequestsResponse as ConnectorGetClarificationRequestsResponse,
     type ConnectorListStoresResponse as ConnectorListStoresResponse,

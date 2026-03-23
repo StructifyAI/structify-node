@@ -13,6 +13,7 @@ export {
 } from './chat-templates';
 export {
   Connector,
+  type AdminListConnectorsResponse,
   type CloneConnectorItem,
   type CloneConnectorsRequest,
   type CloneConnectorsResponse,
