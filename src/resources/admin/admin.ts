@@ -20,6 +20,11 @@ import {
   CloneConnectorsResponse,
   Connector,
   ConnectorCloneParams,
+  ConnectorSetDatahubConfigParams,
+  DatahubIngestionKey,
+  DatahubIngestionType,
+  DatahubSecretMap,
+  SetDatahubConfigRequest,
 } from './connector';
 import * as DatasetAPI from './dataset';
 import { AdminDatasetReturn, Dataset, DatasetGetByIDParams } from './dataset';
@@ -242,6 +247,11 @@ export declare namespace Admin {
     type CloneConnectorItem as CloneConnectorItem,
     type CloneConnectorsRequest as CloneConnectorsRequest,
     type CloneConnectorsResponse as CloneConnectorsResponse,
+    type DatahubIngestionKey as DatahubIngestionKey,
+    type DatahubIngestionType as DatahubIngestionType,
+    type DatahubSecretMap as DatahubSecretMap,
+    type SetDatahubConfigRequest as SetDatahubConfigRequest,
     type ConnectorCloneParams as ConnectorCloneParams,
+    type ConnectorSetDatahubConfigParams as ConnectorSetDatahubConfigParams,
   };
 }

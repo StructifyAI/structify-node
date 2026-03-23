@@ -5,6 +5,7 @@ import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as ChatAPI from '../chat';
 import * as StructureAPI from '../structure';
+import * as ConnectorAPI from '../admin/connector';
 import * as TypeSnippetsAPI from './type-snippets';
 import { Snippet, TypeSnippetUpsertParams, TypeSnippets, UpsertRequest } from './type-snippets';
 import { JobsList, type JobsListParams } from '../../pagination';
@@ -295,6 +296,14 @@ export interface Connector {
   updated_at: string;
 
   connector_category?: ConnectorCategory | null;
+
+  datahub_ingestion_type?: string | null;
+
+  /**
+   * Maps DatahubIngestionKey to the name of the connector secret that holds the
+   * value.
+   */
+  datahub_secret_map?: ConnectorAPI.DatahubSecretMap | null;
 
   datahub_urn?: string | null;
 
@@ -755,6 +764,14 @@ export interface UpdateColumnRequest {
 export interface UpdateConnectorRequest {
   connector_category?: ConnectorCategory | null;
 
+  datahub_ingestion_type?: string | null;
+
+  /**
+   * Maps DatahubIngestionKey to the name of the connector secret that holds the
+   * value.
+   */
+  datahub_secret_map?: ConnectorAPI.DatahubSecretMap | null;
+
   datahub_urn?: string | null;
 
   description?: string | null;
@@ -1176,6 +1193,14 @@ export interface ConnectorCreateParams {
 
 export interface ConnectorUpdateParams {
   connector_category?: ConnectorCategory | null;
+
+  datahub_ingestion_type?: string | null;
+
+  /**
+   * Maps DatahubIngestionKey to the name of the connector secret that holds the
+   * value.
+   */
+  datahub_secret_map?: ConnectorAPI.DatahubSecretMap | null;
 
   datahub_urn?: string | null;
 
