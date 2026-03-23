@@ -54,8 +54,6 @@ import {
   ChatUpdateSessionFavoriteParams,
   ChatUpdateSessionParams,
   ChatUpdateVisibilityParams,
-  ChatUploadInputFileParams,
-  ChatUploadInputFileResponse,
   ChatVisibility,
   CompressChatResponse,
   CopyChatSessionRequest,
@@ -130,7 +128,6 @@ import {
   DocumentDownloadResponse,
   DocumentListParams,
   DocumentListResponse,
-  DocumentUploadParams,
   Documents,
 } from './resources/documents';
 import {
@@ -264,7 +261,6 @@ import {
   SessionUpdateNodeParams,
   SessionUpdateNodeProgressParams,
   SessionUploadDashboardLayoutParams,
-  SessionUploadNodeOutputDataParams,
   SessionUploadNodeVisualizationOutputParams,
   Sessions,
   TriggerReviewResponse,
@@ -884,7 +880,6 @@ export declare namespace Structify {
     type ChatLoadFilesResponse as ChatLoadFilesResponse,
     type ChatLoadInputFilesResponse as ChatLoadInputFilesResponse,
     type ChatRevertToCommitResponse as ChatRevertToCommitResponse,
-    type ChatUploadInputFileResponse as ChatUploadInputFileResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAdminIssueFoundParams as ChatAdminIssueFoundParams,
@@ -902,7 +897,6 @@ export declare namespace Structify {
     type ChatUpdateSessionParams as ChatUpdateSessionParams,
     type ChatUpdateSessionFavoriteParams as ChatUpdateSessionFavoriteParams,
     type ChatUpdateVisibilityParams as ChatUpdateVisibilityParams,
-    type ChatUploadInputFileParams as ChatUploadInputFileParams,
   };
 
   export {
@@ -1016,7 +1010,6 @@ export declare namespace Structify {
     type DocumentListParams as DocumentListParams,
     type DocumentDeleteParams as DocumentDeleteParams,
     type DocumentDownloadParams as DocumentDownloadParams,
-    type DocumentUploadParams as DocumentUploadParams,
   };
 
   export {
@@ -1104,7 +1097,6 @@ export declare namespace Structify {
     type SessionUpdateNodeParams as SessionUpdateNodeParams,
     type SessionUpdateNodeProgressParams as SessionUpdateNodeProgressParams,
     type SessionUploadDashboardLayoutParams as SessionUploadDashboardLayoutParams,
-    type SessionUploadNodeOutputDataParams as SessionUploadNodeOutputDataParams,
     type SessionUploadNodeVisualizationOutputParams as SessionUploadNodeVisualizationOutputParams,
   };
 

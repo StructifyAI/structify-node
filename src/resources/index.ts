@@ -49,7 +49,6 @@ export {
   type ChatLoadFilesResponse,
   type ChatLoadInputFilesResponse,
   type ChatRevertToCommitResponse,
-  type ChatUploadInputFileResponse,
   type ChatAddCollaboratorParams,
   type ChatAddGitCommitParams,
   type ChatAdminIssueFoundParams,
@@ -67,7 +66,6 @@ export {
   type ChatUpdateSessionParams,
   type ChatUpdateSessionFavoriteParams,
   type ChatUpdateVisibilityParams,
-  type ChatUploadInputFileParams,
 } from './chat';
 export {
   Code,
@@ -182,7 +180,6 @@ export {
   type DocumentListParams,
   type DocumentDeleteParams,
   type DocumentDownloadParams,
-  type DocumentUploadParams,
 } from './documents';
 export {
   Entities,
@@ -343,7 +340,6 @@ export {
   type SessionUpdateNodeParams,
   type SessionUpdateNodeProgressParams,
   type SessionUploadDashboardLayoutParams,
-  type SessionUploadNodeOutputDataParams,
   type SessionUploadNodeVisualizationOutputParams,
 } from './sessions';
 export {

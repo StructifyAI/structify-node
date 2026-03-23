@@ -40,22 +40,6 @@ export class Documents extends APIResource {
   ): Core.APIPromise<DocumentDownloadResponse> {
     return this._client.post('/documents/download', { body, ...options });
   }
-
-  /**
-   * Add a new file to the database
-   */
-  upload(params: DocumentUploadParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { dataset, project_id, ...body } = params;
-    return this._client.post(
-      '/documents/upload',
-      Core.multipartFormRequestOptions({
-        query: { dataset, project_id },
-        body,
-        ...options,
-        headers: { Accept: '*/*', ...options?.headers },
-      }),
-    );
-  }
 }
 
 export type DocumentListResponse = Array<DocumentListResponse.DocumentListResponseItem>;
@@ -67,6 +51,8 @@ export namespace DocumentListResponse {
     created_at: string;
 
     file_bytes: Core.Uploadable;
+
+    file_size: number;
 
     file_type: 'Text' | 'PDF' | 'SEC';
 
@@ -106,33 +92,6 @@ export interface DocumentDownloadParams {
   file_path: string;
 }
 
-export interface DocumentUploadParams {
-  /**
-   * Body param
-   */
-  content: Core.Uploadable;
-
-  /**
-   * Body param
-   */
-  file_type: 'Text' | 'PDF' | 'SEC';
-
-  /**
-   * Body param
-   */
-  path: Core.Uploadable;
-
-  /**
-   * Query param
-   */
-  dataset?: string | null;
-
-  /**
-   * Query param
-   */
-  project_id?: string | null;
-}
-
 export declare namespace Documents {
   export {
     type DocumentListResponse as DocumentListResponse,
@@ -140,6 +99,5 @@ export declare namespace Documents {
     type DocumentListParams as DocumentListParams,
     type DocumentDeleteParams as DocumentDeleteParams,
     type DocumentDownloadParams as DocumentDownloadParams,
-    type DocumentUploadParams as DocumentUploadParams,
   };
 }

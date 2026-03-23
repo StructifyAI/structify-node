@@ -16,7 +16,12 @@ export {
   type CloneConnectorItem,
   type CloneConnectorsRequest,
   type CloneConnectorsResponse,
+  type DatahubIngestionKey,
+  type DatahubIngestionType,
+  type DatahubSecretMap,
+  type SetDatahubConfigRequest,
   type ConnectorCloneParams,
+  type ConnectorSetDatahubConfigParams,
 } from './connector';
 export { Dataset, type AdminDatasetReturn, type DatasetGetByIDParams } from './dataset';
 export {
