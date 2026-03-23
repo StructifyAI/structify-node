@@ -476,9 +476,13 @@ import {
 } from './resources/connectors/connectors';
 import {
   EnrichUserParams,
+  GetOnboardingAnswersResponse,
   JwtToAPITokenRequest,
+  OnboardingAnswers,
   RefreshSessionRequest,
   RefreshSessionResponse,
+  SaveOnboardingAnswersRequest,
+  SaveOnboardingAnswersResponse,
   SurveySubmissionRequest,
   SurveySubmissionResponse,
   TokenResponse,
@@ -488,6 +492,7 @@ import {
   UserInfo,
   UserJwtToAPITokenParams,
   UserRefreshParams,
+  UserSaveOnboardingAnswersParams,
   UserSurveySubmitParams,
   UserTransactionsResponse,
   UserUpdateParams,
@@ -821,9 +826,13 @@ export declare namespace Structify {
   export {
     User as User,
     type EnrichUserParams as EnrichUserParams,
+    type GetOnboardingAnswersResponse as GetOnboardingAnswersResponse,
     type JwtToAPITokenRequest as JwtToAPITokenRequest,
+    type OnboardingAnswers as OnboardingAnswers,
     type RefreshSessionRequest as RefreshSessionRequest,
     type RefreshSessionResponse as RefreshSessionResponse,
+    type SaveOnboardingAnswersRequest as SaveOnboardingAnswersRequest,
+    type SaveOnboardingAnswersResponse as SaveOnboardingAnswersResponse,
     type SurveySubmissionRequest as SurveySubmissionRequest,
     type SurveySubmissionResponse as SurveySubmissionResponse,
     type TokenResponse as TokenResponse,
@@ -835,6 +844,7 @@ export declare namespace Structify {
     type UserEnrichParams as UserEnrichParams,
     type UserJwtToAPITokenParams as UserJwtToAPITokenParams,
     type UserRefreshParams as UserRefreshParams,
+    type UserSaveOnboardingAnswersParams as UserSaveOnboardingAnswersParams,
     type UserSurveySubmitParams as UserSurveySubmitParams,
     type UserUsageParams as UserUsageParams,
   };

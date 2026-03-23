@@ -45,6 +45,10 @@ export class User extends APIResource {
     });
   }
 
+  getOnboardingAnswers(options?: Core.RequestOptions): Core.APIPromise<GetOnboardingAnswersResponse> {
+    return this._client.get('/user/onboarding/answers', options);
+  }
+
   /**
    * Enable a source
    */
@@ -84,6 +88,13 @@ export class User extends APIResource {
     return this._client.post('/user/refresh', { body, ...options });
   }
 
+  saveOnboardingAnswers(
+    body: UserSaveOnboardingAnswersParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<SaveOnboardingAnswersResponse> {
+    return this._client.put('/user/onboarding/answers', { body, ...options });
+  }
+
   /**
    * Submit user onboarding survey
    */
@@ -118,10 +129,30 @@ export interface EnrichUserParams {
   email: string;
 }
 
+export interface GetOnboardingAnswersResponse {
+  answers: OnboardingAnswers;
+}
+
 export interface JwtToAPITokenRequest {
   full_name?: string | null;
 
   invitation_token?: string | null;
+}
+
+export interface OnboardingAnswers {
+  company_name?: string | null;
+
+  connected_connector_ids?: Array<string> | null;
+
+  full_name?: string | null;
+
+  primary_goal?: string | null;
+
+  recommended_template_id?: string | null;
+
+  role?: string | null;
+
+  systems_to_connect?: Array<string> | null;
 }
 
 export interface RefreshSessionRequest {
@@ -138,6 +169,14 @@ export interface RefreshSessionResponse {
   refresh_token_expires_at: string;
 
   session_token: string;
+}
+
+export interface SaveOnboardingAnswersRequest {
+  answers: OnboardingAnswers;
+}
+
+export interface SaveOnboardingAnswersResponse {
+  answers: OnboardingAnswers;
 }
 
 export interface SurveySubmissionRequest {
@@ -408,6 +447,10 @@ export interface UserRefreshParams {
   session_token: string;
 }
 
+export interface UserSaveOnboardingAnswersParams {
+  answers: OnboardingAnswers;
+}
+
 export interface UserSurveySubmitParams {
   survey_response: { [key: string]: unknown };
 }
@@ -422,9 +465,13 @@ User.APIKeys = APIKeys;
 export declare namespace User {
   export {
     type EnrichUserParams as EnrichUserParams,
+    type GetOnboardingAnswersResponse as GetOnboardingAnswersResponse,
     type JwtToAPITokenRequest as JwtToAPITokenRequest,
+    type OnboardingAnswers as OnboardingAnswers,
     type RefreshSessionRequest as RefreshSessionRequest,
     type RefreshSessionResponse as RefreshSessionResponse,
+    type SaveOnboardingAnswersRequest as SaveOnboardingAnswersRequest,
+    type SaveOnboardingAnswersResponse as SaveOnboardingAnswersResponse,
     type SurveySubmissionRequest as SurveySubmissionRequest,
     type SurveySubmissionResponse as SurveySubmissionResponse,
     type TokenResponse as TokenResponse,
@@ -436,6 +483,7 @@ export declare namespace User {
     type UserEnrichParams as UserEnrichParams,
     type UserJwtToAPITokenParams as UserJwtToAPITokenParams,
     type UserRefreshParams as UserRefreshParams,
+    type UserSaveOnboardingAnswersParams as UserSaveOnboardingAnswersParams,
     type UserSurveySubmitParams as UserSurveySubmitParams,
     type UserUsageParams as UserUsageParams,
   };

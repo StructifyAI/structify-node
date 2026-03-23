@@ -433,9 +433,13 @@ export {
 export {
   User,
   type EnrichUserParams,
+  type GetOnboardingAnswersResponse,
   type JwtToAPITokenRequest,
+  type OnboardingAnswers,
   type RefreshSessionRequest,
   type RefreshSessionResponse,
+  type SaveOnboardingAnswersRequest,
+  type SaveOnboardingAnswersResponse,
   type SurveySubmissionRequest,
   type SurveySubmissionResponse,
   type TokenResponse,
@@ -447,6 +451,7 @@ export {
   type UserEnrichParams,
   type UserJwtToAPITokenParams,
   type UserRefreshParams,
+  type UserSaveOnboardingAnswersParams,
   type UserSurveySubmitParams,
   type UserUsageParams,
 } from './user/user';

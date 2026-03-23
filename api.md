@@ -15,9 +15,13 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/user/user.ts">EnrichUserParams</a></code>
+- <code><a href="./src/resources/user/user.ts">GetOnboardingAnswersResponse</a></code>
 - <code><a href="./src/resources/user/user.ts">JwtToAPITokenRequest</a></code>
+- <code><a href="./src/resources/user/user.ts">OnboardingAnswers</a></code>
 - <code><a href="./src/resources/user/user.ts">RefreshSessionRequest</a></code>
 - <code><a href="./src/resources/user/user.ts">RefreshSessionResponse</a></code>
+- <code><a href="./src/resources/user/user.ts">SaveOnboardingAnswersRequest</a></code>
+- <code><a href="./src/resources/user/user.ts">SaveOnboardingAnswersResponse</a></code>
 - <code><a href="./src/resources/user/user.ts">SurveySubmissionRequest</a></code>
 - <code><a href="./src/resources/user/user.ts">SurveySubmissionResponse</a></code>
 - <code><a href="./src/resources/user/user.ts">TokenResponse</a></code>
@@ -30,9 +34,11 @@ Methods:
 
 - <code title="put /user/update">client.user.<a href="./src/resources/user/user.ts">update</a>({ ...params }) -> User</code>
 - <code title="post /user/enrich">client.user.<a href="./src/resources/user/user.ts">enrich</a>({ ...params }) -> void</code>
+- <code title="get /user/onboarding/answers">client.user.<a href="./src/resources/user/user.ts">getOnboardingAnswers</a>() -> GetOnboardingAnswersResponse</code>
 - <code title="get /user/info">client.user.<a href="./src/resources/user/user.ts">info</a>() -> UserInfo</code>
 - <code title="post /user/jwt_to_api_token/{jwt}">client.user.<a href="./src/resources/user/user.ts">jwtToAPIToken</a>(jwt, { ...params }) -> TokenResponse</code>
 - <code title="post /user/refresh">client.user.<a href="./src/resources/user/user.ts">refresh</a>({ ...params }) -> RefreshSessionResponse</code>
+- <code title="put /user/onboarding/answers">client.user.<a href="./src/resources/user/user.ts">saveOnboardingAnswers</a>({ ...params }) -> SaveOnboardingAnswersResponse</code>
 - <code title="post /user/survey/submit">client.user.<a href="./src/resources/user/user.ts">surveySubmit</a>({ ...params }) -> SurveySubmissionResponse</code>
 - <code title="get /user/transactions/list">client.user.<a href="./src/resources/user/user.ts">transactions</a>() -> UserTransactionsResponse</code>
 - <code title="get /user/usage">client.user.<a href="./src/resources/user/user.ts">usage</a>({ ...params }) -> UserUsageResponse</code>
