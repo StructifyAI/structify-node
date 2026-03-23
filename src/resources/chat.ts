@@ -1498,8 +1498,6 @@ export namespace ToolInvocation {
       description?: string | null;
 
       notes?: string | null;
-
-      tag?: string | null;
     }
   }
 
