@@ -123,12 +123,8 @@ export class Connectors extends APIResource {
     connectorId: string,
     body: ConnectorExploreParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.post(`/connectors/${connectorId}/explore`, {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
+  ): Core.APIPromise<ConnectorExploreResponse> {
+    return this._client.post(`/connectors/${connectorId}/explore`, { body, ...options });
   }
 
   get(connectorId: string, options?: Core.RequestOptions): Core.APIPromise<ConnectorGetResponse> {
@@ -145,6 +141,14 @@ export class Connectors extends APIResource {
     return this._client.get(`/connectors/${connectorId}/clarification-requests`, options);
   }
 
+  getExplorationProgress(
+    connectorId: string,
+    runId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ExplorationProgress> {
+    return this._client.get(`/connectors/${connectorId}/explore/runs/${runId}/progress`, options);
+  }
+
   /**
    * Get all exploration runs for a connector (requires debug permission)
    */
@@ -158,7 +162,7 @@ export class Connectors extends APIResource {
   getExplorationStatus(
     connectorId: string,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<ExploreStatusResponse> {
+  ): Core.APIPromise<ExplorationRun | null> {
     return this._client.get(`/connectors/${connectorId}/explore/status`, options);
   }
 
@@ -437,6 +441,22 @@ export interface CreateSecretRequest {
   secret_value: string;
 }
 
+export interface DatahubProgress {
+  databases_created: number;
+
+  job_id: string;
+
+  job_status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+  pages_fetched: number;
+
+  schemas_created: number;
+
+  tables_processed: number;
+
+  total_datasets: number;
+}
+
 export type DeleteSchemaObjectRequest =
   | DeleteSchemaObjectRequest.UnionMember0
   | DeleteSchemaObjectRequest.UnionMember1
@@ -559,6 +579,12 @@ export namespace ExplorationPhaseID {
   }
 }
 
+export interface ExplorationProgress {
+  phases: Array<PhaseActivity>;
+
+  datahub?: DatahubProgress | null;
+}
+
 export interface ExplorationRun {
   id: string;
 
@@ -592,12 +618,6 @@ export interface ExploreConnectorRequest {
   schema_id?: string | null;
 
   table_id?: string | null;
-}
-
-export interface ExploreStatusResponse {
-  status: ExplorationStatus;
-
-  started_at?: string | null;
 }
 
 export interface ExplorerChatResponse {
@@ -723,6 +743,22 @@ export namespace LlmInformationStore {
       }
     }
   }
+}
+
+export interface PhaseActivity {
+  job_id: string;
+
+  /**
+   * Identifies the phase of connector exploration
+   *
+   * This enum is used to track which phase of exploration a chat session belongs to.
+   * It's stored as JSONB in the database to allow for flexible phase identification.
+   */
+  phase_id: ExplorationPhaseID;
+
+  status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+  chat_id?: string | null;
 }
 
 export type SchemaObjectID =
@@ -894,6 +930,62 @@ export namespace ConnectorAddSchemaObjectResponse {
 
     type: 'column';
   }
+}
+
+export interface ConnectorExploreResponse {
+  id: string;
+
+  created_at: string;
+
+  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | 'DatahubIngestion';
+
+  max_steps_without_save: number;
+
+  membership_id: string;
+
+  status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+  updated_at: string;
+
+  use_proxy: boolean;
+
+  user_id: string;
+
+  dataset_id?: string | null;
+
+  exploration_run_id?: string | null;
+
+  max_errors?: number | null;
+
+  max_execution_time_secs?: number | null;
+
+  max_total_steps?: number | null;
+
+  /**
+   * A message about the status of the job at completion
+   */
+  message?: string | null;
+
+  node_id?: string | null;
+
+  /**
+   * Proto for JobInput
+   */
+  parameters?: Core.Uploadable | null;
+
+  /**
+   * A reason for the job's existence
+   */
+  reason?: string | null;
+
+  /**
+   * What time did the job start running?
+   */
+  run_started_time?: string | null;
+
+  run_time_milliseconds?: number | null;
+
+  seeded_kg_search_term?: string | null;
 }
 
 export interface ConnectorGetResponse extends Connector {
@@ -1401,23 +1493,26 @@ export declare namespace Connectors {
     type ConnectorWithSnippets as ConnectorWithSnippets,
     type CreateConnectorRequest as CreateConnectorRequest,
     type CreateSecretRequest as CreateSecretRequest,
+    type DatahubProgress as DatahubProgress,
     type DeleteSchemaObjectRequest as DeleteSchemaObjectRequest,
     type DeleteSchemaObjectResponse as DeleteSchemaObjectResponse,
     type ExplorationPhaseID as ExplorationPhaseID,
+    type ExplorationProgress as ExplorationProgress,
     type ExplorationRun as ExplorationRun,
     type ExplorationRunsResponse as ExplorationRunsResponse,
     type ExplorationStatus as ExplorationStatus,
     type ExploreConnectorRequest as ExploreConnectorRequest,
-    type ExploreStatusResponse as ExploreStatusResponse,
     type ExplorerChatResponse as ExplorerChatResponse,
     type ListTablesResponse as ListTablesResponse,
     type LlmInformationStore as LlmInformationStore,
+    type PhaseActivity as PhaseActivity,
     type SchemaObjectID as SchemaObjectID,
     type UpdateColumnRequest as UpdateColumnRequest,
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type UpdateTableRequest as UpdateTableRequest,
     type UpdateTableResponse as UpdateTableResponse,
     type ConnectorAddSchemaObjectResponse as ConnectorAddSchemaObjectResponse,
+    type ConnectorExploreResponse as ConnectorExploreResponse,
     type ConnectorGetResponse as ConnectorGetResponse,
     type ConnectorGetClarificationRequestsResponse as ConnectorGetClarificationRequestsResponse,
     type ConnectorListStoresResponse as ConnectorListStoresResponse,

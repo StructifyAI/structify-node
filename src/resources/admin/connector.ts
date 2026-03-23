@@ -67,9 +67,11 @@ export type DatahubIngestionKey =
   | 'warehouse'
   | 'role'
   | 'instance_url'
-  | 'access_token';
+  | 'access_token'
+  | 'project_id'
+  | 'credential_json';
 
-export type DatahubIngestionType = 'postgres' | 'snowflake' | 'salesforce' | 'hubspot';
+export type DatahubIngestionType = 'postgres' | 'snowflake' | 'salesforce' | 'hubspot' | 'bigquery';
 
 /**
  * Maps DatahubIngestionKey to the name of the connector secret that holds the
