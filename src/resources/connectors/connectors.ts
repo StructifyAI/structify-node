@@ -141,14 +141,6 @@ export class Connectors extends APIResource {
     return this._client.get(`/connectors/${connectorId}/clarification-requests`, options);
   }
 
-  getExplorationProgress(
-    connectorId: string,
-    runId: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ExplorationProgress> {
-    return this._client.get(`/connectors/${connectorId}/explore/runs/${runId}/progress`, options);
-  }
-
   /**
    * Get all exploration runs for a connector (requires debug permission)
    */
@@ -162,7 +154,7 @@ export class Connectors extends APIResource {
   getExplorationStatus(
     connectorId: string,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<ExplorationRun | null> {
+  ): Core.APIPromise<ExploreStatusResponse> {
     return this._client.get(`/connectors/${connectorId}/explore/status`, options);
   }
 
@@ -319,6 +311,10 @@ export interface Connector {
 
   oauth_scopes?: Array<string | null> | null;
 
+  refresh_cron_schedule?: string | null;
+
+  refresh_next_run_at?: string | null;
+
   usage_snippet_override?: string | null;
 }
 
@@ -439,22 +435,6 @@ export interface CreateSecretRequest {
   secret_name: string;
 
   secret_value: string;
-}
-
-export interface DatahubProgress {
-  databases_created: number;
-
-  job_id: string;
-
-  job_status: 'Queued' | 'Running' | 'Completed' | 'Failed';
-
-  pages_fetched: number;
-
-  schemas_created: number;
-
-  tables_processed: number;
-
-  total_datasets: number;
 }
 
 export type DeleteSchemaObjectRequest =
@@ -579,12 +559,6 @@ export namespace ExplorationPhaseID {
   }
 }
 
-export interface ExplorationProgress {
-  phases: Array<PhaseActivity>;
-
-  datahub?: DatahubProgress | null;
-}
-
 export interface ExplorationRun {
   id: string;
 
@@ -618,6 +592,12 @@ export interface ExploreConnectorRequest {
   schema_id?: string | null;
 
   table_id?: string | null;
+}
+
+export interface ExploreStatusResponse {
+  status: ExplorationStatus;
+
+  started_at?: string | null;
 }
 
 export interface ExplorerChatResponse {
@@ -745,22 +725,6 @@ export namespace LlmInformationStore {
   }
 }
 
-export interface PhaseActivity {
-  job_id: string;
-
-  /**
-   * Identifies the phase of connector exploration
-   *
-   * This enum is used to track which phase of exploration a chat session belongs to.
-   * It's stored as JSONB in the database to allow for flexible phase identification.
-   */
-  phase_id: ExplorationPhaseID;
-
-  status: 'Queued' | 'Running' | 'Completed' | 'Failed';
-
-  chat_id?: string | null;
-}
-
 export type SchemaObjectID =
   | SchemaObjectID.Column
   | SchemaObjectID.Table
@@ -821,6 +785,8 @@ export interface UpdateConnectorRequest {
   oauth_scopes?: Array<string | null> | null;
 
   owner_user_id?: string | null;
+
+  refresh_cron_schedule?: string | null;
 
   team_visibility?: 'Team' | 'Private' | null;
 
@@ -1308,6 +1274,8 @@ export interface ConnectorUpdateParams {
 
   owner_user_id?: string | null;
 
+  refresh_cron_schedule?: string | null;
+
   team_visibility?: 'Team' | 'Private' | null;
 
   usage_snippet_override?: string | null;
@@ -1493,19 +1461,17 @@ export declare namespace Connectors {
     type ConnectorWithSnippets as ConnectorWithSnippets,
     type CreateConnectorRequest as CreateConnectorRequest,
     type CreateSecretRequest as CreateSecretRequest,
-    type DatahubProgress as DatahubProgress,
     type DeleteSchemaObjectRequest as DeleteSchemaObjectRequest,
     type DeleteSchemaObjectResponse as DeleteSchemaObjectResponse,
     type ExplorationPhaseID as ExplorationPhaseID,
-    type ExplorationProgress as ExplorationProgress,
     type ExplorationRun as ExplorationRun,
     type ExplorationRunsResponse as ExplorationRunsResponse,
     type ExplorationStatus as ExplorationStatus,
     type ExploreConnectorRequest as ExploreConnectorRequest,
+    type ExploreStatusResponse as ExploreStatusResponse,
     type ExplorerChatResponse as ExplorerChatResponse,
     type ListTablesResponse as ListTablesResponse,
     type LlmInformationStore as LlmInformationStore,
-    type PhaseActivity as PhaseActivity,
     type SchemaObjectID as SchemaObjectID,
     type UpdateColumnRequest as UpdateColumnRequest,
     type UpdateConnectorRequest as UpdateConnectorRequest,
