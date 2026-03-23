@@ -65,24 +65,6 @@ describe('resource user', () => {
     const response = await client.user.enrich({ email: 'email' });
   });
 
-  test('getOnboardingAnswers', async () => {
-    const responsePromise = client.user.getOnboardingAnswers();
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('getOnboardingAnswers: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.user.getOnboardingAnswers({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Structify.NotFoundError,
-    );
-  });
-
   test('info', async () => {
     const responsePromise = client.user.info();
     const rawResponse = await responsePromise.asResponse();
@@ -130,31 +112,6 @@ describe('resource user', () => {
     const response = await client.user.refresh({
       refresh_token: 'refresh_token',
       session_token: 'session_token',
-    });
-  });
-
-  test('saveOnboardingAnswers: only required params', async () => {
-    const responsePromise = client.user.saveOnboardingAnswers({ answers: {} });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('saveOnboardingAnswers: required and optional params', async () => {
-    const response = await client.user.saveOnboardingAnswers({
-      answers: {
-        company_name: 'company_name',
-        connected_connector_ids: ['string'],
-        full_name: 'full_name',
-        primary_goal: 'primary_goal',
-        recommended_template_id: 'recommended_template_id',
-        role: 'role',
-        systems_to_connect: ['string'],
-      },
     });
   });
 
