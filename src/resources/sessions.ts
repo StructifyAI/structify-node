@@ -146,6 +146,17 @@ export class Sessions extends APIResource {
     return this._client.post(`/sessions/${sessionId}/dashboard_layout`, { body, ...options });
   }
 
+  uploadNodeOutputData(
+    nodeId: string,
+    body: SessionUploadNodeOutputDataParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<WorkflowSessionNode> {
+    return this._client.post(
+      `/sessions/nodes/${nodeId}/output_data`,
+      Core.multipartFormRequestOptions({ body, ...options }),
+    );
+  }
+
   uploadNodeVisualizationOutput(
     nodeId: string,
     body: SessionUploadNodeVisualizationOutputParams,
@@ -921,8 +932,6 @@ export interface WorkflowSessionNode {
 
   output_blob_name?: string | null;
 
-  output_file_size?: number | null;
-
   output_schema?: unknown;
 
   progress?: unknown;
@@ -1097,6 +1106,24 @@ export declare namespace SessionUploadDashboardLayoutParams {
   }
 }
 
+export interface SessionUploadNodeOutputDataParams {
+  content: Core.Uploadable;
+
+  cache_final_rows?: number | null;
+
+  cache_final_size_bytes?: number | null;
+
+  cache_max_bytes?: number | null;
+
+  cache_original_rows?: number | null;
+
+  cache_original_size_bytes?: number | null;
+
+  cache_truncated?: boolean | null;
+
+  output_schema?: string | null;
+}
+
 export interface SessionUploadNodeVisualizationOutputParams {
   visualization_output: { [key: string]: unknown };
 }
@@ -1163,6 +1190,7 @@ export declare namespace Sessions {
     type SessionUpdateNodeParams as SessionUpdateNodeParams,
     type SessionUpdateNodeProgressParams as SessionUpdateNodeProgressParams,
     type SessionUploadDashboardLayoutParams as SessionUploadDashboardLayoutParams,
+    type SessionUploadNodeOutputDataParams as SessionUploadNodeOutputDataParams,
     type SessionUploadNodeVisualizationOutputParams as SessionUploadNodeVisualizationOutputParams,
   };
 }

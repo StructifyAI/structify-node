@@ -320,6 +320,20 @@ export class Chat extends APIResource {
   ): Core.APIPromise<UpdateVisibilityResponse> {
     return this._client.put(`/chat/sessions/${sessionId}/visibility`, { body, ...options });
   }
+
+  /**
+   * Upload an input file to a chat session's bucket storage
+   */
+  uploadInputFile(
+    chatId: string,
+    body: ChatUploadInputFileParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatUploadInputFileResponse> {
+    return this._client.post(
+      `/chat/input-files/upload/${chatId}`,
+      Core.multipartFormRequestOptions({ body, ...options }),
+    );
+  }
 }
 
 export interface AddCollaboratorRequest {
@@ -1950,6 +1964,24 @@ export interface ChatRevertToCommitResponse {
   reverted_at: string;
 }
 
+export interface ChatUploadInputFileResponse {
+  file: ChatUploadInputFileResponse.File;
+}
+
+export namespace ChatUploadInputFileResponse {
+  export interface File {
+    chat_session_id: string;
+
+    content_type: string;
+
+    created_at: string;
+
+    file_size: number;
+
+    filename: string;
+  }
+}
+
 export interface ChatAddCollaboratorParams {
   email: string;
 
@@ -2144,6 +2176,14 @@ export interface ChatUpdateVisibilityParams {
   visibility: ChatVisibility;
 }
 
+export interface ChatUploadInputFileParams {
+  content: Core.Uploadable;
+
+  content_type: string;
+
+  file_name: string;
+}
+
 export declare namespace Chat {
   export {
     type AddCollaboratorRequest as AddCollaboratorRequest,
@@ -2192,6 +2232,7 @@ export declare namespace Chat {
     type ChatLoadFilesResponse as ChatLoadFilesResponse,
     type ChatLoadInputFilesResponse as ChatLoadInputFilesResponse,
     type ChatRevertToCommitResponse as ChatRevertToCommitResponse,
+    type ChatUploadInputFileResponse as ChatUploadInputFileResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAdminIssueFoundParams as ChatAdminIssueFoundParams,
@@ -2209,5 +2250,6 @@ export declare namespace Chat {
     type ChatUpdateSessionParams as ChatUpdateSessionParams,
     type ChatUpdateSessionFavoriteParams as ChatUpdateSessionFavoriteParams,
     type ChatUpdateVisibilityParams as ChatUpdateVisibilityParams,
+    type ChatUploadInputFileParams as ChatUploadInputFileParams,
   };
 }
