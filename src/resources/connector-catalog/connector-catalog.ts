@@ -176,6 +176,12 @@ export namespace ConnectorCatalogListResponse {
 
 export interface ConnectorCatalogListParams {
   /**
+   * Optional category filter (exact match against any element in the categories
+   * array)
+   */
+  categories?: Array<string>;
+
+  /**
    * Include inactive auth methods (admin only)
    */
   include_inactive?: boolean;
