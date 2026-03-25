@@ -453,6 +453,8 @@ export interface DatahubProgress {
 
   pages_fetched: number;
 
+  records_written: number;
+
   schemas_created: number;
 
   tables_processed: number;

@@ -400,6 +400,7 @@ export type JobEventBody =
   | JobEventBody.DatahubSchemasCreated
   | JobEventBody.DatahubTablesProcessed
   | JobEventBody.DatahubAnnotationsQueued
+  | JobEventBody.DatahubIngestionProgress
   | JobEventBody.DatahubEmbeddingBatch
   | JobEventBody.ViewedPdfPage;
 
@@ -553,6 +554,12 @@ export namespace JobEventBody {
     event_type: 'datahub_annotations_queued';
 
     full_annotations_queued: number;
+  }
+
+  export interface DatahubIngestionProgress {
+    event_type: 'datahub_ingestion_progress';
+
+    records_written: number;
   }
 
   export interface DatahubEmbeddingBatch {
