@@ -49,12 +49,16 @@ import {
   AdminDeleteJobsRequest,
   AdminDeleteJobsResponse,
   AdminListJobsRequestParams,
+  JobConcurrencyResponse,
   JobDeleteParams,
   JobKillByUserParams,
   JobKillByUserResponse,
   JobListParams,
   JobListResponse,
   JobListResponsesJobsList,
+  JobRunningStatsResponse,
+  JobUpdateConcurrencyParams,
+  JobUpdateConcurrencyResponse,
   Jobs,
 } from './jobs';
 import * as SandboxAPI from './sandbox';
@@ -194,11 +198,15 @@ export declare namespace Admin {
     type AdminDeleteJobsResponse as AdminDeleteJobsResponse,
     type AdminListJobsRequestParams as AdminListJobsRequestParams,
     type JobListResponse as JobListResponse,
+    type JobConcurrencyResponse as JobConcurrencyResponse,
     type JobKillByUserResponse as JobKillByUserResponse,
+    type JobRunningStatsResponse as JobRunningStatsResponse,
+    type JobUpdateConcurrencyResponse as JobUpdateConcurrencyResponse,
     JobListResponsesJobsList as JobListResponsesJobsList,
     type JobListParams as JobListParams,
     type JobDeleteParams as JobDeleteParams,
     type JobKillByUserParams as JobKillByUserParams,
+    type JobUpdateConcurrencyParams as JobUpdateConcurrencyParams,
   };
 
   export { Sandbox as Sandbox, type SandboxListParams as SandboxListParams };

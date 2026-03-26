@@ -314,13 +314,19 @@ Types:
 - <code><a href="./src/resources/admin/jobs.ts">AdminDeleteJobsResponse</a></code>
 - <code><a href="./src/resources/admin/jobs.ts">AdminListJobsRequestParams</a></code>
 - <code><a href="./src/resources/admin/jobs.ts">JobListResponse</a></code>
+- <code><a href="./src/resources/admin/jobs.ts">JobConcurrencyResponse</a></code>
 - <code><a href="./src/resources/admin/jobs.ts">JobKillByUserResponse</a></code>
+- <code><a href="./src/resources/admin/jobs.ts">JobRunningStatsResponse</a></code>
+- <code><a href="./src/resources/admin/jobs.ts">JobUpdateConcurrencyResponse</a></code>
 
 Methods:
 
 - <code title="get /admin/jobs/list">client.admin.jobs.<a href="./src/resources/admin/jobs.ts">list</a>({ ...params }) -> JobListResponsesJobsList</code>
 - <code title="post /admin/jobs/delete">client.admin.jobs.<a href="./src/resources/admin/jobs.ts">delete</a>({ ...params }) -> AdminDeleteJobsResponse</code>
+- <code title="get /admin/jobs/concurrency_limits">client.admin.jobs.<a href="./src/resources/admin/jobs.ts">concurrency</a>() -> JobConcurrencyResponse</code>
 - <code title="post /admin/jobs/kill_by_user">client.admin.jobs.<a href="./src/resources/admin/jobs.ts">killByUser</a>({ ...params }) -> JobKillByUserResponse</code>
+- <code title="get /admin/jobs/running_stats">client.admin.jobs.<a href="./src/resources/admin/jobs.ts">runningStats</a>() -> JobRunningStatsResponse</code>
+- <code title="put /admin/jobs/concurrency_limits">client.admin.jobs.<a href="./src/resources/admin/jobs.ts">updateConcurrency</a>({ ...params }) -> JobUpdateConcurrencyResponse</code>
 
 ## Sandbox
 
