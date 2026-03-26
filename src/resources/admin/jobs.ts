@@ -31,11 +31,26 @@ export class Jobs extends APIResource {
     return this._client.post('/admin/jobs/delete', { body, ...options });
   }
 
+  concurrency(options?: Core.RequestOptions): Core.APIPromise<JobConcurrencyResponse> {
+    return this._client.get('/admin/jobs/concurrency_limits', options);
+  }
+
   killByUser(
     body: JobKillByUserParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<JobKillByUserResponse> {
     return this._client.post('/admin/jobs/kill_by_user', { body, ...options });
+  }
+
+  runningStats(options?: Core.RequestOptions): Core.APIPromise<JobRunningStatsResponse> {
+    return this._client.get('/admin/jobs/running_stats', options);
+  }
+
+  updateConcurrency(
+    body: JobUpdateConcurrencyParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<JobUpdateConcurrencyResponse> {
+    return this._client.put('/admin/jobs/concurrency_limits', { body, ...options });
   }
 }
 
@@ -220,8 +235,80 @@ export namespace JobListResponse {
   }
 }
 
+export interface JobConcurrencyResponse {
+  id: number;
+
+  updated_at: string;
+
+  max_connector_explore_jobs?: number | null;
+
+  max_derive_jobs?: number | null;
+
+  max_match_jobs?: number | null;
+
+  max_pdf_jobs?: number | null;
+
+  max_scrape_jobs?: number | null;
+
+  max_total_jobs?: number | null;
+
+  max_web_jobs?: number | null;
+}
+
 export interface JobKillByUserResponse {
   killed_jobs: number;
+}
+
+export interface JobRunningStatsResponse {
+  by_type: Array<JobRunningStatsResponse.ByType>;
+
+  by_user: Array<JobRunningStatsResponse.ByUser>;
+
+  completed_last_hour: number;
+
+  failed_last_hour: number;
+
+  total_queued: number;
+
+  total_running: number;
+}
+
+export namespace JobRunningStatsResponse {
+  export interface ByType {
+    count: number;
+
+    job_type: string;
+  }
+
+  export interface ByUser {
+    email: string;
+
+    queued: number;
+
+    running: number;
+
+    user_id: string;
+  }
+}
+
+export interface JobUpdateConcurrencyResponse {
+  id: number;
+
+  updated_at: string;
+
+  max_connector_explore_jobs?: number | null;
+
+  max_derive_jobs?: number | null;
+
+  max_match_jobs?: number | null;
+
+  max_pdf_jobs?: number | null;
+
+  max_scrape_jobs?: number | null;
+
+  max_total_jobs?: number | null;
+
+  max_web_jobs?: number | null;
 }
 
 export interface JobListParams extends JobsListParams {
@@ -240,6 +327,22 @@ export interface JobKillByUserParams {
   user_id: string;
 }
 
+export interface JobUpdateConcurrencyParams {
+  max_connector_explore_jobs?: number | null;
+
+  max_derive_jobs?: number | null;
+
+  max_match_jobs?: number | null;
+
+  max_pdf_jobs?: number | null;
+
+  max_scrape_jobs?: number | null;
+
+  max_total_jobs?: number | null;
+
+  max_web_jobs?: number | null;
+}
+
 Jobs.JobListResponsesJobsList = JobListResponsesJobsList;
 
 export declare namespace Jobs {
@@ -248,10 +351,14 @@ export declare namespace Jobs {
     type AdminDeleteJobsResponse as AdminDeleteJobsResponse,
     type AdminListJobsRequestParams as AdminListJobsRequestParams,
     type JobListResponse as JobListResponse,
+    type JobConcurrencyResponse as JobConcurrencyResponse,
     type JobKillByUserResponse as JobKillByUserResponse,
+    type JobRunningStatsResponse as JobRunningStatsResponse,
+    type JobUpdateConcurrencyResponse as JobUpdateConcurrencyResponse,
     JobListResponsesJobsList as JobListResponsesJobsList,
     type JobListParams as JobListParams,
     type JobDeleteParams as JobDeleteParams,
     type JobKillByUserParams as JobKillByUserParams,
+    type JobUpdateConcurrencyParams as JobUpdateConcurrencyParams,
   };
 }

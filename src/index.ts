@@ -712,10 +712,10 @@ export class Structify extends Core.APIClient {
   }
 
   protected override validateHeaders(headers: Core.Headers, customHeaders: Core.Headers) {
-    if (this.apiKey && headers['api-key']) {
+    if (this.apiKey && headers['api_key']) {
       return;
     }
-    if (customHeaders['api-key'] === null) {
+    if (customHeaders['api_key'] === null) {
       return;
     }
 
@@ -727,7 +727,7 @@ export class Structify extends Core.APIClient {
     }
 
     throw new Error(
-      'Could not resolve authentication method. Expected either apiKey or sessionToken to be set. Or for one of the "api-key" or "Authorization" headers to be explicitly omitted',
+      'Could not resolve authentication method. Expected either apiKey or sessionToken to be set. Or for one of the "api_key" or "Authorization" headers to be explicitly omitted',
     );
   }
 
@@ -742,7 +742,7 @@ export class Structify extends Core.APIClient {
     if (this.apiKey == null) {
       return {};
     }
-    return { 'api-key': this.apiKey };
+    return { api_key: this.apiKey };
   }
 
   protected sessionTokenAuth(opts: Core.FinalRequestOptions): Core.Headers {

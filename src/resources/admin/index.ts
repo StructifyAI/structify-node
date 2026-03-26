@@ -46,10 +46,14 @@ export {
   type AdminDeleteJobsResponse,
   type AdminListJobsRequestParams,
   type JobListResponse,
+  type JobConcurrencyResponse,
   type JobKillByUserResponse,
+  type JobRunningStatsResponse,
+  type JobUpdateConcurrencyResponse,
   type JobListParams,
   type JobDeleteParams,
   type JobKillByUserParams,
+  type JobUpdateConcurrencyParams,
 } from './jobs';
 export { Sandbox, type SandboxListParams } from './sandbox';
 export {
