@@ -1574,6 +1574,8 @@ export interface EntityDeriveParams {
 
   instructions: string;
 
+  model?: string | null;
+
   node_id?: string | null;
 }
 
@@ -1585,6 +1587,8 @@ export interface EntityDeriveAllParams {
   instructions: string;
 
   table_name: string;
+
+  model?: string | null;
 
   node_id?: string | null;
 }
