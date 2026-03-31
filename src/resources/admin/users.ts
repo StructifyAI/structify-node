@@ -107,8 +107,6 @@ export interface User {
 
   linkedin_url?: string | null;
 
-  onboarding_session_id?: string | null;
-
   slack_user_id?: string | null;
 
   slack_username?: string | null;

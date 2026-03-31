@@ -150,7 +150,6 @@ describe('resource chat', () => {
     const response = await client.chat.createSession({
       team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       config: {
-        is_onboarding_session: true,
         llm_key: 'vllm.gpt-5-mini-2025-08-07',
         max_steps: 0,
         reminder_message: 'reminder_message',

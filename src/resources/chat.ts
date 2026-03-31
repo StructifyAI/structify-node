@@ -831,8 +831,6 @@ export namespace CreateChatSessionRequest {
    * Configuration for chat session with system prompt and LLM key
    */
   export interface Config {
-    is_onboarding_session: boolean;
-
     /**
      * LLM model keys available in the system. Format: <provider>.<model-name>
      */
@@ -2036,8 +2034,6 @@ export namespace ChatCreateSessionParams {
    * Configuration for chat session with system prompt and LLM key
    */
   export interface Config {
-    is_onboarding_session: boolean;
-
     /**
      * LLM model keys available in the system. Format: <provider>.<model-name>
      */

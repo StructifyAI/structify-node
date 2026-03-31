@@ -251,8 +251,6 @@ export namespace UpdateUserParams {
 
     notify_for_interaction?: boolean | null;
 
-    onboarding_session_id?: string | null;
-
     permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none' | null> | null;
 
     slack_user_id?: string | null;
@@ -318,8 +316,6 @@ export interface UserInfo {
   last_selected_team_id?: string | null;
 
   linkedin_url?: string | null;
-
-  onboarding_session_id?: string | null;
 
   slack_user_id?: string | null;
 
@@ -412,8 +408,6 @@ export namespace UserUpdateParams {
     linkedin_url?: string | null;
 
     notify_for_interaction?: boolean | null;
-
-    onboarding_session_id?: string | null;
 
     permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none' | null> | null;
 
