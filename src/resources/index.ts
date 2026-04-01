@@ -456,6 +456,12 @@ export {
   type UserSurveySubmitParams,
   type UserUsageParams,
 } from './user/user';
+export {
+  Webhook,
+  type WebhookTriggerRequest,
+  type WebhookTriggerResponse,
+  type WebhookTriggerParams,
+} from './webhook';
 export { Whitelabel, type EstimateCostResponse } from './whitelabel';
 export {
   Wiki,

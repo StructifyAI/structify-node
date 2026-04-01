@@ -589,6 +589,17 @@ Methods:
 - <code title="patch /workflow-schedule/{schedule_id}/pause">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">pause</a>(scheduleId, { ...params }) -> WorkflowScheduleInfo</code>
 - <code title="post /workflow-schedule/{schedule_id}/run">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">run</a>(scheduleId) -> void</code>
 
+# Webhook
+
+Types:
+
+- <code><a href="./src/resources/webhook.ts">WebhookTriggerRequest</a></code>
+- <code><a href="./src/resources/webhook.ts">WebhookTriggerResponse</a></code>
+
+Methods:
+
+- <code title="post /webhook/trigger">client.webhook.<a href="./src/resources/webhook.ts">trigger</a>({ ...params }) -> WebhookTriggerResponse</code>
+
 # Workflow
 
 Types:
