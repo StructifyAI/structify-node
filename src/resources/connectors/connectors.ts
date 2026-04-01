@@ -835,11 +835,11 @@ export interface UpdateConnectorRequest {
 
   refresh_cron_schedule?: string | null;
 
+  shared_user_roles?: { [key: string]: ChatAPI.ChatSessionRole } | null;
+
   team_visibility?: 'Team' | 'Private' | null;
 
   usage_snippet_override?: string | null;
-
-  user_ids?: Array<string> | null;
 }
 
 export interface UpdateTableRequest {
@@ -1004,7 +1004,7 @@ export interface ConnectorExploreResponse {
 export interface ConnectorGetResponse extends Connector {
   secrets: Array<ConnectorGetResponse.Secret>;
 
-  shared_user_ids: Array<string>;
+  shared_user_roles: { [key: string]: ChatAPI.ChatSessionRole };
 }
 
 export namespace ConnectorGetResponse {
@@ -1323,11 +1323,11 @@ export interface ConnectorUpdateParams {
 
   refresh_cron_schedule?: string | null;
 
+  shared_user_roles?: { [key: string]: ChatAPI.ChatSessionRole } | null;
+
   team_visibility?: 'Team' | 'Private' | null;
 
   usage_snippet_override?: string | null;
-
-  user_ids?: Array<string> | null;
 }
 
 export interface ConnectorListParams extends JobsListParams {}
