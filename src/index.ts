@@ -375,6 +375,12 @@ import {
   UpdateTeamResponse,
   UsageGroupKey,
 } from './resources/teams';
+import {
+  Webhook,
+  WebhookTriggerParams,
+  WebhookTriggerRequest,
+  WebhookTriggerResponse,
+} from './resources/webhook';
 import { EstimateCostResponse, Whitelabel } from './resources/whitelabel';
 import {
   CreateWikiPageRequest,
@@ -672,6 +678,7 @@ export class Structify extends Core.APIClient {
   match: API.Match = new API.Match(this);
   sessions: API.Sessions = new API.Sessions(this);
   workflowSchedule: API.WorkflowSchedule = new API.WorkflowSchedule(this);
+  webhook: API.Webhook = new API.Webhook(this);
   workflow: API.Workflow = new API.Workflow(this);
   connectors: API.Connectors = new API.Connectors(this);
   connectorCatalog: API.ConnectorCatalogResource = new API.ConnectorCatalogResource(this);
@@ -794,6 +801,7 @@ Structify.Match = Match;
 Structify.MatchResultsJobsList = MatchResultsJobsList;
 Structify.Sessions = Sessions;
 Structify.WorkflowSchedule = WorkflowSchedule;
+Structify.Webhook = Webhook;
 Structify.Workflow = Workflow;
 Structify.Connectors = Connectors;
 Structify.ConnectorWithSecretsJobsList = ConnectorWithSecretsJobsList;
@@ -1134,6 +1142,13 @@ export declare namespace Structify {
     type WorkflowScheduleUpdateParams as WorkflowScheduleUpdateParams,
     type WorkflowScheduleGetSessionsParams as WorkflowScheduleGetSessionsParams,
     type WorkflowSchedulePauseParams as WorkflowSchedulePauseParams,
+  };
+
+  export {
+    Webhook as Webhook,
+    type WebhookTriggerRequest as WebhookTriggerRequest,
+    type WebhookTriggerResponse as WebhookTriggerResponse,
+    type WebhookTriggerParams as WebhookTriggerParams,
   };
 
   export {
