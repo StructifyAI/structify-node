@@ -42,12 +42,16 @@ export interface CreateWikiPageRequest {
   slug: string;
 
   title: string;
+
+  chat_session_id?: string | null;
 }
 
 export interface UpdateWikiPageRequest {
   markdown: string;
 
   base_version?: number | null;
+
+  chat_session_id?: string | null;
 
   title?: string | null;
 }
@@ -104,6 +108,8 @@ export interface WikiPage {
 
   created_at: string;
 
+  created_by: string;
+
   markdown: string;
 
   slug: string;
@@ -115,6 +121,12 @@ export interface WikiPage {
   updated_at: string;
 
   version: number;
+
+  approved_at?: string | null;
+
+  approved_by?: string | null;
+
+  chat_session_id?: string | null;
 }
 
 export interface WikiPageWithReferences extends WikiPage {
@@ -129,12 +141,16 @@ export interface WikiCreateParams {
   slug: string;
 
   title: string;
+
+  chat_session_id?: string | null;
 }
 
 export interface WikiUpdateParams {
   markdown: string;
 
   base_version?: number | null;
+
+  chat_session_id?: string | null;
 
   title?: string | null;
 }
