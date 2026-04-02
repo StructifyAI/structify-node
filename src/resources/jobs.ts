@@ -136,7 +136,10 @@ export namespace JobListResponse {
 
   export namespace Parameters {
     export interface Agent {
-      Agent: Agent.Pdf | Agent.Web;
+      /**
+       * Only use the input text to derive new fields. Useful for large text inputs.
+       */
+      Agent: Agent.Pdf | Agent.Web | 'NoResources';
     }
 
     export namespace Agent {
@@ -380,7 +383,10 @@ export namespace JobGetResponse {
 
     export namespace Parameters {
       export interface Agent {
-        Agent: Agent.Pdf | Agent.Web;
+        /**
+         * Only use the input text to derive new fields. Useful for large text inputs.
+         */
+        Agent: Agent.Pdf | Agent.Web | 'NoResources';
       }
 
       export namespace Agent {
