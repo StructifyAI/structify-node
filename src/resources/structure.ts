@@ -458,7 +458,10 @@ export interface StructurePdfParams {
 export interface StructureRunAsyncParams {
   dataset: string;
 
-  source: StructureRunAsyncParams.Pdf | StructureRunAsyncParams.Web;
+  /**
+   * Only use the input text to derive new fields. Useful for large text inputs.
+   */
+  source: StructureRunAsyncParams.Pdf | StructureRunAsyncParams.Web | 'NoResources';
 
   instructions?: string | null;
 
