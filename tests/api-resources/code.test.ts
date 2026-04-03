@@ -50,7 +50,7 @@ describe('resource code', () => {
       prompt: 'prompt',
       assistantMessageId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       config: {
-        llm_key: 'vllm.gpt-5-mini-2025-08-07',
+        llm_key: 'claude-sonnet-4-5',
         max_steps: 0,
         reminder_message: 'reminder_message',
         system_prompt: 'system_prompt',
