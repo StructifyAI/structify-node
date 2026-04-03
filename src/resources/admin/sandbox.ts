@@ -25,6 +25,10 @@ export class Sandbox extends APIResource {
     }
     return this._client.getAPIList('/admin/sandbox/list', SandboxesJobsList, { query, ...options });
   }
+
+  terminate(sandboxId: string, options?: Core.RequestOptions): Core.APIPromise<SandboxAPI.Sandbox> {
+    return this._client.post(`/admin/sandbox/${sandboxId}/terminate`, options);
+  }
 }
 
 export interface SandboxListParams extends JobsListParams {}

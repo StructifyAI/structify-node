@@ -333,6 +333,7 @@ Methods:
 Methods:
 
 - <code title="get /admin/sandbox/list">client.admin.sandbox.<a href="./src/resources/admin/sandbox.ts">list</a>({ ...params }) -> SandboxesJobsList</code>
+- <code title="post /admin/sandbox/{sandbox_id}/terminate">client.admin.sandbox.<a href="./src/resources/admin/sandbox.ts">terminate</a>(sandboxId) -> Sandbox</code>
 
 ## FunctionalTests
 
