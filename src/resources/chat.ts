@@ -44,6 +44,14 @@ export class Chat extends APIResource {
     return this._client.post(`/chat/sessions/${chatId}/admin/issue_found`, { body, ...options });
   }
 
+  completeInputFileUpload(
+    chatId: string,
+    body: ChatCompleteInputFileUploadParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatCompleteInputFileUploadResponse> {
+    return this._client.post(`/chat/input-files/upload/complete/${chatId}`, { body, ...options });
+  }
+
   compress(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<CompressChatResponse> {
     return this._client.post(`/chat/sessions/${sessionId}/compress`, options);
   }
@@ -155,6 +163,17 @@ export class Chat extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<AdminGrantAccessResponse> {
     return this._client.post(`/chat/sessions/${chatId}/admin_override`, { body, ...options });
+  }
+
+  /**
+   * Upload an input file to a chat session's bucket storage
+   */
+  initInputFileUpload(
+    chatId: string,
+    body: ChatInitInputFileUploadParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatInitInputFileUploadResponse> {
+    return this._client.post(`/chat/input-files/upload/init/${chatId}`, { body, ...options });
   }
 
   /**
@@ -1792,6 +1811,24 @@ export namespace ChatAddGitCommitResponse {
   }
 }
 
+export interface ChatCompleteInputFileUploadResponse {
+  file: ChatCompleteInputFileUploadResponse.File;
+}
+
+export namespace ChatCompleteInputFileUploadResponse {
+  export interface File {
+    chat_session_id: string;
+
+    content_type: string;
+
+    created_at: string;
+
+    file_size: number;
+
+    filename: string;
+  }
+}
+
 export interface ChatCopyNodeOutputByCodeHashResponse {
   cached_node_id?: string | null;
 }
@@ -1902,6 +1939,16 @@ export namespace ChatGetSessionTimelineResponse {
   }
 }
 
+export interface ChatInitInputFileUploadResponse {
+  blob_name: string;
+
+  expires_at: string;
+
+  required_headers: { [key: string]: string };
+
+  upload_url: string;
+}
+
 export type ChatListInputFilesResponse = Array<ChatListInputFilesResponse.ChatListInputFilesResponseItem>;
 
 export namespace ChatListInputFilesResponse {
@@ -1984,6 +2031,14 @@ export interface ChatAdminIssueFoundParams {
   title: string;
 }
 
+export interface ChatCompleteInputFileUploadParams {
+  blob_name: string;
+
+  content_type: string;
+
+  file_name: string;
+}
+
 export interface ChatCopyParams {
   copy_name: string;
 
@@ -2059,6 +2114,12 @@ export interface ChatGrantAdminOverrideParams {
   duration_hours: number;
 
   role: ChatSessionRole;
+}
+
+export interface ChatInitInputFileUploadParams {
+  content_type: string;
+
+  file_name: string;
 }
 
 export interface ChatListDashboardsParams {
@@ -2190,11 +2251,13 @@ export declare namespace Chat {
     type UpdateVisibilityRequest as UpdateVisibilityRequest,
     type UpdateVisibilityResponse as UpdateVisibilityResponse,
     type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
+    type ChatCompleteInputFileUploadResponse as ChatCompleteInputFileUploadResponse,
     type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
     type ChatDeleteInputFileResponse as ChatDeleteInputFileResponse,
     type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
     type ChatGetPartialChatsResponse as ChatGetPartialChatsResponse,
     type ChatGetSessionTimelineResponse as ChatGetSessionTimelineResponse,
+    type ChatInitInputFileUploadResponse as ChatInitInputFileUploadResponse,
     type ChatListInputFilesResponse as ChatListInputFilesResponse,
     type ChatListTemplatesResponse as ChatListTemplatesResponse,
     type ChatLoadFilesResponse as ChatLoadFilesResponse,
@@ -2204,11 +2267,13 @@ export declare namespace Chat {
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAdminIssueFoundParams as ChatAdminIssueFoundParams,
+    type ChatCompleteInputFileUploadParams as ChatCompleteInputFileUploadParams,
     type ChatCopyParams as ChatCopyParams,
     type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
     type ChatDeleteInputFileParams as ChatDeleteInputFileParams,
     type ChatGrantAdminOverrideParams as ChatGrantAdminOverrideParams,
+    type ChatInitInputFileUploadParams as ChatInitInputFileUploadParams,
     type ChatListDashboardsParams as ChatListDashboardsParams,
     type ChatListSessionsParams as ChatListSessionsParams,
     type ChatLoadFilesParams as ChatLoadFilesParams,
