@@ -70,6 +70,29 @@ describe('resource chat', () => {
     });
   });
 
+  test('completeInputFileUpload: only required params', async () => {
+    const responsePromise = client.chat.completeInputFileUpload('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      blob_name: 'blob_name',
+      content_type: 'content_type',
+      file_name: 'file_name',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('completeInputFileUpload: required and optional params', async () => {
+    const response = await client.chat.completeInputFileUpload('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      blob_name: 'blob_name',
+      content_type: 'content_type',
+      file_name: 'file_name',
+    });
+  });
+
   test('compress', async () => {
     const responsePromise = client.chat.compress('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();
@@ -325,6 +348,27 @@ describe('resource chat', () => {
     const response = await client.chat.grantAdminOverride('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       duration_hours: 0,
       role: 'viewer',
+    });
+  });
+
+  test('initInputFileUpload: only required params', async () => {
+    const responsePromise = client.chat.initInputFileUpload('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      content_type: 'content_type',
+      file_name: 'file_name',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('initInputFileUpload: required and optional params', async () => {
+    const response = await client.chat.initInputFileUpload('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      content_type: 'content_type',
+      file_name: 'file_name',
     });
   });
 

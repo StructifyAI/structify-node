@@ -115,11 +115,13 @@ Types:
 - <code><a href="./src/resources/chat.ts">UpdateVisibilityRequest</a></code>
 - <code><a href="./src/resources/chat.ts">UpdateVisibilityResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatAddGitCommitResponse</a></code>
+- <code><a href="./src/resources/chat.ts">ChatCompleteInputFileUploadResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatCopyNodeOutputByCodeHashResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatDeleteInputFileResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetGitCommitResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetPartialChatsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetSessionTimelineResponse</a></code>
+- <code><a href="./src/resources/chat.ts">ChatInitInputFileUploadResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatListInputFilesResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatListTemplatesResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatLoadFilesResponse</a></code>
@@ -132,6 +134,7 @@ Methods:
 - <code title="post /chat/sessions/{chat_id}/collaborators">client.chat.<a href="./src/resources/chat.ts">addCollaborator</a>(chatId, { ...params }) -> void</code>
 - <code title="post /chat/sessions/{session_id}/commits">client.chat.<a href="./src/resources/chat.ts">addGitCommit</a>(sessionId, { ...params }) -> ChatAddGitCommitResponse</code>
 - <code title="post /chat/sessions/{chat_id}/admin/issue_found">client.chat.<a href="./src/resources/chat.ts">adminIssueFound</a>(chatId, { ...params }) -> AdminIssueFoundResponse</code>
+- <code title="post /chat/input-files/upload/complete/{chat_id}">client.chat.<a href="./src/resources/chat.ts">completeInputFileUpload</a>(chatId, { ...params }) -> ChatCompleteInputFileUploadResponse</code>
 - <code title="post /chat/sessions/{session_id}/compress">client.chat.<a href="./src/resources/chat.ts">compress</a>(sessionId) -> CompressChatResponse</code>
 - <code title="post /chat/copy">client.chat.<a href="./src/resources/chat.ts">copy</a>({ ...params }) -> ChatSessionWithMessages</code>
 - <code title="post /chat/sessions/{session_id}/nodes/by_code_hash">client.chat.<a href="./src/resources/chat.ts">copyNodeOutputByCodeHash</a>(sessionId, { ...params }) -> ChatCopyNodeOutputByCodeHashResponse</code>
@@ -145,6 +148,7 @@ Methods:
 - <code title="get /chat/sessions/{session_id}/timeline">client.chat.<a href="./src/resources/chat.ts">getSessionTimeline</a>(sessionId) -> ChatGetSessionTimelineResponse</code>
 - <code title="get /chat/templates/{template_id}">client.chat.<a href="./src/resources/chat.ts">getTemplate</a>(templateId) -> ChatTemplate</code>
 - <code title="post /chat/sessions/{chat_id}/admin_override">client.chat.<a href="./src/resources/chat.ts">grantAdminOverride</a>(chatId, { ...params }) -> AdminGrantAccessResponse</code>
+- <code title="post /chat/input-files/upload/init/{chat_id}">client.chat.<a href="./src/resources/chat.ts">initInputFileUpload</a>(chatId, { ...params }) -> ChatInitInputFileUploadResponse</code>
 - <code title="get /chat/sessions/{chat_id}/collaborators">client.chat.<a href="./src/resources/chat.ts">listCollaborators</a>(chatId) -> ListCollaboratorsResponse</code>
 - <code title="get /chat/sessions/{chat_id}/dashboards">client.chat.<a href="./src/resources/chat.ts">listDashboards</a>(chatId, { ...params }) -> ListDashboardsResponse</code>
 - <code title="get /chat/input-files/list/{chat_id}">client.chat.<a href="./src/resources/chat.ts">listInputFiles</a>(chatId) -> ChatListInputFilesResponse</code>
@@ -333,7 +337,6 @@ Methods:
 Methods:
 
 - <code title="get /admin/sandbox/list">client.admin.sandbox.<a href="./src/resources/admin/sandbox.ts">list</a>({ ...params }) -> SandboxesJobsList</code>
-- <code title="post /admin/sandbox/{sandbox_id}/terminate">client.admin.sandbox.<a href="./src/resources/admin/sandbox.ts">terminate</a>(sandboxId) -> Sandbox</code>
 
 ## FunctionalTests
 
