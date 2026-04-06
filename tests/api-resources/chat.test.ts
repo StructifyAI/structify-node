@@ -355,6 +355,7 @@ describe('resource chat', () => {
     const responsePromise = client.chat.initInputFileUpload('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       content_type: 'content_type',
       file_name: 'file_name',
+      file_size: 0,
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -369,6 +370,7 @@ describe('resource chat', () => {
     const response = await client.chat.initInputFileUpload('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       content_type: 'content_type',
       file_name: 'file_name',
+      file_size: 0,
     });
   });
 

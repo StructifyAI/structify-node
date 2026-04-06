@@ -2120,6 +2120,8 @@ export interface ChatInitInputFileUploadParams {
   content_type: string;
 
   file_name: string;
+
+  file_size: number;
 }
 
 export interface ChatListDashboardsParams {
