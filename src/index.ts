@@ -372,7 +372,16 @@ import {
   UpdateTeamResponse,
   UsageGroupKey,
 } from './resources/teams';
-import { Uploads as UploadsAPIUploads } from './resources/uploads';
+import {
+  SignedUploadCompleteRequest,
+  SignedUploadCompleteResponse,
+  SignedUploadInitRequest,
+  SignedUploadInitResponse,
+  SignedUploadTarget,
+  UploadCompleteParams,
+  UploadInitParams,
+  Uploads as UploadsAPIUploads,
+} from './resources/uploads';
 import {
   Webhook,
   WebhookTriggerParams,
@@ -1127,7 +1136,16 @@ export declare namespace Structify {
     type SessionUploadNodeVisualizationOutputParams as SessionUploadNodeVisualizationOutputParams,
   };
 
-  export { UploadsAPIUploads as Uploads };
+  export {
+    UploadsAPIUploads as Uploads,
+    type SignedUploadCompleteRequest as SignedUploadCompleteRequest,
+    type SignedUploadCompleteResponse as SignedUploadCompleteResponse,
+    type SignedUploadInitRequest as SignedUploadInitRequest,
+    type SignedUploadInitResponse as SignedUploadInitResponse,
+    type SignedUploadTarget as SignedUploadTarget,
+    type UploadCompleteParams as UploadCompleteParams,
+    type UploadInitParams as UploadInitParams,
+  };
 
   export {
     WorkflowSchedule as WorkflowSchedule,
