@@ -373,6 +373,16 @@ import {
   UsageGroupKey,
 } from './resources/teams';
 import {
+  SignedUploadCompleteRequest,
+  SignedUploadCompleteResponse,
+  SignedUploadInitRequest,
+  SignedUploadInitResponse,
+  SignedUploadTarget,
+  UploadCompleteParams,
+  UploadInitParams,
+  Uploads as UploadsAPIUploads,
+} from './resources/uploads';
+import {
   Webhook,
   WebhookTriggerParams,
   WebhookTriggerRequest,
@@ -674,6 +684,7 @@ export class Structify extends Core.APIClient {
   jobs: API.Jobs = new API.Jobs(this);
   match: API.Match = new API.Match(this);
   sessions: API.Sessions = new API.Sessions(this);
+  uploads: API.Uploads = new API.Uploads(this);
   workflowSchedule: API.WorkflowSchedule = new API.WorkflowSchedule(this);
   webhook: API.Webhook = new API.Webhook(this);
   workflow: API.Workflow = new API.Workflow(this);
@@ -797,6 +808,7 @@ Structify.JobListResponsesJobsList = JobListResponsesJobsList;
 Structify.Match = Match;
 Structify.MatchResultsJobsList = MatchResultsJobsList;
 Structify.Sessions = Sessions;
+Structify.Uploads = UploadsAPIUploads;
 Structify.WorkflowSchedule = WorkflowSchedule;
 Structify.Webhook = Webhook;
 Structify.Workflow = Workflow;
@@ -1122,6 +1134,17 @@ export declare namespace Structify {
     type SessionUpdateNodeProgressParams as SessionUpdateNodeProgressParams,
     type SessionUploadDashboardLayoutParams as SessionUploadDashboardLayoutParams,
     type SessionUploadNodeVisualizationOutputParams as SessionUploadNodeVisualizationOutputParams,
+  };
+
+  export {
+    UploadsAPIUploads as Uploads,
+    type SignedUploadCompleteRequest as SignedUploadCompleteRequest,
+    type SignedUploadCompleteResponse as SignedUploadCompleteResponse,
+    type SignedUploadInitRequest as SignedUploadInitRequest,
+    type SignedUploadInitResponse as SignedUploadInitResponse,
+    type SignedUploadTarget as SignedUploadTarget,
+    type UploadCompleteParams as UploadCompleteParams,
+    type UploadInitParams as UploadInitParams,
   };
 
   export {

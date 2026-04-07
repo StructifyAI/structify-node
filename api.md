@@ -564,6 +564,21 @@ Methods:
 - <code title="post /sessions/{session_id}/dashboard_layout">client.sessions.<a href="./src/resources/sessions.ts">uploadDashboardLayout</a>(sessionId, { ...params }) -> WorkflowSession</code>
 - <code title="post /sessions/nodes/{node_id}/visualization_output">client.sessions.<a href="./src/resources/sessions.ts">uploadNodeVisualizationOutput</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 
+# Uploads
+
+Types:
+
+- <code><a href="./src/resources/uploads.ts">SignedUploadCompleteRequest</a></code>
+- <code><a href="./src/resources/uploads.ts">SignedUploadCompleteResponse</a></code>
+- <code><a href="./src/resources/uploads.ts">SignedUploadInitRequest</a></code>
+- <code><a href="./src/resources/uploads.ts">SignedUploadInitResponse</a></code>
+- <code><a href="./src/resources/uploads.ts">SignedUploadTarget</a></code>
+
+Methods:
+
+- <code title="post /chat/input-files/upload/complete">client.uploads.<a href="./src/resources/uploads.ts">complete</a>({ ...params }) -> SignedUploadCompleteResponse</code>
+- <code title="post /chat/input-files/upload/init">client.uploads.<a href="./src/resources/uploads.ts">init</a>({ ...params }) -> SignedUploadInitResponse</code>
+
 # WorkflowSchedule
 
 Types:
