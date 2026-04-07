@@ -428,16 +428,7 @@ export {
   type TeamCreditsUsageParams,
   type TeamUpdateMemberRoleParams,
 } from './teams';
-export {
-  Uploads,
-  type SignedUploadCompleteRequest,
-  type SignedUploadCompleteResponse,
-  type SignedUploadInitRequest,
-  type SignedUploadInitResponse,
-  type SignedUploadTarget,
-  type UploadCompleteParams,
-  type UploadInitParams,
-} from './uploads';
+export { Uploads } from './uploads';
 export {
   User,
   type EnrichUserParams,
