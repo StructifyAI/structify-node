@@ -115,26 +115,22 @@ Types:
 - <code><a href="./src/resources/chat.ts">UpdateVisibilityRequest</a></code>
 - <code><a href="./src/resources/chat.ts">UpdateVisibilityResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatAddGitCommitResponse</a></code>
-- <code><a href="./src/resources/chat.ts">ChatCompleteInputFileUploadResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatCopyNodeOutputByCodeHashResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatDeleteInputFileResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetGitCommitResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetPartialChatsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetSessionTimelineResponse</a></code>
-- <code><a href="./src/resources/chat.ts">ChatInitInputFileUploadResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatListInputFilesResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatListTemplatesResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatLoadFilesResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatLoadInputFilesResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatRevertToCommitResponse</a></code>
-- <code><a href="./src/resources/chat.ts">ChatUploadInputFileResponse</a></code>
 
 Methods:
 
 - <code title="post /chat/sessions/{chat_id}/collaborators">client.chat.<a href="./src/resources/chat.ts">addCollaborator</a>(chatId, { ...params }) -> void</code>
 - <code title="post /chat/sessions/{session_id}/commits">client.chat.<a href="./src/resources/chat.ts">addGitCommit</a>(sessionId, { ...params }) -> ChatAddGitCommitResponse</code>
 - <code title="post /chat/sessions/{chat_id}/admin/issue_found">client.chat.<a href="./src/resources/chat.ts">adminIssueFound</a>(chatId, { ...params }) -> AdminIssueFoundResponse</code>
-- <code title="post /chat/input-files/upload/complete/{chat_id}">client.chat.<a href="./src/resources/chat.ts">completeInputFileUpload</a>(chatId, { ...params }) -> ChatCompleteInputFileUploadResponse</code>
 - <code title="post /chat/sessions/{session_id}/compress">client.chat.<a href="./src/resources/chat.ts">compress</a>(sessionId) -> CompressChatResponse</code>
 - <code title="post /chat/copy">client.chat.<a href="./src/resources/chat.ts">copy</a>({ ...params }) -> ChatSessionWithMessages</code>
 - <code title="post /chat/sessions/{session_id}/nodes/by_code_hash">client.chat.<a href="./src/resources/chat.ts">copyNodeOutputByCodeHash</a>(sessionId, { ...params }) -> ChatCopyNodeOutputByCodeHashResponse</code>
@@ -148,7 +144,6 @@ Methods:
 - <code title="get /chat/sessions/{session_id}/timeline">client.chat.<a href="./src/resources/chat.ts">getSessionTimeline</a>(sessionId) -> ChatGetSessionTimelineResponse</code>
 - <code title="get /chat/templates/{template_id}">client.chat.<a href="./src/resources/chat.ts">getTemplate</a>(templateId) -> ChatTemplate</code>
 - <code title="post /chat/sessions/{chat_id}/admin_override">client.chat.<a href="./src/resources/chat.ts">grantAdminOverride</a>(chatId, { ...params }) -> AdminGrantAccessResponse</code>
-- <code title="post /chat/input-files/upload/init/{chat_id}">client.chat.<a href="./src/resources/chat.ts">initInputFileUpload</a>(chatId, { ...params }) -> ChatInitInputFileUploadResponse</code>
 - <code title="get /chat/sessions/{chat_id}/collaborators">client.chat.<a href="./src/resources/chat.ts">listCollaborators</a>(chatId) -> ListCollaboratorsResponse</code>
 - <code title="get /chat/sessions/{chat_id}/dashboards">client.chat.<a href="./src/resources/chat.ts">listDashboards</a>(chatId, { ...params }) -> ListDashboardsResponse</code>
 - <code title="get /chat/input-files/list/{chat_id}">client.chat.<a href="./src/resources/chat.ts">listInputFiles</a>(chatId) -> ChatListInputFilesResponse</code>
@@ -164,7 +159,6 @@ Methods:
 - <code title="patch /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">updateSession</a>(sessionId, { ...params }) -> ChatSession</code>
 - <code title="patch /chat/sessions/{session_id}/favorite">client.chat.<a href="./src/resources/chat.ts">updateSessionFavorite</a>(sessionId, { ...params }) -> ChatSession</code>
 - <code title="put /chat/sessions/{session_id}/visibility">client.chat.<a href="./src/resources/chat.ts">updateVisibility</a>(sessionId, { ...params }) -> UpdateVisibilityResponse</code>
-- <code title="post /chat/input-files/upload/{chat_id}">client.chat.<a href="./src/resources/chat.ts">uploadInputFile</a>(chatId, { ...params }) -> ChatUploadInputFileResponse</code>
 
 # Teams
 
@@ -568,7 +562,6 @@ Methods:
 - <code title="patch /sessions/nodes/{node_id}">client.sessions.<a href="./src/resources/sessions.ts">updateNode</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 - <code title="patch /sessions/nodes/{node_id}/progress">client.sessions.<a href="./src/resources/sessions.ts">updateNodeProgress</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 - <code title="post /sessions/{session_id}/dashboard_layout">client.sessions.<a href="./src/resources/sessions.ts">uploadDashboardLayout</a>(sessionId, { ...params }) -> WorkflowSession</code>
-- <code title="post /sessions/nodes/{node_id}/output_data">client.sessions.<a href="./src/resources/sessions.ts">uploadNodeOutputData</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 - <code title="post /sessions/nodes/{node_id}/visualization_output">client.sessions.<a href="./src/resources/sessions.ts">uploadNodeVisualizationOutput</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 
 # WorkflowSchedule
