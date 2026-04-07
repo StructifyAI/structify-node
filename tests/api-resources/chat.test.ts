@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Structify, { toFile } from 'structifyai';
+import Structify from 'structifyai';
 import { Response } from 'node-fetch';
 
 const client = new Structify({
@@ -67,29 +67,6 @@ describe('resource chat', () => {
     const response = await client.chat.adminIssueFound('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       message: 'message',
       title: 'title',
-    });
-  });
-
-  test('completeInputFileUpload: only required params', async () => {
-    const responsePromise = client.chat.completeInputFileUpload('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      blob_name: 'blob_name',
-      content_type: 'content_type',
-      file_name: 'file_name',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('completeInputFileUpload: required and optional params', async () => {
-    const response = await client.chat.completeInputFileUpload('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      blob_name: 'blob_name',
-      content_type: 'content_type',
-      file_name: 'file_name',
     });
   });
 
@@ -348,29 +325,6 @@ describe('resource chat', () => {
     const response = await client.chat.grantAdminOverride('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       duration_hours: 0,
       role: 'viewer',
-    });
-  });
-
-  test('initInputFileUpload: only required params', async () => {
-    const responsePromise = client.chat.initInputFileUpload('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      content_type: 'content_type',
-      file_name: 'file_name',
-      file_size: 0,
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('initInputFileUpload: required and optional params', async () => {
-    const response = await client.chat.initInputFileUpload('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      content_type: 'content_type',
-      file_name: 'file_name',
-      file_size: 0,
     });
   });
 
@@ -778,28 +732,5 @@ describe('resource chat', () => {
 
   test('updateVisibility: required and optional params', async () => {
     const response = await client.chat.updateVisibility('session_id', { visibility: 'private' });
-  });
-
-  test('uploadInputFile: only required params', async () => {
-    const responsePromise = client.chat.uploadInputFile('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      content: await toFile(Buffer.from('Example data'), 'README.md'),
-      content_type: 'content_type',
-      file_name: 'file_name',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('uploadInputFile: required and optional params', async () => {
-    const response = await client.chat.uploadInputFile('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      content: await toFile(Buffer.from('Example data'), 'README.md'),
-      content_type: 'content_type',
-      file_name: 'file_name',
-    });
   });
 });

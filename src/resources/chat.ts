@@ -44,14 +44,6 @@ export class Chat extends APIResource {
     return this._client.post(`/chat/sessions/${chatId}/admin/issue_found`, { body, ...options });
   }
 
-  completeInputFileUpload(
-    chatId: string,
-    body: ChatCompleteInputFileUploadParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ChatCompleteInputFileUploadResponse> {
-    return this._client.post(`/chat/input-files/upload/complete/${chatId}`, { body, ...options });
-  }
-
   compress(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<CompressChatResponse> {
     return this._client.post(`/chat/sessions/${sessionId}/compress`, options);
   }
@@ -163,17 +155,6 @@ export class Chat extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<AdminGrantAccessResponse> {
     return this._client.post(`/chat/sessions/${chatId}/admin_override`, { body, ...options });
-  }
-
-  /**
-   * Upload an input file to a chat session's bucket storage
-   */
-  initInputFileUpload(
-    chatId: string,
-    body: ChatInitInputFileUploadParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ChatInitInputFileUploadResponse> {
-    return this._client.post(`/chat/input-files/upload/init/${chatId}`, { body, ...options });
   }
 
   /**
@@ -338,20 +319,6 @@ export class Chat extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<UpdateVisibilityResponse> {
     return this._client.put(`/chat/sessions/${sessionId}/visibility`, { body, ...options });
-  }
-
-  /**
-   * Upload an input file to a chat session's bucket storage
-   */
-  uploadInputFile(
-    chatId: string,
-    body: ChatUploadInputFileParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ChatUploadInputFileResponse> {
-    return this._client.post(
-      `/chat/input-files/upload/${chatId}`,
-      Core.multipartFormRequestOptions({ body, ...options }),
-    );
   }
 }
 
@@ -1811,24 +1778,6 @@ export namespace ChatAddGitCommitResponse {
   }
 }
 
-export interface ChatCompleteInputFileUploadResponse {
-  file: ChatCompleteInputFileUploadResponse.File;
-}
-
-export namespace ChatCompleteInputFileUploadResponse {
-  export interface File {
-    chat_session_id: string;
-
-    content_type: string;
-
-    created_at: string;
-
-    file_size: number;
-
-    filename: string;
-  }
-}
-
 export interface ChatCopyNodeOutputByCodeHashResponse {
   cached_node_id?: string | null;
 }
@@ -1939,16 +1888,6 @@ export namespace ChatGetSessionTimelineResponse {
   }
 }
 
-export interface ChatInitInputFileUploadResponse {
-  blob_name: string;
-
-  expires_at: string;
-
-  required_headers: { [key: string]: string };
-
-  upload_url: string;
-}
-
 export type ChatListInputFilesResponse = Array<ChatListInputFilesResponse.ChatListInputFilesResponseItem>;
 
 export namespace ChatListInputFilesResponse {
@@ -1994,24 +1933,6 @@ export interface ChatRevertToCommitResponse {
   reverted_at: string;
 }
 
-export interface ChatUploadInputFileResponse {
-  file: ChatUploadInputFileResponse.File;
-}
-
-export namespace ChatUploadInputFileResponse {
-  export interface File {
-    chat_session_id: string;
-
-    content_type: string;
-
-    created_at: string;
-
-    file_size: number;
-
-    filename: string;
-  }
-}
-
 export interface ChatAddCollaboratorParams {
   email: string;
 
@@ -2029,14 +1950,6 @@ export interface ChatAdminIssueFoundParams {
   message: string;
 
   title: string;
-}
-
-export interface ChatCompleteInputFileUploadParams {
-  blob_name: string;
-
-  content_type: string;
-
-  file_name: string;
 }
 
 export interface ChatCopyParams {
@@ -2114,14 +2027,6 @@ export interface ChatGrantAdminOverrideParams {
   duration_hours: number;
 
   role: ChatSessionRole;
-}
-
-export interface ChatInitInputFileUploadParams {
-  content_type: string;
-
-  file_name: string;
-
-  file_size: number;
 }
 
 export interface ChatListDashboardsParams {
@@ -2207,14 +2112,6 @@ export interface ChatUpdateVisibilityParams {
   visibility: ChatVisibility;
 }
 
-export interface ChatUploadInputFileParams {
-  content: Core.Uploadable;
-
-  content_type: string;
-
-  file_name: string;
-}
-
 export declare namespace Chat {
   export {
     type AddCollaboratorRequest as AddCollaboratorRequest,
@@ -2253,29 +2150,24 @@ export declare namespace Chat {
     type UpdateVisibilityRequest as UpdateVisibilityRequest,
     type UpdateVisibilityResponse as UpdateVisibilityResponse,
     type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
-    type ChatCompleteInputFileUploadResponse as ChatCompleteInputFileUploadResponse,
     type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
     type ChatDeleteInputFileResponse as ChatDeleteInputFileResponse,
     type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
     type ChatGetPartialChatsResponse as ChatGetPartialChatsResponse,
     type ChatGetSessionTimelineResponse as ChatGetSessionTimelineResponse,
-    type ChatInitInputFileUploadResponse as ChatInitInputFileUploadResponse,
     type ChatListInputFilesResponse as ChatListInputFilesResponse,
     type ChatListTemplatesResponse as ChatListTemplatesResponse,
     type ChatLoadFilesResponse as ChatLoadFilesResponse,
     type ChatLoadInputFilesResponse as ChatLoadInputFilesResponse,
     type ChatRevertToCommitResponse as ChatRevertToCommitResponse,
-    type ChatUploadInputFileResponse as ChatUploadInputFileResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAdminIssueFoundParams as ChatAdminIssueFoundParams,
-    type ChatCompleteInputFileUploadParams as ChatCompleteInputFileUploadParams,
     type ChatCopyParams as ChatCopyParams,
     type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
     type ChatDeleteInputFileParams as ChatDeleteInputFileParams,
     type ChatGrantAdminOverrideParams as ChatGrantAdminOverrideParams,
-    type ChatInitInputFileUploadParams as ChatInitInputFileUploadParams,
     type ChatListDashboardsParams as ChatListDashboardsParams,
     type ChatListSessionsParams as ChatListSessionsParams,
     type ChatLoadFilesParams as ChatLoadFilesParams,
@@ -2285,6 +2177,5 @@ export declare namespace Chat {
     type ChatUpdateSessionParams as ChatUpdateSessionParams,
     type ChatUpdateSessionFavoriteParams as ChatUpdateSessionFavoriteParams,
     type ChatUpdateVisibilityParams as ChatUpdateVisibilityParams,
-    type ChatUploadInputFileParams as ChatUploadInputFileParams,
   };
 }
