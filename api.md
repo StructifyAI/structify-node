@@ -566,19 +566,6 @@ Methods:
 
 # Uploads
 
-Types:
-
-- <code><a href="./src/resources/uploads.ts">SignedUploadCompleteRequest</a></code>
-- <code><a href="./src/resources/uploads.ts">SignedUploadCompleteResponse</a></code>
-- <code><a href="./src/resources/uploads.ts">SignedUploadInitRequest</a></code>
-- <code><a href="./src/resources/uploads.ts">SignedUploadInitResponse</a></code>
-- <code><a href="./src/resources/uploads.ts">SignedUploadTarget</a></code>
-
-Methods:
-
-- <code title="post /chat/input-files/upload/complete">client.uploads.<a href="./src/resources/uploads.ts">complete</a>({ ...params }) -> SignedUploadCompleteResponse</code>
-- <code title="post /chat/input-files/upload/init">client.uploads.<a href="./src/resources/uploads.ts">init</a>({ ...params }) -> SignedUploadInitResponse</code>
-
 # WorkflowSchedule
 
 Types:
