@@ -331,6 +331,7 @@ Methods:
 Methods:
 
 - <code title="get /admin/sandbox/list">client.admin.sandbox.<a href="./src/resources/admin/sandbox.ts">list</a>({ ...params }) -> SandboxesJobsList</code>
+- <code title="post /admin/sandbox/{sandbox_id}/terminate">client.admin.sandbox.<a href="./src/resources/admin/sandbox.ts">terminate</a>(sandboxId) -> Sandbox</code>
 
 ## FunctionalTests
 
@@ -565,6 +566,19 @@ Methods:
 - <code title="post /sessions/nodes/{node_id}/visualization_output">client.sessions.<a href="./src/resources/sessions.ts">uploadNodeVisualizationOutput</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 
 # Uploads
+
+Types:
+
+- <code><a href="./src/resources/uploads.ts">SignedUploadCompleteRequest</a></code>
+- <code><a href="./src/resources/uploads.ts">SignedUploadCompleteResponse</a></code>
+- <code><a href="./src/resources/uploads.ts">SignedUploadInitRequest</a></code>
+- <code><a href="./src/resources/uploads.ts">SignedUploadInitResponse</a></code>
+- <code><a href="./src/resources/uploads.ts">SignedUploadTarget</a></code>
+
+Methods:
+
+- <code title="post /chat/input-files/upload/complete">client.uploads.<a href="./src/resources/uploads.ts">complete</a>({ ...params }) -> SignedUploadCompleteResponse</code>
+- <code title="post /chat/input-files/upload/init">client.uploads.<a href="./src/resources/uploads.ts">init</a>({ ...params }) -> SignedUploadInitResponse</code>
 
 # WorkflowSchedule
 

@@ -379,8 +379,7 @@ export type ChatEvent =
   | ChatEvent.AttachedFile
   | ChatEvent.ConnectorRequest
   | ChatEvent.UserInterrupted
-  | ChatEvent.IssueFound
-  | ChatEvent.ReviewSummary;
+  | ChatEvent.IssueFound;
 
 export namespace ChatEvent {
   export interface TextMessage {
@@ -577,30 +576,6 @@ export namespace ChatEvent {
       description: string;
 
       title: string;
-    }
-  }
-
-  export interface ReviewSummary {
-    ReviewSummary: ReviewSummary.ReviewSummary;
-  }
-
-  export namespace ReviewSummary {
-    export interface ReviewSummary {
-      node_summaries: Array<ReviewSummary.NodeSummary>;
-
-      summary: string;
-    }
-
-    export namespace ReviewSummary {
-      export interface NodeSummary {
-        in_dashboard: boolean;
-
-        name: string;
-
-        data_preview?: string | null;
-
-        image?: Core.Uploadable | null;
-      }
     }
   }
 }
