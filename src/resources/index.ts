@@ -429,6 +429,16 @@ export {
   type TeamUpdateMemberRoleParams,
 } from './teams';
 export {
+  Uploads,
+  type SignedUploadCompleteRequest,
+  type SignedUploadCompleteResponse,
+  type SignedUploadInitRequest,
+  type SignedUploadInitResponse,
+  type SignedUploadTarget,
+  type UploadCompleteParams,
+  type UploadInitParams,
+} from './uploads';
+export {
   User,
   type EnrichUserParams,
   type GetOnboardingAnswersResponse,
