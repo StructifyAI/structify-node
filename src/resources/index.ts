@@ -48,6 +48,7 @@ export {
   type ChatListTemplatesResponse,
   type ChatLoadFilesResponse,
   type ChatLoadInputFilesResponse,
+  type ChatPendingWikiEditsResponse,
   type ChatRevertToCommitResponse,
   type ChatAddCollaboratorParams,
   type ChatAddGitCommitParams,
