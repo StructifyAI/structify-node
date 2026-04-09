@@ -31,7 +31,7 @@ export class Wiki extends APIResource {
     });
   }
 
-  get(teamId: string, slug: string, options?: Core.RequestOptions): Core.APIPromise<WikiPageWithReferences> {
+  get(teamId: string, slug: string, options?: Core.RequestOptions): Core.APIPromise<WikiPage> {
     return this._client.get(`/team/${teamId}/wiki/${slug}`, options);
   }
 }
@@ -54,53 +54,6 @@ export interface UpdateWikiPageRequest {
   chat_session_id?: string | null;
 
   title?: string | null;
-}
-
-export interface WikiConnectorReference {
-  is_deleted: boolean;
-
-  name: string;
-
-  path: Array<string>;
-
-  reference_id:
-    | WikiConnectorReference.Connector
-    | WikiConnectorReference.Database
-    | WikiConnectorReference.Schema
-    | WikiConnectorReference.Table
-    | WikiConnectorReference.Column;
-}
-
-export namespace WikiConnectorReference {
-  export interface Connector {
-    id: string;
-
-    reference_type: 'connector';
-  }
-
-  export interface Database {
-    id: string;
-
-    reference_type: 'database';
-  }
-
-  export interface Schema {
-    id: string;
-
-    reference_type: 'schema';
-  }
-
-  export interface Table {
-    id: string;
-
-    reference_type: 'table';
-  }
-
-  export interface Column {
-    id: string;
-
-    reference_type: 'column';
-  }
 }
 
 export interface WikiPage {
@@ -129,10 +82,6 @@ export interface WikiPage {
   chat_session_id?: string | null;
 }
 
-export interface WikiPageWithReferences extends WikiPage {
-  references: Array<WikiConnectorReference>;
-}
-
 export type WikiListResponse = Array<WikiPage>;
 
 export interface WikiCreateParams {
@@ -159,9 +108,7 @@ export declare namespace Wiki {
   export {
     type CreateWikiPageRequest as CreateWikiPageRequest,
     type UpdateWikiPageRequest as UpdateWikiPageRequest,
-    type WikiConnectorReference as WikiConnectorReference,
     type WikiPage as WikiPage,
-    type WikiPageWithReferences as WikiPageWithReferences,
     type WikiListResponse as WikiListResponse,
     type WikiCreateParams as WikiCreateParams,
     type WikiUpdateParams as WikiUpdateParams,

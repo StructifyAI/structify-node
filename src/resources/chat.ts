@@ -265,13 +265,6 @@ export class Chat extends APIResource {
     });
   }
 
-  pendingWikiEdits(
-    chatId: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ChatPendingWikiEditsResponse> {
-    return this._client.get(`/chat/sessions/${chatId}/pending_wiki_edits`, options);
-  }
-
   removeCollaborator(chatId: string, userId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/chat/sessions/${chatId}/collaborators/${userId}`, {
       ...options,
@@ -1173,8 +1166,7 @@ export type ToolInvocation =
   | ToolInvocation.CreateConnector
   | ToolInvocation.SearchConnectorTypes
   | ToolInvocation.PinPreviousTool
-  | ToolInvocation.RunPipeline
-  | ToolInvocation.SaveProperty;
+  | ToolInvocation.RunPipeline;
 
 export namespace ToolInvocation {
   export interface WebSearch {
@@ -1537,8 +1529,6 @@ export namespace ToolInvocation {
   export namespace SearchConnectorTables {
     export interface Input {
       query: string;
-
-      wiki_tag?: string | null;
     }
   }
 
@@ -1635,18 +1625,6 @@ export namespace ToolInvocation {
   export namespace RunPipeline {
     export interface Input {
       rerun_all_steps?: boolean;
-    }
-  }
-
-  export interface SaveProperty {
-    input: SaveProperty.Input;
-
-    name: 'SaveProperty';
-  }
-
-  export namespace SaveProperty {
-    export interface Input {
-      value: string;
     }
   }
 }
@@ -1938,8 +1916,6 @@ export interface ChatLoadInputFilesResponse {
   latest_timestamp?: string | null;
 }
 
-export type ChatPendingWikiEditsResponse = Array<string>;
-
 /**
  * Response structure for reverting to a git commit
  */
@@ -2181,7 +2157,6 @@ export declare namespace Chat {
     type ChatListTemplatesResponse as ChatListTemplatesResponse,
     type ChatLoadFilesResponse as ChatLoadFilesResponse,
     type ChatLoadInputFilesResponse as ChatLoadInputFilesResponse,
-    type ChatPendingWikiEditsResponse as ChatPendingWikiEditsResponse,
     type ChatRevertToCommitResponse as ChatRevertToCommitResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
