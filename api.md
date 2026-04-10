@@ -124,6 +124,7 @@ Types:
 - <code><a href="./src/resources/chat.ts">ChatListTemplatesResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatLoadFilesResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatLoadInputFilesResponse</a></code>
+- <code><a href="./src/resources/chat.ts">ChatPendingWikiEditsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatRevertToCommitResponse</a></code>
 
 Methods:
@@ -134,6 +135,7 @@ Methods:
 - <code title="post /chat/sessions/{session_id}/compress">client.chat.<a href="./src/resources/chat.ts">compress</a>(sessionId) -> CompressChatResponse</code>
 - <code title="post /chat/copy">client.chat.<a href="./src/resources/chat.ts">copy</a>({ ...params }) -> ChatSessionWithMessages</code>
 - <code title="post /chat/sessions/{session_id}/nodes/by_code_hash">client.chat.<a href="./src/resources/chat.ts">copyNodeOutputByCodeHash</a>(sessionId, { ...params }) -> ChatCopyNodeOutputByCodeHashResponse</code>
+- <code title="post /chat/create_from_files">client.chat.<a href="./src/resources/chat.ts">createChatFromFiles</a>({ ...params }) -> ChatSessionWithMessages</code>
 - <code title="post /chat/sessions">client.chat.<a href="./src/resources/chat.ts">createSession</a>({ ...params }) -> CreateChatSessionResponse</code>
 - <code title="post /chat/input-files/delete/{chat_id}">client.chat.<a href="./src/resources/chat.ts">deleteInputFile</a>(chatId, { ...params }) -> ChatDeleteInputFileResponse</code>
 - <code title="delete /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">deleteSession</a>(sessionId) -> DeleteChatSessionResponse</code>
@@ -153,6 +155,7 @@ Methods:
 - <code title="get /chat/input-files/download/{chat_id}/{filename}">client.chat.<a href="./src/resources/chat.ts">loadInputFile</a>(chatId, filename) -> Response</code>
 - <code title="get /chat/input-files/download-all/{chat_id}">client.chat.<a href="./src/resources/chat.ts">loadInputFiles</a>(chatId, { ...params }) -> ChatLoadInputFilesResponse</code>
 - <code title="patch /chat/sessions/{session_id}/make-permanent">client.chat.<a href="./src/resources/chat.ts">makePermanent</a>(sessionId) -> void</code>
+- <code title="get /chat/sessions/{chat_id}/pending_wiki_edits">client.chat.<a href="./src/resources/chat.ts">pendingWikiEdits</a>(chatId) -> ChatPendingWikiEditsResponse</code>
 - <code title="delete /chat/sessions/{chat_id}/collaborators/{user_id}">client.chat.<a href="./src/resources/chat.ts">removeCollaborator</a>(chatId, userId) -> void</code>
 - <code title="post /chat/sessions/{session_id}/revert">client.chat.<a href="./src/resources/chat.ts">revertToCommit</a>(sessionId, { ...params }) -> ChatRevertToCommitResponse</code>
 - <code title="post /chat/{chat_session_id}/simulate-prompt">client.chat.<a href="./src/resources/chat.ts">simulatePrompt</a>(chatSessionId, { ...params }) -> SimulatePromptResponse</code>
