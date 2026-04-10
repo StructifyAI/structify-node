@@ -28,7 +28,10 @@ describe('resource structure', () => {
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       property_name: 'property_name',
       allow_extra_entities: true,
+      banned_domains: ['string'],
       node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      starting_searches: ['string'],
+      starting_urls: ['string'],
     });
   });
 
@@ -51,7 +54,10 @@ describe('resource structure', () => {
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       relationship_name: 'relationship_name',
       allow_extra_entities: true,
+      banned_domains: ['string'],
       node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      starting_searches: ['string'],
+      starting_urls: ['string'],
     });
   });
 
@@ -76,6 +82,9 @@ describe('resource structure', () => {
       relationship_name: 'relationship_name',
       to_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       allow_extra_entities: true,
+      banned_domains: ['string'],
+      starting_searches: ['string'],
+      starting_urls: ['string'],
     });
   });
 
@@ -135,7 +144,10 @@ describe('resource structure', () => {
   });
 
   test('runAsync: only required params', async () => {
-    const responsePromise = client.structure.runAsync({ dataset: 'dataset' });
+    const responsePromise = client.structure.runAsync({
+      dataset: 'dataset',
+      source: { PDF: { path: 'path' } },
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -148,6 +160,7 @@ describe('resource structure', () => {
   test('runAsync: required and optional params', async () => {
     const response = await client.structure.runAsync({
       dataset: 'dataset',
+      source: { PDF: { path: 'path', page: 0 } },
       instructions: 'instructions',
       model: 'model',
       node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -169,8 +182,6 @@ describe('resource structure', () => {
           },
         ],
       },
-      source: 'Web',
-      use_proxy: true,
     });
   });
 });

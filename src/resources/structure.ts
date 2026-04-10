@@ -388,7 +388,13 @@ export interface StructureEnhancePropertyParams {
 
   allow_extra_entities?: boolean;
 
+  banned_domains?: Array<string>;
+
   node_id?: string | null;
+
+  starting_searches?: Array<string>;
+
+  starting_urls?: Array<string>;
 }
 
 export interface StructureEnhanceRelationshipParams {
@@ -398,7 +404,13 @@ export interface StructureEnhanceRelationshipParams {
 
   allow_extra_entities?: boolean;
 
+  banned_domains?: Array<string>;
+
   node_id?: string | null;
+
+  starting_searches?: Array<string>;
+
+  starting_urls?: Array<string>;
 }
 
 export interface StructureFindRelationshipParams {
@@ -409,6 +421,12 @@ export interface StructureFindRelationshipParams {
   to_id: string;
 
   allow_extra_entities?: boolean;
+
+  banned_domains?: Array<string>;
+
+  starting_searches?: Array<string>;
+
+  starting_urls?: Array<string>;
 }
 
 export type StructureIsCompleteParams = Array<string>;
@@ -440,6 +458,11 @@ export interface StructurePdfParams {
 export interface StructureRunAsyncParams {
   dataset: string;
 
+  /**
+   * Only use the input text to derive new fields. Useful for large text inputs.
+   */
+  source: StructureRunAsyncParams.Pdf | StructureRunAsyncParams.Web | 'NoResources';
+
   instructions?: string | null;
 
   model?: string | null;
@@ -454,20 +477,38 @@ export interface StructureRunAsyncParams {
    * pipeline from raw tool output to being merged into a DB
    */
   seeded_entity?: SharedAPI.KnowledgeGraph;
-
-  source?: 'Web' | StructureRunAsyncParams.Scrape | null;
-
-  use_proxy?: boolean | null;
 }
 
 export namespace StructureRunAsyncParams {
-  export interface Scrape {
-    Scrape: Scrape.Scrape;
+  export interface Pdf {
+    /**
+     * Ingest all pages of a PDF and process them independently.
+     */
+    PDF: Pdf.Pdf;
   }
 
-  export namespace Scrape {
-    export interface Scrape {
-      url_column: string;
+  export namespace Pdf {
+    /**
+     * Ingest all pages of a PDF and process them independently.
+     */
+    export interface Pdf {
+      path: string;
+
+      page?: number | null;
+    }
+  }
+
+  export interface Web {
+    Web: Web.Web;
+  }
+
+  export namespace Web {
+    export interface Web {
+      banned_domains?: Array<string>;
+
+      starting_searches?: Array<string>;
+
+      starting_urls?: Array<string>;
     }
   }
 }

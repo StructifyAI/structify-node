@@ -64,6 +64,17 @@ export class Chat extends APIResource {
   }
 
   /**
+   * committed to its git repo. Used for copying pipelines across Structify
+   * instances.
+   */
+  createChatFromFiles(
+    body: ChatCreateChatFromFilesParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatSessionWithMessages> {
+    return this._client.post('/chat/create_from_files', { body, ...options });
+  }
+
+  /**
    * Create a new chat session with an initial message
    */
   createSession(
@@ -263,6 +274,13 @@ export class Chat extends APIResource {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
+  }
+
+  pendingWikiEdits(
+    chatId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatPendingWikiEditsResponse> {
+    return this._client.get(`/chat/sessions/${chatId}/pending_wiki_edits`, options);
   }
 
   removeCollaborator(chatId: string, userId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
@@ -1166,7 +1184,8 @@ export type ToolInvocation =
   | ToolInvocation.CreateConnector
   | ToolInvocation.SearchConnectorTypes
   | ToolInvocation.PinPreviousTool
-  | ToolInvocation.RunPipeline;
+  | ToolInvocation.RunPipeline
+  | ToolInvocation.SaveProperty;
 
 export namespace ToolInvocation {
   export interface WebSearch {
@@ -1627,6 +1646,18 @@ export namespace ToolInvocation {
       rerun_all_steps?: boolean;
     }
   }
+
+  export interface SaveProperty {
+    input: SaveProperty.Input;
+
+    name: 'SaveProperty';
+  }
+
+  export namespace SaveProperty {
+    export interface Input {
+      value: string;
+    }
+  }
 }
 
 export type ToolResult =
@@ -1916,6 +1947,8 @@ export interface ChatLoadInputFilesResponse {
   latest_timestamp?: string | null;
 }
 
+export type ChatPendingWikiEditsResponse = Array<string>;
+
 /**
  * Response structure for reverting to a git commit
  */
@@ -1968,6 +2001,19 @@ export interface ChatCopyNodeOutputByCodeHashParams {
   code_md5_hash: string;
 
   new_node_id: string;
+}
+
+export interface ChatCreateChatFromFilesParams {
+  /**
+   * Map of relative file path to base64-encoded file bytes.
+   */
+  files: { [key: string]: string };
+
+  name: string;
+
+  team_id: string;
+
+  project_id?: string | null;
 }
 
 export interface ChatCreateSessionParams {
@@ -2157,12 +2203,14 @@ export declare namespace Chat {
     type ChatListTemplatesResponse as ChatListTemplatesResponse,
     type ChatLoadFilesResponse as ChatLoadFilesResponse,
     type ChatLoadInputFilesResponse as ChatLoadInputFilesResponse,
+    type ChatPendingWikiEditsResponse as ChatPendingWikiEditsResponse,
     type ChatRevertToCommitResponse as ChatRevertToCommitResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAdminIssueFoundParams as ChatAdminIssueFoundParams,
     type ChatCopyParams as ChatCopyParams,
     type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
+    type ChatCreateChatFromFilesParams as ChatCreateChatFromFilesParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
     type ChatDeleteInputFileParams as ChatDeleteInputFileParams,
     type ChatGrantAdminOverrideParams as ChatGrantAdminOverrideParams,
