@@ -144,10 +144,7 @@ describe('resource structure', () => {
   });
 
   test('runAsync: only required params', async () => {
-    const responsePromise = client.structure.runAsync({
-      dataset: 'dataset',
-      source: { PDF: { path: 'path' } },
-    });
+    const responsePromise = client.structure.runAsync({ dataset: 'dataset', source: 'NoResources' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -160,7 +157,7 @@ describe('resource structure', () => {
   test('runAsync: required and optional params', async () => {
     const response = await client.structure.runAsync({
       dataset: 'dataset',
-      source: { PDF: { path: 'path', page: 0 } },
+      source: 'NoResources',
       instructions: 'instructions',
       model: 'model',
       node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
