@@ -136,10 +136,7 @@ export namespace JobListResponse {
 
   export namespace Parameters {
     export interface Agent {
-      /**
-       * Only use the input text to derive new fields. Useful for large text inputs.
-       */
-      Agent: Agent.Pdf | Agent.Web | 'NoResources';
+      Agent: 'Web' | 'NoResources' | Agent.Pdf;
     }
 
     export namespace Agent {
@@ -158,20 +155,6 @@ export namespace JobListResponse {
           path: string;
 
           page?: number | null;
-        }
-      }
-
-      export interface Web {
-        Web: Web.Web;
-      }
-
-      export namespace Web {
-        export interface Web {
-          banned_domains?: Array<string>;
-
-          starting_searches?: Array<string>;
-
-          starting_urls?: Array<string>;
         }
       }
     }
@@ -383,10 +366,7 @@ export namespace JobGetResponse {
 
     export namespace Parameters {
       export interface Agent {
-        /**
-         * Only use the input text to derive new fields. Useful for large text inputs.
-         */
-        Agent: Agent.Pdf | Agent.Web | 'NoResources';
+        Agent: 'Web' | 'NoResources' | Agent.Pdf;
       }
 
       export namespace Agent {
@@ -405,20 +385,6 @@ export namespace JobGetResponse {
             path: string;
 
             page?: number | null;
-          }
-        }
-
-        export interface Web {
-          Web: Web.Web;
-        }
-
-        export namespace Web {
-          export interface Web {
-            banned_domains?: Array<string>;
-
-            starting_searches?: Array<string>;
-
-            starting_urls?: Array<string>;
           }
         }
       }
