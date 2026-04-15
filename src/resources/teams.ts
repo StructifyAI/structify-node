@@ -270,13 +270,11 @@ export interface Team {
 
   name: string;
 
+  sandbox_provider: string;
+
   updated_at: string;
 
-  daytona_credentials?: Team.DaytonaCredentials | null;
-
   description?: string | null;
-
-  sandbox_provider?: string | null;
 
   seats_override?: number | null;
 
@@ -296,12 +294,6 @@ export interface Team {
 }
 
 export namespace Team {
-  export interface DaytonaCredentials {
-    api_key?: string | null;
-
-    api_url?: string | null;
-  }
-
   export interface WorkflowBucket {
     bucket_url: string;
 
@@ -345,8 +337,6 @@ export interface UpdateMemberRoleResponse {
 }
 
 export interface UpdateTeamRequest {
-  daytona_credentials?: UpdateTeamRequest.DaytonaCredentials | null;
-
   description?: string | null;
 
   name?: string | null;
@@ -371,12 +361,6 @@ export interface UpdateTeamRequest {
 }
 
 export namespace UpdateTeamRequest {
-  export interface DaytonaCredentials {
-    api_key?: string | null;
-
-    api_url?: string | null;
-  }
-
   export interface WorkflowBucket {
     bucket_url: string;
 
@@ -410,8 +394,6 @@ export interface TeamCreateParams {
 }
 
 export interface TeamUpdateParams {
-  daytona_credentials?: TeamUpdateParams.DaytonaCredentials | null;
-
   description?: string | null;
 
   name?: string | null;
@@ -436,12 +418,6 @@ export interface TeamUpdateParams {
 }
 
 export namespace TeamUpdateParams {
-  export interface DaytonaCredentials {
-    api_key?: string | null;
-
-    api_url?: string | null;
-  }
-
   export interface WorkflowBucket {
     bucket_url: string;
 
