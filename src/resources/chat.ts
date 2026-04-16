@@ -738,9 +738,17 @@ export namespace ChatSessionWithMessages {
 
     timestamp: string;
 
+    cache_creation_tokens?: number | null;
+
+    cache_read_tokens?: number | null;
+
     content_proto?: Core.Uploadable | null;
 
     git_hash?: string | null;
+
+    input_tokens?: number | null;
+
+    output_tokens?: number | null;
 
     previous_message_id?: string | null;
 
@@ -1873,9 +1881,17 @@ export namespace ChatGetSessionTimelineResponse {
 
     type: 'Message';
 
+    cache_creation_tokens?: number | null;
+
+    cache_read_tokens?: number | null;
+
     content_proto?: Core.Uploadable | null;
 
     git_hash?: string | null;
+
+    input_tokens?: number | null;
+
+    output_tokens?: number | null;
 
     previous_message_id?: string | null;
 

@@ -343,6 +343,8 @@ export namespace UserTransactionsResponse {
 
     timestamp: string;
 
+    chat_message_id?: string | null;
+
     credit_grant_id?: string | null;
 
     job_id?: string | null;
