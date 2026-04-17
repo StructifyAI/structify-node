@@ -1219,7 +1219,7 @@ export namespace ToolInvocation {
     export interface Input {
       url: string;
 
-      output_format?: 'Text' | 'Visual' | null;
+      output_format?: 'text' | 'visual' | null;
     }
   }
 

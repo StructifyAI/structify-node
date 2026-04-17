@@ -122,6 +122,7 @@ export namespace ChatPrompt {
       | DecodingParams.Thinking
       | DecodingParams.Verbosity
       | DecodingParams.ReasoningEffort
+      | DecodingParams.NativeTools
     >;
   }
 
@@ -195,6 +196,23 @@ export namespace ChatPrompt {
 
     export interface ReasoningEffort {
       ReasoningEffort: 'low' | 'medium' | 'high' | 'minimal';
+    }
+
+    export interface NativeTools {
+      /**
+       * Native OpenAI-style tool definitions sent directly to the LLM.
+       */
+      NativeTools: Array<NativeTools.NativeTool>;
+    }
+
+    export namespace NativeTools {
+      export interface NativeTool {
+        description: string;
+
+        name: string;
+
+        parameters_schema: { [key: string]: unknown };
+      }
     }
   }
 
