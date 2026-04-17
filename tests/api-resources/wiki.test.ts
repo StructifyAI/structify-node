@@ -30,6 +30,7 @@ describe('resource wiki', () => {
       slug: 'slug',
       title: 'title',
       chat_session_id: 'chat_session_id',
+      usage_guidance: 'usage_guidance',
     });
   });
 
@@ -52,6 +53,7 @@ describe('resource wiki', () => {
       base_version: 0,
       chat_session_id: 'chat_session_id',
       title: 'title',
+      usage_guidance: 'usage_guidance',
     });
   });
 

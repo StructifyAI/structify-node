@@ -44,6 +44,8 @@ export interface CreateWikiPageRequest {
   title: string;
 
   chat_session_id?: string | null;
+
+  usage_guidance?: string | null;
 }
 
 export interface UpdateWikiPageRequest {
@@ -54,6 +56,8 @@ export interface UpdateWikiPageRequest {
   chat_session_id?: string | null;
 
   title?: string | null;
+
+  usage_guidance?: string | null;
 }
 
 export interface WikiPage {
@@ -80,6 +84,8 @@ export interface WikiPage {
   approved_by?: string | null;
 
   chat_session_id?: string | null;
+
+  usage_guidance?: string | null;
 }
 
 export type WikiListResponse = Array<WikiPage>;
@@ -92,6 +98,8 @@ export interface WikiCreateParams {
   title: string;
 
   chat_session_id?: string | null;
+
+  usage_guidance?: string | null;
 }
 
 export interface WikiUpdateParams {
@@ -102,6 +110,8 @@ export interface WikiUpdateParams {
   chat_session_id?: string | null;
 
   title?: string | null;
+
+  usage_guidance?: string | null;
 }
 
 export declare namespace Wiki {
