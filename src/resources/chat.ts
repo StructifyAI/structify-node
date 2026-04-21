@@ -775,6 +775,8 @@ export namespace ChatSessionWithMessages {
       chunk_type: string;
 
       content: string;
+
+      model?: string;
     }
   }
 }
@@ -1918,6 +1920,8 @@ export namespace ChatGetSessionTimelineResponse {
       chunk_type: string;
 
       content: string;
+
+      model?: string;
     }
   }
 
