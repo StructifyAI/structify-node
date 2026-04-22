@@ -1266,11 +1266,11 @@ export namespace ToolInvocation {
 
   export namespace SaveEntities {
     export interface Input {
-      entities: Array<{ [key: string]: { [key: string]: unknown } }>;
-
       reason: string;
 
       sources: Array<string>;
+
+      entities?: Array<{ [key: string]: { [key: string]: unknown } }>;
     }
   }
 
