@@ -886,6 +886,7 @@ Types:
 
 - <code><a href="./src/resources/structure.ts">ChatPrompt</a></code>
 - <code><a href="./src/resources/structure.ts">SaveRequirement</a></code>
+- <code><a href="./src/resources/structure.ts">StructureBulkEnhanceResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureEnhancePropertyResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureEnhanceRelationshipResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureFindRelationshipResponse</a></code>
@@ -896,6 +897,7 @@ Types:
 
 Methods:
 
+- <code title="post /structure/bulk_enhance">client.structure.<a href="./src/resources/structure.ts">bulkEnhance</a>({ ...params }) -> StructureBulkEnhanceResponse</code>
 - <code title="post /structure/enhance_property">client.structure.<a href="./src/resources/structure.ts">enhanceProperty</a>({ ...params }) -> string</code>
 - <code title="post /structure/enhance_relationship">client.structure.<a href="./src/resources/structure.ts">enhanceRelationship</a>({ ...params }) -> string</code>
 - <code title="post /structure/find_relationship">client.structure.<a href="./src/resources/structure.ts">findRelationship</a>({ ...params }) -> string</code>
