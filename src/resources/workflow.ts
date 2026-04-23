@@ -27,6 +27,8 @@ export interface RunWorkflowRequest {
   use_node_cache: boolean;
 
   edited_node_name?: string | null;
+
+  rerun_from?: string | null;
 }
 
 export interface StopWorkflowRequest {
@@ -39,6 +41,8 @@ export interface WorkflowRunParams {
   use_node_cache: boolean;
 
   edited_node_name?: string | null;
+
+  rerun_from?: string | null;
 }
 
 export interface WorkflowStopParams {
