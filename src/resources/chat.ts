@@ -55,14 +55,6 @@ export class Chat extends APIResource {
     return this._client.post('/chat/copy', { body, ...options });
   }
 
-  copyNodeOutputByCodeHash(
-    sessionId: string,
-    body: ChatCopyNodeOutputByCodeHashParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ChatCopyNodeOutputByCodeHashResponse> {
-    return this._client.post(`/chat/sessions/${sessionId}/nodes/by_code_hash`, { body, ...options });
-  }
-
   /**
    * committed to its git repo. Used for copying pipelines across Structify
    * instances.
@@ -1818,10 +1810,6 @@ export namespace ChatAddGitCommitResponse {
   }
 }
 
-export interface ChatCopyNodeOutputByCodeHashResponse {
-  cached_node_id?: string | null;
-}
-
 export interface ChatDeleteInputFileResponse {
   files_deleted: number;
 }
@@ -2018,12 +2006,6 @@ export interface ChatCopyParams {
   template_id?: string | null;
 }
 
-export interface ChatCopyNodeOutputByCodeHashParams {
-  code_md5_hash: string;
-
-  new_node_id: string;
-}
-
 export interface ChatCreateChatFromFilesParams {
   /**
    * Map of relative file path to base64-encoded file bytes.
@@ -2216,7 +2198,6 @@ export declare namespace Chat {
     type UpdateVisibilityRequest as UpdateVisibilityRequest,
     type UpdateVisibilityResponse as UpdateVisibilityResponse,
     type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
-    type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
     type ChatDeleteInputFileResponse as ChatDeleteInputFileResponse,
     type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
     type ChatGetPartialChatsResponse as ChatGetPartialChatsResponse,
@@ -2231,7 +2212,6 @@ export declare namespace Chat {
     type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAdminIssueFoundParams as ChatAdminIssueFoundParams,
     type ChatCopyParams as ChatCopyParams,
-    type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
     type ChatCreateChatFromFilesParams as ChatCreateChatFromFilesParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
     type ChatDeleteInputFileParams as ChatDeleteInputFileParams,

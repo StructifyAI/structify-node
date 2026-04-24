@@ -355,10 +355,37 @@ export interface FinalizeDagRequest {
    * dashboards with different datasets
    */
   dashboard_layout?: Dashboard | null;
+
+  /**
+   * Function name of a node to force-rerun. That node and any node with it as an
+   * ancestor are excluded from cache resolution so they re-execute fresh.
+   */
+  rerun_from?: string | null;
+
+  /**
+   * When true, resolve node cache hits against prior workflow sessions and return
+   * them in `unchanged_nodes`. When false, every node executes fresh.
+   */
+  use_node_cache?: boolean;
 }
 
 export interface FinalizeDagResponse {
   node_ids: Array<string>;
+
+  /**
+   * Nodes that were cache-resolved during finalize and are already marked Success.
+   * The Python runtime skips execution for these instead of making per-node cache
+   * calls.
+   */
+  unchanged_nodes: Array<FinalizeDagResponse.UnchangedNode>;
+}
+
+export namespace FinalizeDagResponse {
+  export interface UnchangedNode {
+    cached_from_node_id: string;
+
+    node_id: string;
+  }
 }
 
 export interface GetNodeLogsResponse {
@@ -1024,6 +1051,18 @@ export interface SessionFinalizeDagParams {
    * dashboards with different datasets
    */
   dashboard_layout?: Dashboard | null;
+
+  /**
+   * Function name of a node to force-rerun. That node and any node with it as an
+   * ancestor are excluded from cache resolution so they re-execute fresh.
+   */
+  rerun_from?: string | null;
+
+  /**
+   * When true, resolve node cache hits against prior workflow sessions and return
+   * them in `unchanged_nodes`. When false, every node executes fresh.
+   */
+  use_node_cache?: boolean;
 }
 
 export interface SessionGetEventsParams {
