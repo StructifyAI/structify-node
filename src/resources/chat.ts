@@ -386,6 +386,7 @@ export type ChatEvent =
   | ChatEvent.Question
   | ChatEvent.InternalError
   | ChatEvent.ReviewRequest
+  | ChatEvent.ReviewSummary
   | ChatEvent.AttachedFile
   | ChatEvent.ConnectorRequest
   | ChatEvent.UserInterrupted
@@ -537,6 +538,30 @@ export namespace ChatEvent {
     }
 
     export namespace ReviewRequest {
+      export interface NodeSummary {
+        in_dashboard: boolean;
+
+        name: string;
+
+        data_preview?: string | null;
+
+        image?: Core.Uploadable | null;
+      }
+    }
+  }
+
+  export interface ReviewSummary {
+    ReviewSummary: ReviewSummary.ReviewSummary;
+  }
+
+  export namespace ReviewSummary {
+    export interface ReviewSummary {
+      node_summaries: Array<ReviewSummary.NodeSummary>;
+
+      summary: string;
+    }
+
+    export namespace ReviewSummary {
       export interface NodeSummary {
         in_dashboard: boolean;
 
