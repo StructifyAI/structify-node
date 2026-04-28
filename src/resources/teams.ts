@@ -385,6 +385,7 @@ export type UsageGroupKey =
   | 'cufinder'
   | 'match'
   | 'connectorexplore'
+  | 'chat'
   | 'other';
 
 export interface TeamCreateParams {
