@@ -447,11 +447,40 @@ export namespace JobEventBody {
      */
     kg: SharedAPI.KnowledgeGraph;
 
-    sources: Array<string>;
-
     page?: number | null;
 
     reason?: string | null;
+
+    /**
+     * Typed citations. Empty on older persisted events, in which case fall back to
+     * `sources` + `page`.
+     */
+    save_sources?: Array<AgentSaved.Web | AgentSaved.Pdf>;
+
+    /**
+     * Deprecated: free-form source strings retained for backwards compatibility with
+     * historical events. New writers should populate `save_sources` instead and leave
+     * this empty.
+     */
+    sources?: Array<string>;
+  }
+
+  export namespace AgentSaved {
+    export interface Web {
+      web: string;
+    }
+
+    export interface Pdf {
+      pdf: Pdf.Pdf;
+    }
+
+    export namespace Pdf {
+      export interface Pdf {
+        name: string;
+
+        page: number;
+      }
+    }
   }
 
   export interface AgentExited {

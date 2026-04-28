@@ -1287,7 +1287,26 @@ export namespace ToolInvocation {
 
       reason: string;
 
-      sources: Array<string>;
+      /**
+       * Defaulted because text-only agents don't expose a `sources` field on the
+       * SaveEntities tool schema at all. Web/PDF agents inject a single-variant array
+       * via the scraper's params patch.
+       */
+      sources?: Array<Input.URL | Input.PdfPage>;
+    }
+
+    export namespace Input {
+      export interface URL {
+        type: 'url';
+
+        url: string;
+      }
+
+      export interface PdfPage {
+        page: number;
+
+        type: 'pdf_page';
+      }
     }
   }
 
