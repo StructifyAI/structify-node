@@ -91,7 +91,6 @@ Types:
 - <code><a href="./src/resources/chat.ts">ChatSessionWithMessages</a></code>
 - <code><a href="./src/resources/chat.ts">ChatTemplate</a></code>
 - <code><a href="./src/resources/chat.ts">ChatVisibility</a></code>
-- <code><a href="./src/resources/chat.ts">CompressChatResponse</a></code>
 - <code><a href="./src/resources/chat.ts">CopyChatSessionRequest</a></code>
 - <code><a href="./src/resources/chat.ts">CreateChatSessionRequest</a></code>
 - <code><a href="./src/resources/chat.ts">CreateChatSessionResponse</a></code>
@@ -131,7 +130,6 @@ Methods:
 - <code title="post /chat/sessions/{chat_id}/collaborators">client.chat.<a href="./src/resources/chat.ts">addCollaborator</a>(chatId, { ...params }) -> void</code>
 - <code title="post /chat/sessions/{session_id}/commits">client.chat.<a href="./src/resources/chat.ts">addGitCommit</a>(sessionId, { ...params }) -> ChatAddGitCommitResponse</code>
 - <code title="post /chat/sessions/{chat_id}/admin/issue_found">client.chat.<a href="./src/resources/chat.ts">adminIssueFound</a>(chatId, { ...params }) -> AdminIssueFoundResponse</code>
-- <code title="post /chat/sessions/{session_id}/compress">client.chat.<a href="./src/resources/chat.ts">compress</a>(sessionId) -> CompressChatResponse</code>
 - <code title="post /chat/copy">client.chat.<a href="./src/resources/chat.ts">copy</a>({ ...params }) -> ChatSessionWithMessages</code>
 - <code title="post /chat/create_from_files">client.chat.<a href="./src/resources/chat.ts">createChatFromFiles</a>({ ...params }) -> ChatSessionWithMessages</code>
 - <code title="post /chat/sessions">client.chat.<a href="./src/resources/chat.ts">createSession</a>({ ...params }) -> CreateChatSessionResponse</code>
