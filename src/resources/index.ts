@@ -15,7 +15,6 @@ export {
   type ChatSessionWithMessages,
   type ChatTemplate,
   type ChatVisibility,
-  type CompressChatResponse,
   type CopyChatSessionRequest,
   type CreateChatSessionRequest,
   type CreateChatSessionResponse,

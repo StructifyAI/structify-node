@@ -44,10 +44,6 @@ export class Chat extends APIResource {
     return this._client.post(`/chat/sessions/${chatId}/admin/issue_found`, { body, ...options });
   }
 
-  compress(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<CompressChatResponse> {
-    return this._client.post(`/chat/sessions/${sessionId}/compress`, options);
-  }
-
   /**
    * Copy a chat session with its workflows and git files
    */
@@ -390,7 +386,8 @@ export type ChatEvent =
   | ChatEvent.AttachedFile
   | ChatEvent.ConnectorRequest
   | ChatEvent.UserInterrupted
-  | ChatEvent.IssueFound;
+  | ChatEvent.IssueFound
+  | ChatEvent.Compaction;
 
 export namespace ChatEvent {
   export interface TextMessage {
@@ -613,6 +610,20 @@ export namespace ChatEvent {
       title: string;
     }
   }
+
+  export interface Compaction {
+    Compaction: Compaction.Compaction;
+  }
+
+  export namespace Compaction {
+    export interface Compaction {
+      block_id: number;
+
+      complete: boolean;
+
+      summary?: string | null;
+    }
+  }
 }
 
 export interface ChatSession {
@@ -825,10 +836,6 @@ export interface ChatTemplate {
 }
 
 export type ChatVisibility = 'private' | 'shared_with_team' | 'shared_with_team_view' | 'public';
-
-export interface CompressChatResponse {
-  status: string;
-}
 
 export interface CopyChatSessionRequest {
   copy_name: string;
@@ -2216,7 +2223,6 @@ export declare namespace Chat {
     type ChatSessionWithMessages as ChatSessionWithMessages,
     type ChatTemplate as ChatTemplate,
     type ChatVisibility as ChatVisibility,
-    type CompressChatResponse as CompressChatResponse,
     type CopyChatSessionRequest as CopyChatSessionRequest,
     type CreateChatSessionRequest as CreateChatSessionRequest,
     type CreateChatSessionResponse as CreateChatSessionResponse,
