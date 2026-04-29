@@ -57,7 +57,7 @@ export class Chat extends APIResource {
 
   /**
    * committed to its git repo. Used for copying pipelines across Structify
-   * instances.
+   * instances. Target team is implied by the caller's session membership.
    */
   createChatFromFiles(
     body: ChatCreateChatFromFilesParams,
@@ -663,9 +663,7 @@ export interface ChatSession {
   teams_tenant_id?: string | null;
 }
 
-export type ChatSessionRole = 'viewer' | 'editor' | 'owner';
-
-export interface ChatSessionUser {
+export interface ChatSessionMembership {
   id: string;
 
   chat_session_id: string;
@@ -674,12 +672,14 @@ export interface ChatSessionUser {
 
   is_favorite: boolean;
 
+  membership_id: string;
+
   role: ChatSessionRole;
 
   updated_at: string;
-
-  user_id: string;
 }
+
+export type ChatSessionRole = 'viewer' | 'editor' | 'owner';
 
 export interface ChatSessionWithMessages {
   id: string;
@@ -2058,8 +2058,6 @@ export interface ChatCreateChatFromFilesParams {
 
   name: string;
 
-  team_id: string;
-
   project_id?: string | null;
 }
 
@@ -2213,8 +2211,8 @@ export declare namespace Chat {
     type ChatDependency as ChatDependency,
     type ChatEvent as ChatEvent,
     type ChatSession as ChatSession,
+    type ChatSessionMembership as ChatSessionMembership,
     type ChatSessionRole as ChatSessionRole,
-    type ChatSessionUser as ChatSessionUser,
     type ChatSessionWithMessages as ChatSessionWithMessages,
     type ChatTemplate as ChatTemplate,
     type ChatVisibility as ChatVisibility,

@@ -118,7 +118,6 @@ describe('resource chat', () => {
     const responsePromise = client.chat.createChatFromFiles({
       files: { foo: 'string' },
       name: 'name',
-      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -133,7 +132,6 @@ describe('resource chat', () => {
     const response = await client.chat.createChatFromFiles({
       files: { foo: 'string' },
       name: 'name',
-      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
