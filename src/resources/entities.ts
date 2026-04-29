@@ -721,6 +721,8 @@ export namespace EntityListJobsResponse {
 
     user_id: string;
 
+    cached_from_job_id?: string | null;
+
     dataset_id?: string | null;
 
     exploration_run_id?: string | null;
