@@ -86,8 +86,8 @@ Types:
 - <code><a href="./src/resources/chat.ts">ChatDependency</a></code>
 - <code><a href="./src/resources/chat.ts">ChatEvent</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSession</a></code>
+- <code><a href="./src/resources/chat.ts">ChatSessionMembership</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSessionRole</a></code>
-- <code><a href="./src/resources/chat.ts">ChatSessionUser</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSessionWithMessages</a></code>
 - <code><a href="./src/resources/chat.ts">ChatTemplate</a></code>
 - <code><a href="./src/resources/chat.ts">ChatVisibility</a></code>
