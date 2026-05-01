@@ -898,6 +898,8 @@ export interface WorkflowSession {
 
   dag_ready: boolean;
 
+  is_stable: boolean;
+
   updated_at: string;
 
   created_at?: string | null;
