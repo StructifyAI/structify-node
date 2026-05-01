@@ -151,6 +151,11 @@ export namespace AddMemberResponse {
 
     value: Core.Uploadable;
 
+    /**
+     * Optional auto-revoke timestamp. Null means the membership has no cutoff.
+     */
+    expires_at?: string | null;
+
     invitation_expires_at?: string | null;
 
     invitation_token?: string | null;
@@ -301,7 +306,7 @@ export namespace Team {
   }
 }
 
-export type TeamRole = 'read_only' | 'member' | 'admin' | 'owner';
+export type TeamRole = 'read_only' | 'member' | 'admin' | 'owner' | 'super_admin';
 
 export interface TeamSubscriptionStatus {
   has_active_subscription: boolean;
