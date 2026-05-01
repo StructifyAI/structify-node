@@ -274,6 +274,9 @@ Types:
 - <code><a href="./src/resources/admin/teams.ts">ExtendTrialResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">GrantCreditsRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">GrantCreditsResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">SetAccessAction</a></code>
+- <code><a href="./src/resources/admin/teams.ts">SetAccessRequest</a></code>
+- <code><a href="./src/resources/admin/teams.ts">SetAccessResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">UpdateSeatsOverrideRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">UpdateSeatsOverrideResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">TeamListResponse</a></code>
@@ -289,6 +292,7 @@ Methods:
 - <code title="post /admin/team/grant_credits">client.admin.teams.<a href="./src/resources/admin/teams.ts">grantCredits</a>({ ...params }) -> GrantCreditsResponse</code>
 - <code title="get /admin/team/{team_id}/members">client.admin.teams.<a href="./src/resources/admin/teams.ts">listMembers</a>(teamId) -> AdminListMembersResponse</code>
 - <code title="post /admin/team/remove_member">client.admin.teams.<a href="./src/resources/admin/teams.ts">removeMember</a>({ ...params }) -> AdminRemoveMemberResponse</code>
+- <code title="post /admin/team/set_access">client.admin.teams.<a href="./src/resources/admin/teams.ts">setAccess</a>({ ...params }) -> SetAccessResponse</code>
 - <code title="post /admin/team/update_seats_override">client.admin.teams.<a href="./src/resources/admin/teams.ts">updateSeatsOverride</a>({ ...params }) -> UpdateSeatsOverrideResponse</code>
 
 ## Dataset
