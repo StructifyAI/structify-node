@@ -202,7 +202,6 @@ Methods:
 - <code title="post /team/{team_id}/projects">client.teams.<a href="./src/resources/teams.ts">createProject</a>(teamId, { ...params }) -> Project</code>
 - <code title="get /team/{team_id}/credits/usage">client.teams.<a href="./src/resources/teams.ts">creditsUsage</a>(teamId, { ...params }) -> CreditsUsageResponse</code>
 - <code title="get /team/{team_id}">client.teams.<a href="./src/resources/teams.ts">get</a>(teamId) -> GetTeamResponse</code>
-- <code title="get /team/{team_id}/subscription">client.teams.<a href="./src/resources/teams.ts">getSubscription</a>(teamId) -> TeamSubscriptionStatus</code>
 - <code title="get /team/invitations/details/{token}">client.teams.<a href="./src/resources/teams.ts">invitationDetails</a>(token) -> InvitationDetailsResponse</code>
 - <code title="get /team/{team_id}/members">client.teams.<a href="./src/resources/teams.ts">listMembers</a>(teamId) -> ListMembersResponse</code>
 - <code title="get /team/{team_id}/projects">client.teams.<a href="./src/resources/teams.ts">listProjects</a>(teamId) -> ListProjectsResponse</code>
@@ -275,9 +274,6 @@ Types:
 - <code><a href="./src/resources/admin/teams.ts">ExtendTrialResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">GrantCreditsRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">GrantCreditsResponse</a></code>
-- <code><a href="./src/resources/admin/teams.ts">SetAccessAction</a></code>
-- <code><a href="./src/resources/admin/teams.ts">SetAccessRequest</a></code>
-- <code><a href="./src/resources/admin/teams.ts">SetAccessResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">UpdateSeatsOverrideRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">UpdateSeatsOverrideResponse</a></code>
 
@@ -292,7 +288,6 @@ Methods:
 - <code title="post /admin/team/grant_credits">client.admin.teams.<a href="./src/resources/admin/teams.ts">grantCredits</a>({ ...params }) -> GrantCreditsResponse</code>
 - <code title="get /admin/team/{team_id}/members">client.admin.teams.<a href="./src/resources/admin/teams.ts">listMembers</a>(teamId) -> AdminListMembersResponse</code>
 - <code title="post /admin/team/remove_member">client.admin.teams.<a href="./src/resources/admin/teams.ts">removeMember</a>({ ...params }) -> AdminRemoveMemberResponse</code>
-- <code title="post /admin/team/set_access">client.admin.teams.<a href="./src/resources/admin/teams.ts">setAccess</a>({ ...params }) -> SetAccessResponse</code>
 - <code title="post /admin/team/update_seats_override">client.admin.teams.<a href="./src/resources/admin/teams.ts">updateSeatsOverride</a>({ ...params }) -> UpdateSeatsOverrideResponse</code>
 
 ## Dataset

@@ -88,14 +88,6 @@ export class Teams extends APIResource {
     return this._client.post('/admin/team/remove_member', { body, ...options });
   }
 
-  /**
-   * Idempotent: re-granting resets `expires_at`. 400 if the caller already has a
-   * regular live membership on the team.
-   */
-  setAccess(body: TeamSetAccessParams, options?: Core.RequestOptions): Core.APIPromise<SetAccessResponse> {
-    return this._client.post('/admin/team/set_access', { body, ...options });
-  }
-
   updateSeatsOverride(
     body: TeamUpdateSeatsOverrideParams,
     options?: Core.RequestOptions,
@@ -137,11 +129,6 @@ export namespace AdminAddMemberResponse {
     team_id: string;
 
     value: Core.Uploadable;
-
-    /**
-     * Optional auto-revoke timestamp. Null means the membership has no cutoff.
-     */
-    expires_at?: string | null;
 
     invitation_expires_at?: string | null;
 
@@ -321,28 +308,6 @@ export interface GrantCreditsResponse {
   team_id: string;
 }
 
-export type SetAccessAction = 'grant' | 'revoke';
-
-export interface SetAccessRequest {
-  action: SetAccessAction;
-
-  team_id: string;
-
-  /**
-   * Cutoff for the SuperAdmin membership. `None` means no expiry — useful for
-   * permanent admin staffing. Ignored when `action = Revoke`.
-   */
-  expires_at?: string | null;
-}
-
-export interface SetAccessResponse {
-  action: SetAccessAction;
-
-  expires_at?: string | null;
-
-  membership_id?: string | null;
-}
-
 export interface UpdateSeatsOverrideRequest {
   team_id: string;
 
@@ -422,18 +387,6 @@ export interface TeamRemoveMemberParams {
   user_id: string;
 }
 
-export interface TeamSetAccessParams {
-  action: SetAccessAction;
-
-  team_id: string;
-
-  /**
-   * Cutoff for the SuperAdmin membership. `None` means no expiry — useful for
-   * permanent admin staffing. Ignored when `action = Revoke`.
-   */
-  expires_at?: string | null;
-}
-
 export interface TeamUpdateSeatsOverrideParams {
   team_id: string;
 
@@ -460,9 +413,6 @@ export declare namespace Teams {
     type ExtendTrialResponse as ExtendTrialResponse,
     type GrantCreditsRequest as GrantCreditsRequest,
     type GrantCreditsResponse as GrantCreditsResponse,
-    type SetAccessAction as SetAccessAction,
-    type SetAccessRequest as SetAccessRequest,
-    type SetAccessResponse as SetAccessResponse,
     type UpdateSeatsOverrideRequest as UpdateSeatsOverrideRequest,
     type UpdateSeatsOverrideResponse as UpdateSeatsOverrideResponse,
     AdminTeamsListResponsesAdminTeamList as AdminTeamsListResponsesAdminTeamList,
@@ -474,7 +424,6 @@ export declare namespace Teams {
     type TeamExtendTrialParams as TeamExtendTrialParams,
     type TeamGrantCreditsParams as TeamGrantCreditsParams,
     type TeamRemoveMemberParams as TeamRemoveMemberParams,
-    type TeamSetAccessParams as TeamSetAccessParams,
     type TeamUpdateSeatsOverrideParams as TeamUpdateSeatsOverrideParams,
   };
 }

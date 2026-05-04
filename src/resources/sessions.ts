@@ -363,6 +363,12 @@ export interface FinalizeDagRequest {
   rerun_from?: string | null;
 
   /**
+   * Function names to execute fresh while copying any unselected ancestors from
+   * prior successful outputs.
+   */
+  selected_node_names?: Array<string> | null;
+
+  /**
    * When true, resolve node cache hits against prior workflow sessions and return
    * them in `unchanged_nodes`. When false, every node executes fresh.
    */
@@ -875,7 +881,8 @@ export type WorkflowNodeExecutionStatus =
   | 'Failure'
   | 'Running'
   | 'Aborted'
-  | 'PendingConfirmation';
+  | 'PendingConfirmation'
+  | 'Skipped';
 
 export interface WorkflowNodeLog {
   id: string;
@@ -897,8 +904,6 @@ export interface WorkflowSession {
   chat_session_id: string;
 
   dag_ready: boolean;
-
-  is_stable: boolean;
 
   updated_at: string;
 
@@ -1088,6 +1093,12 @@ export interface SessionFinalizeDagParams {
    * ancestor are excluded from cache resolution so they re-execute fresh.
    */
   rerun_from?: string | null;
+
+  /**
+   * Function names to execute fresh while copying any unselected ancestors from
+   * prior successful outputs.
+   */
+  selected_node_names?: Array<string> | null;
 
   /**
    * When true, resolve node cache hits against prior workflow sessions and return

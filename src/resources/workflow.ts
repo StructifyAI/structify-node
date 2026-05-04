@@ -29,6 +29,8 @@ export interface RunWorkflowRequest {
   edited_node_name?: string | null;
 
   rerun_from?: string | null;
+
+  selected_node_names?: Array<string> | null;
 }
 
 export interface StopWorkflowRequest {
@@ -43,6 +45,8 @@ export interface WorkflowRunParams {
   edited_node_name?: string | null;
 
   rerun_from?: string | null;
+
+  selected_node_names?: Array<string> | null;
 }
 
 export interface WorkflowStopParams {
