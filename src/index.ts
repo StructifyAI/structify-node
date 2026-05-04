@@ -6,6 +6,8 @@ import * as Core from './core';
 import * as Errors from './error';
 import * as Pagination from './pagination';
 import {
+  type AdminTeamListParams,
+  AdminTeamListResponse,
   type JobsListParams,
   JobsListResponse,
   type ListConnectorCatalogParams,
@@ -425,9 +427,9 @@ import {
   ConnectorAuthMethodWithFields,
   ConnectorCatalog,
   ConnectorCatalogListParams,
-  ConnectorCatalogListResponse,
   ConnectorCatalogResource,
   ConnectorCatalogWithMethods,
+  ConnectorCatalogWithMethodsAdminTeamList,
   ConnectorCredentialField,
 } from './resources/connector-catalog/connector-catalog';
 import {
@@ -826,6 +828,7 @@ Structify.Workflow = Workflow;
 Structify.Connectors = Connectors;
 Structify.ConnectorWithSecretsJobsList = ConnectorWithSecretsJobsList;
 Structify.ConnectorCatalogResource = ConnectorCatalogResource;
+Structify.ConnectorCatalogWithMethodsAdminTeamList = ConnectorCatalogWithMethodsAdminTeamList;
 Structify.Server = Server;
 Structify.Sources = Sources;
 Structify.Entities = Entities;
@@ -848,6 +851,12 @@ export declare namespace Structify {
   export {
     type ListConnectorCatalogParams as ListConnectorCatalogParams,
     type ListConnectorCatalogResponse as ListConnectorCatalogResponse,
+  };
+
+  export import AdminTeamList = Pagination.AdminTeamList;
+  export {
+    type AdminTeamListParams as AdminTeamListParams,
+    type AdminTeamListResponse as AdminTeamListResponse,
   };
 
   export { Whitelabel as Whitelabel, type EstimateCostResponse as EstimateCostResponse };
@@ -1249,7 +1258,7 @@ export declare namespace Structify {
     type ConnectorCatalog as ConnectorCatalog,
     type ConnectorCatalogWithMethods as ConnectorCatalogWithMethods,
     type ConnectorCredentialField as ConnectorCredentialField,
-    type ConnectorCatalogListResponse as ConnectorCatalogListResponse,
+    ConnectorCatalogWithMethodsAdminTeamList as ConnectorCatalogWithMethodsAdminTeamList,
     type ConnectorCatalogListParams as ConnectorCatalogListParams,
   };
 

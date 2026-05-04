@@ -103,3 +103,70 @@ export class ListConnectorCatalog<Item> extends AbstractPage<Item> {
     return { params: { offset: currentCount } };
   }
 }
+
+export interface AdminTeamListResponse<Item> {
+  items: Array<Item>;
+
+  total_count: number;
+}
+
+export interface AdminTeamListParams {
+  /**
+   * The offset to start from
+   */
+  offset?: number;
+
+  /**
+   * The number of items to return
+   */
+  limit?: number;
+}
+
+export class AdminTeamList<Item> extends AbstractPage<Item> implements AdminTeamListResponse<Item> {
+  items: Array<Item>;
+
+  total_count: number;
+
+  constructor(
+    client: APIClient,
+    response: Response,
+    body: AdminTeamListResponse<Item>,
+    options: FinalRequestOptions,
+  ) {
+    super(client, response, body, options);
+
+    this.items = body.items || [];
+    this.total_count = body.total_count || 0;
+  }
+
+  getPaginatedItems(): Item[] {
+    return this.items ?? [];
+  }
+
+  // @deprecated Please use `nextPageInfo()` instead
+  nextPageParams(): Partial<AdminTeamListParams> | null {
+    const info = this.nextPageInfo();
+    if (!info) return null;
+    if ('params' in info) return info.params;
+    const params = Object.fromEntries(info.url.searchParams);
+    if (!Object.keys(params).length) return null;
+    return params;
+  }
+
+  nextPageInfo(): PageInfo | null {
+    const offset = (this.options.query as AdminTeamListParams).offset ?? 0;
+    const length = this.getPaginatedItems().length;
+    const currentCount = offset + length;
+
+    const totalCount = this.total_count;
+    if (!totalCount) {
+      return null;
+    }
+
+    if (currentCount < totalCount) {
+      return { params: { offset: currentCount } };
+    }
+
+    return null;
+  }
+}
