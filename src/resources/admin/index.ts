@@ -20,9 +20,6 @@ export {
   type ExtendTrialResponse,
   type GrantCreditsRequest,
   type GrantCreditsResponse,
-  type SetAccessAction,
-  type SetAccessRequest,
-  type SetAccessResponse,
   type UpdateSeatsOverrideRequest,
   type UpdateSeatsOverrideResponse,
   type TeamListParams,
@@ -33,7 +30,6 @@ export {
   type TeamExtendTrialParams,
   type TeamGrantCreditsParams,
   type TeamRemoveMemberParams,
-  type TeamSetAccessParams,
   type TeamUpdateSeatsOverrideParams,
 } from './teams';
 export {
