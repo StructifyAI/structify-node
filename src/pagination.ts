@@ -1,6 +1,70 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { AbstractPage, Response, APIClient, FinalRequestOptions, PageInfo } from './core';
+import * as AnalyticsAPI from './resources/analytics';
+
+export interface AnalyticsEventsResponse<Item> {
+  items: AnalyticsAPI.Event;
+
+  next_cursor: string;
+}
+
+export interface AnalyticsEventsParams {
+  /**
+   * Opaque cursor from the previous page's next_cursor.
+   */
+  cursor?: string;
+
+  /**
+   * Maximum number of events to return.
+   */
+  limit?: number;
+}
+
+export class AnalyticsEvents<Item> extends AbstractPage<Item> implements AnalyticsEventsResponse<Item> {
+  items: AnalyticsAPI.Event;
+
+  next_cursor: string;
+
+  constructor(
+    client: APIClient,
+    response: Response,
+    body: AnalyticsEventsResponse<Item>,
+    options: FinalRequestOptions,
+  ) {
+    super(client, response, body, options);
+
+    this.items = body.items || {};
+    this.next_cursor = body.next_cursor || '';
+  }
+
+  getPaginatedItems(): Item[] {
+    return this.data;
+  }
+
+  // @deprecated Please use `nextPageInfo()` instead
+  nextPageParams(): Partial<AnalyticsEventsParams> | null {
+    const info = this.nextPageInfo();
+    if (!info) return null;
+    if ('params' in info) return info.params;
+    const params = Object.fromEntries(info.url.searchParams);
+    if (!Object.keys(params).length) return null;
+    return params;
+  }
+
+  nextPageInfo(): PageInfo | null {
+    const cursor = this.next_cursor;
+    if (!cursor) {
+      return null;
+    }
+
+    return {
+      params: {
+        cursor,
+      },
+    };
+  }
+}
 
 export type JobsListResponse<Item> = Item[];
 
@@ -101,72 +165,5 @@ export class ListConnectorCatalog<Item> extends AbstractPage<Item> {
     const currentCount = offset + length;
 
     return { params: { offset: currentCount } };
-  }
-}
-
-export interface AdminTeamListResponse<Item> {
-  items: Array<Item>;
-
-  total_count: number;
-}
-
-export interface AdminTeamListParams {
-  /**
-   * The offset to start from
-   */
-  offset?: number;
-
-  /**
-   * The number of items to return
-   */
-  limit?: number;
-}
-
-export class AdminTeamList<Item> extends AbstractPage<Item> implements AdminTeamListResponse<Item> {
-  items: Array<Item>;
-
-  total_count: number;
-
-  constructor(
-    client: APIClient,
-    response: Response,
-    body: AdminTeamListResponse<Item>,
-    options: FinalRequestOptions,
-  ) {
-    super(client, response, body, options);
-
-    this.items = body.items || [];
-    this.total_count = body.total_count || 0;
-  }
-
-  getPaginatedItems(): Item[] {
-    return this.items ?? [];
-  }
-
-  // @deprecated Please use `nextPageInfo()` instead
-  nextPageParams(): Partial<AdminTeamListParams> | null {
-    const info = this.nextPageInfo();
-    if (!info) return null;
-    if ('params' in info) return info.params;
-    const params = Object.fromEntries(info.url.searchParams);
-    if (!Object.keys(params).length) return null;
-    return params;
-  }
-
-  nextPageInfo(): PageInfo | null {
-    const offset = (this.options.query as AdminTeamListParams).offset ?? 0;
-    const length = this.getPaginatedItems().length;
-    const currentCount = offset + length;
-
-    const totalCount = this.total_count;
-    if (!totalCount) {
-      return null;
-    }
-
-    if (currentCount < totalCount) {
-      return { params: { offset: currentCount } };
-    }
-
-    return null;
   }
 }

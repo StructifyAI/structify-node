@@ -2,6 +2,19 @@
 
 export { Admin, type ReportCriticalRequest, type AdminReportCriticalParams } from './admin/admin';
 export {
+  Analytics,
+  type CreateTrackerRequest,
+  type CreateTrackerResponse,
+  type Event,
+  type ListEventsResponse,
+  type ListTrackersQuery,
+  type ListTrackersResponse,
+  type Tracker,
+  type AnalyticsCreateTrackerParams,
+  type AnalyticsListEventsParams,
+  type AnalyticsListTrackersParams,
+} from './analytics';
+export {
   Chat,
   type AddCollaboratorRequest,
   type AdminGrantAccessResponse,
@@ -76,13 +89,13 @@ export {
   type CodeInterruptGenerationParams,
 } from './code';
 export {
-  ConnectorCatalogWithMethodsAdminTeamList,
   ConnectorCatalogResource,
   type ConnectorAuthMethod,
   type ConnectorAuthMethodWithFields,
   type ConnectorCatalog,
   type ConnectorCatalogWithMethods,
   type ConnectorCredentialField,
+  type ConnectorCatalogListResponse,
   type ConnectorCatalogListParams,
 } from './connector-catalog/connector-catalog';
 export {

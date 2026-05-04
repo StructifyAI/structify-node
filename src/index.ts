@@ -6,8 +6,8 @@ import * as Core from './core';
 import * as Errors from './error';
 import * as Pagination from './pagination';
 import {
-  type AdminTeamListParams,
-  AdminTeamListResponse,
+  type AnalyticsEventsParams,
+  AnalyticsEventsResponse,
   type JobsListParams,
   JobsListResponse,
   type ListConnectorCatalogParams,
@@ -15,6 +15,19 @@ import {
 } from './pagination';
 import * as Uploads from './uploads';
 import * as API from './resources/index';
+import {
+  Analytics,
+  AnalyticsCreateTrackerParams,
+  AnalyticsListEventsParams,
+  AnalyticsListTrackersParams,
+  CreateTrackerRequest,
+  CreateTrackerResponse,
+  Event,
+  ListEventsResponse,
+  ListTrackersQuery,
+  ListTrackersResponse,
+  Tracker,
+} from './resources/analytics';
 import {
   AddCollaboratorRequest,
   AdminGrantAccessResponse,
@@ -427,9 +440,9 @@ import {
   ConnectorAuthMethodWithFields,
   ConnectorCatalog,
   ConnectorCatalogListParams,
+  ConnectorCatalogListResponse,
   ConnectorCatalogResource,
   ConnectorCatalogWithMethods,
-  ConnectorCatalogWithMethodsAdminTeamList,
   ConnectorCredentialField,
 } from './resources/connector-catalog/connector-catalog';
 import {
@@ -700,6 +713,7 @@ export class Structify extends Core.APIClient {
   uploads: API.Uploads = new API.Uploads(this);
   workflowSchedule: API.WorkflowSchedule = new API.WorkflowSchedule(this);
   webhook: API.Webhook = new API.Webhook(this);
+  analytics: API.Analytics = new API.Analytics(this);
   workflow: API.Workflow = new API.Workflow(this);
   connectors: API.Connectors = new API.Connectors(this);
   connectorCatalog: API.ConnectorCatalogResource = new API.ConnectorCatalogResource(this);
@@ -824,11 +838,11 @@ Structify.Sessions = Sessions;
 Structify.Uploads = UploadsAPIUploads;
 Structify.WorkflowSchedule = WorkflowSchedule;
 Structify.Webhook = Webhook;
+Structify.Analytics = Analytics;
 Structify.Workflow = Workflow;
 Structify.Connectors = Connectors;
 Structify.ConnectorWithSecretsJobsList = ConnectorWithSecretsJobsList;
 Structify.ConnectorCatalogResource = ConnectorCatalogResource;
-Structify.ConnectorCatalogWithMethodsAdminTeamList = ConnectorCatalogWithMethodsAdminTeamList;
 Structify.Server = Server;
 Structify.Sources = Sources;
 Structify.Entities = Entities;
@@ -844,6 +858,12 @@ Structify.Nango = Nango;
 export declare namespace Structify {
   export type RequestOptions = Core.RequestOptions;
 
+  export import AnalyticsEvents = Pagination.AnalyticsEvents;
+  export {
+    type AnalyticsEventsParams as AnalyticsEventsParams,
+    type AnalyticsEventsResponse as AnalyticsEventsResponse,
+  };
+
   export import JobsList = Pagination.JobsList;
   export { type JobsListParams as JobsListParams, type JobsListResponse as JobsListResponse };
 
@@ -851,12 +871,6 @@ export declare namespace Structify {
   export {
     type ListConnectorCatalogParams as ListConnectorCatalogParams,
     type ListConnectorCatalogResponse as ListConnectorCatalogResponse,
-  };
-
-  export import AdminTeamList = Pagination.AdminTeamList;
-  export {
-    type AdminTeamListParams as AdminTeamListParams,
-    type AdminTeamListResponse as AdminTeamListResponse,
   };
 
   export { Whitelabel as Whitelabel, type EstimateCostResponse as EstimateCostResponse };
@@ -1186,6 +1200,20 @@ export declare namespace Structify {
   };
 
   export {
+    Analytics as Analytics,
+    type CreateTrackerRequest as CreateTrackerRequest,
+    type CreateTrackerResponse as CreateTrackerResponse,
+    type Event as Event,
+    type ListEventsResponse as ListEventsResponse,
+    type ListTrackersQuery as ListTrackersQuery,
+    type ListTrackersResponse as ListTrackersResponse,
+    type Tracker as Tracker,
+    type AnalyticsCreateTrackerParams as AnalyticsCreateTrackerParams,
+    type AnalyticsListEventsParams as AnalyticsListEventsParams,
+    type AnalyticsListTrackersParams as AnalyticsListTrackersParams,
+  };
+
+  export {
     Workflow as Workflow,
     type RunWorkflowRequest as RunWorkflowRequest,
     type StopWorkflowRequest as StopWorkflowRequest,
@@ -1258,7 +1286,7 @@ export declare namespace Structify {
     type ConnectorCatalog as ConnectorCatalog,
     type ConnectorCatalogWithMethods as ConnectorCatalogWithMethods,
     type ConnectorCredentialField as ConnectorCredentialField,
-    ConnectorCatalogWithMethodsAdminTeamList as ConnectorCatalogWithMethodsAdminTeamList,
+    type ConnectorCatalogListResponse as ConnectorCatalogListResponse,
     type ConnectorCatalogListParams as ConnectorCatalogListParams,
   };
 

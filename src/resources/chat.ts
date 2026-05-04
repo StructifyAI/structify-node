@@ -2165,6 +2165,17 @@ export interface ChatListSessionsParams {
   search?: string | null;
 
   /**
+   * Column to sort by (default: favorites first, then `updated_at` descending)
+   */
+  sort?: 'updated_at' | 'created_at' | 'name' | null;
+
+  /**
+   * When `false`, sort ascending; when `true`, sort descending (default: `true` for
+   * timestamps, `false` for name)
+   */
+  sort_desc?: boolean | null;
+
+  /**
    * Tab filter for chat sessions
    */
   tab?: 'my_chats' | 'favorites' | 'shared' | 'team' | 'recents' | 'from_messaging' | null;

@@ -71,7 +71,6 @@ import {
   AdminRemoveMemberRequest,
   AdminRemoveMemberResponse,
   AdminTeamsListResponse,
-  AdminTeamsListResponsesAdminTeamList,
   CancelSubscriptionRequest,
   CancelSubscriptionResponse,
   CreateSubscriptionResponse,
@@ -82,6 +81,9 @@ import {
   ExtendTrialResponse,
   GrantCreditsRequest,
   GrantCreditsResponse,
+  SetAccessAction,
+  SetAccessRequest,
+  SetAccessResponse,
   TeamAddMemberParams,
   TeamCancelSubscriptionParams,
   TeamCreateSubscriptionParams,
@@ -89,7 +91,9 @@ import {
   TeamExtendTrialParams,
   TeamGrantCreditsParams,
   TeamListParams,
+  TeamListResponse,
   TeamRemoveMemberParams,
+  TeamSetAccessParams,
   TeamUpdateSeatsOverrideParams,
   Teams,
   UpdateSeatsOverrideRequest,
@@ -139,7 +143,6 @@ export interface AdminReportCriticalParams {
 }
 
 Admin.Teams = Teams;
-Admin.AdminTeamsListResponsesAdminTeamList = AdminTeamsListResponsesAdminTeamList;
 Admin.Dataset = Dataset;
 Admin.Jobs = Jobs;
 Admin.JobListResponsesJobsList = JobListResponsesJobsList;
@@ -173,9 +176,12 @@ export declare namespace Admin {
     type ExtendTrialResponse as ExtendTrialResponse,
     type GrantCreditsRequest as GrantCreditsRequest,
     type GrantCreditsResponse as GrantCreditsResponse,
+    type SetAccessAction as SetAccessAction,
+    type SetAccessRequest as SetAccessRequest,
+    type SetAccessResponse as SetAccessResponse,
     type UpdateSeatsOverrideRequest as UpdateSeatsOverrideRequest,
     type UpdateSeatsOverrideResponse as UpdateSeatsOverrideResponse,
-    AdminTeamsListResponsesAdminTeamList as AdminTeamsListResponsesAdminTeamList,
+    type TeamListResponse as TeamListResponse,
     type TeamListParams as TeamListParams,
     type TeamAddMemberParams as TeamAddMemberParams,
     type TeamCancelSubscriptionParams as TeamCancelSubscriptionParams,
@@ -184,6 +190,7 @@ export declare namespace Admin {
     type TeamExtendTrialParams as TeamExtendTrialParams,
     type TeamGrantCreditsParams as TeamGrantCreditsParams,
     type TeamRemoveMemberParams as TeamRemoveMemberParams,
+    type TeamSetAccessParams as TeamSetAccessParams,
     type TeamUpdateSeatsOverrideParams as TeamUpdateSeatsOverrideParams,
   };
 

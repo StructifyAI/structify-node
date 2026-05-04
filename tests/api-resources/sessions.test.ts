@@ -145,7 +145,6 @@ describe('resource sessions', () => {
         description: 'description',
       },
       rerun_from: 'rerun_from',
-      selected_node_names: ['string'],
       use_node_cache: true,
     });
   });

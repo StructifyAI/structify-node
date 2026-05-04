@@ -29,7 +29,6 @@ describe('resource workflow', () => {
       use_node_cache: true,
       edited_node_name: 'edited_node_name',
       rerun_from: 'rerun_from',
-      selected_node_names: ['string'],
     });
   });
 
