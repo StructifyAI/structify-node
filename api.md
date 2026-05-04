@@ -279,11 +279,10 @@ Types:
 - <code><a href="./src/resources/admin/teams.ts">SetAccessResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">UpdateSeatsOverrideRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">UpdateSeatsOverrideResponse</a></code>
-- <code><a href="./src/resources/admin/teams.ts">TeamListResponse</a></code>
 
 Methods:
 
-- <code title="get /admin/team/list">client.admin.teams.<a href="./src/resources/admin/teams.ts">list</a>({ ...params }) -> TeamListResponse</code>
+- <code title="get /admin/team/list">client.admin.teams.<a href="./src/resources/admin/teams.ts">list</a>({ ...params }) -> AdminTeamsListResponsesAdminTeamList</code>
 - <code title="post /admin/team/add_member">client.admin.teams.<a href="./src/resources/admin/teams.ts">addMember</a>({ ...params }) -> AdminAddMemberResponse</code>
 - <code title="post /admin/team/cancel_subscription">client.admin.teams.<a href="./src/resources/admin/teams.ts">cancelSubscription</a>({ ...params }) -> CancelSubscriptionResponse</code>
 - <code title="post /admin/team/create_subscription">client.admin.teams.<a href="./src/resources/admin/teams.ts">createSubscription</a>({ ...params }) -> CreateSubscriptionResponse</code>
@@ -720,11 +719,10 @@ Types:
 - <code><a href="./src/resources/connector-catalog/connector-catalog.ts">ConnectorCatalog</a></code>
 - <code><a href="./src/resources/connector-catalog/connector-catalog.ts">ConnectorCatalogWithMethods</a></code>
 - <code><a href="./src/resources/connector-catalog/connector-catalog.ts">ConnectorCredentialField</a></code>
-- <code><a href="./src/resources/connector-catalog/connector-catalog.ts">ConnectorCatalogListResponse</a></code>
 
 Methods:
 
-- <code title="get /connector-catalog">client.connectorCatalog.<a href="./src/resources/connector-catalog/connector-catalog.ts">list</a>({ ...params }) -> ConnectorCatalogListResponse</code>
+- <code title="get /connector-catalog">client.connectorCatalog.<a href="./src/resources/connector-catalog/connector-catalog.ts">list</a>({ ...params }) -> ConnectorCatalogWithMethodsAdminTeamList</code>
 - <code title="get /connector-catalog/{slug}">client.connectorCatalog.<a href="./src/resources/connector-catalog/connector-catalog.ts">get</a>(slug) -> ConnectorCatalogWithMethods</code>
 - <code title="get /connector-catalog/{slug}/logo">client.connectorCatalog.<a href="./src/resources/connector-catalog/connector-catalog.ts">getLogo</a>(slug) -> Response</code>
 

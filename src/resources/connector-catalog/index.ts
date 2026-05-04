@@ -33,12 +33,12 @@ export {
   type AdminUploadLogoParams,
 } from './admin';
 export {
+  ConnectorCatalogWithMethodsAdminTeamList,
   ConnectorCatalogResource,
   type ConnectorAuthMethod,
   type ConnectorAuthMethodWithFields,
   type ConnectorCatalog,
   type ConnectorCatalogWithMethods,
   type ConnectorCredentialField,
-  type ConnectorCatalogListResponse,
   type ConnectorCatalogListParams,
 } from './connector-catalog';

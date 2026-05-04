@@ -76,13 +76,13 @@ export {
   type CodeInterruptGenerationParams,
 } from './code';
 export {
+  ConnectorCatalogWithMethodsAdminTeamList,
   ConnectorCatalogResource,
   type ConnectorAuthMethod,
   type ConnectorAuthMethodWithFields,
   type ConnectorCatalog,
   type ConnectorCatalogWithMethods,
   type ConnectorCredentialField,
-  type ConnectorCatalogListResponse,
   type ConnectorCatalogListParams,
 } from './connector-catalog/connector-catalog';
 export {

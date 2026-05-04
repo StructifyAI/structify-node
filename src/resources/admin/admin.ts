@@ -71,6 +71,7 @@ import {
   AdminRemoveMemberRequest,
   AdminRemoveMemberResponse,
   AdminTeamsListResponse,
+  AdminTeamsListResponsesAdminTeamList,
   CancelSubscriptionRequest,
   CancelSubscriptionResponse,
   CreateSubscriptionResponse,
@@ -91,7 +92,6 @@ import {
   TeamExtendTrialParams,
   TeamGrantCreditsParams,
   TeamListParams,
-  TeamListResponse,
   TeamRemoveMemberParams,
   TeamSetAccessParams,
   TeamUpdateSeatsOverrideParams,
@@ -143,6 +143,7 @@ export interface AdminReportCriticalParams {
 }
 
 Admin.Teams = Teams;
+Admin.AdminTeamsListResponsesAdminTeamList = AdminTeamsListResponsesAdminTeamList;
 Admin.Dataset = Dataset;
 Admin.Jobs = Jobs;
 Admin.JobListResponsesJobsList = JobListResponsesJobsList;
@@ -181,7 +182,7 @@ export declare namespace Admin {
     type SetAccessResponse as SetAccessResponse,
     type UpdateSeatsOverrideRequest as UpdateSeatsOverrideRequest,
     type UpdateSeatsOverrideResponse as UpdateSeatsOverrideResponse,
-    type TeamListResponse as TeamListResponse,
+    AdminTeamsListResponsesAdminTeamList as AdminTeamsListResponsesAdminTeamList,
     type TeamListParams as TeamListParams,
     type TeamAddMemberParams as TeamAddMemberParams,
     type TeamCancelSubscriptionParams as TeamCancelSubscriptionParams,
