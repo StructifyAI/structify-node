@@ -36,7 +36,6 @@ import {
   UpdateScopeRequest,
   UploadLogoResponse,
 } from './admin';
-import { AdminTeamList, type AdminTeamListParams } from '../../pagination';
 import { type Response } from '../../_shims/index';
 
 export class ConnectorCatalogResource extends APIResource {
@@ -48,21 +47,16 @@ export class ConnectorCatalogResource extends APIResource {
   list(
     query?: ConnectorCatalogListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<ConnectorCatalogWithMethodsAdminTeamList, ConnectorCatalogWithMethods>;
-  list(
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<ConnectorCatalogWithMethodsAdminTeamList, ConnectorCatalogWithMethods>;
+  ): Core.APIPromise<ConnectorCatalogListResponse>;
+  list(options?: Core.RequestOptions): Core.APIPromise<ConnectorCatalogListResponse>;
   list(
     query: ConnectorCatalogListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<ConnectorCatalogWithMethodsAdminTeamList, ConnectorCatalogWithMethods> {
+  ): Core.APIPromise<ConnectorCatalogListResponse> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.getAPIList('/connector-catalog', ConnectorCatalogWithMethodsAdminTeamList, {
-      query,
-      ...options,
-    });
+    return this._client.get('/connector-catalog', { query, ...options });
   }
 
   /**
@@ -80,8 +74,6 @@ export class ConnectorCatalogResource extends APIResource {
     });
   }
 }
-
-export class ConnectorCatalogWithMethodsAdminTeamList extends AdminTeamList<ConnectorCatalogWithMethods> {}
 
 export interface ConnectorAuthMethod {
   id: string;
@@ -166,7 +158,23 @@ export interface ConnectorCredentialField {
   options?: unknown;
 }
 
-export interface ConnectorCatalogListParams extends AdminTeamListParams {
+export interface ConnectorCatalogListResponse {
+  category_counts: Array<ConnectorCatalogListResponse.CategoryCount>;
+
+  items: Array<ConnectorCatalogWithMethods>;
+
+  total_count: number;
+}
+
+export namespace ConnectorCatalogListResponse {
+  export interface CategoryCount {
+    category: string;
+
+    count: number;
+  }
+}
+
+export interface ConnectorCatalogListParams {
   /**
    * Optional category filter (exact match against any element in the categories
    * array)
@@ -178,6 +186,10 @@ export interface ConnectorCatalogListParams extends AdminTeamListParams {
    */
   include_inactive?: boolean;
 
+  limit?: number;
+
+  offset?: number;
+
   /**
    * Optional search query to filter by name, slug, or category (case-insensitive
    * substring match)
@@ -185,7 +197,6 @@ export interface ConnectorCatalogListParams extends AdminTeamListParams {
   search?: string | null;
 }
 
-ConnectorCatalogResource.ConnectorCatalogWithMethodsAdminTeamList = ConnectorCatalogWithMethodsAdminTeamList;
 ConnectorCatalogResource.Admin = Admin;
 
 export declare namespace ConnectorCatalogResource {
@@ -195,7 +206,7 @@ export declare namespace ConnectorCatalogResource {
     type ConnectorCatalog as ConnectorCatalog,
     type ConnectorCatalogWithMethods as ConnectorCatalogWithMethods,
     type ConnectorCredentialField as ConnectorCredentialField,
-    ConnectorCatalogWithMethodsAdminTeamList as ConnectorCatalogWithMethodsAdminTeamList,
+    type ConnectorCatalogListResponse as ConnectorCatalogListResponse,
     type ConnectorCatalogListParams as ConnectorCatalogListParams,
   };
 

@@ -70,6 +70,10 @@ export class Teams extends APIResource {
     return this._client.get(`/team/${teamId}`, options);
   }
 
+  getSubscription(teamId: string, options?: Core.RequestOptions): Core.APIPromise<TeamSubscriptionStatus> {
+    return this._client.get(`/team/${teamId}/subscription`, options);
+  }
+
   invitationDetails(
     token: string,
     options?: Core.RequestOptions,
@@ -150,6 +154,11 @@ export namespace AddMemberResponse {
     team_id: string;
 
     value: Core.Uploadable;
+
+    /**
+     * Optional auto-revoke timestamp. Null means the membership has no cutoff.
+     */
+    expires_at?: string | null;
 
     invitation_expires_at?: string | null;
 
@@ -301,7 +310,7 @@ export namespace Team {
   }
 }
 
-export type TeamRole = 'read_only' | 'member' | 'admin' | 'owner';
+export type TeamRole = 'read_only' | 'member' | 'admin' | 'owner' | 'super_admin';
 
 export interface TeamSubscriptionStatus {
   has_active_subscription: boolean;

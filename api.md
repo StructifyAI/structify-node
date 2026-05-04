@@ -202,6 +202,7 @@ Methods:
 - <code title="post /team/{team_id}/projects">client.teams.<a href="./src/resources/teams.ts">createProject</a>(teamId, { ...params }) -> Project</code>
 - <code title="get /team/{team_id}/credits/usage">client.teams.<a href="./src/resources/teams.ts">creditsUsage</a>(teamId, { ...params }) -> CreditsUsageResponse</code>
 - <code title="get /team/{team_id}">client.teams.<a href="./src/resources/teams.ts">get</a>(teamId) -> GetTeamResponse</code>
+- <code title="get /team/{team_id}/subscription">client.teams.<a href="./src/resources/teams.ts">getSubscription</a>(teamId) -> TeamSubscriptionStatus</code>
 - <code title="get /team/invitations/details/{token}">client.teams.<a href="./src/resources/teams.ts">invitationDetails</a>(token) -> InvitationDetailsResponse</code>
 - <code title="get /team/{team_id}/members">client.teams.<a href="./src/resources/teams.ts">listMembers</a>(teamId) -> ListMembersResponse</code>
 - <code title="get /team/{team_id}/projects">client.teams.<a href="./src/resources/teams.ts">listProjects</a>(teamId) -> ListProjectsResponse</code>
@@ -274,12 +275,16 @@ Types:
 - <code><a href="./src/resources/admin/teams.ts">ExtendTrialResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">GrantCreditsRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">GrantCreditsResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">SetAccessAction</a></code>
+- <code><a href="./src/resources/admin/teams.ts">SetAccessRequest</a></code>
+- <code><a href="./src/resources/admin/teams.ts">SetAccessResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">UpdateSeatsOverrideRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">UpdateSeatsOverrideResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">TeamListResponse</a></code>
 
 Methods:
 
-- <code title="get /admin/team/list">client.admin.teams.<a href="./src/resources/admin/teams.ts">list</a>({ ...params }) -> AdminTeamsListResponsesAdminTeamList</code>
+- <code title="get /admin/team/list">client.admin.teams.<a href="./src/resources/admin/teams.ts">list</a>({ ...params }) -> TeamListResponse</code>
 - <code title="post /admin/team/add_member">client.admin.teams.<a href="./src/resources/admin/teams.ts">addMember</a>({ ...params }) -> AdminAddMemberResponse</code>
 - <code title="post /admin/team/cancel_subscription">client.admin.teams.<a href="./src/resources/admin/teams.ts">cancelSubscription</a>({ ...params }) -> CancelSubscriptionResponse</code>
 - <code title="post /admin/team/create_subscription">client.admin.teams.<a href="./src/resources/admin/teams.ts">createSubscription</a>({ ...params }) -> CreateSubscriptionResponse</code>
@@ -288,6 +293,7 @@ Methods:
 - <code title="post /admin/team/grant_credits">client.admin.teams.<a href="./src/resources/admin/teams.ts">grantCredits</a>({ ...params }) -> GrantCreditsResponse</code>
 - <code title="get /admin/team/{team_id}/members">client.admin.teams.<a href="./src/resources/admin/teams.ts">listMembers</a>(teamId) -> AdminListMembersResponse</code>
 - <code title="post /admin/team/remove_member">client.admin.teams.<a href="./src/resources/admin/teams.ts">removeMember</a>({ ...params }) -> AdminRemoveMemberResponse</code>
+- <code title="post /admin/team/set_access">client.admin.teams.<a href="./src/resources/admin/teams.ts">setAccess</a>({ ...params }) -> SetAccessResponse</code>
 - <code title="post /admin/team/update_seats_override">client.admin.teams.<a href="./src/resources/admin/teams.ts">updateSeatsOverride</a>({ ...params }) -> UpdateSeatsOverrideResponse</code>
 
 ## Dataset
@@ -609,6 +615,25 @@ Methods:
 
 - <code title="post /webhook/trigger">client.webhook.<a href="./src/resources/webhook.ts">trigger</a>({ ...params }) -> WebhookTriggerResponse</code>
 
+# Analytics
+
+Types:
+
+- <code><a href="./src/resources/analytics.ts">CreateTrackerRequest</a></code>
+- <code><a href="./src/resources/analytics.ts">CreateTrackerResponse</a></code>
+- <code><a href="./src/resources/analytics.ts">Event</a></code>
+- <code><a href="./src/resources/analytics.ts">ListEventsResponse</a></code>
+- <code><a href="./src/resources/analytics.ts">ListTrackersQuery</a></code>
+- <code><a href="./src/resources/analytics.ts">ListTrackersResponse</a></code>
+- <code><a href="./src/resources/analytics.ts">Tracker</a></code>
+
+Methods:
+
+- <code title="post /analytics/tracker">client.analytics.<a href="./src/resources/analytics.ts">createTracker</a>({ ...params }) -> CreateTrackerResponse</code>
+- <code title="get /analytics/{tracker_id}/events">client.analytics.<a href="./src/resources/analytics.ts">listEvents</a>(trackerId, { ...params }) -> ListEventsResponse</code>
+- <code title="get /analytics/tracker">client.analytics.<a href="./src/resources/analytics.ts">listTrackers</a>({ ...params }) -> ListTrackersResponse</code>
+- <code title="delete /analytics/tracker/{tracker_id}">client.analytics.<a href="./src/resources/analytics.ts">revokeTracker</a>(trackerId) -> void</code>
+
 # Workflow
 
 Types:
@@ -715,10 +740,11 @@ Types:
 - <code><a href="./src/resources/connector-catalog/connector-catalog.ts">ConnectorCatalog</a></code>
 - <code><a href="./src/resources/connector-catalog/connector-catalog.ts">ConnectorCatalogWithMethods</a></code>
 - <code><a href="./src/resources/connector-catalog/connector-catalog.ts">ConnectorCredentialField</a></code>
+- <code><a href="./src/resources/connector-catalog/connector-catalog.ts">ConnectorCatalogListResponse</a></code>
 
 Methods:
 
-- <code title="get /connector-catalog">client.connectorCatalog.<a href="./src/resources/connector-catalog/connector-catalog.ts">list</a>({ ...params }) -> ConnectorCatalogWithMethodsAdminTeamList</code>
+- <code title="get /connector-catalog">client.connectorCatalog.<a href="./src/resources/connector-catalog/connector-catalog.ts">list</a>({ ...params }) -> ConnectorCatalogListResponse</code>
 - <code title="get /connector-catalog/{slug}">client.connectorCatalog.<a href="./src/resources/connector-catalog/connector-catalog.ts">get</a>(slug) -> ConnectorCatalogWithMethods</code>
 - <code title="get /connector-catalog/{slug}/logo">client.connectorCatalog.<a href="./src/resources/connector-catalog/connector-catalog.ts">getLogo</a>(slug) -> Response</code>
 

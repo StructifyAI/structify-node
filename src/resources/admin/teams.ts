@@ -4,7 +4,6 @@ import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as TeamsAPI from '../teams';
-import { AdminTeamList, type AdminTeamListParams } from '../../pagination';
 
 /**
  * Admin endpoints
@@ -15,24 +14,16 @@ export class Teams extends APIResource {
    * grants, and member counts. Supports optional pagination via limit, offset, and
    * search query parameters.
    */
-  list(
-    query?: TeamListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<AdminTeamsListResponsesAdminTeamList, AdminTeamsListResponse>;
-  list(
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<AdminTeamsListResponsesAdminTeamList, AdminTeamsListResponse>;
+  list(query?: TeamListParams, options?: Core.RequestOptions): Core.APIPromise<TeamListResponse>;
+  list(options?: Core.RequestOptions): Core.APIPromise<TeamListResponse>;
   list(
     query: TeamListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<AdminTeamsListResponsesAdminTeamList, AdminTeamsListResponse> {
+  ): Core.APIPromise<TeamListResponse> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.getAPIList('/admin/team/list', AdminTeamsListResponsesAdminTeamList, {
-      query,
-      ...options,
-    });
+    return this._client.get('/admin/team/list', { query, ...options });
   }
 
   addMember(
@@ -88,6 +79,14 @@ export class Teams extends APIResource {
     return this._client.post('/admin/team/remove_member', { body, ...options });
   }
 
+  /**
+   * Idempotent: re-granting resets `expires_at`. 400 if the caller already has a
+   * regular live membership on the team.
+   */
+  setAccess(body: TeamSetAccessParams, options?: Core.RequestOptions): Core.APIPromise<SetAccessResponse> {
+    return this._client.post('/admin/team/set_access', { body, ...options });
+  }
+
   updateSeatsOverride(
     body: TeamUpdateSeatsOverrideParams,
     options?: Core.RequestOptions,
@@ -95,8 +94,6 @@ export class Teams extends APIResource {
     return this._client.post('/admin/team/update_seats_override', { body, ...options });
   }
 }
-
-export class AdminTeamsListResponsesAdminTeamList extends AdminTeamList<AdminTeamsListResponse> {}
 
 export interface AdminAddMemberRequest {
   email: string;
@@ -129,6 +126,11 @@ export namespace AdminAddMemberResponse {
     team_id: string;
 
     value: Core.Uploadable;
+
+    /**
+     * Optional auto-revoke timestamp. Null means the membership has no cutoff.
+     */
+    expires_at?: string | null;
 
     invitation_expires_at?: string | null;
 
@@ -308,6 +310,28 @@ export interface GrantCreditsResponse {
   team_id: string;
 }
 
+export type SetAccessAction = 'grant' | 'revoke';
+
+export interface SetAccessRequest {
+  action: SetAccessAction;
+
+  team_id: string;
+
+  /**
+   * Cutoff for the SuperAdmin membership. `None` means no expiry — useful for
+   * permanent admin staffing. Ignored when `action = Revoke`.
+   */
+  expires_at?: string | null;
+}
+
+export interface SetAccessResponse {
+  action: SetAccessAction;
+
+  expires_at?: string | null;
+
+  membership_id?: string | null;
+}
+
 export interface UpdateSeatsOverrideRequest {
   team_id: string;
 
@@ -320,7 +344,17 @@ export interface UpdateSeatsOverrideResponse {
   seats_override?: number | null;
 }
 
-export interface TeamListParams extends AdminTeamListParams {
+export interface TeamListResponse {
+  items: Array<AdminTeamsListResponse>;
+
+  total_count: number;
+}
+
+export interface TeamListParams {
+  limit?: number | null;
+
+  offset?: number | null;
+
   search?: string | null;
 }
 
@@ -387,13 +421,23 @@ export interface TeamRemoveMemberParams {
   user_id: string;
 }
 
+export interface TeamSetAccessParams {
+  action: SetAccessAction;
+
+  team_id: string;
+
+  /**
+   * Cutoff for the SuperAdmin membership. `None` means no expiry — useful for
+   * permanent admin staffing. Ignored when `action = Revoke`.
+   */
+  expires_at?: string | null;
+}
+
 export interface TeamUpdateSeatsOverrideParams {
   team_id: string;
 
   seats_override?: number | null;
 }
-
-Teams.AdminTeamsListResponsesAdminTeamList = AdminTeamsListResponsesAdminTeamList;
 
 export declare namespace Teams {
   export {
@@ -413,9 +457,12 @@ export declare namespace Teams {
     type ExtendTrialResponse as ExtendTrialResponse,
     type GrantCreditsRequest as GrantCreditsRequest,
     type GrantCreditsResponse as GrantCreditsResponse,
+    type SetAccessAction as SetAccessAction,
+    type SetAccessRequest as SetAccessRequest,
+    type SetAccessResponse as SetAccessResponse,
     type UpdateSeatsOverrideRequest as UpdateSeatsOverrideRequest,
     type UpdateSeatsOverrideResponse as UpdateSeatsOverrideResponse,
-    AdminTeamsListResponsesAdminTeamList as AdminTeamsListResponsesAdminTeamList,
+    type TeamListResponse as TeamListResponse,
     type TeamListParams as TeamListParams,
     type TeamAddMemberParams as TeamAddMemberParams,
     type TeamCancelSubscriptionParams as TeamCancelSubscriptionParams,
@@ -424,6 +471,7 @@ export declare namespace Teams {
     type TeamExtendTrialParams as TeamExtendTrialParams,
     type TeamGrantCreditsParams as TeamGrantCreditsParams,
     type TeamRemoveMemberParams as TeamRemoveMemberParams,
+    type TeamSetAccessParams as TeamSetAccessParams,
     type TeamUpdateSeatsOverrideParams as TeamUpdateSeatsOverrideParams,
   };
 }
