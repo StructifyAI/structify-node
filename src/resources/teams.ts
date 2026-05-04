@@ -70,6 +70,10 @@ export class Teams extends APIResource {
     return this._client.get(`/team/${teamId}`, options);
   }
 
+  getSubscription(teamId: string, options?: Core.RequestOptions): Core.APIPromise<TeamSubscriptionStatus> {
+    return this._client.get(`/team/${teamId}/subscription`, options);
+  }
+
   invitationDetails(
     token: string,
     options?: Core.RequestOptions,
