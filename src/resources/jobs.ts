@@ -30,30 +30,12 @@ export class Jobs extends APIResource {
     return this._client.getAPIList('/jobs/list', JobListResponsesJobsList, { query, ...options });
   }
 
-  /**
-   * You successfully cancelled a job.
-   */
-  cancel(uuid: string, options?: Core.RequestOptions): Core.APIPromise<JobCancelResponse> {
-    return this._client.post(`/jobs/cancel/${uuid}`, options);
-  }
-
   get(jobId: string, options?: Core.RequestOptions): Core.APIPromise<JobGetResponse> {
     return this._client.get(`/jobs/get/${jobId}`, options);
   }
 
   getEvents(jobId: string, options?: Core.RequestOptions): Core.APIPromise<GetJobEventsResponse> {
     return this._client.get(`/jobs/${jobId}/events`, options);
-  }
-
-  /**
-   * One example use case is every single day check the news websites and pull them
-   * into my dataset.
-   */
-  schedule(options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.post('/jobs/schedule', {
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
   }
 
   /**
@@ -227,64 +209,6 @@ export namespace JobListResponse {
       }
     }
   }
-}
-
-export interface JobCancelResponse {
-  id: string;
-
-  created_at: string;
-
-  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | 'DatahubIngestion';
-
-  max_steps_without_save: number;
-
-  membership_id: string;
-
-  status: 'Queued' | 'Running' | 'Completed' | 'Failed';
-
-  updated_at: string;
-
-  use_proxy: boolean;
-
-  user_id: string;
-
-  cached_from_job_id?: string | null;
-
-  dataset_id?: string | null;
-
-  exploration_run_id?: string | null;
-
-  max_errors?: number | null;
-
-  max_execution_time_secs?: number | null;
-
-  max_total_steps?: number | null;
-
-  /**
-   * A message about the status of the job at completion
-   */
-  message?: string | null;
-
-  node_id?: string | null;
-
-  /**
-   * Proto for JobInput
-   */
-  parameters?: Core.Uploadable | null;
-
-  /**
-   * A reason for the job's existence
-   */
-  reason?: string | null;
-
-  /**
-   * What time did the job start running?
-   */
-  run_started_time?: string | null;
-
-  run_time_milliseconds?: number | null;
-
-  seeded_kg_search_term?: string | null;
 }
 
 export interface JobGetResponse {
@@ -657,7 +581,6 @@ export declare namespace Jobs {
   export {
     type GetJobEventsResponse as GetJobEventsResponse,
     type JobListResponse as JobListResponse,
-    type JobCancelResponse as JobCancelResponse,
     type JobGetResponse as JobGetResponse,
     type JobStatusResponse as JobStatusResponse,
     JobListResponsesJobsList as JobListResponsesJobsList,

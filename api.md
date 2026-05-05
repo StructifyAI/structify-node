@@ -465,17 +465,14 @@ Types:
 
 - <code><a href="./src/resources/jobs.ts">GetJobEventsResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobListResponse</a></code>
-- <code><a href="./src/resources/jobs.ts">JobCancelResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobGetResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobStatusResponse</a></code>
 
 Methods:
 
 - <code title="get /jobs/list">client.jobs.<a href="./src/resources/jobs.ts">list</a>({ ...params }) -> JobListResponsesJobsList</code>
-- <code title="post /jobs/cancel/{uuid}">client.jobs.<a href="./src/resources/jobs.ts">cancel</a>(uuid) -> JobCancelResponse</code>
 - <code title="get /jobs/get/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">get</a>(jobId) -> JobGetResponse</code>
 - <code title="get /jobs/{job_id}/events">client.jobs.<a href="./src/resources/jobs.ts">getEvents</a>(jobId) -> GetJobEventsResponse</code>
-- <code title="post /jobs/schedule">client.jobs.<a href="./src/resources/jobs.ts">schedule</a>() -> void</code>
 - <code title="post /jobs/status_aggregated">client.jobs.<a href="./src/resources/jobs.ts">status</a>({ ...params }) -> JobStatusResponse</code>
 
 # Match
