@@ -182,7 +182,6 @@ import {
 } from './resources/entities';
 import {
   GetJobEventsResponse,
-  JobCancelResponse,
   JobGetResponse,
   JobListParams,
   JobListResponse,
@@ -1083,7 +1082,6 @@ export declare namespace Structify {
     Jobs as Jobs,
     type GetJobEventsResponse as GetJobEventsResponse,
     type JobListResponse as JobListResponse,
-    type JobCancelResponse as JobCancelResponse,
     type JobGetResponse as JobGetResponse,
     type JobStatusResponse as JobStatusResponse,
     JobListResponsesJobsList as JobListResponsesJobsList,

@@ -238,7 +238,6 @@ export {
   Jobs,
   type GetJobEventsResponse,
   type JobListResponse,
-  type JobCancelResponse,
   type JobGetResponse,
   type JobStatusResponse,
   type JobListParams,
