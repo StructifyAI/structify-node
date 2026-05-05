@@ -1058,20 +1058,15 @@ export type ConnectorListStoresResponse = { [key: string]: LlmInformationStore }
 
 export type ConnectorListWithSnippetsResponse = Array<ConnectorWithSnippets>;
 
-export interface ConnectorSearchTablesResponse {
-  ranked_results: Array<ConnectorSearchTablesResponse.RankedResult>;
-
-  raw_results: Array<ConnectorSearchTablesResponse.RawResult>;
-
-  rerank_scores: Array<ConnectorSearchTablesResponse.RerankScore>;
-}
+export type ConnectorSearchTablesResponse =
+  Array<ConnectorSearchTablesResponse.ConnectorSearchTablesResponseItem>;
 
 export namespace ConnectorSearchTablesResponse {
   /**
    * Result struct for connector table search
    */
-  export interface RankedResult {
-    columns: Array<RankedResult.Column>;
+  export interface ConnectorSearchTablesResponseItem {
+    columns: Array<ConnectorSearchTablesResponseItem.Column>;
 
     database_name: string;
 
@@ -1085,10 +1080,10 @@ export namespace ConnectorSearchTablesResponse {
     /**
      * Represents a table (for relational databases) or resource (for APIs)
      */
-    table: RankedResult.Table;
+    table: ConnectorSearchTablesResponseItem.Table;
   }
 
-  export namespace RankedResult {
+  export namespace ConnectorSearchTablesResponseItem {
     /**
      * Represents a column in a table or API resource
      */
@@ -1166,115 +1161,6 @@ export namespace ConnectorSearchTablesResponse {
         notes?: string | null;
       }
     }
-  }
-
-  /**
-   * Result struct for connector table search
-   */
-  export interface RawResult {
-    columns: Array<RawResult.Column>;
-
-    database_name: string;
-
-    schema_name: string;
-
-    /**
-     * Search relevance score (0 = exact match, higher = less relevant)
-     */
-    score: number;
-
-    /**
-     * Represents a table (for relational databases) or resource (for APIs)
-     */
-    table: RawResult.Table;
-  }
-
-  export namespace RawResult {
-    /**
-     * Represents a column in a table or API resource
-     */
-    export interface Column {
-      id: string;
-
-      /**
-       * Name of the column
-       */
-      name: string;
-
-      /**
-       * SQL type of the column (e.g., "VARCHAR(255)", "INTEGER") or API field type
-       */
-      type: string;
-
-      /**
-       * Additional notes about the column
-       */
-      notes?: string | null;
-    }
-
-    /**
-     * Represents a table (for relational databases) or resource (for APIs)
-     */
-    export interface Table {
-      id: string;
-
-      /**
-       * List of columns in this table/resource
-       */
-      columns: Array<Table.Column>;
-
-      /**
-       * Name of the table or resource
-       */
-      name: string;
-
-      /**
-       * Optional description
-       */
-      description?: string | null;
-
-      /**
-       * API endpoint (None for relational DB tables, Some for API resources)
-       */
-      endpoint?: string | null;
-
-      /**
-       * Optional notes
-       */
-      notes?: string | null;
-    }
-
-    export namespace Table {
-      /**
-       * Represents a column in a table or API resource
-       */
-      export interface Column {
-        id: string;
-
-        /**
-         * Name of the column
-         */
-        name: string;
-
-        /**
-         * SQL type of the column (e.g., "VARCHAR(255)", "INTEGER") or API field type
-         */
-        type: string;
-
-        /**
-         * Additional notes about the column
-         */
-        notes?: string | null;
-      }
-    }
-  }
-
-  export interface RerankScore {
-    index: number;
-
-    relevance_score: number;
-
-    text?: string | null;
   }
 }
 
