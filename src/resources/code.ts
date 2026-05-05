@@ -51,6 +51,8 @@ export interface ApplyManualEditRequest {
   code: string;
 
   filename: string;
+
+  run_pipeline?: boolean;
 }
 
 export interface GenerateCodeRequest {
@@ -116,6 +118,8 @@ export interface CodeApplyManualEditParams {
   code: string;
 
   filename: string;
+
+  run_pipeline?: boolean;
 }
 
 export interface CodeGenerateCodeParams {
