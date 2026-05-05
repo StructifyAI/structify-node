@@ -27,6 +27,7 @@ describe('resource code', () => {
     const response = await client.code.applyManualEdit('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       code: 'code',
       filename: 'filename',
+      run_pipeline: true,
     });
   });
 

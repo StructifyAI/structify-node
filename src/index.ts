@@ -6,8 +6,6 @@ import * as Core from './core';
 import * as Errors from './error';
 import * as Pagination from './pagination';
 import {
-  type AnalyticsEventsParams,
-  AnalyticsEventsResponse,
   type JobsListParams,
   JobsListResponse,
   type ListConnectorCatalogParams,
@@ -35,8 +33,6 @@ import {
   AdminIssueFoundResponse,
   Chat,
   ChatAddCollaboratorParams,
-  ChatAddGitCommitParams,
-  ChatAddGitCommitResponse,
   ChatAdminIssueFoundParams,
   ChatCopyParams,
   ChatCreateChatFromFilesParams,
@@ -45,7 +41,6 @@ import {
   ChatDeleteInputFileResponse,
   ChatDependency,
   ChatEvent,
-  ChatGetGitCommitResponse,
   ChatGetPartialChatsResponse,
   ChatGetSessionTimelineResponse,
   ChatGrantAdminOverrideParams,
@@ -857,12 +852,6 @@ Structify.Nango = Nango;
 export declare namespace Structify {
   export type RequestOptions = Core.RequestOptions;
 
-  export import AnalyticsEvents = Pagination.AnalyticsEvents;
-  export {
-    type AnalyticsEventsParams as AnalyticsEventsParams,
-    type AnalyticsEventsResponse as AnalyticsEventsResponse,
-  };
-
   export import JobsList = Pagination.JobsList;
   export { type JobsListParams as JobsListParams, type JobsListResponse as JobsListResponse };
 
@@ -936,9 +925,7 @@ export declare namespace Structify {
     type UpdateChatSessionRequest as UpdateChatSessionRequest,
     type UpdateVisibilityRequest as UpdateVisibilityRequest,
     type UpdateVisibilityResponse as UpdateVisibilityResponse,
-    type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
     type ChatDeleteInputFileResponse as ChatDeleteInputFileResponse,
-    type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
     type ChatGetPartialChatsResponse as ChatGetPartialChatsResponse,
     type ChatGetSessionTimelineResponse as ChatGetSessionTimelineResponse,
     type ChatListInputFilesResponse as ChatListInputFilesResponse,
@@ -948,7 +935,6 @@ export declare namespace Structify {
     type ChatPendingWikiEditsResponse as ChatPendingWikiEditsResponse,
     type ChatRevertToCommitResponse as ChatRevertToCommitResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
-    type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAdminIssueFoundParams as ChatAdminIssueFoundParams,
     type ChatCopyParams as ChatCopyParams,
     type ChatCreateChatFromFilesParams as ChatCreateChatFromFilesParams,

@@ -113,9 +113,7 @@ Types:
 - <code><a href="./src/resources/chat.ts">UpdateChatSessionRequest</a></code>
 - <code><a href="./src/resources/chat.ts">UpdateVisibilityRequest</a></code>
 - <code><a href="./src/resources/chat.ts">UpdateVisibilityResponse</a></code>
-- <code><a href="./src/resources/chat.ts">ChatAddGitCommitResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatDeleteInputFileResponse</a></code>
-- <code><a href="./src/resources/chat.ts">ChatGetGitCommitResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetPartialChatsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetSessionTimelineResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatListInputFilesResponse</a></code>
@@ -128,7 +126,6 @@ Types:
 Methods:
 
 - <code title="post /chat/sessions/{chat_id}/collaborators">client.chat.<a href="./src/resources/chat.ts">addCollaborator</a>(chatId, { ...params }) -> void</code>
-- <code title="post /chat/sessions/{session_id}/commits">client.chat.<a href="./src/resources/chat.ts">addGitCommit</a>(sessionId, { ...params }) -> ChatAddGitCommitResponse</code>
 - <code title="post /chat/sessions/{chat_id}/admin/issue_found">client.chat.<a href="./src/resources/chat.ts">adminIssueFound</a>(chatId, { ...params }) -> AdminIssueFoundResponse</code>
 - <code title="post /chat/copy">client.chat.<a href="./src/resources/chat.ts">copy</a>({ ...params }) -> ChatSessionWithMessages</code>
 - <code title="post /chat/create_from_files">client.chat.<a href="./src/resources/chat.ts">createChatFromFiles</a>({ ...params }) -> ChatSessionWithMessages</code>
@@ -136,7 +133,6 @@ Methods:
 - <code title="post /chat/input-files/delete/{chat_id}">client.chat.<a href="./src/resources/chat.ts">deleteInputFile</a>(chatId, { ...params }) -> ChatDeleteInputFileResponse</code>
 - <code title="delete /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">deleteSession</a>(sessionId) -> DeleteChatSessionResponse</code>
 - <code title="get /chat/sessions/{session_id}/dependencies">client.chat.<a href="./src/resources/chat.ts">getDependencies</a>(sessionId) -> GetDependenciesResponse</code>
-- <code title="get /chat/sessions/{chat_id}/commits/{commit_hash}">client.chat.<a href="./src/resources/chat.ts">getGitCommit</a>(chatId, commitHash) -> ChatGetGitCommitResponse</code>
 - <code title="get /chat/{chat_session_id}/partial-chats">client.chat.<a href="./src/resources/chat.ts">getPartialChats</a>(chatSessionId) -> ChatGetPartialChatsResponse</code>
 - <code title="get /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">getSession</a>(sessionId) -> GetChatSessionResponse</code>
 - <code title="get /chat/sessions/{session_id}/timeline">client.chat.<a href="./src/resources/chat.ts">getSessionTimeline</a>(sessionId) -> ChatGetSessionTimelineResponse</code>

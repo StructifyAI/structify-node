@@ -23,17 +23,6 @@ export class Chat extends APIResource {
   }
 
   /**
-   * Add a git commit to a chat session
-   */
-  addGitCommit(
-    sessionId: string,
-    body: ChatAddGitCommitParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ChatAddGitCommitResponse> {
-    return this._client.post(`/chat/sessions/${sessionId}/commits`, { body, ...options });
-  }
-
-  /**
    * Add an IssueFound tool call as an admin-only auto-review message
    */
   adminIssueFound(
@@ -101,17 +90,6 @@ export class Chat extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<GetDependenciesResponse> {
     return this._client.get(`/chat/sessions/${sessionId}/dependencies`, options);
-  }
-
-  /**
-   * Get a specific git commit by its hash for a chat session
-   */
-  getGitCommit(
-    chatId: string,
-    commitHash: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ChatGetGitCommitResponse> {
-    return this._client.get(`/chat/sessions/${chatId}/commits/${commitHash}`, options);
   }
 
   /**
@@ -695,8 +673,6 @@ export type ChatSessionRole = 'viewer' | 'editor' | 'owner';
 export interface ChatSessionWithMessages {
   id: string;
 
-  commits: Array<ChatSessionWithMessages.Commit>;
-
   created_at: string;
 
   ephemeral: boolean;
@@ -743,16 +719,6 @@ export interface ChatSessionWithMessages {
 }
 
 export namespace ChatSessionWithMessages {
-  export interface Commit {
-    id: string;
-
-    chat_session_id: string;
-
-    commit_hash: string;
-
-    created_at: string;
-  }
-
   export interface Message {
     id: string;
 
@@ -939,8 +905,6 @@ export namespace GetChatSessionResponse {
   export interface Session {
     id: string;
 
-    commits: Array<Session.Commit>;
-
     created_at: string;
 
     ephemeral: boolean;
@@ -991,16 +955,6 @@ export namespace GetChatSessionResponse {
   }
 
   export namespace Session {
-    export interface Commit {
-      id: string;
-
-      chat_session_id: string;
-
-      commit_hash: string;
-
-      created_at: string;
-    }
-
     /**
      * Model-layer message representation - streamlined for LLM transmission
      */
@@ -1842,46 +1796,8 @@ export interface UpdateVisibilityResponse {
   visibility: ChatVisibility;
 }
 
-/**
- * Response structure for adding a git commit
- */
-export interface ChatAddGitCommitResponse {
-  commit: ChatAddGitCommitResponse.Commit;
-}
-
-export namespace ChatAddGitCommitResponse {
-  export interface Commit {
-    id: string;
-
-    chat_session_id: string;
-
-    commit_hash: string;
-
-    created_at: string;
-  }
-}
-
 export interface ChatDeleteInputFileResponse {
   files_deleted: number;
-}
-
-/**
- * Response structure for getting a git commit by hash
- */
-export interface ChatGetGitCommitResponse {
-  commit: ChatGetGitCommitResponse.Commit;
-}
-
-export namespace ChatGetGitCommitResponse {
-  export interface Commit {
-    id: string;
-
-    chat_session_id: string;
-
-    commit_hash: string;
-
-    created_at: string;
-  }
 }
 
 export type ChatGetPartialChatsResponse = Array<ChatGetPartialChatsResponse.ChatGetPartialChatsResponseItem>;
@@ -1900,10 +1816,7 @@ export namespace ChatGetPartialChatsResponse {
  * Response structure for getting session timeline
  */
 export interface ChatGetSessionTimelineResponse {
-  /**
-   * Chronologically sorted list of messages and commits
-   */
-  timeline: Array<ChatGetSessionTimelineResponse.Message | ChatGetSessionTimelineResponse.GitCommit>;
+  messages: Array<ChatGetSessionTimelineResponse.Message>;
 }
 
 export namespace ChatGetSessionTimelineResponse {
@@ -1919,8 +1832,6 @@ export namespace ChatGetSessionTimelineResponse {
     role: string;
 
     timestamp: string;
-
-    type: 'Message';
 
     cache_creation_tokens?: number | null;
 
@@ -1962,18 +1873,6 @@ export namespace ChatGetSessionTimelineResponse {
 
       model?: string;
     }
-  }
-
-  export interface GitCommit {
-    id: string;
-
-    chat_session_id: string;
-
-    commit_hash: string;
-
-    created_at: string;
-
-    type: 'GitCommit';
   }
 }
 
@@ -2028,13 +1927,6 @@ export interface ChatAddCollaboratorParams {
   email: string;
 
   role: ChatSessionRole;
-}
-
-export interface ChatAddGitCommitParams {
-  /**
-   * The git commit hash (must be 40 characters)
-   */
-  commit_hash: string;
 }
 
 export interface ChatAdminIssueFoundParams {
@@ -2256,9 +2148,7 @@ export declare namespace Chat {
     type UpdateChatSessionRequest as UpdateChatSessionRequest,
     type UpdateVisibilityRequest as UpdateVisibilityRequest,
     type UpdateVisibilityResponse as UpdateVisibilityResponse,
-    type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
     type ChatDeleteInputFileResponse as ChatDeleteInputFileResponse,
-    type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
     type ChatGetPartialChatsResponse as ChatGetPartialChatsResponse,
     type ChatGetSessionTimelineResponse as ChatGetSessionTimelineResponse,
     type ChatListInputFilesResponse as ChatListInputFilesResponse,
@@ -2268,7 +2158,6 @@ export declare namespace Chat {
     type ChatPendingWikiEditsResponse as ChatPendingWikiEditsResponse,
     type ChatRevertToCommitResponse as ChatRevertToCommitResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
-    type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAdminIssueFoundParams as ChatAdminIssueFoundParams,
     type ChatCopyParams as ChatCopyParams,
     type ChatCreateChatFromFilesParams as ChatCreateChatFromFilesParams,
