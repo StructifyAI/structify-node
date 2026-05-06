@@ -497,6 +497,7 @@ Types:
 - <code><a href="./src/resources/sessions.ts">DashboardComponent</a></code>
 - <code><a href="./src/resources/sessions.ts">DashboardPage</a></code>
 - <code><a href="./src/resources/sessions.ts">DashboardSpec</a></code>
+- <code><a href="./src/resources/sessions.ts">DeadCodeFinding</a></code>
 - <code><a href="./src/resources/sessions.ts">EdgeSpec</a></code>
 - <code><a href="./src/resources/sessions.ts">EditNodeOutputRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">FinalizeDagRequest</a></code>
@@ -508,6 +509,7 @@ Types:
 - <code><a href="./src/resources/sessions.ts">NodeSpec</a></code>
 - <code><a href="./src/resources/sessions.ts">ParquetEdit</a></code>
 - <code><a href="./src/resources/sessions.ts">RequestConfirmationRequest</a></code>
+- <code><a href="./src/resources/sessions.ts">TriggerReviewRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">TriggerReviewResponse</a></code>
 - <code><a href="./src/resources/sessions.ts">UpdateWorkflowNodeProgressRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">UpdateWorkflowNodeRequest</a></code>
@@ -554,7 +556,7 @@ Methods:
 - <code title="post /sessions/{session_id}/kill_jobs">client.sessions.<a href="./src/resources/sessions.ts">killJobs</a>(sessionId, { ...params }) -> SessionKillJobsResponse</code>
 - <code title="patch /sessions/{session_id}/error">client.sessions.<a href="./src/resources/sessions.ts">markErrored</a>(sessionId, { ...params }) -> WorkflowSession</code>
 - <code title="post /sessions/nodes/{node_id}/request_confirmation">client.sessions.<a href="./src/resources/sessions.ts">requestConfirmation</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
-- <code title="post /sessions/{session_id}/trigger_review">client.sessions.<a href="./src/resources/sessions.ts">triggerReview</a>(sessionId) -> TriggerReviewResponse</code>
+- <code title="post /sessions/{session_id}/trigger_review">client.sessions.<a href="./src/resources/sessions.ts">triggerReview</a>(sessionId, { ...params }) -> TriggerReviewResponse</code>
 - <code title="patch /sessions/nodes/{node_id}">client.sessions.<a href="./src/resources/sessions.ts">updateNode</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 - <code title="patch /sessions/nodes/{node_id}/progress">client.sessions.<a href="./src/resources/sessions.ts">updateNodeProgress</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 - <code title="post /sessions/{session_id}/dashboard_layout">client.sessions.<a href="./src/resources/sessions.ts">uploadDashboardLayout</a>(sessionId, { ...params }) -> WorkflowSession</code>

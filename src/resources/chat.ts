@@ -510,6 +510,8 @@ export namespace ChatEvent {
   export namespace ReviewRequest {
     export interface ReviewRequest {
       node_summaries: Array<ReviewRequest.NodeSummary>;
+
+      dead_code_findings?: Array<SessionsAPI.DeadCodeFinding>;
     }
 
     export namespace ReviewRequest {
