@@ -118,8 +118,12 @@ export class Sessions extends APIResource {
     return this._client.post(`/sessions/nodes/${nodeId}/request_confirmation`, { body, ...options });
   }
 
-  triggerReview(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<TriggerReviewResponse> {
-    return this._client.post(`/sessions/${sessionId}/trigger_review`, options);
+  triggerReview(
+    sessionId: string,
+    body: SessionTriggerReviewParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<TriggerReviewResponse> {
+    return this._client.post(`/sessions/${sessionId}/trigger_review`, { body, ...options });
   }
 
   updateNode(
@@ -333,6 +337,32 @@ export interface DashboardSpec {
   title: string;
 
   version: string;
+}
+
+/**
+ * A symbol vulture flagged as unreached from `workflow()` during a review pass.
+ */
+export interface DeadCodeFinding {
+  /**
+   * Vulture category: `function`, `class`, `method`, `variable`, `import`,
+   * `attribute`.
+   */
+  kind: string;
+
+  /**
+   * 1-indexed source line where the symbol is defined.
+   */
+  line: number;
+
+  /**
+   * The unused symbol name.
+   */
+  name: string;
+
+  /**
+   * Workflow-relative file path, e.g. `src/extractors/foo.py`.
+   */
+  path: string;
 }
 
 export interface EdgeSpec {
@@ -670,6 +700,14 @@ export interface RequestConfirmationRequest {
   operation: 'tag' | 'pdf' | 'web' | 'match';
 
   row_count: number;
+}
+
+export interface TriggerReviewRequest {
+  /**
+   * Symbols vulture flagged as unreached from `workflow()`. Empty when the workflow
+   * is clean.
+   */
+  dead_code_findings?: Array<DeadCodeFinding>;
 }
 
 export interface TriggerReviewResponse {
@@ -1126,6 +1164,14 @@ export interface SessionRequestConfirmationParams {
   row_count: number;
 }
 
+export interface SessionTriggerReviewParams {
+  /**
+   * Symbols vulture flagged as unreached from `workflow()`. Empty when the workflow
+   * is clean.
+   */
+  dead_code_findings?: Array<DeadCodeFinding>;
+}
+
 export interface SessionUpdateNodeParams {
   execution_status: WorkflowNodeExecutionStatus;
 
@@ -1186,6 +1232,7 @@ export declare namespace Sessions {
     type DashboardComponent as DashboardComponent,
     type DashboardPage as DashboardPage,
     type DashboardSpec as DashboardSpec,
+    type DeadCodeFinding as DeadCodeFinding,
     type EdgeSpec as EdgeSpec,
     type EditNodeOutputRequest as EditNodeOutputRequest,
     type FinalizeDagRequest as FinalizeDagRequest,
@@ -1197,6 +1244,7 @@ export declare namespace Sessions {
     type NodeSpec as NodeSpec,
     type ParquetEdit as ParquetEdit,
     type RequestConfirmationRequest as RequestConfirmationRequest,
+    type TriggerReviewRequest as TriggerReviewRequest,
     type TriggerReviewResponse as TriggerReviewResponse,
     type UpdateWorkflowNodeProgressRequest as UpdateWorkflowNodeProgressRequest,
     type UpdateWorkflowNodeRequest as UpdateWorkflowNodeRequest,
@@ -1235,6 +1283,7 @@ export declare namespace Sessions {
     type SessionKillJobsParams as SessionKillJobsParams,
     type SessionMarkErroredParams as SessionMarkErroredParams,
     type SessionRequestConfirmationParams as SessionRequestConfirmationParams,
+    type SessionTriggerReviewParams as SessionTriggerReviewParams,
     type SessionUpdateNodeParams as SessionUpdateNodeParams,
     type SessionUpdateNodeProgressParams as SessionUpdateNodeProgressParams,
     type SessionUploadDashboardLayoutParams as SessionUploadDashboardLayoutParams,
