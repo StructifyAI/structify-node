@@ -163,7 +163,6 @@ Types:
 - <code><a href="./src/resources/teams.ts">AcceptInvitationResponse</a></code>
 - <code><a href="./src/resources/teams.ts">AddMemberRequest</a></code>
 - <code><a href="./src/resources/teams.ts">AddMemberResponse</a></code>
-- <code><a href="./src/resources/teams.ts">CreateProjectRequest</a></code>
 - <code><a href="./src/resources/teams.ts">CreateTeamRequest</a></code>
 - <code><a href="./src/resources/teams.ts">CreateTeamResponse</a></code>
 - <code><a href="./src/resources/teams.ts">CreditsUsageRequest</a></code>
@@ -173,7 +172,6 @@ Types:
 - <code><a href="./src/resources/teams.ts">Granularity</a></code>
 - <code><a href="./src/resources/teams.ts">InvitationDetailsResponse</a></code>
 - <code><a href="./src/resources/teams.ts">ListMembersResponse</a></code>
-- <code><a href="./src/resources/teams.ts">ListProjectsResponse</a></code>
 - <code><a href="./src/resources/teams.ts">ListTeamsResponse</a></code>
 - <code><a href="./src/resources/teams.ts">RemoveMemberResponse</a></code>
 - <code><a href="./src/resources/teams.ts">SelectTeamResponse</a></code>
@@ -195,13 +193,11 @@ Methods:
 - <code title="post /team/invitations/accept">client.teams.<a href="./src/resources/teams.ts">acceptInvitation</a>({ ...params }) -> AcceptInvitationResponse</code>
 - <code title="post /team/{team_id}/members">client.teams.<a href="./src/resources/teams.ts">addMember</a>(teamId, { ...params }) -> AddMemberResponse</code>
 - <code title="delete /team/{team_id}/invitations">client.teams.<a href="./src/resources/teams.ts">cancelInvitation</a>(teamId, { ...params }) -> void</code>
-- <code title="post /team/{team_id}/projects">client.teams.<a href="./src/resources/teams.ts">createProject</a>(teamId, { ...params }) -> Project</code>
 - <code title="get /team/{team_id}/credits/usage">client.teams.<a href="./src/resources/teams.ts">creditsUsage</a>(teamId, { ...params }) -> CreditsUsageResponse</code>
 - <code title="get /team/{team_id}">client.teams.<a href="./src/resources/teams.ts">get</a>(teamId) -> GetTeamResponse</code>
 - <code title="get /team/{team_id}/subscription">client.teams.<a href="./src/resources/teams.ts">getSubscription</a>(teamId) -> TeamSubscriptionStatus</code>
 - <code title="get /team/invitations/details/{token}">client.teams.<a href="./src/resources/teams.ts">invitationDetails</a>(token) -> InvitationDetailsResponse</code>
 - <code title="get /team/{team_id}/members">client.teams.<a href="./src/resources/teams.ts">listMembers</a>(teamId) -> ListMembersResponse</code>
-- <code title="get /team/{team_id}/projects">client.teams.<a href="./src/resources/teams.ts">listProjects</a>(teamId) -> ListProjectsResponse</code>
 - <code title="delete /team/{team_id}/members/{user_id}">client.teams.<a href="./src/resources/teams.ts">removeMember</a>(teamId, userId) -> RemoveMemberResponse</code>
 - <code title="post /team/{team_id}/select">client.teams.<a href="./src/resources/teams.ts">select</a>(teamId) -> SelectTeamResponse</code>
 - <code title="patch /team/{team_id}/members/{user_id}/role">client.teams.<a href="./src/resources/teams.ts">updateMemberRole</a>(teamId, userId, { ...params }) -> UpdateMemberRoleResponse</code>
@@ -227,19 +223,23 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/projects.ts">CreateProjectRequest</a></code>
 - <code><a href="./src/resources/projects.ts">DeleteProjectResponse</a></code>
+- <code><a href="./src/resources/projects.ts">ListProjectsResponse</a></code>
 - <code><a href="./src/resources/projects.ts">Project</a></code>
 - <code><a href="./src/resources/projects.ts">ProjectCollaboratorInput</a></code>
 - <code><a href="./src/resources/projects.ts">ProjectMember</a></code>
 - <code><a href="./src/resources/projects.ts">ProjectVisibility</a></code>
+- <code><a href="./src/resources/projects.ts">ProjectWithMembers</a></code>
 - <code><a href="./src/resources/projects.ts">UpdateProjectRequest</a></code>
-- <code><a href="./src/resources/projects.ts">ProjectGetResponse</a></code>
 
 Methods:
 
-- <code title="patch /team/{team_id}/project/{project_id}">client.projects.<a href="./src/resources/projects.ts">update</a>(teamId, projectId, { ...params }) -> Project</code>
-- <code title="delete /team/{team_id}/project/{project_id}">client.projects.<a href="./src/resources/projects.ts">delete</a>(teamId, projectId) -> DeleteProjectResponse</code>
-- <code title="get /team/{team_id}/project/{project_id}">client.projects.<a href="./src/resources/projects.ts">get</a>(teamId, projectId) -> ProjectGetResponse</code>
+- <code title="post /projects">client.projects.<a href="./src/resources/projects.ts">create</a>({ ...params }) -> Project</code>
+- <code title="patch /projects/{project_id}">client.projects.<a href="./src/resources/projects.ts">update</a>(projectId, { ...params }) -> Project</code>
+- <code title="get /projects">client.projects.<a href="./src/resources/projects.ts">list</a>() -> ListProjectsResponse</code>
+- <code title="delete /projects/{project_id}">client.projects.<a href="./src/resources/projects.ts">delete</a>(projectId) -> DeleteProjectResponse</code>
+- <code title="get /projects/{project_id}">client.projects.<a href="./src/resources/projects.ts">get</a>(projectId) -> ProjectWithMembers</code>
 
 # Admin
 

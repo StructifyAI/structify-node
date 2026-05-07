@@ -205,13 +205,16 @@ import {
   NangoListIntegrationsResponse,
 } from './resources/nango';
 import {
+  CreateProjectRequest,
   DeleteProjectResponse,
+  ListProjectsResponse,
   Project,
   ProjectCollaboratorInput,
-  ProjectGetResponse,
+  ProjectCreateParams,
   ProjectMember,
   ProjectUpdateParams,
   ProjectVisibility,
+  ProjectWithMembers,
   Projects,
   UpdateProjectRequest,
 } from './resources/projects';
@@ -352,7 +355,6 @@ import {
   AcceptInvitationResponse,
   AddMemberRequest,
   AddMemberResponse,
-  CreateProjectRequest,
   CreateTeamRequest,
   CreateTeamResponse,
   CreditsUsageRequest,
@@ -362,7 +364,6 @@ import {
   Granularity,
   InvitationDetailsResponse,
   ListMembersResponse,
-  ListProjectsResponse,
   ListTeamsResponse,
   RemoveMemberResponse,
   SelectTeamResponse,
@@ -371,7 +372,6 @@ import {
   TeamAddMemberParams,
   TeamCancelInvitationParams,
   TeamCreateParams,
-  TeamCreateProjectParams,
   TeamCreditsUsageParams,
   TeamRole,
   TeamSubscriptionStatus,
@@ -686,6 +686,9 @@ export class Structify extends Core.APIClient {
   whitelabel: API.Whitelabel = new API.Whitelabel(this);
   user: API.User = new API.User(this);
   chat: API.Chat = new API.Chat(this);
+  /**
+   * Team management endpoints
+   */
   teams: API.Teams = new API.Teams(this);
   /**
    * Team wiki page management endpoints
@@ -961,7 +964,6 @@ export declare namespace Structify {
     type AcceptInvitationResponse as AcceptInvitationResponse,
     type AddMemberRequest as AddMemberRequest,
     type AddMemberResponse as AddMemberResponse,
-    type CreateProjectRequest as CreateProjectRequest,
     type CreateTeamRequest as CreateTeamRequest,
     type CreateTeamResponse as CreateTeamResponse,
     type CreditsUsageRequest as CreditsUsageRequest,
@@ -971,7 +973,6 @@ export declare namespace Structify {
     type Granularity as Granularity,
     type InvitationDetailsResponse as InvitationDetailsResponse,
     type ListMembersResponse as ListMembersResponse,
-    type ListProjectsResponse as ListProjectsResponse,
     type ListTeamsResponse as ListTeamsResponse,
     type RemoveMemberResponse as RemoveMemberResponse,
     type SelectTeamResponse as SelectTeamResponse,
@@ -989,7 +990,6 @@ export declare namespace Structify {
     type TeamAcceptInvitationParams as TeamAcceptInvitationParams,
     type TeamAddMemberParams as TeamAddMemberParams,
     type TeamCancelInvitationParams as TeamCancelInvitationParams,
-    type TeamCreateProjectParams as TeamCreateProjectParams,
     type TeamCreditsUsageParams as TeamCreditsUsageParams,
     type TeamUpdateMemberRoleParams as TeamUpdateMemberRoleParams,
   };
@@ -1006,13 +1006,16 @@ export declare namespace Structify {
 
   export {
     Projects as Projects,
+    type CreateProjectRequest as CreateProjectRequest,
     type DeleteProjectResponse as DeleteProjectResponse,
+    type ListProjectsResponse as ListProjectsResponse,
     type Project as Project,
     type ProjectCollaboratorInput as ProjectCollaboratorInput,
     type ProjectMember as ProjectMember,
     type ProjectVisibility as ProjectVisibility,
+    type ProjectWithMembers as ProjectWithMembers,
     type UpdateProjectRequest as UpdateProjectRequest,
-    type ProjectGetResponse as ProjectGetResponse,
+    type ProjectCreateParams as ProjectCreateParams,
     type ProjectUpdateParams as ProjectUpdateParams,
   };
 

@@ -3,8 +3,10 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as TeamsAPI from './teams';
-import * as ProjectsAPI from './projects';
 
+/**
+ * Team management endpoints
+ */
 export class Teams extends APIResource {
   create(body: TeamCreateParams, options?: Core.RequestOptions): Core.APIPromise<CreateTeamResponse> {
     return this._client.post('/team/create', { body, ...options });
@@ -50,14 +52,6 @@ export class Teams extends APIResource {
     });
   }
 
-  createProject(
-    teamId: string,
-    body: TeamCreateProjectParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ProjectsAPI.Project> {
-    return this._client.post(`/team/${teamId}/projects`, { body, ...options });
-  }
-
   creditsUsage(
     teamId: string,
     query: TeamCreditsUsageParams,
@@ -83,10 +77,6 @@ export class Teams extends APIResource {
 
   listMembers(teamId: string, options?: Core.RequestOptions): Core.APIPromise<ListMembersResponse> {
     return this._client.get(`/team/${teamId}/members`, options);
-  }
-
-  listProjects(teamId: string, options?: Core.RequestOptions): Core.APIPromise<ListProjectsResponse> {
-    return this._client.get(`/team/${teamId}/projects`, options);
   }
 
   removeMember(
@@ -174,12 +164,6 @@ export namespace AddMemberResponse {
   }
 }
 
-export interface CreateProjectRequest {
-  name: string;
-
-  description?: string | null;
-}
-
 export interface CreateTeamRequest {
   name: string;
 
@@ -242,6 +226,8 @@ export namespace ListMembersResponse {
 
     email: string;
 
+    membership_id: string;
+
     pending: boolean;
 
     role: TeamsAPI.TeamRole;
@@ -250,10 +236,6 @@ export namespace ListMembersResponse {
 
     user_id?: string | null;
   }
-}
-
-export interface ListProjectsResponse {
-  projects: Array<ProjectsAPI.Project>;
 }
 
 export interface ListTeamsResponse {
@@ -449,12 +431,6 @@ export interface TeamCancelInvitationParams {
   email: string;
 }
 
-export interface TeamCreateProjectParams {
-  name: string;
-
-  description?: string | null;
-}
-
 export interface TeamCreditsUsageParams {
   /**
    * End time exclusive (UTC)
@@ -487,7 +463,6 @@ export declare namespace Teams {
     type AcceptInvitationResponse as AcceptInvitationResponse,
     type AddMemberRequest as AddMemberRequest,
     type AddMemberResponse as AddMemberResponse,
-    type CreateProjectRequest as CreateProjectRequest,
     type CreateTeamRequest as CreateTeamRequest,
     type CreateTeamResponse as CreateTeamResponse,
     type CreditsUsageRequest as CreditsUsageRequest,
@@ -497,7 +472,6 @@ export declare namespace Teams {
     type Granularity as Granularity,
     type InvitationDetailsResponse as InvitationDetailsResponse,
     type ListMembersResponse as ListMembersResponse,
-    type ListProjectsResponse as ListProjectsResponse,
     type ListTeamsResponse as ListTeamsResponse,
     type RemoveMemberResponse as RemoveMemberResponse,
     type SelectTeamResponse as SelectTeamResponse,
@@ -515,7 +489,6 @@ export declare namespace Teams {
     type TeamAcceptInvitationParams as TeamAcceptInvitationParams,
     type TeamAddMemberParams as TeamAddMemberParams,
     type TeamCancelInvitationParams as TeamCancelInvitationParams,
-    type TeamCreateProjectParams as TeamCreateProjectParams,
     type TeamCreditsUsageParams as TeamCreditsUsageParams,
     type TeamUpdateMemberRoleParams as TeamUpdateMemberRoleParams,
   };

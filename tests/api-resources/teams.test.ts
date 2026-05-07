@@ -108,26 +108,6 @@ describe('resource teams', () => {
     });
   });
 
-  test('createProject: only required params', async () => {
-    const responsePromise = client.teams.createProject('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      name: 'name',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('createProject: required and optional params', async () => {
-    const response = await client.teams.createProject('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      name: 'name',
-      description: 'description',
-    });
-  });
-
   test('creditsUsage: only required params', async () => {
     const responsePromise = client.teams.creditsUsage('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       end: '2019-12-27T18:11:19.117Z',
@@ -225,24 +205,6 @@ describe('resource teams', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.teams.listMembers('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Structify.NotFoundError);
-  });
-
-  test('listProjects', async () => {
-    const responsePromise = client.teams.listProjects('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('listProjects: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.teams.listProjects('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
