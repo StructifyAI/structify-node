@@ -345,6 +345,8 @@ export namespace UserTransactionsResponse {
 
     chat_message_id?: string | null;
 
+    connector_explorer_chat_id?: string | null;
+
     credit_grant_id?: string | null;
 
     job_id?: string | null;
