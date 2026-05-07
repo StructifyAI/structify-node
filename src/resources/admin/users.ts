@@ -24,10 +24,6 @@ export class Users extends APIResource {
     return this._client.get('/admin/users/list', options);
   }
 
-  getStats(body: UserGetStatsParams, options?: Core.RequestOptions): Core.APIPromise<UserGetStatsResponse> {
-    return this._client.post('/admin/users/get_stats', { body, ...options });
-  }
-
   impersonate(
     body: UserImpersonateParams,
     options?: Core.RequestOptions,
@@ -140,16 +136,6 @@ export namespace UserListResponse {
   }
 }
 
-export type UserGetStatsResponse = Array<UserGetStatsResponse.UserGetStatsResponseItem>;
-
-export namespace UserGetStatsResponse {
-  export interface UserGetStatsResponseItem {
-    job_count: number;
-
-    period: string;
-  }
-}
-
 export interface UserCreateParams {
   credit_count?: number | null;
 
@@ -178,18 +164,6 @@ export interface UserCreateParams {
   test?: boolean;
 }
 
-export interface UserGetStatsParams {
-  bucket?: 'Second' | 'Minute' | 'Hour' | 'Day' | 'Week' | 'Month' | 'Quarter' | 'Year' | 'Decade';
-
-  end_date?: string;
-
-  start_date?: string;
-
-  user_email?: string | null;
-
-  user_token?: string | null;
-}
-
 export interface UserImpersonateParams {
   membership_id: string;
 }
@@ -200,9 +174,7 @@ export declare namespace Users {
     type ImpersonateResponse as ImpersonateResponse,
     type User as User,
     type UserListResponse as UserListResponse,
-    type UserGetStatsResponse as UserGetStatsResponse,
     type UserCreateParams as UserCreateParams,
-    type UserGetStatsParams as UserGetStatsParams,
     type UserImpersonateParams as UserImpersonateParams,
   };
 }
