@@ -465,10 +465,7 @@ describe('resource connectors', () => {
   });
 
   test('searchTables: only required params', async () => {
-    const responsePromise = client.connectors.searchTables({
-      query: 'query',
-      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
+    const responsePromise = client.connectors.searchTables({ query: 'query' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -479,10 +476,7 @@ describe('resource connectors', () => {
   });
 
   test('searchTables: required and optional params', async () => {
-    const response = await client.connectors.searchTables({
-      query: 'query',
-      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    });
+    const response = await client.connectors.searchTables({ query: 'query' });
   });
 
   test('summaries: only required params', async () => {

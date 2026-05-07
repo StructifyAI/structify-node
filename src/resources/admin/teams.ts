@@ -156,6 +156,8 @@ export namespace AdminListMembersResponse {
 
     email: string;
 
+    membership_id: string;
+
     pending: boolean;
 
     role: TeamsAPI.TeamRole;

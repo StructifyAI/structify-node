@@ -261,13 +261,16 @@ export {
 } from './nango';
 export {
   Projects,
+  type CreateProjectRequest,
   type DeleteProjectResponse,
+  type ListProjectsResponse,
   type Project,
   type ProjectCollaboratorInput,
   type ProjectMember,
   type ProjectVisibility,
+  type ProjectWithMembers,
   type UpdateProjectRequest,
-  type ProjectGetResponse,
+  type ProjectCreateParams,
   type ProjectUpdateParams,
 } from './projects';
 export { PublicSessions } from './public-sessions';
@@ -409,7 +412,6 @@ export {
   type AcceptInvitationResponse,
   type AddMemberRequest,
   type AddMemberResponse,
-  type CreateProjectRequest,
   type CreateTeamRequest,
   type CreateTeamResponse,
   type CreditsUsageRequest,
@@ -419,7 +421,6 @@ export {
   type Granularity,
   type InvitationDetailsResponse,
   type ListMembersResponse,
-  type ListProjectsResponse,
   type ListTeamsResponse,
   type RemoveMemberResponse,
   type SelectTeamResponse,
@@ -437,7 +438,6 @@ export {
   type TeamAcceptInvitationParams,
   type TeamAddMemberParams,
   type TeamCancelInvitationParams,
-  type TeamCreateProjectParams,
   type TeamCreditsUsageParams,
   type TeamUpdateMemberRoleParams,
 } from './teams';

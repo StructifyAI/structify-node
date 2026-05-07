@@ -8,30 +8,43 @@ import * as ChatAPI from './chat';
  * Project management endpoints
  */
 export class Projects extends APIResource {
+  create(body: ProjectCreateParams, options?: Core.RequestOptions): Core.APIPromise<Project> {
+    return this._client.post('/projects', { body, ...options });
+  }
+
   update(
-    teamId: string,
     projectId: string,
     body: ProjectUpdateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<Project> {
-    return this._client.patch(`/team/${teamId}/project/${projectId}`, { body, ...options });
+    return this._client.patch(`/projects/${projectId}`, { body, ...options });
   }
 
-  delete(
-    teamId: string,
-    projectId: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<DeleteProjectResponse> {
-    return this._client.delete(`/team/${teamId}/project/${projectId}`, options);
+  list(options?: Core.RequestOptions): Core.APIPromise<ListProjectsResponse> {
+    return this._client.get('/projects', options);
   }
 
-  get(teamId: string, projectId: string, options?: Core.RequestOptions): Core.APIPromise<ProjectGetResponse> {
-    return this._client.get(`/team/${teamId}/project/${projectId}`, options);
+  delete(projectId: string, options?: Core.RequestOptions): Core.APIPromise<DeleteProjectResponse> {
+    return this._client.delete(`/projects/${projectId}`, options);
   }
+
+  get(projectId: string, options?: Core.RequestOptions): Core.APIPromise<ProjectWithMembers> {
+    return this._client.get(`/projects/${projectId}`, options);
+  }
+}
+
+export interface CreateProjectRequest {
+  name: string;
+
+  description?: string | null;
 }
 
 export interface DeleteProjectResponse {
   success: boolean;
+}
+
+export interface ListProjectsResponse {
+  projects: Array<Project>;
 }
 
 export interface Project {
@@ -70,6 +83,10 @@ export interface ProjectMember {
 
 export type ProjectVisibility = 'private' | 'shared_with_team';
 
+export interface ProjectWithMembers extends Project {
+  members: Array<ProjectMember>;
+}
+
 export interface UpdateProjectRequest {
   collaborators?: Array<ProjectCollaboratorInput> | null;
 
@@ -80,8 +97,10 @@ export interface UpdateProjectRequest {
   visibility?: ProjectVisibility | null;
 }
 
-export interface ProjectGetResponse extends Project {
-  members: Array<ProjectMember>;
+export interface ProjectCreateParams {
+  name: string;
+
+  description?: string | null;
 }
 
 export interface ProjectUpdateParams {
@@ -96,13 +115,16 @@ export interface ProjectUpdateParams {
 
 export declare namespace Projects {
   export {
+    type CreateProjectRequest as CreateProjectRequest,
     type DeleteProjectResponse as DeleteProjectResponse,
+    type ListProjectsResponse as ListProjectsResponse,
     type Project as Project,
     type ProjectCollaboratorInput as ProjectCollaboratorInput,
     type ProjectMember as ProjectMember,
     type ProjectVisibility as ProjectVisibility,
+    type ProjectWithMembers as ProjectWithMembers,
     type UpdateProjectRequest as UpdateProjectRequest,
-    type ProjectGetResponse as ProjectGetResponse,
+    type ProjectCreateParams as ProjectCreateParams,
     type ProjectUpdateParams as ProjectUpdateParams,
   };
 }

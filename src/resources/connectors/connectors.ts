@@ -290,7 +290,7 @@ export interface Connector {
 
   name: string;
 
-  owner_user_id: string;
+  owner_membership_id: string;
 
   team_id: string;
 
@@ -831,11 +831,11 @@ export interface UpdateConnectorRequest {
 
   oauth_scopes?: Array<string | null> | null;
 
-  owner_user_id?: string | null;
+  owner_membership_id?: string | null;
 
   refresh_cron_schedule?: string | null;
 
-  shared_user_roles?: { [key: string]: ChatAPI.ChatSessionRole } | null;
+  shared_membership_roles?: { [key: string]: ChatAPI.ChatSessionRole } | null;
 
   team_visibility?: 'Team' | 'Private' | null;
 
@@ -1006,7 +1006,7 @@ export interface ConnectorExploreResponse {
 export interface ConnectorGetResponse extends Connector {
   secrets: Array<ConnectorGetResponse.Secret>;
 
-  shared_user_roles: { [key: string]: ChatAPI.ChatSessionRole };
+  shared_membership_roles: { [key: string]: ChatAPI.ChatSessionRole };
 }
 
 export namespace ConnectorGetResponse {
@@ -1207,11 +1207,11 @@ export interface ConnectorUpdateParams {
 
   oauth_scopes?: Array<string | null> | null;
 
-  owner_user_id?: string | null;
+  owner_membership_id?: string | null;
 
   refresh_cron_schedule?: string | null;
 
-  shared_user_roles?: { [key: string]: ChatAPI.ChatSessionRole } | null;
+  shared_membership_roles?: { [key: string]: ChatAPI.ChatSessionRole } | null;
 
   team_visibility?: 'Team' | 'Private' | null;
 
@@ -1346,11 +1346,6 @@ export interface ConnectorSearchTablesParams {
    * Search query string
    */
   query: string;
-
-  /**
-   * Team ID to scope table search
-   */
-  team_id: string;
 }
 
 export interface ConnectorSummariesParams {
