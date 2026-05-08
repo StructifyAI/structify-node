@@ -47,6 +47,16 @@ export class Teams extends APIResource {
     return this._client.post('/admin/team/create_subscription', { body, ...options });
   }
 
+  /**
+   * Drop the manager pointer for a managed team.
+   */
+  deleteManagementRelationship(
+    managedTeamId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<DeleteManagementRelationshipResponse> {
+    return this._client.delete(`/admin/team/${managedTeamId}/management_relationship`, options);
+  }
+
   expireGrants(
     body: TeamExpireGrantsParams,
     options?: Core.RequestOptions,
@@ -61,11 +71,41 @@ export class Teams extends APIResource {
     return this._client.post('/admin/team/extend_trial', { body, ...options });
   }
 
+  /**
+   * Look up the manager pointer for a managed team. 404 if no manager is set.
+   */
+  getManagementRelationship(
+    managedTeamId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ManagementRelationshipResponse> {
+    return this._client.get(`/admin/team/${managedTeamId}/management_relationship`, options);
+  }
+
   grantCredits(
     body: TeamGrantCreditsParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<GrantCreditsResponse> {
     return this._client.post('/admin/team/grant_credits', { body, ...options });
+  }
+
+  /**
+   * List management relationships, optionally filtered by manager team.
+   */
+  listManagementRelationships(
+    query?: TeamListManagementRelationshipsParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ListManagementRelationshipsResponse>;
+  listManagementRelationships(
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ListManagementRelationshipsResponse>;
+  listManagementRelationships(
+    query: TeamListManagementRelationshipsParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ListManagementRelationshipsResponse> {
+    if (isRequestOptions(query)) {
+      return this.listManagementRelationships({}, query);
+    }
+    return this._client.get('/admin/team/management_relationships', { query, ...options });
   }
 
   listMembers(teamId: string, options?: Core.RequestOptions): Core.APIPromise<AdminListMembersResponse> {
@@ -80,8 +120,10 @@ export class Teams extends APIResource {
   }
 
   /**
-   * Idempotent: re-granting resets `expires_at`. 400 if the caller already has a
-   * regular live membership on the team.
+   * Structify employees (`is_admin`) for any team, and members of a managing team
+   * for any team that managing team manages. Idempotent: re-granting resets
+   * `expires_at`. 400 if the caller already has a regular live membership on the
+   * team.
    */
   setAccess(body: TeamSetAccessParams, options?: Core.RequestOptions): Core.APIPromise<SetAccessResponse> {
     return this._client.post('/admin/team/set_access', { body, ...options });
@@ -92,6 +134,16 @@ export class Teams extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<UpdateSeatsOverrideResponse> {
     return this._client.post('/admin/team/update_seats_override', { body, ...options });
+  }
+
+  /**
+   * re-posting with a different manager pointer overwrites the prior row.
+   */
+  upsertManagementRelationship(
+    body: TeamUpsertManagementRelationshipParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ManagementRelationshipResponse> {
+    return this._client.post('/admin/team/management_relationship', { body, ...options });
   }
 }
 
@@ -264,6 +316,10 @@ export interface CreateTeamSubscriptionRequest {
   external_subscription_id?: string | null;
 }
 
+export interface DeleteManagementRelationshipResponse {
+  deleted: boolean;
+}
+
 export interface ExpireGrantsRequest {
   source_type: string;
 
@@ -312,6 +368,28 @@ export interface GrantCreditsResponse {
   team_id: string;
 }
 
+export interface ListManagementRelationshipsResponse {
+  relationships: Array<ManagementRelationshipDetail>;
+}
+
+/**
+ * A management relationship plus the human-readable names of both teams, so admin
+ * UIs don't need a separate lookup to render labels.
+ */
+export interface ManagementRelationshipDetail extends TeamManagementRelationship {
+  managed_team_name: string;
+
+  manager_team_name: string;
+}
+
+export interface ManagementRelationshipResponse {
+  /**
+   * A management relationship plus the human-readable names of both teams, so admin
+   * UIs don't need a separate lookup to render labels.
+   */
+  relationship: ManagementRelationshipDetail;
+}
+
 export type SetAccessAction = 'grant' | 'revoke';
 
 export interface SetAccessRequest {
@@ -334,6 +412,18 @@ export interface SetAccessResponse {
   membership_id?: string | null;
 }
 
+export interface TeamManagementRelationship {
+  id: string;
+
+  created_at: string;
+
+  managed_team_id: string;
+
+  manager_team_id: string;
+
+  updated_at: string;
+}
+
 export interface UpdateSeatsOverrideRequest {
   team_id: string;
 
@@ -344,6 +434,12 @@ export interface UpdateSeatsOverrideResponse {
   team_id: string;
 
   seats_override?: number | null;
+}
+
+export interface UpsertManagementRelationshipRequest {
+  managed_team_id: string;
+
+  manager_team_id: string;
 }
 
 export interface TeamListResponse {
@@ -417,6 +513,13 @@ export interface TeamGrantCreditsParams {
   starts_at?: string | null;
 }
 
+export interface TeamListManagementRelationshipsParams {
+  /**
+   * Optional filter: only return relationships whose manager is this team.
+   */
+  manager_team_id?: string | null;
+}
+
 export interface TeamRemoveMemberParams {
   team_id: string;
 
@@ -441,6 +544,12 @@ export interface TeamUpdateSeatsOverrideParams {
   seats_override?: number | null;
 }
 
+export interface TeamUpsertManagementRelationshipParams {
+  managed_team_id: string;
+
+  manager_team_id: string;
+}
+
 export declare namespace Teams {
   export {
     type AdminAddMemberRequest as AdminAddMemberRequest,
@@ -453,17 +562,23 @@ export declare namespace Teams {
     type CancelSubscriptionResponse as CancelSubscriptionResponse,
     type CreateSubscriptionResponse as CreateSubscriptionResponse,
     type CreateTeamSubscriptionRequest as CreateTeamSubscriptionRequest,
+    type DeleteManagementRelationshipResponse as DeleteManagementRelationshipResponse,
     type ExpireGrantsRequest as ExpireGrantsRequest,
     type ExpireGrantsResponse as ExpireGrantsResponse,
     type ExtendTrialRequest as ExtendTrialRequest,
     type ExtendTrialResponse as ExtendTrialResponse,
     type GrantCreditsRequest as GrantCreditsRequest,
     type GrantCreditsResponse as GrantCreditsResponse,
+    type ListManagementRelationshipsResponse as ListManagementRelationshipsResponse,
+    type ManagementRelationshipDetail as ManagementRelationshipDetail,
+    type ManagementRelationshipResponse as ManagementRelationshipResponse,
     type SetAccessAction as SetAccessAction,
     type SetAccessRequest as SetAccessRequest,
     type SetAccessResponse as SetAccessResponse,
+    type TeamManagementRelationship as TeamManagementRelationship,
     type UpdateSeatsOverrideRequest as UpdateSeatsOverrideRequest,
     type UpdateSeatsOverrideResponse as UpdateSeatsOverrideResponse,
+    type UpsertManagementRelationshipRequest as UpsertManagementRelationshipRequest,
     type TeamListResponse as TeamListResponse,
     type TeamListParams as TeamListParams,
     type TeamAddMemberParams as TeamAddMemberParams,
@@ -472,8 +587,10 @@ export declare namespace Teams {
     type TeamExpireGrantsParams as TeamExpireGrantsParams,
     type TeamExtendTrialParams as TeamExtendTrialParams,
     type TeamGrantCreditsParams as TeamGrantCreditsParams,
+    type TeamListManagementRelationshipsParams as TeamListManagementRelationshipsParams,
     type TeamRemoveMemberParams as TeamRemoveMemberParams,
     type TeamSetAccessParams as TeamSetAccessParams,
     type TeamUpdateSeatsOverrideParams as TeamUpdateSeatsOverrideParams,
+    type TeamUpsertManagementRelationshipParams as TeamUpsertManagementRelationshipParams,
   };
 }

@@ -265,17 +265,23 @@ Types:
 - <code><a href="./src/resources/admin/teams.ts">CancelSubscriptionResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">CreateSubscriptionResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">CreateTeamSubscriptionRequest</a></code>
+- <code><a href="./src/resources/admin/teams.ts">DeleteManagementRelationshipResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">ExpireGrantsRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">ExpireGrantsResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">ExtendTrialRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">ExtendTrialResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">GrantCreditsRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">GrantCreditsResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">ListManagementRelationshipsResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">ManagementRelationshipDetail</a></code>
+- <code><a href="./src/resources/admin/teams.ts">ManagementRelationshipResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">SetAccessAction</a></code>
 - <code><a href="./src/resources/admin/teams.ts">SetAccessRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">SetAccessResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">TeamManagementRelationship</a></code>
 - <code><a href="./src/resources/admin/teams.ts">UpdateSeatsOverrideRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">UpdateSeatsOverrideResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">UpsertManagementRelationshipRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">TeamListResponse</a></code>
 
 Methods:
@@ -284,13 +290,17 @@ Methods:
 - <code title="post /admin/team/add_member">client.admin.teams.<a href="./src/resources/admin/teams.ts">addMember</a>({ ...params }) -> AdminAddMemberResponse</code>
 - <code title="post /admin/team/cancel_subscription">client.admin.teams.<a href="./src/resources/admin/teams.ts">cancelSubscription</a>({ ...params }) -> CancelSubscriptionResponse</code>
 - <code title="post /admin/team/create_subscription">client.admin.teams.<a href="./src/resources/admin/teams.ts">createSubscription</a>({ ...params }) -> CreateSubscriptionResponse</code>
+- <code title="delete /admin/team/{managed_team_id}/management_relationship">client.admin.teams.<a href="./src/resources/admin/teams.ts">deleteManagementRelationship</a>(managedTeamId) -> DeleteManagementRelationshipResponse</code>
 - <code title="post /admin/team/expire_grants">client.admin.teams.<a href="./src/resources/admin/teams.ts">expireGrants</a>({ ...params }) -> ExpireGrantsResponse</code>
 - <code title="post /admin/team/extend_trial">client.admin.teams.<a href="./src/resources/admin/teams.ts">extendTrial</a>({ ...params }) -> ExtendTrialResponse</code>
+- <code title="get /admin/team/{managed_team_id}/management_relationship">client.admin.teams.<a href="./src/resources/admin/teams.ts">getManagementRelationship</a>(managedTeamId) -> ManagementRelationshipResponse</code>
 - <code title="post /admin/team/grant_credits">client.admin.teams.<a href="./src/resources/admin/teams.ts">grantCredits</a>({ ...params }) -> GrantCreditsResponse</code>
+- <code title="get /admin/team/management_relationships">client.admin.teams.<a href="./src/resources/admin/teams.ts">listManagementRelationships</a>({ ...params }) -> ListManagementRelationshipsResponse</code>
 - <code title="get /admin/team/{team_id}/members">client.admin.teams.<a href="./src/resources/admin/teams.ts">listMembers</a>(teamId) -> AdminListMembersResponse</code>
 - <code title="post /admin/team/remove_member">client.admin.teams.<a href="./src/resources/admin/teams.ts">removeMember</a>({ ...params }) -> AdminRemoveMemberResponse</code>
 - <code title="post /admin/team/set_access">client.admin.teams.<a href="./src/resources/admin/teams.ts">setAccess</a>({ ...params }) -> SetAccessResponse</code>
 - <code title="post /admin/team/update_seats_override">client.admin.teams.<a href="./src/resources/admin/teams.ts">updateSeatsOverride</a>({ ...params }) -> UpdateSeatsOverrideResponse</code>
+- <code title="post /admin/team/management_relationship">client.admin.teams.<a href="./src/resources/admin/teams.ts">upsertManagementRelationship</a>({ ...params }) -> ManagementRelationshipResponse</code>
 
 ## Dataset
 
