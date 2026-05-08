@@ -387,10 +387,16 @@ export interface FinalizeDagRequest {
   dashboard_layout?: Dashboard | null;
 
   /**
-   * Function name of a node to force-rerun. That node and any node with it as an
-   * ancestor are excluded from cache resolution so they re-execute fresh.
+   * Function names of nodes to force-rerun. Those nodes are excluded from cache
+   * resolution so they re-execute fresh.
    */
-  rerun_from?: string | null;
+  rerun_from?: Array<string>;
+
+  /**
+   * When true, descendants of the `rerun_from` nodes are marked Skipped instead of
+   * executing.
+   */
+  skip_children?: boolean;
 
   /**
    * When true, resolve node cache hits against prior workflow sessions and return
@@ -401,6 +407,12 @@ export interface FinalizeDagRequest {
 
 export interface FinalizeDagResponse {
   node_ids: Array<string>;
+
+  /**
+   * Nodes marked Skipped during finalize because they are descendants of a
+   * `rerun_from` node and the caller set `skip_children = true`.
+   */
+  skipped_nodes: Array<string>;
 
   /**
    * Nodes that were cache-resolved during finalize and are already marked Success.
@@ -913,7 +925,8 @@ export type WorkflowNodeExecutionStatus =
   | 'Failure'
   | 'Running'
   | 'Aborted'
-  | 'PendingConfirmation';
+  | 'PendingConfirmation'
+  | 'Skipped';
 
 export interface WorkflowNodeLog {
   id: string;
@@ -1122,10 +1135,16 @@ export interface SessionFinalizeDagParams {
   dashboard_layout?: Dashboard | null;
 
   /**
-   * Function name of a node to force-rerun. That node and any node with it as an
-   * ancestor are excluded from cache resolution so they re-execute fresh.
+   * Function names of nodes to force-rerun. Those nodes are excluded from cache
+   * resolution so they re-execute fresh.
    */
-  rerun_from?: string | null;
+  rerun_from?: Array<string>;
+
+  /**
+   * When true, descendants of the `rerun_from` nodes are marked Skipped instead of
+   * executing.
+   */
+  skip_children?: boolean;
 
   /**
    * When true, resolve node cache hits against prior workflow sessions and return

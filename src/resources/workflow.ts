@@ -28,7 +28,17 @@ export interface RunWorkflowRequest {
 
   edited_node_name?: string | null;
 
-  rerun_from?: string | null;
+  /**
+   * Function names of nodes to force-rerun. Those nodes are excluded from cache
+   * resolution so they re-execute fresh; their ancestors cache-resolve.
+   */
+  rerun_from?: Array<string>;
+
+  /**
+   * When true, descendants of the `rerun_from` nodes are marked Skipped instead of
+   * executing. Use this to run a subset of the DAG.
+   */
+  skip_children?: boolean;
 }
 
 export interface StopWorkflowRequest {
@@ -42,7 +52,17 @@ export interface WorkflowRunParams {
 
   edited_node_name?: string | null;
 
-  rerun_from?: string | null;
+  /**
+   * Function names of nodes to force-rerun. Those nodes are excluded from cache
+   * resolution so they re-execute fresh; their ancestors cache-resolve.
+   */
+  rerun_from?: Array<string>;
+
+  /**
+   * When true, descendants of the `rerun_from` nodes are marked Skipped instead of
+   * executing. Use this to run a subset of the DAG.
+   */
+  skip_children?: boolean;
 }
 
 export interface WorkflowStopParams {
