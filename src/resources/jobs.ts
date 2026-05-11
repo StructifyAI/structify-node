@@ -73,9 +73,9 @@ export interface JobListResponse {
 
   job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | 'DatahubIngestion';
 
-  status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+  membership_id: string;
 
-  user_id: string;
+  status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
   dataset_id?: string | null;
 
@@ -247,9 +247,9 @@ export namespace JobGetResponse {
 
     job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | 'DatahubIngestion';
 
-    status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+    membership_id: string;
 
-    user_id: string;
+    status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
     dataset_id?: string | null;
 

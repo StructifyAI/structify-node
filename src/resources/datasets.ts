@@ -55,16 +55,6 @@ export class Datasets extends APIResource {
   }
 
   /**
-   * Get the enrichment progress for a dataset
-   */
-  enrichmentProgress(
-    query: DatasetEnrichmentProgressParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<DatasetEnrichmentProgressResponse> {
-    return this._client.get('/dataset/enrichment_progress', { query, ...options });
-  }
-
-  /**
    * You need to specify a dataset and a table_name
    */
   exportToCsv(query: DatasetExportToCsvParams, options?: Core.RequestOptions): Core.APIPromise<void> {
@@ -279,18 +269,6 @@ export namespace DatasetListResponse {
 
 export interface DatasetCountMissingEmbeddingsResponse {
   count: number;
-}
-
-export interface DatasetEnrichmentProgressResponse {
-  completed: number;
-
-  failed: number;
-
-  queued: number;
-
-  running: number;
-
-  total: number;
 }
 
 /**
@@ -867,13 +845,6 @@ export interface DatasetCountMissingEmbeddingsParams {
   name: string;
 }
 
-export interface DatasetEnrichmentProgressParams {
-  /**
-   * Enrichment progress for the dataset
-   */
-  name: string;
-}
-
 export interface DatasetExportToCsvParams {
   dataset: string;
 
@@ -1048,7 +1019,6 @@ export declare namespace Datasets {
     type DatasetCreateResponse as DatasetCreateResponse,
     type DatasetListResponse as DatasetListResponse,
     type DatasetCountMissingEmbeddingsResponse as DatasetCountMissingEmbeddingsResponse,
-    type DatasetEnrichmentProgressResponse as DatasetEnrichmentProgressResponse,
     type DatasetGetResponse as DatasetGetResponse,
     type DatasetMatchResponse as DatasetMatchResponse,
     type DatasetViewRelationshipsResponse as DatasetViewRelationshipsResponse,
@@ -1060,7 +1030,6 @@ export declare namespace Datasets {
     type DatasetDeleteParams as DatasetDeleteParams,
     type DatasetAddPropertyParams as DatasetAddPropertyParams,
     type DatasetCountMissingEmbeddingsParams as DatasetCountMissingEmbeddingsParams,
-    type DatasetEnrichmentProgressParams as DatasetEnrichmentProgressParams,
     type DatasetExportToCsvParams as DatasetExportToCsvParams,
     type DatasetExportToExcelParams as DatasetExportToExcelParams,
     type DatasetGetParams as DatasetGetParams,

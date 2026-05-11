@@ -35,11 +35,11 @@ export class Jobs extends APIResource {
     return this._client.get('/admin/jobs/concurrency_limits', options);
   }
 
-  killByUser(
-    body: JobKillByUserParams,
+  killByMembership(
+    body: JobKillByMembershipParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<JobKillByUserResponse> {
-    return this._client.post('/admin/jobs/kill_by_user', { body, ...options });
+  ): Core.APIPromise<JobKillByMembershipResponse> {
+    return this._client.post('/admin/jobs/kill_by_membership', { body, ...options });
   }
 
   runningStats(options?: Core.RequestOptions): Core.APIPromise<JobRunningStatsResponse> {
@@ -69,11 +69,11 @@ export interface AdminListJobsRequestParams {
 
   limit?: number;
 
+  membership_id?: string | null;
+
   offset?: number;
 
   status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
-
-  user_id?: string | null;
 }
 
 export interface JobListResponse {
@@ -83,9 +83,9 @@ export interface JobListResponse {
 
   job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | 'DatahubIngestion';
 
-  status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+  membership_id: string;
 
-  user_id: string;
+  status: 'Queued' | 'Running' | 'Completed' | 'Failed';
 
   dataset_id?: string | null;
 
@@ -241,14 +241,14 @@ export interface JobConcurrencyResponse {
   max_web_jobs?: number | null;
 }
 
-export interface JobKillByUserResponse {
+export interface JobKillByMembershipResponse {
   killed_jobs: number;
 }
 
 export interface JobRunningStatsResponse {
-  by_type: Array<JobRunningStatsResponse.ByType>;
+  by_membership: Array<JobRunningStatsResponse.ByMembership>;
 
-  by_user: Array<JobRunningStatsResponse.ByUser>;
+  by_type: Array<JobRunningStatsResponse.ByType>;
 
   completed_last_hour: number;
 
@@ -260,20 +260,18 @@ export interface JobRunningStatsResponse {
 }
 
 export namespace JobRunningStatsResponse {
-  export interface ByType {
-    count: number;
-
-    job_type: string;
-  }
-
-  export interface ByUser {
-    email: string;
+  export interface ByMembership {
+    membership_id: string;
 
     queued: number;
 
     running: number;
+  }
 
-    user_id: string;
+  export interface ByType {
+    count: number;
+
+    job_type: string;
   }
 }
 
@@ -300,17 +298,17 @@ export interface JobUpdateConcurrencyResponse {
 export interface JobListParams extends JobsListParams {
   job_type?: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | 'DatahubIngestion' | null;
 
-  status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
+  membership_id?: string | null;
 
-  user_id?: string | null;
+  status?: 'Queued' | 'Running' | 'Completed' | 'Failed' | null;
 }
 
 export interface JobDeleteParams {
   job_ids: Array<string>;
 }
 
-export interface JobKillByUserParams {
-  user_id: string;
+export interface JobKillByMembershipParams {
+  membership_id: string;
 }
 
 export interface JobUpdateConcurrencyParams {
@@ -338,13 +336,13 @@ export declare namespace Jobs {
     type AdminListJobsRequestParams as AdminListJobsRequestParams,
     type JobListResponse as JobListResponse,
     type JobConcurrencyResponse as JobConcurrencyResponse,
-    type JobKillByUserResponse as JobKillByUserResponse,
+    type JobKillByMembershipResponse as JobKillByMembershipResponse,
     type JobRunningStatsResponse as JobRunningStatsResponse,
     type JobUpdateConcurrencyResponse as JobUpdateConcurrencyResponse,
     JobListResponsesJobsList as JobListResponsesJobsList,
     type JobListParams as JobListParams,
     type JobDeleteParams as JobDeleteParams,
-    type JobKillByUserParams as JobKillByUserParams,
+    type JobKillByMembershipParams as JobKillByMembershipParams,
     type JobUpdateConcurrencyParams as JobUpdateConcurrencyParams,
   };
 }

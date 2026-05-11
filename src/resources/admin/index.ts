@@ -47,12 +47,12 @@ export {
   type AdminListJobsRequestParams,
   type JobListResponse,
   type JobConcurrencyResponse,
-  type JobKillByUserResponse,
+  type JobKillByMembershipResponse,
   type JobRunningStatsResponse,
   type JobUpdateConcurrencyResponse,
   type JobListParams,
   type JobDeleteParams,
-  type JobKillByUserParams,
+  type JobKillByMembershipParams,
   type JobUpdateConcurrencyParams,
 } from './jobs';
 export { Sandbox, type SandboxListParams } from './sandbox';

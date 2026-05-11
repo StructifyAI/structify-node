@@ -65,7 +65,6 @@ export interface User {
     | 'cerebras_codegen'
     | 'gemini25pro'
     | 'claude_sonnet4'
-    | 'allow_job_deletion'
     | 'none'
     | null
   >;
@@ -151,7 +150,6 @@ export interface UserCreateParams {
     | 'cerebras_codegen'
     | 'gemini25pro'
     | 'claude_sonnet4'
-    | 'allow_job_deletion'
     | 'none'
   >;
 
