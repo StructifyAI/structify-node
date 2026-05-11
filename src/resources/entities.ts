@@ -719,8 +719,6 @@ export namespace EntityListJobsResponse {
 
     use_proxy: boolean;
 
-    user_id: string;
-
     cached_from_job_id?: string | null;
 
     dataset_id?: string | null;

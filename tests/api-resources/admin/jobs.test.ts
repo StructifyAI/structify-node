@@ -34,9 +34,9 @@ describe('resource jobs', () => {
         {
           job_type: 'Web',
           limit: 0,
+          membership_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
           offset: 0,
           status: 'Queued',
-          user_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -76,8 +76,10 @@ describe('resource jobs', () => {
     );
   });
 
-  test('killByUser: only required params', async () => {
-    const responsePromise = client.admin.jobs.killByUser({ user_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
+  test('killByMembership: only required params', async () => {
+    const responsePromise = client.admin.jobs.killByMembership({
+      membership_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -87,8 +89,10 @@ describe('resource jobs', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('killByUser: required and optional params', async () => {
-    const response = await client.admin.jobs.killByUser({ user_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
+  test('killByMembership: required and optional params', async () => {
+    const response = await client.admin.jobs.killByMembership({
+      membership_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
   });
 
   test('runningStats', async () => {
