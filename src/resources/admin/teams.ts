@@ -9,6 +9,23 @@ import * as TeamsAPI from '../teams';
  * Admin endpoints
  */
 export class Teams extends APIResource {
+  /**
+   * Lists teams in the system along with their subscription information, credit
+   * grants, and member counts. Supports optional pagination via limit, offset, and
+   * search query parameters.
+   */
+  list(query?: TeamListParams, options?: Core.RequestOptions): Core.APIPromise<TeamListResponse>;
+  list(options?: Core.RequestOptions): Core.APIPromise<TeamListResponse>;
+  list(
+    query: TeamListParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<TeamListResponse> {
+    if (isRequestOptions(query)) {
+      return this.list({}, query);
+    }
+    return this._client.get('/admin/team/list', { query, ...options });
+  }
+
   addMember(
     body: TeamAddMemberParams,
     options?: Core.RequestOptions,
@@ -213,6 +230,55 @@ export interface AdminRemoveMemberResponse {
   success: boolean;
 }
 
+export interface AdminTeamsListResponse extends TeamsAPI.Team {
+  grants: Array<AdminTeamsListResponse.Grant>;
+
+  member_count: number;
+
+  subscription: AdminTeamsListResponse.Subscription;
+}
+
+export namespace AdminTeamsListResponse {
+  export interface Grant {
+    id: string;
+
+    amount: number;
+
+    amount_remaining: number;
+
+    created_at: string;
+
+    source_type: string;
+
+    team_id: string;
+
+    updated_at: string;
+
+    expires_at?: string | null;
+
+    source_ref?: string | null;
+
+    starts_at?: string | null;
+
+    stripe_event_id?: string | null;
+  }
+
+  export interface Subscription {
+    has_active_subscription: boolean;
+
+    is_trial: boolean;
+
+    remaining_credits: number;
+
+    /**
+     * Represents the different subscription tiers available
+     */
+    subscription_tier: 'free' | 'free_trial' | 'pro' | 'team' | 'enterprise';
+
+    trial_expires_at?: string | null;
+  }
+}
+
 export interface CancelSubscriptionRequest {
   team_id: string;
 }
@@ -376,6 +442,20 @@ export interface UpsertManagementRelationshipRequest {
   manager_team_id: string;
 }
 
+export interface TeamListResponse {
+  items: Array<AdminTeamsListResponse>;
+
+  total_count: number;
+}
+
+export interface TeamListParams {
+  limit?: number | null;
+
+  offset?: number | null;
+
+  search?: string | null;
+}
+
 export interface TeamAddMemberParams {
   email: string;
 
@@ -477,6 +557,7 @@ export declare namespace Teams {
     type AdminListMembersResponse as AdminListMembersResponse,
     type AdminRemoveMemberRequest as AdminRemoveMemberRequest,
     type AdminRemoveMemberResponse as AdminRemoveMemberResponse,
+    type AdminTeamsListResponse as AdminTeamsListResponse,
     type CancelSubscriptionRequest as CancelSubscriptionRequest,
     type CancelSubscriptionResponse as CancelSubscriptionResponse,
     type CreateSubscriptionResponse as CreateSubscriptionResponse,
@@ -498,6 +579,8 @@ export declare namespace Teams {
     type UpdateSeatsOverrideRequest as UpdateSeatsOverrideRequest,
     type UpdateSeatsOverrideResponse as UpdateSeatsOverrideResponse,
     type UpsertManagementRelationshipRequest as UpsertManagementRelationshipRequest,
+    type TeamListResponse as TeamListResponse,
+    type TeamListParams as TeamListParams,
     type TeamAddMemberParams as TeamAddMemberParams,
     type TeamCancelSubscriptionParams as TeamCancelSubscriptionParams,
     type TeamCreateSubscriptionParams as TeamCreateSubscriptionParams,
