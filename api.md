@@ -260,7 +260,6 @@ Types:
 - <code><a href="./src/resources/admin/teams.ts">AdminListMembersResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">AdminRemoveMemberRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">AdminRemoveMemberResponse</a></code>
-- <code><a href="./src/resources/admin/teams.ts">AdminTeamsListResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">CancelSubscriptionRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">CancelSubscriptionResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">CreateSubscriptionResponse</a></code>
@@ -282,11 +281,9 @@ Types:
 - <code><a href="./src/resources/admin/teams.ts">UpdateSeatsOverrideRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">UpdateSeatsOverrideResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">UpsertManagementRelationshipRequest</a></code>
-- <code><a href="./src/resources/admin/teams.ts">TeamListResponse</a></code>
 
 Methods:
 
-- <code title="get /admin/team/list">client.admin.teams.<a href="./src/resources/admin/teams.ts">list</a>({ ...params }) -> TeamListResponse</code>
 - <code title="post /admin/team/add_member">client.admin.teams.<a href="./src/resources/admin/teams.ts">addMember</a>({ ...params }) -> AdminAddMemberResponse</code>
 - <code title="post /admin/team/cancel_subscription">client.admin.teams.<a href="./src/resources/admin/teams.ts">cancelSubscription</a>({ ...params }) -> CancelSubscriptionResponse</code>
 - <code title="post /admin/team/create_subscription">client.admin.teams.<a href="./src/resources/admin/teams.ts">createSubscription</a>({ ...params }) -> CreateSubscriptionResponse</code>
