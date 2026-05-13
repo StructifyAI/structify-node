@@ -82,6 +82,8 @@ export interface GetWorkflowScheduleSessionsResponse {
 }
 
 export interface UpdateWorkflowScheduleRequest {
+  auto_healing?: boolean | null;
+
   cron_schedule?: string | null;
 
   git_commit_hash?: string | null;
@@ -93,6 +95,8 @@ export interface UpdateWorkflowScheduleRequest {
 
 export interface WorkflowScheduleInfo {
   id: string;
+
+  auto_healing: boolean;
 
   chat_session_id: string;
 
@@ -124,6 +128,8 @@ export interface WorkflowScheduleCreateParams {
 }
 
 export interface WorkflowScheduleUpdateParams {
+  auto_healing?: boolean | null;
+
   cron_schedule?: string | null;
 
   git_commit_hash?: string | null;
