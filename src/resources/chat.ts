@@ -249,8 +249,12 @@ export class Chat extends APIResource {
     return this._client.get(`/chat/sessions/${chatId}/pending_wiki_edits`, options);
   }
 
-  removeCollaborator(chatId: string, userId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/chat/sessions/${chatId}/collaborators/${userId}`, {
+  removeCollaborator(
+    chatId: string,
+    membershipId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.delete(`/chat/sessions/${chatId}/collaborators/${membershipId}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -307,7 +311,7 @@ export class Chat extends APIResource {
 }
 
 export interface AddCollaboratorRequest {
-  email: string;
+  membership_id: string;
 
   role: ChatSessionRole;
 }
@@ -1071,23 +1075,22 @@ export namespace ListChatSessionsResponse {
  * Response for listing collaborators
  */
 export interface ListCollaboratorsResponse {
-  users: Array<ListCollaboratorsResponse.User>;
+  collaborators: Array<ListCollaboratorsResponse.Collaborator>;
 }
 
 export namespace ListCollaboratorsResponse {
   /**
-   * DTO for chat collaborator with user email information
+   * DTO for chat collaborator. Identity is keyed on membership_id — clients resolve
+   * email/name via their team-members lookup.
    */
-  export interface User {
+  export interface Collaborator {
     created_at: string;
 
-    email: string;
+    membership_id: string;
 
     role: ChatAPI.ChatSessionRole;
 
     updated_at: string;
-
-    user_id: string;
   }
 }
 
@@ -1926,7 +1929,7 @@ export interface ChatRevertToCommitResponse {
 }
 
 export interface ChatAddCollaboratorParams {
-  email: string;
+  membership_id: string;
 
   role: ChatSessionRole;
 }
