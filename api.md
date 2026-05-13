@@ -148,7 +148,7 @@ Methods:
 - <code title="get /chat/input-files/download-all/{chat_id}">client.chat.<a href="./src/resources/chat.ts">loadInputFiles</a>(chatId, { ...params }) -> ChatLoadInputFilesResponse</code>
 - <code title="patch /chat/sessions/{session_id}/make-permanent">client.chat.<a href="./src/resources/chat.ts">makePermanent</a>(sessionId) -> void</code>
 - <code title="get /chat/sessions/{chat_id}/pending_wiki_edits">client.chat.<a href="./src/resources/chat.ts">pendingWikiEdits</a>(chatId) -> ChatPendingWikiEditsResponse</code>
-- <code title="delete /chat/sessions/{chat_id}/collaborators/{user_id}">client.chat.<a href="./src/resources/chat.ts">removeCollaborator</a>(chatId, userId) -> void</code>
+- <code title="delete /chat/sessions/{chat_id}/collaborators/{membership_id}">client.chat.<a href="./src/resources/chat.ts">removeCollaborator</a>(chatId, membershipId) -> void</code>
 - <code title="post /chat/sessions/{session_id}/revert">client.chat.<a href="./src/resources/chat.ts">revertToCommit</a>(sessionId, { ...params }) -> ChatRevertToCommitResponse</code>
 - <code title="post /chat/{chat_session_id}/simulate-prompt">client.chat.<a href="./src/resources/chat.ts">simulatePrompt</a>(chatSessionId, { ...params }) -> SimulatePromptResponse</code>
 - <code title="patch /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">updateSession</a>(sessionId, { ...params }) -> ChatSession</code>
@@ -260,7 +260,6 @@ Types:
 - <code><a href="./src/resources/admin/teams.ts">AdminListMembersResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">AdminRemoveMemberRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">AdminRemoveMemberResponse</a></code>
-- <code><a href="./src/resources/admin/teams.ts">AdminTeamsListResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">CancelSubscriptionRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">CancelSubscriptionResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">CreateSubscriptionResponse</a></code>
@@ -282,11 +281,9 @@ Types:
 - <code><a href="./src/resources/admin/teams.ts">UpdateSeatsOverrideRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">UpdateSeatsOverrideResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">UpsertManagementRelationshipRequest</a></code>
-- <code><a href="./src/resources/admin/teams.ts">TeamListResponse</a></code>
 
 Methods:
 
-- <code title="get /admin/team/list">client.admin.teams.<a href="./src/resources/admin/teams.ts">list</a>({ ...params }) -> TeamListResponse</code>
 - <code title="post /admin/team/add_member">client.admin.teams.<a href="./src/resources/admin/teams.ts">addMember</a>({ ...params }) -> AdminAddMemberResponse</code>
 - <code title="post /admin/team/cancel_subscription">client.admin.teams.<a href="./src/resources/admin/teams.ts">cancelSubscription</a>({ ...params }) -> CancelSubscriptionResponse</code>
 - <code title="post /admin/team/create_subscription">client.admin.teams.<a href="./src/resources/admin/teams.ts">createSubscription</a>({ ...params }) -> CreateSubscriptionResponse</code>
