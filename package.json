@@ -6,7 +6,11 @@
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
+  "homepage": "https://api.structify.ai/",
   "repository": "github:StructifyAI/structify-node",
+  "bugs": {
+    "url": "https://github.com/StructifyAI/structify-node/issues"
+  },
   "license": "Apache-2.0",
   "packageManager": "yarn@1.22.22",
   "files": [
