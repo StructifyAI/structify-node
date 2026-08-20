@@ -5,6 +5,9 @@ import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as ChatAPI from '../chat';
 
+/**
+ * Admin endpoints
+ */
 export class ChatTemplates extends APIResource {
   create(
     body: ChatTemplateCreateParams,
@@ -52,6 +55,8 @@ export interface CreateChatTemplateRequest {
 
   is_active: boolean;
 
+  questions: Array<ChatAPI.TemplateQuestion>;
+
   title: string;
 }
 
@@ -63,6 +68,8 @@ export interface UpdateChatTemplateRequest {
   image_url?: string | null;
 
   is_active?: boolean | null;
+
+  questions?: Array<ChatAPI.TemplateQuestion> | null;
 
   title?: string | null;
 
@@ -82,6 +89,8 @@ export interface ChatTemplateCreateParams {
 
   is_active: boolean;
 
+  questions: Array<ChatAPI.TemplateQuestion>;
+
   title: string;
 }
 
@@ -93,6 +102,8 @@ export interface ChatTemplateUpdateParams {
   image_url?: string | null;
 
   is_active?: boolean | null;
+
+  questions?: Array<ChatAPI.TemplateQuestion> | null;
 
   title?: string | null;
 

@@ -15,9 +15,13 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/user/user.ts">EnrichUserParams</a></code>
+- <code><a href="./src/resources/user/user.ts">GetOnboardingAnswersResponse</a></code>
 - <code><a href="./src/resources/user/user.ts">JwtToAPITokenRequest</a></code>
+- <code><a href="./src/resources/user/user.ts">OnboardingAnswers</a></code>
 - <code><a href="./src/resources/user/user.ts">RefreshSessionRequest</a></code>
 - <code><a href="./src/resources/user/user.ts">RefreshSessionResponse</a></code>
+- <code><a href="./src/resources/user/user.ts">SaveOnboardingAnswersRequest</a></code>
+- <code><a href="./src/resources/user/user.ts">SaveOnboardingAnswersResponse</a></code>
 - <code><a href="./src/resources/user/user.ts">SurveySubmissionRequest</a></code>
 - <code><a href="./src/resources/user/user.ts">SurveySubmissionResponse</a></code>
 - <code><a href="./src/resources/user/user.ts">TokenResponse</a></code>
@@ -30,9 +34,11 @@ Methods:
 
 - <code title="put /user/update">client.user.<a href="./src/resources/user/user.ts">update</a>({ ...params }) -> User</code>
 - <code title="post /user/enrich">client.user.<a href="./src/resources/user/user.ts">enrich</a>({ ...params }) -> void</code>
+- <code title="get /user/onboarding/answers">client.user.<a href="./src/resources/user/user.ts">getOnboardingAnswers</a>() -> GetOnboardingAnswersResponse</code>
 - <code title="get /user/info">client.user.<a href="./src/resources/user/user.ts">info</a>() -> UserInfo</code>
 - <code title="post /user/jwt_to_api_token/{jwt}">client.user.<a href="./src/resources/user/user.ts">jwtToAPIToken</a>(jwt, { ...params }) -> TokenResponse</code>
 - <code title="post /user/refresh">client.user.<a href="./src/resources/user/user.ts">refresh</a>({ ...params }) -> RefreshSessionResponse</code>
+- <code title="put /user/onboarding/answers">client.user.<a href="./src/resources/user/user.ts">saveOnboardingAnswers</a>({ ...params }) -> SaveOnboardingAnswersResponse</code>
 - <code title="post /user/survey/submit">client.user.<a href="./src/resources/user/user.ts">surveySubmit</a>({ ...params }) -> SurveySubmissionResponse</code>
 - <code title="get /user/transactions/list">client.user.<a href="./src/resources/user/user.ts">transactions</a>() -> UserTransactionsResponse</code>
 - <code title="get /user/usage">client.user.<a href="./src/resources/user/user.ts">usage</a>({ ...params }) -> UserUsageResponse</code>
@@ -80,14 +86,15 @@ Types:
 - <code><a href="./src/resources/chat.ts">ChatDependency</a></code>
 - <code><a href="./src/resources/chat.ts">ChatEvent</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSession</a></code>
+- <code><a href="./src/resources/chat.ts">ChatSessionMembership</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSessionRole</a></code>
-- <code><a href="./src/resources/chat.ts">ChatSessionUser</a></code>
 - <code><a href="./src/resources/chat.ts">ChatSessionWithMessages</a></code>
 - <code><a href="./src/resources/chat.ts">ChatTemplate</a></code>
 - <code><a href="./src/resources/chat.ts">ChatVisibility</a></code>
 - <code><a href="./src/resources/chat.ts">CopyChatSessionRequest</a></code>
 - <code><a href="./src/resources/chat.ts">CreateChatSessionRequest</a></code>
 - <code><a href="./src/resources/chat.ts">CreateChatSessionResponse</a></code>
+- <code><a href="./src/resources/chat.ts">DashboardItem</a></code>
 - <code><a href="./src/resources/chat.ts">DeleteChatSessionResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ErrorResponse</a></code>
 - <code><a href="./src/resources/chat.ts">GetChatSessionResponse</a></code>
@@ -95,47 +102,55 @@ Types:
 - <code><a href="./src/resources/chat.ts">GrantAdminAccessRequest</a></code>
 - <code><a href="./src/resources/chat.ts">ListChatSessionsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ListCollaboratorsResponse</a></code>
+- <code><a href="./src/resources/chat.ts">ListDashboardsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">Message</a></code>
+- <code><a href="./src/resources/chat.ts">SimulatePromptRequest</a></code>
+- <code><a href="./src/resources/chat.ts">SimulatePromptResponse</a></code>
+- <code><a href="./src/resources/chat.ts">TemplateQuestion</a></code>
 - <code><a href="./src/resources/chat.ts">ToolInvocation</a></code>
 - <code><a href="./src/resources/chat.ts">ToolResult</a></code>
 - <code><a href="./src/resources/chat.ts">UpdateChatSessionFavoriteRequest</a></code>
 - <code><a href="./src/resources/chat.ts">UpdateChatSessionRequest</a></code>
 - <code><a href="./src/resources/chat.ts">UpdateVisibilityRequest</a></code>
 - <code><a href="./src/resources/chat.ts">UpdateVisibilityResponse</a></code>
-- <code><a href="./src/resources/chat.ts">ChatAddGitCommitResponse</a></code>
-- <code><a href="./src/resources/chat.ts">ChatCopyNodeOutputByCodeHashResponse</a></code>
-- <code><a href="./src/resources/chat.ts">ChatDeleteFilesResponse</a></code>
-- <code><a href="./src/resources/chat.ts">ChatGetGitCommitResponse</a></code>
+- <code><a href="./src/resources/chat.ts">ChatDeleteInputFileResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetPartialChatsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatGetSessionTimelineResponse</a></code>
+- <code><a href="./src/resources/chat.ts">ChatListInputFilesResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatListTemplatesResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatLoadFilesResponse</a></code>
+- <code><a href="./src/resources/chat.ts">ChatLoadInputFilesResponse</a></code>
+- <code><a href="./src/resources/chat.ts">ChatPendingWikiEditsResponse</a></code>
 - <code><a href="./src/resources/chat.ts">ChatRevertToCommitResponse</a></code>
 
 Methods:
 
 - <code title="post /chat/sessions/{chat_id}/collaborators">client.chat.<a href="./src/resources/chat.ts">addCollaborator</a>(chatId, { ...params }) -> void</code>
-- <code title="post /chat/sessions/{session_id}/commits">client.chat.<a href="./src/resources/chat.ts">addGitCommit</a>(sessionId, { ...params }) -> ChatAddGitCommitResponse</code>
-- <code title="get /chat/sessions/{session_id}/admin/chat_prompt">client.chat.<a href="./src/resources/chat.ts">adminGetChatPrompt</a>(sessionId) -> ChatPrompt</code>
 - <code title="post /chat/sessions/{chat_id}/admin/issue_found">client.chat.<a href="./src/resources/chat.ts">adminIssueFound</a>(chatId, { ...params }) -> AdminIssueFoundResponse</code>
 - <code title="post /chat/copy">client.chat.<a href="./src/resources/chat.ts">copy</a>({ ...params }) -> ChatSessionWithMessages</code>
-- <code title="post /chat/sessions/{session_id}/nodes/by_code_hash">client.chat.<a href="./src/resources/chat.ts">copyNodeOutputByCodeHash</a>(sessionId, { ...params }) -> string</code>
+- <code title="post /chat/create_from_files">client.chat.<a href="./src/resources/chat.ts">createChatFromFiles</a>({ ...params }) -> ChatSessionWithMessages</code>
 - <code title="post /chat/sessions">client.chat.<a href="./src/resources/chat.ts">createSession</a>({ ...params }) -> CreateChatSessionResponse</code>
-- <code title="post /chat/files/delete/{chat_id}">client.chat.<a href="./src/resources/chat.ts">deleteFiles</a>(chatId, { ...params }) -> ChatDeleteFilesResponse</code>
+- <code title="post /chat/input-files/delete/{chat_id}">client.chat.<a href="./src/resources/chat.ts">deleteInputFile</a>(chatId, { ...params }) -> ChatDeleteInputFileResponse</code>
 - <code title="delete /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">deleteSession</a>(sessionId) -> DeleteChatSessionResponse</code>
 - <code title="get /chat/sessions/{session_id}/dependencies">client.chat.<a href="./src/resources/chat.ts">getDependencies</a>(sessionId) -> GetDependenciesResponse</code>
-- <code title="get /chat/sessions/{chat_id}/commits/{commit_hash}">client.chat.<a href="./src/resources/chat.ts">getGitCommit</a>(chatId, commitHash) -> ChatGetGitCommitResponse</code>
 - <code title="get /chat/{chat_session_id}/partial-chats">client.chat.<a href="./src/resources/chat.ts">getPartialChats</a>(chatSessionId) -> ChatGetPartialChatsResponse</code>
 - <code title="get /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">getSession</a>(sessionId) -> GetChatSessionResponse</code>
 - <code title="get /chat/sessions/{session_id}/timeline">client.chat.<a href="./src/resources/chat.ts">getSessionTimeline</a>(sessionId) -> ChatGetSessionTimelineResponse</code>
+- <code title="get /chat/templates/{template_id}">client.chat.<a href="./src/resources/chat.ts">getTemplate</a>(templateId) -> ChatTemplate</code>
 - <code title="post /chat/sessions/{chat_id}/admin_override">client.chat.<a href="./src/resources/chat.ts">grantAdminOverride</a>(chatId, { ...params }) -> AdminGrantAccessResponse</code>
 - <code title="get /chat/sessions/{chat_id}/collaborators">client.chat.<a href="./src/resources/chat.ts">listCollaborators</a>(chatId) -> ListCollaboratorsResponse</code>
+- <code title="get /chat/sessions/{chat_id}/dashboards">client.chat.<a href="./src/resources/chat.ts">listDashboards</a>(chatId, { ...params }) -> ListDashboardsResponse</code>
+- <code title="get /chat/input-files/list/{chat_id}">client.chat.<a href="./src/resources/chat.ts">listInputFiles</a>(chatId) -> ChatListInputFilesResponse</code>
 - <code title="get /chat/sessions">client.chat.<a href="./src/resources/chat.ts">listSessions</a>({ ...params }) -> ListChatSessionsResponse</code>
 - <code title="get /chat/templates">client.chat.<a href="./src/resources/chat.ts">listTemplates</a>() -> ChatListTemplatesResponse</code>
 - <code title="post /chat/files/load">client.chat.<a href="./src/resources/chat.ts">loadFiles</a>({ ...params }) -> ChatLoadFilesResponse</code>
+- <code title="get /chat/input-files/download/{chat_id}/{filename}">client.chat.<a href="./src/resources/chat.ts">loadInputFile</a>(chatId, filename) -> Response</code>
+- <code title="get /chat/input-files/download-all/{chat_id}">client.chat.<a href="./src/resources/chat.ts">loadInputFiles</a>(chatId, { ...params }) -> ChatLoadInputFilesResponse</code>
 - <code title="patch /chat/sessions/{session_id}/make-permanent">client.chat.<a href="./src/resources/chat.ts">makePermanent</a>(sessionId) -> void</code>
-- <code title="delete /chat/sessions/{chat_id}/collaborators/{user_id}">client.chat.<a href="./src/resources/chat.ts">removeCollaborator</a>(chatId, userId) -> void</code>
+- <code title="get /chat/sessions/{chat_id}/pending_wiki_edits">client.chat.<a href="./src/resources/chat.ts">pendingWikiEdits</a>(chatId) -> ChatPendingWikiEditsResponse</code>
+- <code title="delete /chat/sessions/{chat_id}/collaborators/{membership_id}">client.chat.<a href="./src/resources/chat.ts">removeCollaborator</a>(chatId, membershipId) -> void</code>
 - <code title="post /chat/sessions/{session_id}/revert">client.chat.<a href="./src/resources/chat.ts">revertToCommit</a>(sessionId, { ...params }) -> ChatRevertToCommitResponse</code>
+- <code title="post /chat/{chat_session_id}/simulate-prompt">client.chat.<a href="./src/resources/chat.ts">simulatePrompt</a>(chatSessionId, { ...params }) -> SimulatePromptResponse</code>
 - <code title="patch /chat/sessions/{session_id}">client.chat.<a href="./src/resources/chat.ts">updateSession</a>(sessionId, { ...params }) -> ChatSession</code>
 - <code title="patch /chat/sessions/{session_id}/favorite">client.chat.<a href="./src/resources/chat.ts">updateSessionFavorite</a>(sessionId, { ...params }) -> ChatSession</code>
 - <code title="put /chat/sessions/{session_id}/visibility">client.chat.<a href="./src/resources/chat.ts">updateVisibility</a>(sessionId, { ...params }) -> UpdateVisibilityResponse</code>
@@ -148,18 +163,15 @@ Types:
 - <code><a href="./src/resources/teams.ts">AcceptInvitationResponse</a></code>
 - <code><a href="./src/resources/teams.ts">AddMemberRequest</a></code>
 - <code><a href="./src/resources/teams.ts">AddMemberResponse</a></code>
-- <code><a href="./src/resources/teams.ts">CreateProjectRequest</a></code>
 - <code><a href="./src/resources/teams.ts">CreateTeamRequest</a></code>
 - <code><a href="./src/resources/teams.ts">CreateTeamResponse</a></code>
 - <code><a href="./src/resources/teams.ts">CreditsUsageRequest</a></code>
 - <code><a href="./src/resources/teams.ts">CreditsUsageResponse</a></code>
 - <code><a href="./src/resources/teams.ts">CreditsUsageTimeseriesPoint</a></code>
-- <code><a href="./src/resources/teams.ts">DeleteTeamResponse</a></code>
 - <code><a href="./src/resources/teams.ts">GetTeamResponse</a></code>
 - <code><a href="./src/resources/teams.ts">Granularity</a></code>
 - <code><a href="./src/resources/teams.ts">InvitationDetailsResponse</a></code>
 - <code><a href="./src/resources/teams.ts">ListMembersResponse</a></code>
-- <code><a href="./src/resources/teams.ts">ListProjectsResponse</a></code>
 - <code><a href="./src/resources/teams.ts">ListTeamsResponse</a></code>
 - <code><a href="./src/resources/teams.ts">RemoveMemberResponse</a></code>
 - <code><a href="./src/resources/teams.ts">SelectTeamResponse</a></code>
@@ -167,8 +179,6 @@ Types:
 - <code><a href="./src/resources/teams.ts">TeamRole</a></code>
 - <code><a href="./src/resources/teams.ts">TeamSubscriptionStatus</a></code>
 - <code><a href="./src/resources/teams.ts">TeamWithRole</a></code>
-- <code><a href="./src/resources/teams.ts">TeamsLinkCodeRequest</a></code>
-- <code><a href="./src/resources/teams.ts">TeamsLinkCodeResponse</a></code>
 - <code><a href="./src/resources/teams.ts">UpdateMemberRoleRequest</a></code>
 - <code><a href="./src/resources/teams.ts">UpdateMemberRoleResponse</a></code>
 - <code><a href="./src/resources/teams.ts">UpdateTeamRequest</a></code>
@@ -180,16 +190,14 @@ Methods:
 - <code title="post /team/create">client.teams.<a href="./src/resources/teams.ts">create</a>({ ...params }) -> CreateTeamResponse</code>
 - <code title="put /team/{team_id}">client.teams.<a href="./src/resources/teams.ts">update</a>(teamId, { ...params }) -> UpdateTeamResponse</code>
 - <code title="get /team/list">client.teams.<a href="./src/resources/teams.ts">list</a>() -> ListTeamsResponse</code>
-- <code title="delete /team/{team_id}">client.teams.<a href="./src/resources/teams.ts">delete</a>(teamId) -> DeleteTeamResponse</code>
 - <code title="post /team/invitations/accept">client.teams.<a href="./src/resources/teams.ts">acceptInvitation</a>({ ...params }) -> AcceptInvitationResponse</code>
 - <code title="post /team/{team_id}/members">client.teams.<a href="./src/resources/teams.ts">addMember</a>(teamId, { ...params }) -> AddMemberResponse</code>
-- <code title="post /teams/link-code">client.teams.<a href="./src/resources/teams.ts">createLinkCode</a>({ ...params }) -> TeamsLinkCodeResponse</code>
-- <code title="post /team/{team_id}/projects">client.teams.<a href="./src/resources/teams.ts">createProject</a>(teamId, { ...params }) -> Project</code>
+- <code title="delete /team/{team_id}/invitations">client.teams.<a href="./src/resources/teams.ts">cancelInvitation</a>(teamId, { ...params }) -> void</code>
 - <code title="get /team/{team_id}/credits/usage">client.teams.<a href="./src/resources/teams.ts">creditsUsage</a>(teamId, { ...params }) -> CreditsUsageResponse</code>
 - <code title="get /team/{team_id}">client.teams.<a href="./src/resources/teams.ts">get</a>(teamId) -> GetTeamResponse</code>
+- <code title="get /team/{team_id}/subscription">client.teams.<a href="./src/resources/teams.ts">getSubscription</a>(teamId) -> TeamSubscriptionStatus</code>
 - <code title="get /team/invitations/details/{token}">client.teams.<a href="./src/resources/teams.ts">invitationDetails</a>(token) -> InvitationDetailsResponse</code>
 - <code title="get /team/{team_id}/members">client.teams.<a href="./src/resources/teams.ts">listMembers</a>(teamId) -> ListMembersResponse</code>
-- <code title="get /team/{team_id}/projects">client.teams.<a href="./src/resources/teams.ts">listProjects</a>(teamId) -> ListProjectsResponse</code>
 - <code title="delete /team/{team_id}/members/{user_id}">client.teams.<a href="./src/resources/teams.ts">removeMember</a>(teamId, userId) -> RemoveMemberResponse</code>
 - <code title="post /team/{team_id}/select">client.teams.<a href="./src/resources/teams.ts">select</a>(teamId) -> SelectTeamResponse</code>
 - <code title="patch /team/{team_id}/members/{user_id}/role">client.teams.<a href="./src/resources/teams.ts">updateMemberRole</a>(teamId, userId, { ...params }) -> UpdateMemberRoleResponse</code>
@@ -200,9 +208,7 @@ Types:
 
 - <code><a href="./src/resources/wiki.ts">CreateWikiPageRequest</a></code>
 - <code><a href="./src/resources/wiki.ts">UpdateWikiPageRequest</a></code>
-- <code><a href="./src/resources/wiki.ts">WikiConnectorReference</a></code>
 - <code><a href="./src/resources/wiki.ts">WikiPage</a></code>
-- <code><a href="./src/resources/wiki.ts">WikiPageWithReferences</a></code>
 - <code><a href="./src/resources/wiki.ts">WikiListResponse</a></code>
 
 Methods:
@@ -211,52 +217,87 @@ Methods:
 - <code title="put /team/{team_id}/wiki/{slug}">client.wiki.<a href="./src/resources/wiki.ts">update</a>(teamId, slug, { ...params }) -> WikiPage</code>
 - <code title="get /team/{team_id}/wiki">client.wiki.<a href="./src/resources/wiki.ts">list</a>(teamId) -> WikiListResponse</code>
 - <code title="delete /team/{team_id}/wiki/{slug}">client.wiki.<a href="./src/resources/wiki.ts">delete</a>(teamId, slug) -> void</code>
-- <code title="get /team/{team_id}/wiki/{slug}">client.wiki.<a href="./src/resources/wiki.ts">get</a>(teamId, slug) -> WikiPageWithReferences</code>
+- <code title="get /team/{team_id}/wiki/{slug}">client.wiki.<a href="./src/resources/wiki.ts">get</a>(teamId, slug) -> WikiPage</code>
 
 # Projects
 
 Types:
 
+- <code><a href="./src/resources/projects.ts">CreateProjectRequest</a></code>
 - <code><a href="./src/resources/projects.ts">DeleteProjectResponse</a></code>
+- <code><a href="./src/resources/projects.ts">ListProjectsResponse</a></code>
 - <code><a href="./src/resources/projects.ts">Project</a></code>
 - <code><a href="./src/resources/projects.ts">ProjectCollaboratorInput</a></code>
 - <code><a href="./src/resources/projects.ts">ProjectMember</a></code>
 - <code><a href="./src/resources/projects.ts">ProjectVisibility</a></code>
+- <code><a href="./src/resources/projects.ts">ProjectWithMembers</a></code>
 - <code><a href="./src/resources/projects.ts">UpdateProjectRequest</a></code>
-- <code><a href="./src/resources/projects.ts">ProjectGetResponse</a></code>
 
 Methods:
 
-- <code title="patch /team/{team_id}/project/{project_id}">client.projects.<a href="./src/resources/projects.ts">update</a>(teamId, projectId, { ...params }) -> Project</code>
-- <code title="delete /team/{team_id}/project/{project_id}">client.projects.<a href="./src/resources/projects.ts">delete</a>(teamId, projectId) -> DeleteProjectResponse</code>
-- <code title="get /team/{team_id}/project/{project_id}">client.projects.<a href="./src/resources/projects.ts">get</a>(teamId, projectId) -> ProjectGetResponse</code>
+- <code title="post /projects">client.projects.<a href="./src/resources/projects.ts">create</a>({ ...params }) -> Project</code>
+- <code title="patch /projects/{project_id}">client.projects.<a href="./src/resources/projects.ts">update</a>(projectId, { ...params }) -> Project</code>
+- <code title="get /projects">client.projects.<a href="./src/resources/projects.ts">list</a>() -> ListProjectsResponse</code>
+- <code title="delete /projects/{project_id}">client.projects.<a href="./src/resources/projects.ts">delete</a>(projectId) -> DeleteProjectResponse</code>
+- <code title="get /projects/{project_id}">client.projects.<a href="./src/resources/projects.ts">get</a>(projectId) -> ProjectWithMembers</code>
 
 # Admin
+
+Types:
+
+- <code><a href="./src/resources/admin/admin.ts">ReportCriticalRequest</a></code>
+
+Methods:
+
+- <code title="post /admin/critical">client.admin.<a href="./src/resources/admin/admin.ts">reportCritical</a>({ ...params }) -> void</code>
 
 ## Teams
 
 Types:
 
-- <code><a href="./src/resources/admin/teams.ts">AdminTeamsListResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">AdminAddMemberRequest</a></code>
+- <code><a href="./src/resources/admin/teams.ts">AdminAddMemberResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">AdminListMembersResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">AdminRemoveMemberRequest</a></code>
+- <code><a href="./src/resources/admin/teams.ts">AdminRemoveMemberResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">CancelSubscriptionRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">CancelSubscriptionResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">CreateSubscriptionResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">CreateTeamSubscriptionRequest</a></code>
+- <code><a href="./src/resources/admin/teams.ts">DeleteManagementRelationshipResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">ExpireGrantsRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">ExpireGrantsResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">ExtendTrialRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">ExtendTrialResponse</a></code>
 - <code><a href="./src/resources/admin/teams.ts">GrantCreditsRequest</a></code>
 - <code><a href="./src/resources/admin/teams.ts">GrantCreditsResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">ListManagementRelationshipsResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">ManagementRelationshipDetail</a></code>
+- <code><a href="./src/resources/admin/teams.ts">ManagementRelationshipResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">SetAccessAction</a></code>
+- <code><a href="./src/resources/admin/teams.ts">SetAccessRequest</a></code>
+- <code><a href="./src/resources/admin/teams.ts">SetAccessResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">TeamManagementRelationship</a></code>
+- <code><a href="./src/resources/admin/teams.ts">UpdateSeatsOverrideRequest</a></code>
+- <code><a href="./src/resources/admin/teams.ts">UpdateSeatsOverrideResponse</a></code>
+- <code><a href="./src/resources/admin/teams.ts">UpsertManagementRelationshipRequest</a></code>
 
 Methods:
 
-- <code title="get /admin/team/list">client.admin.teams.<a href="./src/resources/admin/teams.ts">list</a>({ ...params }) -> AdminTeamsListResponsesJobsList</code>
+- <code title="post /admin/team/add_member">client.admin.teams.<a href="./src/resources/admin/teams.ts">addMember</a>({ ...params }) -> AdminAddMemberResponse</code>
 - <code title="post /admin/team/cancel_subscription">client.admin.teams.<a href="./src/resources/admin/teams.ts">cancelSubscription</a>({ ...params }) -> CancelSubscriptionResponse</code>
 - <code title="post /admin/team/create_subscription">client.admin.teams.<a href="./src/resources/admin/teams.ts">createSubscription</a>({ ...params }) -> CreateSubscriptionResponse</code>
+- <code title="delete /admin/team/{managed_team_id}/management_relationship">client.admin.teams.<a href="./src/resources/admin/teams.ts">deleteManagementRelationship</a>(managedTeamId) -> DeleteManagementRelationshipResponse</code>
 - <code title="post /admin/team/expire_grants">client.admin.teams.<a href="./src/resources/admin/teams.ts">expireGrants</a>({ ...params }) -> ExpireGrantsResponse</code>
 - <code title="post /admin/team/extend_trial">client.admin.teams.<a href="./src/resources/admin/teams.ts">extendTrial</a>({ ...params }) -> ExtendTrialResponse</code>
+- <code title="get /admin/team/{managed_team_id}/management_relationship">client.admin.teams.<a href="./src/resources/admin/teams.ts">getManagementRelationship</a>(managedTeamId) -> ManagementRelationshipResponse</code>
 - <code title="post /admin/team/grant_credits">client.admin.teams.<a href="./src/resources/admin/teams.ts">grantCredits</a>({ ...params }) -> GrantCreditsResponse</code>
+- <code title="get /admin/team/management_relationships">client.admin.teams.<a href="./src/resources/admin/teams.ts">listManagementRelationships</a>({ ...params }) -> ListManagementRelationshipsResponse</code>
+- <code title="get /admin/team/{team_id}/members">client.admin.teams.<a href="./src/resources/admin/teams.ts">listMembers</a>(teamId) -> AdminListMembersResponse</code>
+- <code title="post /admin/team/remove_member">client.admin.teams.<a href="./src/resources/admin/teams.ts">removeMember</a>({ ...params }) -> AdminRemoveMemberResponse</code>
+- <code title="post /admin/team/set_access">client.admin.teams.<a href="./src/resources/admin/teams.ts">setAccess</a>({ ...params }) -> SetAccessResponse</code>
+- <code title="post /admin/team/update_seats_override">client.admin.teams.<a href="./src/resources/admin/teams.ts">updateSeatsOverride</a>({ ...params }) -> UpdateSeatsOverrideResponse</code>
+- <code title="post /admin/team/management_relationship">client.admin.teams.<a href="./src/resources/admin/teams.ts">upsertManagementRelationship</a>({ ...params }) -> ManagementRelationshipResponse</code>
 
 ## Dataset
 
@@ -275,23 +316,27 @@ Types:
 - <code><a href="./src/resources/admin/jobs.ts">AdminDeleteJobsRequest</a></code>
 - <code><a href="./src/resources/admin/jobs.ts">AdminDeleteJobsResponse</a></code>
 - <code><a href="./src/resources/admin/jobs.ts">AdminListJobsRequestParams</a></code>
-- <code><a href="./src/resources/admin/jobs.ts">AdminListJobsResponse</a></code>
+- <code><a href="./src/resources/admin/jobs.ts">JobListResponse</a></code>
+- <code><a href="./src/resources/admin/jobs.ts">JobConcurrencyResponse</a></code>
+- <code><a href="./src/resources/admin/jobs.ts">JobKillByMembershipResponse</a></code>
+- <code><a href="./src/resources/admin/jobs.ts">JobRunningStatsResponse</a></code>
+- <code><a href="./src/resources/admin/jobs.ts">JobUpdateConcurrencyResponse</a></code>
 
 Methods:
 
-- <code title="get /admin/jobs/list">client.admin.jobs.<a href="./src/resources/admin/jobs.ts">list</a>({ ...params }) -> AdminListJobsResponsesJobsList</code>
+- <code title="get /admin/jobs/list">client.admin.jobs.<a href="./src/resources/admin/jobs.ts">list</a>({ ...params }) -> JobListResponsesJobsList</code>
 - <code title="post /admin/jobs/delete">client.admin.jobs.<a href="./src/resources/admin/jobs.ts">delete</a>({ ...params }) -> AdminDeleteJobsResponse</code>
+- <code title="get /admin/jobs/concurrency_limits">client.admin.jobs.<a href="./src/resources/admin/jobs.ts">concurrency</a>() -> JobConcurrencyResponse</code>
+- <code title="post /admin/jobs/kill_by_membership">client.admin.jobs.<a href="./src/resources/admin/jobs.ts">killByMembership</a>({ ...params }) -> JobKillByMembershipResponse</code>
+- <code title="get /admin/jobs/running_stats">client.admin.jobs.<a href="./src/resources/admin/jobs.ts">runningStats</a>() -> JobRunningStatsResponse</code>
+- <code title="put /admin/jobs/concurrency_limits">client.admin.jobs.<a href="./src/resources/admin/jobs.ts">updateConcurrency</a>({ ...params }) -> JobUpdateConcurrencyResponse</code>
 
 ## Sandbox
 
-Types:
-
-- <code><a href="./src/resources/admin/sandbox.ts">AdminSandbox</a></code>
-- <code><a href="./src/resources/admin/sandbox.ts">SandboxType</a></code>
-
 Methods:
 
-- <code title="get /admin/sandbox/list">client.admin.sandbox.<a href="./src/resources/admin/sandbox.ts">list</a>({ ...params }) -> AdminSandboxesJobsList</code>
+- <code title="get /admin/sandbox/list">client.admin.sandbox.<a href="./src/resources/admin/sandbox.ts">list</a>({ ...params }) -> SandboxesJobsList</code>
+- <code title="post /admin/sandbox/{sandbox_id}/terminate">client.admin.sandbox.<a href="./src/resources/admin/sandbox.ts">terminate</a>(sandboxId) -> Sandbox</code>
 
 ## FunctionalTests
 
@@ -323,13 +368,11 @@ Types:
 - <code><a href="./src/resources/admin/users.ts">ImpersonateResponse</a></code>
 - <code><a href="./src/resources/admin/users.ts">User</a></code>
 - <code><a href="./src/resources/admin/users.ts">UserListResponse</a></code>
-- <code><a href="./src/resources/admin/users.ts">UserGetStatsResponse</a></code>
 
 Methods:
 
 - <code title="post /admin/users/create">client.admin.users.<a href="./src/resources/admin/users.ts">create</a>({ ...params }) -> TokenResponse</code>
 - <code title="get /admin/users/list">client.admin.users.<a href="./src/resources/admin/users.ts">list</a>() -> UserListResponse</code>
-- <code title="post /admin/users/get_stats">client.admin.users.<a href="./src/resources/admin/users.ts">getStats</a>({ ...params }) -> UserGetStatsResponse</code>
 - <code title="post /admin/users/impersonate">client.admin.users.<a href="./src/resources/admin/users.ts">impersonate</a>({ ...params }) -> ImpersonateResponse</code>
 
 ## ChatTemplates
@@ -351,13 +394,19 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/admin/connector.ts">AdminListConnectorsResponse</a></code>
 - <code><a href="./src/resources/admin/connector.ts">CloneConnectorItem</a></code>
 - <code><a href="./src/resources/admin/connector.ts">CloneConnectorsRequest</a></code>
-- <code><a href="./src/resources/admin/connector.ts">CloneConnectorsResponse</a></code>
+- <code><a href="./src/resources/admin/connector.ts">DatahubIngestionKey</a></code>
+- <code><a href="./src/resources/admin/connector.ts">DatahubIngestionType</a></code>
+- <code><a href="./src/resources/admin/connector.ts">SetDatahubConfigRequest</a></code>
+- <code><a href="./src/resources/admin/connector.ts">ConnectorCloneResponse</a></code>
 
 Methods:
 
-- <code title="post /admin/connector/clone">client.admin.connector.<a href="./src/resources/admin/connector.ts">clone</a>({ ...params }) -> CloneConnectorsResponse</code>
+- <code title="post /admin/connector/clone">client.admin.connector.<a href="./src/resources/admin/connector.ts">clone</a>({ ...params }) -> ConnectorCloneResponse</code>
+- <code title="get /admin/connector/team/{team_id}">client.admin.connector.<a href="./src/resources/admin/connector.ts">listTeamConnectors</a>(teamId) -> AdminListConnectorsResponse</code>
+- <code title="post /admin/connector/datahub-config">client.admin.connector.<a href="./src/resources/admin/connector.ts">setDatahubConfig</a>({ ...params }) -> Connector</code>
 
 # Datasets
 
@@ -369,7 +418,6 @@ Types:
 - <code><a href="./src/resources/datasets.ts">DatasetCreateResponse</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetListResponse</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetCountMissingEmbeddingsResponse</a></code>
-- <code><a href="./src/resources/datasets.ts">DatasetEnrichmentProgressResponse</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetGetResponse</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetMatchResponse</a></code>
 - <code><a href="./src/resources/datasets.ts">DatasetViewRelationshipsResponse</a></code>
@@ -383,7 +431,6 @@ Methods:
 - <code title="delete /dataset/delete">client.datasets.<a href="./src/resources/datasets.ts">delete</a>({ ...params }) -> void</code>
 - <code title="post /dataset/add_property">client.datasets.<a href="./src/resources/datasets.ts">addProperty</a>({ ...params }) -> void</code>
 - <code title="get /dataset/count_missing_embeddings">client.datasets.<a href="./src/resources/datasets.ts">countMissingEmbeddings</a>({ ...params }) -> DatasetCountMissingEmbeddingsResponse</code>
-- <code title="get /dataset/enrichment_progress">client.datasets.<a href="./src/resources/datasets.ts">enrichmentProgress</a>({ ...params }) -> DatasetEnrichmentProgressResponse</code>
 - <code title="get /dataset/export_to_csv">client.datasets.<a href="./src/resources/datasets.ts">exportToCsv</a>({ ...params }) -> void</code>
 - <code title="get /dataset/export_to_excel">client.datasets.<a href="./src/resources/datasets.ts">exportToExcel</a>({ ...params }) -> void</code>
 - <code title="get /dataset/info">client.datasets.<a href="./src/resources/datasets.ts">get</a>({ ...params }) -> DatasetGetResponse</code>
@@ -417,19 +464,14 @@ Types:
 
 - <code><a href="./src/resources/jobs.ts">GetJobEventsResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobListResponse</a></code>
-- <code><a href="./src/resources/jobs.ts">JobCancelResponse</a></code>
-- <code><a href="./src/resources/jobs.ts">JobGetScrapersResponse</a></code>
-- <code><a href="./src/resources/jobs.ts">JobGetSourceEntitiesResponse</a></code>
+- <code><a href="./src/resources/jobs.ts">JobGetResponse</a></code>
 - <code><a href="./src/resources/jobs.ts">JobStatusResponse</a></code>
 
 Methods:
 
 - <code title="get /jobs/list">client.jobs.<a href="./src/resources/jobs.ts">list</a>({ ...params }) -> JobListResponsesJobsList</code>
-- <code title="post /jobs/cancel/{uuid}">client.jobs.<a href="./src/resources/jobs.ts">cancel</a>(uuid) -> JobCancelResponse</code>
+- <code title="get /jobs/get/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">get</a>(jobId) -> JobGetResponse</code>
 - <code title="get /jobs/{job_id}/events">client.jobs.<a href="./src/resources/jobs.ts">getEvents</a>(jobId) -> GetJobEventsResponse</code>
-- <code title="get /jobs/get_scrapers/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">getScrapers</a>(jobId) -> JobGetScrapersResponse</code>
-- <code title="get /jobs/get_source_entities/{job_id}">client.jobs.<a href="./src/resources/jobs.ts">getSourceEntities</a>(jobId) -> JobGetSourceEntitiesResponse</code>
-- <code title="post /jobs/schedule">client.jobs.<a href="./src/resources/jobs.ts">schedule</a>() -> void</code>
 - <code title="post /jobs/status_aggregated">client.jobs.<a href="./src/resources/jobs.ts">status</a>({ ...params }) -> JobStatusResponse</code>
 
 # Match
@@ -451,12 +493,16 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/sessions.ts">AutofixContext</a></code>
+- <code><a href="./src/resources/sessions.ts">CellEdit</a></code>
 - <code><a href="./src/resources/sessions.ts">ConfirmNodeRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">CreateWorkflowSessionRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">Dashboard</a></code>
 - <code><a href="./src/resources/sessions.ts">DashboardComponent</a></code>
 - <code><a href="./src/resources/sessions.ts">DashboardPage</a></code>
+- <code><a href="./src/resources/sessions.ts">DashboardSpec</a></code>
+- <code><a href="./src/resources/sessions.ts">DeadCodeFinding</a></code>
 - <code><a href="./src/resources/sessions.ts">EdgeSpec</a></code>
+- <code><a href="./src/resources/sessions.ts">EditNodeOutputRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">FinalizeDagRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">FinalizeDagResponse</a></code>
 - <code><a href="./src/resources/sessions.ts">GetNodeLogsResponse</a></code>
@@ -464,17 +510,36 @@ Types:
 - <code><a href="./src/resources/sessions.ts">JobEventBody</a></code>
 - <code><a href="./src/resources/sessions.ts">MarkWorkflowSessionErroredRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">NodeSpec</a></code>
+- <code><a href="./src/resources/sessions.ts">ParquetEdit</a></code>
 - <code><a href="./src/resources/sessions.ts">RequestConfirmationRequest</a></code>
+- <code><a href="./src/resources/sessions.ts">TriggerReviewRequest</a></code>
+- <code><a href="./src/resources/sessions.ts">TriggerReviewResponse</a></code>
 - <code><a href="./src/resources/sessions.ts">UpdateWorkflowNodeProgressRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">UpdateWorkflowNodeRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">UploadDashboardLayoutRequest</a></code>
 - <code><a href="./src/resources/sessions.ts">UploadNodeVisualizationOutputRequest</a></code>
+- <code><a href="./src/resources/sessions.ts">VizBooleanControl</a></code>
+- <code><a href="./src/resources/sessions.ts">VizBooleanControlType</a></code>
+- <code><a href="./src/resources/sessions.ts">VizControlOption</a></code>
+- <code><a href="./src/resources/sessions.ts">VizDateControl</a></code>
+- <code><a href="./src/resources/sessions.ts">VizDateControlType</a></code>
+- <code><a href="./src/resources/sessions.ts">VizFigure</a></code>
+- <code><a href="./src/resources/sessions.ts">VizFigureDefinition</a></code>
+- <code><a href="./src/resources/sessions.ts">VizFigureKind</a></code>
+- <code><a href="./src/resources/sessions.ts">VizNumberControl</a></code>
+- <code><a href="./src/resources/sessions.ts">VizNumberControlType</a></code>
+- <code><a href="./src/resources/sessions.ts">VizParam</a></code>
+- <code><a href="./src/resources/sessions.ts">VizQuery</a></code>
+- <code><a href="./src/resources/sessions.ts">VizStringControl</a></code>
+- <code><a href="./src/resources/sessions.ts">VizStringControlType</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowDag</a></code>
+- <code><a href="./src/resources/sessions.ts">WorkflowDashboardItem</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowNodeExecutionStatus</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowNodeLog</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowSession</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowSessionEdge</a></code>
 - <code><a href="./src/resources/sessions.ts">WorkflowSessionNode</a></code>
+- <code><a href="./src/resources/sessions.ts">SessionEditNodeOutputResponse</a></code>
 - <code><a href="./src/resources/sessions.ts">SessionGetEventsResponse</a></code>
 - <code><a href="./src/resources/sessions.ts">SessionGetNodeProgressResponse</a></code>
 - <code><a href="./src/resources/sessions.ts">SessionKillJobsResponse</a></code>
@@ -483,6 +548,7 @@ Methods:
 
 - <code title="post /sessions/nodes/{node_id}/confirm">client.sessions.<a href="./src/resources/sessions.ts">confirmNode</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 - <code title="post /sessions">client.sessions.<a href="./src/resources/sessions.ts">createSession</a>({ ...params }) -> WorkflowSession</code>
+- <code title="post /sessions/nodes/{node_id}/edit_output">client.sessions.<a href="./src/resources/sessions.ts">editNodeOutput</a>(nodeId, { ...params }) -> SessionEditNodeOutputResponse</code>
 - <code title="post /sessions/{session_id}/dag_ready">client.sessions.<a href="./src/resources/sessions.ts">finalizeDag</a>(sessionId, { ...params }) -> FinalizeDagResponse</code>
 - <code title="get /sessions/{session_id}/dag">client.sessions.<a href="./src/resources/sessions.ts">getDag</a>(sessionId) -> WorkflowDag</code>
 - <code title="get /sessions/nodes/{node_id}/events">client.sessions.<a href="./src/resources/sessions.ts">getEvents</a>(nodeId, { ...params }) -> SessionGetEventsResponse</code>
@@ -493,11 +559,26 @@ Methods:
 - <code title="post /sessions/{session_id}/kill_jobs">client.sessions.<a href="./src/resources/sessions.ts">killJobs</a>(sessionId, { ...params }) -> SessionKillJobsResponse</code>
 - <code title="patch /sessions/{session_id}/error">client.sessions.<a href="./src/resources/sessions.ts">markErrored</a>(sessionId, { ...params }) -> WorkflowSession</code>
 - <code title="post /sessions/nodes/{node_id}/request_confirmation">client.sessions.<a href="./src/resources/sessions.ts">requestConfirmation</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
+- <code title="post /sessions/{session_id}/trigger_review">client.sessions.<a href="./src/resources/sessions.ts">triggerReview</a>(sessionId, { ...params }) -> TriggerReviewResponse</code>
 - <code title="patch /sessions/nodes/{node_id}">client.sessions.<a href="./src/resources/sessions.ts">updateNode</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 - <code title="patch /sessions/nodes/{node_id}/progress">client.sessions.<a href="./src/resources/sessions.ts">updateNodeProgress</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 - <code title="post /sessions/{session_id}/dashboard_layout">client.sessions.<a href="./src/resources/sessions.ts">uploadDashboardLayout</a>(sessionId, { ...params }) -> WorkflowSession</code>
-- <code title="post /sessions/nodes/{node_id}/output_data">client.sessions.<a href="./src/resources/sessions.ts">uploadNodeOutputData</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
 - <code title="post /sessions/nodes/{node_id}/visualization_output">client.sessions.<a href="./src/resources/sessions.ts">uploadNodeVisualizationOutput</a>(nodeId, { ...params }) -> WorkflowSessionNode</code>
+
+# Uploads
+
+Types:
+
+- <code><a href="./src/resources/uploads.ts">SignedUploadCompleteRequest</a></code>
+- <code><a href="./src/resources/uploads.ts">SignedUploadCompleteResponse</a></code>
+- <code><a href="./src/resources/uploads.ts">SignedUploadInitRequest</a></code>
+- <code><a href="./src/resources/uploads.ts">SignedUploadInitResponse</a></code>
+- <code><a href="./src/resources/uploads.ts">SignedUploadTarget</a></code>
+
+Methods:
+
+- <code title="post /chat/input-files/upload/complete">client.uploads.<a href="./src/resources/uploads.ts">complete</a>({ ...params }) -> SignedUploadCompleteResponse</code>
+- <code title="post /chat/input-files/upload/init">client.uploads.<a href="./src/resources/uploads.ts">init</a>({ ...params }) -> SignedUploadInitResponse</code>
 
 # WorkflowSchedule
 
@@ -520,6 +601,36 @@ Methods:
 - <code title="post /workflow-schedule/{schedule_id}/sessions">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">getSessions</a>(scheduleId, { ...params }) -> GetWorkflowScheduleSessionsResponse</code>
 - <code title="patch /workflow-schedule/{schedule_id}/pause">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">pause</a>(scheduleId, { ...params }) -> WorkflowScheduleInfo</code>
 - <code title="post /workflow-schedule/{schedule_id}/run">client.workflowSchedule.<a href="./src/resources/workflow-schedule.ts">run</a>(scheduleId) -> void</code>
+
+# Webhook
+
+Types:
+
+- <code><a href="./src/resources/webhook.ts">WebhookTriggerRequest</a></code>
+- <code><a href="./src/resources/webhook.ts">WebhookTriggerResponse</a></code>
+
+Methods:
+
+- <code title="post /webhook/trigger">client.webhook.<a href="./src/resources/webhook.ts">trigger</a>({ ...params }) -> WebhookTriggerResponse</code>
+
+# Analytics
+
+Types:
+
+- <code><a href="./src/resources/analytics.ts">CreateTrackerRequest</a></code>
+- <code><a href="./src/resources/analytics.ts">CreateTrackerResponse</a></code>
+- <code><a href="./src/resources/analytics.ts">Event</a></code>
+- <code><a href="./src/resources/analytics.ts">ListEventsResponse</a></code>
+- <code><a href="./src/resources/analytics.ts">ListTrackersQuery</a></code>
+- <code><a href="./src/resources/analytics.ts">ListTrackersResponse</a></code>
+- <code><a href="./src/resources/analytics.ts">Tracker</a></code>
+
+Methods:
+
+- <code title="post /analytics/tracker">client.analytics.<a href="./src/resources/analytics.ts">createTracker</a>({ ...params }) -> CreateTrackerResponse</code>
+- <code title="get /analytics/{tracker_id}/events">client.analytics.<a href="./src/resources/analytics.ts">listEvents</a>(trackerId, { ...params }) -> ListEventsResponse</code>
+- <code title="get /analytics/tracker">client.analytics.<a href="./src/resources/analytics.ts">listTrackers</a>({ ...params }) -> ListTrackersResponse</code>
+- <code title="delete /analytics/tracker/{tracker_id}">client.analytics.<a href="./src/resources/analytics.ts">revokeTracker</a>(trackerId) -> void</code>
 
 # Workflow
 
@@ -544,29 +655,35 @@ Types:
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorSummariesRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorSummary</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorTableInfo</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorTablePathResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorWithSecrets</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorWithSnippets</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">CreateConnectorRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">CreateSecretRequest</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">DatahubProgress</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">DatahubSecretMap</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">DeleteSchemaObjectRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">DeleteSchemaObjectResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ExplorationPhaseID</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ExplorationProgress</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ExplorationRun</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ExplorationRunsResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ExplorationStatus</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ExploreConnectorRequest</a></code>
-- <code><a href="./src/resources/connectors/connectors.ts">ExploreStatusResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ExplorerChatResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ListTablesResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">LlmInformationStore</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">PhaseActivity</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">SchemaObjectID</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">UpdateColumnRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">UpdateConnectorRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">UpdateTableRequest</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">UpdateTableResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorAddSchemaObjectResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorExploreResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorGetResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorGetClarificationRequestsResponse</a></code>
+- <code><a href="./src/resources/connectors/connectors.ts">ConnectorListStoresResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorListWithSnippetsResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorSearchTablesResponse</a></code>
 - <code><a href="./src/resources/connectors/connectors.ts">ConnectorSummariesResponse</a></code>
@@ -581,20 +698,25 @@ Methods:
 - <code title="post /connectors/{connector_id}/secrets">client.connectors.<a href="./src/resources/connectors/connectors.ts">createSecret</a>(connectorId, { ...params }) -> void</code>
 - <code title="delete /connectors/{connector_id}/schema_object">client.connectors.<a href="./src/resources/connectors/connectors.ts">deleteSchemaObject</a>(connectorId, { ...params }) -> DeleteSchemaObjectResponse</code>
 - <code title="delete /connectors/{connector_id}/secrets/{secret_name}">client.connectors.<a href="./src/resources/connectors/connectors.ts">deleteSecret</a>(connectorId, secretName) -> void</code>
-- <code title="post /connectors/{connector_id}/explore">client.connectors.<a href="./src/resources/connectors/connectors.ts">explore</a>(connectorId, { ...params }) -> void</code>
+- <code title="get /internal/connectors/{connector_id}/datahub-artifacts/{kind}">client.connectors.<a href="./src/resources/connectors/connectors.ts">downloadDatahubArtifact</a>(connectorId, kind, { ...params }) -> Response</code>
+- <code title="post /connectors/{connector_id}/explore">client.connectors.<a href="./src/resources/connectors/connectors.ts">explore</a>(connectorId, { ...params }) -> ConnectorExploreResponse</code>
 - <code title="get /connectors/{connector_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">get</a>(connectorId) -> ConnectorGetResponse</code>
+- <code title="get /connectors/{connector_id}/explore/active-run">client.connectors.<a href="./src/resources/connectors/connectors.ts">getActiveExplorationRun</a>(connectorId) -> ExplorationRun | null</code>
 - <code title="get /connectors/{connector_id}/clarification-requests">client.connectors.<a href="./src/resources/connectors/connectors.ts">getClarificationRequests</a>(connectorId) -> ConnectorGetClarificationRequestsResponse</code>
+- <code title="get /connectors/{connector_id}/explore/runs/{run_id}/progress">client.connectors.<a href="./src/resources/connectors/connectors.ts">getExplorationRunProgress</a>(connectorId, runId) -> ExplorationProgress</code>
 - <code title="get /connectors/{connector_id}/explore/runs">client.connectors.<a href="./src/resources/connectors/connectors.ts">getExplorationRuns</a>(connectorId) -> ExplorationRunsResponse</code>
-- <code title="get /connectors/{connector_id}/explore/status">client.connectors.<a href="./src/resources/connectors/connectors.ts">getExplorationStatus</a>(connectorId) -> ExploreStatusResponse</code>
 - <code title="get /connectors/{connector_id}/explore/chat">client.connectors.<a href="./src/resources/connectors/connectors.ts">getExplorerChat</a>(connectorId, { ...params }) -> ExplorerChatResponse</code>
 - <code title="get /connectors/{connector_id}/store">client.connectors.<a href="./src/resources/connectors/connectors.ts">getStore</a>(connectorId) -> ConnectorStoreResponse</code>
+- <code title="get /connectors/tables/{table_id}/path">client.connectors.<a href="./src/resources/connectors/connectors.ts">getTablePath</a>(tableId) -> ConnectorTablePathResponse</code>
+- <code title="get /connectors/stores">client.connectors.<a href="./src/resources/connectors/connectors.ts">listStores</a>() -> ConnectorListStoresResponse</code>
 - <code title="get /connectors/{connector_id}/tables">client.connectors.<a href="./src/resources/connectors/connectors.ts">listTables</a>(connectorId) -> ListTablesResponse</code>
-- <code title="get /connectors/with-snippets">client.connectors.<a href="./src/resources/connectors/connectors.ts">listWithSnippets</a>({ ...params }) -> ConnectorListWithSnippetsResponse</code>
+- <code title="get /connectors/with-snippets">client.connectors.<a href="./src/resources/connectors/connectors.ts">listWithSnippets</a>() -> ConnectorListWithSnippetsResponse</code>
 - <code title="patch /connectors/clarification-requests/{clarification_id}/resolve">client.connectors.<a href="./src/resources/connectors/connectors.ts">resolveClarification</a>(clarificationId) -> void</code>
 - <code title="get /connectors/search-tables">client.connectors.<a href="./src/resources/connectors/connectors.ts">searchTables</a>({ ...params }) -> ConnectorSearchTablesResponse</code>
 - <code title="post /connectors/summaries">client.connectors.<a href="./src/resources/connectors/connectors.ts">summaries</a>({ ...params }) -> ConnectorSummariesResponse</code>
 - <code title="patch /connectors/columns/{column_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">updateColumn</a>(columnId, { ...params }) -> void</code>
 - <code title="patch /connectors/tables/{table_id}">client.connectors.<a href="./src/resources/connectors/connectors.ts">updateTable</a>(tableId, { ...params }) -> UpdateTableResponse</code>
+- <code title="put /internal/connectors/{connector_id}/datahub-artifacts/{kind}">client.connectors.<a href="./src/resources/connectors/connectors.ts">uploadDatahubArtifact</a>(connectorId, kind, { ...params }) -> void</code>
 
 ## TypeSnippets
 
@@ -739,11 +861,13 @@ Types:
 - <code><a href="./src/resources/sandbox.ts">GetSandboxRequest</a></code>
 - <code><a href="./src/resources/sandbox.ts">Sandbox</a></code>
 - <code><a href="./src/resources/sandbox.ts">SandboxListResponse</a></code>
+- <code><a href="./src/resources/sandbox.ts">SandboxGetMetricsResponse</a></code>
 
 Methods:
 
 - <code title="get /sandbox/list/{chat_id}">client.sandbox.<a href="./src/resources/sandbox.ts">list</a>(chatId) -> SandboxListResponse</code>
 - <code title="post /sandbox/live/{chat_id}">client.sandbox.<a href="./src/resources/sandbox.ts">get</a>(chatId, { ...params }) -> Sandbox</code>
+- <code title="get /sandbox/{sandbox_id}/metrics">client.sandbox.<a href="./src/resources/sandbox.ts">getMetrics</a>(sandboxId) -> SandboxGetMetricsResponse</code>
 - <code title="patch /sandbox/{sandbox_id}/status">client.sandbox.<a href="./src/resources/sandbox.ts">updateStatus</a>(sandboxId, { ...params }) -> Sandbox</code>
 
 # Scrape
@@ -764,11 +888,13 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/code.ts">ApplyManualEditRequest</a></code>
 - <code><a href="./src/resources/code.ts">GenerateCodeRequest</a></code>
 - <code><a href="./src/resources/code.ts">InterruptGenerationRequest</a></code>
 
 Methods:
 
+- <code title="post /code/apply-manual-edit/{chat_id}">client.code.<a href="./src/resources/code.ts">applyManualEdit</a>(chatId, { ...params }) -> void</code>
 - <code title="post /code/generate-code">client.code.<a href="./src/resources/code.ts">generateCode</a>({ ...params }) -> void</code>
 - <code title="post /code/interrupt-generation">client.code.<a href="./src/resources/code.ts">interruptGeneration</a>({ ...params }) -> void</code>
 
@@ -778,7 +904,7 @@ Types:
 
 - <code><a href="./src/resources/structure.ts">ChatPrompt</a></code>
 - <code><a href="./src/resources/structure.ts">SaveRequirement</a></code>
-- <code><a href="./src/resources/structure.ts">ToolMetadata</a></code>
+- <code><a href="./src/resources/structure.ts">StructureBulkEnhanceResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureEnhancePropertyResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureEnhanceRelationshipResponse</a></code>
 - <code><a href="./src/resources/structure.ts">StructureFindRelationshipResponse</a></code>
@@ -789,6 +915,7 @@ Types:
 
 Methods:
 
+- <code title="post /structure/bulk_enhance">client.structure.<a href="./src/resources/structure.ts">bulkEnhance</a>({ ...params }) -> StructureBulkEnhanceResponse</code>
 - <code title="post /structure/enhance_property">client.structure.<a href="./src/resources/structure.ts">enhanceProperty</a>({ ...params }) -> string</code>
 - <code title="post /structure/enhance_relationship">client.structure.<a href="./src/resources/structure.ts">enhanceRelationship</a>({ ...params }) -> string</code>
 - <code title="post /structure/find_relationship">client.structure.<a href="./src/resources/structure.ts">findRelationship</a>({ ...params }) -> string</code>

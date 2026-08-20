@@ -4,6 +4,7 @@ import { APIResource } from '../resource';
 import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as SessionsAPI from './sessions';
+import * as ChatAPI from './chat';
 import * as SharedAPI from './shared';
 import { type Response } from '../_shims/index';
 
@@ -21,6 +22,14 @@ export class Sessions extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<WorkflowSession> {
     return this._client.post('/sessions', { body, ...options });
+  }
+
+  editNodeOutput(
+    nodeId: string,
+    body: SessionEditNodeOutputParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<SessionEditNodeOutputResponse> {
+    return this._client.post(`/sessions/nodes/${nodeId}/edit_output`, { body, ...options });
   }
 
   /**
@@ -109,6 +118,14 @@ export class Sessions extends APIResource {
     return this._client.post(`/sessions/nodes/${nodeId}/request_confirmation`, { body, ...options });
   }
 
+  triggerReview(
+    sessionId: string,
+    body: SessionTriggerReviewParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<TriggerReviewResponse> {
+    return this._client.post(`/sessions/${sessionId}/trigger_review`, { body, ...options });
+  }
+
   updateNode(
     nodeId: string,
     body: SessionUpdateNodeParams,
@@ -133,17 +150,6 @@ export class Sessions extends APIResource {
     return this._client.post(`/sessions/${sessionId}/dashboard_layout`, { body, ...options });
   }
 
-  uploadNodeOutputData(
-    nodeId: string,
-    body: SessionUploadNodeOutputDataParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<WorkflowSessionNode> {
-    return this._client.post(
-      `/sessions/nodes/${nodeId}/output_data`,
-      Core.multipartFormRequestOptions({ body, ...options }),
-    );
-  }
-
   uploadNodeVisualizationOutput(
     nodeId: string,
     body: SessionUploadNodeVisualizationOutputParams,
@@ -155,12 +161,22 @@ export class Sessions extends APIResource {
 
 export type AutofixContext = 'creation' | 'execution' | 'visualization';
 
+export interface CellEdit {
+  column_name: string;
+
+  row_index: number;
+
+  value: string;
+}
+
 export interface ConfirmNodeRequest {
   confirmed: boolean;
 }
 
 export interface CreateWorkflowSessionRequest {
   chat_session_id: string;
+
+  parent_chat_message_id?: string | null;
 
   workflow_schedule_id?: string | null;
 }
@@ -187,68 +203,28 @@ export interface Dashboard {
 }
 
 /**
- * A component references a viz node and optionally includes mosaic metadata
+ * A component references a viz node and optional display metadata.
  */
 export interface DashboardComponent {
   /**
-   * Function name of the viz node that outputs the chart spec
+   * Function name of the viz node that outputs the chart spec.
    */
   node_name: string;
 
   /**
-   * Display title (overrides viz node title)
+   * Display title shown in the dashboard layout.
    */
   title: string;
 
   /**
-   * Description (optional, can override viz node's description)
+   * Optional description shown under the component title.
    */
   description?: string | null;
 
-  mosaic?: DashboardComponent.Mosaic | null;
-
   /**
-   * Grid span: 1 (quarter), 2 (half), 3 (three-quarters), 4 (full width)
+   * Grid span: 1 (quarter), 2 (half), 3 (three-quarters), 4 (full width).
    */
   span?: number | null;
-}
-
-export namespace DashboardComponent {
-  export interface Mosaic {
-    fields: { [key: string]: string | boolean | Mosaic.UnionMember2 };
-
-    bin?: Mosaic.Bin | null;
-
-    groupBy?: Array<string> | null;
-
-    limit?: number | null;
-
-    orderBy?: string | null;
-
-    /**
-     * Table name - optional, derived from datasetNodeName in dashboard config
-     */
-    table?: string | null;
-  }
-
-  export namespace Mosaic {
-    export interface UnionMember2 {
-      expr: string;
-
-      /**
-       * Optional Plotly property path (e.g., marker.color) to assign this column to
-       */
-      target?: string | null;
-    }
-
-    export interface Bin {
-      as: string;
-
-      field: string;
-
-      step: number;
-    }
-  }
 }
 
 /**
@@ -260,11 +236,6 @@ export interface DashboardPage {
    * Components (charts) in this dashboard
    */
   components: Array<DashboardComponent>;
-
-  /**
-   * Title for this dashboard section
-   */
-  title: string;
 
   /**
    * Control filters (dropdowns, checkboxes, ranges) for this dashboard
@@ -281,6 +252,11 @@ export interface DashboardPage {
    * Optional description
    */
   description?: string | null;
+
+  /**
+   * Title for this dashboard section
+   */
+  title?: string | null;
 }
 
 export namespace DashboardPage {
@@ -347,10 +323,56 @@ export namespace DashboardPage {
   }
 }
 
+export interface DashboardSpec {
+  dataset: string;
+
+  description: string;
+
+  figures: Array<VizFigure>;
+
+  params: { [key: string]: VizParam };
+
+  queries: Array<VizQuery>;
+
+  title: string;
+
+  version: string;
+}
+
+/**
+ * A symbol vulture flagged as unreached from `workflow()` during a review pass.
+ */
+export interface DeadCodeFinding {
+  /**
+   * Vulture category: `function`, `class`, `method`, `variable`, `import`,
+   * `attribute`.
+   */
+  kind: string;
+
+  /**
+   * 1-indexed source line where the symbol is defined.
+   */
+  line: number;
+
+  /**
+   * The unused symbol name.
+   */
+  name: string;
+
+  /**
+   * Workflow-relative file path, e.g. `src/extractors/foo.py`.
+   */
+  path: string;
+}
+
 export interface EdgeSpec {
   source_node_index: number;
 
   target_node_index: number;
+}
+
+export interface EditNodeOutputRequest {
+  edits: Array<ParquetEdit>;
 }
 
 export interface FinalizeDagRequest {
@@ -363,10 +385,49 @@ export interface FinalizeDagRequest {
    * dashboards with different datasets
    */
   dashboard_layout?: Dashboard | null;
+
+  /**
+   * Function names of nodes to force-rerun. Those nodes are excluded from cache
+   * resolution so they re-execute fresh.
+   */
+  rerun_from?: Array<string>;
+
+  /**
+   * When true, descendants of the `rerun_from` nodes are marked Skipped instead of
+   * executing.
+   */
+  skip_children?: boolean;
+
+  /**
+   * When true, resolve node cache hits against prior workflow sessions and return
+   * them in `unchanged_nodes`. When false, every node executes fresh.
+   */
+  use_node_cache?: boolean;
 }
 
 export interface FinalizeDagResponse {
   node_ids: Array<string>;
+
+  /**
+   * Nodes marked Skipped during finalize because they are descendants of a
+   * `rerun_from` node and the caller set `skip_children = true`.
+   */
+  skipped_nodes: Array<string>;
+
+  /**
+   * Nodes that were cache-resolved during finalize and are already marked Success.
+   * The Python runtime skips execution for these instead of making per-node cache
+   * calls.
+   */
+  unchanged_nodes: Array<FinalizeDagResponse.UnchangedNode>;
+}
+
+export namespace FinalizeDagResponse {
+  export interface UnchangedNode {
+    cached_from_node_id: string;
+
+    node_id: string;
+  }
 }
 
 export interface GetNodeLogsResponse {
@@ -396,6 +457,8 @@ export type JobEventBody =
   | JobEventBody.DatahubDatabasesCreated
   | JobEventBody.DatahubSchemasCreated
   | JobEventBody.DatahubTablesProcessed
+  | JobEventBody.DatahubAnnotationsQueued
+  | JobEventBody.DatahubIngestionProgress
   | JobEventBody.DatahubEmbeddingBatch
   | JobEventBody.ViewedPdfPage;
 
@@ -426,11 +489,40 @@ export namespace JobEventBody {
      */
     kg: SharedAPI.KnowledgeGraph;
 
-    sources: Array<string>;
-
     page?: number | null;
 
     reason?: string | null;
+
+    /**
+     * Typed citations. Empty on older persisted events, in which case fall back to
+     * `sources` + `page`.
+     */
+    save_sources?: Array<AgentSaved.Web | AgentSaved.Pdf>;
+
+    /**
+     * Deprecated: free-form source strings retained for backwards compatibility with
+     * historical events. New writers should populate `save_sources` instead and leave
+     * this empty.
+     */
+    sources?: Array<string>;
+  }
+
+  export namespace AgentSaved {
+    export interface Web {
+      web: string;
+    }
+
+    export interface Pdf {
+      pdf: Pdf.Pdf;
+    }
+
+    export namespace Pdf {
+      export interface Pdf {
+        name: string;
+
+        page: number;
+      }
+    }
   }
 
   export interface AgentExited {
@@ -496,9 +588,13 @@ export namespace JobEventBody {
 
     target: { [key: string]: string | boolean | number };
 
+    candidate_indices?: Array<number>;
+
     match_idx?: number | null;
 
     raw_text?: string | null;
+
+    source_entity_index?: number | null;
   }
 
   export interface DatahubPageFetched {
@@ -534,7 +630,23 @@ export namespace JobEventBody {
 
     tables_failed: number;
 
+    tables_removed: number;
+
     tables_updated: number;
+  }
+
+  export interface DatahubAnnotationsQueued {
+    diff_annotations_queued: number;
+
+    event_type: 'datahub_annotations_queued';
+
+    full_annotations_queued: number;
+  }
+
+  export interface DatahubIngestionProgress {
+    event_type: 'datahub_ingestion_progress';
+
+    records_written: number;
   }
 
   export interface DatahubEmbeddingBatch {
@@ -576,10 +688,42 @@ export interface NodeSpec {
   connector_id?: string | null;
 }
 
+export type ParquetEdit = ParquetEdit.EditCell | ParquetEdit.DeleteRow | ParquetEdit.AddRow;
+
+export namespace ParquetEdit {
+  export interface EditCell extends SessionsAPI.CellEdit {
+    type: 'edit_cell';
+  }
+
+  export interface DeleteRow {
+    row_index: number;
+
+    type: 'delete_row';
+  }
+
+  export interface AddRow {
+    type: 'add_row';
+
+    values: { [key: string]: string };
+  }
+}
+
 export interface RequestConfirmationRequest {
   operation: 'tag' | 'pdf' | 'web' | 'match';
 
   row_count: number;
+}
+
+export interface TriggerReviewRequest {
+  /**
+   * Symbols vulture flagged as unreached from `workflow()`. Empty when the workflow
+   * is clean.
+   */
+  dead_code_findings?: Array<DeadCodeFinding>;
+}
+
+export interface TriggerReviewResponse {
+  triggered: boolean;
 }
 
 export interface UpdateWorkflowNodeProgressRequest {
@@ -602,20 +746,148 @@ export interface UpdateWorkflowNodeRequest {
   execution_time_ms?: number | null;
 }
 
-export interface UploadDashboardLayoutRequest {
-  /**
-   * A page is the top-level container with title/description Can contain multiple
-   * dashboards with different datasets
-   */
-  layout: Dashboard;
+export type UploadDashboardLayoutRequest =
+  | UploadDashboardLayoutRequest.Layout
+  | UploadDashboardLayoutRequest.DashboardSpecs;
+
+export namespace UploadDashboardLayoutRequest {
+  export interface Layout {
+    /**
+     * A page is the top-level container with title/description Can contain multiple
+     * dashboards with different datasets
+     */
+    layout: SessionsAPI.Dashboard;
+  }
+
+  export interface DashboardSpecs {
+    dashboard_specs: Array<DashboardSpecs.DashboardSpec>;
+  }
+
+  export namespace DashboardSpecs {
+    export interface DashboardSpec {
+      file_name: string;
+
+      spec: SessionsAPI.DashboardSpec;
+    }
+  }
 }
 
 export interface UploadNodeVisualizationOutputRequest {
   visualization_output: { [key: string]: unknown };
 }
 
+export interface VizBooleanControl {
+  label: string;
+
+  type: VizBooleanControlType;
+}
+
+export type VizBooleanControlType = 'checkbox';
+
+export interface VizControlOption {
+  label: string;
+
+  value: string;
+}
+
+export interface VizDateControl {
+  label: string;
+
+  type: VizDateControlType;
+}
+
+export type VizDateControlType = 'date';
+
+export interface VizFigure {
+  id: string;
+
+  figure: VizFigureDefinition;
+
+  description?: string;
+
+  span?: number;
+
+  title?: string;
+}
+
+export interface VizFigureDefinition {
+  expression: string;
+
+  kind: VizFigureKind;
+}
+
+export type VizFigureKind = 'js' | 'vega-lite' | 'data-table';
+
+export interface VizNumberControl {
+  label: string;
+
+  max: number;
+
+  min: number;
+
+  type: VizNumberControlType;
+
+  step?: number;
+}
+
+export type VizNumberControlType = 'range';
+
+export type VizParam = VizParam.String | VizParam.Number | VizParam.Boolean | VizParam.Date;
+
+export namespace VizParam {
+  export interface String {
+    type: 'string';
+
+    value: string;
+
+    control?: SessionsAPI.VizStringControl;
+  }
+
+  export interface Number {
+    type: 'number';
+
+    value: number;
+
+    control?: SessionsAPI.VizNumberControl;
+  }
+
+  export interface Boolean {
+    type: 'boolean';
+
+    value: boolean;
+
+    control?: SessionsAPI.VizBooleanControl;
+  }
+
+  export interface Date {
+    type: 'date';
+
+    value: string;
+
+    control?: SessionsAPI.VizDateControl;
+  }
+}
+
+export interface VizQuery {
+  id: string;
+
+  sql: string;
+}
+
+export interface VizStringControl {
+  label: string;
+
+  options: Array<VizControlOption>;
+
+  type: VizStringControlType;
+}
+
+export type VizStringControlType = 'dropdown';
+
 export interface WorkflowDag {
   aborted: boolean;
+
+  dashboard_specs: Array<ChatAPI.DashboardItem>;
 
   edges: Array<WorkflowSessionEdge>;
 
@@ -638,13 +910,23 @@ export interface WorkflowDag {
   error_traceback?: string | null;
 }
 
+export interface WorkflowDashboardItem {
+  /**
+   * File path relative to repository root.
+   */
+  file_name: string;
+
+  spec: DashboardSpec;
+}
+
 export type WorkflowNodeExecutionStatus =
   | 'Unexecuted'
   | 'Success'
   | 'Failure'
   | 'Running'
   | 'Aborted'
-  | 'PendingConfirmation';
+  | 'PendingConfirmation'
+  | 'Skipped';
 
 export interface WorkflowNodeLog {
   id: string;
@@ -667,6 +949,8 @@ export interface WorkflowSession {
 
   dag_ready: boolean;
 
+  is_stable: boolean;
+
   updated_at: string;
 
   created_at?: string | null;
@@ -678,6 +962,8 @@ export interface WorkflowSession {
   error_message?: string | null;
 
   error_traceback?: string | null;
+
+  parent_chat_message_id?: string | null;
 
   workflow_schedule_id?: string | null;
 }
@@ -715,6 +1001,18 @@ export interface WorkflowSessionNode {
 
   updated_at: string;
 
+  cache_final_rows?: number | null;
+
+  cache_final_size_bytes?: number | null;
+
+  cache_max_bytes?: number | null;
+
+  cache_original_rows?: number | null;
+
+  cache_original_size_bytes?: number | null;
+
+  cache_truncated?: boolean;
+
   code?: string | null;
 
   confirmation_status?: string | null;
@@ -733,6 +1031,8 @@ export interface WorkflowSessionNode {
 
   input_row_count?: number | null;
 
+  manually_edited?: boolean;
+
   original_node?: string | null;
 
   output_blob_name?: string | null;
@@ -742,6 +1042,10 @@ export interface WorkflowSessionNode {
   progress?: unknown;
 
   visualization_output?: unknown;
+}
+
+export interface SessionEditNodeOutputResponse {
+  error_message?: string | null;
 }
 
 export interface SessionGetEventsResponse {
@@ -810,7 +1114,13 @@ export interface SessionConfirmNodeParams {
 export interface SessionCreateSessionParams {
   chat_session_id: string;
 
+  parent_chat_message_id?: string | null;
+
   workflow_schedule_id?: string | null;
+}
+
+export interface SessionEditNodeOutputParams {
+  edits: Array<ParquetEdit>;
 }
 
 export interface SessionFinalizeDagParams {
@@ -823,6 +1133,24 @@ export interface SessionFinalizeDagParams {
    * dashboards with different datasets
    */
   dashboard_layout?: Dashboard | null;
+
+  /**
+   * Function names of nodes to force-rerun. Those nodes are excluded from cache
+   * resolution so they re-execute fresh.
+   */
+  rerun_from?: Array<string>;
+
+  /**
+   * When true, descendants of the `rerun_from` nodes are marked Skipped instead of
+   * executing.
+   */
+  skip_children?: boolean;
+
+  /**
+   * When true, resolve node cache hits against prior workflow sessions and return
+   * them in `unchanged_nodes`. When false, every node executes fresh.
+   */
+  use_node_cache?: boolean;
 }
 
 export interface SessionGetEventsParams {
@@ -855,6 +1183,14 @@ export interface SessionRequestConfirmationParams {
   row_count: number;
 }
 
+export interface SessionTriggerReviewParams {
+  /**
+   * Symbols vulture flagged as unreached from `workflow()`. Empty when the workflow
+   * is clean.
+   */
+  dead_code_findings?: Array<DeadCodeFinding>;
+}
+
 export interface SessionUpdateNodeParams {
   execution_status: WorkflowNodeExecutionStatus;
 
@@ -875,18 +1211,30 @@ export interface SessionUpdateNodeProgressParams {
   total?: number | null;
 }
 
-export interface SessionUploadDashboardLayoutParams {
-  /**
-   * A page is the top-level container with title/description Can contain multiple
-   * dashboards with different datasets
-   */
-  layout: Dashboard;
-}
+export type SessionUploadDashboardLayoutParams =
+  | SessionUploadDashboardLayoutParams.Variant0
+  | SessionUploadDashboardLayoutParams.Variant1;
 
-export interface SessionUploadNodeOutputDataParams {
-  content: Core.Uploadable;
+export declare namespace SessionUploadDashboardLayoutParams {
+  export interface Variant0 {
+    /**
+     * A page is the top-level container with title/description Can contain multiple
+     * dashboards with different datasets
+     */
+    layout: Dashboard;
+  }
 
-  output_schema?: string | null;
+  export interface Variant1 {
+    dashboard_specs: Array<Variant1.DashboardSpec>;
+  }
+
+  export namespace Variant1 {
+    export interface DashboardSpec {
+      file_name: string;
+
+      spec: SessionsAPI.DashboardSpec;
+    }
+  }
 }
 
 export interface SessionUploadNodeVisualizationOutputParams {
@@ -896,12 +1244,16 @@ export interface SessionUploadNodeVisualizationOutputParams {
 export declare namespace Sessions {
   export {
     type AutofixContext as AutofixContext,
+    type CellEdit as CellEdit,
     type ConfirmNodeRequest as ConfirmNodeRequest,
     type CreateWorkflowSessionRequest as CreateWorkflowSessionRequest,
     type Dashboard as Dashboard,
     type DashboardComponent as DashboardComponent,
     type DashboardPage as DashboardPage,
+    type DashboardSpec as DashboardSpec,
+    type DeadCodeFinding as DeadCodeFinding,
     type EdgeSpec as EdgeSpec,
+    type EditNodeOutputRequest as EditNodeOutputRequest,
     type FinalizeDagRequest as FinalizeDagRequest,
     type FinalizeDagResponse as FinalizeDagResponse,
     type GetNodeLogsResponse as GetNodeLogsResponse,
@@ -909,31 +1261,51 @@ export declare namespace Sessions {
     type JobEventBody as JobEventBody,
     type MarkWorkflowSessionErroredRequest as MarkWorkflowSessionErroredRequest,
     type NodeSpec as NodeSpec,
+    type ParquetEdit as ParquetEdit,
     type RequestConfirmationRequest as RequestConfirmationRequest,
+    type TriggerReviewRequest as TriggerReviewRequest,
+    type TriggerReviewResponse as TriggerReviewResponse,
     type UpdateWorkflowNodeProgressRequest as UpdateWorkflowNodeProgressRequest,
     type UpdateWorkflowNodeRequest as UpdateWorkflowNodeRequest,
     type UploadDashboardLayoutRequest as UploadDashboardLayoutRequest,
     type UploadNodeVisualizationOutputRequest as UploadNodeVisualizationOutputRequest,
+    type VizBooleanControl as VizBooleanControl,
+    type VizBooleanControlType as VizBooleanControlType,
+    type VizControlOption as VizControlOption,
+    type VizDateControl as VizDateControl,
+    type VizDateControlType as VizDateControlType,
+    type VizFigure as VizFigure,
+    type VizFigureDefinition as VizFigureDefinition,
+    type VizFigureKind as VizFigureKind,
+    type VizNumberControl as VizNumberControl,
+    type VizNumberControlType as VizNumberControlType,
+    type VizParam as VizParam,
+    type VizQuery as VizQuery,
+    type VizStringControl as VizStringControl,
+    type VizStringControlType as VizStringControlType,
     type WorkflowDag as WorkflowDag,
+    type WorkflowDashboardItem as WorkflowDashboardItem,
     type WorkflowNodeExecutionStatus as WorkflowNodeExecutionStatus,
     type WorkflowNodeLog as WorkflowNodeLog,
     type WorkflowSession as WorkflowSession,
     type WorkflowSessionEdge as WorkflowSessionEdge,
     type WorkflowSessionNode as WorkflowSessionNode,
+    type SessionEditNodeOutputResponse as SessionEditNodeOutputResponse,
     type SessionGetEventsResponse as SessionGetEventsResponse,
     type SessionGetNodeProgressResponse as SessionGetNodeProgressResponse,
     type SessionKillJobsResponse as SessionKillJobsResponse,
     type SessionConfirmNodeParams as SessionConfirmNodeParams,
     type SessionCreateSessionParams as SessionCreateSessionParams,
+    type SessionEditNodeOutputParams as SessionEditNodeOutputParams,
     type SessionFinalizeDagParams as SessionFinalizeDagParams,
     type SessionGetEventsParams as SessionGetEventsParams,
     type SessionKillJobsParams as SessionKillJobsParams,
     type SessionMarkErroredParams as SessionMarkErroredParams,
     type SessionRequestConfirmationParams as SessionRequestConfirmationParams,
+    type SessionTriggerReviewParams as SessionTriggerReviewParams,
     type SessionUpdateNodeParams as SessionUpdateNodeParams,
     type SessionUpdateNodeProgressParams as SessionUpdateNodeProgressParams,
     type SessionUploadDashboardLayoutParams as SessionUploadDashboardLayoutParams,
-    type SessionUploadNodeOutputDataParams as SessionUploadNodeOutputDataParams,
     type SessionUploadNodeVisualizationOutputParams as SessionUploadNodeVisualizationOutputParams,
   };
 }

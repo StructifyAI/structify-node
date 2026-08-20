@@ -3,8 +3,10 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 import * as TeamsAPI from './teams';
-import * as ProjectsAPI from './projects';
 
+/**
+ * Team management endpoints
+ */
 export class Teams extends APIResource {
   create(body: TeamCreateParams, options?: Core.RequestOptions): Core.APIPromise<CreateTeamResponse> {
     return this._client.post('/team/create', { body, ...options });
@@ -22,10 +24,6 @@ export class Teams extends APIResource {
     return this._client.get('/team/list', options);
   }
 
-  delete(teamId: string, options?: Core.RequestOptions): Core.APIPromise<DeleteTeamResponse> {
-    return this._client.delete(`/team/${teamId}`, options);
-  }
-
   acceptInvitation(
     body: TeamAcceptInvitationParams,
     options?: Core.RequestOptions,
@@ -41,19 +39,17 @@ export class Teams extends APIResource {
     return this._client.post(`/team/${teamId}/members`, { body, ...options });
   }
 
-  createLinkCode(
-    body: TeamCreateLinkCodeParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TeamsLinkCodeResponse> {
-    return this._client.post('/teams/link-code', { body, ...options });
-  }
-
-  createProject(
+  cancelInvitation(
     teamId: string,
-    body: TeamCreateProjectParams,
+    params: TeamCancelInvitationParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<ProjectsAPI.Project> {
-    return this._client.post(`/team/${teamId}/projects`, { body, ...options });
+  ): Core.APIPromise<void> {
+    const { email } = params;
+    return this._client.delete(`/team/${teamId}/invitations`, {
+      query: { email },
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 
   creditsUsage(
@@ -68,6 +64,10 @@ export class Teams extends APIResource {
     return this._client.get(`/team/${teamId}`, options);
   }
 
+  getSubscription(teamId: string, options?: Core.RequestOptions): Core.APIPromise<TeamSubscriptionStatus> {
+    return this._client.get(`/team/${teamId}/subscription`, options);
+  }
+
   invitationDetails(
     token: string,
     options?: Core.RequestOptions,
@@ -77,10 +77,6 @@ export class Teams extends APIResource {
 
   listMembers(teamId: string, options?: Core.RequestOptions): Core.APIPromise<ListMembersResponse> {
     return this._client.get(`/team/${teamId}/members`, options);
-  }
-
-  listProjects(teamId: string, options?: Core.RequestOptions): Core.APIPromise<ListProjectsResponse> {
-    return this._client.get(`/team/${teamId}/projects`, options);
   }
 
   removeMember(
@@ -149,6 +145,11 @@ export namespace AddMemberResponse {
 
     value: Core.Uploadable;
 
+    /**
+     * Optional auto-revoke timestamp. Null means the membership has no cutoff.
+     */
+    expires_at?: string | null;
+
     invitation_expires_at?: string | null;
 
     invitation_token?: string | null;
@@ -161,12 +162,6 @@ export namespace AddMemberResponse {
 
     user_id?: string | null;
   }
-}
-
-export interface CreateProjectRequest {
-  name: string;
-
-  description?: string | null;
 }
 
 export interface CreateTeamRequest {
@@ -203,11 +198,9 @@ export interface CreditsUsageTimeseriesPoint {
   groups: { [key: string]: number };
 }
 
-export interface DeleteTeamResponse {
-  success: boolean;
-}
-
 export interface GetTeamResponse {
+  max_seats: number;
+
   subscription_status: TeamSubscriptionStatus;
 
   team: Team;
@@ -233,16 +226,16 @@ export namespace ListMembersResponse {
 
     email: string;
 
+    membership_id: string;
+
+    pending: boolean;
+
     role: TeamsAPI.TeamRole;
 
     team_id: string;
 
-    user_id: string;
+    user_id?: string | null;
   }
-}
-
-export interface ListProjectsResponse {
-  projects: Array<ProjectsAPI.Project>;
 }
 
 export interface ListTeamsResponse {
@@ -268,13 +261,13 @@ export interface Team {
 
   name: string;
 
+  sandbox_provider: string;
+
   updated_at: string;
 
   description?: string | null;
 
-  pipedream_project_id?: string | null;
-
-  sandbox_provider?: string | null;
+  seats_override?: number | null;
 
   slack_team_icon?: string | null;
 
@@ -287,9 +280,19 @@ export interface Team {
   teams_service_url?: string | null;
 
   teams_tenant_id?: string | null;
+
+  workflow_bucket?: Team.WorkflowBucket | null;
 }
 
-export type TeamRole = 'read_only' | 'member' | 'admin' | 'owner';
+export namespace Team {
+  export interface WorkflowBucket {
+    bucket_url: string;
+
+    gcp_credentials_json?: string | null;
+  }
+}
+
+export type TeamRole = 'read_only' | 'member' | 'admin' | 'owner' | 'super_admin';
 
 export interface TeamSubscriptionStatus {
   has_active_subscription: boolean;
@@ -309,19 +312,19 @@ export interface TeamSubscriptionStatus {
 }
 
 export interface TeamWithRole extends Team {
+  /**
+   * Number of teams this membership manages. Zero for the common case; positive when
+   * the membership belongs to a managing team. Frontends use this to decide whether
+   * to expose the scoped admin teams view without a separate membership-level
+   * lookup.
+   */
+  managed_team_count: number;
+
+  max_seats: number;
+
   role: TeamRole;
 
   subscription_status: TeamSubscriptionStatus;
-}
-
-export interface TeamsLinkCodeRequest {
-  team_id: string;
-}
-
-export interface TeamsLinkCodeResponse {
-  code: string;
-
-  expires_at: string;
 }
 
 export interface UpdateMemberRoleRequest {
@@ -337,7 +340,7 @@ export interface UpdateTeamRequest {
 
   name?: string | null;
 
-  pipedream_project_id?: string | null;
+  sandbox_provider?: 'modal' | 'daytona' | null;
 
   slack_bot_token?: string | null;
 
@@ -346,6 +349,22 @@ export interface UpdateTeamRequest {
   slack_team_id?: string | null;
 
   slack_team_name?: string | null;
+
+  teams_app_id?: string | null;
+
+  teams_app_password?: string | null;
+
+  teams_tenant_id?: string | null;
+
+  workflow_bucket?: UpdateTeamRequest.WorkflowBucket | null;
+}
+
+export namespace UpdateTeamRequest {
+  export interface WorkflowBucket {
+    bucket_url: string;
+
+    gcp_credentials_json?: string | null;
+  }
 }
 
 export interface UpdateTeamResponse {
@@ -358,12 +377,14 @@ export type UsageGroupKey =
   | 'derive'
   | 'scrape'
   | 'apollo'
+  | 'apify'
   | 'searchapi'
   | 'newsapi'
   | 'secapi'
   | 'cufinder'
   | 'match'
   | 'connectorexplore'
+  | 'chat'
   | 'other';
 
 export interface TeamCreateParams {
@@ -377,7 +398,7 @@ export interface TeamUpdateParams {
 
   name?: string | null;
 
-  pipedream_project_id?: string | null;
+  sandbox_provider?: 'modal' | 'daytona' | null;
 
   slack_bot_token?: string | null;
 
@@ -386,6 +407,22 @@ export interface TeamUpdateParams {
   slack_team_id?: string | null;
 
   slack_team_name?: string | null;
+
+  teams_app_id?: string | null;
+
+  teams_app_password?: string | null;
+
+  teams_tenant_id?: string | null;
+
+  workflow_bucket?: TeamUpdateParams.WorkflowBucket | null;
+}
+
+export namespace TeamUpdateParams {
+  export interface WorkflowBucket {
+    bucket_url: string;
+
+    gcp_credentials_json?: string | null;
+  }
 }
 
 export interface TeamAcceptInvitationParams {
@@ -398,14 +435,8 @@ export interface TeamAddMemberParams {
   role: TeamRole;
 }
 
-export interface TeamCreateLinkCodeParams {
-  team_id: string;
-}
-
-export interface TeamCreateProjectParams {
-  name: string;
-
-  description?: string | null;
+export interface TeamCancelInvitationParams {
+  email: string;
 }
 
 export interface TeamCreditsUsageParams {
@@ -440,18 +471,15 @@ export declare namespace Teams {
     type AcceptInvitationResponse as AcceptInvitationResponse,
     type AddMemberRequest as AddMemberRequest,
     type AddMemberResponse as AddMemberResponse,
-    type CreateProjectRequest as CreateProjectRequest,
     type CreateTeamRequest as CreateTeamRequest,
     type CreateTeamResponse as CreateTeamResponse,
     type CreditsUsageRequest as CreditsUsageRequest,
     type CreditsUsageResponse as CreditsUsageResponse,
     type CreditsUsageTimeseriesPoint as CreditsUsageTimeseriesPoint,
-    type DeleteTeamResponse as DeleteTeamResponse,
     type GetTeamResponse as GetTeamResponse,
     type Granularity as Granularity,
     type InvitationDetailsResponse as InvitationDetailsResponse,
     type ListMembersResponse as ListMembersResponse,
-    type ListProjectsResponse as ListProjectsResponse,
     type ListTeamsResponse as ListTeamsResponse,
     type RemoveMemberResponse as RemoveMemberResponse,
     type SelectTeamResponse as SelectTeamResponse,
@@ -459,8 +487,6 @@ export declare namespace Teams {
     type TeamRole as TeamRole,
     type TeamSubscriptionStatus as TeamSubscriptionStatus,
     type TeamWithRole as TeamWithRole,
-    type TeamsLinkCodeRequest as TeamsLinkCodeRequest,
-    type TeamsLinkCodeResponse as TeamsLinkCodeResponse,
     type UpdateMemberRoleRequest as UpdateMemberRoleRequest,
     type UpdateMemberRoleResponse as UpdateMemberRoleResponse,
     type UpdateTeamRequest as UpdateTeamRequest,
@@ -470,8 +496,7 @@ export declare namespace Teams {
     type TeamUpdateParams as TeamUpdateParams,
     type TeamAcceptInvitationParams as TeamAcceptInvitationParams,
     type TeamAddMemberParams as TeamAddMemberParams,
-    type TeamCreateLinkCodeParams as TeamCreateLinkCodeParams,
-    type TeamCreateProjectParams as TeamCreateProjectParams,
+    type TeamCancelInvitationParams as TeamCancelInvitationParams,
     type TeamCreditsUsageParams as TeamCreditsUsageParams,
     type TeamUpdateMemberRoleParams as TeamUpdateMemberRoleParams,
   };

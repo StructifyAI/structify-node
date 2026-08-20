@@ -29,6 +29,8 @@ describe('resource wiki', () => {
       markdown: 'markdown',
       slug: 'slug',
       title: 'title',
+      chat_session_id: 'chat_session_id',
+      usage_guidance: 'usage_guidance',
     });
   });
 
@@ -49,7 +51,9 @@ describe('resource wiki', () => {
     const response = await client.wiki.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', 'slug', {
       markdown: 'markdown',
       base_version: 0,
+      chat_session_id: 'chat_session_id',
       title: 'title',
+      usage_guidance: 'usage_guidance',
     });
   });
 

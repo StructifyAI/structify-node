@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import * as Core from '../../core';
 import * as ChatTemplatesAPI from './chat-templates';
 import {
   AdminChatTemplateListQuery,
@@ -14,11 +15,16 @@ import {
 } from './chat-templates';
 import * as ConnectorAPI from './connector';
 import {
+  AdminListConnectorsResponse,
   CloneConnectorItem,
   CloneConnectorsRequest,
-  CloneConnectorsResponse,
   Connector,
   ConnectorCloneParams,
+  ConnectorCloneResponse,
+  ConnectorSetDatahubConfigParams,
+  DatahubIngestionKey,
+  DatahubIngestionType,
+  SetDatahubConfigRequest,
 } from './connector';
 import * as DatasetAPI from './dataset';
 import { AdminDatasetReturn, Dataset, DatasetGetByIDParams } from './dataset';
@@ -43,35 +49,60 @@ import {
   AdminDeleteJobsRequest,
   AdminDeleteJobsResponse,
   AdminListJobsRequestParams,
-  AdminListJobsResponse,
-  AdminListJobsResponsesJobsList,
+  JobConcurrencyResponse,
   JobDeleteParams,
+  JobKillByMembershipParams,
+  JobKillByMembershipResponse,
   JobListParams,
+  JobListResponse,
+  JobListResponsesJobsList,
+  JobRunningStatsResponse,
+  JobUpdateConcurrencyParams,
+  JobUpdateConcurrencyResponse,
   Jobs,
 } from './jobs';
 import * as SandboxAPI from './sandbox';
-import { AdminSandbox, AdminSandboxesJobsList, Sandbox, SandboxListParams, SandboxType } from './sandbox';
+import { Sandbox, SandboxListParams } from './sandbox';
 import * as TeamsAPI from './teams';
 import {
-  AdminTeamsListResponse,
-  AdminTeamsListResponsesJobsList,
+  AdminAddMemberRequest,
+  AdminAddMemberResponse,
+  AdminListMembersResponse,
+  AdminRemoveMemberRequest,
+  AdminRemoveMemberResponse,
   CancelSubscriptionRequest,
   CancelSubscriptionResponse,
   CreateSubscriptionResponse,
   CreateTeamSubscriptionRequest,
+  DeleteManagementRelationshipResponse,
   ExpireGrantsRequest,
   ExpireGrantsResponse,
   ExtendTrialRequest,
   ExtendTrialResponse,
   GrantCreditsRequest,
   GrantCreditsResponse,
+  ListManagementRelationshipsResponse,
+  ManagementRelationshipDetail,
+  ManagementRelationshipResponse,
+  SetAccessAction,
+  SetAccessRequest,
+  SetAccessResponse,
+  TeamAddMemberParams,
   TeamCancelSubscriptionParams,
   TeamCreateSubscriptionParams,
   TeamExpireGrantsParams,
   TeamExtendTrialParams,
   TeamGrantCreditsParams,
-  TeamListParams,
+  TeamListManagementRelationshipsParams,
+  TeamManagementRelationship,
+  TeamRemoveMemberParams,
+  TeamSetAccessParams,
+  TeamUpdateSeatsOverrideParams,
+  TeamUpsertManagementRelationshipParams,
   Teams,
+  UpdateSeatsOverrideRequest,
+  UpdateSeatsOverrideResponse,
+  UpsertManagementRelationshipRequest,
 } from './teams';
 import * as UsersAPI from './users';
 import {
@@ -79,13 +110,14 @@ import {
   ImpersonateResponse,
   User,
   UserCreateParams,
-  UserGetStatsParams,
-  UserGetStatsResponse,
   UserImpersonateParams,
   UserListResponse,
   Users,
 } from './users';
 
+/**
+ * Admin endpoints
+ */
 export class Admin extends APIResource {
   teams: TeamsAPI.Teams = new TeamsAPI.Teams(this._client);
   dataset: DatasetAPI.Dataset = new DatasetAPI.Dataset(this._client);
@@ -95,15 +127,29 @@ export class Admin extends APIResource {
   users: UsersAPI.Users = new UsersAPI.Users(this._client);
   chatTemplates: ChatTemplatesAPI.ChatTemplates = new ChatTemplatesAPI.ChatTemplates(this._client);
   connector: ConnectorAPI.Connector = new ConnectorAPI.Connector(this._client);
+
+  reportCritical(body: AdminReportCriticalParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.post('/admin/critical', {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+}
+
+export interface ReportCriticalRequest {
+  message: string;
+}
+
+export interface AdminReportCriticalParams {
+  message: string;
 }
 
 Admin.Teams = Teams;
-Admin.AdminTeamsListResponsesJobsList = AdminTeamsListResponsesJobsList;
 Admin.Dataset = Dataset;
 Admin.Jobs = Jobs;
-Admin.AdminListJobsResponsesJobsList = AdminListJobsResponsesJobsList;
+Admin.JobListResponsesJobsList = JobListResponsesJobsList;
 Admin.Sandbox = Sandbox;
-Admin.AdminSandboxesJobsList = AdminSandboxesJobsList;
 Admin.FunctionalTests = FunctionalTests;
 Admin.Users = Users;
 Admin.ChatTemplates = ChatTemplates;
@@ -111,25 +157,49 @@ Admin.Connector = Connector;
 
 export declare namespace Admin {
   export {
+    type ReportCriticalRequest as ReportCriticalRequest,
+    type AdminReportCriticalParams as AdminReportCriticalParams,
+  };
+
+  export {
     Teams as Teams,
-    type AdminTeamsListResponse as AdminTeamsListResponse,
+    type AdminAddMemberRequest as AdminAddMemberRequest,
+    type AdminAddMemberResponse as AdminAddMemberResponse,
+    type AdminListMembersResponse as AdminListMembersResponse,
+    type AdminRemoveMemberRequest as AdminRemoveMemberRequest,
+    type AdminRemoveMemberResponse as AdminRemoveMemberResponse,
     type CancelSubscriptionRequest as CancelSubscriptionRequest,
     type CancelSubscriptionResponse as CancelSubscriptionResponse,
     type CreateSubscriptionResponse as CreateSubscriptionResponse,
     type CreateTeamSubscriptionRequest as CreateTeamSubscriptionRequest,
+    type DeleteManagementRelationshipResponse as DeleteManagementRelationshipResponse,
     type ExpireGrantsRequest as ExpireGrantsRequest,
     type ExpireGrantsResponse as ExpireGrantsResponse,
     type ExtendTrialRequest as ExtendTrialRequest,
     type ExtendTrialResponse as ExtendTrialResponse,
     type GrantCreditsRequest as GrantCreditsRequest,
     type GrantCreditsResponse as GrantCreditsResponse,
-    AdminTeamsListResponsesJobsList as AdminTeamsListResponsesJobsList,
-    type TeamListParams as TeamListParams,
+    type ListManagementRelationshipsResponse as ListManagementRelationshipsResponse,
+    type ManagementRelationshipDetail as ManagementRelationshipDetail,
+    type ManagementRelationshipResponse as ManagementRelationshipResponse,
+    type SetAccessAction as SetAccessAction,
+    type SetAccessRequest as SetAccessRequest,
+    type SetAccessResponse as SetAccessResponse,
+    type TeamManagementRelationship as TeamManagementRelationship,
+    type UpdateSeatsOverrideRequest as UpdateSeatsOverrideRequest,
+    type UpdateSeatsOverrideResponse as UpdateSeatsOverrideResponse,
+    type UpsertManagementRelationshipRequest as UpsertManagementRelationshipRequest,
+    type TeamAddMemberParams as TeamAddMemberParams,
     type TeamCancelSubscriptionParams as TeamCancelSubscriptionParams,
     type TeamCreateSubscriptionParams as TeamCreateSubscriptionParams,
     type TeamExpireGrantsParams as TeamExpireGrantsParams,
     type TeamExtendTrialParams as TeamExtendTrialParams,
     type TeamGrantCreditsParams as TeamGrantCreditsParams,
+    type TeamListManagementRelationshipsParams as TeamListManagementRelationshipsParams,
+    type TeamRemoveMemberParams as TeamRemoveMemberParams,
+    type TeamSetAccessParams as TeamSetAccessParams,
+    type TeamUpdateSeatsOverrideParams as TeamUpdateSeatsOverrideParams,
+    type TeamUpsertManagementRelationshipParams as TeamUpsertManagementRelationshipParams,
   };
 
   export {
@@ -143,19 +213,19 @@ export declare namespace Admin {
     type AdminDeleteJobsRequest as AdminDeleteJobsRequest,
     type AdminDeleteJobsResponse as AdminDeleteJobsResponse,
     type AdminListJobsRequestParams as AdminListJobsRequestParams,
-    type AdminListJobsResponse as AdminListJobsResponse,
-    AdminListJobsResponsesJobsList as AdminListJobsResponsesJobsList,
+    type JobListResponse as JobListResponse,
+    type JobConcurrencyResponse as JobConcurrencyResponse,
+    type JobKillByMembershipResponse as JobKillByMembershipResponse,
+    type JobRunningStatsResponse as JobRunningStatsResponse,
+    type JobUpdateConcurrencyResponse as JobUpdateConcurrencyResponse,
+    JobListResponsesJobsList as JobListResponsesJobsList,
     type JobListParams as JobListParams,
     type JobDeleteParams as JobDeleteParams,
+    type JobKillByMembershipParams as JobKillByMembershipParams,
+    type JobUpdateConcurrencyParams as JobUpdateConcurrencyParams,
   };
 
-  export {
-    Sandbox as Sandbox,
-    type AdminSandbox as AdminSandbox,
-    type SandboxType as SandboxType,
-    AdminSandboxesJobsList as AdminSandboxesJobsList,
-    type SandboxListParams as SandboxListParams,
-  };
+  export { Sandbox as Sandbox, type SandboxListParams as SandboxListParams };
 
   export {
     FunctionalTests as FunctionalTests,
@@ -179,9 +249,7 @@ export declare namespace Admin {
     type ImpersonateResponse as ImpersonateResponse,
     type User as User,
     type UserListResponse as UserListResponse,
-    type UserGetStatsResponse as UserGetStatsResponse,
     type UserCreateParams as UserCreateParams,
-    type UserGetStatsParams as UserGetStatsParams,
     type UserImpersonateParams as UserImpersonateParams,
   };
 
@@ -198,9 +266,14 @@ export declare namespace Admin {
 
   export {
     Connector as Connector,
+    type AdminListConnectorsResponse as AdminListConnectorsResponse,
     type CloneConnectorItem as CloneConnectorItem,
     type CloneConnectorsRequest as CloneConnectorsRequest,
-    type CloneConnectorsResponse as CloneConnectorsResponse,
+    type DatahubIngestionKey as DatahubIngestionKey,
+    type DatahubIngestionType as DatahubIngestionType,
+    type SetDatahubConfigRequest as SetDatahubConfigRequest,
+    type ConnectorCloneResponse as ConnectorCloneResponse,
     type ConnectorCloneParams as ConnectorCloneParams,
+    type ConnectorSetDatahubConfigParams as ConnectorSetDatahubConfigParams,
   };
 }

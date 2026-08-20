@@ -121,6 +121,8 @@ describe('resource admin', () => {
       slug: 'slug',
       categories: ['string'],
       description: 'description',
+      enterprise_only: true,
+      onboarding_priority: 0,
       priority: 0,
     });
   });
@@ -339,7 +341,7 @@ describe('resource admin', () => {
 
   test('uploadLogo: only required params', async () => {
     const responsePromise = client.connectorCatalog.admin.uploadLogo('slug', {
-      file: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      file: await toFile(Buffer.from('Example data'), 'README.md'),
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -352,7 +354,7 @@ describe('resource admin', () => {
 
   test('uploadLogo: required and optional params', async () => {
     const response = await client.connectorCatalog.admin.uploadLogo('slug', {
-      file: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      file: await toFile(Buffer.from('Example data'), 'README.md'),
     });
   });
 });

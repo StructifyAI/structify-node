@@ -3,6 +3,9 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 
+/**
+ * Team wiki page management endpoints
+ */
 export class Wiki extends APIResource {
   create(teamId: string, body: WikiCreateParams, options?: Core.RequestOptions): Core.APIPromise<WikiPage> {
     return this._client.post(`/team/${teamId}/wiki`, { body, ...options });
@@ -28,7 +31,7 @@ export class Wiki extends APIResource {
     });
   }
 
-  get(teamId: string, slug: string, options?: Core.RequestOptions): Core.APIPromise<WikiPageWithReferences> {
+  get(teamId: string, slug: string, options?: Core.RequestOptions): Core.APIPromise<WikiPage> {
     return this._client.get(`/team/${teamId}/wiki/${slug}`, options);
   }
 }
@@ -39,6 +42,10 @@ export interface CreateWikiPageRequest {
   slug: string;
 
   title: string;
+
+  chat_session_id?: string | null;
+
+  usage_guidance?: string | null;
 }
 
 export interface UpdateWikiPageRequest {
@@ -46,60 +53,19 @@ export interface UpdateWikiPageRequest {
 
   base_version?: number | null;
 
+  chat_session_id?: string | null;
+
   title?: string | null;
-}
 
-export interface WikiConnectorReference {
-  is_deleted: boolean;
-
-  name: string;
-
-  path: Array<string>;
-
-  reference_id:
-    | WikiConnectorReference.Connector
-    | WikiConnectorReference.Database
-    | WikiConnectorReference.Schema
-    | WikiConnectorReference.Table
-    | WikiConnectorReference.Column;
-}
-
-export namespace WikiConnectorReference {
-  export interface Connector {
-    id: string;
-
-    reference_type: 'connector';
-  }
-
-  export interface Database {
-    id: string;
-
-    reference_type: 'database';
-  }
-
-  export interface Schema {
-    id: string;
-
-    reference_type: 'schema';
-  }
-
-  export interface Table {
-    id: string;
-
-    reference_type: 'table';
-  }
-
-  export interface Column {
-    id: string;
-
-    reference_type: 'column';
-  }
+  usage_guidance?: string | null;
 }
 
 export interface WikiPage {
   id: string;
 
   created_at: string;
+
+  created_by: string;
 
   markdown: string;
 
@@ -112,10 +78,14 @@ export interface WikiPage {
   updated_at: string;
 
   version: number;
-}
 
-export interface WikiPageWithReferences extends WikiPage {
-  references: Array<WikiConnectorReference>;
+  approved_at?: string | null;
+
+  approved_by?: string | null;
+
+  chat_session_id?: string | null;
+
+  usage_guidance?: string | null;
 }
 
 export type WikiListResponse = Array<WikiPage>;
@@ -126,6 +96,10 @@ export interface WikiCreateParams {
   slug: string;
 
   title: string;
+
+  chat_session_id?: string | null;
+
+  usage_guidance?: string | null;
 }
 
 export interface WikiUpdateParams {
@@ -133,16 +107,18 @@ export interface WikiUpdateParams {
 
   base_version?: number | null;
 
+  chat_session_id?: string | null;
+
   title?: string | null;
+
+  usage_guidance?: string | null;
 }
 
 export declare namespace Wiki {
   export {
     type CreateWikiPageRequest as CreateWikiPageRequest,
     type UpdateWikiPageRequest as UpdateWikiPageRequest,
-    type WikiConnectorReference as WikiConnectorReference,
     type WikiPage as WikiPage,
-    type WikiPageWithReferences as WikiPageWithReferences,
     type WikiListResponse as WikiListResponse,
     type WikiCreateParams as WikiCreateParams,
     type WikiUpdateParams as WikiUpdateParams,

@@ -1,10 +1,13 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../resource';
+import { isRequestOptions } from '../core';
 import * as Core from '../core';
 import * as ChatAPI from './chat';
+import * as SessionsAPI from './sessions';
 import * as SharedAPI from './shared';
 import * as StructureAPI from './structure';
+import { type Response } from '../_shims/index';
 
 export class Chat extends APIResource {
   addCollaborator(
@@ -17,28 +20,6 @@ export class Chat extends APIResource {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
-  }
-
-  /**
-   * Add a git commit to a chat session
-   */
-  addGitCommit(
-    sessionId: string,
-    body: ChatAddGitCommitParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ChatAddGitCommitResponse> {
-    return this._client.post(`/chat/sessions/${sessionId}/commits`, { body, ...options });
-  }
-
-  /**
-   * Get the actual chat prompt that the LLM will see on its next message (admin
-   * only)
-   */
-  adminGetChatPrompt(
-    sessionId: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<StructureAPI.ChatPrompt> {
-    return this._client.get(`/chat/sessions/${sessionId}/admin/chat_prompt`, options);
   }
 
   /**
@@ -59,12 +40,15 @@ export class Chat extends APIResource {
     return this._client.post('/chat/copy', { body, ...options });
   }
 
-  copyNodeOutputByCodeHash(
-    sessionId: string,
-    body: ChatCopyNodeOutputByCodeHashParams,
+  /**
+   * committed to its git repo. Used for copying pipelines across Structify
+   * instances. Target team is implied by the caller's session membership.
+   */
+  createChatFromFiles(
+    body: ChatCreateChatFromFilesParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
-    return this._client.post(`/chat/sessions/${sessionId}/nodes/by_code_hash`, { body, ...options });
+  ): Core.APIPromise<ChatSessionWithMessages> {
+    return this._client.post('/chat/create_from_files', { body, ...options });
   }
 
   /**
@@ -78,14 +62,14 @@ export class Chat extends APIResource {
   }
 
   /**
-   * Delete files from a chat session's git repository
+   * Delete input files from a chat session
    */
-  deleteFiles(
+  deleteInputFile(
     chatId: string,
-    body: ChatDeleteFilesParams,
+    body: ChatDeleteInputFileParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<ChatDeleteFilesResponse> {
-    return this._client.post(`/chat/files/delete/${chatId}`, { body, ...options });
+  ): Core.APIPromise<ChatDeleteInputFileResponse> {
+    return this._client.post(`/chat/input-files/delete/${chatId}`, { body, ...options });
   }
 
   /**
@@ -106,17 +90,6 @@ export class Chat extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<GetDependenciesResponse> {
     return this._client.get(`/chat/sessions/${sessionId}/dependencies`, options);
-  }
-
-  /**
-   * Get a specific git commit by its hash for a chat session
-   */
-  getGitCommit(
-    chatId: string,
-    commitHash: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ChatGetGitCommitResponse> {
-    return this._client.get(`/chat/sessions/${chatId}/commits/${commitHash}`, options);
   }
 
   /**
@@ -146,6 +119,10 @@ export class Chat extends APIResource {
     return this._client.get(`/chat/sessions/${sessionId}/timeline`, options);
   }
 
+  getTemplate(templateId: string, options?: Core.RequestOptions): Core.APIPromise<ChatTemplate> {
+    return this._client.get(`/chat/templates/${templateId}`, options);
+  }
+
   /**
    * Grant temporary admin override access for the calling admin to a chat session
    */
@@ -165,6 +142,33 @@ export class Chat extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<ListCollaboratorsResponse> {
     return this._client.get(`/chat/sessions/${chatId}/collaborators`, options);
+  }
+
+  /**
+   * List dashboard specs for a chat session at a specific commit hash.
+   */
+  listDashboards(
+    chatId: string,
+    query?: ChatListDashboardsParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ListDashboardsResponse>;
+  listDashboards(chatId: string, options?: Core.RequestOptions): Core.APIPromise<ListDashboardsResponse>;
+  listDashboards(
+    chatId: string,
+    query: ChatListDashboardsParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ListDashboardsResponse> {
+    if (isRequestOptions(query)) {
+      return this.listDashboards(chatId, {}, query);
+    }
+    return this._client.get(`/chat/sessions/${chatId}/dashboards`, { query, ...options });
+  }
+
+  /**
+   * List input files for a chat session
+   */
+  listInputFiles(chatId: string, options?: Core.RequestOptions): Core.APIPromise<ChatListInputFilesResponse> {
+    return this._client.get(`/chat/input-files/list/${chatId}`, options);
   }
 
   /**
@@ -196,6 +200,39 @@ export class Chat extends APIResource {
   }
 
   /**
+   * Download a single input file by chat ID and filename
+   */
+  loadInputFile(chatId: string, filename: string, options?: Core.RequestOptions): Core.APIPromise<Response> {
+    return this._client.get(`/chat/input-files/download/${chatId}/${filename}`, {
+      ...options,
+      headers: { Accept: 'application/octet-stream', ...options?.headers },
+      __binaryResponse: true,
+    });
+  }
+
+  /**
+   * Pass `since` query param (RFC 3339 timestamp) to only get files created/updated
+   * after that time. The response includes `latest_timestamp` which can be passed as
+   * `since` on the next call.
+   */
+  loadInputFiles(
+    chatId: string,
+    query?: ChatLoadInputFilesParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatLoadInputFilesResponse>;
+  loadInputFiles(chatId: string, options?: Core.RequestOptions): Core.APIPromise<ChatLoadInputFilesResponse>;
+  loadInputFiles(
+    chatId: string,
+    query: ChatLoadInputFilesParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatLoadInputFilesResponse> {
+    if (isRequestOptions(query)) {
+      return this.loadInputFiles(chatId, {}, query);
+    }
+    return this._client.get(`/chat/input-files/download-all/${chatId}`, { query, ...options });
+  }
+
+  /**
    * Make an ephemeral chat session permanent
    */
   makePermanent(sessionId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
@@ -205,8 +242,19 @@ export class Chat extends APIResource {
     });
   }
 
-  removeCollaborator(chatId: string, userId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/chat/sessions/${chatId}/collaborators/${userId}`, {
+  pendingWikiEdits(
+    chatId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ChatPendingWikiEditsResponse> {
+    return this._client.get(`/chat/sessions/${chatId}/pending_wiki_edits`, options);
+  }
+
+  removeCollaborator(
+    chatId: string,
+    membershipId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.delete(`/chat/sessions/${chatId}/collaborators/${membershipId}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -221,6 +269,17 @@ export class Chat extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<ChatRevertToCommitResponse> {
     return this._client.post(`/chat/sessions/${sessionId}/revert`, { body, ...options });
+  }
+
+  /**
+   * any messages to the database.
+   */
+  simulatePrompt(
+    chatSessionId: string,
+    body: ChatSimulatePromptParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<SimulatePromptResponse> {
+    return this._client.post(`/chat/${chatSessionId}/simulate-prompt`, { body, ...options });
   }
 
   updateSession(
@@ -252,7 +311,7 @@ export class Chat extends APIResource {
 }
 
 export interface AddCollaboratorRequest {
-  email: string;
+  membership_id: string;
 
   role: ChatSessionRole;
 }
@@ -305,8 +364,12 @@ export type ChatEvent =
   | ChatEvent.Question
   | ChatEvent.InternalError
   | ChatEvent.ReviewRequest
+  | ChatEvent.ReviewSummary
   | ChatEvent.AttachedFile
-  | ChatEvent.ConnectorRequest;
+  | ChatEvent.ConnectorRequest
+  | ChatEvent.UserInterrupted
+  | ChatEvent.IssueFound
+  | ChatEvent.Compaction;
 
 export namespace ChatEvent {
   export interface TextMessage {
@@ -435,6 +498,12 @@ export namespace ChatEvent {
   export namespace InternalError {
     export interface InternalError {
       message: string;
+
+      /**
+       * Categorizes the kind of internal error that occurred during LLM generation. This
+       * allows the frontend to render appropriate error messages without regex matching.
+       */
+      error_kind?: 'unknown' | 'context_limit' | 'rate_limited' | 'timeout' | 'connection_error';
     }
   }
 
@@ -445,9 +514,35 @@ export namespace ChatEvent {
   export namespace ReviewRequest {
     export interface ReviewRequest {
       node_summaries: Array<ReviewRequest.NodeSummary>;
+
+      dead_code_findings?: Array<SessionsAPI.DeadCodeFinding>;
     }
 
     export namespace ReviewRequest {
+      export interface NodeSummary {
+        in_dashboard: boolean;
+
+        name: string;
+
+        data_preview?: string | null;
+
+        image?: Core.Uploadable | null;
+      }
+    }
+  }
+
+  export interface ReviewSummary {
+    ReviewSummary: ReviewSummary.ReviewSummary;
+  }
+
+  export namespace ReviewSummary {
+    export interface ReviewSummary {
+      node_summaries: Array<ReviewSummary.NodeSummary>;
+
+      summary: string;
+    }
+
+    export namespace ReviewSummary {
       export interface NodeSummary {
         in_dashboard: boolean;
 
@@ -481,6 +576,38 @@ export namespace ChatEvent {
       connector_id: string;
     }
   }
+
+  export interface UserInterrupted {
+    UserInterrupted: unknown;
+  }
+
+  export interface IssueFound {
+    IssueFound: IssueFound.IssueFound;
+  }
+
+  export namespace IssueFound {
+    export interface IssueFound {
+      admin_override: boolean;
+
+      description: string;
+
+      title: string;
+    }
+  }
+
+  export interface Compaction {
+    Compaction: Compaction.Compaction;
+  }
+
+  export namespace Compaction {
+    export interface Compaction {
+      block_id: number;
+
+      complete: boolean;
+
+      summary?: string | null;
+    }
+  }
 }
 
 export interface ChatSession {
@@ -510,6 +637,10 @@ export interface ChatSession {
 
   config_proto?: Core.Uploadable | null;
 
+  instantiated_from_template_id?: string | null;
+
+  message_head?: string | null;
+
   name?: string | null;
 
   project_id?: string | null;
@@ -527,9 +658,7 @@ export interface ChatSession {
   teams_tenant_id?: string | null;
 }
 
-export type ChatSessionRole = 'viewer' | 'editor' | 'owner';
-
-export interface ChatSessionUser {
+export interface ChatSessionMembership {
   id: string;
 
   chat_session_id: string;
@@ -538,19 +667,21 @@ export interface ChatSessionUser {
 
   is_favorite: boolean;
 
+  membership_id: string;
+
   role: ChatSessionRole;
 
   updated_at: string;
-
-  user_id: string;
 }
+
+export type ChatSessionRole = 'viewer' | 'editor' | 'owner';
 
 export interface ChatSessionWithMessages {
   id: string;
 
-  commits: Array<ChatSessionWithMessages.Commit>;
-
   created_at: string;
+
+  ephemeral: boolean;
 
   git_application_token: string;
 
@@ -570,7 +701,11 @@ export interface ChatSessionWithMessages {
 
   visibility: ChatVisibility;
 
+  instantiated_from_template_id?: string | null;
+
   latest_workflow_session_id?: string | null;
+
+  message_head?: string | null;
 
   name?: string | null;
 
@@ -581,19 +716,15 @@ export interface ChatSessionWithMessages {
   slack_team_id?: string | null;
 
   slack_thread_ts?: string | null;
+
+  teams_channel_id?: string | null;
+
+  teams_conversation_id?: string | null;
+
+  teams_tenant_id?: string | null;
 }
 
 export namespace ChatSessionWithMessages {
-  export interface Commit {
-    id: string;
-
-    chat_session_id: string;
-
-    commit_hash: string;
-
-    created_at: string;
-  }
-
   export interface Message {
     id: string;
 
@@ -607,9 +738,19 @@ export namespace ChatSessionWithMessages {
 
     timestamp: string;
 
+    cache_creation_tokens?: number | null;
+
+    cache_read_tokens?: number | null;
+
     content_proto?: Core.Uploadable | null;
 
-    git_commit_id?: string | null;
+    git_hash?: string | null;
+
+    input_tokens?: number | null;
+
+    output_tokens?: number | null;
+
+    previous_message_id?: string | null;
 
     slack_channel_id?: string | null;
 
@@ -634,6 +775,8 @@ export namespace ChatSessionWithMessages {
       chunk_type: string;
 
       content: string;
+
+      model?: string;
     }
   }
 }
@@ -655,6 +798,8 @@ export interface ChatTemplate {
 
   is_active: boolean;
 
+  questions: Array<TemplateQuestion>;
+
   title: string;
 
   updated_at: string;
@@ -662,7 +807,7 @@ export interface ChatTemplate {
   updated_by: string;
 }
 
-export type ChatVisibility = 'private' | 'shared_with_team' | 'public';
+export type ChatVisibility = 'private' | 'shared_with_team' | 'shared_with_team_view' | 'public';
 
 export interface CopyChatSessionRequest {
   copy_name: string;
@@ -674,6 +819,8 @@ export interface CopyChatSessionRequest {
   copy_inputs?: boolean;
 
   project_id?: string | null;
+
+  template_id?: string | null;
 }
 
 export interface CreateChatSessionRequest {
@@ -686,8 +833,6 @@ export interface CreateChatSessionRequest {
 
   ephemeral?: boolean | null;
 
-  initial_message?: string | null;
-
   project_id?: string | null;
 }
 
@@ -696,34 +841,23 @@ export namespace CreateChatSessionRequest {
    * Configuration for chat session with system prompt and LLM key
    */
   export interface Config {
-    is_onboarding_session: boolean;
-
     /**
-     * LLM model keys available in the system. Format: <provider>.<model-name>
+     * LLM model keys available in the system.
      */
     llm_key?:
-      | 'vllm.gpt-5-mini-2025-08-07'
-      | 'vllm.gpt-4.1-mini-2025-04-14'
-      | 'vllm.gpt-5-nano-2025-08-07'
-      | 'vllm.gpt-5-2025-08-07'
-      | 'vllm.ft:gpt-4o-2024-08-06:structify::ADrF00Gq'
-      | 'vllm.ft:gpt-4o-mini-2024-07-18:structify::ABCLHTsN'
-      | 'vllm.action'
-      | 'vllm.dora'
-      | 'vllm.boring_dora'
-      | 'vllm.claude-3-7-sonnet-20250219'
-      | 'vllm.claude-sonnet-4-20250514'
-      | 'vllm.qwen-3-coder-480b'
+      | 'claude-sonnet-4-5'
+      | 'claude-opus-4-5'
+      | 'claude-opus-4-6'
+      | 'claude-opus-4-7'
+      | 'claude-haiku-4-5'
+      | 'gpt-5-mini'
+      | 'gpt-5-nano'
+      | 'gpt-5'
+      | 'gemini-2.5-pro'
+      | 'gemini-2.5-flash'
+      | 'gemini-3-flash-preview'
+      | 'gemini-3.1-flash-lite-preview'
       | 'test_llm.test'
-      | 'bedrock.claude-sonnet-4-bedrock'
-      | 'bedrock.claude-sonnet-4-5-bedrock'
-      | 'bedrock.claude-opus-4-5-bedrock'
-      | 'bedrock.claude-haiku-4-5-bedrock'
-      | 'gemini.gemini-2.5-pro'
-      | 'gemini.gemini-2.5-flash'
-      | 'gemini.gemini-3-pro-preview'
-      | 'gemini.gemini-3-flash-preview'
-      | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
 
     max_steps?: number | null;
@@ -739,6 +873,15 @@ export namespace CreateChatSessionRequest {
  */
 export interface CreateChatSessionResponse {
   session: ChatSessionWithMessages;
+}
+
+export interface DashboardItem {
+  /**
+   * File path relative to repository root.
+   */
+  file_name: string;
+
+  spec: SessionsAPI.DashboardSpec;
 }
 
 /**
@@ -768,9 +911,9 @@ export namespace GetChatSessionResponse {
   export interface Session {
     id: string;
 
-    commits: Array<Session.Commit>;
-
     created_at: string;
+
+    ephemeral: boolean;
 
     git_application_token: string;
 
@@ -790,7 +933,13 @@ export namespace GetChatSessionResponse {
 
     visibility: ChatAPI.ChatVisibility;
 
+    workflow_sessions: Array<SessionsAPI.WorkflowSession>;
+
+    instantiated_from_template_id?: string | null;
+
     latest_workflow_session_id?: string | null;
+
+    message_head?: string | null;
 
     name?: string | null;
 
@@ -802,20 +951,16 @@ export namespace GetChatSessionResponse {
 
     slack_thread_ts?: string | null;
 
+    teams_channel_id?: string | null;
+
+    teams_conversation_id?: string | null;
+
+    teams_tenant_id?: string | null;
+
     workflow_schedule_id?: string | null;
   }
 
   export namespace Session {
-    export interface Commit {
-      id: string;
-
-      chat_session_id: string;
-
-      commit_hash: string;
-
-      created_at: string;
-    }
-
     /**
      * Model-layer message representation - streamlined for LLM transmission
      */
@@ -831,6 +976,10 @@ export namespace GetChatSessionResponse {
       role: 'user' | 'system' | 'assistant';
 
       timestamp: string;
+
+      git_hash?: string | null;
+
+      previous_message_id?: string | null;
     }
   }
 }
@@ -859,6 +1008,16 @@ export interface GrantAdminAccessRequest {
  */
 export interface ListChatSessionsResponse {
   sessions: Array<ListChatSessionsResponse.Session>;
+
+  /**
+   * Per-tab counts for chat session listing
+   */
+  tab_counts: ListChatSessionsResponse.TabCounts;
+
+  /**
+   * Total number of chat sessions matching the query (for pagination)
+   */
+  total_count: number;
 }
 
 export namespace ListChatSessionsResponse {
@@ -866,6 +1025,8 @@ export namespace ListChatSessionsResponse {
     id: string;
 
     created_at: string;
+
+    has_workflow_schedule: boolean;
 
     is_favorite: boolean;
 
@@ -884,6 +1045,29 @@ export namespace ListChatSessionsResponse {
     owner_email?: string | null;
 
     project_id?: string | null;
+
+    slack_channel_id?: string | null;
+
+    teams_channel_id?: string | null;
+
+    teams_conversation_id?: string | null;
+  }
+
+  /**
+   * Per-tab counts for chat session listing
+   */
+  export interface TabCounts {
+    favorites: number;
+
+    from_messaging: number;
+
+    my_chats: number;
+
+    recents: number;
+
+    shared: number;
+
+    team: number;
   }
 }
 
@@ -891,24 +1075,35 @@ export namespace ListChatSessionsResponse {
  * Response for listing collaborators
  */
 export interface ListCollaboratorsResponse {
-  users: Array<ListCollaboratorsResponse.User>;
+  collaborators: Array<ListCollaboratorsResponse.Collaborator>;
 }
 
 export namespace ListCollaboratorsResponse {
   /**
-   * DTO for chat collaborator with user email information
+   * DTO for chat collaborator. Identity is keyed on membership_id — clients resolve
+   * email/name via their team-members lookup.
    */
-  export interface User {
+  export interface Collaborator {
     created_at: string;
 
-    email: string;
+    membership_id: string;
 
     role: ChatAPI.ChatSessionRole;
 
     updated_at: string;
-
-    user_id: string;
   }
+}
+
+export interface ListDashboardsResponse {
+  /**
+   * Commit hash used to load dashboard specs.
+   */
+  commit_hash: string;
+
+  /**
+   * All dashboard specs in src/visualizations/\*.viz.json.
+   */
+  dashboards: Array<DashboardItem>;
 }
 
 /**
@@ -937,6 +1132,20 @@ export namespace Message {
   }
 }
 
+export interface SimulatePromptRequest {
+  chat_prompt: StructureAPI.ChatPrompt;
+}
+
+export interface SimulatePromptResponse {
+  response: string;
+}
+
+export interface TemplateQuestion {
+  prompt: string;
+
+  options?: Array<string> | null;
+}
+
 export type ToolInvocation =
   | ToolInvocation.WebSearch
   | ToolInvocation.WebNavigate
@@ -952,6 +1161,7 @@ export type ToolInvocation =
   | ToolInvocation.ReadNodeLogs
   | ToolInvocation.DeleteFile
   | ToolInvocation.MoveFile
+  | ToolInvocation.ApplyPatch
   | ToolInvocation.RunBash
   | ToolInvocation.RunPython
   | ToolInvocation.IssueFound
@@ -966,7 +1176,10 @@ export type ToolInvocation =
   | ToolInvocation.AddDependency
   | ToolInvocation.SelectData
   | ToolInvocation.CreateConnector
-  | ToolInvocation.SearchConnectorTypes;
+  | ToolInvocation.SearchConnectorTypes
+  | ToolInvocation.PinPreviousTool
+  | ToolInvocation.RunPipeline
+  | ToolInvocation.SaveProperty;
 
 export namespace ToolInvocation {
   export interface WebSearch {
@@ -991,7 +1204,7 @@ export namespace ToolInvocation {
     export interface Input {
       url: string;
 
-      output_format?: 'Text' | 'Visual' | null;
+      output_format?: 'text' | 'visual' | null;
     }
   }
 
@@ -1040,7 +1253,26 @@ export namespace ToolInvocation {
 
       reason: string;
 
-      sources: Array<string>;
+      /**
+       * Defaulted because text-only agents don't expose a `sources` field on the
+       * SaveEntities tool schema at all. Web/PDF agents inject a single-variant array
+       * via the scraper's params patch.
+       */
+      sources?: Array<Input.URL | Input.PdfPage>;
+    }
+
+    export namespace Input {
+      export interface URL {
+        type: 'url';
+
+        url: string;
+      }
+
+      export interface PdfPage {
+        page: number;
+
+        type: 'pdf_page';
+      }
     }
   }
 
@@ -1118,11 +1350,7 @@ export namespace ToolInvocation {
 
   export namespace ReadNodeLogs {
     export interface Input {
-      end_line: number;
-
       node_function_name: string;
-
-      start_line: number;
 
       log_type?: string | null;
     }
@@ -1151,6 +1379,30 @@ export namespace ToolInvocation {
       file: string;
 
       new_path: string;
+    }
+  }
+
+  export interface ApplyPatch {
+    input: ApplyPatch.Input;
+
+    name: 'ApplyPatch';
+  }
+
+  export namespace ApplyPatch {
+    export interface Input {
+      apply_all: boolean;
+
+      edits: Array<Input.Edit>;
+
+      file: string;
+    }
+
+    export namespace Input {
+      export interface Edit {
+        new_string: string;
+
+        old_string: string;
+      }
     }
   }
 
@@ -1249,8 +1501,6 @@ export namespace ToolInvocation {
       description?: string | null;
 
       notes?: string | null;
-
-      tag?: string | null;
     }
   }
 
@@ -1311,8 +1561,6 @@ export namespace ToolInvocation {
   export namespace SearchConnectorTables {
     export interface Input {
       query: string;
-
-      wiki_tag?: string | null;
     }
   }
 
@@ -1387,6 +1635,42 @@ export namespace ToolInvocation {
       query?: string | null;
     }
   }
+
+  export interface PinPreviousTool {
+    input: PinPreviousTool.Input;
+
+    name: 'PinPreviousTool';
+  }
+
+  export namespace PinPreviousTool {
+    export interface Input {
+      path: string;
+    }
+  }
+
+  export interface RunPipeline {
+    input: RunPipeline.Input;
+
+    name: 'RunPipeline';
+  }
+
+  export namespace RunPipeline {
+    export interface Input {
+      rerun_all_steps?: boolean;
+    }
+  }
+
+  export interface SaveProperty {
+    input: SaveProperty.Input;
+
+    name: 'SaveProperty';
+  }
+
+  export namespace SaveProperty {
+    export interface Input {
+      value: string;
+    }
+  }
 }
 
 export type ToolResult =
@@ -1400,7 +1684,8 @@ export type ToolResult =
   | ToolResult.WebSearch
   | ToolResult.ConnectorSearch
   | ToolResult.NodeLogs
-  | ToolResult.Image;
+  | ToolResult.Image
+  | ToolResult.Pinned;
 
 export namespace ToolResult {
   export interface Error {
@@ -1488,6 +1773,10 @@ export namespace ToolResult {
       ocr_text?: string | null;
     }
   }
+
+  export interface Pinned {
+    Pinned: string;
+  }
 }
 
 export interface UpdateChatSessionFavoriteRequest {
@@ -1495,6 +1784,8 @@ export interface UpdateChatSessionFavoriteRequest {
 }
 
 export interface UpdateChatSessionRequest {
+  message_head?: string | null;
+
   name?: string | null;
 
   project_id?: string | null;
@@ -1510,60 +1801,27 @@ export interface UpdateVisibilityResponse {
   visibility: ChatVisibility;
 }
 
-/**
- * Response structure for adding a git commit
- */
-export interface ChatAddGitCommitResponse {
-  commit: ChatAddGitCommitResponse.Commit;
-}
-
-export namespace ChatAddGitCommitResponse {
-  export interface Commit {
-    id: string;
-
-    chat_session_id: string;
-
-    commit_hash: string;
-
-    created_at: string;
-  }
-}
-
-export type ChatCopyNodeOutputByCodeHashResponse = string | null;
-
-export interface ChatDeleteFilesResponse {
+export interface ChatDeleteInputFileResponse {
   files_deleted: number;
 }
 
-/**
- * Response structure for getting a git commit by hash
- */
-export interface ChatGetGitCommitResponse {
-  commit: ChatGetGitCommitResponse.Commit;
-}
+export type ChatGetPartialChatsResponse = Array<ChatGetPartialChatsResponse.ChatGetPartialChatsResponseItem>;
 
-export namespace ChatGetGitCommitResponse {
-  export interface Commit {
-    id: string;
-
-    chat_session_id: string;
-
-    commit_hash: string;
+export namespace ChatGetPartialChatsResponse {
+  export interface ChatGetPartialChatsResponseItem {
+    chat_prompt: StructureAPI.ChatPrompt;
 
     created_at: string;
+
+    message_id?: string | null;
   }
 }
-
-export type ChatGetPartialChatsResponse = Array<StructureAPI.ChatPrompt>;
 
 /**
  * Response structure for getting session timeline
  */
 export interface ChatGetSessionTimelineResponse {
-  /**
-   * Chronologically sorted list of messages and commits
-   */
-  timeline: Array<ChatGetSessionTimelineResponse.Message | ChatGetSessionTimelineResponse.GitCommit>;
+  messages: Array<ChatGetSessionTimelineResponse.Message>;
 }
 
 export namespace ChatGetSessionTimelineResponse {
@@ -1580,11 +1838,19 @@ export namespace ChatGetSessionTimelineResponse {
 
     timestamp: string;
 
-    type: 'Message';
+    cache_creation_tokens?: number | null;
+
+    cache_read_tokens?: number | null;
 
     content_proto?: Core.Uploadable | null;
 
-    git_commit_id?: string | null;
+    git_hash?: string | null;
+
+    input_tokens?: number | null;
+
+    output_tokens?: number | null;
+
+    previous_message_id?: string | null;
 
     slack_channel_id?: string | null;
 
@@ -1609,19 +1875,25 @@ export namespace ChatGetSessionTimelineResponse {
       chunk_type: string;
 
       content: string;
+
+      model?: string;
     }
   }
+}
 
-  export interface GitCommit {
-    id: string;
+export type ChatListInputFilesResponse = Array<ChatListInputFilesResponse.ChatListInputFilesResponseItem>;
 
+export namespace ChatListInputFilesResponse {
+  export interface ChatListInputFilesResponseItem {
     chat_session_id: string;
 
-    commit_hash: string;
+    content_type: string;
 
     created_at: string;
 
-    type: 'GitCommit';
+    file_size: number;
+
+    filename: string;
   }
 }
 
@@ -1632,6 +1904,14 @@ export interface ChatLoadFilesResponse {
 
   files: { [key: string]: string };
 }
+
+export interface ChatLoadInputFilesResponse {
+  files: { [key: string]: string };
+
+  latest_timestamp?: string | null;
+}
+
+export type ChatPendingWikiEditsResponse = Array<string>;
 
 /**
  * Response structure for reverting to a git commit
@@ -1649,16 +1929,9 @@ export interface ChatRevertToCommitResponse {
 }
 
 export interface ChatAddCollaboratorParams {
-  email: string;
+  membership_id: string;
 
   role: ChatSessionRole;
-}
-
-export interface ChatAddGitCommitParams {
-  /**
-   * The git commit hash (must be 40 characters)
-   */
-  commit_hash: string;
 }
 
 export interface ChatAdminIssueFoundParams {
@@ -1677,12 +1950,19 @@ export interface ChatCopyParams {
   copy_inputs?: boolean;
 
   project_id?: string | null;
+
+  template_id?: string | null;
 }
 
-export interface ChatCopyNodeOutputByCodeHashParams {
-  code_md5_hash: string;
+export interface ChatCreateChatFromFilesParams {
+  /**
+   * Map of relative file path to base64-encoded file bytes.
+   */
+  files: { [key: string]: string };
 
-  new_node_id: string;
+  name: string;
+
+  project_id?: string | null;
 }
 
 export interface ChatCreateSessionParams {
@@ -1695,8 +1975,6 @@ export interface ChatCreateSessionParams {
 
   ephemeral?: boolean | null;
 
-  initial_message?: string | null;
-
   project_id?: string | null;
 }
 
@@ -1705,34 +1983,23 @@ export namespace ChatCreateSessionParams {
    * Configuration for chat session with system prompt and LLM key
    */
   export interface Config {
-    is_onboarding_session: boolean;
-
     /**
-     * LLM model keys available in the system. Format: <provider>.<model-name>
+     * LLM model keys available in the system.
      */
     llm_key?:
-      | 'vllm.gpt-5-mini-2025-08-07'
-      | 'vllm.gpt-4.1-mini-2025-04-14'
-      | 'vllm.gpt-5-nano-2025-08-07'
-      | 'vllm.gpt-5-2025-08-07'
-      | 'vllm.ft:gpt-4o-2024-08-06:structify::ADrF00Gq'
-      | 'vllm.ft:gpt-4o-mini-2024-07-18:structify::ABCLHTsN'
-      | 'vllm.action'
-      | 'vllm.dora'
-      | 'vllm.boring_dora'
-      | 'vllm.claude-3-7-sonnet-20250219'
-      | 'vllm.claude-sonnet-4-20250514'
-      | 'vllm.qwen-3-coder-480b'
+      | 'claude-sonnet-4-5'
+      | 'claude-opus-4-5'
+      | 'claude-opus-4-6'
+      | 'claude-opus-4-7'
+      | 'claude-haiku-4-5'
+      | 'gpt-5-mini'
+      | 'gpt-5-nano'
+      | 'gpt-5'
+      | 'gemini-2.5-pro'
+      | 'gemini-2.5-flash'
+      | 'gemini-3-flash-preview'
+      | 'gemini-3.1-flash-lite-preview'
       | 'test_llm.test'
-      | 'bedrock.claude-sonnet-4-bedrock'
-      | 'bedrock.claude-sonnet-4-5-bedrock'
-      | 'bedrock.claude-opus-4-5-bedrock'
-      | 'bedrock.claude-haiku-4-5-bedrock'
-      | 'gemini.gemini-2.5-pro'
-      | 'gemini.gemini-2.5-flash'
-      | 'gemini.gemini-3-pro-preview'
-      | 'gemini.gemini-3-flash-preview'
-      | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
 
     max_steps?: number | null;
@@ -1743,8 +2010,8 @@ export namespace ChatCreateSessionParams {
   }
 }
 
-export interface ChatDeleteFilesParams {
-  paths: Array<string>;
+export interface ChatDeleteInputFileParams {
+  filenames: Array<string>;
 }
 
 export interface ChatGrantAdminOverrideParams {
@@ -1756,6 +2023,13 @@ export interface ChatGrantAdminOverrideParams {
   role: ChatSessionRole;
 }
 
+export interface ChatListDashboardsParams {
+  /**
+   * Optional commit hash. If omitted, uses the chat session latest commit.
+   */
+  commit_hash?: string | null;
+}
+
 export interface ChatListSessionsParams {
   /**
    * Team ID to filter chat sessions
@@ -1763,20 +2037,55 @@ export interface ChatListSessionsParams {
   team_id: string;
 
   /**
+   * Connector ID to filter chat sessions that use this connector
+   */
+  connector_id?: string | null;
+
+  /**
    * Maximum number of sessions to return (default: 50)
    */
   limit?: number | null;
 
   /**
+   * Number of sessions to skip (default: 0)
+   */
+  offset?: number | null;
+
+  /**
    * Project ID to filter chat sessions
    */
   project_id?: string | null;
+
+  /**
+   * Search query to filter sessions by name (case-insensitive)
+   */
+  search?: string | null;
+
+  /**
+   * Column to sort by (default: favorites first, then `updated_at` descending)
+   */
+  sort?: 'updated_at' | 'created_at' | 'name' | null;
+
+  /**
+   * When `false`, sort ascending; when `true`, sort descending (default: `true` for
+   * timestamps, `false` for name)
+   */
+  sort_desc?: boolean | null;
+
+  /**
+   * Tab filter for chat sessions
+   */
+  tab?: 'my_chats' | 'favorites' | 'shared' | 'team' | 'recents' | 'from_messaging' | null;
 }
 
 export interface ChatLoadFilesParams {
   chat_id: string;
 
   commit_hash?: string | null;
+}
+
+export interface ChatLoadInputFilesParams {
+  since?: string | null;
 }
 
 export interface ChatRevertToCommitParams {
@@ -1786,7 +2095,13 @@ export interface ChatRevertToCommitParams {
   commit_hash: string;
 }
 
+export interface ChatSimulatePromptParams {
+  chat_prompt: StructureAPI.ChatPrompt;
+}
+
 export interface ChatUpdateSessionParams {
+  message_head?: string | null;
+
   name?: string | null;
 
   project_id?: string | null;
@@ -1811,14 +2126,15 @@ export declare namespace Chat {
     type ChatDependency as ChatDependency,
     type ChatEvent as ChatEvent,
     type ChatSession as ChatSession,
+    type ChatSessionMembership as ChatSessionMembership,
     type ChatSessionRole as ChatSessionRole,
-    type ChatSessionUser as ChatSessionUser,
     type ChatSessionWithMessages as ChatSessionWithMessages,
     type ChatTemplate as ChatTemplate,
     type ChatVisibility as ChatVisibility,
     type CopyChatSessionRequest as CopyChatSessionRequest,
     type CreateChatSessionRequest as CreateChatSessionRequest,
     type CreateChatSessionResponse as CreateChatSessionResponse,
+    type DashboardItem as DashboardItem,
     type DeleteChatSessionResponse as DeleteChatSessionResponse,
     type ErrorResponse as ErrorResponse,
     type GetChatSessionResponse as GetChatSessionResponse,
@@ -1826,33 +2142,39 @@ export declare namespace Chat {
     type GrantAdminAccessRequest as GrantAdminAccessRequest,
     type ListChatSessionsResponse as ListChatSessionsResponse,
     type ListCollaboratorsResponse as ListCollaboratorsResponse,
+    type ListDashboardsResponse as ListDashboardsResponse,
     type Message as Message,
+    type SimulatePromptRequest as SimulatePromptRequest,
+    type SimulatePromptResponse as SimulatePromptResponse,
+    type TemplateQuestion as TemplateQuestion,
     type ToolInvocation as ToolInvocation,
     type ToolResult as ToolResult,
     type UpdateChatSessionFavoriteRequest as UpdateChatSessionFavoriteRequest,
     type UpdateChatSessionRequest as UpdateChatSessionRequest,
     type UpdateVisibilityRequest as UpdateVisibilityRequest,
     type UpdateVisibilityResponse as UpdateVisibilityResponse,
-    type ChatAddGitCommitResponse as ChatAddGitCommitResponse,
-    type ChatCopyNodeOutputByCodeHashResponse as ChatCopyNodeOutputByCodeHashResponse,
-    type ChatDeleteFilesResponse as ChatDeleteFilesResponse,
-    type ChatGetGitCommitResponse as ChatGetGitCommitResponse,
+    type ChatDeleteInputFileResponse as ChatDeleteInputFileResponse,
     type ChatGetPartialChatsResponse as ChatGetPartialChatsResponse,
     type ChatGetSessionTimelineResponse as ChatGetSessionTimelineResponse,
+    type ChatListInputFilesResponse as ChatListInputFilesResponse,
     type ChatListTemplatesResponse as ChatListTemplatesResponse,
     type ChatLoadFilesResponse as ChatLoadFilesResponse,
+    type ChatLoadInputFilesResponse as ChatLoadInputFilesResponse,
+    type ChatPendingWikiEditsResponse as ChatPendingWikiEditsResponse,
     type ChatRevertToCommitResponse as ChatRevertToCommitResponse,
     type ChatAddCollaboratorParams as ChatAddCollaboratorParams,
-    type ChatAddGitCommitParams as ChatAddGitCommitParams,
     type ChatAdminIssueFoundParams as ChatAdminIssueFoundParams,
     type ChatCopyParams as ChatCopyParams,
-    type ChatCopyNodeOutputByCodeHashParams as ChatCopyNodeOutputByCodeHashParams,
+    type ChatCreateChatFromFilesParams as ChatCreateChatFromFilesParams,
     type ChatCreateSessionParams as ChatCreateSessionParams,
-    type ChatDeleteFilesParams as ChatDeleteFilesParams,
+    type ChatDeleteInputFileParams as ChatDeleteInputFileParams,
     type ChatGrantAdminOverrideParams as ChatGrantAdminOverrideParams,
+    type ChatListDashboardsParams as ChatListDashboardsParams,
     type ChatListSessionsParams as ChatListSessionsParams,
     type ChatLoadFilesParams as ChatLoadFilesParams,
+    type ChatLoadInputFilesParams as ChatLoadInputFilesParams,
     type ChatRevertToCommitParams as ChatRevertToCommitParams,
+    type ChatSimulatePromptParams as ChatSimulatePromptParams,
     type ChatUpdateSessionParams as ChatUpdateSessionParams,
     type ChatUpdateSessionFavoriteParams as ChatUpdateSessionFavoriteParams,
     type ChatUpdateVisibilityParams as ChatUpdateVisibilityParams,

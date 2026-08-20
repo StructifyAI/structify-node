@@ -69,9 +69,9 @@ describe('resource documents', () => {
 
   test('upload: only required params', async () => {
     const responsePromise = client.documents.upload({
-      content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      content: await toFile(Buffer.from('Example data'), 'README.md'),
       file_type: 'Text',
-      path: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      path: await toFile(Buffer.from('Example data'), 'README.md'),
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -84,9 +84,9 @@ describe('resource documents', () => {
 
   test('upload: required and optional params', async () => {
     const response = await client.documents.upload({
-      content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      content: await toFile(Buffer.from('Example data'), 'README.md'),
       file_type: 'Text',
-      path: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      path: await toFile(Buffer.from('Example data'), 'README.md'),
       dataset: 'dataset',
       project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });

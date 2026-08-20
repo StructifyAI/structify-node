@@ -6,6 +6,9 @@ import * as UsersAPI from './users';
 import * as TeamsAPI from '../teams';
 import * as UserAPI from '../user/user';
 
+/**
+ * Admin endpoints
+ */
 export class Users extends APIResource {
   /**
    * Create a user, returning their session token.
@@ -19,10 +22,6 @@ export class Users extends APIResource {
    */
   list(options?: Core.RequestOptions): Core.APIPromise<UserListResponse> {
     return this._client.get('/admin/users/list', options);
-  }
-
-  getStats(body: UserGetStatsParams, options?: Core.RequestOptions): Core.APIPromise<UserGetStatsResponse> {
-    return this._client.post('/admin/users/get_stats', { body, ...options });
   }
 
   impersonate(
@@ -66,7 +65,6 @@ export interface User {
     | 'cerebras_codegen'
     | 'gemini25pro'
     | 'claude_sonnet4'
-    | 'allow_job_deletion'
     | 'none'
     | null
   >;
@@ -75,7 +73,7 @@ export interface User {
 
   full_name: string;
 
-  is_developer: boolean;
+  notify_for_interaction: boolean;
 
   permissions: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none' | null>;
 
@@ -103,8 +101,6 @@ export interface User {
   last_selected_team_id?: string | null;
 
   linkedin_url?: string | null;
-
-  onboarding_session_id?: string | null;
 
   slack_user_id?: string | null;
 
@@ -139,16 +135,6 @@ export namespace UserListResponse {
   }
 }
 
-export type UserGetStatsResponse = Array<UserGetStatsResponse.UserGetStatsResponseItem>;
-
-export namespace UserGetStatsResponse {
-  export interface UserGetStatsResponseItem {
-    job_count: number;
-
-    period: string;
-  }
-}
-
 export interface UserCreateParams {
   credit_count?: number | null;
 
@@ -164,7 +150,6 @@ export interface UserCreateParams {
     | 'cerebras_codegen'
     | 'gemini25pro'
     | 'claude_sonnet4'
-    | 'allow_job_deletion'
     | 'none'
   >;
 
@@ -177,18 +162,6 @@ export interface UserCreateParams {
   test?: boolean;
 }
 
-export interface UserGetStatsParams {
-  bucket?: 'Second' | 'Minute' | 'Hour' | 'Day' | 'Week' | 'Month' | 'Quarter' | 'Year' | 'Decade';
-
-  end_date?: string;
-
-  start_date?: string;
-
-  user_email?: string | null;
-
-  user_token?: string | null;
-}
-
 export interface UserImpersonateParams {
   membership_id: string;
 }
@@ -199,9 +172,7 @@ export declare namespace Users {
     type ImpersonateResponse as ImpersonateResponse,
     type User as User,
     type UserListResponse as UserListResponse,
-    type UserGetStatsResponse as UserGetStatsResponse,
     type UserCreateParams as UserCreateParams,
-    type UserGetStatsParams as UserGetStatsParams,
     type UserImpersonateParams as UserImpersonateParams,
   };
 }

@@ -3,7 +3,22 @@
 import { APIResource } from '../resource';
 import * as Core from '../core';
 
+/**
+ * Code generation endpoints
+ */
 export class Code extends APIResource {
+  applyManualEdit(
+    chatId: string,
+    body: CodeApplyManualEditParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.post(`/code/apply-manual-edit/${chatId}`, {
+      body,
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
   /**
    * Events are streamed via WebSocket connection. This endpoint returns immediately
    * after starting the generation process.
@@ -32,6 +47,14 @@ export class Code extends APIResource {
   }
 }
 
+export interface ApplyManualEditRequest {
+  code: string;
+
+  filename: string;
+
+  run_pipeline?: boolean;
+}
+
 export interface GenerateCodeRequest {
   chatSessionId: string;
 
@@ -48,6 +71,8 @@ export interface GenerateCodeRequest {
 
   filePaths?: Array<string>;
 
+  overridePreviousMessageId?: string | null;
+
   triggerWorkflowExecution?: boolean;
 
   userMessageId?: string | null;
@@ -58,34 +83,23 @@ export namespace GenerateCodeRequest {
    * Configuration for chat session with system prompt and LLM key
    */
   export interface Config {
-    is_onboarding_session: boolean;
-
     /**
-     * LLM model keys available in the system. Format: <provider>.<model-name>
+     * LLM model keys available in the system.
      */
     llm_key?:
-      | 'vllm.gpt-5-mini-2025-08-07'
-      | 'vllm.gpt-4.1-mini-2025-04-14'
-      | 'vllm.gpt-5-nano-2025-08-07'
-      | 'vllm.gpt-5-2025-08-07'
-      | 'vllm.ft:gpt-4o-2024-08-06:structify::ADrF00Gq'
-      | 'vllm.ft:gpt-4o-mini-2024-07-18:structify::ABCLHTsN'
-      | 'vllm.action'
-      | 'vllm.dora'
-      | 'vllm.boring_dora'
-      | 'vllm.claude-3-7-sonnet-20250219'
-      | 'vllm.claude-sonnet-4-20250514'
-      | 'vllm.qwen-3-coder-480b'
+      | 'claude-sonnet-4-5'
+      | 'claude-opus-4-5'
+      | 'claude-opus-4-6'
+      | 'claude-opus-4-7'
+      | 'claude-haiku-4-5'
+      | 'gpt-5-mini'
+      | 'gpt-5-nano'
+      | 'gpt-5'
+      | 'gemini-2.5-pro'
+      | 'gemini-2.5-flash'
+      | 'gemini-3-flash-preview'
+      | 'gemini-3.1-flash-lite-preview'
       | 'test_llm.test'
-      | 'bedrock.claude-sonnet-4-bedrock'
-      | 'bedrock.claude-sonnet-4-5-bedrock'
-      | 'bedrock.claude-opus-4-5-bedrock'
-      | 'bedrock.claude-haiku-4-5-bedrock'
-      | 'gemini.gemini-2.5-pro'
-      | 'gemini.gemini-2.5-flash'
-      | 'gemini.gemini-3-pro-preview'
-      | 'gemini.gemini-3-flash-preview'
-      | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
 
     max_steps?: number | null;
@@ -98,6 +112,14 @@ export namespace GenerateCodeRequest {
 
 export interface InterruptGenerationRequest {
   chatSessionId: string;
+}
+
+export interface CodeApplyManualEditParams {
+  code: string;
+
+  filename: string;
+
+  run_pipeline?: boolean;
 }
 
 export interface CodeGenerateCodeParams {
@@ -116,6 +138,8 @@ export interface CodeGenerateCodeParams {
 
   filePaths?: Array<string>;
 
+  overridePreviousMessageId?: string | null;
+
   triggerWorkflowExecution?: boolean;
 
   userMessageId?: string | null;
@@ -126,34 +150,23 @@ export namespace CodeGenerateCodeParams {
    * Configuration for chat session with system prompt and LLM key
    */
   export interface Config {
-    is_onboarding_session: boolean;
-
     /**
-     * LLM model keys available in the system. Format: <provider>.<model-name>
+     * LLM model keys available in the system.
      */
     llm_key?:
-      | 'vllm.gpt-5-mini-2025-08-07'
-      | 'vllm.gpt-4.1-mini-2025-04-14'
-      | 'vllm.gpt-5-nano-2025-08-07'
-      | 'vllm.gpt-5-2025-08-07'
-      | 'vllm.ft:gpt-4o-2024-08-06:structify::ADrF00Gq'
-      | 'vllm.ft:gpt-4o-mini-2024-07-18:structify::ABCLHTsN'
-      | 'vllm.action'
-      | 'vllm.dora'
-      | 'vllm.boring_dora'
-      | 'vllm.claude-3-7-sonnet-20250219'
-      | 'vllm.claude-sonnet-4-20250514'
-      | 'vllm.qwen-3-coder-480b'
+      | 'claude-sonnet-4-5'
+      | 'claude-opus-4-5'
+      | 'claude-opus-4-6'
+      | 'claude-opus-4-7'
+      | 'claude-haiku-4-5'
+      | 'gpt-5-mini'
+      | 'gpt-5-nano'
+      | 'gpt-5'
+      | 'gemini-2.5-pro'
+      | 'gemini-2.5-flash'
+      | 'gemini-3-flash-preview'
+      | 'gemini-3.1-flash-lite-preview'
       | 'test_llm.test'
-      | 'bedrock.claude-sonnet-4-bedrock'
-      | 'bedrock.claude-sonnet-4-5-bedrock'
-      | 'bedrock.claude-opus-4-5-bedrock'
-      | 'bedrock.claude-haiku-4-5-bedrock'
-      | 'gemini.gemini-2.5-pro'
-      | 'gemini.gemini-2.5-flash'
-      | 'gemini.gemini-3-pro-preview'
-      | 'gemini.gemini-3-flash-preview'
-      | 'vertex_anthropic.claude-sonnet-4-5-vertex'
       | null;
 
     max_steps?: number | null;
@@ -170,8 +183,10 @@ export interface CodeInterruptGenerationParams {
 
 export declare namespace Code {
   export {
+    type ApplyManualEditRequest as ApplyManualEditRequest,
     type GenerateCodeRequest as GenerateCodeRequest,
     type InterruptGenerationRequest as InterruptGenerationRequest,
+    type CodeApplyManualEditParams as CodeApplyManualEditParams,
     type CodeGenerateCodeParams as CodeGenerateCodeParams,
     type CodeInterruptGenerationParams as CodeInterruptGenerationParams,
   };

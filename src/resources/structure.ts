@@ -8,6 +8,19 @@ import * as SharedAPI from './shared';
 
 export class Structure extends APIResource {
   /**
+   * For each entity in `table_name`, queues a job that structures the given source
+   * into either new property values (when `target` is `Properties`) or a new
+   * relationship (when `target` is `Relationship`), seeded with that entity. Returns
+   * the list of queued job ids, which the caller can wait on.
+   */
+  bulkEnhance(
+    body: StructureBulkEnhanceParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<StructureBulkEnhanceResponse> {
+    return this._client.post('/structure/bulk_enhance', { body, ...options });
+  }
+
+  /**
    * Returns a job id that can be waited on until the request is finished.
    */
   enhanceProperty(
@@ -122,6 +135,7 @@ export namespace ChatPrompt {
       | DecodingParams.Thinking
       | DecodingParams.Verbosity
       | DecodingParams.ReasoningEffort
+      | DecodingParams.NativeTools
     >;
   }
 
@@ -196,6 +210,23 @@ export namespace ChatPrompt {
     export interface ReasoningEffort {
       ReasoningEffort: 'low' | 'medium' | 'high' | 'minimal';
     }
+
+    export interface NativeTools {
+      /**
+       * Native OpenAI-style tool definitions sent directly to the LLM.
+       */
+      NativeTools: Array<NativeTools.NativeTool>;
+    }
+
+    export namespace NativeTools {
+      export interface NativeTool {
+        description: string;
+
+        name: string;
+
+        parameters_schema: { [key: string]: unknown };
+      }
+    }
   }
 
   /**
@@ -215,8 +246,6 @@ export namespace ChatPrompt {
     extraction_criteria: Array<StructureAPI.SaveRequirement>;
 
     formatter_specific: Metadata.ImageMeta | Metadata.WebMeta | Metadata.TextMeta | Metadata.ScraperMeta;
-
-    tool_metadata: Array<StructureAPI.ToolMetadata>;
 
     qa_potentially_sus_response?: string | null;
   }
@@ -345,23 +374,7 @@ export namespace SaveRequirement {
   }
 }
 
-export interface ToolMetadata {
-  description: string;
-
-  name:
-    | 'Exit'
-    | 'Save'
-    | 'Wait'
-    | 'Type'
-    | 'Scroll'
-    | 'ScrollToBottom'
-    | 'Click'
-    | 'Hover'
-    | 'Error'
-    | 'Google';
-
-  regex_validator: string;
-}
+export type StructureBulkEnhanceResponse = Array<string>;
 
 export type StructureEnhancePropertyResponse = string;
 
@@ -401,6 +414,56 @@ export interface StructurePdfResponse {
 
 export type StructureRunAsyncResponse = string;
 
+export interface StructureBulkEnhanceParams {
+  dataset: string;
+
+  table_name: string;
+
+  target: StructureBulkEnhanceParams.Properties | StructureBulkEnhanceParams.Relationship;
+
+  instructions?: string | null;
+
+  model?: string | null;
+
+  node_id?: string | null;
+
+  source?: 'Web' | StructureBulkEnhanceParams.Scrape | null;
+
+  use_proxy?: boolean | null;
+}
+
+export namespace StructureBulkEnhanceParams {
+  export interface Properties {
+    Properties: Properties.Properties;
+  }
+
+  export namespace Properties {
+    export interface Properties {
+      property_names: Array<string>;
+    }
+  }
+
+  export interface Relationship {
+    Relationship: Relationship.Relationship;
+  }
+
+  export namespace Relationship {
+    export interface Relationship {
+      relationship_name: string;
+    }
+  }
+
+  export interface Scrape {
+    Scrape: Scrape.Scrape;
+  }
+
+  export namespace Scrape {
+    export interface Scrape {
+      url_column: string;
+    }
+  }
+}
+
 export interface StructureEnhancePropertyParams {
   entity_id: string;
 
@@ -408,13 +471,7 @@ export interface StructureEnhancePropertyParams {
 
   allow_extra_entities?: boolean;
 
-  banned_domains?: Array<string>;
-
   node_id?: string | null;
-
-  starting_searches?: Array<string>;
-
-  starting_urls?: Array<string>;
 }
 
 export interface StructureEnhanceRelationshipParams {
@@ -424,13 +481,7 @@ export interface StructureEnhanceRelationshipParams {
 
   allow_extra_entities?: boolean;
 
-  banned_domains?: Array<string>;
-
   node_id?: string | null;
-
-  starting_searches?: Array<string>;
-
-  starting_urls?: Array<string>;
 }
 
 export interface StructureFindRelationshipParams {
@@ -441,12 +492,6 @@ export interface StructureFindRelationshipParams {
   to_id: string;
 
   allow_extra_entities?: boolean;
-
-  banned_domains?: Array<string>;
-
-  starting_searches?: Array<string>;
-
-  starting_urls?: Array<string>;
 }
 
 export type StructureIsCompleteParams = Array<string>;
@@ -468,20 +513,15 @@ export interface StructurePdfParams {
 
   instructions?: string | null;
 
-  mode?: 'Single' | 'Batch';
-
   model?: string | null;
 
   node_id?: string | null;
+
+  pages?: Array<number> | null;
 }
 
 export interface StructureRunAsyncParams {
   dataset: string;
-
-  /**
-   * These are all the types that can be converted into a BasicInputType
-   */
-  source: StructureRunAsyncParams.Pdf | StructureRunAsyncParams.Web;
 
   instructions?: string | null;
 
@@ -497,38 +537,20 @@ export interface StructureRunAsyncParams {
    * pipeline from raw tool output to being merged into a DB
    */
   seeded_entity?: SharedAPI.KnowledgeGraph;
+
+  source?: 'Web' | StructureRunAsyncParams.Scrape | null;
+
+  use_proxy?: boolean | null;
 }
 
 export namespace StructureRunAsyncParams {
-  export interface Pdf {
-    /**
-     * Ingest all pages of a PDF and process them independently.
-     */
-    PDF: Pdf.Pdf;
+  export interface Scrape {
+    Scrape: Scrape.Scrape;
   }
 
-  export namespace Pdf {
-    /**
-     * Ingest all pages of a PDF and process them independently.
-     */
-    export interface Pdf {
-      path: string;
-
-      page?: number | null;
-    }
-  }
-
-  export interface Web {
-    Web: Web.Web;
-  }
-
-  export namespace Web {
-    export interface Web {
-      banned_domains?: Array<string>;
-
-      starting_searches?: Array<string>;
-
-      starting_urls?: Array<string>;
+  export namespace Scrape {
+    export interface Scrape {
+      url_column: string;
     }
   }
 }
@@ -537,7 +559,7 @@ export declare namespace Structure {
   export {
     type ChatPrompt as ChatPrompt,
     type SaveRequirement as SaveRequirement,
-    type ToolMetadata as ToolMetadata,
+    type StructureBulkEnhanceResponse as StructureBulkEnhanceResponse,
     type StructureEnhancePropertyResponse as StructureEnhancePropertyResponse,
     type StructureEnhanceRelationshipResponse as StructureEnhanceRelationshipResponse,
     type StructureFindRelationshipResponse as StructureFindRelationshipResponse,
@@ -545,6 +567,7 @@ export declare namespace Structure {
     type StructureJobStatusResponse as StructureJobStatusResponse,
     type StructurePdfResponse as StructurePdfResponse,
     type StructureRunAsyncResponse as StructureRunAsyncResponse,
+    type StructureBulkEnhanceParams as StructureBulkEnhanceParams,
     type StructureEnhancePropertyParams as StructureEnhancePropertyParams,
     type StructureEnhanceRelationshipParams as StructureEnhanceRelationshipParams,
     type StructureFindRelationshipParams as StructureFindRelationshipParams,

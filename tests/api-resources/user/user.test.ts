@@ -33,11 +33,10 @@ describe('resource user', () => {
         feature_flags: ['functional_test'],
         feature_overrides: {},
         full_name: 'full_name',
-        is_developer: true,
         job_title: 'job_title',
         last_selected_team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         linkedin_url: 'linkedin_url',
-        onboarding_session_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        notify_for_interaction: true,
         permissions: ['labeler'],
         slack_user_id: 'slack_user_id',
         slack_username: 'slack_username',
@@ -63,6 +62,24 @@ describe('resource user', () => {
 
   test('enrich: required and optional params', async () => {
     const response = await client.user.enrich({ email: 'email' });
+  });
+
+  test('getOnboardingAnswers', async () => {
+    const responsePromise = client.user.getOnboardingAnswers();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('getOnboardingAnswers: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(client.user.getOnboardingAnswers({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      Structify.NotFoundError,
+    );
   });
 
   test('info', async () => {
@@ -112,6 +129,31 @@ describe('resource user', () => {
     const response = await client.user.refresh({
       refresh_token: 'refresh_token',
       session_token: 'session_token',
+    });
+  });
+
+  test('saveOnboardingAnswers: only required params', async () => {
+    const responsePromise = client.user.saveOnboardingAnswers({ answers: {} });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('saveOnboardingAnswers: required and optional params', async () => {
+    const response = await client.user.saveOnboardingAnswers({
+      answers: {
+        company_name: 'company_name',
+        connected_connector_ids: ['string'],
+        full_name: 'full_name',
+        primary_goal: 'primary_goal',
+        recommended_template_id: 'recommended_template_id',
+        role: 'role',
+        systems_to_connect: ['string'],
+      },
     });
   });
 

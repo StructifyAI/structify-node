@@ -2,6 +2,7 @@
 
 import { APIResource } from '../resource';
 import * as Core from '../core';
+import * as ChatAPI from './chat';
 import * as SessionsAPI from './sessions';
 
 export class WorkflowSchedule extends APIResource {
@@ -81,6 +82,8 @@ export interface GetWorkflowScheduleSessionsResponse {
 }
 
 export interface UpdateWorkflowScheduleRequest {
+  auto_healing?: boolean | null;
+
   cron_schedule?: string | null;
 
   git_commit_hash?: string | null;
@@ -93,6 +96,8 @@ export interface UpdateWorkflowScheduleRequest {
 export interface WorkflowScheduleInfo {
   id: string;
 
+  auto_healing: boolean;
+
   chat_session_id: string;
 
   name: string;
@@ -104,6 +109,12 @@ export interface WorkflowScheduleInfo {
   git_commit_hash?: string | null;
 
   next_run_time?: string | null;
+
+  owner_email?: string | null;
+
+  updated_at?: string | null;
+
+  visibility?: ChatAPI.ChatVisibility | null;
 }
 
 export type WorkflowScheduleGetAllResponse = Array<WorkflowScheduleInfo>;
@@ -117,6 +128,8 @@ export interface WorkflowScheduleCreateParams {
 }
 
 export interface WorkflowScheduleUpdateParams {
+  auto_healing?: boolean | null;
+
   cron_schedule?: string | null;
 
   git_commit_hash?: string | null;

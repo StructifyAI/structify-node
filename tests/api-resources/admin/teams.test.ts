@@ -9,8 +9,12 @@ const client = new Structify({
 });
 
 describe('resource teams', () => {
-  test('list', async () => {
-    const responsePromise = client.admin.teams.list();
+  test('addMember: only required params', async () => {
+    const responsePromise = client.admin.teams.addMember({
+      email: 'email',
+      role: 'read_only',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -20,18 +24,12 @@ describe('resource teams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.admin.teams.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Structify.NotFoundError,
-    );
-  });
-
-  test('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.admin.teams.list({ limit: 0, offset: 0 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Structify.NotFoundError);
+  test('addMember: required and optional params', async () => {
+    const response = await client.admin.teams.addMember({
+      email: 'email',
+      role: 'read_only',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
   });
 
   test('cancelSubscription: only required params', async () => {
@@ -81,6 +79,28 @@ describe('resource teams', () => {
     });
   });
 
+  test('deleteManagementRelationship', async () => {
+    const responsePromise = client.admin.teams.deleteManagementRelationship(
+      '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    );
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('deleteManagementRelationship: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.admin.teams.deleteManagementRelationship('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
   test('expireGrants: only required params', async () => {
     const responsePromise = client.admin.teams.expireGrants({
       source_type: 'source_type',
@@ -123,6 +143,28 @@ describe('resource teams', () => {
     });
   });
 
+  test('getManagementRelationship', async () => {
+    const responsePromise = client.admin.teams.getManagementRelationship(
+      '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    );
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('getManagementRelationship: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.admin.teams.getManagementRelationship('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
   test('grantCredits: only required params', async () => {
     const responsePromise = client.admin.teams.grantCredits({
       amount: 0,
@@ -146,6 +188,138 @@ describe('resource teams', () => {
       expires_at: '2019-12-27T18:11:19.117Z',
       source_ref: 'source_ref',
       starts_at: '2019-12-27T18:11:19.117Z',
+    });
+  });
+
+  test('listManagementRelationships', async () => {
+    const responsePromise = client.admin.teams.listManagementRelationships();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('listManagementRelationships: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.admin.teams.listManagementRelationships({ path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
+  test('listManagementRelationships: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.admin.teams.listManagementRelationships(
+        { manager_team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
+  test('listMembers', async () => {
+    const responsePromise = client.admin.teams.listMembers('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('listMembers: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.admin.teams.listMembers('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
+  test('removeMember: only required params', async () => {
+    const responsePromise = client.admin.teams.removeMember({
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      user_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('removeMember: required and optional params', async () => {
+    const response = await client.admin.teams.removeMember({
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      user_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+  });
+
+  test('setAccess: only required params', async () => {
+    const responsePromise = client.admin.teams.setAccess({
+      action: 'grant',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('setAccess: required and optional params', async () => {
+    const response = await client.admin.teams.setAccess({
+      action: 'grant',
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      expires_at: '2019-12-27T18:11:19.117Z',
+    });
+  });
+
+  test('updateSeatsOverride: only required params', async () => {
+    const responsePromise = client.admin.teams.updateSeatsOverride({
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('updateSeatsOverride: required and optional params', async () => {
+    const response = await client.admin.teams.updateSeatsOverride({
+      team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      seats_override: 0,
+    });
+  });
+
+  test('upsertManagementRelationship: only required params', async () => {
+    const responsePromise = client.admin.teams.upsertManagementRelationship({
+      managed_team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      manager_team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('upsertManagementRelationship: required and optional params', async () => {
+    const response = await client.admin.teams.upsertManagementRelationship({
+      managed_team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      manager_team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
 });

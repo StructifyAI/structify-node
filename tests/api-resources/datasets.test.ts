@@ -159,21 +159,6 @@ describe('resource datasets', () => {
     const response = await client.datasets.countMissingEmbeddings({ name: 'name' });
   });
 
-  test('enrichmentProgress: only required params', async () => {
-    const responsePromise = client.datasets.enrichmentProgress({ name: 'name' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('enrichmentProgress: required and optional params', async () => {
-    const response = await client.datasets.enrichmentProgress({ name: 'name' });
-  });
-
   test('exportToCsv: only required params', async () => {
     const responsePromise = client.datasets.exportToCsv({ dataset: 'dataset', name: 'name' });
     const rawResponse = await responsePromise.asResponse();
@@ -405,10 +390,7 @@ describe('resource datasets', () => {
       last_updated: '2019-12-27T18:11:19.117Z',
       limit: 0,
       offset: 0,
-      sort_by: {
-        col_id: { user_defined_column: 'user_defined_column' },
-        sort: 'asc',
-      },
+      sort_by: { col_id: 'creation_time', sort: 'asc' },
     });
   });
 
@@ -431,10 +413,7 @@ describe('resource datasets', () => {
       last_updated: '2019-12-27T18:11:19.117Z',
       limit: 0,
       offset: 0,
-      sort_by: {
-        col_id: { user_defined_column: 'user_defined_column' },
-        sort: 'asc',
-      },
+      sort_by: { col_id: 'creation_time', sort: 'asc' },
     });
   });
 
@@ -457,10 +436,7 @@ describe('resource datasets', () => {
       last_updated: '2019-12-27T18:11:19.117Z',
       limit: 0,
       offset: 0,
-      sort_by: {
-        col_id: { user_defined_column: 'user_defined_column' },
-        sort: 'asc',
-      },
+      sort_by: { col_id: 'creation_time', sort: 'asc' },
     });
   });
 });

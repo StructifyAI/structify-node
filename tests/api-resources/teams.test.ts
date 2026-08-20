@@ -53,24 +53,6 @@ describe('resource teams', () => {
     );
   });
 
-  test('delete', async () => {
-    const responsePromise = client.teams.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('delete: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.teams.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Structify.NotFoundError);
-  });
-
   test('acceptInvitation: only required params', async () => {
     const responsePromise = client.teams.acceptInvitation({ token: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
     const rawResponse = await responsePromise.asResponse();
@@ -107,24 +89,9 @@ describe('resource teams', () => {
     });
   });
 
-  test('createLinkCode: only required params', async () => {
-    const responsePromise = client.teams.createLinkCode({ team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('createLinkCode: required and optional params', async () => {
-    const response = await client.teams.createLinkCode({ team_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });
-  });
-
-  test('createProject: only required params', async () => {
-    const responsePromise = client.teams.createProject('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      name: 'name',
+  test('cancelInvitation: only required params', async () => {
+    const responsePromise = client.teams.cancelInvitation('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      email: 'email',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -135,10 +102,9 @@ describe('resource teams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createProject: required and optional params', async () => {
-    const response = await client.teams.createProject('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      name: 'name',
-      description: 'description',
+  test('cancelInvitation: required and optional params', async () => {
+    const response = await client.teams.cancelInvitation('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      email: 'email',
     });
   });
 
@@ -184,6 +150,26 @@ describe('resource teams', () => {
     ).rejects.toThrow(Structify.NotFoundError);
   });
 
+  test('getSubscription', async () => {
+    const responsePromise = client.teams.getSubscription('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('getSubscription: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.teams.getSubscription('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(Structify.NotFoundError);
+  });
+
   test('invitationDetails', async () => {
     const responsePromise = client.teams.invitationDetails('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();
@@ -219,24 +205,6 @@ describe('resource teams', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.teams.listMembers('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Structify.NotFoundError);
-  });
-
-  test('listProjects', async () => {
-    const responsePromise = client.teams.listProjects('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('listProjects: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.teams.listProjects('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Structify.NotFoundError);
   });
 

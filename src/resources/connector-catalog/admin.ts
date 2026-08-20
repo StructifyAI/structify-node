@@ -4,6 +4,9 @@ import { APIResource } from '../../resource';
 import * as Core from '../../core';
 import * as ConnectorCatalogAPI from './connector-catalog';
 
+/**
+ * Admin endpoints
+ */
 export class Admin extends APIResource {
   /**
    * Batch create connector credential fields
@@ -203,6 +206,10 @@ export interface CreateCatalogRequest {
 
   description?: string | null;
 
+  enterprise_only?: boolean;
+
+  onboarding_priority?: number | null;
+
   priority?: number | null;
 }
 
@@ -265,7 +272,11 @@ export interface UpdateCatalogRequest {
 
   description?: string | null;
 
+  enterprise_only?: boolean | null;
+
   name?: string | null;
+
+  onboarding_priority?: number | null;
 
   priority?: number | null;
 }
@@ -337,6 +348,10 @@ export interface AdminCreateCatalogParams {
 
   description?: string | null;
 
+  enterprise_only?: boolean;
+
+  onboarding_priority?: number | null;
+
   priority?: number | null;
 }
 
@@ -389,7 +404,11 @@ export interface AdminUpdateCatalogParams {
 
   description?: string | null;
 
+  enterprise_only?: boolean | null;
+
   name?: string | null;
+
+  onboarding_priority?: number | null;
 
   priority?: number | null;
 }

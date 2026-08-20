@@ -45,6 +45,10 @@ export class User extends APIResource {
     });
   }
 
+  getOnboardingAnswers(options?: Core.RequestOptions): Core.APIPromise<GetOnboardingAnswersResponse> {
+    return this._client.get('/user/onboarding/answers', options);
+  }
+
   /**
    * Enable a source
    */
@@ -84,6 +88,13 @@ export class User extends APIResource {
     return this._client.post('/user/refresh', { body, ...options });
   }
 
+  saveOnboardingAnswers(
+    body: UserSaveOnboardingAnswersParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<SaveOnboardingAnswersResponse> {
+    return this._client.put('/user/onboarding/answers', { body, ...options });
+  }
+
   /**
    * Submit user onboarding survey
    */
@@ -118,10 +129,30 @@ export interface EnrichUserParams {
   email: string;
 }
 
+export interface GetOnboardingAnswersResponse {
+  answers: OnboardingAnswers;
+}
+
 export interface JwtToAPITokenRequest {
   full_name?: string | null;
 
   invitation_token?: string | null;
+}
+
+export interface OnboardingAnswers {
+  company_name?: string | null;
+
+  connected_connector_ids?: Array<string> | null;
+
+  full_name?: string | null;
+
+  primary_goal?: string | null;
+
+  recommended_template_id?: string | null;
+
+  role?: string | null;
+
+  systems_to_connect?: Array<string> | null;
 }
 
 export interface RefreshSessionRequest {
@@ -138,6 +169,14 @@ export interface RefreshSessionResponse {
   refresh_token_expires_at: string;
 
   session_token: string;
+}
+
+export interface SaveOnboardingAnswersRequest {
+  answers: OnboardingAnswers;
+}
+
+export interface SaveOnboardingAnswersResponse {
+  answers: OnboardingAnswers;
 }
 
 export interface SurveySubmissionRequest {
@@ -195,7 +234,6 @@ export namespace UpdateUserParams {
       | 'cerebras_codegen'
       | 'gemini25pro'
       | 'claude_sonnet4'
-      | 'allow_job_deletion'
       | 'none'
       | null
     > | null;
@@ -204,15 +242,13 @@ export namespace UpdateUserParams {
 
     full_name?: string | null;
 
-    is_developer?: boolean | null;
-
     job_title?: string | null;
 
     last_selected_team_id?: string | null;
 
     linkedin_url?: string | null;
 
-    onboarding_session_id?: string | null;
+    notify_for_interaction?: boolean | null;
 
     permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none' | null> | null;
 
@@ -247,13 +283,12 @@ export interface UserInfo {
     | 'cerebras_codegen'
     | 'gemini25pro'
     | 'claude_sonnet4'
-    | 'allow_job_deletion'
     | 'none'
   >;
 
   full_name: string;
 
-  is_developer: boolean;
+  notify_for_interaction: boolean;
 
   permissions: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none'>;
 
@@ -280,13 +315,15 @@ export interface UserInfo {
 
   linkedin_url?: string | null;
 
-  onboarding_session_id?: string | null;
-
   slack_user_id?: string | null;
 
   slack_username?: string | null;
 
   survey_completed_at?: string | null;
+
+  teams_user_id?: string | null;
+
+  teams_user_name?: string | null;
 }
 
 export type UserTransactionsResponse = Array<UserTransactionsResponse.UserTransactionsResponseItem>;
@@ -303,6 +340,10 @@ export namespace UserTransactionsResponse {
     membership_id: string;
 
     timestamp: string;
+
+    chat_message_id?: string | null;
+
+    connector_explorer_chat_id?: string | null;
 
     credit_grant_id?: string | null;
 
@@ -353,7 +394,6 @@ export namespace UserUpdateParams {
       | 'cerebras_codegen'
       | 'gemini25pro'
       | 'claude_sonnet4'
-      | 'allow_job_deletion'
       | 'none'
       | null
     > | null;
@@ -362,15 +402,13 @@ export namespace UserUpdateParams {
 
     full_name?: string | null;
 
-    is_developer?: boolean | null;
-
     job_title?: string | null;
 
     last_selected_team_id?: string | null;
 
     linkedin_url?: string | null;
 
-    onboarding_session_id?: string | null;
+    notify_for_interaction?: boolean | null;
 
     permissions?: Array<'labeler' | 'qa_labeler' | 'debug' | 'human_llm' | 'none' | null> | null;
 
@@ -404,6 +442,10 @@ export interface UserRefreshParams {
   session_token: string;
 }
 
+export interface UserSaveOnboardingAnswersParams {
+  answers: OnboardingAnswers;
+}
+
 export interface UserSurveySubmitParams {
   survey_response: { [key: string]: unknown };
 }
@@ -418,9 +460,13 @@ User.APIKeys = APIKeys;
 export declare namespace User {
   export {
     type EnrichUserParams as EnrichUserParams,
+    type GetOnboardingAnswersResponse as GetOnboardingAnswersResponse,
     type JwtToAPITokenRequest as JwtToAPITokenRequest,
+    type OnboardingAnswers as OnboardingAnswers,
     type RefreshSessionRequest as RefreshSessionRequest,
     type RefreshSessionResponse as RefreshSessionResponse,
+    type SaveOnboardingAnswersRequest as SaveOnboardingAnswersRequest,
+    type SaveOnboardingAnswersResponse as SaveOnboardingAnswersResponse,
     type SurveySubmissionRequest as SurveySubmissionRequest,
     type SurveySubmissionResponse as SurveySubmissionResponse,
     type TokenResponse as TokenResponse,
@@ -432,6 +478,7 @@ export declare namespace User {
     type UserEnrichParams as UserEnrichParams,
     type UserJwtToAPITokenParams as UserJwtToAPITokenParams,
     type UserRefreshParams as UserRefreshParams,
+    type UserSaveOnboardingAnswersParams as UserSaveOnboardingAnswersParams,
     type UserSurveySubmitParams as UserSurveySubmitParams,
     type UserUsageParams as UserUsageParams,
   };

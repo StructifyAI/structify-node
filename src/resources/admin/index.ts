@@ -1,44 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { Admin } from './admin';
-export {
-  AdminListJobsResponsesJobsList,
-  Jobs,
-  type AdminDeleteJobsRequest,
-  type AdminDeleteJobsResponse,
-  type AdminListJobsRequestParams,
-  type AdminListJobsResponse,
-  type JobListParams,
-  type JobDeleteParams,
-} from './jobs';
-export {
-  AdminSandboxesJobsList,
-  Sandbox,
-  type AdminSandbox,
-  type SandboxType,
-  type SandboxListParams,
-} from './sandbox';
-export {
-  AdminTeamsListResponsesJobsList,
-  Teams,
-  type AdminTeamsListResponse,
-  type CancelSubscriptionRequest,
-  type CancelSubscriptionResponse,
-  type CreateSubscriptionResponse,
-  type CreateTeamSubscriptionRequest,
-  type ExpireGrantsRequest,
-  type ExpireGrantsResponse,
-  type ExtendTrialRequest,
-  type ExtendTrialResponse,
-  type GrantCreditsRequest,
-  type GrantCreditsResponse,
-  type TeamListParams,
-  type TeamCancelSubscriptionParams,
-  type TeamCreateSubscriptionParams,
-  type TeamExpireGrantsParams,
-  type TeamExtendTrialParams,
-  type TeamGrantCreditsParams,
-} from './teams';
+export { Admin, type ReportCriticalRequest, type AdminReportCriticalParams } from './admin';
 export {
   ChatTemplates,
   type AdminChatTemplateListQuery,
@@ -51,10 +13,15 @@ export {
 } from './chat-templates';
 export {
   Connector,
+  type AdminListConnectorsResponse,
   type CloneConnectorItem,
   type CloneConnectorsRequest,
-  type CloneConnectorsResponse,
+  type DatahubIngestionKey,
+  type DatahubIngestionType,
+  type SetDatahubConfigRequest,
+  type ConnectorCloneResponse,
   type ConnectorCloneParams,
+  type ConnectorSetDatahubConfigParams,
 } from './connector';
 export { Dataset, type AdminDatasetReturn, type DatasetGetByIDParams } from './dataset';
 export {
@@ -73,13 +40,68 @@ export {
   type FunctionalTestUpdateResultsParams,
 } from './functional-tests';
 export {
+  JobListResponsesJobsList,
+  Jobs,
+  type AdminDeleteJobsRequest,
+  type AdminDeleteJobsResponse,
+  type AdminListJobsRequestParams,
+  type JobListResponse,
+  type JobConcurrencyResponse,
+  type JobKillByMembershipResponse,
+  type JobRunningStatsResponse,
+  type JobUpdateConcurrencyResponse,
+  type JobListParams,
+  type JobDeleteParams,
+  type JobKillByMembershipParams,
+  type JobUpdateConcurrencyParams,
+} from './jobs';
+export { Sandbox, type SandboxListParams } from './sandbox';
+export {
+  Teams,
+  type AdminAddMemberRequest,
+  type AdminAddMemberResponse,
+  type AdminListMembersResponse,
+  type AdminRemoveMemberRequest,
+  type AdminRemoveMemberResponse,
+  type CancelSubscriptionRequest,
+  type CancelSubscriptionResponse,
+  type CreateSubscriptionResponse,
+  type CreateTeamSubscriptionRequest,
+  type DeleteManagementRelationshipResponse,
+  type ExpireGrantsRequest,
+  type ExpireGrantsResponse,
+  type ExtendTrialRequest,
+  type ExtendTrialResponse,
+  type GrantCreditsRequest,
+  type GrantCreditsResponse,
+  type ListManagementRelationshipsResponse,
+  type ManagementRelationshipDetail,
+  type ManagementRelationshipResponse,
+  type SetAccessAction,
+  type SetAccessRequest,
+  type SetAccessResponse,
+  type TeamManagementRelationship,
+  type UpdateSeatsOverrideRequest,
+  type UpdateSeatsOverrideResponse,
+  type UpsertManagementRelationshipRequest,
+  type TeamAddMemberParams,
+  type TeamCancelSubscriptionParams,
+  type TeamCreateSubscriptionParams,
+  type TeamExpireGrantsParams,
+  type TeamExtendTrialParams,
+  type TeamGrantCreditsParams,
+  type TeamListManagementRelationshipsParams,
+  type TeamRemoveMemberParams,
+  type TeamSetAccessParams,
+  type TeamUpdateSeatsOverrideParams,
+  type TeamUpsertManagementRelationshipParams,
+} from './teams';
+export {
   Users,
   type ImpersonateRequest,
   type ImpersonateResponse,
   type User,
   type UserListResponse,
-  type UserGetStatsResponse,
   type UserCreateParams,
-  type UserGetStatsParams,
   type UserImpersonateParams,
 } from './users';

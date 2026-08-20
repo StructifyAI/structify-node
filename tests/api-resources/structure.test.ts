@@ -9,6 +9,34 @@ const client = new Structify({
 });
 
 describe('resource structure', () => {
+  test('bulkEnhance: only required params', async () => {
+    const responsePromise = client.structure.bulkEnhance({
+      dataset: 'dataset',
+      table_name: 'table_name',
+      target: { Properties: { property_names: ['string'] } },
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('bulkEnhance: required and optional params', async () => {
+    const response = await client.structure.bulkEnhance({
+      dataset: 'dataset',
+      table_name: 'table_name',
+      target: { Properties: { property_names: ['string'] } },
+      instructions: 'instructions',
+      model: 'model',
+      node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      source: 'Web',
+      use_proxy: true,
+    });
+  });
+
   test('enhanceProperty: only required params', async () => {
     const responsePromise = client.structure.enhanceProperty({
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -28,10 +56,7 @@ describe('resource structure', () => {
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       property_name: 'property_name',
       allow_extra_entities: true,
-      banned_domains: ['string'],
       node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      starting_searches: ['string'],
-      starting_urls: ['string'],
     });
   });
 
@@ -54,10 +79,7 @@ describe('resource structure', () => {
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       relationship_name: 'relationship_name',
       allow_extra_entities: true,
-      banned_domains: ['string'],
       node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      starting_searches: ['string'],
-      starting_urls: ['string'],
     });
   });
 
@@ -82,9 +104,6 @@ describe('resource structure', () => {
       relationship_name: 'relationship_name',
       to_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       allow_extra_entities: true,
-      banned_domains: ['string'],
-      starting_searches: ['string'],
-      starting_urls: ['string'],
     });
   });
 
@@ -137,17 +156,14 @@ describe('resource structure', () => {
       dataset: 'dataset',
       path: 'path',
       instructions: 'instructions',
-      mode: 'Single',
       model: 'model',
       node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      pages: [0],
     });
   });
 
   test('runAsync: only required params', async () => {
-    const responsePromise = client.structure.runAsync({
-      dataset: 'dataset',
-      source: { PDF: { path: 'path' } },
-    });
+    const responsePromise = client.structure.runAsync({ dataset: 'dataset' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -160,7 +176,6 @@ describe('resource structure', () => {
   test('runAsync: required and optional params', async () => {
     const response = await client.structure.runAsync({
       dataset: 'dataset',
-      source: { PDF: { path: 'path', page: 0 } },
       instructions: 'instructions',
       model: 'model',
       node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -182,6 +197,8 @@ describe('resource structure', () => {
           },
         ],
       },
+      source: 'Web',
+      use_proxy: true,
     });
   });
 });

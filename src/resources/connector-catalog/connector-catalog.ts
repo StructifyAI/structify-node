@@ -108,6 +108,8 @@ export interface ConnectorCatalog {
 
   created_at: string;
 
+  enterprise_only: boolean;
+
   name: string;
 
   slug: string;
@@ -115,6 +117,8 @@ export interface ConnectorCatalog {
   updated_at: string;
 
   description?: string | null;
+
+  onboarding_priority?: number | null;
 
   priority?: number | null;
 }
@@ -171,6 +175,12 @@ export namespace ConnectorCatalogListResponse {
 }
 
 export interface ConnectorCatalogListParams {
+  /**
+   * Optional category filter (exact match against any element in the categories
+   * array)
+   */
+  categories?: Array<string>;
+
   /**
    * Include inactive auth methods (admin only)
    */

@@ -32,6 +32,7 @@ describe('resource connectorCatalog', () => {
     await expect(
       client.connectorCatalog.list(
         {
+          categories: ['string'],
           include_inactive: true,
           limit: 0,
           offset: 0,

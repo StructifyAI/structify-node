@@ -136,11 +136,11 @@ export class Entities extends APIResource {
    * Add multiple entities to a dataset from a Parquet file with fast batch insert
    */
   uploadParquet(params: EntityUploadParquetParams, options?: Core.RequestOptions): Core.APIPromise<void> {
-    const { dataset, table_name, ...body } = params;
+    const { dataset, table_name, start_embedding, ...body } = params;
     return this._client.post(
       '/entity/upload_parquet',
       Core.multipartFormRequestOptions({
-        query: { dataset, table_name },
+        query: { dataset, table_name, start_embedding },
         body,
         ...options,
         headers: { Accept: '*/*', ...options?.headers },
@@ -294,6 +294,8 @@ export interface EntityGetResponse {
   };
 
   updated_at: string;
+
+  job_id?: string | null;
 }
 
 export namespace EntityGetResponse {
@@ -392,6 +394,8 @@ export namespace EntityGetLocalSubgraphResponse {
     };
 
     updated_at: string;
+
+    job_id?: string | null;
   }
 
   export namespace Neighbor {
@@ -703,9 +707,7 @@ export namespace EntityListJobsResponse {
 
     created_at: string;
 
-    dataset_id: string;
-
-    job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore';
+    job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | 'DatahubIngestion';
 
     max_steps_without_save: number;
 
@@ -717,7 +719,11 @@ export namespace EntityListJobsResponse {
 
     use_proxy: boolean;
 
-    user_id: string;
+    cached_from_job_id?: string | null;
+
+    dataset_id?: string | null;
+
+    exploration_run_id?: string | null;
 
     max_errors?: number | null;
 
@@ -783,6 +789,8 @@ export namespace EntitySearchResponse {
     };
 
     updated_at: string;
+
+    job_id?: string | null;
   }
 
   export namespace EntitySearchResponseItem {
@@ -878,6 +886,8 @@ export namespace EntitySummarizeResponse {
     };
 
     updated_at: string;
+
+    job_id?: string | null;
   }
 
   export namespace EntitySummarizeResponseItem {
@@ -970,6 +980,8 @@ export interface EntityUpdatePropertyResponse {
   };
 
   updated_at: string;
+
+  job_id?: string | null;
 }
 
 export namespace EntityUpdatePropertyResponse {
@@ -1076,6 +1088,8 @@ export namespace EntityViewResponse {
     };
 
     updated_at: string;
+
+    job_id?: string | null;
   }
 
   export namespace ConnectedEntity {
@@ -1167,6 +1181,8 @@ export namespace EntityViewResponse {
     };
 
     updated_at: string;
+
+    job_id?: string | null;
   }
 
   export namespace Entity {
@@ -1353,6 +1369,8 @@ export namespace EntityViewResponse {
     };
 
     updated_at: string;
+
+    job_id?: string | null;
   }
 
   export namespace SimilarEntity {
@@ -1484,11 +1502,6 @@ export interface EntityAddParams {
    */
   entity_graph: SharedAPI.KnowledgeGraph;
 
-  /**
-   * If true, attempt to merge with existing entities in the dataset
-   */
-  attempt_merge?: boolean;
-
   source?: 'None' | EntityAddParams.Web | EntityAddParams.DocumentPage | EntityAddParams.SecFiling;
 }
 
@@ -1510,11 +1523,6 @@ export interface EntityAddBatchParams {
   dataset: string;
 
   entity_graphs: Array<SharedAPI.KnowledgeGraph>;
-
-  /**
-   * If true, attempt to merge with existing entities in the dataset
-   */
-  attempt_merge?: boolean;
 
   skip_malformed_entities?: boolean;
 
@@ -1566,6 +1574,8 @@ export interface EntityDeriveParams {
 
   instructions: string;
 
+  model?: string | null;
+
   node_id?: string | null;
 }
 
@@ -1577,6 +1587,8 @@ export interface EntityDeriveAllParams {
   instructions: string;
 
   table_name: string;
+
+  model?: string | null;
 
   node_id?: string | null;
 }
@@ -1665,6 +1677,11 @@ export interface EntityUploadParquetParams {
    * Body param
    */
   content: Core.Uploadable;
+
+  /**
+   * Query param
+   */
+  start_embedding?: boolean;
 }
 
 export interface EntityVerifyParams {

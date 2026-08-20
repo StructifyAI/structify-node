@@ -72,7 +72,6 @@ describe('resource entities', () => {
           },
         ],
       },
-      attempt_merge: true,
       source: 'None',
     });
   });
@@ -123,7 +122,6 @@ describe('resource entities', () => {
           ],
         },
       ],
-      attempt_merge: true,
       skip_malformed_entities: true,
       source: 'None',
     });
@@ -198,6 +196,7 @@ describe('resource entities', () => {
       derived_property: 'derived_property',
       entity_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       instructions: 'instructions',
+      model: 'model',
       node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
@@ -224,6 +223,7 @@ describe('resource entities', () => {
       derived_property: 'derived_property',
       instructions: 'instructions',
       table_name: 'table_name',
+      model: 'model',
       node_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
   });
@@ -369,7 +369,7 @@ describe('resource entities', () => {
     const responsePromise = client.entities.uploadParquet({
       dataset: 'dataset',
       table_name: 'table_name',
-      content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      content: await toFile(Buffer.from('Example data'), 'README.md'),
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -384,7 +384,8 @@ describe('resource entities', () => {
     const response = await client.entities.uploadParquet({
       dataset: 'dataset',
       table_name: 'table_name',
-      content: await toFile(Buffer.from('# my file contents'), 'README.md'),
+      content: await toFile(Buffer.from('Example data'), 'README.md'),
+      start_embedding: true,
     });
   });
 

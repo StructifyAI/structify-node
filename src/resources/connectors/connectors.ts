@@ -1,12 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as ChatAPI from '../chat';
 import * as StructureAPI from '../structure';
 import * as TypeSnippetsAPI from './type-snippets';
 import { Snippet, TypeSnippetUpsertParams, TypeSnippets, UpsertRequest } from './type-snippets';
 import { JobsList, type JobsListParams } from '../../pagination';
+import { type Response } from '../../_shims/index';
 
 export class Connectors extends APIResource {
   typeSnippets: TypeSnippetsAPI.TypeSnippets = new TypeSnippetsAPI.TypeSnippets(this._client);
@@ -28,9 +30,17 @@ export class Connectors extends APIResource {
   }
 
   list(
-    query: ConnectorListParams,
+    query?: ConnectorListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<ConnectorWithSecretsJobsList, ConnectorWithSecrets>;
+  list(options?: Core.RequestOptions): Core.PagePromise<ConnectorWithSecretsJobsList, ConnectorWithSecrets>;
+  list(
+    query: ConnectorListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.PagePromise<ConnectorWithSecretsJobsList, ConnectorWithSecrets> {
+    if (isRequestOptions(query)) {
+      return this.list({}, query);
+    }
     return this._client.getAPIList('/connectors', ConnectorWithSecretsJobsList, { query, ...options });
   }
 
@@ -80,20 +90,51 @@ export class Connectors extends APIResource {
     });
   }
 
+  downloadDatahubArtifact(
+    connectorId: string,
+    kind: string,
+    query?: ConnectorDownloadDatahubArtifactParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Response>;
+  downloadDatahubArtifact(
+    connectorId: string,
+    kind: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Response>;
+  downloadDatahubArtifact(
+    connectorId: string,
+    kind: string,
+    query: ConnectorDownloadDatahubArtifactParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Response> {
+    if (isRequestOptions(query)) {
+      return this.downloadDatahubArtifact(connectorId, kind, {}, query);
+    }
+    return this._client.get(`/internal/connectors/${connectorId}/datahub-artifacts/${kind}`, {
+      query,
+      ...options,
+      headers: { Accept: 'application/octet-stream', ...options?.headers },
+      __binaryResponse: true,
+    });
+  }
+
   explore(
     connectorId: string,
     body: ConnectorExploreParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<void> {
-    return this._client.post(`/connectors/${connectorId}/explore`, {
-      body,
-      ...options,
-      headers: { Accept: '*/*', ...options?.headers },
-    });
+  ): Core.APIPromise<ConnectorExploreResponse> {
+    return this._client.post(`/connectors/${connectorId}/explore`, { body, ...options });
   }
 
   get(connectorId: string, options?: Core.RequestOptions): Core.APIPromise<ConnectorGetResponse> {
     return this._client.get(`/connectors/${connectorId}`, options);
+  }
+
+  getActiveExplorationRun(
+    connectorId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ExplorationRun | null> {
+    return this._client.get(`/connectors/${connectorId}/explore/active-run`, options);
   }
 
   /**
@@ -106,8 +147,16 @@ export class Connectors extends APIResource {
     return this._client.get(`/connectors/${connectorId}/clarification-requests`, options);
   }
 
+  getExplorationRunProgress(
+    connectorId: string,
+    runId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ExplorationProgress> {
+    return this._client.get(`/connectors/${connectorId}/explore/runs/${runId}/progress`, options);
+  }
+
   /**
-   * Get all exploration runs for a connector (requires debug permission)
+   * Get all exploration runs for a connector
    */
   getExplorationRuns(
     connectorId: string,
@@ -116,27 +165,36 @@ export class Connectors extends APIResource {
     return this._client.get(`/connectors/${connectorId}/explore/runs`, options);
   }
 
-  getExplorationStatus(
-    connectorId: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ExploreStatusResponse> {
-    return this._client.get(`/connectors/${connectorId}/explore/status`, options);
-  }
-
   /**
-   * Returns chats for all phases (table discovery, column discovery for each table,
-   * etc.)
+   * Optionally filter by run, database, schema, or table
    */
   getExplorerChat(
     connectorId: string,
-    query: ConnectorGetExplorerChatParams,
+    query?: ConnectorGetExplorerChatParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ExplorerChatResponse>;
+  getExplorerChat(connectorId: string, options?: Core.RequestOptions): Core.APIPromise<ExplorerChatResponse>;
+  getExplorerChat(
+    connectorId: string,
+    query: ConnectorGetExplorerChatParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<ExplorerChatResponse> {
+    if (isRequestOptions(query)) {
+      return this.getExplorerChat(connectorId, {}, query);
+    }
     return this._client.get(`/connectors/${connectorId}/explore/chat`, { query, ...options });
   }
 
   getStore(connectorId: string, options?: Core.RequestOptions): Core.APIPromise<ConnectorStoreResponse> {
     return this._client.get(`/connectors/${connectorId}/store`, options);
+  }
+
+  getTablePath(tableId: string, options?: Core.RequestOptions): Core.APIPromise<ConnectorTablePathResponse> {
+    return this._client.get(`/connectors/tables/${tableId}/path`, options);
+  }
+
+  listStores(options?: Core.RequestOptions): Core.APIPromise<ConnectorListStoresResponse> {
+    return this._client.get('/connectors/stores', options);
   }
 
   /**
@@ -148,11 +206,8 @@ export class Connectors extends APIResource {
     return this._client.get(`/connectors/${connectorId}/tables`, options);
   }
 
-  listWithSnippets(
-    query: ConnectorListWithSnippetsParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ConnectorListWithSnippetsResponse> {
-    return this._client.get('/connectors/with-snippets', { query, ...options });
+  listWithSnippets(options?: Core.RequestOptions): Core.APIPromise<ConnectorListWithSnippetsResponse> {
+    return this._client.get('/connectors/with-snippets', options);
   }
 
   /**
@@ -204,6 +259,24 @@ export class Connectors extends APIResource {
   ): Core.APIPromise<UpdateTableResponse> {
     return this._client.patch(`/connectors/tables/${tableId}`, { body, ...options });
   }
+
+  uploadDatahubArtifact(
+    connectorId: string,
+    kind: string,
+    params: ConnectorUploadDatahubArtifactParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    const { exploration_run_id, ...body } = params;
+    return this._client.put(
+      `/internal/connectors/${connectorId}/datahub-artifacts/${kind}`,
+      Core.multipartFormRequestOptions({
+        query: { exploration_run_id },
+        body,
+        ...options,
+        headers: { Accept: '*/*', ...options?.headers },
+      }),
+    );
+  }
 }
 
 export class ConnectorWithSecretsJobsList extends JobsList<ConnectorWithSecrets> {}
@@ -213,17 +286,27 @@ export interface Connector {
 
   created_at: string;
 
-  exploration_status: ExplorationStatus;
-
   known_connector_type: string;
 
   name: string;
 
+  owner_membership_id: string;
+
   team_id: string;
+
+  team_visibility: 'Team' | 'Private';
 
   updated_at: string;
 
   connector_category?: ConnectorCategory | null;
+
+  datahub_ingestion_type?: string | null;
+
+  /**
+   * Maps DatahubIngestionKey to the name of the connector secret that holds the
+   * value.
+   */
+  datahub_secret_map?: DatahubSecretMap | null;
 
   datahub_urn?: string | null;
 
@@ -231,19 +314,13 @@ export interface Connector {
 
   description?: string | null;
 
-  exploration_error?: string | null;
-
-  exploration_started_at?: string | null;
-
   nango_connection_id?: string | null;
 
-  nango_integration_id?: string | null;
+  oauth_scopes?: Array<string | null> | null;
 
-  pipedream_account_id?: string | null;
+  refresh_cron_schedule?: string | null;
 
-  pipedream_external_id?: string | null;
-
-  refresh_script?: string | null;
+  refresh_next_run_at?: string | null;
 
   usage_snippet_override?: string | null;
 }
@@ -291,8 +368,6 @@ export interface ConnectorStoreResponse {
 
 export interface ConnectorSummariesRequest {
   connector_ids: Array<string>;
-
-  team_id: string;
 }
 
 export interface ConnectorSummary {
@@ -314,6 +389,16 @@ export interface ConnectorTableInfo {
   description?: string | null;
 }
 
+export interface ConnectorTablePathResponse {
+  connector_id: string;
+
+  database_name: string;
+
+  schema_name: string;
+
+  table_name: string;
+}
+
 export interface ConnectorWithSecrets extends Connector {
   secrets: Array<ConnectorWithSecrets.Secret>;
 }
@@ -323,8 +408,6 @@ export namespace ConnectorWithSecrets {
    * Response model for listing secrets (without sensitive data)
    */
   export interface Secret {
-    id: string;
-
     created_at: string;
 
     secret_name: string;
@@ -342,30 +425,12 @@ export interface CreateConnectorRequest {
 
   name: string;
 
-  team_id: string;
-
   description?: string | null;
 
   /**
    * Nango connection ID for OAuth token management
    */
   nango_connection_id?: string | null;
-
-  /**
-   * Nango integration ID (e.g., "linear", "slack")
-   */
-  nango_integration_id?: string | null;
-
-  pipedream_account_id?: string | null;
-
-  /**
-   * Unique external ID for Pipedream routing (required for Pipedream connectors)
-   */
-  pipedream_external_id?: string | null;
-
-  pipedream_project_id?: string | null;
-
-  refresh_script?: string | null;
 
   /**
    * Optional secrets/environment variables for the connector
@@ -378,6 +443,30 @@ export interface CreateSecretRequest {
 
   secret_value: string;
 }
+
+export interface DatahubProgress {
+  databases_created: number;
+
+  job_id: string;
+
+  job_status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+  pages_fetched: number;
+
+  records_written: number;
+
+  schemas_created: number;
+
+  tables_processed: number;
+
+  total_datasets: number;
+}
+
+/**
+ * Maps DatahubIngestionKey to the name of the connector secret that holds the
+ * value.
+ */
+export type DatahubSecretMap = { [key: string]: string };
 
 export type DeleteSchemaObjectRequest =
   | DeleteSchemaObjectRequest.UnionMember0
@@ -501,10 +590,26 @@ export namespace ExplorationPhaseID {
   }
 }
 
+export interface ExplorationProgress {
+  phases: Array<PhaseActivity>;
+
+  datahub?: DatahubProgress | null;
+}
+
 export interface ExplorationRun {
+  id: string;
+
+  connector_id: string;
+
   created_at: string;
 
-  run_id: string;
+  status: ExplorationStatus;
+
+  checkpoint_blob_name?: string | null;
+
+  latest_snapshot_blob_name?: string | null;
+
+  triggered_by?: string | null;
 }
 
 export interface ExplorationRunsResponse {
@@ -516,22 +621,14 @@ export type ExplorationStatus = 'NotStarted' | 'Running' | 'Completed' | 'Failed
 export interface ExploreConnectorRequest {
   database_id?: string | null;
 
+  /**
+   * If true, run only DataHub ingestion without queuing Diego annotation jobs.
+   */
+  only_do_datahub?: boolean | null;
+
   schema_id?: string | null;
 
-  /**
-   * Which exploration stage to run
-   */
-  stage?: 'both' | 'ingestion' | 'annotation' | null;
-
   table_id?: string | null;
-}
-
-export interface ExploreStatusResponse {
-  status: ExplorationStatus;
-
-  error?: string | null;
-
-  started_at?: string | null;
 }
 
 export interface ExplorerChatResponse {
@@ -637,6 +734,8 @@ export namespace LlmInformationStore {
          * Represents a column in a table or API resource
          */
         export interface Column {
+          id: string;
+
           /**
            * Name of the column
            */
@@ -655,6 +754,22 @@ export namespace LlmInformationStore {
       }
     }
   }
+}
+
+export interface PhaseActivity {
+  job_id: string;
+
+  /**
+   * Identifies the phase of connector exploration
+   *
+   * This enum is used to track which phase of exploration a chat session belongs to.
+   * It's stored as JSONB in the database to allow for flexible phase identification.
+   */
+  phase_id: ExplorationPhaseID;
+
+  status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+  chat_id?: string | null;
 }
 
 export type SchemaObjectID =
@@ -694,13 +809,35 @@ export interface UpdateColumnRequest {
 }
 
 export interface UpdateConnectorRequest {
+  connector_category?: ConnectorCategory | null;
+
+  datahub_ingestion_type?: string | null;
+
+  /**
+   * Maps DatahubIngestionKey to the name of the connector secret that holds the
+   * value.
+   */
+  datahub_secret_map?: DatahubSecretMap | null;
+
+  datahub_urn?: string | null;
+
   description?: string | null;
 
   known_connector_type?: string | null;
 
   name?: string | null;
 
-  refresh_script?: string | null;
+  nango_connection_id?: string | null;
+
+  oauth_scopes?: Array<string | null> | null;
+
+  owner_membership_id?: string | null;
+
+  refresh_cron_schedule?: string | null;
+
+  shared_membership_roles?: { [key: string]: ChatAPI.ChatSessionRole } | null;
+
+  team_visibility?: 'Team' | 'Private' | null;
 
   usage_snippet_override?: string | null;
 }
@@ -756,6 +893,8 @@ export namespace UpdateTableResponse {
      * Represents a column in a table or API resource
      */
     export interface Column {
+      id: string;
+
       /**
        * Name of the column
        */
@@ -806,8 +945,66 @@ export namespace ConnectorAddSchemaObjectResponse {
   }
 }
 
+export interface ConnectorExploreResponse {
+  id: string;
+
+  created_at: string;
+
+  job_type: 'Web' | 'Pdf' | 'Derive' | 'Scrape' | 'Match' | 'ConnectorExplore' | 'DatahubIngestion';
+
+  max_steps_without_save: number;
+
+  membership_id: string;
+
+  status: 'Queued' | 'Running' | 'Completed' | 'Failed';
+
+  updated_at: string;
+
+  use_proxy: boolean;
+
+  cached_from_job_id?: string | null;
+
+  dataset_id?: string | null;
+
+  exploration_run_id?: string | null;
+
+  max_errors?: number | null;
+
+  max_execution_time_secs?: number | null;
+
+  max_total_steps?: number | null;
+
+  /**
+   * A message about the status of the job at completion
+   */
+  message?: string | null;
+
+  node_id?: string | null;
+
+  /**
+   * Proto for JobInput
+   */
+  parameters?: Core.Uploadable | null;
+
+  /**
+   * A reason for the job's existence
+   */
+  reason?: string | null;
+
+  /**
+   * What time did the job start running?
+   */
+  run_started_time?: string | null;
+
+  run_time_milliseconds?: number | null;
+
+  seeded_kg_search_term?: string | null;
+}
+
 export interface ConnectorGetResponse extends Connector {
   secrets: Array<ConnectorGetResponse.Secret>;
+
+  shared_membership_roles: { [key: string]: ChatAPI.ChatSessionRole };
 }
 
 export namespace ConnectorGetResponse {
@@ -855,22 +1052,19 @@ export namespace ConnectorGetClarificationRequestsResponse {
   }
 }
 
+export type ConnectorListStoresResponse = { [key: string]: LlmInformationStore };
+
 export type ConnectorListWithSnippetsResponse = Array<ConnectorWithSnippets>;
 
-export interface ConnectorSearchTablesResponse {
-  ranked_results: Array<ConnectorSearchTablesResponse.RankedResult>;
-
-  raw_results: Array<ConnectorSearchTablesResponse.RawResult>;
-
-  rerank_scores: Array<ConnectorSearchTablesResponse.RerankScore>;
-}
+export type ConnectorSearchTablesResponse =
+  Array<ConnectorSearchTablesResponse.ConnectorSearchTablesResponseItem>;
 
 export namespace ConnectorSearchTablesResponse {
   /**
    * Result struct for connector table search
    */
-  export interface RankedResult {
-    columns: Array<RankedResult.Column>;
+  export interface ConnectorSearchTablesResponseItem {
+    columns: Array<ConnectorSearchTablesResponseItem.Column>;
 
     database_name: string;
 
@@ -884,14 +1078,16 @@ export namespace ConnectorSearchTablesResponse {
     /**
      * Represents a table (for relational databases) or resource (for APIs)
      */
-    table: RankedResult.Table;
+    table: ConnectorSearchTablesResponseItem.Table;
   }
 
-  export namespace RankedResult {
+  export namespace ConnectorSearchTablesResponseItem {
     /**
      * Represents a column in a table or API resource
      */
     export interface Column {
+      id: string;
+
       /**
        * Name of the column
        */
@@ -945,6 +1141,8 @@ export namespace ConnectorSearchTablesResponse {
        * Represents a column in a table or API resource
        */
       export interface Column {
+        id: string;
+
         /**
          * Name of the column
          */
@@ -961,111 +1159,6 @@ export namespace ConnectorSearchTablesResponse {
         notes?: string | null;
       }
     }
-  }
-
-  /**
-   * Result struct for connector table search
-   */
-  export interface RawResult {
-    columns: Array<RawResult.Column>;
-
-    database_name: string;
-
-    schema_name: string;
-
-    /**
-     * Search relevance score (0 = exact match, higher = less relevant)
-     */
-    score: number;
-
-    /**
-     * Represents a table (for relational databases) or resource (for APIs)
-     */
-    table: RawResult.Table;
-  }
-
-  export namespace RawResult {
-    /**
-     * Represents a column in a table or API resource
-     */
-    export interface Column {
-      /**
-       * Name of the column
-       */
-      name: string;
-
-      /**
-       * SQL type of the column (e.g., "VARCHAR(255)", "INTEGER") or API field type
-       */
-      type: string;
-
-      /**
-       * Additional notes about the column
-       */
-      notes?: string | null;
-    }
-
-    /**
-     * Represents a table (for relational databases) or resource (for APIs)
-     */
-    export interface Table {
-      id: string;
-
-      /**
-       * List of columns in this table/resource
-       */
-      columns: Array<Table.Column>;
-
-      /**
-       * Name of the table or resource
-       */
-      name: string;
-
-      /**
-       * Optional description
-       */
-      description?: string | null;
-
-      /**
-       * API endpoint (None for relational DB tables, Some for API resources)
-       */
-      endpoint?: string | null;
-
-      /**
-       * Optional notes
-       */
-      notes?: string | null;
-    }
-
-    export namespace Table {
-      /**
-       * Represents a column in a table or API resource
-       */
-      export interface Column {
-        /**
-         * Name of the column
-         */
-        name: string;
-
-        /**
-         * SQL type of the column (e.g., "VARCHAR(255)", "INTEGER") or API field type
-         */
-        type: string;
-
-        /**
-         * Additional notes about the column
-         */
-        notes?: string | null;
-      }
-    }
-  }
-
-  export interface RerankScore {
-    index: number;
-
-    relevance_score: number;
-
-    text?: string | null;
   }
 }
 
@@ -1076,8 +1169,6 @@ export interface ConnectorCreateParams {
 
   name: string;
 
-  team_id: string;
-
   description?: string | null;
 
   /**
@@ -1086,45 +1177,46 @@ export interface ConnectorCreateParams {
   nango_connection_id?: string | null;
 
   /**
-   * Nango integration ID (e.g., "linear", "slack")
-   */
-  nango_integration_id?: string | null;
-
-  pipedream_account_id?: string | null;
-
-  /**
-   * Unique external ID for Pipedream routing (required for Pipedream connectors)
-   */
-  pipedream_external_id?: string | null;
-
-  pipedream_project_id?: string | null;
-
-  refresh_script?: string | null;
-
-  /**
    * Optional secrets/environment variables for the connector
    */
   secrets?: { [key: string]: string };
 }
 
 export interface ConnectorUpdateParams {
+  connector_category?: ConnectorCategory | null;
+
+  datahub_ingestion_type?: string | null;
+
+  /**
+   * Maps DatahubIngestionKey to the name of the connector secret that holds the
+   * value.
+   */
+  datahub_secret_map?: DatahubSecretMap | null;
+
+  datahub_urn?: string | null;
+
   description?: string | null;
 
   known_connector_type?: string | null;
 
   name?: string | null;
 
-  refresh_script?: string | null;
+  nango_connection_id?: string | null;
+
+  oauth_scopes?: Array<string | null> | null;
+
+  owner_membership_id?: string | null;
+
+  refresh_cron_schedule?: string | null;
+
+  shared_membership_roles?: { [key: string]: ChatAPI.ChatSessionRole } | null;
+
+  team_visibility?: 'Team' | 'Private' | null;
 
   usage_snippet_override?: string | null;
 }
 
-export interface ConnectorListParams extends JobsListParams {
-  /**
-   * Team ID to list connectors for
-   */
-  team_id: string;
-}
+export interface ConnectorListParams extends JobsListParams {}
 
 export type ConnectorAddSchemaObjectParams =
   | ConnectorAddSchemaObjectParams.Variant0
@@ -1220,31 +1312,31 @@ export declare namespace ConnectorDeleteSchemaObjectParams {
   }
 }
 
+export interface ConnectorDownloadDatahubArtifactParams {
+  exploration_run_id?: string | null;
+}
+
 export interface ConnectorExploreParams {
   database_id?: string | null;
 
-  schema_id?: string | null;
-
   /**
-   * Which exploration stage to run
+   * If true, run only DataHub ingestion without queuing Diego annotation jobs.
    */
-  stage?: 'both' | 'ingestion' | 'annotation' | null;
+  only_do_datahub?: boolean | null;
+
+  schema_id?: string | null;
 
   table_id?: string | null;
 }
 
 export interface ConnectorGetExplorerChatParams {
-  /**
-   * Exploration run ID (required)
-   */
-  run_id: string;
-}
+  database_id?: string | null;
 
-export interface ConnectorListWithSnippetsParams {
-  /**
-   * Team ID to list connectors for
-   */
-  team_id: string;
+  run_id?: string | null;
+
+  schema_id?: string | null;
+
+  table_id?: string | null;
 }
 
 export interface ConnectorSearchTablesParams {
@@ -1252,17 +1344,10 @@ export interface ConnectorSearchTablesParams {
    * Search query string
    */
   query: string;
-
-  /**
-   * Team ID to search tables for
-   */
-  team_id: string;
 }
 
 export interface ConnectorSummariesParams {
   connector_ids: Array<string>;
-
-  team_id: string;
 }
 
 export interface ConnectorUpdateColumnParams {
@@ -1273,6 +1358,18 @@ export interface ConnectorUpdateTableParams {
   description?: string | null;
 
   notes?: string | null;
+}
+
+export interface ConnectorUploadDatahubArtifactParams {
+  /**
+   * Query param
+   */
+  exploration_run_id: string;
+
+  /**
+   * Body param
+   */
+  file: Core.Uploadable;
 }
 
 Connectors.ConnectorWithSecretsJobsList = ConnectorWithSecretsJobsList;
@@ -1287,29 +1384,35 @@ export declare namespace Connectors {
     type ConnectorSummariesRequest as ConnectorSummariesRequest,
     type ConnectorSummary as ConnectorSummary,
     type ConnectorTableInfo as ConnectorTableInfo,
+    type ConnectorTablePathResponse as ConnectorTablePathResponse,
     type ConnectorWithSecrets as ConnectorWithSecrets,
     type ConnectorWithSnippets as ConnectorWithSnippets,
     type CreateConnectorRequest as CreateConnectorRequest,
     type CreateSecretRequest as CreateSecretRequest,
+    type DatahubProgress as DatahubProgress,
+    type DatahubSecretMap as DatahubSecretMap,
     type DeleteSchemaObjectRequest as DeleteSchemaObjectRequest,
     type DeleteSchemaObjectResponse as DeleteSchemaObjectResponse,
     type ExplorationPhaseID as ExplorationPhaseID,
+    type ExplorationProgress as ExplorationProgress,
     type ExplorationRun as ExplorationRun,
     type ExplorationRunsResponse as ExplorationRunsResponse,
     type ExplorationStatus as ExplorationStatus,
     type ExploreConnectorRequest as ExploreConnectorRequest,
-    type ExploreStatusResponse as ExploreStatusResponse,
     type ExplorerChatResponse as ExplorerChatResponse,
     type ListTablesResponse as ListTablesResponse,
     type LlmInformationStore as LlmInformationStore,
+    type PhaseActivity as PhaseActivity,
     type SchemaObjectID as SchemaObjectID,
     type UpdateColumnRequest as UpdateColumnRequest,
     type UpdateConnectorRequest as UpdateConnectorRequest,
     type UpdateTableRequest as UpdateTableRequest,
     type UpdateTableResponse as UpdateTableResponse,
     type ConnectorAddSchemaObjectResponse as ConnectorAddSchemaObjectResponse,
+    type ConnectorExploreResponse as ConnectorExploreResponse,
     type ConnectorGetResponse as ConnectorGetResponse,
     type ConnectorGetClarificationRequestsResponse as ConnectorGetClarificationRequestsResponse,
+    type ConnectorListStoresResponse as ConnectorListStoresResponse,
     type ConnectorListWithSnippetsResponse as ConnectorListWithSnippetsResponse,
     type ConnectorSearchTablesResponse as ConnectorSearchTablesResponse,
     type ConnectorSummariesResponse as ConnectorSummariesResponse,
@@ -1320,13 +1423,14 @@ export declare namespace Connectors {
     type ConnectorAddSchemaObjectParams as ConnectorAddSchemaObjectParams,
     type ConnectorCreateSecretParams as ConnectorCreateSecretParams,
     type ConnectorDeleteSchemaObjectParams as ConnectorDeleteSchemaObjectParams,
+    type ConnectorDownloadDatahubArtifactParams as ConnectorDownloadDatahubArtifactParams,
     type ConnectorExploreParams as ConnectorExploreParams,
     type ConnectorGetExplorerChatParams as ConnectorGetExplorerChatParams,
-    type ConnectorListWithSnippetsParams as ConnectorListWithSnippetsParams,
     type ConnectorSearchTablesParams as ConnectorSearchTablesParams,
     type ConnectorSummariesParams as ConnectorSummariesParams,
     type ConnectorUpdateColumnParams as ConnectorUpdateColumnParams,
     type ConnectorUpdateTableParams as ConnectorUpdateTableParams,
+    type ConnectorUploadDatahubArtifactParams as ConnectorUploadDatahubArtifactParams,
   };
 
   export {

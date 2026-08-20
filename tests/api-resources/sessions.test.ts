@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Structify, { toFile } from 'structifyai';
+import Structify from 'structifyai';
 import { Response } from 'node-fetch';
 
 const client = new Structify({
@@ -44,7 +44,41 @@ describe('resource sessions', () => {
   test('createSession: required and optional params', async () => {
     const response = await client.sessions.createSession({
       chat_session_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      parent_chat_message_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       workflow_schedule_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    });
+  });
+
+  test('editNodeOutput: only required params', async () => {
+    const responsePromise = client.sessions.editNodeOutput('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      edits: [
+        {
+          column_name: 'column_name',
+          row_index: 0,
+          value: 'value',
+          type: 'edit_cell',
+        },
+      ],
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('editNodeOutput: required and optional params', async () => {
+    const response = await client.sessions.editNodeOutput('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+      edits: [
+        {
+          column_name: 'column_name',
+          row_index: 0,
+          value: 'value',
+          type: 'edit_cell',
+        },
+      ],
     });
   });
 
@@ -89,22 +123,9 @@ describe('resource sessions', () => {
                 node_name: 'node_name',
                 title: 'title',
                 description: 'description',
-                mosaic: {
-                  fields: { foo: 'string' },
-                  bin: {
-                    as: 'as',
-                    field: 'field',
-                    step: 0,
-                  },
-                  groupBy: ['string'],
-                  limit: 0,
-                  orderBy: 'orderBy',
-                  table: 'table',
-                },
                 span: 0,
               },
             ],
-            title: 'title',
             controls: [
               {
                 id: 'id',
@@ -117,11 +138,15 @@ describe('resource sessions', () => {
             ],
             datasetNodeName: 'datasetNodeName',
             description: 'description',
+            title: 'title',
           },
         ],
         title: 'title',
         description: 'description',
       },
+      rerun_from: ['string'],
+      skip_children: true,
+      use_node_cache: true,
     });
   });
 
@@ -298,6 +323,17 @@ describe('resource sessions', () => {
     });
   });
 
+  test('triggerReview', async () => {
+    const responsePromise = client.sessions.triggerReview('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {});
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
   test('updateNode: only required params', async () => {
     const responsePromise = client.sessions.updateNode('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       execution_status: 'Unexecuted',
@@ -346,10 +382,7 @@ describe('resource sessions', () => {
 
   test('uploadDashboardLayout: only required params', async () => {
     const responsePromise = client.sessions.uploadDashboardLayout('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      layout: {
-        dashboards: [{ components: [{ node_name: 'node_name', title: 'title' }], title: 'title' }],
-        title: 'title',
-      },
+      layout: { dashboards: [{ components: [{ node_name: 'node_name', title: 'title' }] }], title: 'title' },
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -370,22 +403,9 @@ describe('resource sessions', () => {
                 node_name: 'node_name',
                 title: 'title',
                 description: 'description',
-                mosaic: {
-                  fields: { foo: 'string' },
-                  bin: {
-                    as: 'as',
-                    field: 'field',
-                    step: 0,
-                  },
-                  groupBy: ['string'],
-                  limit: 0,
-                  orderBy: 'orderBy',
-                  table: 'table',
-                },
                 span: 0,
               },
             ],
-            title: 'title',
             controls: [
               {
                 id: 'id',
@@ -398,31 +418,12 @@ describe('resource sessions', () => {
             ],
             datasetNodeName: 'datasetNodeName',
             description: 'description',
+            title: 'title',
           },
         ],
         title: 'title',
         description: 'description',
       },
-    });
-  });
-
-  test('uploadNodeOutputData: only required params', async () => {
-    const responsePromise = client.sessions.uploadNodeOutputData('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      content: await toFile(Buffer.from('# my file contents'), 'README.md'),
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('uploadNodeOutputData: required and optional params', async () => {
-    const response = await client.sessions.uploadNodeOutputData('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      content: await toFile(Buffer.from('# my file contents'), 'README.md'),
-      output_schema: 'output_schema',
     });
   });
 
